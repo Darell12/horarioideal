@@ -69,10 +69,10 @@
                                     </button>
                                 </div>
                             </th>
-
+                            
                         </tr>
                     <?php } ?>
-
+                    
                 </tbody>
             </table>
         </div>
@@ -92,11 +92,11 @@
                                         <label class="col-form-label">Rol:</label>
                                         <select class="form-select form-select" name="id_rol" id="rol" required>
                                             <option value="">Seleccione un Rol</option>
-                                            <option value="4">Profesor</option>
-                                            <option value="3">Estudiante</option>
-                                            <option value="2">Administrador</option>
-                                        </select>
-                                    </div>
+                                            <?php foreach($roles as $rol) {?>
+                                                <option value="<?php echo $rol['id_rol']; ?>"><?php echo $rol['nombre']; ?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
                                     <div class="col">
                                         <label class="col-form-label">Tipo de Documento:</label>
                                         <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
@@ -214,6 +214,7 @@
                     $('#tipo_documento').val(rs[0]['tipo_documento']);
                     $('#rol').val(rs[0]['id_rol']);
                     $('#n_documento').val(rs[0]['n_documento']);
+                    $('#nombre_corto').val(rs[0]['nombre_corto']);
                     $('#primer_nombre').val(rs[0]['nombre_p']);
                     $('#segundo_nombre').val(rs[0]['nombre_s']);
                     $('#primer_apellido').val(rs[0]['apellido_p']);
@@ -230,6 +231,7 @@
             $("#tp").val(1);
             $('#tipo_documento').val('');
             $('#n_documento').val('');
+            $('#nombre_corto').val('');
             $('#primer_nombre').val('');
             $('#segundo_nombre').val('');
             $('#primer_apellido').val('');

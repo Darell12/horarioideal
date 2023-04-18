@@ -4,23 +4,26 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
+use App\Models\RolesModel;
 
 
 class Usuarios extends BaseController
 {
     protected $usuario, $eliminados;
-
+    protected $roles;
 
     public function __construct()
     {
         $this->usuario = new UsuariosModel();
         $this->eliminados = new UsuariosModel();
+        $this->roles = new RolesModel();
     }
     public function index()
     {
         $usuario = $this->usuario->obtenerUsuarios();
+        $roles = $this->roles->obtenerRoles();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario];
+        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
@@ -73,11 +76,11 @@ class Usuarios extends BaseController
         if (!$eliminados) {
             // echo view('/errors/html/no_eliminados');
             $data = ['titulo' => 'Administrar Países Eliminados',  'datos' => 'vacio'];
-            echo view('/principal/header', $data);
+            echo view('/principal/sidebar', $data);
             echo view('/usuarios/eliminados', $data);
         } else {
             $data = ['titulo' => 'Administrar Países Eliminados', 'datos' => $eliminados];
-            echo view('/principal/header', $data);
+            echo view('/principal/sidebar', $data);
             echo view('/usuarios/eliminados', $data);
         }
     }
@@ -101,8 +104,7 @@ class Usuarios extends BaseController
     }
     public function cambiarEstado($id, $estado)
     {
-        $usuario = $this->usuario->cambiar_Estado($id, $estado);
-
+        $usuario = $this->usuario->cambiarEstado($id, $estado);
         if (
             $estado == 'E'
         ) {
