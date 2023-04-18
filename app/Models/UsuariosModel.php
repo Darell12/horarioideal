@@ -25,9 +25,19 @@ class UsuariosModel extends Model
 
     public function obtenerUsuarios()
     {
-        $this->select('usuarios.*');
-        $this->where('estado', 'A');
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_corto, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
+        $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
+        $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
+        $this->where('usuarios.estado', 'A');
         $datos = $this->findAll();
+        return $datos;
+    }
+    public function buscarUsuario($id)
+    {
+        $this->select('usuarios.*');
+        $this->where('id_usuario', $id);
+        $this->where('estado', 'A');
+        $datos = $this->first();
         return $datos;
     }
     public function login($nombre)

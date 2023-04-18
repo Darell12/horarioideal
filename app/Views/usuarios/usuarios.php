@@ -29,13 +29,14 @@
                 <thead class="table-dark">
                     <tr>
                         <th class="text-center">Id</th>
-                        <th class="text-center">Email</th>
                         <th class="text-center">Tipo Documento</th>
                         <th class="text-center">N°Documento</th>
+                        <th class="text-center">N_Usuario</th>
                         <th class="text-center">Primer Nombre</th>
                         <th class="text-center">Segundo Nombre</th>
                         <th class="text-center">Primer Apellido</th>
                         <th class="text-center">Segundo Apellido</th>
+                        <th class="text-center">Rol</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center" colspan="2">Acciones</th>
                     </tr>
@@ -44,29 +45,29 @@
                     <?php foreach ($datos as $valor) { ?>
                         <tr>
                             <th class="text-center"><?php echo $valor['id_usuario']; ?></th>
-                            <th class="text-center"><?php echo $valor['tipo_documento']; ?></th>
+                            <th class="text-center"><?php echo $valor['t_documento']; ?></th>
                             <th class="text-center"><?php echo $valor['n_documento']; ?></th>
+                            <th class="text-center"><?php echo $valor['nombre_corto']; ?></th>
                             <th class="text-center"><?php echo $valor['nombre_p']; ?></th>
                             <th class="text-center"><?php echo $valor['nombre_s']; ?></th>
                             <th class="text-center"><?php echo $valor['apellido_p']; ?></th>
                             <th class="text-center"><?php echo $valor['apellido_s']; ?></th>
+                            <th class="text-center"><?php echo $valor['rol']; ?></th>
                             <th class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                             </th>
                             <th class="grid grid text-center" colspan="2">
-
-                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal">
-
-                                    <i class="bi bi-pencil"></i>
-
-                                </button>
-                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal">
-
-                                    <i class="bi bi-arrow-clockwise"></i>
-
-                                </button>
-
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-outline-warning" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Resetear Contraseña">
+                                        <i class="bi bi-arrow-clockwise"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>" title="Eliminar Registro">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </div>
                             </th>
 
                         </tr>
@@ -89,7 +90,7 @@
                                 <div class="row">
                                     <div class="">
                                         <label class="col-form-label">Rol:</label>
-                                        <select class="form-select form-select" name="id_rol" id="cc" required>
+                                        <select class="form-select form-select" name="id_rol" id="rol" required>
                                             <option value="">Seleccione un Rol</option>
                                             <option value="4">Profesor</option>
                                             <option value="3">Estudiante</option>
@@ -98,7 +99,7 @@
                                     </div>
                                     <div class="col">
                                         <label class="col-form-label">Tipo de Documento:</label>
-                                        <select class="form-select form-select" name="tipo_documento" id="cc" required>
+                                        <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
                                             <option value="">Seleccione un Tipo</option>
                                             <option value="2">Cedula de Ciudadania</option>
                                             <option value="1">Tarjeta de Identidad</option>
@@ -138,10 +139,10 @@
                                     <label id="email_label" for="email">Dirección:</label>
                                     <input id="direccion" name="direccion" type="text" class="form-control" required />
                                 </div>
-                                <div class="">
+                                <!-- <div class="">
                                     <label id="email_label" for="email">Correo Electronico</label>
                                     <input id="email" name="email" type="email" class="form-control" required />
-                                </div>
+                                </div> -->
                                 <div class="row">
                                     <div class="col">
                                         <label id="password_label" for="password">Contraseña</label>
@@ -154,6 +155,7 @@
                                 </div>
 
                                 <input type="text" id="CodigoValido" name="CodigoValido" hidden>
+                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <input type="text" id="NombreValido" name="NombreValido" hidden>
@@ -206,17 +208,20 @@
                 url: dataURL,
                 dataType: "json",
                 success: function(rs) {
-                    console.log(rs)
+                    console.log(rs[0])
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#tipo_documento').val(rs[0]['tipo_documento']);
+                    $('#rol').val(rs[0]['id_rol']);
                     $('#n_documento').val(rs[0]['n_documento']);
                     $('#primer_nombre').val(rs[0]['nombre_p']);
                     $('#segundo_nombre').val(rs[0]['nombre_s']);
                     $('#primer_apellido').val(rs[0]['apellido_p']);
                     $('#segundo_apellido').val(rs[0]['apellido_s']);
-                    $('#email').val(rs[0]['email']);
-                    $('#contraseña').val(rs[0]['contraseña']);
+                    $('#direccion').val(rs[0]['direccion']);
+                    // $('#contraseña').val(rs[0]['contraseña']);
+                    $('#contraseña').attr('hidden');
+                    $('#confirmar_contraseña').attr('hidden');
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
                 }
@@ -229,7 +234,6 @@
             $('#segundo_nombre').val('');
             $('#primer_apellido').val('');
             $('#segundo_apellido').val('');
-            $('#email').val('');
             $('#contraseña').val('');
             $("#btn_Guardar").text('Guardar');
             $("#UsuarioModal").modal("show");
