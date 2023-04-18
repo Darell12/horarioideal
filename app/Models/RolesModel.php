@@ -13,7 +13,7 @@ class RolesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre', 'descripcion', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre', 'estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -22,5 +22,34 @@ class RolesModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function obtenerRoles()
+    {
+        $this->select('roles.*');
+        $this->where('estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function obtenerRolesEliminados()
+    {
+        $this->select('roles.*');
+        $this->where('estado', 'E');
+        $this->orderBy('nombre', 'ASC');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function buscarRol($id)
+    {
+        $this->select('roles.*');
+        $this->where('id_rol', $id);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+    public function cambiar_Estado($id, $estado)
+    {
+        $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
 
 }
