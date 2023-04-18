@@ -1,19 +1,4 @@
 
- <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css">
-    <script src="<?php echo base_url('/bootstrap/bootstrap.bundle.min.js'); ?>"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</head> 
-
-<div class="container">
     <div class="container  mt-4 shadow rounded-4">
         <div>
             <h1 class="titulo_Vista text-center"></h1>
@@ -51,7 +36,7 @@
 
                                 </button>
 
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/roles/cambiarEstado') . '/' . $valor['id_rol'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_roles') . '/' . $valor['id_rol'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
                             </th>
 
                         </tr>
@@ -61,7 +46,7 @@
             </table>
         </div>
         <!-- Modal -->
-        <form method="POST" action="<?php echo base_url('/roles/insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+        <form method="POST" action="<?php echo base_url('/roles_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
             <div class="modal fade" id="RolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -95,27 +80,26 @@
 
 
         <!-- Modal Confirma Eliminar -->
-        <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div style="text-align:center;" class="modal-header">
-                        <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+        <!-- Modal Elimina -->
+    </div>
+    
+    <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div style="text-align:center;" class="modal-header">
+                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
 
-                    </div>
-                    <div style="text-align:center;font-weight:bold;" class="modal-body">
-                        <p>Seguro Desea Eliminar éste Registro?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-outline-danger btn-ok">Confirmar</a>
-                    </div>
+                </div>
+                <div style="text-align:center;font-weight:bold;" class="modal-body">
+                    <p>Seguro Desea Eliminar éste Registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-outline-danger btn-ok">Confirmar</a>
                 </div>
             </div>
         </div>
-        <!-- Modal Elimina -->
     </div>
-
-</div>
 
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {

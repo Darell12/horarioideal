@@ -169,90 +169,143 @@ in APPPATH\Controllers\Roles.php on line 70.
  2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
  3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-18 15:02:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:02:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:02:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:03:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:13:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:36:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:36:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:40:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:40:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:41:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:41:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:42:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-18 15:43:26 --> Call to undefined method App\Models\UsuariosModel::cambiar_Estado
-in SYSTEMPATH\Model.php on line 842.
- 1 APPPATH\Controllers\Usuarios.php(107): CodeIgniter\Model->__call('cambiar_Estado', [...])
- 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->cambiarEstado('6', 'E')
- 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-18 15:43:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-18 15:43:48 --> Call to undefined method App\Models\UsuariosModel::cambiar_Estado
-in SYSTEMPATH\Model.php on line 842.
- 1 APPPATH\Controllers\Usuarios.php(107): CodeIgniter\Model->__call('cambiar_Estado', [...])
- 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->cambiarEstado('6', 'E')
- 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-18 15:46:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-18 15:46:57 --> Call to undefined method App\Models\UsuariosModel::cambiar_Estado
-in SYSTEMPATH\Model.php on line 842.
- 1 APPPATH\Controllers\Usuarios.php(107): CodeIgniter\Model->__call('cambiar_Estado', [...])
- 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->cambiarEstado('6', 'E')
- 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-04-18 15:47:07 --> Call to undefined method App\Models\UsuariosModel::cambiar_Estado
-in SYSTEMPATH\Model.php on line 842.
- 1 APPPATH\Controllers\Usuarios.php(107): CodeIgniter\Model->__call('cambiar_Estado', [...])
- 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->cambiarEstado('6', 'E')
- 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-18 15:47:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:47:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-18 15:51:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-18 15:51:37 --> Call to undefined method App\Models\UsuariosModel::obtenerUsuariosEliminados
-in SYSTEMPATH\Model.php on line 842.
- 1 APPPATH\Controllers\Usuarios.php(72): CodeIgniter\Model->__call('obtenerUsuariosEliminados', [])
- 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->eliminados()
- 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-04-18 15:52:06 --> Invalid file: "/principal/header.php"
+CRITICAL - 2023-04-18 15:01:49 --> Call to a member function obtenerRolesEliminados() on null
+in APPPATH\Controllers\Roles.php on line 70.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:14:08 --> Call to a member function obtenerRolesEliminados() on null
+in APPPATH\Controllers\Roles.php on line 70.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:15:13 --> Call to a member function obtenerRolesEliminados() on null
+in APPPATH\Controllers\Roles.php on line 70.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:15:14 --> Call to a member function obtenerRolesEliminados() on null
+in APPPATH\Controllers\Roles.php on line 70.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:17:21 --> Invalid file: "/principal/header.php"
 in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
  1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
  2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
- 3 APPPATH\Controllers\Usuarios.php(83): view('/principal/header', [...])
- 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->eliminados()
- 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
  6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-04-18 15:52:21 --> Undefined array key "email"
-in APPPATH\Views\usuarios\eliminados.php on line 30.
- 1 APPPATH\Views\usuarios\eliminados.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "email"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\eliminados.php', 30)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\eliminados.php')
+CRITICAL - 2023-04-18 15:23:10 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:24:14 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:32:40 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:34:13 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:34:17 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:34:51 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:37:28 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 15:37:32 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Roles.php(77): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 15:51:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-18 15:59:16 --> Undefined array key "id"
+in APPPATH\Views\roles\roles.php on line 54.
+ 1 APPPATH\Views\roles\roles.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php', 54)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php')
  3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/eliminados', [], true)
- 5 APPPATH\Controllers\Usuarios.php(84): view('/usuarios/eliminados', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->eliminados()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/roles', [], true)
+ 5 APPPATH\Controllers\Roles.php(26): view('/roles/roles', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
  8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-04-18 15:55:49 --> foreach() argument must be of type array|object, string given
-in APPPATH\Views\usuarios\eliminados.php on line 28.
- 1 APPPATH\Views\usuarios\eliminados.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, string given', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\eliminados.php', 28)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\eliminados.php')
+CRITICAL - 2023-04-18 16:07:17 --> Undefined array key "id"
+in APPPATH\Views\roles\eliminados.php on line 28.
+ 1 APPPATH\Views\roles\eliminados.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\eliminados.php', 28)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\eliminados.php')
  3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/eliminados', [], true)
- 5 APPPATH\Controllers\Usuarios.php(80): view('/usuarios/eliminados', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->eliminados()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/eliminados', [], true)
+ 5 APPPATH\Controllers\Roles.php(81): view('/roles/eliminados', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 16:07:37 --> Undefined array key "id"
+in APPPATH\Views\roles\eliminados.php on line 34.
+ 1 APPPATH\Views\roles\eliminados.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\eliminados.php', 34)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\eliminados.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/eliminados', [], true)
+ 5 APPPATH\Controllers\Roles.php(81): view('/roles/eliminados', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
  8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
 INFO - 2023-04-18 15:57:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

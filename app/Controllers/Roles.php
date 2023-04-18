@@ -14,7 +14,7 @@ class Roles extends BaseController
     public function __construct()
     {
         $this->rol = new RolesModel();
-        // $this->eliminados = new RolesModel();
+        $this->eliminados = new RolesModel();
     }
     public function index()
     {
@@ -60,9 +60,9 @@ class Roles extends BaseController
         if (
             $estado == 'E'
         ) {
-            return redirect()->to(base_url('/roles'));
+            return redirect()->to(base_url('/ver_roles'));
         } else {
-            return redirect()->to(base_url('/roles/eliminados'));
+            return redirect()->to(base_url('/eliminados_roles'));
         }
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
@@ -72,13 +72,12 @@ class Roles extends BaseController
 
         // Redireccionar a la URL anterior
         if (!$eliminados) {
-            // echo view('/errors/html/no_eliminados');
-            $data = ['titulo' => 'Administrar Países Eliminados', 'nombre' => 'Darell E', 'datos' => 'vacio'];
-            echo view('/principal/header', $data);
+            $data = ['titulo' => 'Administrar Roles Eliminados','datos' => 'vacio'];
+            echo view('/principal/sidebar', $data);
             echo view('/roles/eliminados', $data);
         } else {
-            $data = ['titulo' => 'Administrar Países Eliminados', 'nombre' => 'Darell E', 'datos' => $eliminados];
-            echo view('/principal/header', $data);
+            $data = ['titulo' => 'Administrar Roles Eliminados', 'datos' => $eliminados];
+            echo view('/principal/sidebar', $data);
             echo view('/roles/eliminados', $data);
         }
     }

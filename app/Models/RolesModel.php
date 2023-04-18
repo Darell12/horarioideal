@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class RolesModel extends Model
 {
     protected $table = 'roles';
-    protected $primaryKey = 'id_rol ';
+    protected $primaryKey = 'id_rol';
 
     protected $useAutoIncrement = true;
 
@@ -49,6 +49,14 @@ class RolesModel extends Model
     public function cambiar_Estado($id, $estado)
     {
         $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
+    public function traer_rol($id)
+    {
+        $this->select('roles.*');
+        $this->where('id', $id);
+
+        $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
         return $datos;
     }
 
