@@ -85,3 +85,1113 @@ in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
  5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
  6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 13:41:11 --> mysqli_sql_exception: Unknown column 'r.nombre' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 13:41:11 --> Unknown column 'r.nombre' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = :estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(31): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 13:41:19 --> mysqli_sql_exception: Column 'estado' in where clause is ambiguous in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 13:41:19 --> Column 'estado' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `estado` = :estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(31): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 13:41:30 --> Class "App\Models\UsuariosModel" not found
+in APPPATH\Controllers\Usuarios.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Usuarios->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 13:41:37 --> mysqli_sql_exception: Unknown column 'roles.id_rol' in 'on clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 13:41:37 --> Unknown column 'roles.id_rol' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.*, `r`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(31): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 13:44:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:45:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:46:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:46:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:46:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:47:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:47:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:48:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:48:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:48:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:49:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:49:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:54:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:54:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:54:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:54:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:54:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:54:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 13:54:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 13:59:57 --> mysqli_sql_exception: Unknown table 'horarios_db.u' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 13:59:57 --> Unknown table 'horarios_db.u'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 13:59:58 --> mysqli_sql_exception: Unknown table 'horarios_db.u' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 13:59:58 --> Unknown table 'horarios_db.u'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 13:59:59 --> mysqli_sql_exception: Unknown table 'horarios_db.u' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 13:59:59 --> Unknown table 'horarios_db.u'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:00:02 --> mysqli_sql_exception: Unknown table 'horarios_db.u' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:00:02 --> Unknown table 'horarios_db.u'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`, `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:00:42 --> Too few arguments to function CodeIgniter\Database\BaseBuilder::join(), 1 passed in C:\xampp\htdocs\horarioideal\system\Model.php on line 840 and at least 2 expected
+in SYSTEMPATH\Database\BaseBuilder.php on line 617.
+ 1 SYSTEMPATH\Model.php(840): CodeIgniter\Database\BaseBuilder->join('usuarios as u')
+ 2 APPPATH\Models\UsuariosModel.php(30): CodeIgniter\Model->__call('join', [...])
+ 3 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:00:43 --> Too few arguments to function CodeIgniter\Database\BaseBuilder::join(), 1 passed in C:\xampp\htdocs\horarioideal\system\Model.php on line 840 and at least 2 expected
+in SYSTEMPATH\Database\BaseBuilder.php on line 617.
+ 1 SYSTEMPATH\Model.php(840): CodeIgniter\Database\BaseBuilder->join('usuarios as u')
+ 2 APPPATH\Models\UsuariosModel.php(30): CodeIgniter\Model->__call('join', [...])
+ 3 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:01:04 --> mysqli_sql_exception: Unknown table 'horarios_db.u' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `u`.*, `...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.*, `...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.*, `...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.*, `...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:01:04 --> Unknown table 'horarios_db.u'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `u`.*, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 14:01:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 14:01:46 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:01:46 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:01:52 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:01:52 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:01:53 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:01:53 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:04 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:04 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:48 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:48 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = :u.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:49 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:49 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = :u.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:50 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:50 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = :u.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:50 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:50 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = :u.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:50 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:50 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = :u.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:51 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:51 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = :u.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:02:51 --> mysqli_sql_exception: Unknown column 'usuarios' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:02:51 --> Unknown column 'usuarios' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios` as `u`
+FROM `usuarios`
+JOIN `roles` as `r` ON `u`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `u`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `u`.`estado` = :u.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 14:03:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-18 14:03:18 --> Undefined array key "n_documento"
+in APPPATH\Views\usuarios\usuarios.php on line 49.
+ 1 APPPATH\Views\usuarios\usuarios.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "n_documento"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 49)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(26): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:03:35 --> Undefined array key "nombre_corto"
+in APPPATH\Views\usuarios\usuarios.php on line 50.
+ 1 APPPATH\Views\usuarios\usuarios.php(50): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nombre_corto"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 50)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(26): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:03:51 --> Undefined array key "nombre_p"
+in APPPATH\Views\usuarios\usuarios.php on line 51.
+ 1 APPPATH\Views\usuarios\usuarios.php(51): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nombre_p"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 51)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(26): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:04:44 --> mysqli_sql_exception: Unknown column 'usuario.apellido_s' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:04:44 --> Unknown column 'usuario.apellido_s' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 14:05:16 --> mysqli_sql_exception: Unknown column 'usuario.apellido_s' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:05:16 --> Unknown column 'usuario.apellido_s' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuario`.`apellido_s`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:05:34 --> Undefined array key "estado"
+in APPPATH\Views\usuarios\usuarios.php on line 57.
+ 1 APPPATH\Views\usuarios\usuarios.php(57): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 57)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(26): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 14:06:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-18 14:11:23 --> Call to undefined method App\Models\UsuariosModel::buscarUsuario
+in SYSTEMPATH\Model.php on line 842.
+ 1 APPPATH\Controllers\Usuarios.php(87): CodeIgniter\Model->__call('buscarUsuario', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->buscarUsuario('6')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:12:15 --> Call to undefined method App\Models\UsuariosModel::buscarUsuario
+in SYSTEMPATH\Model.php on line 842.
+ 1 APPPATH\Controllers\Usuarios.php(87): CodeIgniter\Model->__call('buscarUsuario', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->buscarUsuario('6')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 14:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-18 14:12:27 --> Call to undefined method App\Models\UsuariosModel::buscarUsuario
+in SYSTEMPATH\Model.php on line 842.
+ 1 APPPATH\Controllers\Usuarios.php(87): CodeIgniter\Model->__call('buscarUsuario', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->buscarUsuario('6')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 14:12:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:12:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:16:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:16:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:16:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:17:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:21:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:30:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 14:30:55 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`usuarios`, CONSTRAINT `rol_usuario` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`)) in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2476): CodeIgniter\Database\BaseConnection->query('UPDATE `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(396): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(943): CodeIgniter\Model->doUpdate(Array, Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(756): CodeIgniter\BaseModel->update(Array, Array)
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(62): CodeIgniter\Model->update('6', Array)
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 14:30:55 --> Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`usuarios`, CONSTRAINT `rol_usuario` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `usuarios` SET `tipo_documento` = \'\', `n_documento` = \'134\', `nombre_corto` = \'\', `nombre_p` = \'D\', `nombre_s` = \'D\', `apellido_p` = \'D\', `apellido_s` = \'D\', `id_rol` = \'\', `usuario_crea` = \'5\', `direccion` = \'D\'
+WHERE `usuarios`.`id_usuario` IN (\'6\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `usuarios` SET `tipo_documento` = \'\', `n_documento` = \'134\', `nombre_corto` = \'\', `nombre_p` = \'D\', `nombre_s` = \'D\', `apellido_p` = \'D\', `apellido_s` = \'D\', `id_rol` = \'\', `usuario_crea` = \'5\', `direccion` = \'D\'
+WHERE `usuarios`.`id_usuario` IN (\'6\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `usuarios` SET `tipo_documento` = \'\', `n_documento` = \'134\', `nombre_corto` = \'\', `nombre_p` = \'D\', `nombre_s` = \'D\', `apellido_p` = \'D\', `apellido_s` = \'D\', `id_rol` = \'\', `usuario_crea` = \'5\', `direccion` = \'D\'
+WHERE `usuarios`.`id_usuario` IN (\'6\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2476): CodeIgniter\Database\BaseConnection->query('UPDATE `usuarios` SET `tipo_documento` = :tipo_documento:, `n_documento` = :n_documento:, `nombre_corto` = :nombre_corto:, `nombre_p` = :nombre_p:, `nombre_s` = :nombre_s:, `apellido_p` = :apellido_p:, `apellido_s` = :apellido_s:, `id_rol` = :id_rol:, `usuario_crea` = :usuario_crea:, `direccion` = :direccion:
+WHERE `usuarios`.`id_usuario` IN :usuarios.id_usuario:', [...], false)
+ 5 SYSTEMPATH\Model.php(396): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH\Controllers\Usuarios.php(62): CodeIgniter\Model->update('6', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 14:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:32:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:32:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:33:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:33:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:33:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:33:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:34:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:34:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 14:36:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
