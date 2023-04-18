@@ -85,3 +85,87 @@ in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
  5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
  6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:09:16 --> Undefined array key "descripcion"
+in APPPATH\Views\roles\roles.php on line 43.
+ 1 APPPATH\Views\roles\roles.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php', 43)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/roles', [], true)
+ 5 APPPATH\Controllers\Roles.php(26): view('/roles/roles', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:10:05 --> Undefined array key "descripcion"
+in APPPATH\Views\roles\roles.php on line 43.
+ 1 APPPATH\Views\roles\roles.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php', 43)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/roles', [], true)
+ 5 APPPATH\Controllers\Roles.php(26): view('/roles/roles', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:11:11 --> Undefined array key "id_usuario"
+in APPPATH\Views\roles\roles.php on line 47.
+ 1 APPPATH\Views\roles\roles.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_usuario"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/roles', [], true)
+ 5 APPPATH\Controllers\Roles.php(26): view('/roles/roles', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:11:31 --> Undefined array key "id_usuario"
+in APPPATH\Views\roles\roles.php on line 47.
+ 1 APPPATH\Views\roles\roles.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_usuario"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/roles', [], true)
+ 5 APPPATH\Controllers\Roles.php(26): view('/roles/roles', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:12:27 --> Undefined array key "id_usuario"
+in APPPATH\Views\roles\roles.php on line 47.
+ 1 APPPATH\Views\roles\roles.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_usuario"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/roles', [], true)
+ 5 APPPATH\Controllers\Roles.php(26): view('/roles/roles', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:38:25 --> Undefined array key "id"
+in APPPATH\Views\roles\roles.php on line 48.
+ 1 APPPATH\Views\roles\roles.php(48): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php', 48)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\roles\\roles.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/roles/roles', [], true)
+ 5 APPPATH\Controllers\Roles.php(26): view('/roles/roles', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:40:29 --> Call to a member function obtenerRolesEliminados() on null
+in APPPATH\Controllers\Roles.php on line 70.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:49:23 --> Call to a member function obtenerRolesEliminados() on null
+in APPPATH\Controllers\Roles.php on line 70.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 14:50:54 --> Call to a member function obtenerRolesEliminados() on null
+in APPPATH\Controllers\Roles.php on line 70.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
