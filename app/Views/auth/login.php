@@ -17,22 +17,19 @@
         <form method="post" action="<?php echo base_url('/auth/login'); ?>">
             <div class="card text-center" style="width: 26rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Iniciar Sesión</h5>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control border border-dark-subtle" name="nombre_corto" id="nombre_corto" placeholder="Nombre de Usuario" value="<?= old('nombre_corto') ?>">
+                    <h5 style="color: #0b2c44;margin: 20px 10px;" class="card-title divide">Iniciar Sesión</h5>
+                    <hr class="sidebar-divider my-0">
+                    <div style="margin: 20px 10px;" class="form-floating mb-3">
+                        <input type="text" class="form-control" name="nombre_corto" id="nombre_corto" placeholder="Nombre de Usuario" value="<?= old('nombre_corto') ?>">
                         <label style="color:#0b2c44" for="floatingInput">Nombre de Usuario</label>
                     </div>
                     <!-- <div>
                         <label class="form-label" for="email">Nombre de Usuario</label>
                         <input type="text" class="form-control border border-dark-subtle" name="nombre_corto" id="nombre_corto" value="<?= old('nombre_corto') ?>">
                     </div> -->
-                    <div class="mb-3">
-                        <label class="form-label" for="password">Contraseña</label>
-                        <input type="password" class="form-control border border-dark-subtle" name="password" id="password">
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
+                    <div style="margin: 20px 10px;" class="form-floating mb-3">
+                        <input style="margin: 20px 0;" type="password" class="form-control"  name="password" id="password" placeholder="Contraseña">
+                        <label for="floatingPassword">Contraseña</label>
                     <div class="d-grid gap-2 col-6 mx-auto">
                             <button class="btn btn-outline-success" type="submit">Iniciar sesión</button>
                     </div>
