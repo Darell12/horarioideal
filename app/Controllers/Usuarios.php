@@ -22,7 +22,7 @@ class Usuarios extends BaseController
 
         $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario];
 
-    //    echo view('/principal/header', $data);
+       echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
     }
     public function insertar()

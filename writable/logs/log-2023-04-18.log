@@ -1,0 +1,87 @@
+ERROR - 2023-04-18 12:53:12 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'horarios_db' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'horarios_db', 3306, '', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'horarios_db' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#3 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(30): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+#7 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-04-18 12:53:12 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'horarios_db'
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.*
+FROM `usuarios`
+WHERE `estado` = :estado:', [...], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\UsuariosModel.php(30): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Usuarios.php(21): App\Models\UsuariosModel->obtenerUsuarios()
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 13:12:57 --> Undefined variable $titulo
+in APPPATH\Views\usuarios\usuarios.php on line 21.
+ 1 APPPATH\Views\usuarios\usuarios.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $titulo', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 21)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Principal.php(10): view('usuarios/usuarios')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 13:13:10 --> Undefined variable $datos
+in APPPATH\Views\usuarios\usuarios.php on line 47.
+ 1 APPPATH\Views\usuarios\usuarios.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $datos', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Principal.php(10): view('usuarios/usuarios')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 13:13:56 --> Undefined variable $datos
+in APPPATH\Views\usuarios\usuarios.php on line 47.
+ 1 APPPATH\Views\usuarios\usuarios.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $datos', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Principal.php(23): view('usuarios/usuarios')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 13:19:46 --> Invalid file: "/principal/header.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/principal/header.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/principal/header', [], true)
+ 3 APPPATH\Controllers\Usuarios.php(25): view('/principal/header', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
