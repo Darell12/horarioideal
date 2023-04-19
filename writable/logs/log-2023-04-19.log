@@ -304,3 +304,219 @@ INFO - 2023-04-19 13:45:28 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2023-04-19 13:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-19 13:50:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-19 13:50:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 13:55:16 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'horarios_db' in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'horarios_db', 3306, '', 0)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xamppp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xamppp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xamppp\htdocs\horarioideal\app\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Principal->index()
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'horarios_db' in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#3 C:\xamppp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xamppp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#6 C:\xamppp\htdocs\horarioideal\app\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
+#7 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Principal->index()
+#8 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-04-19 13:55:16 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'horarios_db'
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 13:55:22 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'horarios_db' in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'horarios_db', 3306, '', 0)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xamppp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xamppp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xamppp\htdocs\horarioideal\app\Controllers\Usuarios.php(25): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'horarios_db' in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#3 C:\xamppp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xamppp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#6 C:\xamppp\htdocs\horarioideal\app\Controllers\Usuarios.php(25): App\Models\UsuariosModel->obtenerUsuarios()
+#7 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#8 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-04-19 13:55:22 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'horarios_db'
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Usuarios.php(25): App\Models\UsuariosModel->obtenerUsuarios()
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 13:55:27 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'horarios_db' in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'horarios_db', 3306, '', 0)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `roles`....', Array, false)
+#4 C:\xamppp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xamppp\htdocs\horarioideal\app\Models\RolesModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xamppp\htdocs\horarioideal\app\Controllers\Roles.php(21): App\Models\RolesModel->obtenerRoles()
+#8 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Roles->index()
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'horarios_db' in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `roles`....', Array, false)
+#3 C:\xamppp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xamppp\htdocs\horarioideal\app\Models\RolesModel.php(30): CodeIgniter\BaseModel->findAll()
+#6 C:\xamppp\htdocs\horarioideal\app\Controllers\Roles.php(21): App\Models\RolesModel->obtenerRoles()
+#7 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Roles->index()
+#8 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-04-19 13:55:27 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'horarios_db'
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `roles`.*
+FROM `roles`
+WHERE `estado` = :estado:', [...], false)
+ 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\RolesModel.php(30): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Roles.php(21): App\Models\RolesModel->obtenerRoles()
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Roles->index()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Roles))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 14:05:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:05:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:06:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:35:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 14:38:18 --> Call to undefined method App\Models\AccionesModel::obtenerRoles
+in SYSTEMPATH\Model.php on line 842.
+ 1 APPPATH\Controllers\Acciones.php(22): CodeIgniter\Model->__call('obtenerRoles', [])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Acciones->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Acciones))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-19 14:38:26 --> Call to undefined method App\Models\AccionesModel::obtenerRoles
+in SYSTEMPATH\Model.php on line 842.
+ 1 APPPATH\Controllers\Acciones.php(22): CodeIgniter\Model->__call('obtenerRoles', [])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Acciones->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Acciones))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 14:39:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 14:39:22 --> Undefined array key "id_accion"
+in APPPATH\Views\acciones\eliminados.php on line 28.
+ 1 APPPATH\Views\acciones\eliminados.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_accion"', 'C:\\xamppp\\htdocs\\horarioideal\\app\\Views\\acciones\\eliminados.php', 28)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xamppp\\htdocs\\horarioideal\\app\\Views\\acciones\\eliminados.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/acciones/eliminados', [], true)
+ 5 APPPATH\Controllers\Acciones.php(84): view('/acciones/eliminados', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Acciones->eliminados()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Acciones))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 14:39:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:40:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:40:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:58:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:08:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:08:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:09:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:11:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 15:11:25 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 C:\xamppp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xamppp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xamppp\htdocs\horarioideal\app\Controllers\Usuarios.php(54): CodeIgniter\BaseModel->save(Array)
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#11 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-19 15:11:25 --> Column 'usuario_crea' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1043663815\', \'Daniel\', \'Daniel\', \'Andres\', \'Sanchez\', \'Castro\', \'$2y$10$Oewq4LNK5CAIUrNSQ10H/.y6/ANZumXxUCy.qvxsOfNWBln2aYU0i\', \'1\', NULL, \'CRA 17B #68C23\', \'2023-04-19 15:11:25\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1043663815\', \'Daniel\', \'Daniel\', \'Andres\', \'Sanchez\', \'Castro\', \'$2y$10$Oewq4LNK5CAIUrNSQ10H/.y6/ANZumXxUCy.qvxsOfNWBln2aYU0i\', \'1\', NULL, \'CRA 17B #68C23\', \'2023-04-19 15:11:25\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1043663815\', \'Daniel\', \'Daniel\', \'Andres\', \'Sanchez\', \'Castro\', \'$2y$10$Oewq4LNK5CAIUrNSQ10H/.y6/ANZumXxUCy.qvxsOfNWBln2aYU0i\', \'1\', NULL, \'CRA 17B #68C23\', \'2023-04-19 15:11:25\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (:tipo_documento:, :n_documento:, :nombre_corto:, :nombre_p:, :nombre_s:, :apellido_p:, :apellido_s:, :contraseña:, :id_rol:, :usuario_crea:, :direccion:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Usuarios.php(54): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
