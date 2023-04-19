@@ -37,6 +37,7 @@ $routes->get('logout', 'Usuarios::logout');
 
 // ! RUTAS DE VISTAS TABLAS
 $routes->get('/ver_roles', 'roles::index');
+$routes->get('/ver_aulas', 'aulas::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
 $routes->get('/eliminados_roles', 'roles::eliminados');

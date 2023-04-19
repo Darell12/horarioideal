@@ -23,4 +23,15 @@ class EmailsModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
+
+    public function ObtenerEmailUsuario($id, $estado)
+    {
+        $this->select('emails.email, emails.estado, emails.id_email, emails.id_usuario, parametro_det.nombre as prioridad');
+        $this->join('parametro_det', 'emails.prioridad = parametro_det.id_parametro_det');
+
+        $this->where('id_usuario', $id);
+        $this->where('emails.estado', $estado);
+        $datos = $this->findAll();
+        return $datos;
+    }
 }
