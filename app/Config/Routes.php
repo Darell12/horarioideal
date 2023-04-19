@@ -37,17 +37,22 @@ $routes->get('logout', 'Usuarios::logout');
 
 // ! RUTAS DE VISTAS TABLAS
 $routes->get('/ver_roles', 'roles::index');
+$routes->get('/ver_acciones', 'acciones::index');
 $routes->get('/ver_aulas', 'aulas::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
 $routes->get('/eliminados_roles', 'roles::eliminados');
+$routes->get('/eliminados_acciones', 'acciones::eliminados');
 
 //! RUTAS PARA INSERTAR
 $routes->post('/roles_insertar', 'roles::insertar');
-// $routes->get('/paises/cambiarEstado/(:num)', 'Paises::cambiarEstado/$1');
+$routes->post('/acciones_insertar', 'acciones::insertar');
+
 
 // ! RUTAS PARA CAMBIAR ESTADOS
 $routes->get('/estado_roles/(:num)/(:alpha)', 'roles::cambiarEstado/$1/$2');
+$routes->get('/estado_acciones/(:num)/(:alpha)', 'acciones::cambiarEstado/$1/$2');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
