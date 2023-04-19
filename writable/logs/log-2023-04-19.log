@@ -304,3 +304,1121 @@ INFO - 2023-04-19 13:45:28 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2023-04-19 13:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-19 13:50:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-19 13:50:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:39:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 14:39:17 --> mysqli_sql_exception: Unknown table 'horarios_db.aulas' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `aulas`....', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `aulas`....')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `aulas`....')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `aulas`....', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\AulaModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Aulas.php(21): App\Models\AulaModel->obtenerAulas()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Aulas->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 14:39:17 --> Unknown table 'horarios_db.aulas'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `aulas`.*
+FROM `aula`
+WHERE `estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `aulas`.*
+FROM `aula`
+WHERE `estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `aulas`.*
+FROM `aula`
+WHERE `estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `aulas`.*
+FROM `aula`
+WHERE `estado` = :estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\AulaModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Aulas.php(21): App\Models\AulaModel->obtenerAulas()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Aulas->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 14:51:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:52:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:53:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:54:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 14:54:18 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `au...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `au...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `au...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `au...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\horarioideal\app\Controllers\Aulas.php(33): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Aulas->insertar()
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+#11 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-19 14:54:18 --> Column 'usuario_crea' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (\'prueba\', \'PRUEBA\', \'A\', \'A\', NULL, \'2023-04-19 14:54:18\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (\'prueba\', \'PRUEBA\', \'A\', \'A\', NULL, \'2023-04-19 14:54:18\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (\'prueba\', \'PRUEBA\', \'A\', \'A\', NULL, \'2023-04-19 14:54:18\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (:nombre:, :descripcion:, :bloque:, :sede:, :usuario_crea:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Aulas.php(33): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Aulas->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 14:54:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:55:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 14:55:23 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `au...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `au...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `au...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `au...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\horarioideal\app\Controllers\Aulas.php(33): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Aulas->insertar()
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+#11 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-19 14:55:23 --> Column 'usuario_crea' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (\'ADSAF\', \'FAFAF\', \'FAFA\', \'AFF\', NULL, \'2023-04-19 14:55:23\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (\'ADSAF\', \'FAFAF\', \'FAFA\', \'AFF\', NULL, \'2023-04-19 14:55:23\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (\'ADSAF\', \'FAFAF\', \'FAFA\', \'AFF\', NULL, \'2023-04-19 14:55:23\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `usuario_crea`, `fecha_crea`) VALUES (:nombre:, :descripcion:, :bloque:, :sede:, :usuario_crea:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Aulas.php(33): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Aulas->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 14:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:56:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 14:56:09 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`aulas`, CONSTRAINT `creadol_aula` FOREIGN KEY (`usuario_crea`) REFERENCES `usuarios` (`id_usuario`)) in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `au...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `au...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `au...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `au...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\horarioideal\app\Controllers\Aulas.php(33): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Aulas->insertar()
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+#11 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-19 14:56:09 --> Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`aulas`, CONSTRAINT `creadol_aula` FOREIGN KEY (`usuario_crea`) REFERENCES `usuarios` (`id_usuario`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `fecha_crea`) VALUES (\'SDDASF\', \'AFAF\', \'FAFA\', \'FAFF\', \'2023-04-19 14:56:09\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `fecha_crea`) VALUES (\'SDDASF\', \'AFAF\', \'FAFA\', \'FAFF\', \'2023-04-19 14:56:09\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `fecha_crea`) VALUES (\'SDDASF\', \'AFAF\', \'FAFA\', \'FAFF\', \'2023-04-19 14:56:09\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `aulas` (`nombre`, `descripcion`, `bloque`, `sede`, `fecha_crea`) VALUES (:nombre:, :descripcion:, :bloque:, :sede:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Aulas.php(33): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Aulas->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Aulas))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 14:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:56:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 14:56:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 14:57:22 --> mysqli_sql_exception: Table 'horarios_db.horario' doesn't exist in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 14:57:22 --> Table 'horarios_db.horario' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 14:57:34 --> mysqli_sql_exception: Table 'horarios_db.horario' doesn't exist in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 14:57:34 --> Table 'horarios_db.horario' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 14:57:45 --> mysqli_sql_exception: Table 'horarios_db.horario' doesn't exist in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 14:57:45 --> Table 'horarios_db.horario' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 14:58:49 --> mysqli_sql_exception: Table 'horarios_db.horario' doesn't exist in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 14:58:49 --> Table 'horarios_db.horario' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:05:31 --> mysqli_sql_exception: View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:05:31 --> View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:05:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:05:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:05:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 15:05:50 --> mysqli_sql_exception: View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:05:50 --> View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:06:03 --> mysqli_sql_exception: View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:06:03 --> View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:06:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 15:06:20 --> mysqli_sql_exception: View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:06:20 --> View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:07:24 --> mysqli_sql_exception: View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:07:24 --> View 'horarios_db.horario' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:29 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:29 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:30 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:30 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:30 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:30 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:30 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:30 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:31 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:31 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:31 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:31 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:31 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:31 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:31 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:31 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:32 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:32 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:33 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:33 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 15:09:33 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:33 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:09:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 15:09:49 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 15:09:49 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:10:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 15:12:33 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(42): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#11 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-19 15:12:33 --> Column 'usuario_crea' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1067594485\', \'ross\', \'rosmy\', \'la mas viral\', \'pachon\', \'partetacon\', \'$2y$10$bY.LQx1jrdGYedN8HtDa7uG3tfv/5qRI5q1C0JDY64Fz2AbmTyYqa\', \'1\', NULL, \'transversal 1b sur 68b-121 \', \'2023-04-19 15:12:33\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1067594485\', \'ross\', \'rosmy\', \'la mas viral\', \'pachon\', \'partetacon\', \'$2y$10$bY.LQx1jrdGYedN8HtDa7uG3tfv/5qRI5q1C0JDY64Fz2AbmTyYqa\', \'1\', NULL, \'transversal 1b sur 68b-121 \', \'2023-04-19 15:12:33\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1067594485\', \'ross\', \'rosmy\', \'la mas viral\', \'pachon\', \'partetacon\', \'$2y$10$bY.LQx1jrdGYedN8HtDa7uG3tfv/5qRI5q1C0JDY64Fz2AbmTyYqa\', \'1\', NULL, \'transversal 1b sur 68b-121 \', \'2023-04-19 15:12:33\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (:tipo_documento:, :n_documento:, :nombre_corto:, :nombre_p:, :nombre_s:, :apellido_p:, :apellido_s:, :contraseña:, :id_rol:, :usuario_crea:, :direccion:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Usuarios.php(42): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:12:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:12:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:13:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:13:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:14:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:14:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:14:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:14:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:15:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:21:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

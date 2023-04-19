@@ -26,7 +26,7 @@ class HorarioModel extends Model
     public function vistaHorarioPrueba()
     {
         $this->select('horario.*');
-        // $this->from('horario');
+        $this->from('horario');
         $datos = $this->findAll();
         return $datos;
     }
