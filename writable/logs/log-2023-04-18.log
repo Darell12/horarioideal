@@ -376,3 +376,397 @@ in APPPATH\Controllers\Principal.php on line 20.
  3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
 INFO - 2023-04-18 16:25:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 19:53:57 --> mysqli_sql_exception: Unknown column 'p.id_parametro_det' in 'on clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Principal->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 19:53:57 --> Unknown column 'p.id_parametro_det' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 19:54:40 --> mysqli_sql_exception: Unknown column 'p.id_parametro_det' in 'on clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Principal->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 19:54:40 --> Unknown column 'p.id_parametro_det' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
+FROM `usuarios`
+JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
+JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
+WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 19:56:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 19:57:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 19:58:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 19:58:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 19:58:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 19:58:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:00:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:01:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:01:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:03:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:24:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:25:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:25:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 20:25:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 22:29:54 --> mysqli_sql_exception: Unknown table 'horarios_db.v_usuarios_principal' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuar...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuar...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuar...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuar...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(33): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 22:29:54 --> Unknown table 'horarios_db.v_usuarios_principal'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuarios_principal`.*
+FROM `usuarios`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuarios_principal`.*
+FROM `usuarios`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(33): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-18 22:30:27 --> mysqli_sql_exception: Unknown table 'horarios_db.v_usuarios_principal' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuar...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuar...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuar...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuar...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(33): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 22:30:27 --> Unknown table 'horarios_db.v_usuarios_principal'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuarios_principal`.*
+FROM `usuarios`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuarios_principal`.*
+FROM `usuarios`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(33): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 22:31:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:32:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:32:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:32:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:36:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:36:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:36:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:36:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:43:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 22:43:57 --> mysqli_sql_exception: Unknown table 'horarios_db.v_usuarios_principal' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuar...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuar...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuar...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuar...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(34): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 22:43:57 --> Unknown table 'horarios_db.v_usuarios_principal'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuarios_principal`.*
+FROM `usuarios`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuarios_principal`.*
+FROM `usuarios`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(34): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 22:44:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 22:44:23 --> mysqli_sql_exception: Column 'estado' in where clause is ambiguous in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuar...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuar...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuar...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuar...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-18 22:44:23 --> Column 'estado' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`, `v_usuarios_principal`
+WHERE `estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `v_usuarios_principal`.*
+FROM `usuarios`, `v_usuarios_principal`
+WHERE `estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `v_usuarios_principal`.*
+FROM `usuarios`, `v_usuarios_principal`
+WHERE `estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `v_usuarios_principal`.*
+FROM `usuarios`, `v_usuarios_principal`
+WHERE `estado` = :estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(35): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 22:44:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:45:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:45:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:49:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 22:54:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:00:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:01:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:01:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:02:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 23:02:07 --> mysqli_sql_exception: Unknown column 'contraseña' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(50): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#11 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-18 23:02:07 --> Unknown column 'contraseña' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1234\', \'Root\', \'root\', \'root\', \'root\', \'root\', \'$2y$10$1J4Ja5Qt6y7HnV7HNviToOAObUnwzRcl3ptTQCpSP.Zu4WWS6KcAO\', \'1\', NULL, \'root\', \'2023-04-18 23:02:07\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1234\', \'Root\', \'root\', \'root\', \'root\', \'root\', \'$2y$10$1J4Ja5Qt6y7HnV7HNviToOAObUnwzRcl3ptTQCpSP.Zu4WWS6KcAO\', \'1\', NULL, \'root\', \'2023-04-18 23:02:07\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1234\', \'Root\', \'root\', \'root\', \'root\', \'root\', \'$2y$10$1J4Ja5Qt6y7HnV7HNviToOAObUnwzRcl3ptTQCpSP.Zu4WWS6KcAO\', \'1\', NULL, \'root\', \'2023-04-18 23:02:07\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (:tipo_documento:, :n_documento:, :nombre_corto:, :nombre_p:, :nombre_s:, :apellido_p:, :apellido_s:, :contraseña:, :id_rol:, :usuario_crea:, :direccion:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Usuarios.php(50): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 23:02:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-18 23:02:40 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(50): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#11 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-18 23:02:40 --> Column 'usuario_crea' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1234\', \'Root\', \'root\', \'root\', \'root\', \'root\', \'$2y$10$MMpmLnfh0ELdg6YnTFcvBOKFm1jXYi4EmmbCDQkHmXT3PrLo0VLzW\', \'1\', NULL, \'root\', \'2023-04-18 23:02:40\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1234\', \'Root\', \'root\', \'root\', \'root\', \'root\', \'$2y$10$MMpmLnfh0ELdg6YnTFcvBOKFm1jXYi4EmmbCDQkHmXT3PrLo0VLzW\', \'1\', NULL, \'root\', \'2023-04-18 23:02:40\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1234\', \'Root\', \'root\', \'root\', \'root\', \'root\', \'$2y$10$MMpmLnfh0ELdg6YnTFcvBOKFm1jXYi4EmmbCDQkHmXT3PrLo0VLzW\', \'1\', NULL, \'root\', \'2023-04-18 23:02:40\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (:tipo_documento:, :n_documento:, :nombre_corto:, :nombre_p:, :nombre_s:, :apellido_p:, :apellido_s:, :contraseña:, :id_rol:, :usuario_crea:, :direccion:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Usuarios.php(50): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 23:03:24 --> syntax error, unexpected single-quoted string "direccion", expecting "]"
+in APPPATH\Controllers\Usuarios.php on line 50.
+ 1 SYSTEMPATH\Router\Router.php(507): CodeIgniter\Router\AutoRouter->getRoute('usuarios/insertar')
+ 2 SYSTEMPATH\Router\Router.php(206): CodeIgniter\Router\Router->autoRoute('usuarios/insertar')
+ 3 SYSTEMPATH\CodeIgniter.php(815): CodeIgniter\Router\Router->handle('usuarios/insertar')
+ 4 SYSTEMPATH\CodeIgniter.php(449): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-18 23:03:37 --> syntax error, unexpected token ";", expecting "]"
+in APPPATH\Controllers\Usuarios.php on line 49.
+ 1 SYSTEMPATH\Router\Router.php(507): CodeIgniter\Router\AutoRouter->getRoute('usuarios/insertar')
+ 2 SYSTEMPATH\Router\Router.php(206): CodeIgniter\Router\Router->autoRoute('usuarios/insertar')
+ 3 SYSTEMPATH\CodeIgniter.php(815): CodeIgniter\Router\Router->handle('usuarios/insertar')
+ 4 SYSTEMPATH\CodeIgniter.php(449): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-18 23:04:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:04:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:04:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:04:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:05:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:38:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:38:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:38:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:40:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:41:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:41:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:41:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:41:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:45:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:45:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:47:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:47:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:47:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:48:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:48:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:49:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:49:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:52:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:54:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:55:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:55:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:56:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:56:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:56:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:56:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:56:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:57:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:57:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:57:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:58:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:58:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:58:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:59:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:59:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:59:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:59:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-18 23:59:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -1,0 +1,184 @@
+INFO - 2023-04-19 00:00:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 00:00:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 00:00:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 00:01:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 00:01:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 00:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 01:04:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 01:05:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 01:06:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 01:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 04:12:01 --> mysqli_sql_exception: Unknown table 'horarios_db.horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(38): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(24): App\Models\UsuariosModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 04:12:01 --> Unknown table 'horarios_db.horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `usuarios`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `usuarios`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `usuarios`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `usuarios`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(38): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(24): App\Models\UsuariosModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:12:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 04:13:55 --> You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 882.
+ 1 SYSTEMPATH\Model.php(642): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(832): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\UsuariosModel.php(28): CodeIgniter\Model->__call('select', [...])
+ 4 APPPATH\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 04:20:06 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 04:20:06 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 04:20:27 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 04:20:27 --> Not unique table/alias: 'horario'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
+FROM `horario`, `horario`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
+FROM `horario`, `horario`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
+FROM `horario`, `horario`', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:27:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 04:27:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 04:27:50 --> Array to string conversion
+in APPPATH\Views\usuarios\usuarios.php on line 198.
+ 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:28:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 04:28:03 --> Array to string conversion
+in APPPATH\Views\usuarios\usuarios.php on line 198.
+ 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 04:28:33 --> Undefined array key 0
+in APPPATH\Views\usuarios\usuarios.php on line 198.
+ 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:28:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 04:28:45 --> Undefined array key 0
+in APPPATH\Views\usuarios\usuarios.php on line 198.
+ 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:28:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 04:28:53 --> syntax error, unexpected token ";"
+in APPPATH\Views\usuarios\usuarios.php on line 198.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
+ 3 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 04:29:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 04:29:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 04:29:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 04:29:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

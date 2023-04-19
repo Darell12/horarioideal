@@ -4,29 +4,33 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
+use App\Models\HorarioModel;
 use App\Models\RolesModel;
 
 
 class Usuarios extends BaseController
 {
     protected $usuario, $eliminados;
-    protected $roles;
+    protected $roles, $horario;
 
     public function __construct()
     {
         $this->usuario = new UsuariosModel();
         $this->eliminados = new UsuariosModel();
         $this->roles = new RolesModel();
+        $this->horario = new HorarioModel();
     }
     public function index()
     {
         $usuario = $this->usuario->obtenerUsuarios();
+        $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles];
+        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles, 'horario' => $horario];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
+        echo view('/principal/footer', $data);
     }
     public function insertar()
     {

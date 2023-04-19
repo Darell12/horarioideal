@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>Horario Ideal</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 
     <!-- Custom fonts for this template-->
     <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
@@ -37,7 +38,7 @@
         <ul style="background: #418ab7;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url()?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -54,16 +55,34 @@
             <div class="sidebar-heading">
                 Usuarios
             </div>
-
+            <!-- href="<?php echo base_url('/usuarios') ?> -->
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link accordion" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="bi bi-person-fill"></i>
+                    <span>Usuarios</span>
+                    <a />
+                    <!-- CUERPO ACORDION -->
+                    <div id="collapseOne" class="accordion-collapse collapse text-light" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <a class="nav-link" href="<?php echo base_url('/estudiantes') ?>">
+                                <i class="bi bi-person-fill"></i>
+                                <span>Estudiantes</span>
+                            </a>
+                        </div>
+                    </div>
+            </li>
+
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('/estudiantes') ?>">
                     <i class="bi bi-person-fill"></i>
                     <span>Estudiantes</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?php echo base_url('/profesores') ?>">
                     <i class="bi bi-person-vcard-fill"></i>
                     <span>Profesores</span>
                 </a>
@@ -143,34 +162,17 @@
 
 
                 <!-- Topbar Navbar  User Information -->
-                <div style="position: absolute;top: 10px;left:1400px;right: 0;margin: 0 auto;width: 20px; ">
+                <div style="position: absolute;top: 10px;left:60%;right: 0;margin: 0 auto;width: 20px; ">
                     <!-- Nav Item - User Information -->
                     <button style="width: 15rem;" type="button" class="btn btn-light">
                         <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Super Administrador</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo session('usuario') ?></span>
                             <i class="bi bi-person-circle"></i>
                         </a>
                     </button>
                 </div>
 
                 </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <!-- <h1>Contenido</h1> -->
-
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
-
-                <!-- End of Footer -->
-
-                <!-- este tambien -->
-                <!-- </div> -->
-                <!-- End of Content Wrapper -->
-
-                <!-- este div es importante -->
-                <!-- </div> -->
 
 
                 <!-- Scroll to Top Button-->

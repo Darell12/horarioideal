@@ -32,6 +32,7 @@ class UsuariosModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+
     public function obtenerUsuariosEliminados()
     {
         $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_corto, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
