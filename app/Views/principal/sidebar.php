@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Horario Ideal</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Custom fonts for this template-->
     <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
@@ -27,6 +27,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -38,7 +39,7 @@
         <ul style="background: #418ab7;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url()?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url() ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -148,7 +149,7 @@
 
                 <!-- Topbar -->
                 <!-- contenedor de arriba xd -->
-                <div style="position:relative; background-color: green;">
+                <div style="position:relative;">
                     <nav style="padding: 0;" class="navbar">
                         <img style="width: 100%; height: 15rem;" src="<?php echo base_url('/img/fondo.jpg'); ?>">
                         <!-- Sidebar Toggle (Topbar) -->

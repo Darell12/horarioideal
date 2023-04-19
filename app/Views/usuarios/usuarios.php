@@ -12,17 +12,17 @@
 
 </head> -->
 
+
 <div class="container">
     <div class="container  mt-4 shadow rounded-4">
         <div>
             <h1 class="titulo_Vista text-center"></h1>
         </div>
-        <div>
+        <div>        
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
-
         <br>
         <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
             <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
@@ -69,10 +69,10 @@
                                     </button>
                                 </div>
                             </th>
-                            
+
                         </tr>
                     <?php } ?>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -92,11 +92,11 @@
                                         <label class="col-form-label">Rol:</label>
                                         <select class="form-select form-select" name="id_rol" id="rol" required>
                                             <option value="">Seleccione un Rol</option>
-                                            <?php foreach($roles as $rol) {?>
+                                            <?php foreach ($roles as $rol) { ?>
                                                 <option value="<?php echo $rol['id_rol']; ?>"><?php echo $rol['nombre']; ?></option>
-                                                <?php }?>
-                                            </select>
-                                        </div>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
                                     <div class="col">
                                         <label class="col-form-label">Tipo de Documento:</label>
                                         <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
@@ -195,7 +195,6 @@
 
 </div>
 
-<?php echo $horario[0]['asignatura']?>
 
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {
@@ -246,4 +245,6 @@
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
+
+
 </script>
