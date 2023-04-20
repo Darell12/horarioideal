@@ -23,10 +23,10 @@ class Usuarios extends BaseController
     public function index()
     {
         $usuario = $this->usuario->obtenerUsuarios();
-        $horario = $this->horario->vistaHorarioPrueba();
+        // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles, 'horario' => $horario];
+        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);

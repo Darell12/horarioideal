@@ -38,6 +38,8 @@
                         <th class="text-center">Segundo Apellido</th>
                         <th class="text-center">Rol</th>
                         <th class="text-center">Estado</th>
+                        <th class="text-center">Emails</th>
+                        <th class="text-center">Telefonos</th>
                         <th class="text-center" colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -55,6 +57,15 @@
                             <th class="text-center"><?php echo $valor['rol']; ?></th>
                             <th class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
+                            </th>
+                            <th class="text-center">
+                                <button class="btn btn-outline-info" onclick="EmailUsuario(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" data-bs-toggle="modal" title="Editar Registro">
+                                    <i class="bi bi-envelope-at-fill"></i>
+                                </button>
+                            </th>
+                            <th class="text-center">
+                                <button class="btn btn-outline-success" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                    <i class="bi bi-telephone"></i> </button>
                             </th>
                             <th class="grid grid text-center" colspan="2">
                                 <div class="btn-group">
@@ -192,7 +203,52 @@
         <!-- Modal Elimina -->
     </div>
 
+    <div id="ModalEmail" class="modal">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="titulo_salario"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="btn-group mb-3" id="btn-group-salarios" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAgregarSalario" id="btn-agregar-salario">
+                            <i class="bi bi-plus-circle-fill"></i> Agregar</button>
+
+                        <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-salarios">
+                            <i class="bi bi-file-x"></i> Eliminados</button>
+
+                        <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i> Regresar</button>
+
+                    </div>
+
+                    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
+                        <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Salario</th>
+                                    <th class="text-center">Periodo</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center" colspan="2">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-family:Arial;font-size:12px;" id="tabla_email">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 <script>
@@ -241,6 +297,98 @@
             $("#UsuarioModal").modal("show");
         }
     }
+
+
+    function EmailUsuario(id, estado) {
+
+
+        dataURL = "<?php echo base_url('/email/Email'); ?>" + "/" + id + '/' + estado
+
+        if (estado == 'E') {
+            $.ajax({
+                type: "POST",
+                url: dataURL,
+                dataType: "json",
+                success: function(res) {
+                    $('#tabla_email').empty();
+                    var contenido = '';
+                    if (!$(res).length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            contenido += `
+                            <tr>
+              <th class="text-center"> ${res[i].id}</th>
+              <th class="text-center"> ${res[i].sueldo}</th>
+              <th class="text-center"> ${res[i].periodo}</th>
+              <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+              <th class="text-center">
+
+              <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id},${res[i].id_empleado}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
+              </th>
+              </tr>
+              `
+                        }
+                        $('#titulo_salario').html('Administrar salarios eliminados de ' + res[0].nombre_empleado);
+                    } else {
+                        contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ELIMINADOS</th></tr>'
+                    }
+
+                    $('#tabla_email').html(contenido);
+                    $('#btn-regresar').attr('onclick', 'salarios_empleados(' + id + ',' + '"A")');
+                    $('#btn-eliminados-salarios').hide();
+                    $('#btn-regresar').show();
+                    $('#btn-agregar-salario').hide();
+                    $('#ModalEmail').modal('show');
+                }
+            })
+        } else {
+            $.ajax({
+                type: "POST",
+                url: dataURL,
+                dataType: "json",
+                success: function(res) {
+                    console.log(res)
+                    var contenido = '';
+                    if (!$(res).length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            contenido += `
+                            <tr>
+                                <th class="text-center"> ${res[i].id_email}</th>
+                                <th class="text-center"> ${res[i].email}</th>
+                                <th class="text-center"> ${res[i].prioridad}</th>
+                                <th class="text-center text-success"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+                                <th class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button class="btn btn-outline-primary" onclick="seleccionarSalario( ${res[i].id_email} ,2 );"><i class="bi bi-pencil"></i></button>
+  
+                                        <button class="btn btn-outline-danger" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id_email},${res[i].id_usuario}, 'E')"><i class="bi bi-trash3"></i></button>
+                                    </div>
+                                </th>
+                            </tr>`
+                            // data - href = "<?php echo base_url('/salarios/cambiarEstado/') ?>${res[i].id}/E"
+                        }
+                        $('#titulo_salario').html('Administrar salarios de ' + res[0].nombre_empleado);
+
+                    } else {
+                        contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ASIGNADOS</th></tr>'
+                    }
+                    $('#titulo_salario').html('Administrar salarios');
+                    $('#btn-eliminados-salarios').attr('onclick', 'salarios_empleados(' + id + ',' + '"E")');
+                    $('#btn-agregar-salario').show();
+                    $('#tabla_email').empty();
+                    $('#tabla_email').html(contenido);
+                    $('#btn-agregar-salario').attr('onclick', 'seleccionarSalario(' + id + ',' + '1)');
+                    $('#btn-eliminados-salarios').show();
+                    $('#btn-regresar').hide();
+                    $('#ModalEmail').modal('show');
+                }
+            })
+        }
+    }
+
+
+
+
+
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
