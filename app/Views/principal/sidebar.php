@@ -167,8 +167,7 @@
                     <!-- Nav Item - User Information -->
                     <button style="width: 15rem;" type="button" class="btn btn-light">
                         <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo session('usuario') ?></span>
-                            <i class="bi bi-person-circle"></i>
+                            <i class="bi bi-person-circle"> <?php echo session('usuario') ?> </i>
                         </a>
                     </button>
                 </div>

@@ -20,7 +20,7 @@ class Principal extends BaseController
         $usuario = $this->usuario->obtenerUsuarios();
         $roles = $this->roles->obtenerRoles();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles];
+        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);

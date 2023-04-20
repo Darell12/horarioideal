@@ -18,7 +18,7 @@
         <div>
             <h1 class="titulo_Vista text-center"></h1>
         </div>
-        <div>        
+        <div>
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
@@ -134,15 +134,15 @@
                                         <label for="nombre" class="col-form-label">Segundo Apellido:</label>
                                         <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
                                     </div>
+                                    <!-- <div class="row">
+                                        <label for="nombre" class="col-form-label">Perfil:</label>
+                                        <input type="file" class="form-control" name="perfil" id="perfil" >
+                                    </div> -->
                                 </div>
                                 <div class="">
                                     <label id="email_label" for="email">Dirección:</label>
                                     <input id="direccion" name="direccion" type="text" class="form-control" required />
                                 </div>
-                                <!-- <div class="">
-                                    <label id="email_label" for="email">Correo Electronico</label>
-                                    <input id="email" name="email" type="email" class="form-control" required />
-                                </div> -->
                                 <div class="row">
                                     <div class="col">
                                         <label id="password_label" for="password">Contraseña</label>
@@ -154,11 +154,10 @@
                                     </div>
                                 </div>
 
-                                <input type="text" id="CodigoValido" name="CodigoValido" hidden>
+                                
                                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
-                                <input type="text" id="NombreValido" name="NombreValido" hidden>
 
                             </div>
                         </div>
@@ -245,6 +244,4 @@
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
-
-
 </script>
