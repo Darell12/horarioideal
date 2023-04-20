@@ -389,7 +389,7 @@
 
 
 
-    $('.close').click(function() {
+     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
 </script>

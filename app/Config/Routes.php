@@ -39,24 +39,26 @@ $routes->get('logout', 'Usuarios::logout');
 $routes->get('/ver_roles', 'roles::index');
 $routes->get('/ver_acciones', 'acciones::index');
 $routes->get('/ver_aulas', 'aulas::index');
+$routes->get('/ver_franjas', 'franjas_horarias::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
 $routes->get('/eliminados_roles', 'roles::eliminados');
 $routes->get('/eliminados_acciones', 'acciones::eliminados');
 $routes->get('/eliminados_aulas', 'aulas::eliminados');
+$routes->get('/eliminados_franjas', 'franjas_horarias::eliminados');
 
 //! RUTAS PARA INSERTAR
 $routes->post('/roles_insertar', 'roles::insertar');
 $routes->post('/acciones_insertar', 'acciones::insertar');
-
+$routes->post('/franjas_insertar', 'franjas_horarias::insertar');
 $routes->post('/aulas_insertar', 'aulas::insertar');
 // $routes->get('/paises/cambiarEstado/(:num)', 'Paises::cambiarEstado/$1');
 
 // ! RUTAS PARA CAMBIAR ESTADOS
 $routes->get('/estado_roles/(:num)/(:alpha)', 'roles::cambiarEstado/$1/$2');
 $routes->get('/estado_acciones/(:num)/(:alpha)', 'acciones::cambiarEstado/$1/$2');
-
 $routes->get('/estado_aulas/(:num)/(:alpha)', 'aulas::cambiarEstado/$1/$2');
+$routes->get('/estado_franjas/(:num)/(:alpha)', 'franjas_horarias::cambiarEstado/$1/$2');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
