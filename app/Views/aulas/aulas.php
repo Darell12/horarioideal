@@ -2,6 +2,9 @@
     <div>
         <h1 class="titulo_Vista text-center"></h1>
     </div>
+    <div style="height: 30px;">
+        
+    </div>
     <div>
         <button type="button" onclick="seleccionaAula(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#AulaModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
         <a href="<?php echo base_url('/aulas/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
@@ -10,7 +13,7 @@
 
     <br>
     <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
+        <table id="example-table" class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
@@ -22,18 +25,18 @@
                     <th class="text-center" colspan="2">Acciones</th>
                 </tr>
             </thead>
-            <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
+            <tbody  style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
-                        <th class="text-center"><?php echo $valor['id_aula']; ?></th>
-                        <th class="text-center"><?php echo $valor['nombre']; ?></th>
-                        <th class="text-center"><?php echo $valor['descripcion']; ?></th>
-                        <th class="text-center"><?php echo $valor['bloque']; ?></th>
-                        <th class="text-center"><?php echo $valor['sede']; ?></th>
-                        <th class="text-center">
+                        <td class="text-center"><?php echo $valor['id_aula']; ?></td>
+                        <td class="text-center"><?php echo $valor['nombre']; ?></td>
+                        <td class="text-center"><?php echo $valor['descripcion']; ?></td>
+                        <td class="text-center"><?php echo $valor['bloque']; ?></td>
+                        <td class="text-center"><?php echo $valor['sede']; ?></td>
+                        <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </th>
-                        <th class="grid grid text-center" colspan="2">
+                        </td>
+                        <td class="grid grid text-center" colspan="2">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaAula(<?php echo $valor['id_aula'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#AulaModal">
 
@@ -42,7 +45,7 @@
                             </button>
 
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_aulas') . '/' . $valor['id_aula'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                        </th>
+                        </td>
 
                     </tr>
                 <?php } ?>
@@ -119,6 +122,7 @@
 </div>
 
 <script>
+
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
