@@ -23,4 +23,44 @@ class GradosModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
+    public function obtenerGrados()
+    {
+        $this->select('grados.*');
+        $this->where('estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
+
+    public function obtenerGradosEliminados()
+    {
+        $this->select('grados.*');
+        $this->where('estado', 'E');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    
+    public function buscarGrado($id)
+    {
+        $this->select('grados.*');
+        $this->where('id_grado', $id);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+
+    public function cambiar_Estado($id, $estado)
+    {
+        $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
+
+    public function traer_grados($id)
+    {
+        $this->select('grados.*');
+        $this->where('id', $id);
+
+        $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
+        return $datos;
+    }
+
 }

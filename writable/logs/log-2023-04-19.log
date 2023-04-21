@@ -1,382 +1,622 @@
-INFO - 2023-04-19 00:00:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 00:00:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 00:00:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 00:01:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 00:01:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 00:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 01:04:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 01:05:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 01:06:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 01:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-19 04:12:01 --> mysqli_sql_exception: Unknown table 'horarios_db.horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
-Stack trace:
-#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
-#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
-#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
-#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
-#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
-#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
-#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(38): CodeIgniter\BaseModel->findAll()
-#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(24): App\Models\UsuariosModel->vistaHorarioPrueba()
-#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
-#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#12 {main}
-CRITICAL - 2023-04-19 04:12:01 --> Unknown table 'horarios_db.horario'
-in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
-FROM `usuarios`', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
-FROM `usuarios`')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
-FROM `usuarios`')
- 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
-FROM `usuarios`', [], false)
- 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
- 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
- 7 APPPATH\Models\UsuariosModel.php(38): CodeIgniter\BaseModel->findAll()
- 8 APPPATH\Controllers\Usuarios.php(24): App\Models\UsuariosModel->vistaHorarioPrueba()
- 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
-10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:12:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 04:13:55 --> You must set the database table to be used with your query.
-in SYSTEMPATH\Database\BaseConnection.php on line 882.
- 1 SYSTEMPATH\Model.php(642): CodeIgniter\Database\BaseConnection->table(null)
- 2 SYSTEMPATH\Model.php(832): CodeIgniter\Model->builder()
- 3 APPPATH\Models\UsuariosModel.php(28): CodeIgniter\Model->__call('select', [...])
- 4 APPPATH\Controllers\Usuarios.php(23): App\Models\UsuariosModel->obtenerUsuarios()
- 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
- 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-19 04:20:06 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
-Stack trace:
-#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
-#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
-#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
-#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
-#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
-#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
-#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
-#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
-#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
-#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#12 {main}
-CRITICAL - 2023-04-19 04:20:06 --> Not unique table/alias: 'horario'
-in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
-FROM `horario`, `horario`', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
-FROM `horario`, `horario`')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
-FROM `horario`, `horario`')
- 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
-FROM `horario`, `horario`', [], false)
- 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
- 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
- 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
- 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
- 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
-10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-ERROR - 2023-04-19 04:20:27 --> mysqli_sql_exception: Not unique table/alias: 'horario' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
-Stack trace:
-#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario...', 0)
-#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario...')
-#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario...')
-#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario...', Array, false)
-#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
-#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
-#6 C:\xampp\htdocs\horarioideal\app\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
-#7 C:\xampp\htdocs\horarioideal\app\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
-#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->index()
-#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#12 {main}
-CRITICAL - 2023-04-19 04:20:27 --> Not unique table/alias: 'horario'
-in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `horario`.*
-FROM `horario`, `horario`', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `horario`.*
-FROM `horario`, `horario`')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `horario`.*
-FROM `horario`, `horario`')
- 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `horario`.*
-FROM `horario`, `horario`', [], false)
- 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
- 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
- 7 APPPATH\Models\HorarioModel.php(30): CodeIgniter\BaseModel->findAll()
- 8 APPPATH\Controllers\Usuarios.php(26): App\Models\HorarioModel->vistaHorarioPrueba()
- 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
-10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:27:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 04:27:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 04:27:50 --> Array to string conversion
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:28:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 04:28:03 --> Array to string conversion
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 04:28:33 --> Undefined array key 0
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:28:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 04:28:45 --> Undefined array key 0
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 5 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:28:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 04:28:53 --> syntax error, unexpected token ";"
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 3 APPPATH\Controllers\Usuarios.php(32): view('/usuarios/usuarios', [...])
- 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->index()
- 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
- 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 04:29:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 04:29:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 04:29:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 04:29:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:25:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 12:25:27 --> Undefined variable $horario
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $horario', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 5 APPPATH\Controllers\Principal.php(26): view('/usuarios/usuarios', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 12:25:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:25:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:25:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 12:25:52 --> Undefined variable $horario
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $horario', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 5 APPPATH\Controllers\Principal.php(26): view('/usuarios/usuarios', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 12:26:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:29:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:29:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:29:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:29:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 12:29:15 --> Undefined variable $horario
-in APPPATH\Views\usuarios\usuarios.php on line 198.
- 1 APPPATH\Views\usuarios\usuarios.php(198): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $horario', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php', 198)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\usuarios\\usuarios.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/usuarios/usuarios', [], true)
- 5 APPPATH\Controllers\Principal.php(26): view('/usuarios/usuarios', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 12:40:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:40:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:40:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:41:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:41:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:44:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:44:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:55:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:56:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 12:57:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:06:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:07:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:10:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:10:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:10:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:13:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:15:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:16:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:16:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:16:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:16:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:17:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:17:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-19 13:39:14 --> Error connecting to the database: mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:174
-Stack trace:
-#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'horarios_db', 3306, '', 0)
-#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
-#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
-#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
-#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
-#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
-#6 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
-#7 C:\xampp\htdocs\horarioideal\app\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
-#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Principal->index()
-#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
-#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#12 {main}
-
-Next CodeIgniter\Database\Exceptions\DatabaseException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:218
-Stack trace:
-#0 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
-#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
-#2 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
-#3 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
-#4 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
-#5 C:\xampp\htdocs\horarioideal\app\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
-#6 C:\xampp\htdocs\horarioideal\app\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
-#7 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Principal->index()
-#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
-#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#10 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#11 {main}
-CRITICAL - 2023-04-19 13:39:14 --> Unable to connect to the database.
-Main connection [MySQLi]: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
-in SYSTEMPATH\Database\BaseConnection.php on line 427.
- 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
- 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.`id_usuario`, `usuarios`.`n_documento`, `usuarios`.`nombre_corto`, `usuarios`.`nombre_p`, `usuarios`.`nombre_s`, `usuarios`.`apellido_p`, `usuarios`.`apellido_s`, `usuarios`.`estado`, `r`.`nombre` as `rol`, `p`.`nombre` as `t_documento`
-FROM `usuarios`
-JOIN `roles` as `r` ON `usuarios`.`id_rol` = `r`.`id_rol`
-JOIN `parametro_det` as `p` ON `usuarios`.`tipo_documento` = `p`.`id_parametro_det`
-WHERE `usuarios`.`estado` = :usuarios.estado:', [...], false)
- 3 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
- 4 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
- 5 APPPATH\Models\UsuariosModel.php(32): CodeIgniter\BaseModel->findAll()
- 6 APPPATH\Controllers\Principal.php(20): App\Models\UsuariosModel->obtenerUsuarios()
- 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Principal->index()
- 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Principal))
- 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 13:40:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:40:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:40:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:41:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:45:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:50:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:50:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:55:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:55:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:56:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:58:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 13:59:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:00:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:17:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:18:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:20:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:21:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:24:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:29:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:33:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 14:33:03 --> Too few arguments to function App\Controllers\Email::Email(), 1 passed in C:\xampp\htdocs\horarioideal\system\CodeIgniter.php on line 934 and exactly 2 expected
-in APPPATH\Controllers\Email.php on line 21.
- 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->Email('4')
- 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
+CRITICAL - 2023-04-19 15:40:33 --> Undefined property: App\Controllers\Asignaturas::$eliminados
+in APPPATH\Controllers\Asignaturas.php on line 65.
+ 1 APPPATH\Controllers\Asignaturas.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Asignaturas::$eliminados', 'C:\\xampp\\htdocs\\horarioideal\\app\\Controllers\\Asignaturas.php', 65)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->eliminados()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-19 15:41:54 --> Undefined property: App\Controllers\Asignaturas::$eliminados
+in APPPATH\Controllers\Asignaturas.php on line 65.
+ 1 APPPATH\Controllers\Asignaturas.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Asignaturas::$eliminados', 'C:\\xampp\\htdocs\\horarioideal\\app\\Controllers\\Asignaturas.php', 65)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->eliminados()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-19 15:42:23 --> Call to a member function obtenerAsignaturasEliminados() on null
+in APPPATH\Controllers\Asignaturas.php on line 65.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->eliminados()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
  3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 14:34:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:35:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:36:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:51:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:53:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:54:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:55:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:00:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:01:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:04:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-19 15:04:54 --> mysqli_sql_exception: Column 'estado' in where clause is ambiguous in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+INFO - 2023-04-19 15:43:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:44:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:46:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:46:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:47:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:49:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:52:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 15:53:04 --> Undefined property: App\Controllers\Asignaturas::$rol
+in APPPATH\Controllers\Asignaturas.php on line 35.
+ 1 APPPATH\Controllers\Asignaturas.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Asignaturas::$rol', 'C:\\xampp\\htdocs\\horarioideal\\app\\Controllers\\Asignaturas.php', 35)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->insertar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:53:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:53:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:53:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:54:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:54:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:56:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 15:56:25 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
 Stack trace:
-#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `emails`...', 0)
-#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `emails`...')
-#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `emails`...')
-#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `emails`...', Array, false)
-#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
-#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
-#6 C:\xampp\htdocs\horarioideal\app\Models\EmailsModel.php(34): CodeIgniter\BaseModel->findAll()
-#7 C:\xampp\htdocs\horarioideal\app\Controllers\Email.php(24): App\Models\EmailsModel->ObtenerEmailUsuario('6', 'A')
-#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Email->Email('6', 'A')
-#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
 #10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
 #12 {main}
-CRITICAL - 2023-04-19 15:04:54 --> Column 'estado' in where clause is ambiguous
+CRITICAL - 2023-04-19 15:56:25 --> Unknown column 'id_rol' in 'where clause'
 in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `emails`.`email`, `emails`.`estado`, `emails`.`id_email`, `emails`.`id_usuario`, `parametro_det`.`nombre` as `prioridad`
-FROM `emails`
-JOIN `parametro_det` ON `emails`.`prioridad` = `parametro_det`.`id_parametro_det`
-WHERE `id_usuario` = \'6\'
-AND `estado` = \'A\'', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `emails`.`email`, `emails`.`estado`, `emails`.`id_email`, `emails`.`id_usuario`, `parametro_det`.`nombre` as `prioridad`
-FROM `emails`
-JOIN `parametro_det` ON `emails`.`prioridad` = `parametro_det`.`id_parametro_det`
-WHERE `id_usuario` = \'6\'
-AND `estado` = \'A\'')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `emails`.`email`, `emails`.`estado`, `emails`.`id_email`, `emails`.`id_usuario`, `parametro_det`.`nombre` as `prioridad`
-FROM `emails`
-JOIN `parametro_det` ON `emails`.`prioridad` = `parametro_det`.`id_parametro_det`
-WHERE `id_usuario` = \'6\'
-AND `estado` = \'A\'')
- 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `emails`.`email`, `emails`.`estado`, `emails`.`id_email`, `emails`.`id_usuario`, `parametro_det`.`nombre` as `prioridad`
-FROM `emails`
-JOIN `parametro_det` ON `emails`.`prioridad` = `parametro_det`.`id_parametro_det`
-WHERE `id_usuario` = :id_usuario:
-AND `estado` = :estado:', [...], false)
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:57:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:57:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:57:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:57:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:58:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:58:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:58:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:58:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 15:58:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-19 15:58:58 --> Undefined array key "id_rol"
+in APPPATH\Views\asignaturas\eliminados.php on line 36.
+ 1 APPPATH\Views\asignaturas\eliminados.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_rol"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\asignaturas\\eliminados.php', 36)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\asignaturas\\eliminados.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/asignaturas/eliminados', [], true)
+ 5 APPPATH\Controllers\Asignaturas.php(79): view('/asignaturas/eliminados', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->eliminados()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 15:59:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:00:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:00:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 16:00:31 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:00:31 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 16:00:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:02:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:02:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:02:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:02:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:02:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:03:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:03:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:03:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:05:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 16:05:51 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:05:51 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 16:07:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:07:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 16:07:50 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:07:50 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 16:08:41 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:08:41 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 16:08:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 16:08:46 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:08:46 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 16:08:56 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:08:56 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 16:10:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:10:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 16:10:43 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:10:43 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-19 16:10:53 --> mysqli_sql_exception: Unknown column 'id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:10:53 --> Unknown column 'id_rol' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = \'1\'
+AND `estado` = \'A\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.*
+FROM `asignaturas`
+WHERE `id_rol` = :id_rol:
+AND `estado` = :estado:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\AsignaturasModel.php(47): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Asignaturas.php(47): App\Models\AsignaturasModel->buscarAsignaturas('1')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->buscarAsignaturas('1')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 16:11:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:11:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:11:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:11:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:11:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:13:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:13:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:13:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:13:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:15:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:15:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 16:20:56 --> mysqli_sql_exception: Unknown column 'asignaturas.horas_semanales' in 'field list' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\AsignaturasModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(18): App\Models\AsignaturasModel->obtenerAsignaturas()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:20:56 --> Unknown column 'asignaturas.horas_semanales' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `asignaturas`.`id_asignatura`, `asignaturas`.`nombre`, `asignaturas`.`horas_semanales`, `asignaturas`.`estado`
+FROM `asignaturas`
+WHERE `asignaturas`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `asignaturas`.`id_asignatura`, `asignaturas`.`nombre`, `asignaturas`.`horas_semanales`, `asignaturas`.`estado`
+FROM `asignaturas`
+WHERE `asignaturas`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `asignaturas`.`id_asignatura`, `asignaturas`.`nombre`, `asignaturas`.`horas_semanales`, `asignaturas`.`estado`
+FROM `asignaturas`
+WHERE `asignaturas`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `asignaturas`.`id_asignatura`, `asignaturas`.`nombre`, `asignaturas`.`horas_semanales`, `asignaturas`.`estado`
+FROM `asignaturas`
+WHERE `asignaturas`.`estado` = :asignaturas.estado:', [...], false)
  5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
  6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
- 7 APPPATH\Models\EmailsModel.php(34): CodeIgniter\BaseModel->findAll()
- 8 APPPATH\Controllers\Email.php(24): App\Models\EmailsModel->ObtenerEmailUsuario('6', 'A')
- 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->Email('6', 'A')
-10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
+ 7 APPPATH\Models\AsignaturasModel.php(31): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Asignaturas.php(18): App\Models\AsignaturasModel->obtenerAsignaturas()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-19 16:22:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:22:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:23:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:23:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:26:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:26:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:26:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:26:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:26:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:26:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:29:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:29:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:29:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:29:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:30:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:31:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-19 16:31:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-19 16:31:34 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`asignaturas`, CONSTRAINT `crea_asignatura` FOREIGN KEY (`usuario_crea`) REFERENCES `usuarios` (`id_usuario`)) in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `asignat...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `asignat...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `asignat...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2476): CodeIgniter\Database\BaseConnection->query('UPDATE `asignat...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(396): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(943): CodeIgniter\Model->doUpdate(Array, Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(756): CodeIgniter\BaseModel->update(Array, Array)
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Asignaturas.php(35): CodeIgniter\Model->update('1', Array)
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Asignaturas->insertar()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-19 16:31:34 --> Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`asignaturas`, CONSTRAINT `crea_asignatura` FOREIGN KEY (`usuario_crea`) REFERENCES `usuarios` (`id_usuario`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `asignaturas` SET `nombre` = \'Matematicas\', `usuario_crea` = NULL
+WHERE `asignaturas`.`id_asignatura` IN (\'1\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `asignaturas` SET `nombre` = \'Matematicas\', `usuario_crea` = NULL
+WHERE `asignaturas`.`id_asignatura` IN (\'1\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `asignaturas` SET `nombre` = \'Matematicas\', `usuario_crea` = NULL
+WHERE `asignaturas`.`id_asignatura` IN (\'1\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2476): CodeIgniter\Database\BaseConnection->query('UPDATE `asignaturas` SET `nombre` = :nombre:, `usuario_crea` = :usuario_crea:
+WHERE `asignaturas`.`id_asignatura` IN :asignaturas.id_asignatura:', [...], false)
+ 5 SYSTEMPATH\Model.php(396): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH\Model.php(756): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH\Controllers\Asignaturas.php(35): CodeIgniter\Model->update('1', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Asignaturas->insertar()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Asignaturas))
 11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
 12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
 INFO - 2023-04-19 15:05:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
@@ -389,168 +629,5 @@ in APPPATH\Controllers\Email.php on line 28.
  3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
  4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-CRITICAL - 2023-04-19 14:38:26 --> Call to undefined method App\Models\AccionesModel::obtenerRoles
-in SYSTEMPATH\Model.php on line 842.
- 1 APPPATH\Controllers\Acciones.php(22): CodeIgniter\Model->__call('obtenerRoles', [])
- 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Acciones->index()
- 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Acciones))
- 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 14:39:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2023-04-19 14:39:22 --> Undefined array key "id_accion"
-in APPPATH\Views\acciones\eliminados.php on line 28.
- 1 APPPATH\Views\acciones\eliminados.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_accion"', 'C:\\xamppp\\htdocs\\horarioideal\\app\\Views\\acciones\\eliminados.php', 28)
- 2 SYSTEMPATH\View\View.php(213): include('C:\\xamppp\\htdocs\\horarioideal\\app\\Views\\acciones\\eliminados.php')
- 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
- 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/acciones/eliminados', [], true)
- 5 APPPATH\Controllers\Acciones.php(84): view('/acciones/eliminados', [...])
- 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Acciones->eliminados()
- 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Acciones))
- 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
- 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 14:39:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:40:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:40:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 14:58:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:08:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:08:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:09:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:11:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-19 15:11:25 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
-Stack trace:
-#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `us...', 0)
-#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
-#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
-#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
-#4 C:\xamppp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
-#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
-#6 C:\xamppp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
-#7 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
-#8 C:\xamppp\htdocs\horarioideal\app\Controllers\Usuarios.php(54): CodeIgniter\BaseModel->save(Array)
-#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
-#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-#11 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#12 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#13 {main}
-CRITICAL - 2023-04-19 15:11:25 --> Column 'usuario_crea' cannot be null
-in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1043663815\', \'Daniel\', \'Daniel\', \'Andres\', \'Sanchez\', \'Castro\', \'$2y$10$Oewq4LNK5CAIUrNSQ10H/.y6/ANZumXxUCy.qvxsOfNWBln2aYU0i\', \'1\', NULL, \'CRA 17B #68C23\', \'2023-04-19 15:11:25\')', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1043663815\', \'Daniel\', \'Daniel\', \'Andres\', \'Sanchez\', \'Castro\', \'$2y$10$Oewq4LNK5CAIUrNSQ10H/.y6/ANZumXxUCy.qvxsOfNWBln2aYU0i\', \'1\', NULL, \'CRA 17B #68C23\', \'2023-04-19 15:11:25\')')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (\'2\', \'1043663815\', \'Daniel\', \'Daniel\', \'Andres\', \'Sanchez\', \'Castro\', \'$2y$10$Oewq4LNK5CAIUrNSQ10H/.y6/ANZumXxUCy.qvxsOfNWBln2aYU0i\', \'1\', NULL, \'CRA 17B #68C23\', \'2023-04-19 15:11:25\')')
- 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `usuarios` (`tipo_documento`, `n_documento`, `nombre_corto`, `nombre_p`, `nombre_s`, `apellido_p`, `apellido_s`, `contraseña`, `id_rol`, `usuario_crea`, `direccion`, `fecha_crea`) VALUES (:tipo_documento:, :n_documento:, :nombre_corto:, :nombre_p:, :nombre_s:, :apellido_p:, :apellido_s:, :contraseña:, :id_rol:, :usuario_crea:, :direccion:, :fecha_crea:)', [...], false)
- 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
- 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
- 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
- 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
- 9 APPPATH\Controllers\Usuarios.php(54): CodeIgniter\BaseModel->save([...])
-10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Usuarios->insertar()
-11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Usuarios))
-12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-19 15:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:12:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:12:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:12:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:12:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:12:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:25:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:25:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:26:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:26:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:27:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:27:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:28:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:33:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:33:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:34:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:35:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:37:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:37:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:37:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:37:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:37:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:37:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:49:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:49:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:49:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:49:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:50:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:51:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:52:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:53:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:54:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:55:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:56:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:58:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:58:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:58:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:01:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:04:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:05:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:05:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:05:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:05:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:14:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:22:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:28:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:28:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:29:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:29:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:34:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-19 15:11:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-19 15:12:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:49:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:49:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:50:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 15:51:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:06:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:06:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:06:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:07:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:07:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:08:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:08:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:08:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:09:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:10:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:10:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:10:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:10:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:10:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:11:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:12:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:13:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:13:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:16:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:16:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:38:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:38:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:40:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:41:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:41:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:43:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:43:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:45:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-19 16:45:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
