@@ -29,7 +29,7 @@ class UsuariosModel extends Model
         $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.estado', 'A');
-        $datos = $this->findAll();
+        $datos = $this->findAll(); 
         return $datos;
     }
 

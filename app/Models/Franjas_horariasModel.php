@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class GradosModel extends Model
+class Franjas_horariasModel extends Model
 {
     protected $table = 'franjas_horarias';
-    protected $primaryKey = 'id_franja_horaria  ';
+    protected $primaryKey = 'id_franja_horaria';
 
     protected $useAutoIncrement = true;
 
@@ -22,5 +22,43 @@ class GradosModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function obtenerFranjas()
+    {
+        $this->select('franjas_horarias.*');
+        $this->where('estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function obtenerFranjasEliminados()
+    {
+        $this->select('franjas_horarias.*');
+        $this->where('estado', 'E');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function buscarFranjas($id)
+    {
+        $this->select('franjas_horarias.*');
+        $this->where('id_franja_horaria', $id);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+
+    public function cambiar_Estado($id, $estado)
+    {
+        $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
+
+    public function traer_franja($id)
+    {
+        $this->select('franjas_horarias.*');
+        $this->where('id', $id);
+
+        $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
+        return $datos;
+    }
 
 }

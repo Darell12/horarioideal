@@ -13,11 +13,14 @@
 </head> -->
 
 
-<div class="container">
+<!-- <div class="container"> -->
     <div class="container  mt-4 shadow rounded-4">
         <div>
             <h1 class="titulo_Vista text-center"></h1>
         </div>
+        <div style="height: 30px;">
+        
+    </div>
         <div>
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
@@ -25,7 +28,7 @@
         </div>
         <br>
         <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-            <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+            <table id="example-table" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
                 <thead class="table-dark">
                     <tr>
                         <th class="text-center">Id</th>
@@ -46,28 +49,28 @@
                 <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                     <?php foreach ($datos as $valor) { ?>
                         <tr>
-                            <th class="text-center"><?php echo $valor['id_usuario']; ?></th>
-                            <th class="text-center"><?php echo $valor['t_documento']; ?></th>
-                            <th class="text-center"><?php echo $valor['n_documento']; ?></th>
-                            <th class="text-center"><?php echo $valor['nombre_corto']; ?></th>
-                            <th class="text-center"><?php echo $valor['nombre_p']; ?></th>
-                            <th class="text-center"><?php echo $valor['nombre_s']; ?></th>
-                            <th class="text-center"><?php echo $valor['apellido_p']; ?></th>
-                            <th class="text-center"><?php echo $valor['apellido_s']; ?></th>
-                            <th class="text-center"><?php echo $valor['rol']; ?></th>
-                            <th class="text-center">
+                            <td class="text-center"><?php echo $valor['id_usuario']; ?></td>
+                            <td class="text-center"><?php echo $valor['t_documento']; ?></td>
+                            <td class="text-center"><?php echo $valor['n_documento']; ?></td>
+                            <td class="text-center"><?php echo $valor['nombre_corto']; ?></td>
+                            <td class="text-center"><?php echo $valor['nombre_p']; ?></td>
+                            <td class="text-center"><?php echo $valor['nombre_s']; ?></td>
+                            <td class="text-center"><?php echo $valor['apellido_p']; ?></td>
+                            <td class="text-center"><?php echo $valor['apellido_s']; ?></td>
+                            <td class="text-center"><?php echo $valor['rol']; ?></td>
+                            <td class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                            </th>
-                            <th class="text-center">
+                            </td>
+                            <td class="text-center">
                                 <button class="btn btn-outline-info" onclick="EmailUsuario(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" data-bs-toggle="modal" title="Editar Registro">
                                     <i class="bi bi-envelope-at-fill"></i>
                                 </button>
-                            </th>
-                            <th class="text-center">
+                            </td>
+                            <td class="text-center">
                                 <button class="btn btn-outline-success" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-telephone"></i> </button>
-                            </th>
-                            <th class="grid grid text-center" colspan="2">
+                            </td>
+                            <td class="grid grid text-center" colspan="2">
                                 <div class="btn-group">
                                     <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                         <i class="bi bi-pencil"></i>
@@ -79,7 +82,7 @@
                                         <i class="bi bi-trash3"></i>
                                     </button>
                                 </div>
-                            </th>
+                            </td>
 
                         </tr>
                     <?php } ?>
@@ -145,15 +148,15 @@
                                         <label for="nombre" class="col-form-label">Segundo Apellido:</label>
                                         <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
                                     </div>
+                                    <!-- <div class="row">
+                                        <label for="nombre" class="col-form-label">Perfil:</label>
+                                        <input type="file" class="form-control" name="perfil" id="perfil" >
+                                    </div> -->
                                 </div>
                                 <div class="">
                                     <label id="email_label" for="email">Dirección:</label>
                                     <input id="direccion" name="direccion" type="text" class="form-control" required />
                                 </div>
-                                <!-- <div class="">
-                                    <label id="email_label" for="email">Correo Electronico</label>
-                                    <input id="email" name="email" type="email" class="form-control" required />
-                                </div> -->
                                 <div class="row">
                                     <div class="col">
                                         <label id="password_label" for="password">Contraseña</label>
@@ -165,11 +168,10 @@
                                     </div>
                                 </div>
 
-                                <input type="text" id="CodigoValido" name="CodigoValido" hidden>
+                                
                                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
-                                <input type="text" id="NombreValido" name="NombreValido" hidden>
 
                             </div>
                         </div>
@@ -248,11 +250,13 @@
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->
 
 
 
 <script>
+    
+var table = new Tabulator("#example-table", {});
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
@@ -390,7 +394,7 @@
 
 
 
-    $('.close').click(function() {
+     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
 </script>

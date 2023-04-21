@@ -47,6 +47,7 @@ class Usuarios extends BaseController
                 'nombre_s' => $this->request->getPost('segundo_nombre'),
                 'apellido_p' => $this->request->getPost('primer_apellido'),
                 'apellido_s' => $this->request->getPost('segundo_apellido'),
+                'perfil' => $this->request->getPost('perfil'),
                 'email' => $this->request->getPost('email'),
                 'contraseña' => $hashedPassword,
                 'id_rol' => $this->request->getPost('id_rol'),
@@ -61,6 +62,7 @@ class Usuarios extends BaseController
                 'nombre_corto' => $this->request->getPost('nombre_corto'),
                 'nombre_p' => $this->request->getPost('primer_nombre'),
                 'nombre_s' => $this->request->getPost('segundo_nombre'),
+                'perfil' => $this->request->getPost('perfil'),
                 'apellido_p' => $this->request->getPost('primer_apellido'),
                 'apellido_s' => $this->request->getPost('segundo_apellido'),
                 'email' => $this->request->getPost('email'),
@@ -92,15 +94,6 @@ class Usuarios extends BaseController
     {
         $returnData = array();
         $usuario = $this->usuario->buscarUsuario($id);
-        if (!empty($usuario)) {
-            array_push($returnData, $usuario);
-        }
-        echo json_encode($returnData);
-    }
-    public function intento($email = 'darellorlandoe@gmail.com')
-    {
-        $returnData = array();
-        $usuario = $this->usuario->login($email);
         if (!empty($usuario)) {
             array_push($returnData, $usuario);
         }

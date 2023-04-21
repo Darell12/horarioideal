@@ -60,11 +60,12 @@ class Roles extends BaseController
         if (
             $estado == 'E'
         ) {
-            return redirect()->to(base_url('/ver_roles'));
+            return redirect()->to(base_url('/ver_franjas'));
         } else {
             return redirect()->to(base_url('/eliminados_roles'));
         }
     }
+    
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
         $eliminados = $this->eliminados->obtenerRolesEliminados();

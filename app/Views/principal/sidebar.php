@@ -28,6 +28,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -53,25 +55,25 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <li class="sidebar-heading">
                 Usuarios
-            </div>
+            </li>
             <!-- href="<?php echo base_url('/usuarios') ?> -->
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link accordion" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <a style="cursor: pointer;" class="nav-link accordion" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <i class="bi bi-person-fill"></i>
                     <span>Usuarios</span>
-                    <a />
-                    <!-- CUERPO ACORDION -->
-                    <div id="collapseOne" class="accordion-collapse collapse text-light" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <a class="nav-link" href="<?php echo base_url('/estudiantes') ?>">
-                                <i class="bi bi-person-fill"></i>
-                                <span>Estudiantes</span>
-                            </a>
-                        </div>
+                </a>
+                <!-- CUERPO ACORDION -->
+                <div id="collapseOne" class="accordion-collapse collapse text-light" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <a class="nav-link" href="<?php echo base_url('/estudiantes') ?>">
+                            <i class="bi bi-person-fill"></i>
+                            <span>Estudiantes</span>
+                        </a>
                     </div>
+                </div>
             </li>
 
 
@@ -167,8 +169,7 @@
                     <!-- Nav Item - User Information -->
                     <button style="width: 15rem;" type="button" class="btn btn-light">
                         <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo session('usuario') ?></span>
-                            <i class="bi bi-person-circle"></i>
+                            <i class="bi bi-person-circle"> <?php echo session('usuario') ?> </i>
                         </a>
                     </button>
                 </div>
