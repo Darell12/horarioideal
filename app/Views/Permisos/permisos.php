@@ -37,7 +37,7 @@
 
                             </button>
 
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_permisos') . '/' . $valor['id_permiso'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/permisos/cambiarEstado') . '/' . $valor['id_permiso'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
                         </th>
 
                     </tr>
@@ -60,7 +60,7 @@
                             <div class="row">
                                 <div class="">
                                     <label class="col-form-label">Rol:</label>
-                                    <select class="form-select form-select" name="id_rol" id="rol" required>
+                                    <select class="form-select form-select" name="id_rol" id="id_rol" required>
                                         <option value="">Seleccione un Rol</option>
                                         <?php foreach ($roles as $rol) { ?>
                                             <option value="<?php echo $rol['id_rol']; ?>"><?php echo $rol['nombre']; ?></option>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="">
                                     <label class="col-form-label">Acciones:</label>
-                                    <select class="form-select form-select" name="id_rol" id="accion" required>
+                                    <select class="form-select form-select" name="id_accion" id="id_accion" required>
                                         <option value="">Seleccione una acción</option>
                                         <?php foreach ($acciones as $accion) { ?>
                                             <option value="<?php echo $accion['id_acciones']; ?>"><?php echo $accion['nombre']; ?></option>
@@ -131,16 +131,16 @@
                     console.log(rs)
                     $("#tp").val(2);
                     $("#id").val(id)
-                    $('#rol').val(rs[0]['id_rol']);
-                    $('#accion').val(rs[0]['id_accion']);
+                    $('#id_rol').val(rs[0]['id_rol']);
+                    $('#id_accion').val(rs[0]['id_accion']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#PermisosModal").modal("show");
                 }
             })
         } else {
             $("#tp").val(1);
-            $('#rol').val('');
-            $('#accion').val('');
+            $('#id_rol').val('');
+            $('#id_accion').val('');
             $("#btn_Guardar").text('Guardar');
             $("#PermisosModal").modal("show");
         }

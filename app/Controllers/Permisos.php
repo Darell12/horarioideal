@@ -40,14 +40,14 @@ class Permisos extends BaseController
         if ($tp == 1) {
 
             $this->permiso->save([
-                'rol' => $this->request->getPost('id_rol'),
-                'accion' => $this->request->getPost('id_accion'),
+                'id_rol' => $this->request->getPost('id_rol'),
+                'id_accion' => $this->request->getPost('id_accion'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->permiso->update($this->request->getPost('id'), [
-                'id_rol' => $this->request->getPost('rol'),
-                'id_accion' => $this->request->getPost('accion'),
+                'id_rol' => $this->request->getPost('id_rol'),
+                'id_accion' => $this->request->getPost('id_accion'),
                 'usuario_crea'=> session('id')
             ]);
         }
@@ -66,19 +66,19 @@ class Permisos extends BaseController
 
     public function cambiarEstado($id, $estado)
     {
-        $permiso = $this->permiso->cambiar_Estado($id, $estado);
+        $permiso = $this->permiso->cambiarEstado($id, $estado);
         
 
         if (
             $estado == 'E'
         ) {
-            return redirect()->to(base_url('/ver_permisos'));
+            return redirect()->to(base_url('/permisos'));
         } else {
             return redirect()->to(base_url('/eliminados_permisos'));
         }
     }
 
-    public function eliminados() //Mostrar vista de Paises Eliminados
+    public function eliminados() //Mostrar vista de Permisos Eliminados
     {
         $eliminados = $this->eliminados->obtenerPermisosEliminados();
 

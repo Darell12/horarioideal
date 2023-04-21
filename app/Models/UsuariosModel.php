@@ -18,7 +18,7 @@ class UsuariosModel extends Model
     protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';
     protected $deletedField  = '';
-
+ 
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;

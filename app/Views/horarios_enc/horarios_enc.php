@@ -4,8 +4,8 @@
             <h1 class="titulo_Vista text-center"></h1>
         </div>
         <div>
-            <button type="button" onclick="seleccionaAccion(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#AccionModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-            <a href="<?php echo base_url('/acciones/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <button type="button" onclick="seleccionaHorarios_enc(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <a href="<?php echo base_url('/horarios_enc/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
 
@@ -15,7 +15,10 @@
                 <thead class="table-dark">
                     <tr>
                         <th class="text-center">Id</th>
-                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center">Grado</th>
+                        <th class="text-center">Año</th>
+                        <th class="text-center">Jornada</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center" colspan="2">Acciones</th>
                     </tr>
@@ -23,20 +26,23 @@
                 <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                     <?php foreach ($datos as $valor) { ?>
                         <tr>
-                            <th class="text-center"><?php echo $valor['id_acciones']; ?></th>    
-                            <th class="text-center"><?php echo $valor['nombre']; ?></th>
+                            <th class="text-center"><?php echo $valor['id_horarios_enc']; ?></th>    
+                            <th class="text-center"><?php echo $valor['usuario']; ?></th>    
+                            <th class="text-center"><?php echo $valor['grado']; ?></th>    
+                            <th class="text-center"><?php echo $valor['periodo_año']; ?></th>    
+                            <th class="text-center"><?php echo $valor['jornada']; ?></th>    
                             <th class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                             </th>
                             <th class="grid grid text-center" colspan="2">
 
-                                <button class="btn btn-outline-primary" onclick="seleccionaAccion(<?php echo $valor['id_acciones'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#AccionModal">
+                                <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(<?php echo $valor['id_horarios_enc'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#Horarios_encModal">
 
                                     <i class="bi bi-pencil"></i>
 
                                 </button>
 
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_acciones'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_horarios_enc'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
                             </th>
 
                         </tr>
@@ -46,8 +52,8 @@
             </table>
         </div>
         <!-- Modal -->
-        <form method="POST" action="<?php echo base_url('/acciones_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
-            <div class="modal fade" id="AccionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <form method="POST" action="<?php echo base_url('/horarios_enc_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+            <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -106,7 +112,7 @@
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
 
-    function seleccionaAccion(id, tp) {
+    function seleccionaHorarios_enc(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/acciones/buscarAccion'); ?>" + "/" + id;
             $.ajax({
@@ -119,14 +125,14 @@
                     $("#id").val(id)
                     $('#nombre_accion').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
-                    $("#AccionModal").modal("show");
+                    $("#Horarios_encModal").modal("show");
                 }
             })
         } else {
             $("#tp").val(1);
             $('#nombre_accion').val('');
             $("#btn_Guardar").text('Guardar');
-            $("#AccionModal").modal("show");
+            $("#Horarios_encModal").modal("show");
         }
     }
     $('.close').click(function() {
