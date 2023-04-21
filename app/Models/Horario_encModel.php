@@ -25,19 +25,20 @@ class Horario_encModel extends Model
 
     public function obtenerHorarios_enc()
     {
-        $this->select('horarios_enc.*, u.nombre_corto as usuario, g.alias as grado ');
+        $this->select('horarios_enc.*, u.nombre_corto as usuario, g.alias as grado');
         $this->join('usuarios as u', 'horarios_enc.id_usuario = u.id_usuario');
         $this->join('grados as g', 'horarios_enc.id_grado = g.id_grado');
+        // $this->join('parametro_det as p', 'horarios_enc.periodo_año = p.id_parametro_det');
         $this->where('horarios_enc.estado', 'A');
         $datos = $this->findAll(); 
         return $datos;
     }
 
-    public function obtenerHorarios_enEliminados()
+    public function obtenerHorarios_encEliminados()
     {
         $this->select('horarios_enc.*');
         $this->where('estado', 'E');
-        $this->orderBy('nombre', 'ASC');
+        // $this->orderBy('nombre', 'ASC');
         $datos = $this->findAll();
         return $datos;
     }

@@ -4,24 +4,32 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Horario_encModel;
+use App\Models\UsuariosModel;
+use App\Models\GradosModel;
+use App\Models\Parametros_detModel;
 
 
 class Horario_enc extends BaseController
 {
     protected $horario_enc, $eliminados;
+    protected $usuarios, $grados;
 
 
     public function __construct()
     {
         $this->horario_enc = new Horario_encModel();
         $this->eliminados = new Horario_encModel();
+        $this->usuarios = new UsuariosModel();
+        $this->grados = new GradosModel();
     }
 
     public function index()
     {
         $horario_enc = $this->horario_enc->obtenerHorarios_enc();
+        $usuarios = $this->usuarios->obtenerUsuarios();
+        $grados = $this->grados->obtenerGrados();
 
-        $data = ['titulo' => 'Administrar Horariosenc', 'datos' => $horario_enc];
+        $data = ['titulo' => 'Administrar Horariosenc', 'datos' => $horario_enc, 'usuarios' => $usuarios, 'grados' => $grados  ];
 
        echo view('/principal/sidebar', $data);
        echo view('/horarios_enc/horarios_enc', $data);
@@ -76,7 +84,7 @@ class Horario_enc extends BaseController
 
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerhorarios_encEliminados();
+        $eliminados = $this->eliminados->obtenerHorarios_encEliminados();
 
 
         // Redireccionar a la URL anterior

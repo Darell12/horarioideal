@@ -43,7 +43,7 @@ $routes->get('/ver_aulas', 'aulas::index');
 $routes->get('/ver_franjas', 'franjas_horarias::index');
 $routes->get('/ver_grados', 'grados::index');
 $routes->get('/ver_permisos', 'permisos::index');
-$routes->get('/ver_horarios_enc', 'horarios_enc::index');
+$routes->get('/ver_horarios_enc', 'horario_enc::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
 $routes->get('/eliminados_roles', 'roles::eliminados');
@@ -53,7 +53,7 @@ $routes->get('/eliminados_aulas', 'aulas::eliminados');
 $routes->get('/eliminados_franjas', 'franjas_horarias::eliminados');
 $routes->get('/eliminados_grados', 'grados::eliminados');
 $routes->get('/eliminados_permisos', 'permisos::eliminados');
-$routes->get('/eliminados_horarios_enc', 'horarios_enc::eliminados');
+$routes->get('/eliminados_horarios_enc', 'horario_enc::eliminados');
 
 //! RUTAS PARA INSERTAR
 $routes->post('/roles_insertar', 'roles::insertar');
