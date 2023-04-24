@@ -1,132 +1,314 @@
-INFO - 2023-04-24 12:16:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:16:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:17:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-24 12:17:02 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+INFO - 2023-04-24 14:20:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:20:41 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 47.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:21:19 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 47.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:21:19 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 47.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:21:19 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 47.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:21:19 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 47.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:21:19 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 47.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:21:19 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 47.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 47)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:22:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:22:13 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 48.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(48): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 48)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:26:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:26:48 --> Undefined array key "estado"
+in APPPATH\Views\estudiantes\estudiantes.php on line 48.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(48): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 48)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-24 14:28:19 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = 'A'' at line 1 in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
 Stack trace:
-#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `em...', 0)
-#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `em...')
-#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `em...')
-#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `em...', Array, false)
-#4 C:\xamppp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
-#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
-#6 C:\xamppp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
-#7 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
-#8 C:\xamppp\htdocs\horarioideal\app\Controllers\Email.php(39): CodeIgniter\BaseModel->save(Array)
-#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Email->insertar()
-#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
-#11 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#12 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#13 {main}
-CRITICAL - 2023-04-24 12:17:02 --> Column 'usuario_crea' cannot be null
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudia...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudia...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudia...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudia...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\EstudiantesModel.php(29): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-24 14:28:19 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = 'A'' at line 1
 in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'A@gmail.com\', \'6\', \'6\', NULL, \'2023-04-24 12:17:02\')', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'A@gmail.com\', \'6\', \'6\', NULL, \'2023-04-24 12:17:02\')')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'A@gmail.com\', \'6\', \'6\', NULL, \'2023-04-24 12:17:02\')')
- 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (:email:, :prioridad:, :id_usuario:, :usuario_crea:, :fecha_crea:)', [...], false)
- 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
- 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
- 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
- 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
- 9 APPPATH\Controllers\Email.php(39): CodeIgniter\BaseModel->save([...])
-10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->insertar()
-11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
-12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-24 12:17:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-24 12:17:27 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = :estudiantes.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\EstudiantesModel.php(29): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-24 14:28:32 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = 'A'' at line 1 in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
 Stack trace:
-#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `em...', 0)
-#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `em...')
-#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `em...')
-#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `em...', Array, false)
-#4 C:\xamppp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
-#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
-#6 C:\xamppp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
-#7 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
-#8 C:\xamppp\htdocs\horarioideal\app\Controllers\Email.php(39): CodeIgniter\BaseModel->save(Array)
-#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Email->insertar()
-#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
-#11 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#12 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#13 {main}
-CRITICAL - 2023-04-24 12:17:27 --> Column 'usuario_crea' cannot be null
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudia...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudia...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudia...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudia...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\EstudiantesModel.php(29): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-24 14:28:32 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = 'A'' at line 1
 in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'A@gmail.com\', \'7\', \'3\', NULL, \'2023-04-24 12:17:27\')', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'A@gmail.com\', \'7\', \'3\', NULL, \'2023-04-24 12:17:27\')')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'A@gmail.com\', \'7\', \'3\', NULL, \'2023-04-24 12:17:27\')')
- 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (:email:, :prioridad:, :id_usuario:, :usuario_crea:, :fecha_crea:)', [...], false)
- 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
- 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
- 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
- 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
- 9 APPPATH\Controllers\Email.php(39): CodeIgniter\BaseModel->save([...])
-10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->insertar()
-11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
-12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-24 12:17:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:17:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:17:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:17:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:17:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:21:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:21:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:21:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:24:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:27:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:27:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:30:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:31:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:33:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:33:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 12:40:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:01:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:01:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:02:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:02:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-ERROR - 2023-04-24 13:02:47 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`emails`, CONSTRAINT `usuario_email` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)) in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado` `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = :estudiantes.estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\EstudiantesModel.php(29): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:28:33 --> Undefined variable $roles
+in APPPATH\Views\estudiantes\estudiantes.php on line 95.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $roles', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 95)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-24 14:30:14 --> mysqli_sql_exception: Unknown column 'estudiantes.id_rol' in 'where clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
 Stack trace:
-#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `em...', 0)
-#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `em...')
-#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `em...')
-#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `em...', Array, false)
-#4 C:\xamppp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
-#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
-#6 C:\xamppp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
-#7 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
-#8 C:\xamppp\htdocs\horarioideal\app\Controllers\Email.php(39): CodeIgniter\BaseModel->save(Array)
-#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Email->insertar()
-#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
-#11 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#12 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
-#13 {main}
-CRITICAL - 2023-04-24 13:02:47 --> Cannot add or update a child row: a foreign key constraint fails (`horarios_db`.`emails`, CONSTRAINT `usuario_email` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`))
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudia...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudia...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudia...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudia...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\EstudiantesModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-24 14:30:14 --> Unknown column 'estudiantes.id_rol' in 'where clause'
 in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
- 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'b@gmail.com\', \'7\', \'\', \'5\', \'2023-04-24 13:02:47\')', 0)
- 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'b@gmail.com\', \'7\', \'\', \'5\', \'2023-04-24 13:02:47\')')
- 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'b@gmail.com\', \'7\', \'\', \'5\', \'2023-04-24 13:02:47\')')
- 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (:email:, :prioridad:, :id_usuario:, :usuario_crea:, :fecha_crea:)', [...], false)
- 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
- 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
- 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
- 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
- 9 APPPATH\Controllers\Email.php(39): CodeIgniter\BaseModel->save([...])
-10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->insertar()
-11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
-12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
-13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
-INFO - 2023-04-24 13:02:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:03:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:13:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:14:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:33:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:33:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:34:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:34:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:36:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:38:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:38:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:43:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2023-04-24 13:43:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'
+AND `estudiantes`.`id_rol` = \'3\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'
+AND `estudiantes`.`id_rol` = \'3\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = \'A\'
+AND `estudiantes`.`id_rol` = \'3\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+WHERE `estudiantes`.`estado` = :estudiantes.estado:
+AND `estudiantes`.`id_rol` = :estudiantes.id_rol:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\EstudiantesModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-24 14:31:35 --> mysqli_sql_exception: Unknown column 'ususarios.id_usuario' in 'on clause' in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudia...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudia...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudia...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudia...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\horarioideal\app\Models\EstudiantesModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\horarioideal\app\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+#8 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-24 14:31:35 --> Unknown column 'ususarios.id_usuario' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+JOIN `usuarios` ON `ususarios`.`id_usuario` = `estudiantes`.`id_usuario`
+WHERE `estudiantes`.`estado` = \'A\'
+AND `usuarios`.`id_rol` = \'3\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+JOIN `usuarios` ON `ususarios`.`id_usuario` = `estudiantes`.`id_usuario`
+WHERE `estudiantes`.`estado` = \'A\'
+AND `usuarios`.`id_rol` = \'3\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+JOIN `usuarios` ON `ususarios`.`id_usuario` = `estudiantes`.`id_usuario`
+WHERE `estudiantes`.`estado` = \'A\'
+AND `usuarios`.`id_rol` = \'3\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `estudiantes`.`id_estudiante`, `estudiantes`.`id_usuario`, `estudiantes`.`id_grado`, `estudiantes`.`estado`
+FROM `estudiantes`
+JOIN `usuarios` ON `ususarios`.`id_usuario` = `estudiantes`.`id_usuario`
+WHERE `estudiantes`.`estado` = :estudiantes.estado:
+AND `usuarios`.`id_rol` = :usuarios.id_rol:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\EstudiantesModel.php(31): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Estudiantes.php(18): App\Models\EstudiantesModel->obtenerEstudiantes()
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:31:48 --> Undefined variable $roles
+in APPPATH\Views\estudiantes\estudiantes.php on line 95.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $roles', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 95)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(22): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:33:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-24 14:33:52 --> Undefined variable $prioridad
+in APPPATH\Views\estudiantes\estudiantes.php on line 255.
+ 1 APPPATH\Views\estudiantes\estudiantes.php(255): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $prioridad', 'C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php', 255)
+ 2 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\horarioideal\\app\\Views\\estudiantes\\estudiantes.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('/estudiantes/estudiantes', [], true)
+ 5 APPPATH\Controllers\Estudiantes.php(26): view('/estudiantes/estudiantes', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Estudiantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Estudiantes))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:34:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-24 14:37:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

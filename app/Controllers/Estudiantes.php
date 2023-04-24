@@ -3,20 +3,24 @@
 namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\EstudiantesModel;
+use App\Models\RolesModel;
 
-class Asignaturas extends BaseController
+class Estudiantes extends BaseController
 {
     protected $estudiantes, $eliminados;
+    protected $roles;
     
     public function __construct()
     {
         $this->estudiantes = new EstudiantesModel();
         $this->eliminados = new EstudiantesModel();
+        $this->roles = new RolesModel();
     }
     public function index()
     {
         $estudiantes = $this->estudiantes->obtenerEstudiantes();    
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $estudiantes ];
+        $roles = $this->roles->obtenerRoles();    
+        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $estudiantes, 'roles' =>  $roles];
 
         echo view('/principal/sidebar', $data);
         echo view('/estudiantes/estudiantes', $data);
@@ -26,13 +30,13 @@ class Asignaturas extends BaseController
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
 
-            $this->asignaturas->save([
+            $this->estudiantes->save([
                 'nombre' => $this->request->getPost('nombre_asignatura'),
                 'codigo' => $this->request->getPost('codigo'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
-            $this->asignaturas->update($this->request->getPost('id'), [
+            $this->estudiantes->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_asignatura'),
                 'codigo' => $this->request->getPost('codigo'),
                 'usuario_crea'=> session('id')
@@ -44,7 +48,7 @@ class Asignaturas extends BaseController
     public function buscarAsignaturas($id)
     {
         $returnData = array();
-        $asignaturas = $this->asignaturas->buscarAsignaturas($id);
+        $estudiantes = $this->estudiantes->buscarEstudiantes($id);
         if (!empty($asignaturas)) {
             array_push($returnData, $asignaturas);
         }
@@ -53,7 +57,7 @@ class Asignaturas extends BaseController
 
     public function cambiarEstado($id, $estado)
     {
-        $asignaturas = $this->asignaturas->cambiar_Estado($id, $estado);
+        $estudiantes = $this->estudiantes->cambiar_Estado($id, $estado);
 
         if (
             $estado == 'E'
@@ -65,18 +69,18 @@ class Asignaturas extends BaseController
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerAsignaturasEliminados();
+        $eliminados = $this->eliminados->obtenerEstudiantesEliminados();
 
 
         // Redireccionar a la URL anterior
         if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Asignaturas Eliminadas','datos' => 'vacio'];
+            $data = ['titulo' => 'Administrar Estudiantes Eliminados','datos' => 'vacio'];
             echo view('/principal/sidebar', $data);
-            echo view('/asignaturas/eliminados', $data);
+            echo view('/estudiante  s/eliminados', $data);
         } else {
-            $data = ['titulo' => 'Administrar Asignaturas Eliminadas', 'datos' => $eliminados];
+            $data = ['titulo' => 'Administrar Estudiantes Eliminados', 'datos' => $eliminados];
             echo view('/principal/sidebar', $data);
-            echo view('/asignaturas/eliminados', $data);
+            echo view('/estudiantes/eliminados', $data);
         }
     }
 }

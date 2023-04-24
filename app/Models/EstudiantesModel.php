@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use CodeIgniter\Model;
 
 class EstudiantesModel extends Model
@@ -25,8 +24,10 @@ class EstudiantesModel extends Model
 
     public function obtenerEstudiantes()
     {
-        $this->select('estudiantes.id_estudiante, estudiantes.id_usuario, estudiantes.id_grado');
+        $this->select('estudiantes.id_estudiante, estudiantes.id_usuario, estudiantes.id_grado, estudiantes.estado');
+        $this->join('usuarios', 'usuarios.id_usuario = estudiantes.id_usuario');
         $this->where('estudiantes.estado', 'A');
+        $this->where('usuarios.id_rol', '3');
         $datos = $this->findAll();
         return $datos;
     }
