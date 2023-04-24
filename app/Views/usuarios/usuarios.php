@@ -206,8 +206,8 @@
     <!-- Modal Elimina -->
 </div>
 
-<div id="ModalEmail" class="modal">
-    <div class="modal-dialog modal-fullscreen">
+<div id="ModalEmail" class="modal" >
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
 
