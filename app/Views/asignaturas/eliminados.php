@@ -4,7 +4,7 @@
       <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
     </h1>
   </div>
-  <div style="height: 30px;"></div>>
+  <div style="height: 30px;"></div>
   <div>
     <a href="<?php echo base_url('/ver_asignaturas'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
   </div>
@@ -31,7 +31,7 @@
             <tr>
               <th class="text-center"><?php echo $valor['id_asignatura']; ?></th>
               <th class="text-center"><?php echo $valor['nombre']; ?></th>
-              <th class="text-center"><?php echo $valor['Codigo']; ?></th>
+              <th class="text-center"><?php echo $valor['codigo']; ?></th>
               <th class="text-center">
                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
               </th>

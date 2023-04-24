@@ -28,33 +28,11 @@
                     <tr>
                         <th class="text-center"><?php echo $valor['id_asignatura']; ?></th>
                         <th class="text-center"><?php echo $valor['nombre']; ?></th>
-                        <th class="text-center"><?php echo $valor['Codigo']; ?></th>
+                        <th class="text-center"><?php echo $valor['codigo']; ?></th>
                         <th class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </th>
                         <th class="grid grid text-center" colspan="2">
-        <br>
-        <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-            <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
-                <thead class="table-dark">
-                    <tr>
-                        <th class="text-center">Id</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Codigo</th>
-                        <th class="text-center">Estado</th>
-                        <th class="text-center" colspan="2">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                    <?php foreach ($datos as $valor) { ?>
-                        <tr>
-                            <th class="text-center"><?php echo $valor['id_asignatura']; ?></th>
-                            <th class="text-center"><?php echo $valor['nombre']; ?></th>
-                            <th class="text-center"><?php echo $valor['codigo']; ?></th>
-                            <th class="text-center">
-                                <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                            </th>
-                            <th class="grid grid text-center" colspan="2">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_asignatura'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal">
 
@@ -65,9 +43,7 @@
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_asignaturas') . '/' . $valor['id_asignatura'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
                         </th>
 
-                    </tr>
-                <?php } ?>
-
+                    <?php }?>
             </tbody>
         </table>
     </div>
@@ -92,13 +68,12 @@
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <div class="col">
-                                    <label for="horas_semanales" class="col-form-label">Codigo:</label>
-                                    <input type="number" class="form-control" name="Codigo" id="Codigo" required>
+                                    <label for="codigo" class="col-form-label">Codigo:</label>
+                                    <input type="number" class="form-control" name="codigo" id="codigo" required>
                                 </div>
 
 
-                                        <label for="codigo" class="col-form-label">Codigo:</label>
-                                        <input type="text" class="form-control" name="codigo" id="codigo" required>
+                                        
                                     </div>        
                                 
                                
@@ -167,6 +142,7 @@
             $("#RolModal").modal("show");
         }
     }
+
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });

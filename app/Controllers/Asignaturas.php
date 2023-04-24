@@ -9,14 +9,14 @@ class Asignaturas extends BaseController
     protected $asignaturas, $eliminados;
     
     public function __construct()
-    {
+    { 
         $this->asignaturas = new AsignaturasModel();
         $this->eliminados = new AsignaturasModel();
     }
     public function index()
     {
         $asignaturas = $this->asignaturas->obtenerAsignaturas();    
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $asignaturas ];
+        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'datos' => $asignaturas ];
 
         echo view('/principal/sidebar', $data);
         echo view('/asignaturas/asignaturas', $data);
