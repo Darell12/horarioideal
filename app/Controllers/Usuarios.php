@@ -6,12 +6,14 @@ use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
 use App\Models\HorarioModel;
 use App\Models\RolesModel;
+use App\Models\Parametros_detModel;
 
 
 class Usuarios extends BaseController
 {
     protected $usuario, $eliminados;
     protected $roles, $horario;
+    protected $prioridad;
 
     public function __construct()
     {
@@ -19,14 +21,16 @@ class Usuarios extends BaseController
         $this->eliminados = new UsuariosModel();
         $this->roles = new RolesModel();
         $this->horario = new HorarioModel();
+        $this->prioridad = new Parametros_detModel();
     }
     public function index()
     {
         $usuario = $this->usuario->obtenerUsuarios();
         // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
+        $prioridad = $this->prioridad->ObtenerPrioridad();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles];
+        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);

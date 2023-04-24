@@ -41,7 +41,7 @@ $routes->get('/ver_asignaturas', 'asignaturas::index');
 $routes->get('/ver_acciones', 'acciones::index');
 $routes->get('/ver_aulas', 'aulas::index');
 $routes->get('/ver_franjas', 'franjas_horarias::index');
-$routes->get('/ver_permisos', 'permisos::index');
+$routes->get('/ver_grados', 'grados::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
 $routes->get('/eliminados_roles', 'roles::eliminados');
@@ -49,7 +49,7 @@ $routes->get('/eliminados_asignaturas', 'asignaturas::eliminados');
 $routes->get('/eliminados_acciones', 'acciones::eliminados');
 $routes->get('/eliminados_aulas', 'aulas::eliminados');
 $routes->get('/eliminados_franjas', 'franjas_horarias::eliminados');
-$routes->get('/eliminados_permisos', 'permisos::eliminados');
+$routes->get('/eliminados_grados', 'grados::eliminados');
 
 //! RUTAS PARA INSERTAR
 $routes->post('/roles_insertar', 'roles::insertar');
@@ -58,7 +58,8 @@ $routes->post('/acciones_insertar', 'acciones::insertar');
 $routes->post('/franjas_insertar', 'franjas_horarias::insertar');
 $routes->post('/aulas_insertar', 'aulas::insertar');
 $routes->post('/permisos_insertar', 'permisos::insertar');
-// $routes->get('/paises/cambiarEstado/(:num)', 'Paises::cambiarEstado/$1');
+$routes->post('/grados_insertar', 'grados::insertar');
+
 
 // ! RUTAS PARA CAMBIAR ESTADOS
 $routes->get('/estado_roles/(:num)/(:alpha)', 'roles::cambiarEstado/$1/$2');
@@ -66,7 +67,7 @@ $routes->get('/estado_asignaturas/(:num)/(:alpha)', 'asignaturas::cambiarEstado/
 $routes->get('/estado_acciones/(:num)/(:alpha)', 'acciones::cambiarEstado/$1/$2');
 $routes->get('/estado_aulas/(:num)/(:alpha)', 'aulas::cambiarEstado/$1/$2');
 $routes->get('/estado_franjas/(:num)/(:alpha)', 'franjas_horarias::cambiarEstado/$1/$2');
-$routes->get('/estado_permisos/(:num)/(:alpha)', 'permisos::cambiarEstado/$1/$2');
+$routes->get('/estado_grados/(:num)/(:alpha)', 'grados::cambiarEstado/$1/$2');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

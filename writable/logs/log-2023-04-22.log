@@ -1,0 +1,65 @@
+INFO - 2023-04-22 01:27:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:33:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-22 01:41:28 --> Too few arguments to function App\Models\EmailsModel::ObtenerEmailUsuario(), 1 passed in C:\xampp\htdocs\horarioideal\app\Controllers\Email.php on line 52 and exactly 2 expected
+in APPPATH\Models\EmailsModel.php on line 27.
+ 1 APPPATH\Controllers\Email.php(52): App\Models\EmailsModel->ObtenerEmailUsuario('2')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->emailUsuario('2')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-22 01:42:00 --> Too few arguments to function App\Models\EmailsModel::ObtenerEmailUsuario(), 1 passed in C:\xampp\htdocs\horarioideal\app\Controllers\Email.php on line 52 and exactly 2 expected
+in APPPATH\Models\EmailsModel.php on line 27.
+ 1 APPPATH\Controllers\Email.php(52): App\Models\EmailsModel->ObtenerEmailUsuario('2')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->emailUsuario('2')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 01:43:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:43:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:44:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:50:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:54:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:55:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-22 01:55:38 --> mysqli_sql_exception: Column 'usuario_crea' cannot be null in C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `em...', 0)
+#1 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `em...')
+#2 C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `em...')
+#3 C:\xampp\htdocs\horarioideal\system\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `em...', Array, false)
+#4 C:\xampp\htdocs\horarioideal\system\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\horarioideal\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\horarioideal\system\Model.php(730): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\horarioideal\system\BaseModel.php(692): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\horarioideal\app\Controllers\Email.php(39): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Email->insertar()
+#10 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
+#11 C:\xampp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-04-22 01:55:38 --> Column 'usuario_crea' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'b@gmail.com\', \'6\', \'4\', NULL, \'2023-04-22 01:55:38\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'b@gmail.com\', \'6\', \'4\', NULL, \'2023-04-22 01:55:38\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (\'b@gmail.com\', \'6\', \'4\', NULL, \'2023-04-22 01:55:38\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2309): CodeIgniter\Database\BaseConnection->query('INSERT INTO `emails` (`email`, `prioridad`, `id_usuario`, `usuario_crea`, `fecha_crea`) VALUES (:email:, :prioridad:, :id_usuario:, :usuario_crea:, :fecha_crea:)', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Email.php(39): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Email->insertar()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Email))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 01:55:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:55:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:56:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:56:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:56:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:56:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:58:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:58:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:59:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 01:59:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

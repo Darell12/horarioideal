@@ -27,4 +27,32 @@ class Email extends BaseController
         }
         echo json_encode($email);
     }
+    public function insertar()
+    {
+        $tp = $this->request->getPost('tp_email');
+        if ($tp == 1) {
+
+            $this->email->save([
+                'email' => $this->request->getPost('email'),
+                'prioridad' => $this->request->getPost('prioridad'),
+                'id_usuario' => $this->request->getPost('id_usuario'),
+                'usuario_crea' => session('id'),
+            ]);
+        } else {
+            $this->email->update($this->request->getPost('id_email'), [
+                'email' => $this->request->getPost('email'),
+                'prioridad' => $this->request->getPost('prioridad'),
+                // 'id_usuario' => $this->request->getPost('id_usuario'),
+            ]);
+        }
+    }
+    public function emailUsuario($id)
+    {
+        $dataArray = array();
+        $email = $this->email->ObtenerEmail($id);
+        if (!empty($email)) {
+            array_push($dataArray, $email);
+        }
+        echo json_encode($email);
+    }
 }

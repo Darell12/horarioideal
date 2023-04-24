@@ -34,4 +34,11 @@ class EmailsModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function ObtenerEmail($id)
+    {
+        $this->select('emails.email, emails.estado, emails.id_email, emails.id_usuario, emails.prioridad');
+        $this->where('id_email', $id);
+        $datos = $this->first();
+        return $datos;
+    }
 }

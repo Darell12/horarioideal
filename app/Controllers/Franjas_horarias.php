@@ -75,7 +75,7 @@ class Franjas_horarias extends BaseController
 
     public function cambiarEstado($id, $estado)
     {
-        $franja = $this->franja->cambiarEstado($id, $estado);
+        $franja = $this->franja->cambiar_Estado($id, $estado);
         if (
             $estado == 'E'
         ) {
