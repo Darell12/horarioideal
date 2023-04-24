@@ -14,13 +14,13 @@
 
 
 <!-- <div class="container"> -->
-<div class="container  mt-4 shadow rounded-4">
+<div class="container bg-white mt-5 shadow rounded-4">
     <div>
-        <h1 class="titulo_Vista text-center"></h1>
+        <h1 class="titulo_Vista text-center">
+            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+        </h1>
     </div>
-    <div style="height: 30px;">
-
-    </div>
+    <div style="height: 30px;"></div>
     <div>
         <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
         <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
@@ -244,9 +244,7 @@
                 </div>
 
             </div>
-            <div class="modal-footer">
 
-            </div>
         </div>
     </div>
 </div>

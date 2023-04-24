@@ -14,15 +14,18 @@
 
 
 <div class="container">
-    <div class="container  mt-4 shadow rounded-4">
+    <div class="container bg-white mt-5 shadow rounded-4">
         <div>
-            <h1 class="titulo_Vista text-center"></h1>
+            <h1 class="titulo_Vista text-center">
+                <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+            </h1>
         </div>
+        <div style="height: 30px;"></div>
         <div>
             <button type="button" onclick="seleccionaFranja(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#FranjaModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/franjas_horarias/eliminados'); ?>">
 
-            <button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+                <button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
         <br>
@@ -60,7 +63,7 @@
                         </tr>
                     <?php } ?>
 
-                    </tbody>
+                </tbody>
             </table>
         </div>
         <!-- Modal -->
@@ -105,21 +108,21 @@
     </div>
 
     <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div style="text-align:center;" class="modal-header">
-                        <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
-                    </div>
-                    <div style="text-align:center;font-weight:bold;" class="modal-body">
-                        <p>Seguro Desea Eliminar éste Registro?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-outline-danger btn-ok">Confirmar</a>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div style="text-align:center;" class="modal-header">
+                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+                </div>
+                <div style="text-align:center;font-weight:bold;" class="modal-body">
+                    <p>Seguro Desea Eliminar éste Registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-outline-danger btn-ok">Confirmar</a>
                 </div>
             </div>
         </div>
+    </div>
 
 
     <script>

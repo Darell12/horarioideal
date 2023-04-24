@@ -1,7 +1,10 @@
-<div class="container  mt-4 shadow rounded-4">
+<div class="container bg-white mt-5 shadow rounded-4">
      <div>
-          <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+          <h1 class="titulo_Vista text-center">
+               <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+          </h1>
      </div>
+     <div style="height: 30px;"></div>
      <div>
           <a href="<?php echo base_url('/usuarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
      </div>
@@ -45,12 +48,12 @@
                                         <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : '<span class="text-danger"> Inactivo </span>'; ?>
                                    </th>
                                    <th class="grid grid text-center" colspan="2">
-     
+
                                         <div class="btn-group">
                                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'A'; ?>"><i class="bi bi-arrow-clockwise"></i></button>
                                         </div>
                                    </th>
-     
+
                               </tr>
                          <?php } ?>
                     <?php } ?>
