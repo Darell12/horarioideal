@@ -3,7 +3,7 @@
     <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
   </div>
   <div>
-    <a href="<?php echo base_url('/permisos'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+    <a href="<?php echo base_url('/ver_horarios_enc'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
   </div>
 
   <br>
@@ -12,8 +12,10 @@
       <thead class="table-dark">
         <tr>
           <th class="text-center">Id</th>
-          <th class="text-center">Rol</th>
-          <th class="text-center">Acción</th>
+          <th class="text-center">Usuario</th>
+          <th class="text-center">Grado</th>
+          <th class="text-center">Año</th>
+          <th class="text-center">Jornada</th>
           <th class="text-center">Estado</th>
           <th class="text-center" colspan="2">Acciones</th>
         </tr>
@@ -26,14 +28,16 @@
         <?php } else { ?>
           <?php foreach ($datos as $valor) { ?>
             <tr>
-              <th class="text-center"><?php echo $valor['id_permiso']; ?></th>
-              <th class="text-center"><?php echo $valor['id_rol']; ?></th>
-              <th class="text-center"><?php echo $valor['id_accion']; ?></th>
+              <th class="text-center"><?php echo $valor['id_horarios_enc']; ?></th>
+              <th class="text-center"><?php echo $valor['usuario']; ?></th>
+              <th class="text-center"><?php echo $valor['grado']; ?></th>
+              <th class="text-center"><?php echo $valor['periodo_año']; ?></th>
+              <th class="text-center"><?php echo $valor['jornada']; ?></th>
               <th class="text-center">
                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
               </th>
               <th class="grid grid text-center" colspan="2">
-                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/permisos/cambiarEstado') . '/' . $valor['id_permiso'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
+                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/horarios_enc/cambiar_Estado') . '/' . $valor['id_horarios_enc'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
               </th>
 
             </tr>

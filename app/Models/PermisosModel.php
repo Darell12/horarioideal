@@ -37,26 +37,26 @@ class PermisosModel extends Model
     {
         $this->select('permisos.*');
         $this->where('estado', 'E');
-        $this->orderBy('nombre', 'ASC');
+        // $this->orderBy('nombre', 'ASC');
         $datos = $this->findAll();
         return $datos;
     }
     public function buscarPermiso($id)
     {
-        $this->select('acciones.*');
-        $this->where('id_acciones', $id);
+        $this->select('permisos.*');
+        $this->where('id_permiso', $id);
         $this->where('estado', 'A');
         $datos = $this->first();
         return $datos;
     }
-    public function cambiar_Estado($id, $estado)
+    public function cambiarEstado($id, $estado)
     {
         $datos = $this->update($id, ['estado' => $estado]);
         return $datos;
     }
     public function traer_permiso($id)
     {
-        $this->select('permiso.*');
+        $this->select('permisos.*');
         $this->where('id', $id);
 
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 

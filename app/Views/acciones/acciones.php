@@ -4,7 +4,7 @@
             <h1 class="titulo_Vista text-center"></h1>
         </div>
         <div>
-            <button type="button" onclick="seleccionaAccion(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <button type="button" onclick="seleccionaAccion(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#AccionModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/acciones/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
@@ -30,7 +30,7 @@
                             </th>
                             <th class="grid grid text-center" colspan="2">
 
-                                <button class="btn btn-outline-primary" onclick="seleccionaAccion(<?php echo $valor['id_acciones'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal">
+                                <button class="btn btn-outline-primary" onclick="seleccionaAccion(<?php echo $valor['id_acciones'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#AccionModal">
 
                                     <i class="bi bi-pencil"></i>
 
@@ -47,7 +47,7 @@
         </div>
         <!-- Modal -->
         <form method="POST" action="<?php echo base_url('/acciones_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
-            <div class="modal fade" id="RolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal fade" id="AccionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -119,14 +119,14 @@
                     $("#id").val(id)
                     $('#nombre_accion').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
-                    $("#RolModal").modal("show");
+                    $("#AccionModal").modal("show");
                 }
             })
         } else {
             $("#tp").val(1);
             $('#nombre_accion').val('');
             $("#btn_Guardar").text('Guardar');
-            $("#RolModal").modal("show");
+            $("#AccionModal").modal("show");
         }
     }
     $('.close').click(function() {
