@@ -41,4 +41,9 @@ class EmailsModel extends Model
         $datos = $this->first();
         return $datos;
     }
+    public function cambiarEstado($id, $estado)
+    {
+        $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
 }

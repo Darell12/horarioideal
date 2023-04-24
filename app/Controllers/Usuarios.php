@@ -103,6 +103,7 @@ class Usuarios extends BaseController
         }
         echo json_encode($returnData);
     }
+    
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);
