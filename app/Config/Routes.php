@@ -44,6 +44,7 @@ $routes->get('/ver_franjas', 'franjas_horarias::index');
 $routes->get('/ver_grados', 'grados::index');
 $routes->get('/ver_permisos', 'permisos::index');
 $routes->get('/ver_horarios_enc', 'horario_enc::index');
+$routes->get('/ver_estudiantes', 'estudiantes::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
 $routes->get('/eliminados_roles', 'roles::eliminados');
