@@ -28,13 +28,13 @@ class Asignaturas extends BaseController
 
             $this->asignaturas->save([
                 'nombre' => $this->request->getPost('nombre_asignatura'),
-                'Codigo' => $this->request->getPost('Codigo'),
+                'codigo' => $this->request->getPost('codigo'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->asignaturas->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_asignatura'),
-                'Codigo' => $this->request->getPost('Codigo'),
+                'codigo' => $this->request->getPost('codigo'),
                 'usuario_crea'=> session('id')
             ]);
         }

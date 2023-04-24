@@ -26,7 +26,7 @@
                         <tr>
                             <th class="text-center"><?php echo $valor['id_asignatura']; ?></th>
                             <th class="text-center"><?php echo $valor['nombre']; ?></th>
-                            <th class="text-center"><?php echo $valor['Codigo']; ?></th>
+                            <th class="text-center"><?php echo $valor['codigo']; ?></th>
                             <th class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                             </th>
@@ -68,8 +68,8 @@
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <div class="col">
-                                        <label for="horas_semanales" class="col-form-label">Codigo:</label>
-                                        <input type="number" class="form-control" name="Codigo" id="Codigo" required>
+                                        <label for="codigo" class="col-form-label">Codigo:</label>
+                                        <input type="text" class="form-control" name="codigo" id="codigo" required>
                                     </div>        
                                 
                                
@@ -125,15 +125,15 @@
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#nombre_asignatura').val(rs[0]['nombre']);
-                    $('#Codigo').val(rs[0]['Codigo']);
-                    $("#btn_Guardar").text('Actualizar');
+                    $('#codigo').val(rs[0]['codigo']);
+                    $("#btn_Guardar").text('Actualizar');   
                     $("#RolModal").modal("show");
                 }
             })
         } else {
             $("#tp").val(1);
             $('#nombre_asignatura').val('');
-            $('#Codigo').val('');
+            $('#codigo').val('');
             $("#btn_Guardar").text('Guardar');
             $("#RolModal").modal("show");
         }
