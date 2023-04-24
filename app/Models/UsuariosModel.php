@@ -57,9 +57,10 @@ class UsuariosModel extends Model
     }
     public function login($nombre)
     {
-        $this->select('usuarios.*');
+        $this->select('usuarios.*, roles.nombre as rol');
+        $this->join('roles', 'usuarios.id_rol = roles.id_rol');
         $this->where('nombre_corto', $nombre);
-        $this->where('estado', 'A');
+        $this->where('usuarios.estado', 'A');
         $datos = $this->findAll();
         return $datos;
     }

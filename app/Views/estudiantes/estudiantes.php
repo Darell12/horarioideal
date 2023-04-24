@@ -34,6 +34,7 @@
                     <th class="text-center">Id estudiante</th>
                     <th class="text-center">Id usuario</th>
                     <th class="text-center">Id grado</th>
+                    <th class="text-center">Estado</th>
                     <th class="text-center" colspan="2">Acciones</th>
                 </tr>
             </thead>
@@ -46,23 +47,12 @@
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
-                        <td class="text-center">
-                            <button class="btn btn-outline-info" onclick="EmailUsuario(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" data-bs-toggle="modal" title="Editar Registro">
-                                <i class="bi bi-envelope-at-fill"></i>
-                            </button>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-outline-success" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
-                                <i class="bi bi-telephone"></i> </button>
-                        </td>
                         <td class="grid grid text-center" colspan="2">
                             <div class="btn-group">
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="btn btn-outline-warning" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Resetear Contraseña">
-                                    <i class="bi bi-arrow-clockwise"></i>
-                                </button>
+                                
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>" title="Eliminar Registro">
                                     <i class="bi bi-trash3"></i>
                                 </button>
@@ -251,10 +241,7 @@
                     <label for="message-text" class="col-form-label">Prioridad:</label>
                     <div class="flex ">
                         <select name="prioridad" class="form-select form-select" id="prioridad">
-                            <?php foreach ($prioridad as $valor) { ?>
-                                <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
-                            <?php } ?>
-                        </select>
+3                        </select>
                     </div>
                 </div>
                 <div class="mb-3">
