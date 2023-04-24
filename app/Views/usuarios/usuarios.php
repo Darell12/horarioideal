@@ -288,8 +288,30 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-confirma-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header">
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea Eliminar éste Registro?</p>
+                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input type="text" hidden id="id_almacenar_estado">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-danger btn-ok" id="btnEliminar">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
+    $('#modal-confirma').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+
     function seleccionaUsuario(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
@@ -350,18 +372,18 @@
                         for (let i = 0; i < res.length; i++) {
                             contenido += `
                             <tr>
-              <th class="text-center"> ${res[i].id}</th>
-              <th class="text-center"> ${res[i].sueldo}</th>
-              <th class="text-center"> ${res[i].periodo}</th>
-              <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
-              <th class="text-center">
+                            <th class="text-center"> ${res[i].id_email}</th>
+                            <th class="text-center"> ${res[i].email}</th>
+                            <th class="text-center"> ${res[i].prioridad}</th>
+                            <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+                            <th class="text-center">
 
-              <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
+              <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id_email},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
               </th>
               </tr>
               `
                         }
-                        $('#titulo_salario').html('Administrar salarios eliminados de ' + res[0].nombre_empleado);
+                        $('#titulo_salario').html('Administrar emails eliminados');
                     } else {
                         contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ELIMINADOS</th></tr>'
                     }
@@ -404,7 +426,7 @@
                     } else {
                         contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ASIGNADOS</th></tr>'
                     }
-                    $('#titulo_salario').html('Administrar salarios');
+                    $('#titulo_salario').html('Administrar emails');
                     $('#btn-eliminados-salarios').attr('onclick', 'EmailUsuario(' + id + ',' + '"E")');
                     $('#btn-agregar-salario').show();
                     $('#tabla_email').empty();
@@ -445,7 +467,6 @@
             $("#id_usuario").val(id)
             $("#email_modal").val('')
             $('#prioridad').val(0);
-            EmailUsuario(rs.id_usuario, rs.estado)
             $("#btn_Guardar").text('Guardar');
             $("#titulo_salario_modal").text('Agregar nuevo salario');
             $("#modalAgregarEmail").modal("show");
@@ -454,9 +475,9 @@
 
     function almacenarId(id_email, id_usuario, estado) {
         $("#id_almacenar").val(id_email);
-        $("#id_almacenar_empleado").val(id_usuario);
+        $("#id_almacenar_usuario").val(id_usuario);
         $("#id_almacenar_estado").val(estado);
-        $("#modal-confirma-salario").modal('show');
+        $("#modal-confirma-email").modal('show');
     }
 
     $('#btn_insertar').click(function() {
@@ -487,17 +508,23 @@
     });
 
     $('#btnEliminar').click(function() {
+        console.log('OnClick Eliminar')
         var data = {
             id_email: $('#id_almacenar').val(),
             estado: $('#id_almacenar_estado').val(),
-            id_usuario: $('#id_almacenar_empleado').val()
+            id_usuario: $('#id_almacenar_usuario').val()
         };
+        console.log(data)
         $.post("<?php echo base_url('/email/cambiarEstado'); ?>", data, function(response) {
             // Actualiza el contenido de la página
-            seleccionarEmail(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
-            $("#modal-confirma-salario").modal('hide');
+            EmailUsuario(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
+            // seleccionarEmail(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
+            $("#modal-confirma-email").modal('hide');
         });
     });
+
+
+
 
 
 

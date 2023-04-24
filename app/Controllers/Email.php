@@ -55,4 +55,16 @@ class Email extends BaseController
         }
         echo json_encode($email);
     }
+    public function cambiarEstado()
+    {
+        $id = $this->request->getPost('id_email');
+        $estado = $this->request->getPost('estado');
+
+        $email = $this->email->cambiarEstado($id, $estado);
+        if (
+            $estado == 'E'
+        ) {
+            return 1;
+        }
+    }
 }
