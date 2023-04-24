@@ -1,7 +1,10 @@
-<div class="container  mt-4 shadow rounded-4">
+<div class="container bg-white mt-5 shadow rounded-4">
   <div>
-    <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+    <h1 class="titulo_Vista text-center">
+      <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+    </h1>
   </div>
+  <div style="height: 30px;"></div>
   <div>
     <a href="<?php echo base_url('/ver_acciones'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
   </div>
@@ -52,7 +55,7 @@
           <p>Seguro Desea Restaurar éste Registro?</p>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-outline-danger btn-ok">Confirmar</a>
         </div>
       </div>

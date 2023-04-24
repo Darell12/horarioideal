@@ -85,11 +85,11 @@ class Usuarios extends BaseController
         // Redireccionar a la URL anterior
         if (!$eliminados) {
             // echo view('/errors/html/no_eliminados');
-            $data = ['titulo' => 'Administrar Países Eliminados',  'datos' => 'vacio'];
+            $data = ['titulo' => 'Administrar Usuarios Eliminados',  'datos' => 'vacio'];
             echo view('/principal/sidebar', $data);
             echo view('/usuarios/eliminados', $data);
         } else {
-            $data = ['titulo' => 'Administrar Países Eliminados', 'datos' => $eliminados];
+            $data = ['titulo' => 'Administrar Usuarios Eliminados', 'datos' => $eliminados];
             echo view('/principal/sidebar', $data);
             echo view('/usuarios/eliminados', $data);
         }

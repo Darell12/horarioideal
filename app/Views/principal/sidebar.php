@@ -18,9 +18,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?php echo base_url() ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url() ?>assets/css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <link href="<?php echo base_url() ?>assets/css/prueba.css" rel="stylesheet">
 
-    <script src="<?php echo base_url('/bootstrap/bootstrap.bundle.min.js'); ?>"></script>
+    <!-- <script src="<?php echo base_url('/bootstrap/bootstrap.bundle.min.js'); ?>"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
@@ -30,6 +31,14 @@
 
     <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
 
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
 </head>
 
 <body id="page-top">
@@ -37,178 +46,115 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul style="background: #418ab7;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <body id="body-pd">
+            <nav class="sidebar close">
+                <header>
+                    <div class="image-text">
+                        <span class="image">
+                            <i class="bi bi-person-circle"></i>
+                        </span>
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url() ?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Horario Ideal</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <li class="sidebar-heading">
-                Usuarios
-            </li>
-            <!-- href="<?php echo base_url('/usuarios') ?> -->
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a style="cursor: pointer;" class="nav-link accordion" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <i class="bi bi-person-fill"></i>
-                    <span>Usuarios</span>
-                </a>
-                <!-- CUERPO ACORDION -->
-                <div id="collapseOne" class="accordion-collapse collapse text-light" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <a class="nav-link" href="<?php echo base_url('/estudiantes') ?>">
-                            <i class="bi bi-person-fill"></i>
-                            <span>Estudiantes</span>
-                        </a>
-                    </div>
-                </div>
-            </li>
-
-
-
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/estudiantes') ?>">
-                    <i class="bi bi-person-fill"></i>
-                    <span>Estudiantes</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/profesores') ?>">
-                    <i class="bi bi-person-vcard-fill"></i>
-                    <span>Profesores</span>
-                </a>
-            </li>
-            <!-- Divider horarios -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Horarios
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-bookmark-fill"></i>
-                    <span>Generar horario</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-search"></i>
-                    <span>Consultar horario</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Crea
-            </div>
-
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="bi bi-clipboard2-fill"></i>
-                    <span>Asignaturas</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-
-
-
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-
-                <!-- Topbar -->
-                <!-- contenedor de arriba xd -->
-                <div style="position:relative;">
-                    <nav style="padding: 0;" class="navbar">
-                        <img style="width: 100%; height: 15rem;" src="<?php echo base_url('/img/fondo.jpg'); ?>">
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </nav>
-
-
-                </div>
-
-
-                <!-- Topbar Navbar  User Information -->
-                <div style="position: absolute;top: 10px;left:60%;right: 0;margin: 0 auto;width: 20px; ">
-                    <!-- Nav Item - User Information -->
-                    <button style="width: 15rem;" type="button" class="btn btn-light">
-                        <a class="nav-link " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-person-circle"> <?php echo session('usuario') ?> </i>
-                        </a>
-                    </button>
-                </div>
-
-                </nav>
-
-
-                <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
-
-                <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="login.html">Logout</a>
-                            </div>
+                        <div class="text logo-text">
+                            <?php echo session('usuario') ?>
+                            <span class="profession">Rol</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Bootstrap core JavaScript-->
-                <!-- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2023</span>
+                    <i class='bx bx-chevron-right toggle'></i>
+                </header>
+
+                <div class="menu-bar">
+                    <div class="menu">
+
+
+
+                        <ul style="padding-left: 0;" class="menu-links">
+                            <li style="padding-left: 0;" class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-home-alt icon'></i>
+                                    <span class="text nav-text">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-bar-chart-alt-2 icon'></i>
+                                    <span class="text nav-text">Analytics</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-bell icon'></i>
+                                    <span class="text nav-text">Notifications</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-pie-chart-alt icon'></i>
+                                    <span class="text nav-text">Stats</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-heart icon'></i>
+                                    <span class="text nav-text">Favourites</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a href="#">
+                                    <i class='bx bx-wallet icon'></i>
+                                    <span class="text nav-text">Money</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="bottom-content">
+                        <li class="">
+                            <a href="#">
+                                <i class='bx bx-log-out icon'></i>
+                                <span class="text nav-text">Logout</span>
+                            </a>
+                        </li>
+
+
+
                     </div>
                 </div>
-            </footer> -->
-</body>
+
+            </nav>
+
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+
+                    <!-- Topbar -->
+
+                    </div>
+
+                    </nav>
+        </body>
+
+
+
 
 </html>
+<script>
+    const body = document.querySelector('body'),
+        sidebar = body.querySelector('nav'),
+        toggle = body.querySelector(".toggle");
+
+
+    toggle.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    })
+</script>

@@ -1,10 +1,10 @@
-<div class="container  mt-4 shadow rounded-4">
+<div class="container bg-white mt-5 shadow rounded-4">
     <div>
-        <h1 class="titulo_Vista text-center"></h1>
+        <h1 class="titulo_Vista text-center">
+            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+        </h1>
     </div>
-    <div style="height: 30px;">
-        
-    </div>
+    <div style="height: 30px;"></div>
     <div>
         <button type="button" onclick="seleccionaAula(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#AulaModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
         <a href="<?php echo base_url('/aulas/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
@@ -25,7 +25,7 @@
                     <th class="text-center" colspan="2">Acciones</th>
                 </tr>
             </thead>
-            <tbody  style="font-family:Arial;font-size:12px;" class="table-group-divider">
+            <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
                         <td class="text-center"><?php echo $valor['id_aula']; ?></td>
@@ -122,7 +122,6 @@
 </div>
 
 <script>
-
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
