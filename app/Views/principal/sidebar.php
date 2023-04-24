@@ -51,12 +51,12 @@
                 <header>
                     <div class="image-text">
                         <span class="image">
-                            <i class="bi bi-person-circle"></i>
+                            <i class="bx bxs-user-circle"></i>
                         </span>
 
                         <div class="text logo-text">
                             <?php echo session('usuario') ?>
-                            <span class="profession"><?php echo session('rol')?></span>
+                            <span style="font-size: 14px;" class="text nav-text"><?php echo session('rol') ?></span>
                         </div>
                     </div>
 
@@ -70,44 +70,53 @@
 
                         <ul style="padding-left: 0;" class="menu-links">
                             <li style="padding-left: 0;" class="nav-link">
-                                <a href="#">
-                                    <i class='bx bx-home-alt icon'></i>
-                                    <span class="text nav-text">Dashboard</span>
+                                <a href="<?php echo base_url('principal') ?>">
+                                    <i class='bx bx-home-alt icon'> </i>
+                                    <span class="text nav-text">Inicio</span>
+                                </a>
+                            </li>
+                            <hr style="background: #418ab7;" class="sidebar-divider">
+
+                            <li class="nav-link">
+                                <a href="<?php echo base_url('usuarios') ?>">
+                                    <i class='bx bx-user icon'></i>
+                                    <span class="text fs-6 nav-text">Usuarios</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-link">
+                                <a href="<?php echo base_url('estudiantes') ?>">
+                                    <i class='bx bx-user icon'></i>
+                                    <span class="text nav-text">Estudiantes</span>
                                 </a>
                             </li>
 
                             <li class="nav-link">
                                 <a href="#">
-                                    <i class='bx bx-bar-chart-alt-2 icon'></i>
-                                    <span class="text nav-text">Analytics</span>
+                                    <i class='bx bx-id-card icon'></i>
+                                    <span class="text nav-text">Profesores</span>
                                 </a>
                             </li>
+                            <hr style="background: #418ab7;" class="sidebar-divider">
 
                             <li class="nav-link">
-                                <a href="#">
-                                    <i class='bx bx-bell icon'></i>
-                                    <span class="text nav-text">Notifications</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-link">
-                                <a href="#">
+                                <a href="<?php echo base_url('aulas') ?>">
                                     <i class='bx bx-pie-chart-alt icon'></i>
-                                    <span class="text nav-text">Stats</span>
+                                    <span class="text nav-text">Aulas</span>
                                 </a>
                             </li>
 
                             <li class="nav-link">
-                                <a href="#">
+                                <a href="<?php echo base_url('asignaturas') ?>">
                                     <i class='bx bx-heart icon'></i>
-                                    <span class="text nav-text">Favourites</span>
+                                    <span class="text nav-text">Asignaturas</span>
                                 </a>
                             </li>
 
                             <li class="nav-link">
                                 <a href="#">
                                     <i class='bx bx-wallet icon'></i>
-                                    <span class="text nav-text">Money</span>
+                                    <span class="text nav-text">Horarios</span>
                                 </a>
                             </li>
 
@@ -116,7 +125,7 @@
 
                     <div class="bottom-content">
                         <li class="">
-                            <a href="<?php echo base_url('auth/logout')?>">
+                            <a href="<?php echo base_url('auth/logout') ?>">
                                 <i class='bx bx-log-out icon'></i>
                                 <span class="text nav-text">Logout</span>
                             </a>
@@ -139,9 +148,9 @@
 
                     <!-- Topbar -->
 
-                    </div>
+                </div>
 
-                    </nav>
+                </nav>
         </body>
 
 
