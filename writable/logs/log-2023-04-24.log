@@ -362,3 +362,55 @@ INFO - 2023-04-24 13:38:19 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2023-04-24 13:38:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-24 13:43:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-04-24 13:43:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-24 14:36:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-24 14:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-24 14:48:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-24 14:48:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-24 14:48:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-24 14:48:50 --> mysqli_sql_exception: Column 'estado' in where clause is ambiguous in C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xamppp\htdocs\horarioideal\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuario...', 0)
+#1 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuario...')
+#2 C:\xamppp\htdocs\horarioideal\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuario...')
+#3 C:\xamppp\htdocs\horarioideal\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuario...', Array, false)
+#4 C:\xamppp\htdocs\horarioideal\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xamppp\htdocs\horarioideal\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xamppp\htdocs\horarioideal\app\Models\UsuariosModel.php(64): CodeIgniter\BaseModel->findAll()
+#7 C:\xamppp\htdocs\horarioideal\app\Controllers\Auth.php(26): App\Models\UsuariosModel->login(Array)
+#8 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(934): App\Controllers\Auth->login()
+#9 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\xamppp\htdocs\horarioideal\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xamppp\htdocs\horarioideal\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-04-24 14:48:50 --> Column 'estado' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `usuarios`.*, `roles`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `nombre_corto` = (\'Root\')
+AND `estado` = \'A\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `usuarios`.*, `roles`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `nombre_corto` = (\'Root\')
+AND `estado` = \'A\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `usuarios`.*, `roles`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `nombre_corto` = (\'Root\')
+AND `estado` = \'A\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `usuarios`.*, `roles`.`nombre` as `rol`
+FROM `usuarios`
+JOIN `roles` ON `usuarios`.`id_rol` = `roles`.`id_rol`
+WHERE `nombre_corto` = :nombre_corto:
+AND `estado` = :estado:', [...], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\UsuariosModel.php(64): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Auth.php(26): App\Models\UsuariosModel->login([...])
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->login()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-24 14:49:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-24 14:49:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

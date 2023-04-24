@@ -30,7 +30,7 @@ class Auth extends BaseController
             $data = [
                 "usuario" => $usuarioDatos[0]['nombre_corto'],
                 "id" => $usuarioDatos[0]['id_usuario'],
-                "rol" => $usuarioDatos[0]['id_rol'],
+                "rol" => $usuarioDatos[0]['rol'],
                 'logged_in' => true,
             ];
 

@@ -56,7 +56,7 @@
 
                         <div class="text logo-text">
                             <?php echo session('usuario') ?>
-                            <span class="profession">Rol</span>
+                            <span class="profession"><?php echo session('rol')?></span>
                         </div>
                     </div>
 
