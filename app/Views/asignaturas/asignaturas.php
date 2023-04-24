@@ -33,6 +33,28 @@
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </th>
                         <th class="grid grid text-center" colspan="2">
+        <br>
+        <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
+            <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Codigo</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center" colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
+                    <?php foreach ($datos as $valor) { ?>
+                        <tr>
+                            <th class="text-center"><?php echo $valor['id_asignatura']; ?></th>
+                            <th class="text-center"><?php echo $valor['nombre']; ?></th>
+                            <th class="text-center"><?php echo $valor['codigo']; ?></th>
+                            <th class="text-center">
+                                <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
+                            </th>
+                            <th class="grid grid text-center" colspan="2">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_asignatura'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal">
 
@@ -75,6 +97,11 @@
                                 </div>
 
 
+                                        <label for="codigo" class="col-form-label">Codigo:</label>
+                                        <input type="text" class="form-control" name="codigo" id="codigo" required>
+                                    </div>        
+                                
+                               
 
                             </div>
                         </div>
@@ -127,15 +154,15 @@
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#nombre_asignatura').val(rs[0]['nombre']);
-                    $('#Codigo').val(rs[0]['Codigo']);
-                    $("#btn_Guardar").text('Actualizar');
+                    $('#codigo').val(rs[0]['codigo']);
+                    $("#btn_Guardar").text('Actualizar');   
                     $("#RolModal").modal("show");
                 }
             })
         } else {
             $("#tp").val(1);
             $('#nombre_asignatura').val('');
-            $('#Codigo').val('');
+            $('#codigo').val('');
             $("#btn_Guardar").text('Guardar');
             $("#RolModal").modal("show");
         }

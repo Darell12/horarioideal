@@ -14,13 +14,13 @@
 
 
 <!-- <div class="container"> -->
-<div class="container bg-white mt-5 shadow rounded-4">
+<div class="container  mt-4 shadow rounded-4">
     <div>
-        <h1 class="titulo_Vista text-center">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
-        </h1>
+        <h1 class="titulo_Vista text-center"></h1>
     </div>
-    <div style="height: 30px;"></div>
+    <div style="height: 30px;">
+
+    </div>
     <div>
         <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
         <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
@@ -31,33 +31,18 @@
         <table id="example-table" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Tipo Documento</th>
-                    <th class="text-center">N°Documento</th>
-                    <th class="text-center">N_Usuario</th>
-                    <th class="text-center">Primer Nombre</th>
-                    <th class="text-center">Segundo Nombre</th>
-                    <th class="text-center">Primer Apellido</th>
-                    <th class="text-center">Segundo Apellido</th>
-                    <th class="text-center">Rol</th>
-                    <th class="text-center">Estado</th>
-                    <th class="text-center">Emails</th>
-                    <th class="text-center">Telefonos</th>
+                    <th class="text-center">Id estudiante</th>
+                    <th class="text-center">Id usuario</th>
+                    <th class="text-center">Id grado</th>
                     <th class="text-center" colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
+                        <td class="text-center"><?php echo $valor['id_estudiante']; ?></td>
                         <td class="text-center"><?php echo $valor['id_usuario']; ?></td>
-                        <td class="text-center"><?php echo $valor['t_documento']; ?></td>
-                        <td class="text-center"><?php echo $valor['n_documento']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre_corto']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre_p']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre_s']; ?></td>
-                        <td class="text-center"><?php echo $valor['apellido_p']; ?></td>
-                        <td class="text-center"><?php echo $valor['apellido_s']; ?></td>
-                        <td class="text-center"><?php echo $valor['rol']; ?></td>
+                        <td class="text-center"><?php echo $valor['id_grado']; ?></td>
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
@@ -244,7 +229,9 @@
                 </div>
 
             </div>
+            <div class="modal-footer">
 
+            </div>
         </div>
     </div>
 </div>
@@ -286,30 +273,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-confirma-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
-
-            </div>
-            <div style="text-align:center;font-weight:bold;" class="modal-body">
-                <p>Seguro Desea Eliminar éste Registro?</p>
-                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input type="text" hidden id="id_almacenar_estado">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-outline-danger btn-ok" id="btnEliminar">Confirmar</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
-    $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
-
     function seleccionaUsuario(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
@@ -370,18 +335,18 @@
                         for (let i = 0; i < res.length; i++) {
                             contenido += `
                             <tr>
-                            <th class="text-center"> ${res[i].id_email}</th>
-                            <th class="text-center"> ${res[i].email}</th>
-                            <th class="text-center"> ${res[i].prioridad}</th>
-                            <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
-                            <th class="text-center">
+              <th class="text-center"> ${res[i].id}</th>
+              <th class="text-center"> ${res[i].sueldo}</th>
+              <th class="text-center"> ${res[i].periodo}</th>
+              <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+              <th class="text-center">
 
-              <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id_email},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
+              <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
               </th>
               </tr>
               `
                         }
-                        $('#titulo_salario').html('Administrar emails eliminados');
+                        $('#titulo_salario').html('Administrar salarios eliminados de ' + res[0].nombre_empleado);
                     } else {
                         contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ELIMINADOS</th></tr>'
                     }
@@ -424,7 +389,7 @@
                     } else {
                         contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ASIGNADOS</th></tr>'
                     }
-                    $('#titulo_salario').html('Administrar emails');
+                    $('#titulo_salario').html('Administrar salarios');
                     $('#btn-eliminados-salarios').attr('onclick', 'EmailUsuario(' + id + ',' + '"E")');
                     $('#btn-agregar-salario').show();
                     $('#tabla_email').empty();
@@ -465,6 +430,7 @@
             $("#id_usuario").val(id)
             $("#email_modal").val('')
             $('#prioridad').val(0);
+            EmailUsuario(rs.id_usuario, rs.estado)
             $("#btn_Guardar").text('Guardar');
             $("#titulo_salario_modal").text('Agregar nuevo salario');
             $("#modalAgregarEmail").modal("show");
@@ -473,9 +439,9 @@
 
     function almacenarId(id_email, id_usuario, estado) {
         $("#id_almacenar").val(id_email);
-        $("#id_almacenar_usuario").val(id_usuario);
+        $("#id_almacenar_empleado").val(id_usuario);
         $("#id_almacenar_estado").val(estado);
-        $("#modal-confirma-email").modal('show');
+        $("#modal-confirma-salario").modal('show');
     }
 
     $('#btn_insertar').click(function() {
@@ -506,23 +472,17 @@
     });
 
     $('#btnEliminar').click(function() {
-        console.log('OnClick Eliminar')
         var data = {
             id_email: $('#id_almacenar').val(),
             estado: $('#id_almacenar_estado').val(),
-            id_usuario: $('#id_almacenar_usuario').val()
+            id_usuario: $('#id_almacenar_empleado').val()
         };
-        console.log(data)
         $.post("<?php echo base_url('/email/cambiarEstado'); ?>", data, function(response) {
             // Actualiza el contenido de la página
-            EmailUsuario(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
-            // seleccionarEmail(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
-            $("#modal-confirma-email").modal('hide');
+            seleccionarEmail(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
+            $("#modal-confirma-salario").modal('hide');
         });
     });
-
-
-
 
 
 

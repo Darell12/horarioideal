@@ -13,7 +13,7 @@ class EstudiantesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_usuario', 'id_grado', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['id_estudiante','id_usuario', 'id_grado', 'estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -22,5 +22,13 @@ class EstudiantesModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function obtenerEstudiantes()
+    {
+        $this->select('estudiantes.id_estudiante, estudiantes.id_usuario, estudiantes.id_grado');
+        $this->where('estudiantes.estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
 
 }

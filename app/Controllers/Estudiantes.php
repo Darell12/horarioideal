@@ -2,24 +2,24 @@
 
 namespace App\Controllers;
 use App\Controllers\BaseController;
-use App\Models\AsignaturasModel;
+use App\Models\EstudiantesModel;
 
 class Asignaturas extends BaseController
 {
-    protected $asignaturas, $eliminados;
+    protected $estudiantes, $eliminados;
     
     public function __construct()
     {
-        $this->asignaturas = new AsignaturasModel();
-        $this->eliminados = new AsignaturasModel();
+        $this->estudiantes = new EstudiantesModel();
+        $this->eliminados = new EstudiantesModel();
     }
     public function index()
     {
-        $asignaturas = $this->asignaturas->obtenerAsignaturas();    
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $asignaturas ];
+        $estudiantes = $this->estudiantes->obtenerEstudiantes();    
+        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $estudiantes ];
 
         echo view('/principal/sidebar', $data);
-        echo view('/asignaturas/asignaturas', $data);
+        echo view('/estudiantes/estudiantes', $data);
     }
     public function insertar()
     {
