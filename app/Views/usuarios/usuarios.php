@@ -75,8 +75,7 @@
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>"
-                                
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') . '/' . $valor['id_usuario']. '/' . $valor['n_documento']; ?>"
                                 title="Resetear Contraseña">
                                     <i class="bi bi-arrow-clockwise"></i>
                                 </button>
@@ -353,8 +352,9 @@
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
 
-    $('#Restear').on('show.bs.modal', function(e) {
+    $('#Resetear').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        console.log('Hola')
     });
 
     function seleccionaUsuario(id, tp) {

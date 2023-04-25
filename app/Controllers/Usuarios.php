@@ -128,4 +128,10 @@ class Usuarios extends BaseController
             return redirect()->to(base_url('/usuarios/eliminados'));
         }
     }
+    public function resetearContrasena($id, $contraseña)
+    {
+        $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
+
+        $usuario = $this->usuario->resetearContraseña($id, $hashedPassword);
+    }
 }

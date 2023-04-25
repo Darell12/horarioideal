@@ -14,7 +14,7 @@
                             <p class="text-muted mb-4"><?php echo $datos['direccion']?> Aquí saldra el grado</p>
                             <?php }?>
                         <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-outline-info">Resetear <br> Contraseña</button>
+                            <button type="button" class="btn btn-outline-info">Cambiar <br> Contraseña</button>
                             <button type="button" class="btn btn-outline-success ms-1">Editar Perfil</button>
                         </div>
                     </div>
