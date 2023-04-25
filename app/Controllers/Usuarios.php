@@ -116,7 +116,7 @@ class Usuarios extends BaseController
         }
         echo json_encode($returnData);
     }
-    
+
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);
@@ -133,5 +133,10 @@ class Usuarios extends BaseController
         $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
 
         $usuario = $this->usuario->resetearContraseña($id, $hashedPassword);
+        return redirect()->to(base_url('/usuarios'));
+    }
+    public function actualizarContraseña()
+    {
+        // Ya me dio weba
     }
 }

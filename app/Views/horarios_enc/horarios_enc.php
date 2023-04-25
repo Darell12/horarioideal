@@ -17,7 +17,7 @@
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
-                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Encargado</th>
                     <th class="text-center">Grado</th>
                     <th class="text-center">Año</th>
                     <th class="text-center">Jornada</th>
@@ -38,13 +38,18 @@
                         </th>
                         <th class="grid grid text-center" colspan="2">
 
-                            <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(<?php echo $valor['id_horarios_enc'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#Horarios_encModal">
+                            <div class="btn-group">
+                                <a href="<?php echo base_url('ver_detalle/') . $valor['id_horarios_enc']?>" class="nav-link">
+                                    <button class="btn btn-outline-warning"  title="Administrar">
+                                        <i class="bi bi-gear-wide"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(<?php echo $valor['id_horarios_enc'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#Horarios_encModal">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
 
-                                <i class="bi bi-pencil"></i>
-
-                            </button>
-
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_horarios_enc'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_horarios_enc'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
+                            </div>
                         </th>
 
                     </tr>

@@ -14,7 +14,7 @@
                             <p class="text-muted mb-4"><?php echo $datos['direccion']?> Aquí saldra el grado</p>
                             <?php }?>
                         <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-outline-info">Cambiar <br> Contraseña</button>
+                            <button type="button" class="btn btn-outline-info" data-bs-target="#UsuarioModal" title="Actualizar Contraseña" data-bs-toggle="modal" >Cambiar <br> Contraseña</button>
                             <button type="button" class="btn btn-outline-success ms-1">Editar Perfil</button>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                 <p class="mb-0">Apellidos</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?php echo $datos['apellido_s'] . ' ' . $datos['apellido_s']?></p>
+                                <p class="text-muted mb-0"><?php echo $datos['apellido_p'] . ' ' . $datos['apellido_s']?></p>
                             </div>
                         </div>
                         <hr>
@@ -157,3 +157,39 @@
         </div>
     </div>
 </section>
+
+
+<form method="POST" action="<?php echo base_url('/usuarios/actualizarContraseña'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
+        <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="tituloModal">Actualizar Contraseña</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label id="password_label" for="password">Contraseña anterior</label>
+                                    <input id="contraseña" name="contraseña" type="password" class="form-control" required />
+                                </div>
+                                <div class="col">
+                                    <label id="password_label" for="password">Nueva Contraseña</label>
+                                    <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
+                                </div>
+                            </div>
+                            <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+                            <input type="text" id="tp" name="tp" hidden>
+                            <input type="text" id="id" name="id" hidden>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

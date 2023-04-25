@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class HorarioModel extends Model
 {
-    protected $table = 'horario';
+    protected $table = 'detalle';
     // protected $primaryKey = 'id_encabezado';
 
     protected $useAutoIncrement = true;
@@ -25,8 +25,8 @@ class HorarioModel extends Model
 
     public function vistaHorarioPrueba()
     {
-        $this->select('horario.*');
-        $this->from('horario');
+        $this->select('*');
+        // $this->from('horario');
         $datos = $this->findAll();
         return $datos;
     }

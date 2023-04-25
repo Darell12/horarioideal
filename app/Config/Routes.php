@@ -36,15 +36,17 @@ $routes->post('login', 'Usuarios::login');
 $routes->get('logout', 'Usuarios::logout');
 
 // ! RUTAS DE VISTAS TABLAS
-$routes->get('/ver_roles', 'roles::index');
-$routes->get('/ver_asignaturas', 'asignaturas::index');
-$routes->get('/ver_acciones', 'acciones::index');
-$routes->get('/ver_aulas', 'aulas::index');
-$routes->get('/ver_franjas', 'franjas_horarias::index');
-$routes->get('/ver_grados', 'grados::index');
-$routes->get('/ver_permisos', 'permisos::index');
-$routes->get('/ver_horarios_enc', 'horario_enc::index');
-$routes->get('/ver_estudiantes', 'estudiantes::index');
+$routes->get('/ver_roles', 'Roles::index');
+$routes->get('/ver_asignaturas', 'Asignaturas::index');
+$routes->get('/ver_acciones', 'Acciones::index');
+$routes->get('/ver_aulas', 'Aulas::index');
+$routes->get('/ver_franjas', 'Franjas_horarias::index');
+$routes->get('/ver_grados', 'Grados::index');
+$routes->get('/ver_permisos', 'Permisos::index');
+$routes->get('/ver_horarios', 'Horario_enc::index');
+$routes->get('/ver_detalle/(:num)', 'Horario_det::index/$1');
+$routes->get('/ver_estudiantes', 'Estudiantes::index');
+$routes->get('/ver_usuarios', 'Usuarios::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
 $routes->get('/eliminados_roles', 'roles::eliminados');

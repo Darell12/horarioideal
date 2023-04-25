@@ -3,36 +3,40 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\Horario_encModel;
+use App\Models\Horario_detModel;
 use App\Models\UsuariosModel;
 use App\Models\GradosModel;
 use App\Models\Parametros_detModel;
+use App\Models\HorarioModel;
 
 
-class Horario_enc extends BaseController
+class Horario_det extends BaseController
 {
-    protected $horario_enc, $eliminados;
+    protected $horario_det, $eliminados;
+    protected $horario;
     protected $usuarios, $grados;
 
 
     public function __construct()
     {
-        $this->horario_enc = new Horario_encModel();
-        $this->eliminados = new Horario_encModel();
+        $this->horario_det = new Horario_detModel();
+        $this->horario = new HorarioModel();
+        $this->eliminados = new Horario_detModel();
         $this->usuarios = new UsuariosModel();
         $this->grados = new GradosModel();
     }
 
-    public function index()
+    public function index($id)
     {
-        $horario_enc = $this->horario_enc->obtenerHorarios_enc();
+        $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         $usuarios = $this->usuarios->obtenerUsuarios();
+        $horario = $this->horario->vistaHorarioPrueba();
         $grados = $this->grados->obtenerGrados();
 
-        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario_enc, 'usuarios' => $usuarios, 'grados' => $grados  ];
+        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario, 'usuarios' => $usuarios, 'grados' => $grados  ];
 
        echo view('/principal/sidebar', $data);
-       echo view('/horarios_enc/horarios_enc', $data);
+       echo view('/horarios_det/detalle', $data);
     }
 
     public function insertar()

@@ -49,12 +49,12 @@
         <body id="body-pd">
             <nav class="sidebar close">
                 <header>
-                    <a class="nav-link" href="<?php echo base_url('usuarios/perfil/'. session('id'))?>">
-                    <div class="image-text">
+                    <a class="nav-link" href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
+                        <div class="image-text">
                             <span class="image" href="">
-                                <i class="bx bxs-user-circle bx-sm"></i>
+                                <i class="bx bxs-user-circle icon bx-sm"></i>
                             </span>
-    
+
                             <div class="text logo-text">
                                 <?php echo session('usuario') ?>
                                 <span style="font-size: 14px;" class="text nav-text"><?php echo session('rol') ?></span>
@@ -72,6 +72,25 @@
                                 <a href="<?php echo base_url('principal') ?>">
                                     <i class='bx bx-home-alt icon'> </i>
                                     <span class="text nav-text">Inicio</span>
+                                </a>
+                            </li>
+                            <hr style="background: #418ab7;" class="sidebar-divider">
+                            <li class="nav-link">
+                                <a href="<?php echo base_url('ver_roles') ?>">
+                                    <i class='bx bx-wrench icon'></i>
+                                    <span class="text fs-6 nav-text">Roles</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="<?php echo base_url('ver_permisos') ?>">
+                                    <i class='bx bx-slider-alt icon'></i>
+                                    <span class="text fs-6 nav-text">Permisos</span>
+                                </a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="<?php echo base_url('ver_acciones') ?>">
+                                    <i class='bx bx-user icon'></i>
+                                    <span class="text fs-6 nav-text">Acciones</span>
                                 </a>
                             </li>
                             <hr style="background: #418ab7;" class="sidebar-divider">
@@ -95,20 +114,20 @@
                             </li>
                             <hr style="background: #418ab7;" class="sidebar-divider">
                             <li class="nav-link">
-                                <a href="<?php echo base_url('aulas') ?>">
-                                    <i class='bx bx-pie-chart-alt icon'></i>
+                                <a href="<?php echo base_url('ver_aulas') ?>">
+                                    <i class='bx bx-chalkboard icon'></i>
                                     <span class="text nav-text">Aulas</span>
                                 </a>
                             </li>
                             <li class="nav-link">
                                 <a href="<?php echo base_url('asignaturas') ?>">
-                                    <i class='bx bx-heart icon'></i>
+                                    <i class='bx bx-book icon'></i>
                                     <span class="text nav-text">Asignaturas</span>
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="#">
-                                    <i class='bx bx-wallet icon'></i>
+                                <a href="<?php echo base_url('ver_horarios') ?>">
+                                    <i class='bx bx-calendar icon'></i>
                                     <span class="text nav-text">Horarios</span>
                                 </a>
                             </li>
@@ -135,7 +154,7 @@
                 <div id="content">
                 </div>
 
-            </nav>
+                </nav>
         </body>
 
 
