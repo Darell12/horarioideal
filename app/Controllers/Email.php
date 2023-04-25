@@ -13,11 +13,6 @@ class Email extends BaseController
         $this->email = new EmailsModel();
     }
 
-    public function index()
-    {
-        return view('welcome_message');
-    }
-
     public function Email($id, $estado)
     {
         $dataArray = array();

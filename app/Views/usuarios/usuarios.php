@@ -67,7 +67,7 @@
                             </button>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-outline-success" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                            <button class="btn btn-outline-success" onclick="TelefonoUsuario(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" data-bs-toggle="modal" data-bs-target="#modal" title="Editar Registro">
                                 <i class="bi bi-telephone"></i> </button>
                         </td>
                         <td class="grid grid text-center" colspan="2">
@@ -248,6 +248,9 @@
 
 </div>
 
+<!-- emails -->
+
+<!-- tabla emalis -->
 <div id="ModalEmail" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -268,7 +271,7 @@
 
                 </div>
 
-                <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
+                <div class="table-responsive">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
                         <thead class="table-dark">
                             <tr>
@@ -290,7 +293,50 @@
         </div>
     </div>
 </div>
+<!-- tabla telefonos -->
+<div id="Modaltelefonos" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="titulo_salario">Añadir Telefono</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="btn-group mb-3" id="btn-group-salarios" role="group" aria-label="Basic mixed styles example"> 
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAgregarTelefono" id="btn-agregar-tel">
+                        <i class="bi bi-plus-circle-fill"></i> Agregar</button>
+
+                    <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
+                        <i class="bi bi-file-x"></i> Eliminados</button>
+
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Telefono</th>
+                                <th class="text-center">Periodo</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center" colspan="2">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
 <!-- </div> -->
+
+<!-- agregar emails -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modalAgregarEmail" data-bs-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -327,6 +373,44 @@
         </div>
     </div>
 </div>
+<!-- modal agregar Telefonos -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalAgregarTelefono" data-bs-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="titulo_telefono_modal">Agregar telefono</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Telefono:</label>
+                    <div class="flex ">
+                        <input type="telefono" name="telefono_modal" class="form-control" id="telefono_modal" min="1300606">
+                    </div>
+                    <label for="message-text" class="col-form-label">Prioridad:</label>
+                    <div class="flex ">
+                        <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
+                            <?php foreach ($prioridad as $valor) { ?>
+                                <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="flex ">
+                        <input type="text" id="id_usuario_tel" name="id_usuario_tel" hidden>
+                        <input type="text" id="tp_telefono" name="tp_telefono" hidden>
+                        <input type="text" id="id_telefono" name="id_telefono" hidden>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-primary" id="btn_insertarTelefono">Guardar</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- eliminar emails y restaurar -->
 
 <div class="modal fade" id="modal-confirma-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -342,6 +426,26 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
                 <a class="btn btn-outline-danger btn-ok" id="btnEliminar">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- eliminar telefonos y restaurar -->
+
+<div class="modal fade" id="modal-confirma-telefono" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header">
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea Eliminar éste Registro?</p>
+                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input type="text" hidden id="id_almacenar_estado">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-danger btn-ok" id="btnEliminarTel">Confirmar</a>
             </div>
         </div>
     </div>
@@ -399,7 +503,7 @@
         }
     }
 
-
+// Emalis
     function EmailUsuario(id, estado) {
 
 
@@ -484,6 +588,92 @@
             })
         }
     }
+// telefonos
+    function TelefonoUsuario(id, estado) {
+        console.log(estado)
+
+        dataURL = "<?php echo base_url('/telefono/Telefono'); ?>" + "/" + id + '/' + estado
+
+        if (estado == 'E') {
+            $.ajax({
+                type: "POST",
+                url: dataURL,
+                dataType: "json",
+                success: function(res) {
+                    $('#tabla_telefono').empty();
+                    var contenido = '';
+                    if (!$(res).length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            contenido += `
+                            <tr>
+                            <th class="text-center"> ${res[i].id_telefono}</th>
+                            <th class="text-center"> ${res[i].numero}</th>
+                            <th class="text-center"> ${res[i].prioridad}</th>
+                            <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+                            <th class="text-center">
+
+              <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarIdTel(${res[i].id_telefono},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
+              </th>
+              </tr>
+              `
+                        }
+                        $('#titulo_salario').html('Administrar telefonos eliminados');
+                    } else {
+                        contenido = '<tr><th class="text-center h1" colspan="5">SIN TELEFONOS ELIMINADOS</th></tr>'
+                    }
+
+                    $('#tabla_telefono').html(contenido);
+                    $('#btn-regresar-tel').attr('onclick', 'telefonoUsuario(' + id + ',' + '"A")');
+                    $('#btn-eliminados-tel').hide();
+                    $('#btn-regresar-tel').show();
+                    $('#btn-agregar-tel').hide();
+                    $('#Modaltelefonos').modal('show');
+                }
+            })
+        } else {
+            $.ajax({
+                type: "POST",
+                url: dataURL,
+                dataType: "json",
+                success: function(res) {
+                    console.log(res)
+                    var contenido = '';
+                    if (!$(res).length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            contenido += `
+                            <tr>
+                                <th class="text-center"> ${res[i].id_telefono}</th>
+                                <th class="text-center"> ${res[i].numero}</th>
+                                <th class="text-center"> ${res[i].prioridad}</th>
+                                <th class="text-center text-success"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+                                <th class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button class="btn btn-outline-primary" onclick="seleccionarTelefono( ${res[i].id_telefono} ,2 );"><i class="bi bi-pencil"></i></button>
+  
+                                        <button class="btn btn-outline-danger" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarIdTel(${res[i].id_telefono},${res[i].id_usuario}, 'E')"><i class="bi bi-trash3"></i></button>
+                                    </div>
+                                </th>
+                            </tr>`
+                        }
+                        $('#tituloTelefono').html('Administrar Telefonos de ' + res[0].nombre_empleado);
+
+                    } else {
+                        contenido = '<tr><th class="text-center h1" colspan="5">SIN TELEFONOS ASIGNADOS</th></tr>'
+                    }
+                    $('#titulo_salario').html('Administrar telefonos');
+                    $('#btn-eliminados-tel').attr('onclick', 'TelefonoUsuario(' + id + ',' + '"E")');
+                    $('#btn-agregar-tel').show();
+                    $('#tabla_telefono').empty();
+                    $('#tabla_telefono').html(contenido);
+                    $('#btn-agregar-tel').attr('onclick', 'seleccionarTelefono(' + id + ',' + '1)');
+                    $('#btn-eliminados-tel').show();
+                    $('#btn-regresar').hide();
+                    $('#Modaltelefonos').modal('show');
+                }
+            })
+        }
+    }
+// -------------------------------- Emails -----------------------------------------------
 
     function seleccionarEmail(id, tp) {
         if (tp == 2) {
@@ -517,7 +707,6 @@
             $("#modalAgregarEmail").modal("show");
         }
     }
-
     function almacenarId(id_email, id_usuario, estado) {
         $("#id_almacenar").val(id_email);
         $("#id_almacenar_usuario").val(id_usuario);
@@ -568,10 +757,92 @@
         });
     });
 
+// ----------------------------------- Telefonos --------------------------------------------
+    function seleccionarTelefono(id, tp) {
+        if (tp == 2) {
+            dataURL = "<?php echo base_url('/telefono/telefonoUsuario'); ?>" + "/" + id;
+            $.ajax({
+                type: "POST",
+                url: dataURL,
+                dataType: "json",
+                success: function(rs) {
+                    console.log(rs);
+                    $("#tp_telefono").val(2)
+                    $("#id_telefono").val(id)
+                    $("#telefono_modal").val(rs.numero)
+                    $("#prioridad").val(rs.prioridad)
+                    $("#id_usuario_tel").val(rs.id_usuario)
+                    $('#salario_modal').val(rs.sueldo);
+                    TelefonoUsuario(rs.id_usuario, rs.estado)
+
+                    $("#btn_Guardar").text('Actualizar');
+                    $("#titulo_salario_modal").text('Actualizar el salario de ' + rs.nombre_empleado + ' en el periodo ' + rs.periodo);
+                    $("#modalAgregarTelefono").modal("show");
+                }
+            })
+        } else {
+            console.log('Funcion')
+            $("#tp_telefono").val(1);
+            $("#id_usuario_tel").val(id)
+            $("#telefono_modal").val('')
+            $('#prioridad').val(0);
+            $("#btn_Guardar").text('Guardar');
+            $("#titulo_salario_modal").text('Agregar nuevo telefono');
+            $("#modalAgregartelefono").modal("show");
+        }
+    }
+    function almacenarIdTel(id_telefono, id_usuario, estado) {
+        console.log(id_telefono + " " + id_usuario)
+        $("#id_telefono").val(id_telefono);
+        $("#id_usuario_tel").val(id_usuario);
+        $("#id_almacenar_estado").val(estado);
+        $("#modal-confirma-telefono").modal('show');
+    }
 
 
+    $('#btn_insertarTelefono').click(function() {
+        console.log('Onclick Button');
+        var data = {
+            tp_telefono: $('#tp_telefono').val(),
+            numero: $('#telefono_modal').val(),
+            id_usuario: $('#id_usuario_tel').val(),
+            prioridad: $('#prioridad_tel').val(),
+            id_telefono: $('#id_telefono').val()
+        };
+        console.log(data)
+        if (data.telefono == "" || data.prioridad == 0) {
+            return swal.fire({
+                postition: 'top-end',
+                icon: 'error',
+                title: 'Error campos incompletos',
+                text: 'Debe llenar todos los campos',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
 
+        $.post("<?php echo base_url('/telefono/insertar'); ?>", data, function(response) {
+            // Actualiza el contenido de la página
+            TelefonoUsuario(data.id_usuario, 'A')
+            $("#modalAgregarTelefono").modal('hide');
+        });
+    });
 
+    $('#btnEliminarTel').click(function() {
+        console.log('OnClick Eliminar')
+        var data = {
+            id_telefono: $('#id_almacenar').val(),
+            estado: $('#id_almacenar_estado').val(),
+            id_usuario: $('#id_almacenar_usuario').val()
+        };
+        console.log(data)
+        $.post("<?php echo base_url('/telefono/cambiarEstado'); ?>", data, function(response) {
+            // Actualiza el contenido de la página
+            TelefonoUsuario(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
+            // seleccionarTelefono(data.id_usuario, data.estado == 'A' ? 'E' : 'A')
+            $("#modal-confirma-telefono").modal('hide');
+        });
+    });
 
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");

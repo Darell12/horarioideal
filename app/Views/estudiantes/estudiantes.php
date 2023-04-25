@@ -14,16 +14,20 @@
 
 
 <!-- <div class="container"> -->
-<div class="container  mt-4 shadow rounded-4">
+<div class="container bg-white mt-4 shadow rounded-4">
     <div>
         <h1 class="titulo_Vista text-center"></h1>
     </div>
-    <div style="height: 30px;">
-
+    <div>
+        <h1 class="titulo_Vista text-center">
+            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+        </h1>
     </div>
+    <div style="height: 30px;"></div>
+    <div>
     <div>
         <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-        <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+        <a href="<?php echo base_url('/estudiantes/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
         <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
     </div>
     <br>
@@ -241,7 +245,7 @@
                     <label for="message-text" class="col-form-label">Prioridad:</label>
                     <div class="flex ">
                         <select name="prioridad" class="form-select form-select" id="prioridad">
-3                        </select>
+                       </select>
                     </div>
                 </div>
                 <div class="mb-3">

@@ -78,7 +78,7 @@
                                 <p class="mb-0">Apellidos</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?php echo $datos['apellido_s'] . ' ' . $datos['apellido_s']?></p>
+                                <p class="text-muted mb-0"><?php echo $datos['apellido_p'] . ' ' . $datos['apellido_s']?></p>
                             </div>
                         </div>
                         <hr>

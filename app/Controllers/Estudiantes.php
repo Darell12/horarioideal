@@ -20,7 +20,7 @@ class Estudiantes extends BaseController
     {
         $estudiantes = $this->estudiantes->obtenerEstudiantes();    
         $roles = $this->roles->obtenerRoles();    
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $estudiantes, 'roles' =>  $roles];
+        $data = ['titulo' => 'Administrar Estudiantes', 'datos' => $estudiantes, 'roles' =>  $roles];
 
         echo view('/principal/sidebar', $data);
         echo view('/estudiantes/estudiantes', $data);
@@ -31,26 +31,28 @@ class Estudiantes extends BaseController
         if ($tp == 1) {
 
             $this->estudiantes->save([
-                'nombre' => $this->request->getPost('nombre_asignatura'),
-                'codigo' => $this->request->getPost('codigo'),
+                'id_estudiante' => $this->request->getPost('id_estudiante'),
+                'id_usuario' => $this->request->getPost('id_usuario'),
+                'id_grado' => $this->request->getPost('id_grado'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->estudiantes->update($this->request->getPost('id'), [
-                'nombre' => $this->request->getPost('nombre_asignatura'),
-                'codigo' => $this->request->getPost('codigo'),
+                'id_estudiante' => $this->request->getPost('id_estudiante'),
+                'id_usuario' => $this->request->getPost('id_usuario'),
+                'id_grado' => $this->request->getPost('id_grado'),
                 'usuario_crea'=> session('id')
             ]);
         }
-        return redirect()->to(base_url('/asignaturas'));
+        return redirect()->to(base_url('/estudiantes'));
     }
 
-    public function buscarAsignaturas($id)
+    public function buscarEstudiantes($id)
     {
         $returnData = array();
         $estudiantes = $this->estudiantes->buscarEstudiantes($id);
-        if (!empty($asignaturas)) {
-            array_push($returnData, $asignaturas);
+        if (!empty($estudiantes)) {
+            array_push($returnData, $estudiantes);
         }
         echo json_encode($returnData);
     }
@@ -62,9 +64,9 @@ class Estudiantes extends BaseController
         if (
             $estado == 'E'
         ) {
-            return redirect()->to(base_url('/ver_asignaturas'));
+            return redirect()->to(base_url('/ver_estudiantes'));
         } else {
-            return redirect()->to(base_url('/eliminados_asignaturas'));
+            return redirect()->to(base_url('/eliminados_estudiantes'));
         }
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
