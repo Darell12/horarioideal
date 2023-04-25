@@ -4,23 +4,29 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\EstudiantesModel;
 use App\Models\RolesModel;
+use App\Models\UsuariosModel;
+use App\Models\GradosModel;
 
 class Estudiantes extends BaseController
 {
     protected $estudiantes, $eliminados;
-    protected $roles;
+    protected $roles, $usuarios, $grados;
     
     public function __construct()
     {
         $this->estudiantes = new EstudiantesModel();
+        $this->usuarios = new UsuariosModel();
         $this->eliminados = new EstudiantesModel();
         $this->roles = new RolesModel();
+        $this->grados = new GradosModel();
     }
     public function index()
     {
-        $estudiantes = $this->estudiantes->obtenerEstudiantes();    
+        // $estudiantes = $this->estudiantes->obtenerEstudiantes();    
+        $usuarios = $this->usuarios->obtenerEstudiantes();    
         $roles = $this->roles->obtenerRoles();    
-        $data = ['titulo' => 'Administrar Estudiantes', 'datos' => $estudiantes, 'roles' =>  $roles];
+        $grados = $this->grados->obtenerGrados();    
+        $data = ['titulo' => 'Administrar Estudiantes', 'datos' => $usuarios, 'roles' =>  $roles, 'grados' => $grados];
 
         echo view('/principal/sidebar', $data);
         echo view('/estudiantes/estudiantes', $data);
@@ -31,7 +37,7 @@ class Estudiantes extends BaseController
         if ($tp == 1) {
 
             $this->estudiantes->save([
-                'id_estudiante' => $this->request->getPost('id_estudiante'),
+                // 'id_estudiante' => $this->request->getPost('id_estudiante'),
                 'id_usuario' => $this->request->getPost('id_usuario'),
                 'id_grado' => $this->request->getPost('id_grado'),
                 'usuario_crea'=> session('id')

@@ -89,7 +89,7 @@
                             </li>
                             <li class="nav-link">
                                 <a href="<?php echo base_url('ver_acciones') ?>">
-                                    <i class='bx bx-user icon'></i>
+                                    <i class='bx bx-cog icon'></i>
                                     <span class="text fs-6 nav-text">Acciones</span>
                                 </a>
                             </li>
@@ -102,7 +102,7 @@
                             </li>
                             <li class="nav-link">
                                 <a href="<?php echo base_url('estudiantes') ?>">
-                                    <i class='bx bx-user icon'></i>
+                                    <i class='bx bxs-graduation icon'></i>
                                     <span class="text nav-text">Estudiantes</span>
                                 </a>
                             </li>

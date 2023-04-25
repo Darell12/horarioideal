@@ -9,7 +9,7 @@
 
                         <h5 class="my-3"><?php echo $datos['nombre_corto']?></h5>
                         <p class="text-muted mb-1"><?php echo $datos['rol']?></p>
-                        <p class="text-muted mb-4"><?php echo $datos['direccion']?></p>
+                        <p class="text-muted mb-1"><?php echo $datos['direccion']?></p>
                         <?php if($datos['rol'] == 'Estudiante') {?>
                             <p class="text-muted mb-4"><?php echo $datos['direccion']?> Aquí saldra el grado</p>
                             <?php }?>

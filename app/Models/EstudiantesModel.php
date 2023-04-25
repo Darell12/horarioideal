@@ -24,8 +24,8 @@ class EstudiantesModel extends Model
 
     public function obtenerEstudiantes()
     {
-        $this->select('estudiantes.id_estudiante, estudiantes.id_usuario, estudiantes.id_grado, estudiantes.estado');
-        $this->join('usuarios', 'usuarios.id_usuario = estudiantes.id_usuario');
+        $this->select('usuarios.*, estudiantes.id_estudiante, estudiantes.id_usuario, estudiantes.id_grado, estudiantes.estado');
+        $this->join('usuarios', 'usuarios.id_usuario = estudiantes.id_usuario', 'left');
         $this->where('estudiantes.estado', 'A');
         $this->where('usuarios.id_rol', '3');
         $datos = $this->findAll();

@@ -33,7 +33,7 @@ class Horario_det extends BaseController
         $horario = $this->horario->vistaHorarioPrueba();
         $grados = $this->grados->obtenerGrados();
 
-        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario, 'usuarios' => $usuarios, 'grados' => $grados  ];
+        $data = ['titulo' => 'Administrar Horario de '. $horario[0]['grado'], 'datos' => $horario, 'usuarios' => $usuarios, 'grados' => $grados  ];
 
        echo view('/principal/sidebar', $data);
        echo view('/horarios_det/detalle', $data);
