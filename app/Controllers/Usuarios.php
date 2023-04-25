@@ -30,7 +30,7 @@ class Usuarios extends BaseController
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerPrioridad();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
+        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
@@ -43,7 +43,7 @@ class Usuarios extends BaseController
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerPrioridad();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
+        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
@@ -69,7 +69,7 @@ class Usuarios extends BaseController
                 'contraseña' => $hashedPassword,
                 'id_rol' => $this->request->getPost('id_rol'),
                 'usuario_crea' => session('id'),
-                'direccion' => $this->request->getPost('direccion'),
+                'direccion' => $this->request->getPost('direccionX'),
 
             ]);
         } else {
@@ -85,7 +85,7 @@ class Usuarios extends BaseController
                 'email' => $this->request->getPost('email'),
                 'id_rol' => $this->request->getPost('id_rol'),
                 'usuario_crea' => session('id'),
-                'direccion' => $this->request->getPost('direccion'),
+                'direccion' => $this->request->getPost('direccionX'),
             ]);
         }
         return redirect()->to(base_url('/usuarios'));
