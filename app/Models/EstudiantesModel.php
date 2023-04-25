@@ -31,5 +31,26 @@ class EstudiantesModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function obtenerEstudiantesEliminados()
+    {
+        $this->select('estudiantes.*');
+        $this->where('estado', 'E');
+        $this->orderBy('nombre', 'ASC');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function buscarEstudiantes($id)
+    {
+        $this->select('aulas.*');
+        $this->where('id_aula', $id);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+    public function cambiar_Estado($id, $estado)
+    {
+        $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
 
 }

@@ -65,6 +65,12 @@ class UsuariosModel extends Model
         $datos = $this->update($id, ['estado' => $estado]);
         return $datos;
     }
+    public function resetearContraseña($id, $contraseña)
+    {
+        
+        $datos = $this->update($id, ['contraseña' => $contraseña]);
+        return $datos;
+    }
     public function login($nombre)
     {
         $this->select('usuarios.*, roles.nombre as rol');
