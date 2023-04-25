@@ -36,6 +36,19 @@ class Usuarios extends BaseController
         echo view('/usuarios/usuarios', $data);
         echo view('/principal/footer', $data);
     }
+    public function perfil($id)
+    {
+        $usuario = $this->usuario->buscarUsuarioPerfil($id);
+        // $horario = $this->horario->vistaHorarioPrueba();
+        $roles = $this->roles->obtenerRoles();
+        $prioridad = $this->prioridad->ObtenerPrioridad();
+
+        $data = ['titulo' => 'Administrar Usuarios', 'nombre' => 'Darell E', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
+
+        echo view('/principal/sidebar', $data);
+        echo view('/usuarios/perfil', $data);
+        echo view('/principal/footer', $data);
+    }
     public function insertar()
     {
         $tp = $this->request->getPost('tp');

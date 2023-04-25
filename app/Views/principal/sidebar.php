@@ -49,25 +49,24 @@
         <body id="body-pd">
             <nav class="sidebar close">
                 <header>
+                    <a class="nav-link" href="<?php echo base_url('usuarios/perfil/'. session('id'))?>">
                     <div class="image-text">
-                        <span class="image">
-                            <i class="bx bxs-user-circle"></i>
-                        </span>
-
-                        <div class="text logo-text">
-                            <?php echo session('usuario') ?>
-                            <span style="font-size: 14px;" class="text nav-text"><?php echo session('rol') ?></span>
+                            <span class="image" href="">
+                                <i class="bx bxs-user-circle bx-sm"></i>
+                            </span>
+    
+                            <div class="text logo-text">
+                                <?php echo session('usuario') ?>
+                                <span style="font-size: 14px;" class="text nav-text"><?php echo session('rol') ?></span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
                     <i class='bx bx-chevron-right toggle'></i>
                 </header>
 
                 <div class="menu-bar">
                     <div class="menu">
-
-
-
                         <ul style="padding-left: 0;" class="menu-links">
                             <li style="padding-left: 0;" class="nav-link">
                                 <a href="<?php echo base_url('principal') ?>">
@@ -76,21 +75,18 @@
                                 </a>
                             </li>
                             <hr style="background: #418ab7;" class="sidebar-divider">
-
                             <li class="nav-link">
                                 <a href="<?php echo base_url('usuarios') ?>">
                                     <i class='bx bx-user icon'></i>
                                     <span class="text fs-6 nav-text">Usuarios</span>
                                 </a>
                             </li>
-
                             <li class="nav-link">
                                 <a href="<?php echo base_url('estudiantes') ?>">
                                     <i class='bx bx-user icon'></i>
                                     <span class="text nav-text">Estudiantes</span>
                                 </a>
                             </li>
-
                             <li class="nav-link">
                                 <a href="#">
                                     <i class='bx bx-id-card icon'></i>
@@ -98,28 +94,24 @@
                                 </a>
                             </li>
                             <hr style="background: #418ab7;" class="sidebar-divider">
-
                             <li class="nav-link">
                                 <a href="<?php echo base_url('aulas') ?>">
                                     <i class='bx bx-pie-chart-alt icon'></i>
                                     <span class="text nav-text">Aulas</span>
                                 </a>
                             </li>
-
                             <li class="nav-link">
                                 <a href="<?php echo base_url('asignaturas') ?>">
                                     <i class='bx bx-heart icon'></i>
                                     <span class="text nav-text">Asignaturas</span>
                                 </a>
                             </li>
-
                             <li class="nav-link">
                                 <a href="#">
                                     <i class='bx bx-wallet icon'></i>
                                     <span class="text nav-text">Horarios</span>
                                 </a>
                             </li>
-
                         </ul>
                     </div>
 
@@ -130,9 +122,6 @@
                                 <span class="text nav-text">Logout</span>
                             </a>
                         </li>
-
-
-
                     </div>
                 </div>
 
@@ -144,13 +133,9 @@
 
                 <!-- Main Content -->
                 <div id="content">
-
-
-                    <!-- Topbar -->
-
                 </div>
 
-                </nav>
+            </nav>
         </body>
 
 

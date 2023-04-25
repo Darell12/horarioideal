@@ -75,7 +75,9 @@
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="btn btn-outline-warning" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Resetear Contraseña">
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>"
+                                
+                                title="Resetear Contraseña">
                                     <i class="bi bi-arrow-clockwise"></i>
                                 </button>
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>" title="Eliminar Registro">
@@ -91,7 +93,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/usuarios/insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+    <form method="POST" action="<?php echo base_url('/usuarios/insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
         <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -114,7 +116,7 @@
                                 <div class="col">
                                     <label class="col-form-label">Tipo de Documento:</label>
                                     <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
-                                        <option value="">Seleccione un Tipo</option>
+                                        <option value="0">Seleccione un Tipo</option>
                                         <option value="2">Cedula de Ciudadania</option>
                                         <option value="1">Tarjeta de Identidad</option>
                                         <option value="3">Cedula de Extranjeria</option>
@@ -148,14 +150,34 @@
                                     <label for="nombre" class="col-form-label">Segundo Apellido:</label>
                                     <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
                                 </div>
-                                <!-- <div class="row">
-                                        <label for="nombre" class="col-form-label">Perfil:</label>
-                                        <input type="file" class="form-control" name="perfil" id="perfil" >
-                                    </div> -->
                             </div>
-                            <div class="">
-                                <label id="email_label" for="email">Dirección:</label>
-                                <input id="direccion" name="direccion" type="text" class="form-control" required />
+                            <label id="email_label" for="email">Dirección:</label>
+                            <div class="row">
+                                <div class="col">
+                                    <label id="email_label" for="email">Tipo:</label>
+                                    <select name="" id="" class="form-select form-select">
+                                        <option value="">Seleccione un tipo:</option>
+                                        <option value="">Carrera</option>
+                                        <option value="">Calle</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label id="email_label" for="email">Número:</label>
+                                    <input id="direccion" name="direccion" type="number" class="form-control" required />
+                                </div>
+                                <div class="col">
+                                    <label id="email_label" for="email">Letra:</label>
+                                    <input id="direccion" name="direccion" type="text" class="form-control" required />
+                                </div>
+                                <div class="col">
+                                    <label id="email_label" for="email">#</label>
+                                    <input id="direccion" name="direccion" type="text" class="form-control" required />
+                                </div>
+                                ~
+                                <div class="col">
+                                    <label id="email_label" for="email"></label>
+                                    <input id="direccion" name="direccion" type="text" class="form-control" required />
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -203,10 +225,31 @@
             </div>
         </div>
     </div>
-    <!-- Modal Elimina -->
+    <!-- Resetear Modal -->
+    <div class="modal fade" id="Resetear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div style="text-align:center;" class="modal-header">
+                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Reinicio de Contraseña</h5>
+
+                </div>
+                <div style="text-align:center;font-weight:bold;" class="modal-body">
+                    <p>La constraseña será igual al número de documento</p>
+                    <p>¿Seguro Desea Resetear la contraseña de este usuario?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-outline-danger btn-ok">Confirmar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
 
-<div id="ModalEmail" class="modal" >
+<div id="ModalEmail" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -307,6 +350,10 @@
 
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+
+    $('#Restear').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
 
@@ -528,5 +575,9 @@
 
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
+    });
+
+    $('.close').click(function() {
+        $("#Resetear").modal("hide");
     });
 </script>
