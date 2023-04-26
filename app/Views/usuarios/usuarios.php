@@ -57,7 +57,11 @@
                         <td class="text-center"><?php echo $valor['nombre_s']; ?></td>
                         <td class="text-center"><?php echo $valor['apellido_p']; ?></td>
                         <td class="text-center"><?php echo $valor['apellido_s']; ?></td>
-                        <td class="text-center"><?php echo $valor['rol']; ?></td>
+                        <?php if ($valor['rol'] == 'Estudiante') { ?>
+                                <td class="text-center"><a href="<?php echo base_url('estudiantes')?>" class="nav-link text-success"><?php echo $valor['rol']; ?></a></td>
+                            <?php } else { ?>
+                                <td class="text-center"><?php echo $valor['rol']; ?></td>
+                            <?php } ?>
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>

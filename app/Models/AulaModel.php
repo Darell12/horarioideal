@@ -25,7 +25,7 @@ class AulaModel extends Model
 
     public function obtenerAulas()
     {
-        $this->select('aulas.*');
+        $this->select('aulas.*,');
         $this->where('estado', 'A');
         $datos = $this->findAll();
         return $datos;

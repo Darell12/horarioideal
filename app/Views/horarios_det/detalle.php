@@ -8,6 +8,7 @@
     <div>
         <button type="button" onclick="seleccionaHorarios_enc(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
         <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+        <button type="button" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-file-spreadsheet"></i> Descargar Excel</button>
         <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
     </div>
 
@@ -29,29 +30,24 @@
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
-                        <th class="text-center"><?php echo $valor['id_horario_det']; ?></th>
-                        <th class="text-center"><?php echo $valor['profesor']; ?></th>
-                        <th class="text-center"><?php echo $valor['asignatura']; ?></th>
-                        <th class="text-center"><?php echo $valor['aula']; ?></th>
-                        <th class="text-center"><?php echo $valor['dia']; ?></th>
-                        <th class="text-center"><?php echo $valor['hora_inicio']; ?></th>
-                        <th class="text-center"><?php echo $valor['hora_fin']; ?></th>
+                        <td class="text-center"><?php echo $valor['id_horario_det']; ?></td>
+                        <td class="text-center"><?php echo $valor['profesor']; ?></td>
+                        <td class="text-center"><?php echo $valor['asignatura']; ?></td>
+                        <td class="text-center"><?php echo $valor['aula']; ?></td>
+                        <td class="text-center"><?php echo $valor['dia']; ?></td>
+                        <td class="text-center"><?php echo $valor['hora_inicio']; ?></td>
+                        <td class="text-center"><?php echo $valor['hora_fin']; ?></td>
 
-                        <th class="grid grid text-center" colspan="2">
+                        <td class="grid grid text-center" colspan="2">
 
                             <div class="btn-group">
-                                <a href="<?php echo base_url('ver_detalle/') . $valor['id_horario_det']?>" class="nav-link">
-                                    <button class="btn btn-outline-warning"  title="Administrar">
-                                        <i class="bi bi-gear-wide"></i>
-                                    </button>
-                                </a>
                                 <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(<?php echo $valor['id_horario_det'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#Horarios_encModal">
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_horario_det'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
                             </div>
-                        </th>
+                        </td>
 
                     </tr>
                 <?php } ?>

@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Descripción:</label>
-                                    <input type="text" class="form-control" name="descripcion" id="descripcion" required>
+                                    <input type="text-area" class="form-control" name="descripcion" id="descripcion" required>
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Bloque:</label>

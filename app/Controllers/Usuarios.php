@@ -44,7 +44,7 @@ class Usuarios extends BaseController
         $prioridad = $this->prioridad->ObtenerPrioridad();
 
         $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
-
+    
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
         echo view('/principal/footer', $data);

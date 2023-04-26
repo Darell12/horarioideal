@@ -35,7 +35,7 @@ class Aulas extends BaseController
                 'descripcion' => $this->request->getPost('descripcion'),
                 'bloque' => $this->request->getPost('bloque'),
                 'sede' => $this->request->getPost('sede'),
-                 'usuario_crea'=> session('id')
+                'usuario_crea'=> session('id')
             ]);
         } else {
             $this->aula->update($this->request->getPost('id'), [
