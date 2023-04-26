@@ -320,6 +320,7 @@
 
                     <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
                         <i class="bi bi-file-x"></i> Eliminados</button>
+                        <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
 
                 </div>
 
@@ -635,7 +636,7 @@
                     }
 
                     $('#tabla_telefono').html(contenido);
-                    $('#btn-regresar-tel').attr('onclick', 'telefonoUsuario(' + id + ',' + '"A")');
+                    $('#btn-regresar-tel').attr('onclick', 'TelefonoUsuario(' + id + ',' + '"A")');
                     $('#btn-eliminados-tel').hide();
                     $('#btn-regresar-tel').show();
                     $('#btn-agregar-tel').hide();

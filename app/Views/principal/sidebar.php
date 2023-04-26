@@ -69,7 +69,7 @@
                     <div class="menu">
                         <ul style="padding-left: 0;" class="menu-links">
                             <li style="padding-left: 0;" class="nav-link">
-                                <a href="<?php echo base_url('principal') ?>">
+                                <a href="<?php echo base_url('inicio') ?>">
                                     <i class='bx bx-home-alt icon'> </i>
                                     <span class="text nav-text">Inicio</span>
                                 </a>

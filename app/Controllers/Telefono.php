@@ -33,12 +33,14 @@ class Telefono extends BaseController
                 'id_usuario' => $this->request->getPost('id_usuario'),
                 'usuario_crea' => session('id'),
             ]);
+            return 'Guardado';
         } else {
             $this->telefono->update($this->request->getPost('id_telefono'), [
-                'telefono' => $this->request->getPost('numero'),
+                'numero' => $this->request->getPost('numero'),
                 'prioridad' => $this->request->getPost('prioridad'),
                 // 'id_usuario' => $this->request->getPost('id_usuario'),
             ]);
+            return 'Actualizado';
         }
     }
     public function telefonoUsuario($id)
