@@ -71,7 +71,7 @@
             </table>
         </div>
         <!-- Modal -->
-        <form method="POST" action="<?php echo base_url('/usuarios/insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+        <form method="POST" action="<?php echo base_url('/estudiantes/insertar'); ?>" onchange="Validardireccion()" autocomplete="off" class="needs-validation" id="formulario" novalidate>
             <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -82,19 +82,34 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <div class="row">
-                                    <div class="">
+                                    <div class="col">
                                         <label class="col-form-label">Rol:</label>
                                         <select class="form-select form-select" name="id_rol" id="rol" required>
                                             <option value="">Seleccione un Rol</option>
                                             <?php foreach ($roles as $rol) { ?>
-                                                <option value="<?php echo $rol['id_rol']; ?>"><?php echo $rol['nombre']; ?></option>
+                                                <?php if($rol['id_rol'] == '3'){?>
+                                                    <option value="<?php echo $rol['id_rol']; ?>" selected><?php echo $rol['nombre']; ?></option>
+                                                    <?php } else { ?>
+                                                        <option value="<?php echo $rol['id_rol']; ?>" disabled><?php echo $rol['nombre']; ?></option>
+                                                        <?php }?>
                                             <?php } ?>
                                         </select>
                                     </div>
                                     <div class="col">
+                                        <label class="col-form-label">Grado:</label>
+                                        <select class="form-select form-select" name="id_grado" id="id_grado" required>
+                                            <option value="">Seleccione un Grado</option>
+                                            <?php foreach ($grados as $grado) { ?>
+                                                <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
                                         <label class="col-form-label">Tipo de Documento:</label>
                                         <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
-                                            <option value="">Seleccione un Tipo</option>
+                                            <option value="0">Seleccione un Tipo</option>
                                             <option value="2">Cedula de Ciudadania</option>
                                             <option value="1">Tarjeta de Identidad</option>
                                             <option value="3">Cedula de Extranjeria</option>
@@ -106,40 +121,67 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <label id="email_label" for="email">Nombre de Usuario</label>
+                                    <label id="direccion_telefono" for="email">Nombre de Usuario</label>
                                     <input id="nombre_corto" name="nombre_corto" type="text" class="form-control" placeholder="Con este nombre iniciará sesion" required />
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <label for="nombre" class="col-form-label">Primer Nombre:</label>
-                                        <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" placeholder="Digite el nombre de un país" pattern="[A-Za-z]+" required>
+                                        <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
                                     </div>
                                     <div class="col">
                                         <label for="nombre" class="col-form-label">Segundo Nombre:</label>
-                                        <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" placeholder="Digite el nombre de un país" pattern="[A-Za-z]+" required>
+                                        <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <label for="nombre" class="col-form-label">Primer Apellido:</label>
-                                        <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" placeholder="Digite el nombre de un país" pattern="[A-Za-z]+" required>
+                                        <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
                                     </div>
                                     <div class="col">
                                         <label for="nombre" class="col-form-label">Segundo Apellido:</label>
                                         <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
                                     </div>
-                                    <!-- <div class="row">
-                                        <label for="nombre" class="col-form-label">Perfil:</label>
-                                        <input type="file" class="form-control" name="perfil" id="perfil" >
-                                    </div> -->
                                 </div>
-                                <div class="">
-                                    <label id="email_label" for="email">Dirección:</label>
-                                    <input id="direccion" name="direccion" type="text" class="form-control" required />
-                                </div>
+                                <label id="direccion_usuario" for="direccion">Dirección:</label>
                                 <div class="row">
                                     <div class="col">
-                                        <label id="password_label" for="password">Contraseña</label>
+                                        <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select">
+                                            <option value="">--Selecciona--</option>
+                                            <option>Carrera</option>
+                                            <option>Calle</option>
+                                            <option>Avenida Calle</option>
+                                            <option>Avenida Carrera</option>
+                                            <option>Autopista</option>
+                                            <option>Avenida</option>
+                                            <option>Circunvalar</option>
+                                            <option>Diagonal</option>
+                                            <option>Transversal</option>
+                                            <option>Kilometro</option>
+                                            <option>Circular</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col">
+                                        <input id="dir2" name="dir2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
+                                    </div>
+                                    <div class="col">
+                                        <input id="dir3" maxLength="4" name="dir3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
+                                    </div>
+                                    <div class="col">
+                                        <input id="dir4" maxLength="4" name="dir4" type="text" class="form-control" placeholder="Ej: 23" required />
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label id="direccion_usuario" for="direccion"></label>
+                                    <input id="direccionX" name="direccionX" type="text" class="form-control" readonly class="form-control-plaintext">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label id="password_label" for="Password">Contraseña</label>
                                         <input id="contraseña" name="contraseña" type="password" class="form-control" required />
                                     </div>
                                     <div class="col">
@@ -148,20 +190,20 @@
                                     </div>
                                 </div>
 
-
                                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                                 <input type="text" id="tp" name="tp" hidden>
-                                <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="id" name="id_usuario" hidden>
+                                <input type="text" id="id" name="id_estudiante" hidden>
+
 
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </form>
 
 
@@ -269,7 +311,7 @@
     <script>
         function seleccionaUsuario(id, tp) {
             if (tp == 2) {
-                dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
+                dataURL = "<?php echo base_url('/estudiantes/buscarEstudiantes'); ?>" + "/" + id;
                 $.ajax({
                     type: "POST",
                     url: dataURL,
@@ -287,8 +329,11 @@
                         $('#primer_apellido').val(rs[0]['apellido_p']);
                         $('#segundo_apellido').val(rs[0]['apellido_s']);
                         $('#direccion').val(rs[0]['direccion']);
+                        $('#id_grado').val(rs[0]['id_grado']);
+                        $('#direccionX').val(rs[0]['direccion']);
+                        $('#id_estudiante').val(rs[0]['id_estudiante']);
                         // $('#contraseña').val(rs[0]['contraseña']);
-                        $('#contraseña').attr('hidden');
+                        $('#contraseña').attr('disabled');
                         $('#confirmar_contraseña').attr('hidden');
                         $("#btn_Guardar").text('Actualizar');
                         $("#UsuarioModal").modal("show");
@@ -476,17 +521,6 @@
             });
         });
 
-        // const miCheckbox = document.getElementById('asignarGrado');
-
-        // miCheckbox.addEventListener('change', function() {
-        //     if (this.checked) {
-        //         // Llamar a la función si el checkbox está seleccionado
-        //         AsignarGrado();
-        //     } else {
-        //         // Si el checkbox no está seleccionado, puedes hacer algo más aquí
-        //     }
-        // });
-
         function AsignarGrado(id) {
 
             let newElement = `<div class="input-group row">
@@ -496,7 +530,7 @@
             <?php foreach ($grados as $grado) { ?>
                 <option value='<?php echo $grado['id_grado'] ?>' > <?php echo $grado['alias'] ?> </option>
             <?php } ?>
-            </select>
+            </select>   
             </div>
             <div class="col">
             <button type="button" id="guardarCambios" onClick="insertarGrado(${id})" class="btn btn-outline-dark btn-sm"><i class="bi bi-check"></i></button>
@@ -530,4 +564,14 @@
         $('.close').click(function() {
             $("#modal-confirma").modal("hide");
         });
+
+        function Validardireccion() {
+            var dir1 = document.getElementById('dir');
+            var dir2 = document.getElementById('dir2');
+            var dir3 = document.getElementById('dir3');
+            var dir4 = document.getElementById('dir4');
+            var direccionReal = dir1.value + ' ' + dir2.value + ' ' + '#' + dir3.value + ' ' + '-' + ' ' + dir4.value;
+
+            document.getElementById('direccionX').value = direccionReal;
+        }
     </script>
