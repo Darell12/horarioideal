@@ -18,7 +18,7 @@ class UsuariosModel extends Model
     protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';
     protected $deletedField  = '';
- 
+
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -29,7 +29,7 @@ class UsuariosModel extends Model
         $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.estado', 'A');
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
 
@@ -70,7 +70,7 @@ class UsuariosModel extends Model
     }
     public function resetearContraseña($id, $contraseña)
     {
-        
+
         $datos = $this->update($id, ['contraseña' => $contraseña]);
         return $datos;
     }
@@ -91,6 +91,17 @@ class UsuariosModel extends Model
         $this->where('usuarios.estado', 'A');
         $this->where('usuarios.id_rol', '3');
         $datos = $this->findAll();
+        return $datos;
+    }
+    public function buscarEstudiantes($id)
+    {
+        $this->select('usuarios.*, estudiantes.id_grado, estudiantes.id_estudiante, grados.alias as grado');
+        $this->join('estudiantes', 'usuarios.id_usuario = estudiantes.id_usuario', 'left');
+        $this->join('grados', 'estudiantes.id_grado = grados.id_grado', 'left');
+        $this->where('usuarios.estado', 'A');
+        $this->where('usuarios.id_usuario', $id);
+        $this->where('usuarios.estado', 'A');
+        $datos = $this->first();
         return $datos;
     }
 }
