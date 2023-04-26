@@ -44,7 +44,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper">
+    <!-- <div id="wrapper"> -->
 
         <body id="body-pd">
             <nav class="sidebar close">
@@ -148,11 +148,11 @@
 
 
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <!-- <div id="content-wrapper" class="d-flex flex-column"> -->
 
                 <!-- Main Content -->
                 <div id="content">
-                </div>
+                <!-- </div> -->
 
                 </nav>
         </body>
