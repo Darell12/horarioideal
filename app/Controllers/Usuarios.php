@@ -7,13 +7,16 @@ use App\Models\UsuariosModel;
 use App\Models\HorarioModel;
 use App\Models\RolesModel;
 use App\Models\Parametros_detModel;
+use App\Models\EmailsModel;
+use App\Models\TelefonosModel;
 
 
 class Usuarios extends BaseController
 {
     protected $usuario, $eliminados;
     protected $roles, $horario;
-    protected $prioridad;
+    protected $prioridad, $emails;
+    protected $telefonos;
 
     public function __construct()
     {
@@ -22,6 +25,8 @@ class Usuarios extends BaseController
         $this->roles = new RolesModel();
         $this->horario = new HorarioModel();
         $this->prioridad = new Parametros_detModel();
+        $this->emails = new EmailsModel();
+        $this->telefonos = new TelefonosModel();
     }
     public function index()
     {
@@ -42,8 +47,10 @@ class Usuarios extends BaseController
         // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerPrioridad();
+        $emails = $this->emails->ObtenerEmailUsuario($id, 'A');
+        $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
 
-        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
+        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos ];
     
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);

@@ -1,10 +1,23 @@
-<div class="mx-auto bg-white p-2card">
-  <div class="card-header">
-    Featured
+<section>
+  <div class="container py-5">
+
+    <div style="margin-top: 13%;" class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img style="height: 30em; padding: 10px; margin-left:50px ;" class="img-fluid rounded-start" src="<?php echo base_url('/img/este.svg'); ?>">
+        </div>
+        <div class="col-md-8">
+          <div style="padding: 9em;" class="card-body">
+            <h5 class="card-title">HORARIO IDEAL</h5>
+            <p class="card-text">¡Bienvenidos! Con esta herramienta, podrás olvidarte de la tediosa tarea de optimizar el tiempo de estudio o trabajo. Nuestro sistema utiliza un algoritmo inteligente que se adapta a tus necesidades y preferencias, para brindarte un horario personalizado y eficiente en pocos minutos. </p>
+            <button type="button" class="btn btn-outline-info" data-bs-target="#UsuarioModal" title="Actualizar Contraseña" data-bs-toggle="modal">
+              <a style="text-decoration: none; color:#0dcaf0" href="<?php echo base_url('ver_horarios') ?>">
+                Crea tu horario
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+</section>
