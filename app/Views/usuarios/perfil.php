@@ -157,6 +157,9 @@
     </div>
 </form>
 
+    <script>
+        function EditarPerfil(id){
+            let newElement = `
 <script>
     function EditarPerfil(id) {
         let newElement = `
