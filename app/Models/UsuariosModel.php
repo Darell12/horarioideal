@@ -93,6 +93,17 @@ class UsuariosModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function obtenerProfesores()
+    {
+        $this->select('usuarios.*, asignatura_profesores.id_asignatura_profesor as asignaturas, asignatura_profesores.id_grado_asignatura as asignaturaGrado, grados.alias as grado');
+        $this->join('asignatura_profesores', 'usuarios.id_usuario = asignatura_profesores.id_usuario', 'left');
+        $this->join('grados_asignatura', 'asignatura_profesores.id_grado_asignatura = grados_asignatura.id_grado_asignatura', 'left');
+        $this->join('grados', 'grados_asignatura.id_grado = grados.id_grado', 'left');
+        $this->where('usuarios.estado', 'A');
+        $this->where('usuarios.id_rol', '4');
+        $datos = $this->findAll();
+        return $datos;
+    }
     public function buscarEstudiantes($id)
     {
         $this->select('usuarios.*, estudiantes.id_grado, estudiantes.id_estudiante, grados.alias as grado');
