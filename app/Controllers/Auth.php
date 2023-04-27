@@ -14,7 +14,7 @@ class Auth extends BaseController
         $this->usuario = new UsuariosModel();
         $this->eliminados = new UsuariosModel();
     }
-    public function index()
+    public function iniciarSesion()
     {
         echo view('auth/login');
     }

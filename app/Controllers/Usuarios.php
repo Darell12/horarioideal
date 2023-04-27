@@ -25,6 +25,7 @@ class Usuarios extends BaseController
     }
     public function index()
     {
+
         $usuario = $this->usuario->obtenerUsuarios();
         // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
@@ -38,6 +39,9 @@ class Usuarios extends BaseController
     }
     public function perfil($id)
     {
+        if (!session('logged_in') == 'true') {
+            return redirect()->to(base_url('iniciarSesion'));
+        }
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
         // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();

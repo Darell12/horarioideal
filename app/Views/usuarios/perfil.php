@@ -175,7 +175,6 @@
     </form>
 
     <script>
-        
         function EditarPerfil(id){
             let newElement = `
             <form onChange="Direccion()">
