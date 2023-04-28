@@ -41,7 +41,7 @@
                             <?php } ?>
 
                             <td class="text-center"><?php echo $valor['nombre_p'] . ' ' . $valor['nombre_s']; ?></td>
-                            <td class="text-center"><?php echo $valor['apellido_s'] . ' ' . $valor['apellido_p']; ?></td>
+                            <td class="text-center"><?php echo $valor['apellido_p'] . ' ' . $valor['apellido_s']; ?></td>
 
                             <?php if ($valor['grado']) { ?>
                                 <td class="text-center"><?php echo $valor['grado']; ?></td>

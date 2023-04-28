@@ -37,10 +37,13 @@ class Auth extends BaseController
             $session = session();
             $session->set($data);
 
-            echo $session->get('id');
-            return redirect()->to(base_url('/principal'))->with('mensaje', '1');
-        } else {
+            // echo $session->get('id');
+            // return view('principal/sidebar');
+            // return view('principal/inico');
+            return 'success';
             return redirect()->to(base_url('iniciarSesion'))->with('mensaje', '0');
+        } else {
+            return 'error';
         }
     }
     public function logout()

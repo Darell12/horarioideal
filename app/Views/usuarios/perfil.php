@@ -160,15 +160,12 @@
     <script>
         function EditarPerfil(id){
             let newElement = `
-<script>
-    function EditarPerfil(id) {
-        let newElement = `
             <form onChange="Direccion()">
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="mb-0">Documento</p>
                             </div>
-                            <div class="col-sm-9">
+                             <div class="col-sm-9">
                             <div class="col">
                                     <label class="col-form-label">Tipo de Documento:</label>
                                     <select class="form-select form-select" name="tipo_documento" id="tipo_documento" >

@@ -22,7 +22,7 @@ class Profesores extends BaseController
     {
         $usuarios = $this->usuarios->obtenerProfesores();
         $roles = $this->roles->obtenerRoles();
-        $data = ['titulo' => 'Administrar Estudiantes', 'datos' => $usuarios, 'roles' =>  $roles];
+        $data = ['titulo' => 'Administrar Profesores', 'datos' => $usuarios, 'roles' =>  $roles];
 
         echo view('/principal/sidebar', $data);
         echo view('/profesores/profesores', $data);

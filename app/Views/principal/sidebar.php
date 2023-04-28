@@ -107,7 +107,7 @@
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="#">
+                                <a href="<?php echo base_url('profesores') ?>">
                                     <i class='bx bx-id-card icon'></i>
                                     <span class="text nav-text">Profesores</span>
                                 </a>
