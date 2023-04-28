@@ -305,7 +305,6 @@
     <script>
         function Asignaturas(id, estado) {
 
-
             dataURL = "<?php echo base_url('/profesores/obtenerAsignaturasProfesor'); ?>" + "/" + id
 
             if (estado == 'E') {

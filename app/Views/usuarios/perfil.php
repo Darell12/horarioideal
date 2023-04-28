@@ -121,7 +121,6 @@
     </div>
 </section>
 
-
 <form method="POST" action="<?php echo base_url('/usuarios/actualizarContraseña'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
     <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -160,9 +159,6 @@
     <script>
         function EditarPerfil(id){
             let newElement = `
-<script>
-    function EditarPerfil(id) {
-        let newElement = `
             <form onChange="Direccion()">
                         <div class="row">
                             <div class="col-sm-3">

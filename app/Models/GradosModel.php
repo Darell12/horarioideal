@@ -26,7 +26,9 @@ class GradosModel extends Model
     public function obtenerGrados()
     {
         $this->select('grados.*');
-        $this->where('estado', 'A');
+        // $this->select('MAX(CASE WHEN grados_asignatura.id_grado IS NOT NULL THEN "SI" ELSE "NO" END) AS grados_asignatura');
+        // $this->join('grados_asignatura', 'grados.id_grado = grados_asignatura.id_grado', 'left');
+        $this->where('grados.estado', 'A');
         $datos = $this->findAll();
         return $datos;
     }
@@ -34,7 +36,7 @@ class GradosModel extends Model
     public function obtenerGradosEliminados()
     {
         $this->select('grados.*');
-        $this->where('estado', 'E');
+        $this->where('grados.estado', 'E');
         $datos = $this->findAll();
         return $datos;
     }

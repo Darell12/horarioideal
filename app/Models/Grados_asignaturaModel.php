@@ -23,4 +23,13 @@ class Grados_asignaturaModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
+    public function obtenerAsignaturasGrado($id)
+    {
+        $this->select('grados_asignatura.*, asignaturas.nombre as asignatura, asignaturas.nombre as nombre, asignaturas.codigo as codigo');
+        $this->join('asignaturas', 'grados_asignatura.id_asignatura = asignaturas.id_asignatura');
+        $this->where('grados_asignatura.id_grado', $id);
+        $datos = $this->findAll();
+        return $datos;
+
+    }
 }
