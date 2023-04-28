@@ -43,13 +43,13 @@
                 <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                     <?php foreach ($datos as $valor) { ?>
                         <tr>
-                            <th class="text-center"><?php echo $valor['id_franja_horaria']; ?></th>
-                            <th class="text-center"><?php echo $valor['hora_inicio']; ?></th>
-                            <th class="text-center"><?php echo $valor['hora_fin']; ?></th>
-                            <th class="text-center">
+                            <td class="text-center"><?php echo $valor['id_franja_horaria']; ?></td>
+                            <td class="text-center"><?php echo $valor['hora_inicio']; ?></td>
+                            <td class="text-center"><?php echo $valor['hora_fin']; ?></td>
+                            <td class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                            </th>
-                            <th class="grid grid text-center" colspan="2">
+                            </td>
+                            <td class="grid grid text-center" colspan="2">
 
                                 <button class="btn btn-outline-primary" onclick="seleccionaFranja(<?php echo $valor['id_franja_horaria'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#FranjaModal">
 
@@ -58,7 +58,7 @@
                                 </button>
 
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_franjas') . '/' . $valor['id_franja_horaria'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                            </th>
+                            </td>
 
                         </tr>
                     <?php } ?>
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" clsass="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
                             </div>
                         </div>

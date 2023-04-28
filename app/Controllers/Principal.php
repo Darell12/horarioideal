@@ -23,6 +23,6 @@ class Principal extends BaseController
         $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles];
 
         echo view('/principal/sidebar', $data);
-        // echo view('/usuarios/usuarios', $data);
+        echo view('/inicio/inicio', $data);
     }
 }

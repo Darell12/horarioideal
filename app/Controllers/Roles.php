@@ -20,7 +20,7 @@ class Roles extends BaseController
     {
         $rol = $this->rol->obtenerRoles();
 
-        $data = ['titulo' => 'Administrar roles', 'datos' => $rol];
+        $data = ['titulo' => 'Administrar Roles', 'datos' => $rol];
 
        echo view('/principal/sidebar', $data);
         echo view('/roles/roles', $data);

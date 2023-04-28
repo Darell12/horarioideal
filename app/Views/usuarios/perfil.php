@@ -90,32 +90,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4"><span class="text-primary font-italic me-1">Emails</span> Relacionados
-                                </p>
-                                <?php foreach ($emails as $email) { ?>
-                                    <p class="mb-3" style="font-size: .97rem;"><?php echo $email['email'] ?></p>
-                                <?php } ?>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4"><span class="text-primary font-italic me-1">Telefonos</span> Relacionados
-                                </p>
-                                <?php foreach ($telefonos as $telefono) { ?>
-                                    <p class="mb-3" style="font-size: .97rem;"><?php echo $telefono['numero'] ?></p>
-                                <?php } ?>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -157,9 +131,7 @@
     </div>
 </form>
 
-    <script>
-        function EditarPerfil(id){
-            let newElement = `
+
 <script>
     function EditarPerfil(id) {
         let newElement = `

@@ -41,8 +41,8 @@ class EstudiantesModel extends Model
     }
     public function buscarEstudiantes($id)
     {
-        $this->select('aulas.*');
-        $this->where('id_aula', $id);
+        $this->select('estudiantes.*');
+        $this->where('id_estudiante', $id);
         $this->where('estado', 'A');
         $datos = $this->first();
         return $datos;

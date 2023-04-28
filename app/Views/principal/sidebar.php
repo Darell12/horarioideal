@@ -69,64 +69,64 @@
                     <div class="menu">
                         <ul style="padding-left: 0;" class="menu-links">
                             <li style="padding-left: 0;" class="nav-link">
-                                <a href="<?php echo base_url('inicio') ?>">
+                                <a href="<?php echo base_url('inicio') ?>" title="Inicio">
                                     <i class='bx bx-home-alt icon'> </i>
                                     <span class="text nav-text">Inicio</span>
                                 </a>
                             </li>
                             <hr style="background: #418ab7;" class="sidebar-divider">
                             <li class="nav-link">
-                                <a href="<?php echo base_url('ver_roles') ?>">
+                                <a href="<?php echo base_url('ver_roles') ?>" title="Roles">
                                     <i class='bx bx-wrench icon'></i>
                                     <span class="text fs-6 nav-text">Roles</span>
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="<?php echo base_url('ver_permisos') ?>">
+                                <a href="<?php echo base_url('ver_permisos') ?>" title="Permisos">
                                     <i class='bx bx-slider-alt icon'></i>
                                     <span class="text fs-6 nav-text">Permisos</span>
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="<?php echo base_url('ver_acciones') ?>">
+                                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
                                     <i class='bx bx-cog icon'></i>
                                     <span class="text fs-6 nav-text">Acciones</span>
                                 </a>
                             </li>
                             <hr style="background: #418ab7;" class="sidebar-divider">
                             <li class="nav-link">
-                                <a href="<?php echo base_url('usuarios') ?>">
+                                <a href="<?php echo base_url('usuarios') ?>" title="Usuarios">
                                     <i class='bx bx-user icon'></i>
                                     <span class="text fs-6 nav-text">Usuarios</span>
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="<?php echo base_url('estudiantes') ?>">
+                                <a href="<?php echo base_url('estudiantes') ?>" title="Estudiantes">
                                     <i class='bx bxs-graduation icon'></i>
                                     <span class="text nav-text">Estudiantes</span>
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="#">
+                                <a href="<?php echo base_url('profesores') ?>" title="Profesores">
                                     <i class='bx bx-id-card icon'></i>
                                     <span class="text nav-text">Profesores</span>
                                 </a>
                             </li>
                             <hr style="background: #418ab7;" class="sidebar-divider">
                             <li class="nav-link">
-                                <a href="<?php echo base_url('ver_aulas') ?>">
+                                <a href="<?php echo base_url('ver_aulas') ?>" title="Aulas">
                                     <i class='bx bx-chalkboard icon'></i>
                                     <span class="text nav-text">Aulas</span>
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="<?php echo base_url('asignaturas') ?>">
+                                <a href="<?php echo base_url('asignaturas') ?>" title="Asignaturas">
                                     <i class='bx bx-book icon'></i>
                                     <span class="text nav-text">Asignaturas</span>
                                 </a>
                             </li>
                             <li class="nav-link">
-                                <a href="<?php echo base_url('ver_horarios') ?>">
+                                <a href="<?php echo base_url('ver_horarios') ?>" title="Horarios">
                                     <i class='bx bx-calendar icon'></i>
                                     <span class="text nav-text">Horarios</span>
                                 </a>

@@ -29,15 +29,15 @@
         <?php } else { ?>
           <?php foreach ($datos as $valor) { ?>
             <tr>
-              <th class="text-center"><?php echo $valor['id_franja_horaria']; ?></th>
-              <th class="text-center">+<?php echo $valor['hora_inicio']; ?></th>
-              <th class="text-center">+<?php echo $valor['hora_fin']; ?></th>
-              <th class="text-center">
+              <td class="text-center"><?php echo $valor['id_franja_horaria']; ?></td>
+              <td class="text-center"><?php echo $valor['hora_inicio']; ?></td>
+              <td class="text-center"><?php echo $valor['hora_fin']; ?></td>
+              <td class="text-center">
                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
-              </th>
-              <th class="grid grid text-center" colspan="2">
+              </td>
+              <td class="grid grid text-center" colspan="2">
                 <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/franjas_horarias/cambiarEstado') . '/' . $valor['id_franja_horaria'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
-              </th>
+              </td>
 
             </tr>
           <?php } ?>

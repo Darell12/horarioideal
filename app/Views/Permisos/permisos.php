@@ -26,13 +26,13 @@
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
-                        <th class="text-center"><?php echo $valor['id_permiso']; ?></th>
-                        <th class="text-center"><?php echo $valor['rol']; ?></th>
-                        <th class="text-center"><?php echo $valor['accion']; ?></th>
-                        <th class="text-center">
+                        <td class="text-center"><?php echo $valor['id_permiso']; ?></td>
+                        <td class="text-center"><?php echo $valor['rol']; ?></td>
+                        <td class="text-center"><?php echo $valor['accion']; ?></td>
+                        <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </th>
-                        <th class="grid grid text-center" colspan="2">
+                        </td>
+                        <td class="grid grid text-center" colspan="2">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaPermisos(<?php echo $valor['id_permiso'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#PermisosModal">
 
@@ -41,7 +41,7 @@
                             </button>
 
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/permisos/cambiarEstado') . '/' . $valor['id_permiso'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                        </th>
+                        </td>
 
                     </tr>
                 <?php } ?>
