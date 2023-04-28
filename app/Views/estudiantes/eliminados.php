@@ -36,7 +36,7 @@
                                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
                             </th>
                             <th class="grid grid text-center" colspan="2">
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/grados/cambiarEstado') . '/' . $valor['id_grado'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estudiantes/cambiarEstado') . '/' . $valor['id_estudiante'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
                             </th>
 
                         </tr>

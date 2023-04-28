@@ -26,12 +26,12 @@
                 <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                     <?php foreach ($datos as $valor) { ?>
                         <tr>
-                            <th class="text-center"><?php echo $valor['id_acciones']; ?></th>    
-                            <th class="text-center"><?php echo $valor['nombre']; ?></th>
-                            <th class="text-center">
+                            <td class="text-center"><?php echo $valor['id_acciones']; ?></td>    
+                            <td class="text-center"><?php echo $valor['nombre']; ?></td>
+                            <td class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                            </th>
-                            <th class="grid grid text-center" colspan="2">
+                            </td>
+                            <td class="grid grid text-center" colspan="2">
 
                                 <button class="btn btn-outline-primary" onclick="seleccionaAccion(<?php echo $valor['id_acciones'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#AccionModal">
 
@@ -40,7 +40,7 @@
                                 </button>
 
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_acciones'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                            </th>
+                            </td>
 
                         </tr>
                     <?php } ?>

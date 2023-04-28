@@ -28,15 +28,15 @@
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
-                        <th class="text-center"><?php echo $valor['id_horarios_enc']; ?></th>
-                        <th class="text-center"><?php echo $valor['usuario']; ?></th>
-                        <th class="text-center"><?php echo $valor['grado']; ?></th>
-                        <th class="text-center"><?php echo $valor['periodo_año']; ?></th>
-                        <th class="text-center"><?php echo $valor['jornada']; ?></th>
-                        <th class="text-center">
+                        <td class="text-center"><?php echo $valor['id_horarios_enc']; ?></td>
+                        <td class="text-center"><?php echo $valor['usuario']; ?></td>
+                        <td class="text-center"><?php echo $valor['grado']; ?></td>
+                        <td class="text-center"><?php echo $valor['periodo_año']; ?></td>
+                        <td class="text-center"><?php echo $valor['jornada']; ?></td>
+                        <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </th>
-                        <th class="grid grid text-center" colspan="2">
+                        </td>
+                        <td class="grid grid text-center" colspan="2">
 
                             <div class="btn-group">
                                 <a href="<?php echo base_url('ver_detalle/') . $valor['id_horarios_enc']?>" class="nav-link">
@@ -50,7 +50,7 @@
 
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_horarios_enc'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
                             </div>
-                        </th>
+                        </td>
 
                     </tr>
                 <?php } ?>

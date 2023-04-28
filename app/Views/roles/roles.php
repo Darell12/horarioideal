@@ -13,7 +13,7 @@
 
     <br>
     <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+        <table id="example-table" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
@@ -25,21 +25,21 @@
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
-                        <th class="text-center"><?php echo $valor['id_rol']; ?></th>
-                        <th class="text-center"><?php echo $valor['nombre']; ?></th>
-                        <th class="text-center">
+                        <td class="text-center"><?php echo $valor['id_rol']; ?></td>
+                        <td class="text-center"><?php echo $valor['nombre']; ?></td>
+                        <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </th>
-                        <th class="grid grid text-center" colspan="2">
+                        </td>
+                        <td class="grid grid text-center" colspan="2">
 
-                            <button class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_rol'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal">
+                            <button class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_rol'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol">
 
                                 <i class="bi bi-pencil"></i>
 
                             </button>
 
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_roles') . '/' . $valor['id_rol'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                        </th>
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_roles') . '/' . $valor['id_rol'] . '/' . 'E'; ?>" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
+                        </td>
 
                     </tr>
                 <?php } ?>

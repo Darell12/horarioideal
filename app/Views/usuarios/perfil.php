@@ -90,37 +90,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4"><span class="text-primary font-italic me-1">Emails</span> Relacionados
-                                </p>
-                                <?php foreach ($emails as $email) { ?>
-                                    <p class="mb-3" style="font-size: .97rem;"><?php echo $email['email'] ?></p>
-                                <?php } ?>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4"><span class="text-primary font-italic me-1">Telefonos</span> Relacionados
-                                </p>
-                                <?php foreach ($telefonos as $telefono) { ?>
-                                    <p class="mb-3" style="font-size: .97rem;"><?php echo $telefono['numero'] ?></p>
-                                <?php } ?>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <form method="POST" action="<?php echo base_url('/usuarios/actualizarContraseña'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
     <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -157,9 +130,10 @@
     </div>
 </form>
 
-    <script>
-        function EditarPerfil(id){
-            let newElement = `
+
+<script>
+    function EditarPerfil(id) {
+        let newElement = `
             <form onChange="Direccion()">
                         <div class="row">
                             <div class="col-sm-3">

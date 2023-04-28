@@ -4,23 +4,27 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\GradosModel;
-
+use App\Models\AsignaturasModel;
+use App\Models\Grados_asignaturaModel;
 
 class Grados extends BaseController
 {
-    protected $grado, $eliminados;
+    protected $grado, $eliminados, $asignaturas, $grado_asignatura;
 
 
     public function __construct()
     {
         $this->grado = new GradosModel();
         $this->eliminados = new GradosModel();
+        $this->asignaturas = new AsignaturasModel();
+        $this->grado_asignatura = new Grados_asignaturaModel();
     }
     public function index()
     {
         $grado = $this->grado->obtenerGrados();
+        $asignaturas = $this->asignaturas->obtenerAsignaturas();
 
-        $data = ['titulo' => 'Administrar roles', 'datos' => $grado];
+        $data = ['titulo' => 'Administrar Grados', 'datos' => $grado, 'asignaturas'=> $asignaturas];
 
        echo view('/principal/sidebar', $data);
         echo view('/grados/grados', $data);
@@ -49,6 +53,26 @@ class Grados extends BaseController
         $grado = $this->grado->buscarGrado($id);
         if (!empty($grado)) {
             array_push($returnData, $grado);
+        }
+        echo json_encode($returnData);
+    }
+
+    public function obtenerAsignaturas($id)
+    {
+        $returnData = array();
+        $asignaturas = $this->asignaturas->ObtenerAsignaturas($id);
+        if (!empty($asignaturas)) {
+            array_push($returnData, $asignaturas);
+        }
+        echo json_encode($returnData);
+    }
+
+    public function obtenerAsignaturasS($id)
+    {
+        $returnData = array();
+        $grado_asignatura = $this->grado_asignatura->obtenerAsignaturasGrado($id);
+        if (!empty($grado_asignatura)) {
+            array_push($returnData, $grado_asignatura);
         }
         echo json_encode($returnData);
     }

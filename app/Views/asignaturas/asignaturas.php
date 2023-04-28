@@ -26,13 +26,13 @@
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
-                        <th class="text-center"><?php echo $valor['id_asignatura']; ?></th>
-                        <th class="text-center"><?php echo $valor['nombre']; ?></th>
-                        <th class="text-center"><?php echo $valor['codigo']; ?></th>
-                        <th class="text-center">
+                        <td class="text-center"><?php echo $valor['id_asignatura']; ?></td>
+                        <td class="text-center"><?php echo $valor['nombre']; ?></td>
+                        <td class="text-center"><?php echo $valor['codigo']; ?></td>
+                        <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </th>
-                        <th class="grid grid text-center" colspan="2">
+                        </td>
+                        <td class="grid grid text-center" colspan="2">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_asignatura'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal">
 
@@ -41,7 +41,7 @@
                             </button>
 
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_asignaturas') . '/' . $valor['id_asignatura'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                        </th>
+                        </td>
 
                     <?php }?>
             </tbody>

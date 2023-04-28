@@ -31,6 +31,7 @@ class AsignaturasModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+
     public function obtenerAsignaturasEliminados()
     {
         $this->select('asignaturas.*');
