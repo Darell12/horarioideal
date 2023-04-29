@@ -1,7 +1,6 @@
-<!-- <div class="container"> -->
-<div class="container-xl bg-white mt-5  rounded rounded-3">
-    <div>
-        <h1 class="titulo_Vista text-center">
+<div class="container bg-white mt-5  rounded rounded-3">
+    <div class="pt-1">
+        <h1 class="titulo_Vista text-center ">
             <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
         </h1>
     </div>
@@ -12,7 +11,7 @@
         <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
     </div>
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
+    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important;">
         <table id="tablaUsuarios" class="table table-bordered table-sm table-hover table-light" id="tablePaises" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
@@ -76,7 +75,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/usuarios/insertar'); ?>" onchange="Validardireccion()" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
+    <form id="formulario" method="POST" action="<?php echo base_url('/usuarios/insertar'); ?>" onchange="Validardireccion()" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
         <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -120,8 +119,8 @@
                                     <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
                                 </div>
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Segundo Nombre:</label>
-                                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+" required>
+                                    <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
+                                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+">
                                 </div>
                             </div>
                             <div class="row">
@@ -137,7 +136,7 @@
                             <label id="direccion_usuario" for="direccion">Dirección:</label>
                             <div class="row">
                                 <div class="col">
-                                    <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select">
+                                    <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select" required>
                                         <option value="">--Selecciona--</option>
                                         <option>Carrera</option>
                                         <option>Calle</option>
@@ -441,7 +440,6 @@
 </div>
 
 <script>
-
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
@@ -454,6 +452,139 @@
     $('#tablaUsuarios').DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    });
+
+    $.validator.addMethod("soloLetras", function(value, element) {
+        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+    }, "Por favor ingrese solamente letras.");
+
+    $("#formulario").validate({
+        rules: {
+            id_rol: {
+                required: true,
+            },
+            tipo_documento: {
+                required: true,
+            },
+            n_documento: {
+                required: true,
+                minlength: 4,
+                maxlength: 12,
+                digits: true,
+                remote: {
+                    url: '<?php echo base_url() ?>usuarios/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'n_documento';
+                        },
+                        valor: function() {
+                            return $("#n_documento").val();
+                        },
+                    },
+                }
+            },
+            nombre_corto: {
+                required: true,
+                soloLetras: true,
+                remote: {
+                    url: '<?php echo base_url() ?>usuarios/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'nombre_corto';
+                        },
+                        valor: function() {
+                            return $("#nombre_corto").val();
+                        },
+                    },
+                }
+            },
+            primer_nombre: {
+                required: true,
+                soloLetras: true,
+            },
+            segundo_nombre: {
+                soloLetras: true,
+            },
+            primer_apellido: {
+                required: true,
+                soloLetras: true,
+            },
+            segundo_apellido: {
+                required: true,
+                soloLetras: true,
+            },
+            dir: {
+                required: true,
+            },
+            dir2: {
+                required: true,
+            },
+            dir3: {
+                required: true,
+            },
+            dir4: {
+                required: true,
+            },
+            contraseña: {
+                required: true,
+            },
+            confirmar_contraseña: {
+                required: true,
+                equalTo: "#contraseña"
+            },
+        },
+        messages: {
+            id_rol: {
+                required: "Por favor seleccione una opción",
+            },
+            tipo_documento: {
+                required: "Por favor seleccione una opción",
+            },
+            n_documento: {
+                required: "El número de documento es requerido",
+                digits: "Solo ingrese digitos por favor",
+                minlength: "El número de documento debe tener al menos 4 caracteres",
+                maxlength: "El número de documento no puede tener más de 12 caracteres",
+                remote: "Este número de documento ya esta registrado"
+            },
+            nombre_corto: {
+                required: "Este campo es requerido",
+                remote: "Este nombre de usuario ya esta en uso"
+            },
+            primer_nombre: {
+                required: "Este campo es requerido",
+            },
+            primer_apellido: {
+                required: "Este campo es requerido",
+            },
+            segundo_apellido: {
+                required: "Este campo es requerido",
+            },
+            dir: {
+                required: "Este campo es requerido",
+            },
+            dir2: {
+                required: "Este campo es requerido",
+            },
+            dir3: {
+                required: "Este campo es requerido",
+            },
+            dir4: {
+                required: "Este campo es requerido",
+            },
+            contraseña: {
+                required: "Este campo es requerido",
+            },
+            confirmar_contraseña: {
+                required: "Este campo es requerido",
+                equalTo: "Las contraseñas no coinciden"
+            },
+
         }
     });
 

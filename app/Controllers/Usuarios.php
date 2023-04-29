@@ -54,8 +54,8 @@ class Usuarios extends BaseController
         $emails = $this->emails->ObtenerEmailUsuario($id, 'A');
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
 
-        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos ];
-    
+        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos];
+
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
         echo view('/principal/footer', $data);
@@ -149,5 +149,20 @@ class Usuarios extends BaseController
     public function actualizarContraseña()
     {
         // Ya me dio weba
+    }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+
+        $filtro = $this->usuario->filtro($campo, $valor);
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+            // return $respuesta = ['valido'];
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
     }
 }

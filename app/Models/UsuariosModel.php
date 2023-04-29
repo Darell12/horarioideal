@@ -71,7 +71,6 @@ class UsuariosModel extends Model
     }
     public function resetearContraseña($id, $contraseña)
     {
-
         $datos = $this->update($id, ['contraseña' => $contraseña]);
         return $datos;
     }
@@ -113,6 +112,14 @@ class UsuariosModel extends Model
         $this->where('usuarios.estado', 'A');
         $this->where('usuarios.id_usuario', $id);
         $this->where('usuarios.estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+    public function filtro($campo ,$valor)
+    {
+        $this->select('usuarios.*');
+        $this->where($campo, $valor);
+        $this->where('estado', 'A');
         $datos = $this->first();
         return $datos;
     }

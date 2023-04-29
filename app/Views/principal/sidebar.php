@@ -38,8 +38,6 @@
 
 </head>
 
-<body id="page-top">
-
     <nav class="sidebar close">
         <header>
             <a class="nav-link" href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
