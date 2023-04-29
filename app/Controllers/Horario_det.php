@@ -37,6 +37,7 @@ class Horario_det extends BaseController
 
        echo view('/principal/sidebar', $data);
        echo view('/horarios_det/detalle', $data);
+       return json_encode($horario);
     }
 
     public function insertar()

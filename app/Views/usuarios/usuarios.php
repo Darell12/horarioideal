@@ -1,20 +1,5 @@
-<!-- <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css">
-    <script src="<?php echo base_url('/bootstrap/bootstrap.bundle.min.js'); ?>"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</head> -->
-
-
 <!-- <div class="container"> -->
-<div class="container bg-white mt-5 shadow rounded-4">
+<div class="container-xl bg-white mt-5  rounded rounded-3">
     <div>
         <h1 class="titulo_Vista text-center">
             <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
@@ -28,22 +13,20 @@
     </div>
     <br>
     <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table id="example-table" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+        <table id="tablaUsuarios" class="table table-bordered table-sm table-hover table-light" id="tablePaises" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Tipo Documento</th>
-                    <th class="text-center">N°Documento</th>
+                    <th class="text-center">Documento</th>
                     <th class="text-center">N_Usuario</th>
-                    <th class="text-center">Primer Nombre</th>
-                    <th class="text-center">Segundo Nombre</th>
-                    <th class="text-center">Primer Apellido</th>
-                    <th class="text-center">Segundo Apellido</th>
+                    <th class="text-center">Nombres</th>
+                    <th class="text-center">Apellidos</th>
                     <th class="text-center">Rol</th>
                     <th class="text-center">Estado</th>
                     <th class="text-center">Emails</th>
                     <th class="text-center">Telefonos</th>
-                    <th class="text-center" colspan="2">Acciones</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -53,15 +36,13 @@
                         <td class="text-center"><?php echo $valor['t_documento']; ?></td>
                         <td class="text-center"><?php echo $valor['n_documento']; ?></td>
                         <td class="text-center"><?php echo $valor['nombre_corto']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre_p']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre_s']; ?></td>
-                        <td class="text-center"><?php echo $valor['apellido_p']; ?></td>
-                        <td class="text-center"><?php echo $valor['apellido_s']; ?></td>
+                        <td class="text-center"><?php echo $valor['nombre_p'] . ' ' . $valor['nombre_s']; ?></td>
+                        <td class="text-center"><?php echo $valor['apellido_p'] . ' ' . $valor['apellido_s']; ?></td>
                         <?php if ($valor['rol'] == 'Estudiante') { ?>
-                                <td class="text-center"><a href="<?php echo base_url('estudiantes')?>" class="nav-link text-success"><?php echo $valor['rol']; ?></a></td>
-                            <?php } else { ?>
-                                <td class="text-center"><?php echo $valor['rol']; ?></td>
-                            <?php } ?>
+                            <td class="text-center"><a href="<?php echo base_url('estudiantes') ?>" class="nav-link text-success"><?php echo $valor['rol']; ?></a></td>
+                        <?php } else { ?>
+                            <td class="text-center"><?php echo $valor['rol']; ?></td>
+                        <?php } ?>
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
@@ -79,8 +60,7 @@
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') . '/' . $valor['id_usuario']. '/' . $valor['n_documento']; ?>"
-                                title="Resetear Contraseña">
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') . '/' . $valor['id_usuario'] . '/' . $valor['n_documento']; ?>" title="Resetear Contraseña">
                                     <i class="bi bi-arrow-clockwise"></i>
                                 </button>
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>" title="Eliminar Registro">
@@ -138,7 +118,7 @@
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Primer Nombre:</label>
                                     <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
-                                </div>  
+                                </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Segundo Nombre:</label>
                                     <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+" required>
@@ -157,22 +137,22 @@
                             <label id="direccion_usuario" for="direccion">Dirección:</label>
                             <div class="row">
                                 <div class="col">
-                                    <select name="dir" id="dir"  placeholder="Ej: 23" class="form-select form-select">
-                                    <option value="">--Selecciona--</option>
-                                        <option >Carrera</option>
-                                        <option >Calle</option>
-                                        <option >Avenida Calle</option>
-                                        <option >Avenida Carrera</option>
-                                        <option >Autopista</option>
-                                        <option >Avenida</option>
-                                        <option >Circunvalar</option>
-                                        <option >Diagonal</option>
-                                        <option >Transversal</option>
-                                        <option >Kilometro</option>
-                                        <option >Circular</option>
+                                    <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select">
+                                        <option value="">--Selecciona--</option>
+                                        <option>Carrera</option>
+                                        <option>Calle</option>
+                                        <option>Avenida Calle</option>
+                                        <option>Avenida Carrera</option>
+                                        <option>Autopista</option>
+                                        <option>Avenida</option>
+                                        <option>Circunvalar</option>
+                                        <option>Diagonal</option>
+                                        <option>Transversal</option>
+                                        <option>Kilometro</option>
+                                        <option>Circular</option>
                                     </select>
                                 </div>
-                               
+
                                 <div class="col">
                                     <input id="dir2" name="dir2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
                                 </div>
@@ -203,7 +183,7 @@
                             <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                             <input type="text" id="tp" name="tp" hidden>
                             <input type="text" id="id" name="id" hidden>
-                            
+
 
                         </div>
                     </div>
@@ -254,9 +234,6 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 <!-- emails -->
@@ -314,13 +291,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="btn-group mb-3" id="btn-group-salarios" role="group" aria-label="Basic mixed styles example"> 
+                <div class="btn-group mb-3" id="btn-group-salarios" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAgregarTelefono" id="btn-agregar-tel">
                         <i class="bi bi-plus-circle-fill"></i> Agregar</button>
 
                     <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
                         <i class="bi bi-file-x"></i> Eliminados</button>
-                        <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
+                    <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
 
                 </div>
 
@@ -464,6 +441,7 @@
 </div>
 
 <script>
+
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
@@ -471,6 +449,12 @@
     $('#Resetear').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         console.log('Hola')
+    });
+
+    $('#tablaUsuarios').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
     });
 
     function seleccionaUsuario(id, tp) {
@@ -516,7 +500,7 @@
         }
     }
 
-// Emalis
+    // Emalis
     function EmailUsuario(id, estado) {
 
 
@@ -601,7 +585,7 @@
             })
         }
     }
-// telefonos
+    // telefonos
     function TelefonoUsuario(id, estado) {
         console.log(estado)
 
@@ -686,7 +670,7 @@
             })
         }
     }
-// -------------------------------- Emails -----------------------------------------------
+    // -------------------------------- Emails -----------------------------------------------
 
     function seleccionarEmail(id, tp) {
         if (tp == 2) {
@@ -720,6 +704,7 @@
             $("#modalAgregarEmail").modal("show");
         }
     }
+
     function almacenarId(id_email, id_usuario, estado) {
         $("#id_almacenar").val(id_email);
         $("#id_almacenar_usuario").val(id_usuario);
@@ -770,7 +755,7 @@
         });
     });
 
-// ----------------------------------- Telefonos --------------------------------------------
+    // ----------------------------------- Telefonos --------------------------------------------
     function seleccionarTelefono(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/telefono/telefonoUsuario'); ?>" + "/" + id;
@@ -804,6 +789,7 @@
             $("#modalAgregartelefono").modal("show");
         }
     }
+
     function almacenarIdTel(id_telefono, id_usuario, estado) {
         console.log(id_telefono + " " + id_usuario)
         $("#id_telefono").val(id_telefono);
@@ -865,15 +851,13 @@
         $("#Resetear").modal("hide");
     });
 
-    function Validardireccion(){ 
-      var dir1 = document.getElementById('dir');
-      var dir2 = document.getElementById('dir2');
-      var dir3 = document.getElementById('dir3');
-      var dir4 = document.getElementById('dir4');
-      var direccionReal = dir1.value + ' ' + dir2.value + ' ' + '#' + dir3.value + ' '+ '-' + ' ' + dir4.value;
+    function Validardireccion() {
+        var dir1 = document.getElementById('dir');
+        var dir2 = document.getElementById('dir2');
+        var dir3 = document.getElementById('dir3');
+        var dir4 = document.getElementById('dir4');
+        var direccionReal = dir1.value + ' ' + dir2.value + ' ' + '#' + dir3.value + ' ' + '-' + ' ' + dir4.value;
 
-      document.getElementById('direccionX').value = direccionReal;
+        document.getElementById('direccionX').value = direccionReal;
     }
-
-
 </script>
