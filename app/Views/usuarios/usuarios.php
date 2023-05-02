@@ -98,7 +98,7 @@
                                 <div class="col">
                                     <label class="col-form-label">Tipo de Documento:</label>
                                     <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
-                                        <option value="0">Seleccione un Tipo</option>
+                                        <option value="">Seleccione un Tipo</option>
                                         <option value="2">Cedula de Ciudadania</option>
                                         <option value="1">Tarjeta de Identidad</option>
                                         <option value="3">Cedula de Extranjeria</option>
@@ -108,10 +108,6 @@
                                     <label for="nombre" class="col-form-label">Numéro de Documento:</label>
                                     <input type="number" class="form-control" name="n_documento" id="n_documento" required>
                                 </div>
-                            </div>
-                            <div class="">
-                                <label id="direccion_telefono" for="email">Nombre de Usuario</label>
-                                <input id="nombre_corto" name="nombre_corto" type="text" class="form-control" placeholder="Con este nombre iniciará sesion" required />
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -132,6 +128,10 @@
                                     <label for="nombre" class="col-form-label">Segundo Apellido:</label>
                                     <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
                                 </div>
+                            <div class="">
+                                <label for="email">Nombre de Usuario</label>
+                                <input id="nombre_corto" name="nombre_corto" type="text" class="form-control" readonly class="form-control-plaintext" />
+                            </div>
                             </div>
                             <label id="direccion_usuario" for="direccion">Dirección:</label>
                             <div class="row">
@@ -654,7 +654,6 @@
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
             $("#UsuarioModal").modal("show");
-
         }
     }
 
@@ -1009,13 +1008,18 @@
         $("#Resetear").modal("hide");
     });
 
-    function Validardireccion() {
+    function ValidarCampos() {
         var dir1 = document.getElementById('dir');
         var dir2 = document.getElementById('dir2');
         var dir3 = document.getElementById('dir3');
         var dir4 = document.getElementById('dir4');
+        var nombre = document.getElementById('primer_nombre');
+        var apellido = document.getElementById('primer_apellido');
+
+        var nombreCorto = nombre.value + ' ' + apellido.value;
         var direccionReal = dir1.value + ' ' + dir2.value + ' ' + '#' + dir3.value + ' ' + '-' + ' ' + dir4.value;
 
         document.getElementById('direccionX').value = direccionReal;
+        document.getElementById('nombre_corto').value = nombreCorto;
     }
 </script>

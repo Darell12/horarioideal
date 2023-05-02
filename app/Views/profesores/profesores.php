@@ -125,8 +125,8 @@
                                         <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
                                     </div>
                                     <div class="col">
-                                        <label for="nombre" class="col-form-label">Segundo Nombre:</label>
-                                        <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+" required>
+                                        <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
+                                        <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+" >
                                     </div>
                                 </div>
                                 <div class="row">
@@ -305,7 +305,7 @@
     <script>
 
 $.validator.addMethod("soloLetras", function(value, element) {
-        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+        return this.optional(element) || /^[A-Za-z#&]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
 
     $("#formulario").validate({
@@ -313,7 +313,7 @@ $.validator.addMethod("soloLetras", function(value, element) {
             id_rol: {
                 required: true,
             },
-            tipo_documento: {
+            tipo_documento: {   
                 required: true,
             },
             n_documento: {
@@ -388,7 +388,7 @@ $.validator.addMethod("soloLetras", function(value, element) {
             dir3: {
                 required: true,
             },
-            dir4: {
+            dir4: { 
                 required: true,
             },
         },
@@ -464,6 +464,7 @@ function seleccionaUsuario(id, tp) {
                         $('#segundo_apellido').val(rs[0]['apellido_s']);
                         $('#direccion').val(rs[0]['direccion']);
                         $('#direccionX').val(rs[0]['direccion']);
+                        $('#formulario').validate().resetForm();
                         $('#id_profesor').val(rs[0]['id_profesor']);
                         $('#contraseña').attr('disabled');
                         $('#confirmar_contraseña').attr('hidden');
@@ -481,6 +482,8 @@ function seleccionaUsuario(id, tp) {
                 $('#primer_apellido').val('');
                 $('#segundo_apellido').val('');
                 $('#contraseña').val('');
+                $('#direccionX').val('');
+                $('#formulario').validate().resetForm();
                 $("#btn_Guardar").text('Guardar');
                 $("#UsuarioModal").modal("show");
             }
