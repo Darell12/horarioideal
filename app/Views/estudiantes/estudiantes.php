@@ -531,8 +531,6 @@
                 <option value='<?php echo $grado['id_grado'] ?>' > <?php echo $grado['alias'] ?> </option>
             <?php } ?>
             </select>   
-            </div>
-            <div class="col">
             <button type="button" id="guardarCambios" onClick="insertarGrado(${id})" class="btn btn-outline-dark btn-sm"><i class="bi bi-check"></i></button>
             </div>
             </div>

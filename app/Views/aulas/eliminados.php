@@ -10,8 +10,8 @@
   </div>
 
   <br>
-  <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-    <table class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
+  <div class="table-responsive">
+    <table id="tablaAulas" class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
       <thead class="table-dark">
         <tr>
           <th class="text-center">Id</th>
@@ -20,13 +20,13 @@
           <th class="text-center">bloque</th>
           <th class="text-center">sede</th>
           <th class="text-center">Estado</th>
-          <th class="text-center" colspan="2">Acciones</th>
+          <th class="text-center">Acciones</th>
         </tr>
       </thead>
       <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
         <?php if ($datos == 'vacio') { ?>
           <tr>
-            <th class="text-center h1" colspan="6">SIN REGISTROS ELIMINADOS</th>
+            <th class="text-center h1" colspan="7">SIN REGISTROS ELIMINADOS</th>
           </tr>
         <?php } else { ?>
           <?php foreach ($datos as $valor) { ?>
@@ -39,7 +39,7 @@
               <th class="text-center">
                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
               </th>
-              <th class="grid grid text-center" colspan="2">
+              <th class="grid grid text-center">
                 <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/aulas/cambiarEstado') . '/' . $valor['id_aula'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
               </th>
 
@@ -75,6 +75,12 @@
   $('#modal-confirma').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
   });
+
+  $('#tablaAulas').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    });
 
 
   $('.close').click(function() {

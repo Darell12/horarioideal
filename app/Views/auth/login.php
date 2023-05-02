@@ -1,18 +1,17 @@
 <head>
-    <title>Cuentas Claras</title>
-    <link rel="icon" href="<?php
-
-                            use App\Controllers\Principal;
-
-                            echo base_url() ?>/img/cuentasclaras.png" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"> <!-- Bootstrap 5 hoja de estilos -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css"> <!-- Bootstrap 5 hoja de estilos iconos -->
-    <script src="<?php echo base_url('/bootstrap/bootstrap.bundle.min.js'); ?>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap/bootstrap.min.css">
+    <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/prueba.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?php echo base_url() ?>/librerias/sweetalert2.js"></script>
+    <script src="<?php echo base_url() ?>/librerias/jquery-3.6.4.js"></script>
+    <script src="<?php echo base_url() ?>/librerias/jquery.validate.js"></script>
+    <script src="<?php echo base_url() ?>/librerias/chart.js"></script>
+    <script src="<?php echo base_url() ?>/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>DataTable/datatables.min.js"></script>
 
 
 </head>
@@ -34,11 +33,16 @@
                     <div style="margin: 20px 10px;" class="form-floating mb-3">
                         <input style="margin: 20px 0;" type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
                         <label for="floatingPassword">Contraseña</label>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-outline-success" type="submit">Iniciar sesión</button>
+                        <div>
+                            <label id="login-error" class="error" for="rol">
+                        </div>
+                        <br>
+                        <div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button class="btn btn-outline-success" type="submit">Iniciar sesión</button>
+                            </div>
                         </div>
                     </div>
-                </div>
         </form>
     </div>
 </section>
@@ -46,25 +50,26 @@
 <script>
     $('#login').on('submit', function(e) {
         e.preventDefault();
-        console.log('object')
         data = {
             nombre_corto: $('#nombre_corto').val(),
             password: $('#password').val(),
         };
         console.log(data);
         $.post('<?php echo base_url('/auth/login') ?>', data, function(response) {
-            console.log(response)
             if (response == 'success') {
-                console.log('tru')
                 window.location.replace('<?php echo base_url('/Principal'); ?>');
             }
             if (response == 'error') {
-                return Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Usuario o Contraseña Incorrecta',
-                    confirmButtonText: 'Volver a Intentar',
-                })
+                $('#login-error').text('Nombre de usuario o Contraseña incorrecta');
+                $('#password').addClass('border border-danger');
+                $('#nombre_corto').addClass('border border-danger');
+
+                setTimeout(() => {
+                    $('#login-error').text('')
+                    $('#password').removeClass('border border-danger');
+                    $('#nombre_corto').removeClass('border border-danger');
+
+                }, 2000);
             }
 
         })
