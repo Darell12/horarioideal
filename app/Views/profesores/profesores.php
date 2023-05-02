@@ -75,7 +75,7 @@
             </table>
         </div>
         <!-- Modal -->
-        <form method="POST" action="<?php echo base_url('/estudiantes/insertar'); ?>" onchange="Validardireccion()" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+        <form id="formulario" method="POST" action="<?php echo base_url('/profesores/insertar'); ?>" onchange="Validardireccion()" autocomplete="off" class="needs-validation" id="formulario" novalidate>
             <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -91,7 +91,7 @@
                                         <select class="form-select form-select" name="id_rol" id="rol" required>
                                             <option value="">Seleccione un Rol</option>
                                             <?php foreach ($roles as $rol) { ?>
-                                                <?php if ($rol['id_rol'] == '3') { ?>
+                                                <?php if ($rol['id_rol'] == '4') { ?>
                                                     <option value="<?php echo $rol['id_rol']; ?>" selected><?php echo $rol['nombre']; ?></option>
                                                 <?php } else { ?>
                                                     <option value="<?php echo $rol['id_rol']; ?>" disabled><?php echo $rol['nombre']; ?></option>
@@ -188,7 +188,7 @@
                                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id_usuario" hidden>
-                                <input type="text" id="id" name="id_estudiante" hidden>
+                                <input type="text" id="id" name="id_profesor" hidden>
 
 
                             </div>
@@ -303,6 +303,190 @@
     </div>
 
     <script>
+
+$.validator.addMethod("soloLetras", function(value, element) {
+        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+    }, "Por favor ingrese solamente letras.");
+
+    $("#formulario").validate({
+        rules: {
+            id_rol: {
+                required: true,
+            },
+            tipo_documento: {
+                required: true,
+            },
+            n_documento: {
+                required: true,
+                minlength: 4,
+                maxlength: 12,
+                digits: true,
+                remote: {
+                    url: '<?php echo base_url() ?>usuarios/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'n_documento';
+                        },
+                        valor: function() {
+                            return $("#n_documento").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#numeroActu").val();
+                        },
+                    },
+                }
+            },
+            nombre_corto: {
+                required: true,
+                soloLetras: true,
+                remote: {
+                    url: '<?php echo base_url() ?>usuarios/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'nombre_corto';
+                        },
+                        valor: function() {
+                            return $("#nombre_corto").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#nombreActu").val();
+                        },
+                    },
+                }
+            },
+            primer_nombre: {
+                required: true,
+                soloLetras: true,
+            },
+            segundo_nombre: {
+                soloLetras: true,
+            },
+            primer_apellido: {
+                required: true,
+                soloLetras: true,
+            },
+            segundo_apellido: {
+                required: true,
+                soloLetras: true,
+            },
+            dir: {
+                required: true,
+            },
+            dir2: {
+                required: true,
+            },
+            dir3: {
+                required: true,
+            },
+            dir4: {
+                required: true,
+            },
+        },
+        messages: {
+            id_rol: {
+                required: "Por favor seleccione una opción",
+            },
+            tipo_documento: {
+                required: "Por favor seleccione una opción",
+            },
+            n_documento: {
+                required: "El número de documento es requerido",
+                digits: "Solo ingrese digitos por favor",
+                minlength: "El número de documento debe tener al menos 4 caracteres",
+                maxlength: "El número de documento no puede tener más de 12 caracteres",
+                remote: "Este número de documento ya esta registrado"
+            },
+            nombre_corto: {
+                required: "Este campo es requerido",
+                remote: "Este nombre de usuario ya esta en uso"
+            },
+            primer_nombre: {
+                required: "Este campo es requerido",
+            },
+            primer_apellido: {
+                required: "Este campo es requerido",
+            },
+            segundo_apellido: {
+                required: "Este campo es requerido",
+            },
+            dir: {
+                required: "Este campo es requerido",
+            },
+            dir2: {
+                required: "Este campo es requerido",
+            },
+            dir3: {
+                required: "Este campo es requerido",
+            },
+            dir4: {
+                required: "Este campo es requerido",
+            },
+            contraseña: {
+                required: "Este campo es requerido",
+            },
+            confirmar_contraseña: {
+                required: "Este campo es requerido",
+                equalTo: "Las contraseñas no coinciden"
+            },
+        }
+    });
+
+        
+
+function seleccionaUsuario(id, tp) {
+            if (tp == 2) {
+                dataURL = "<?php echo base_url('/estudiantes/buscarEstudiantes'); ?>" + "/" + id;
+                $.ajax({
+                    type: "POST",
+                    url: dataURL,
+                    dataType: "json",
+                    success: function(rs) {
+                        console.log(rs[0])
+                        $("#tp").val(2);
+                        $("#id").val(id)
+                        $('#tipo_documento').val(rs[0]['tipo_documento']);
+                        $('#rol').val(rs[0]['id_rol']);
+                        $('#n_documento').val(rs[0]['n_documento']);
+                        $('#nombre_corto').val(rs[0]['nombre_corto']);
+                        $('#primer_nombre').val(rs[0]['nombre_p']);
+                        $('#segundo_nombre').val(rs[0]['nombre_s']);
+                        $('#primer_apellido').val(rs[0]['apellido_p']);
+                        $('#segundo_apellido').val(rs[0]['apellido_s']);
+                        $('#direccion').val(rs[0]['direccion']);
+                        $('#direccionX').val(rs[0]['direccion']);
+                        $('#id_profesor').val(rs[0]['id_profesor']);
+                        $('#contraseña').attr('disabled');
+                        $('#confirmar_contraseña').attr('hidden');
+                        $("#btn_Guardar").text('Actualizar');
+                        $("#UsuarioModal").modal("show");
+                    }
+                })
+            } else {
+                $("#tp").val(1);
+                $('#tipo_documento').val('');
+                $('#n_documento').val('');
+                $('#nombre_corto').val('');
+                $('#primer_nombre').val('');
+                $('#segundo_nombre').val('');
+                $('#primer_apellido').val('');
+                $('#segundo_apellido').val('');
+                $('#contraseña').val('');
+                $("#btn_Guardar").text('Guardar');
+                $("#UsuarioModal").modal("show");
+            }
+        }
+
+
         function Asignaturas(id, estado) {
 
             dataURL = "<?php echo base_url('/profesores/obtenerAsignaturasProfesor'); ?>" + "/" + id

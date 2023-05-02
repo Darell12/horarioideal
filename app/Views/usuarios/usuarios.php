@@ -12,7 +12,7 @@
     </div>
     <br>
     <div class="table-responsive">
-        <table id="tablaUsuarios" class="table table-bordered table-sm table-hover table-light" id="tablePaises" width="100%" cellspacing="0">
+        <table id="tablaUsuarios" class="table table-bordered table-sm table-hover table-light" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
