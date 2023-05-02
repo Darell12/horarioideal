@@ -34,9 +34,6 @@
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
 
-
-
-
 </head>
 
     <nav class="sidebar close">

@@ -4,23 +4,30 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AulaModel;
+use App\Models\Parametros_detModel;
+
 
 
 class Aulas extends BaseController
 {
     protected $aula, $eliminados;
+    protected $paramSede, $paramBloque;
 
 
     public function __construct()
     {
         $this->aula = new AulaModel();
         $this->eliminados = new AulaModel();
+        $this->paramSede = new Parametros_detModel();
+        $this->paramBloque = new Parametros_detModel();
+
     }
     public function index()
     {
         $aula = $this->aula->obtenerAulas();
-
-        $data = ['titulo' => 'Administrar aulas', 'datos' => $aula];
+        $paramSede = $this->paramSede->ObtenerSedes();
+        $paramBloque = $this->paramBloque->ObtenerBloques();
+        $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'sedes' => $paramSede, 'bloques' => $paramBloque];
 
     echo view('/principal/sidebar', $data);
     echo view('/aulas/aulas', $data);
@@ -77,15 +84,9 @@ class Aulas extends BaseController
 
 
         // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Aulas Eliminados','datos' => 'vacio'];
-            echo view('/principal/sidebar', $data);
-            echo view('/aulas/eliminados', $data);
-        } else {
             $data = ['titulo' => 'Administrar Aulas Eliminados', 'datos' => $eliminados];
             echo view('/principal/sidebar', $data);
             echo view('/aulas/eliminados', $data);
-        }
     }
 
 }

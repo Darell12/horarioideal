@@ -25,16 +25,19 @@ class AulaModel extends Model
 
     public function obtenerAulas()
     {
-        $this->select('aulas.*,');
-        $this->where('estado', 'A');
+        $this->select('aulas.*,  p.nombre as sede, vw_param_det.nombre as bloque ');
+        $this->join('parametro_det as p', 'aulas.sede = p.id_parametro_det');
+        $this->join('vw_param_det', 'aulas.bloque = vw_param_det.id_parametro_det ');
+        $this->where('aulas.estado', 'A');
         $datos = $this->findAll();
         return $datos;
     }
     public function obtenerAulasEliminados()
     {
-        $this->select('aulas.*');
-        $this->where('estado', 'E');
-        $this->orderBy('nombre', 'ASC');
+        $this->select('aulas.*,  p.nombre as sede, vw_param_det.nombre as bloque ');
+        $this->join('parametro_det as p', 'aulas.sede = p.id_parametro_det');
+        $this->join('vw_param_det', 'aulas.bloque = vw_param_det.id_parametro_det ');
+        $this->where('aulas.estado', 'E');
         $datos = $this->findAll();
         return $datos;
     }

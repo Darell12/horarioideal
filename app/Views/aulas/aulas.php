@@ -32,11 +32,12 @@
                         <td class="text-center"><?php echo $valor['nombre']; ?></td>
                         <td class="text-center"><?php echo $valor['descripcion']; ?></td>
                         <td class="text-center"><?php echo $valor['bloque']; ?></td>
+
                         <td class="text-center"><?php echo $valor['sede']; ?></td>
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
-                        <td class="grid grid text-center" >
+                        <td class="grid grid text-center">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaAula(<?php echo $valor['id_aula'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#AulaModal">
 
@@ -54,7 +55,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/aulas_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+    <form id="formulario" method="POST" action="<?php echo base_url('/aulas_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
         <div class="modal fade" id="AulaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -72,15 +73,29 @@
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Descripción:</label>
-                                    <input type="text-area" class="form-control" name="descripcion" id="descripcion" required>
+                                    <textarea type="text-area" class="form-control" name="descripcion" id="descripcion" required></textarea>
                                 </div>
-                                <div class="col">
-                                    <label for="nombre" class="col-form-label">Bloque:</label>
-                                    <input type="text" class="form-control" name="bloque" id="bloque" required>
-                                </div>
-                                <div class="col">
-                                    <label for="nombre" class="col-form-label">Sede:</label>
-                                    <input type="text" class="form-control" name="sede" id="sede" required>
+                            </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="nombre" class="col-form-label">Bloque:</label>
+                                        <select name="sede" class="form-select form-select" id="sede">
+                                            <option value="">-Seleccione una opción-</option>
+                                            <?php foreach ($bloques as $valor) { ?>
+                                                <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
+                                            <?php } ?>
+    
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="nombre" class="col-form-label">Sede:</label>
+                                        <select name="sede" class="form-select form-select" id="sede">
+                                            <option value="">-Seleccione una opción-</option>
+                                            <?php foreach ($sedes as $valor) { ?>
+                                                <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <input type="text" id="tp" name="tp" hidden>
@@ -129,6 +144,27 @@
     $('#tablaAulas').DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    });
+
+    $("#formulario").validate({
+        rules: {
+            nombre_aula: {
+                required: true,
+            },
+            descripcion: {
+                required: true,
+                maxlenght: 100,
+            },
+        },
+        messages: {
+            nombre_aula: {
+                required: "Este campo es requerido",
+            },
+            descripcion: {
+                required: "Este campo es requerido",
+            },
+
         }
     });
 
