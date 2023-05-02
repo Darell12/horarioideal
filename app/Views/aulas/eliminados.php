@@ -23,29 +23,23 @@
           <th class="text-center">Acciones</th>
         </tr>
       </thead>
-      <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-        <?php if ($datos == 'vacio') { ?>
-          <tr>
-            <th class="text-center h1" colspan="7">SIN REGISTROS ELIMINADOS</th>
-          </tr>
-        <?php } else { ?>
+      <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">     
           <?php foreach ($datos as $valor) { ?>
             <tr>
-              <th class="text-center"><?php echo $valor['id_aula']; ?></th>
-              <th class="text-center"><?php echo $valor['nombre']; ?></th>
-              <th class="text-center"><?php echo $valor['descripcion']; ?></th>
-              <th class="text-center"><?php echo $valor['bloque']; ?></th>
-              <th class="text-center"><?php echo $valor['sede']; ?></th>
-              <th class="text-center">
+              <td class="text-center"><?php echo $valor['id_aula']; ?></td>
+              <td class="text-center"><?php echo $valor['nombre']; ?></td>
+              <td class="text-center"><?php echo $valor['descripcion']; ?></td> 
+              <td class="text-center"><?php echo $valor['bloque']; ?></td>
+              <td class="text-center"><?php echo $valor['sede']; ?></td>
+              <td class="text-center">
                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
-              </th>
-              <th class="grid grid text-center">
+              </td>
+              <td class="grid grid text-center">
                 <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/aulas/cambiarEstado') . '/' . $valor['id_aula'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
-              </th>
+              </td>
 
             </tr>
           <?php } ?>
-        <?php } ?>
       </tbody>
     </table>
   </div>

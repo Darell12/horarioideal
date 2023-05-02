@@ -196,47 +196,44 @@
             </div>
         </div>
     </form>
+</div>
 
+<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header">
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
 
-    <!-- Modal Confirma Eliminar -->
-    <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div style="text-align:center;" class="modal-header">
-                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
-
-                </div>
-                <div style="text-align:center;font-weight:bold;" class="modal-body">
-                    <p>Seguro Desea Eliminar éste Registro?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-outline-danger btn-ok">Confirmar</a>
-                </div>
             </div>
-        </div>
-    </div>
-    <!-- Resetear Modal -->
-    <div class="modal fade" id="Resetear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div style="text-align:center;" class="modal-header">
-                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Reinicio de Contraseña</h5>
-
-                </div>
-                <div style="text-align:center;font-weight:bold;" class="modal-body">
-                    <p>La constraseña será igual al número de documento</p>
-                    <p>¿Seguro Desea Resetear la contraseña de este usuario?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-outline-danger btn-ok">Confirmar</a>
-                </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea Eliminar éste Registro?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-danger btn-ok">Confirmar</a>
             </div>
         </div>
     </div>
 </div>
+<!-- Resetear Modal -->
+<div class="modal fade" id="Resetear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header">
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Reinicio de Contraseña</h5>
 
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>La constraseña será igual al número de documento</p>
+                <p>¿Seguro Desea Resetear la contraseña de este usuario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-danger btn-ok">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- emails -->
 
 <!-- tabla emalis -->
@@ -600,7 +597,7 @@
             },
         }
     });
-    
+
     function seleccionaUsuario(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;

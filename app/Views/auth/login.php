@@ -23,8 +23,8 @@
                     <h5 style="color: #0b2c44;margin: 20px 10px;" class="card-title divide">Iniciar Sesión</h5>
                     <hr class="sidebar-divider my-0">
                     <div style="margin: 20px 10px;" class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nombre_corto" id="nombre_corto" placeholder="Nombre de Usuario" value="<?= old('nombre_corto') ?>">
-                        <label style="color:#0b2c44" for="floatingInput">Nombre de Usuario</label>
+                        <input type="text" class="form-control" name="n_documento" id="n_documento" placeholder="Nombre de Usuario" value="<?= old('nombre_corto') ?>">
+                        <label style="color:#0b2c44" for="floatingInput">Número de documento</label>
                     </div>
                     <!-- <div>
                         <label class="form-label" for="email">Nombre de Usuario</label>
@@ -51,7 +51,7 @@
     $('#login').on('submit', function(e) {
         e.preventDefault();
         data = {
-            nombre_corto: $('#nombre_corto').val(),
+            n_documento: $('#n_documento').val(),
             password: $('#password').val(),
         };
         console.log(data);
@@ -60,14 +60,14 @@
                 window.location.replace('<?php echo base_url('/Principal'); ?>');
             }
             if (response == 'error') {
-                $('#login-error').text('Nombre de usuario o Contraseña incorrecta');
-                $('#password').addClass('border border-danger');
-                $('#nombre_corto').addClass('border border-danger');
+                $('#login-error').text('Número de documento o Contraseña incorrecta');
+                $('#password').addClass('is-invalid');
+                $('#n_documento').addClass('is-invalid');
 
                 setTimeout(() => {
                     $('#login-error').text('')
-                    $('#password').removeClass('border border-danger');
-                    $('#nombre_corto').removeClass('border border-danger');
+                    $('#password').removeClass('is-invalid');
+                    $('#n_documento').removeClass('is-invalid');
 
                 }, 2000);
             }

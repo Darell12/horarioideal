@@ -20,10 +20,10 @@ class Auth extends BaseController
     }
     public function login()
     {
-        $nombre_corto = $this->request->getPost('nombre_corto');
+        $n_documento = $this->request->getPost('n_documento');
         $password = $this->request->getVar('password');
 
-        $usuarioDatos = $this->usuario->login(['nombre_corto' => $nombre_corto]);
+        $usuarioDatos = $this->usuario->login(['n_documento' => $n_documento]);
 
         if (count($usuarioDatos) > 0 && password_verify($password, $usuarioDatos[0]['contraseña'])) {
 
@@ -43,7 +43,7 @@ class Auth extends BaseController
             return 'success';
             return redirect()->to(base_url('iniciarSesion'))->with('mensaje', '0');
         } else {
-            return 'error';
+            return 'error :' . $usuarioDatos[0]['nombre_corto'];
         }
     }
     public function logout()

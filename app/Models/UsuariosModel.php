@@ -78,7 +78,7 @@ class UsuariosModel extends Model
     {
         $this->select('usuarios.*, roles.nombre as rol');
         $this->join('roles', 'usuarios.id_rol = roles.id_rol');
-        $this->where('nombre_corto', $nombre);
+        $this->where('n_documento', $nombre);
         $this->where('usuarios.estado', 'A');
         $datos = $this->findAll();
         return $datos;
