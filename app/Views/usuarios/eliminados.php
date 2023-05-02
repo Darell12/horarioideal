@@ -1,30 +1,28 @@
 <div class="container bg-white mt-5 shadow rounded-4">
-     <div>
+     <div class="pt-1">
           <h1 class="titulo_Vista text-center">
                <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
           </h1>
      </div>
-     <div style="height: 30px;"></div>
+     <!-- <div style="height: 30px;"></div> -->
      <div>
           <a href="<?php echo base_url('/usuarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
      </div>
 
      <br>
-     <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-          <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+     <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important;">
+          <table id="tablaUsuarios" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
                <thead class="table-dark">
                     <tr>
-                         <th class="text-center">Id</th>
-                         <th class="text-center">Tipo Documento</th>
-                         <th class="text-center">N°Documento</th>
-                         <th class="text-center">N_Usuario</th>
-                         <th class="text-center">Primer Nombre</th>
-                         <th class="text-center">Segundo Nombre</th>
-                         <th class="text-center">Primer Apellido</th>
-                         <th class="text-center">Segundo Apellido</th>
-                         <th class="text-center">Rol</th>
-                         <th class="text-center">Estado</th>
-                         <th class="text-center" colspan="2">Acciones</th>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Tipo Documento</th>
+                    <th class="text-center">Documento</th>
+                    <th class="text-center">N_Usuario</th>
+                    <th class="text-center">Nombres</th>
+                    <th class="text-center">Apellidos</th>
+                    <th class="text-center">Rol</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Acciones</th>
                     </tr>
                </thead>
                <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -35,15 +33,17 @@
                     <?php } else { ?>
                          <?php foreach ($datos as $valor) { ?>
                               <tr>
-                                   <th class="text-center"><?php echo $valor['id_usuario']; ?></th>
-                                   <th class="text-center"><?php echo $valor['t_documento']; ?></th>
-                                   <th class="text-center"><?php echo $valor['n_documento']; ?></th>
-                                   <th class="text-center"><?php echo $valor['nombre_corto']; ?></th>
-                                   <th class="text-center"><?php echo $valor['nombre_p']; ?></th>
-                                   <th class="text-center"><?php echo $valor['nombre_s']; ?></th>
-                                   <th class="text-center"><?php echo $valor['apellido_p']; ?></th>
-                                   <th class="text-center"><?php echo $valor['apellido_s']; ?></th>
-                                   <th class="text-center"><?php echo $valor['rol']; ?></th>
+                                   <td class="text-center"><?php echo $valor['id_usuario']; ?></td>
+                                   <td class="text-center"><?php echo $valor['t_documento']; ?></td>
+                                   <td class="text-center"><?php echo $valor['n_documento']; ?></td>
+                                   <td class="text-center"><?php echo $valor['nombre_corto']; ?></td>
+                                   <td class="text-center"><?php echo $valor['nombre_p'] . ' ' . $valor['nombre_s']; ?></td>
+                                   <td class="text-center"><?php echo $valor['apellido_p'] . ' ' . $valor['apellido_s']; ?></td>
+                                   <?php if ($valor['rol'] == 'Estudiante') { ?>
+                                        <td class="text-center"><a href="<?php echo base_url('estudiantes') ?>" class="nav-link text-success"><?php echo $valor['rol']; ?></a></td>
+                                   <?php } else { ?>
+                                        <td class="text-center"><?php echo $valor['rol']; ?></td>
+                                   <?php } ?>
                                    <th class="text-center">
                                         <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : '<span class="text-danger"> Inactivo </span>'; ?>
                                    </th>
@@ -141,6 +141,11 @@
           $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
      });
 
+     $('#tablaUsuarios').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    });
 
      $('.close').click(function() {
           $("#modal-confirma").modal("hide");

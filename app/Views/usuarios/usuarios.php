@@ -4,14 +4,14 @@
             <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
         </h1>
     </div>
-    <div style="height: 30px;"></div>
+    <!-- <div style="height: 30px;"></div> -->
     <div>
         <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
         <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
         <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
     </div>
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important;">
+    <div class="table-responsive">
         <table id="tablaUsuarios" class="table table-bordered table-sm table-hover table-light" id="tablePaises" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
@@ -174,7 +174,7 @@
                                     <input id="contraseña" name="contraseña" type="password" class="form-control" required />
                                 </div>
                                 <div class="col">
-                                    <label id="password_label" for="password">Confirme Contraseña</label>
+                                    <label id="password_label_c" for="password">Confirme Contraseña</label>
                                     <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
                                 </div>
                             </div>
@@ -182,6 +182,8 @@
                             <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                             <input type="text" id="tp" name="tp" hidden>
                             <input type="text" id="id" name="id" hidden>
+                            <input type="text" id="nombreActu" name="nombreActu" hidden>
+                            <input type="text" id="numeroActu" name="numeroActu" hidden>
 
 
                         </div>
@@ -483,6 +485,12 @@
                         valor: function() {
                             return $("#n_documento").val();
                         },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#numeroActu").val();
+                        },
                     },
                 }
             },
@@ -499,6 +507,12 @@
                         },
                         valor: function() {
                             return $("#nombre_corto").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#nombreActu").val();
                         },
                     },
                 }
@@ -584,10 +598,9 @@
                 required: "Este campo es requerido",
                 equalTo: "Las contraseñas no coinciden"
             },
-
         }
     });
-
+         let variable
     function seleccionaUsuario(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
@@ -603,16 +616,21 @@
                     $('#rol').val(rs[0]['id_rol']);
                     $('#n_documento').val(rs[0]['n_documento']);
                     $('#nombre_corto').val(rs[0]['nombre_corto']);
+                    $('#nombreActu').val(rs[0]['nombre_corto']);
+                    $('#numeroActu').val(rs[0]['n_documento']);
                     $('#primer_nombre').val(rs[0]['nombre_p']);
                     $('#segundo_nombre').val(rs[0]['nombre_s']);
                     $('#primer_apellido').val(rs[0]['apellido_p']);
                     $('#segundo_apellido').val(rs[0]['apellido_s']);
                     $('#direccionX').val(rs[0]['direccion']);
-                    // $('#contraseña').val(rs[0]['contraseña']);
-                    $('#contraseña').attr('hidden');
-                    $('#confirmar_contraseña').attr('hidden');
+                    $('#contraseña').attr('hidden', '');
+                    $('#password_label').attr('hidden', '');
+                    $('#confirmar_contraseña').attr('hidden', '');
+                    $('#password_label_c').attr('hidden', '');
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
+
+
                 }
             })
         } else {
@@ -628,6 +646,7 @@
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
             $("#UsuarioModal").modal("show");
+
         }
     }
 

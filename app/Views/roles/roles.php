@@ -4,7 +4,6 @@
             <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
         </h1>
     </div>
-    <div style="height: 30px;"></div>
     <div>
         <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
         <a href="<?php echo base_url('/roles/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
@@ -12,14 +11,14 @@
     </div>
 
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table id="example-table" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+    <div class="table-responsive">
+        <table id="tablaRoles" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Estado</th>
-                    <th class="text-center" colspan="2">Acciones</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -30,7 +29,7 @@
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
-                        <td class="grid grid text-center" colspan="2">
+                        <td class="grid grid text-center">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_rol'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol">
 
@@ -48,7 +47,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/roles_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+    <form id="formulario" method="POST" action="<?php echo base_url('/roles_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
         <div class="modal fade" id="RolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -107,6 +106,18 @@
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
+
+    $('#tablaRoles').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    });
+
+    $.validator.addMethod("soloLetras", function(value, element) {
+        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+    }, "Por favor ingrese solamente letras.");
+
+    $("#formulario")
 
     function seleccionaRol(id, tp) {
         if (tp == 2) {
