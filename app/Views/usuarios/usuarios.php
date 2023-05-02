@@ -600,7 +600,7 @@
             },
         }
     });
-         let variable
+    
     function seleccionaUsuario(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
@@ -623,14 +623,16 @@
                     $('#primer_apellido').val(rs[0]['apellido_p']);
                     $('#segundo_apellido').val(rs[0]['apellido_s']);
                     $('#direccionX').val(rs[0]['direccion']);
+                    $('#tituloModal').text('Editar Usuario');
                     $('#contraseña').attr('hidden', '');
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
                     $('#password_label_c').attr('hidden', '');
+                    $('#formulario').validate().resetForm();
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
-
-
+                    
+                    
                 }
             })
         } else {
@@ -643,6 +645,12 @@
             $('#primer_apellido').val('');
             $('#segundo_apellido').val('');
             $('#contraseña').val('');
+            $('#contraseña').removeAttr('hidden', '');
+            $('#password_label').removeAttr('hidden', '');
+            $('#confirmar_contraseña').removeAttr('hidden', '');
+            $('#password_label_c').removeAttr('hidden', '');
+            $('#formulario').validate().resetForm();
+            $('#tituloModal').text('Añadir Usuario');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
             $("#UsuarioModal").modal("show");

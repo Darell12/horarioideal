@@ -12,8 +12,8 @@
     </div>
 
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table id="example-table" class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
+    <div class="table-responsive">
+        <table id="tablaAulas" class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
@@ -22,7 +22,7 @@
                     <th class="text-center">bloque</th>
                     <th class="text-center">sede</th>
                     <th class="text-center">Estado</th>
-                    <th class="text-center" colspan="2">Acciones</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -36,7 +36,7 @@
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
-                        <td class="grid grid text-center" colspan="2">
+                        <td class="grid grid text-center" >
 
                             <button class="btn btn-outline-primary" onclick="seleccionaAula(<?php echo $valor['id_aula'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#AulaModal">
 
@@ -124,6 +124,12 @@
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+
+    $('#tablaAulas').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
     });
 
     function seleccionaAula(id, tp) {
