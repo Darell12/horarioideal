@@ -22,7 +22,7 @@ class Email extends BaseController
         }
         echo json_encode($email);
     }
-    public function insertar()
+    public function insertar()  
     {
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
@@ -39,8 +39,8 @@ class Email extends BaseController
             $this->email->update($this->request->getPost('id_email'), [
                 'email' => $this->request->getPost('email'),
                 'prioridad' => $this->request->getPost('prioridad'),
-                // 'id_usuario' => $this->request->getPost('id_usuario'),
             ]);
+            return 'Se Actualizo el email y su id es: ' . $this->request->getPost('id_email');
         }
 
     }

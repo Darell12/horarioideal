@@ -97,6 +97,7 @@ class Usuarios extends BaseController
                 'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionX'),
             ]);
+            return json_encode($this->request->getPost('id'));
         }
 
     }

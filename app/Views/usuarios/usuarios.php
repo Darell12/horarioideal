@@ -276,6 +276,7 @@
                             <div class="invalid-feedback" id="errorPrioridad"></div>
                         </div>
                         <input hidden type="text" id="id_email" name="id_email">
+                        <input hidden type="text" id="tpExist" name="tpExist">
                     </div>
                 </div>
 
@@ -571,55 +572,47 @@
             contraseña: $('#contraseña').val(),
 
         }
-        console.log(data);
 
-        if (data.tp == '1') {
-            $.post("<?php echo base_url('/usuarios/insertar'); ?>", data, function(response) {
-                // Actualiza el contenido de la página
-                insertarEmail(response);
-                console.log(response);
-                $('#UsuarioModal').modal('hide');
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/usuarios/insertar'); ?>",
+            data: {
+                tp: $('#tp').val(),
+                id: $('#id').val(),
+                numeroActu: $('#numeroActu').val(),
+                id_rol: $('#rol').val(),
+                tipo_documento: $('#tipo_documento').val(),
+                n_documento: $('#n_documento').val(),
+                primer_nombre: $('#primer_nombre').val(),
+                segundo_nombre: $('#segundo_nombre').val(),
+                primer_apellido: $('#primer_apellido').val(),
+                segundo_apellido: $('#segundo_apellido').val(),
+                direccionX: $('#direccionX').val(),
+                contraseña: $('#contraseña').val(),
 
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Registro almacenado con exito!'
-                })
-            });
-        } else {
-            $.post("<?php echo base_url('/usuarios/insertar'); ?>", data, function(response) {
-                // Actualiza el contenido de la página
-                insertarEmail(response);
-                console.log(response);
-                $('#UsuarioModal').modal('hide');
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+            },
+            dataType: "json",
+        }).done(function(data) {
+            $('#UsuarioModal').modal('hide');
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Registro almacenado con exito!'
-                })
-            });
-        }
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro almacenado con exito!'
+            })
+            console.log(data)
+            insertarEmail(data);
+        })
 
     })
 
@@ -710,13 +703,6 @@
     }
     // -------------------------------- Emails -----------------------------------------------
 
-    function almacenarId(id_email, id_usuario, estado) {
-        $("#id_almacenar").val(id_email);
-        $("#id_almacenar_usuario").val(id_usuario);
-        $("#id_almacenar_estado").val(estado);
-        $("#modal-confirma-email").modal('show');
-    }
-
     function generarTablaEmail(Emails) {
 
         let contador = 0;
@@ -727,14 +713,13 @@
 
         let contenido = '';
         Emails.forEach(email => {
-            console.log(contador);
             contador++
             contenido += `
             <tr id="util${contador}">
             <td class="text-center">${email.email}</td>
             <td class="text-center">${prioridades[email.prioridad]}</td>
             <td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
-            <td hidden class="text-center"></td>
+            <td hidden class="text-center">${email.tp}</td>
                             <td class="text-center">
                             <button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
                             <button class="btn btn-outline-danger" onclick="seleccionarEmail( ${email.id_email} ,2 );"><i class="bi bi-trash"></i></button>
@@ -750,6 +735,9 @@
         let email = $('#email_modal').val();
         let prioridad = $('#prioridad').val();
         let id_email = $('#id_email').val();
+        let tp = $('#tpExist').val();
+
+
         let filtroPrioridad = [];
         let filtroEmail = [];
 
@@ -759,7 +747,6 @@
 
         console.log(filtroPrioridad);
         if (filtroPrioridad.length > 0 && prioridad == 6) {
-            console.log('Filtro prioridad');
             $('#email_modal').addClass('is-invalid');
             $('#prioridad').addClass('is-invalid');
             $('#errorPrioridad').css('display', 'block');
@@ -776,7 +763,6 @@
         }
 
         if (filtroEmail.length > 0) {
-            console.log('Filtro email');
             $('#email_modal').addClass('is-invalid');
             $('#prioridad').addClass('is-invalid');
             $('#errorEmail').css('display', 'block');
@@ -794,9 +780,11 @@
 
         if (email != '' && prioridad != '') {
             tablaTemporal.push({
+                tp: tp == '' ? 1 : tp,
                 email: email,
                 prioridad: prioridad,
                 id_email: id_email
+
             })
             generarTablaEmail(tablaTemporal);
 
@@ -831,6 +819,7 @@
             }, 2000);
             return
         }
+        $('#tpExist').val('')
     });
 
     function editarEmail(id) {
@@ -839,7 +828,7 @@
         const emailEditar = fila.find('td').eq(0)
         const prioridadEditar = fila.find('td').eq(1)
         const idEmail = fila.find('td').eq(2)
-        console.log(prioridadEditar.text());
+        const tpExist = fila.find('td').eq(3)
         optionPrincipal = $('#prioridad').find('option[value="6"]')
 
         if (prioridadEditar.text() === 'Principal') {
@@ -847,6 +836,7 @@
             $('#prioridad').val(6);
             $('#email_modal').val(emailEditar.text());
             $('#id_email').val(idEmail.text());
+            $('#tpExist').val(tpExist.text());
         } else {
             $('#prioridad').val(7);
             $('#email_modal').val(emailEditar.text());
@@ -861,18 +851,20 @@
     }
 
     function insertarEmail(id) {
-
         tablaTemporal.forEach(registro => {
-            data = {
-                tp: $('#tp'),
-                email: registro.email,
-                prioridad: registro.prioridad,
-                id_email: registro.id_email,
-            }
-
-            $.post("<?php echo base_url('/email/insertar'); ?>", data, function(response) {
-                console.log(response);
-            });
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/email/insertar'); ?>",
+                data: {
+                    tp: registro.tp,
+                    email: registro.email,
+                    prioridad: registro.prioridad,
+                    id_email: registro.id_email,
+                    id_usuario: id
+                },
+                dataType: "json",
+            }).done(function(data) {
+            })
         });
 
     }
@@ -917,10 +909,10 @@
                     rs.forEach(element => {
 
                         tablaTemporal.push({
+                            tp: 2,
                             email: element.email,
                             prioridad: element.prioridad,
                             id_email: element.id_email,
-
                         })
                     });
                     console.log(tablaTemporal);
