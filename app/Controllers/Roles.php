@@ -82,5 +82,24 @@ class Roles extends BaseController
             echo view('/roles/eliminados', $data);
         }
     }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombre_rol = $this->request->getPost('nombre_rol');
 
+        $filtro = $this->rol->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $nombre_rol) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
+    }
 }

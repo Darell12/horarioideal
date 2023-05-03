@@ -30,3 +30,34 @@ body{
     transition: var(--tran-05);
 }
 
+div.dataTables_wrapper div.dataTables_filter input {
+    border: #daeaf4;
+    border-radius: 0;
+    border-bottom: 0.125rem solid var(--primary-color);
+}
+
+div.dataTables_wrapper div.dataTables_filter label{
+    margin: 20px 10px;
+}
+
+div.dataTables_wrapper div.dataTables_length select{
+    border: #daeaf4;
+    border-radius: 0;
+    border-bottom: 0.125rem solid var(--primary-color);
+    margin-left: 15px;
+}
+div.dataTables_wrapper div.dataTables_info{
+    margin: 20px 10px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination{
+    margin: 20px 10px;
+}
+.page-item.active .page-link{
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#acciones{
+    border: none;
+}

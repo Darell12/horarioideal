@@ -117,7 +117,36 @@
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
 
-    $("#formulario")
+      $("#formulario").validate({
+        rules: {
+            nombre_rol: {
+                required: true,
+                soloLetras: true,
+                remote: {
+                    url: '<?php echo base_url() ?>roles/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'nombre';
+                        },
+                        valor: function() {
+                            return $("#nombre_rol").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                    },
+                }
+            },
+        },
+        messages: {
+            nombre_rol: {
+                required: "Este campo es requerido",
+                remote: "Este rol ya esta registrado"
+            },
+        }
+    });
 
     function seleccionaRol(id, tp) {
         if (tp == 2) {
