@@ -1,8 +1,32 @@
-* {
-    margin: 0%;
-    padding: 0%;
+:root{
+   
+    --body-color: #daeaf4;
+    --sidebar-color: #FFF;
+    --primary-color: #418ab7;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #383838;
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
 }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 
 label.error {
     color: #dc3545;
 }
+
+body{
+    min-height: 100vh;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+

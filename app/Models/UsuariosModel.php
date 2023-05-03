@@ -13,7 +13,7 @@ class UsuariosModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre_corto', 'n_documento', 'tipo_documento', 'nombre_p', 'nombre_s', 'apellido_p', 'apellido_s', 'contraseña', 'id_rol', 'direccion', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['n_documento', 'tipo_documento', 'nombre_p', 'nombre_s', 'apellido_p', 'apellido_s', 'contraseña', 'id_rol', 'direccion', 'estado', 'usuario_crea'];
     protected $useTimestamps = true;
     protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';
@@ -25,7 +25,7 @@ class UsuariosModel extends Model
 
     public function obtenerUsuarios()
     {
-        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_corto, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
         $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.estado', 'A');
@@ -35,7 +35,7 @@ class UsuariosModel extends Model
 
     public function obtenerUsuariosEliminados()
     {
-        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_corto, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
         $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.estado', 'E');
@@ -52,7 +52,7 @@ class UsuariosModel extends Model
     }
     public function buscarUsuarioPerfil($id)
     {
-        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_corto, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.resumen as t_documento, usuarios.direccion, grados.alias as grado, emails.email, usuarios.id_rol, telefonos.numero ');
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.resumen as t_documento, usuarios.direccion, grados.alias as grado, emails.email, usuarios.id_rol, telefonos.numero ');
         $this->join('telefonos', 'usuarios.id_usuario = telefonos.id_usuario', 'left');
         $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
         $this->join('estudiantes', 'usuarios.id_usuario = estudiantes.id_usuario', 'left');

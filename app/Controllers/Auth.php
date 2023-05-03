@@ -43,7 +43,7 @@ class Auth extends BaseController
             return 'success';
             return redirect()->to(base_url('iniciarSesion'))->with('mensaje', '0');
         } else {
-            return 'error :' . $usuarioDatos[0]['nombre_corto'];
+            return 'error';
         }
     }
     public function logout()

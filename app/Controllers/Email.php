@@ -13,7 +13,7 @@ class Email extends BaseController
         $this->email = new EmailsModel();
     }
 
-    public function Email($id, $estado)
+    public function emailsUsuario($id, $estado = 'A')
     {
         $dataArray = array();
         $email = $this->email->ObtenerEmailUsuario($id, $estado);
@@ -24,7 +24,7 @@ class Email extends BaseController
     }
     public function insertar()
     {
-        $tp = $this->request->getPost('tp_email');
+        $tp = $this->request->getPost('tp');
         if ($tp == 1) {
 
             $this->email->save([
@@ -33,6 +33,8 @@ class Email extends BaseController
                 'id_usuario' => $this->request->getPost('id_usuario'),
                 'usuario_crea' => session('id'),
             ]);
+            $idIngreso = $this->email->getInsertID();
+            return 'Se ingreso un email y su id es:' .  $idIngreso;
         } else {
             $this->email->update($this->request->getPost('id_email'), [
                 'email' => $this->request->getPost('email'),
@@ -40,6 +42,7 @@ class Email extends BaseController
                 // 'id_usuario' => $this->request->getPost('id_usuario'),
             ]);
         }
+
     }
     public function emailUsuario($id)
     {
