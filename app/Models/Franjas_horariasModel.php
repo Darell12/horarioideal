@@ -30,7 +30,7 @@ class Franjas_horariasModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-
+   
     public function obtenerFranjasEliminados()
     {
         $this->select('franjas_horarias.*');
@@ -60,6 +60,14 @@ class Franjas_horariasModel extends Model
         $this->where('id', $id);
 
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
+        return $datos;
+    }
+    public function filtro($campo ,$valor)
+    {
+        $this->select('franjas_horarias.*');
+        $this->where($campo, $valor);
+        $this->where('estado', 'A');
+        $datos = $this->first();
         return $datos;
     }
 

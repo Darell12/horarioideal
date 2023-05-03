@@ -27,6 +27,7 @@ class Franjas_horarias extends BaseController
     }
     public function insertar()
     {
+       
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
             $this->franja->save([
@@ -61,6 +62,33 @@ class Franjas_horarias extends BaseController
             echo view('/principal/sidebar', $data);
             echo view('/franjas_horarias/eliminados', $data);
         }
+    }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $hora_inicio = $this->request->getPost('hora_inicio');
+        $filtro = $this->franja->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $hora_inicio) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        
+        if ($tp == 2 && $valor == $hora_inicio) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
+
+        
     }
 
     public function buscarFranjas($id)

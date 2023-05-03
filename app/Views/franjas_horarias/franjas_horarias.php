@@ -30,14 +30,14 @@
         </div>
         <br>
         <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-            <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+            <table class="table table-bordered table-sm table-hover" id="tablaFranjas" width="100%" cellspacing="0">
                 <thead class="table-dark">
                     <tr>
                         <th class="text-center">Id</th>
                         <th class="text-center">Hora Inicio</th>
                         <th class="text-center">Hora Fin</th>
                         <th class="text-center">Estado</th>
-                        <th class="text-center" colspan="2">Acciones</th>
+                        <th class="text-center" >Acciones</th>
                     </tr>
                 </thead>
                 <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -129,6 +129,70 @@
         $('#modal-confirma').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         });
+        $('#tablaFranjas').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    });
+    $("#formulario").validate({
+        rules: {
+            hora_inicio: {
+                required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>franjas_horarias/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'hora_inicio';
+                        },
+                        valor: function() {
+                            return $("#hora_inicio").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        hora_inicio: function() {
+                            return $("#hora_inicio").val();
+                        },
+                    },
+                }
+            },
+           hora_fin: {
+                required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>franjas_horarias/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'hora_fin';
+                        },
+                        valor: function() {
+                            return $("#hora_fin").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        hora_fin: function() {
+                            return $("#hora_fin").val();
+                        },
+                    },
+                }
+                
+            },
+        },
+        messages: {
+            hora_inicio: {
+                required: "La hora es requerida",
+                remote: "Esta hora de inicio ya existe"
+            },
+            hora_fin: {
+                required: "La hora es requerida",
+            },
+            
+        }
+    });
 
         function seleccionaFranja(id, tp) {
             if (tp == 2) {
