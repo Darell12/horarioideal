@@ -7,7 +7,7 @@
                     <div class="card-body text-center">
                         <i class='bx bxs-user-circle  bx-lg'></i>
 
-                        <h5 class="my-2"><?php echo $datos['nombre_corto'] ?></h5>
+                        <h5 class="my-2"><?php echo $datos['nombre_p']. ' ' . $datos['apellido_p'] ?></h5>
                         <p class="text-muted mb-1"><?php echo $datos['rol'] ?></p>
                         <p class="text-muted mb-1"><?php echo $datos['direccion'] ?></p>
                         <?php if ($datos['rol'] == 'Estudiante') { ?>
@@ -95,7 +95,7 @@
     </div>
 </section>
 
-<form method="POST" action="<?php echo base_url('/usuarios/actualizarContraseña'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
+<form method="POST" action="<?php echo base_url('/usuarios/perfil'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
     <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -132,6 +132,34 @@
 
 
 <script>
+
+$('#formulario').on('submit', function(e) {
+        e.preventDefault();
+        data = {
+            contraseña: $('#contraseña').val(),
+        };
+        console.log(data);
+
+        $.post('<?php echo base_url('/usuarios/perfil') ?>', data, function(response) {
+            if (response == 'success') {
+                window.location.replace('<?php echo base_url('/perfil'); ?>');
+            }
+            if (response == 'error') {
+                $('#login-error').text('Esta contraseña no existe');
+                $('#contraseña').addClass('is-invalid');
+
+                setTimeout(() => {
+                    $('#login-error').text('')
+                    $('#contraseña').removeClass('is-invalid');
+
+                }, 2000);
+            }
+
+        })
+
+    });
+
+
     function EditarPerfil(id) {
         let newElement = `
             <form onChange="Direccion()">

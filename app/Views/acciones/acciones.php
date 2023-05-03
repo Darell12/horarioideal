@@ -49,7 +49,7 @@
             </table>
         </div>
         <!-- Modal -->
-        <form method="POST" action="<?php echo base_url('/acciones_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+        <form method="POST" id="formulario" action="<?php echo base_url('/acciones_insertar'); ?>" autocomplete="off" class="needs-validation" novalidate>
             <div class="modal fade" id="AccionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -64,10 +64,14 @@
                                 <div class="col">
                                         <label for="nombre" class="col-form-label">Nombre:</label>
                                         <input type="text" class="form-control" name="nombre_accion" id="nombre_accion" required>
-                                    </div>        
-                                
+                                    </div>  
+                                    
+                                    
+                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="nombreActu" name="nombreActu" hidden>
+                                <input type="text" id="numeroActu" name="numeroActu" hidden>
                             
 
                             </div>
@@ -109,6 +113,45 @@
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
 
+    $.validator.addMethod("soloLetras", function(value, element) {
+        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+    }, "Por favor ingrese solamente letras.");
+
+    $("#formulario").validate({
+        rules: {
+            nombre_accion: {
+                required: true,
+                soloLetras: true,
+                remote: {
+                    url: '<?php echo base_url() ?>acciones/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'nombre';
+                        },
+                        valor: function() {
+                            return $("#nombre_accion").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#numeroActu").val();
+                        },
+                    },
+                }
+            },
+        },
+        messages: {
+            nombre_accion: {
+                required: "Este campo es requerido",
+                remote: "Esta accion ya esta registrada"
+            },
+        }
+    });
+
+
     function seleccionaAccion(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/acciones/buscarAccion'); ?>" + "/" + id;
@@ -121,6 +164,7 @@
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#nombre_accion').val(rs[0]['nombre']);
+                    $('#formulario').validate().resetForm();
                     $("#btn_Guardar").text('Actualizar');
                     $("#AccionModal").modal("show");
                 }
@@ -128,6 +172,7 @@
         } else {
             $("#tp").val(1);
             $('#nombre_accion').val('');
+            $('#formulario').validate().resetForm();
             $("#btn_Guardar").text('Guardar');
             $("#AccionModal").modal("show");
         }

@@ -47,7 +47,7 @@
                     <div id="usuarioInfo" class="text logo-text">
                         <?php echo session('usuario') ?>
                         <span style="font-size: 14px;" class="text nav-text"><?php echo session('rol') ?></span>
-                    </div>
+                    </div> 
                 </div>
             </a>
             <i class='bx bx-chevron-right toggle'></i>
