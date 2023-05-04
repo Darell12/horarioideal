@@ -97,8 +97,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
+                                    <label for="nombre" class="col-form-label">Telefonos:</label>
+                                    <div class="input-group">
+                                        <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" disabled>
+                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -206,10 +209,10 @@
 
 <!-- tabla emalis -->
 <div id="ModalEmail" class="modal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="" title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
+                <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="#" title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -267,7 +270,7 @@
         <div class="modal-content">
             <div class="modal-header">
 
-                <h5 class="modal-title" id="titulo_salario">Añadir Telefono</h5>
+                <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -408,7 +411,6 @@
                 data = data[0]
                 var tableData = [];
                 for (var i = 0; i < data.length; i++) {
-                    console.log(data[0].id_usuario);
                     var rowData = [];
                     rowData.push(data[i].id_usuario);
                     rowData.push(data[i].t_documento);
@@ -444,14 +446,68 @@
                     table.append(row);
                 }
 
-                let tablaUsuarios = $('#tablaUsuarios').DataTable({
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                    }
-                });
+                
             }
         });
     }
+    var contador = 0 
+    var tablaUsuarios = $('#tablaUsuarios').DataTable({
+        ajax: {
+            url: '<?= base_url('usuarios/obtenerUsuarios') ?>',
+            method: "POST",
+            data: {
+                estado: 'A'
+            },
+            dataSrc : "",
+        },
+        columns: [{
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
+            },
+            {
+                data: "t_documento"
+            },
+            {
+                data: "n_documento"
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return data.nombre_p + " " + data.nombre_s 
+                },
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return data.apellido_p + " " + data.apellido_s 
+                },
+            },
+            {
+                data : "rol"
+            },
+            {
+                data : "estado"
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<div class="btn-group">
+                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_usuario} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') ?>/ ${data.id_usuario}/ .${data.n_documento}" title="Resetear Contraseña">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>` + " " + `<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') ?>/${data.id_usuario}/ 'E'; ?>" title="Eliminar Registro">
+                                <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>` 
+                },
+            }
+        ]
+    })
 
 
     $.validator.addMethod("soloLetras", function(value, element) {
@@ -625,12 +681,9 @@
                 icon: 'success',
                 title: 'Registro almacenado con exito!'
             })
-            console.log(data)
             insertarEmail(data);
-
-            setTimeout(() => {
-                location.reload();
-            }, 3200);
+            contador = 0
+            tablaUsuarios.ajax.reload(null, false)
         })
 
     })
@@ -788,7 +841,7 @@
             }
 
 
-            
+
         })
 
         console.log(filtroPrioridad);
