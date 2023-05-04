@@ -182,11 +182,6 @@ $('#formulario').on('submit', function(e) {
                                     <input type="number" class="form-control" name="n_documento" id="n_documento" >
                                 </div>
 
-                                <div class="col">
-                                    <label for="nombre" class="col-form-label"></label>
-                                    <input type="text" class="form-control" name="nombre_corto" id="nombre_corto" placeholder="Nombre de usuario" >
-                                </div>
-
                                 </div>
                             </div>
                         </div>

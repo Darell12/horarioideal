@@ -56,6 +56,7 @@ class Usuarios extends BaseController
 
         $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos];
 
+        
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
         echo view('/principal/footer', $data);
