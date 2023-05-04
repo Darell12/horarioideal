@@ -30,13 +30,12 @@ class Usuarios extends BaseController
     }
     public function index()
     {
-
-        $usuario = $this->usuario->obtenerUsuarios();
+        
         // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerPrioridad();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
@@ -129,12 +128,9 @@ class Usuarios extends BaseController
     }
     public function obtenerUsuarios()
     {
-        $returnData = array();
-        $usuario = $this->usuario->obtenerUsuarios();
-        if (!empty($usuario)) {
-            array_push($returnData, $usuario);
-        }
-        echo json_encode($returnData);
+        $estado = $this->request->getPost('estado');
+        $usuario = $this->usuario->obtenerUsuarios($estado);
+        echo json_encode($usuario);
     }
 
     public function cambiarEstado($id, $estado)
