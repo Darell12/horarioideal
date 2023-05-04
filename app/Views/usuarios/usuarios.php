@@ -396,61 +396,7 @@
         console.log('Hola')
     });
 
-    $(document).ready(function() {
-        generarTablaUsuarios();
-
-    })
-
-    function generarTablaUsuarios() {
-        $.ajax({
-            url: '<?= base_url('usuarios/obtenerUsuarios') ?>',
-            method: "POST",
-            dataType: 'json',
-            success: function(data) {
-                // Parsea la respuesta AJAX y extrae los datos que necesitas para crear la tabla
-                data = data[0]
-                var tableData = [];
-                for (var i = 0; i < data.length; i++) {
-                    var rowData = [];
-                    rowData.push(data[i].id_usuario);
-                    rowData.push(data[i].t_documento);
-                    rowData.push(data[i].n_documento);
-                    rowData.push(data[i].nombre_p + ' ' + data[i].nombre_s);
-                    rowData.push(data[i].apellido_p + ' ' + data[i].apellido_s);
-                    rowData.push(data[i].estado);
-                    rowData.push(data[i].rol);
-                    rowData.push(`<div class="btn-group">
-                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data[i].id_usuario} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') ?>/ ${data[i].id_usuario}/ .${data[i].n_documento}" title="Resetear Contraseña">
-                                    <i class="bi bi-arrow-clockwise"></i>
-                                </button>
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') ?>/${data[i].id_usuario}/ 'E'; ?>" title="Eliminar Registro">
-                                <i class="bi bi-trash3"></i>
-                                </button>
-                            </div>`);
-                    tableData.push(rowData);
-                }
-
-                // Crea la tabla HTML vacía
-                var table = $('#tablaUsuarios');
-
-                // Crea las filas y columnas de la tabla
-                for (var i = 0; i < tableData.length; i++) {
-                    var row = $('<tr>');
-                    for (var j = 0; j < tableData[i].length; j++) {
-                        var cell = $('<td>').html(tableData[i][j]);
-                        row.append(cell);
-                    }
-                    table.append(row);
-                }
-
-                
-            }
-        });
-    }
-    var contador = 0 
+    var contador = 0
     var tablaUsuarios = $('#tablaUsuarios').DataTable({
         ajax: {
             url: '<?= base_url('usuarios/obtenerUsuarios') ?>',
@@ -458,7 +404,7 @@
             data: {
                 estado: 'A'
             },
-            dataSrc : "",
+            dataSrc: "",
         },
         columns: [{
                 data: null,
@@ -476,20 +422,20 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return data.nombre_p + " " + data.nombre_s 
+                    return data.nombre_p + " " + data.nombre_s
                 },
             },
             {
                 data: null,
                 render: function(data, type, row) {
-                    return data.apellido_p + " " + data.apellido_s 
+                    return data.apellido_p + " " + data.apellido_s
                 },
             },
             {
-                data : "rol"
+                data: "rol"
             },
             {
-                data : "estado"
+                data: "estado"
             },
             {
                 data: null,
@@ -503,12 +449,11 @@
                                 </button>` + " " + `<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') ?>/${data.id_usuario}/ 'E'; ?>" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
-                            </div>` 
+                            </div>`
                 },
             }
         ]
     })
-
 
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
@@ -809,10 +754,6 @@
         let id_email = $('#id_email').val();
         let tp = $('#tpExist').val();
 
-
-        let filtroPrioridad = [];
-        let filtroEmail = [];
-
         filtroPrioridad = tablaTemporal.filter(p => p.prioridad == 6);
         filtroEmail = tablaTemporal.filter(p => p.email == email);
 
@@ -823,101 +764,57 @@
         }
 
         $.post('<?php echo base_url() ?>/email/validar', datosValidar, function(response) {
-            console.log(response);
             if (response == true) {
                 $('#email_modal').addClass('is-invalid');
+                $('#errorEmail').text('Este email ya se encuentra Registrado');
+                setTimeout(() => {
+                    $('#email_modal').removeClass('is-invalid');
+                    $('#errorEmail').text('');
+                }, 2000);
+            } else if ([email, prioridad].includes('')) {
+                $('#email_modal').addClass('is-invalid');
                 $('#prioridad').addClass('is-invalid');
-                $('#errorPrioridad').css('display', 'block');
-                $('#errorPrioridad').text('Este email ya se encuentra Registrado');
-
+                $('#errorEmail').text('Todos los campos son obligatorios');
                 setTimeout(() => {
                     $('#email_modal').removeClass('is-invalid');
                     $('#prioridad').removeClass('is-invalid');
-                    $('#errorEmail').css('display', 'none');
+                    $('#errorEmail').text('');
+                    $('#prioridad').val('');
+                }, 2000)
+            } else if (filtroPrioridad.length > 0 && prioridad == 6) {
+                $('#prioridad').addClass('is-invalid');
+                $('#errorPrioridad').text('Ya hay un email Principal');
+                setTimeout(() => {
+                    $('#prioridad').removeClass('is-invalid');
                     $('#errorPrioridad').text('');
+                }, 2000)
+            } else if (filtroEmail.length > 0) {
+                $('#email_modal').addClass('is-invalid');
+                $('#errorEmail').text('Este email ya esta registrado');
+                setTimeout(() => {
+                    $('#email_modal').removeClass('is-invalid');
+                    $('#errorEmail').text('');
+                }, 2000)
+            } else {
+                tablaTemporal.push({
+                    tp: tp == '' ? 1 : tp,
+                    email: email,
+                    prioridad: prioridad,
+                    id_email: id_email
 
-                }, 2000);
-                return
+                })
+                generarTablaEmail(tablaTemporal);
+
+                let principal = tablaTemporal.find(p => p.prioridad == 6)
+                $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+
+
+                optionPrincipal = $('#prioridad').find('option[value="6"]')
+                $('#prioridad').val(7);
+                prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
+                $('#email_modal').val('');
             }
-
-
-
         })
-
-        console.log(filtroPrioridad);
-        if (filtroPrioridad.length > 0 && prioridad == 6) {
-            $('#email_modal').addClass('is-invalid');
-            $('#prioridad').addClass('is-invalid');
-            $('#errorPrioridad').css('display', 'block');
-            $('#errorPrioridad').text('Ya hay un email Principal');
-
-            setTimeout(() => {
-                $('#email_modal').removeClass('is-invalid');
-                $('#prioridad').removeClass('is-invalid');
-                $('#errorEmail').css('display', 'none');
-                $('#errorPrioridad').text('');
-
-            }, 2000);
-            return
-        }
-
-        if (filtroEmail.length > 0) {
-            $('#email_modal').addClass('is-invalid');
-            $('#prioridad').addClass('is-invalid');
-            $('#errorEmail').css('display', 'block');
-            $('#errorEmail').text('Este email ya esta registrado');
-
-            setTimeout(() => {
-                $('#email_modal').removeClass('is-invalid');
-                $('#prioridad').removeClass('is-invalid');
-                $('#errorEmail').css('display', 'none');
-                $('#errorEmail').text('');
-
-            }, 2000);
-            return
-        }
-
-        if (email != '' && prioridad != '') {
-            tablaTemporal.push({
-                tp: tp == '' ? 1 : tp,
-                email: email,
-                prioridad: prioridad,
-                id_email: id_email
-
-            })
-            generarTablaEmail(tablaTemporal);
-
-            let principal = tablaTemporal.find(p => p.prioridad == 6)
-            $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
-
-
-            optionPrincipal = $('#prioridad').find('option[value="6"]')
-            $('#prioridad').val(7);
-            prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
-            $('#email_modal').val('');
-
-            return
-        } else {
-            $('#email_modal').addClass('is-invalid');
-            $('#prioridad').addClass('is-invalid');
-            $('#errorPrioridad').css('display', 'block');
-            $('#errorEmail').css('display', 'block');
-            $('#errorPrioridad').text('Todos los campos son obligatorios');
-            $('#errorEmail').text('Todos los campos son obligatorios');
-
-            setTimeout(() => {
-                $('#email_modal').removeClass('is-invalid');
-                $('#prioridad').removeClass('is-invalid');
-                $('#errorEmail').css('display', 'none');
-                $('#errorEmail').text('');
-                $('#errorPrioridad').css('display', 'none');
-                $('#errorPrioridad').text('');
-
-                $('#prioridad').val('');
-
-            }, 2000);
-            return
-        }
         $('#tpExist').val('')
     });
 
@@ -1020,6 +917,10 @@
                 }
             })
         } else {
+            tablaTemporal = []
+            generarTablaEmail(tablaTemporal);
+            $("#email").val('');
+
             $("#tp").val(1);
             $('#tipo_documento').val('');
             $('#n_documento').val('');
