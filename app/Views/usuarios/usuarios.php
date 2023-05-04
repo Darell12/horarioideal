@@ -22,52 +22,13 @@
                     <th class="text-center">Apellidos</th>
                     <th class="text-center">Rol</th>
                     <th class="text-center">Estado</th>
-                    <th class="text-center">Emails</th>
-                    <th class="text-center">Telefonos</th>
+                    <!-- <th class="text-center">Emails</th> -->
+                    <!-- <th class="text-center">Telefonos</th> -->
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                <?php foreach ($datos as $valor) { ?>
-                    <tr>
-                        <td class="text-center"><?php echo $valor['id_usuario']; ?></td>
-                        <td class="text-center"><?php echo $valor['t_documento']; ?></td>
-                        <td class="text-center"><?php echo $valor['n_documento']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre_p'] . ' ' . $valor['nombre_s']; ?></td>
-                        <td class="text-center"><?php echo $valor['apellido_p'] . ' ' . $valor['apellido_s']; ?></td>
-                        <?php if ($valor['rol'] == 'Estudiante') { ?>
-                            <td class="text-center"><a href="<?php echo base_url('estudiantes') ?>" class="nav-link text-success"><?php echo $valor['rol']; ?></a></td>
-                        <?php } else { ?>
-                            <td class="text-center"><?php echo $valor['rol']; ?></td>
-                        <?php } ?>
-                        <td class="text-center">
-                            <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-outline-info" onclick="EmailUsuario(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" data-bs-toggle="modal" title="Editar Registro">
-                                <i class="bi bi-envelope-at-fill"></i>
-                            </button>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-outline-success" onclick="TelefonoUsuario(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" data-bs-toggle="modal" data-bs-target="#modal" title="Editar Registro">
-                                <i class="bi bi-telephone"></i> </button>
-                        </td>
-                        <td class="grid grid text-center" colspan="2">
-                            <div class="btn-group">
-                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(<?php echo $valor['id_usuario'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') . '/' . $valor['id_usuario'] . '/' . $valor['n_documento']; ?>" title="Resetear Contraseña">
-                                    <i class="bi bi-arrow-clockwise"></i>
-                                </button>
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'E'; ?>" title="Eliminar Registro">
-                                    <i class="bi bi-trash3"></i>
-                                </button>
-                            </div>
-                        </td>
 
-                    </tr>
-                <?php } ?>
 
             </tbody>
         </table>
@@ -432,11 +393,66 @@
         console.log('Hola')
     });
 
-    $('#tablaUsuarios').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        }
-    });
+    $(document).ready(function() {
+        generarTablaUsuarios();
+
+    })
+
+    function generarTablaUsuarios() {
+        $.ajax({
+            url: '<?= base_url('usuarios/obtenerUsuarios') ?>',
+            method: "POST",
+            dataType: 'json',
+            success: function(data) {
+                // Parsea la respuesta AJAX y extrae los datos que necesitas para crear la tabla
+                data = data[0]
+                var tableData = [];
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[0].id_usuario);
+                    var rowData = [];
+                    rowData.push(data[i].id_usuario);
+                    rowData.push(data[i].t_documento);
+                    rowData.push(data[i].n_documento);
+                    rowData.push(data[i].nombre_p + ' ' + data[i].nombre_s);
+                    rowData.push(data[i].apellido_p + ' ' + data[i].apellido_s);
+                    rowData.push(data[i].estado);
+                    rowData.push(data[i].rol);
+                    rowData.push(`<div class="btn-group">
+                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data[i].id_usuario} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') ?>/ ${data[i].id_usuario}/ .${data[i].n_documento}" title="Resetear Contraseña">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') ?>/${data[i].id_usuario}/ 'E'; ?>" title="Eliminar Registro">
+                                <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>`);
+                    tableData.push(rowData);
+                }
+
+                // Crea la tabla HTML vacía
+                var table = $('#tablaUsuarios');
+
+                // Crea las filas y columnas de la tabla
+                for (var i = 0; i < tableData.length; i++) {
+                    var row = $('<tr>');
+                    for (var j = 0; j < tableData[i].length; j++) {
+                        var cell = $('<td>').html(tableData[i][j]);
+                        row.append(cell);
+                    }
+                    table.append(row);
+                }
+
+                let tablaUsuarios = $('#tablaUsuarios').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                    }
+                });
+            }
+        });
+    }
+
 
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
@@ -570,7 +586,6 @@
             segundo_apellido: $('#segundo_apellido').val(),
             direccionX: $('#direccionX').val(),
             contraseña: $('#contraseña').val(),
-
         }
 
         $.ajax({
@@ -612,6 +627,10 @@
             })
             console.log(data)
             insertarEmail(data);
+
+            setTimeout(() => {
+                location.reload();
+            }, 3200);
         })
 
     })
@@ -744,6 +763,33 @@
         filtroPrioridad = tablaTemporal.filter(p => p.prioridad == 6);
         filtroEmail = tablaTemporal.filter(p => p.email == email);
 
+        datosValidar = {
+            valor: email,
+            campo: 'email',
+            nombreActu: tp == 2 ? email : '',
+        }
+
+        $.post('<?php echo base_url() ?>/email/validar', datosValidar, function(response) {
+            console.log(response);
+            if (response == true) {
+                $('#email_modal').addClass('is-invalid');
+                $('#prioridad').addClass('is-invalid');
+                $('#errorPrioridad').css('display', 'block');
+                $('#errorPrioridad').text('Este email ya se encuentra Registrado');
+
+                setTimeout(() => {
+                    $('#email_modal').removeClass('is-invalid');
+                    $('#prioridad').removeClass('is-invalid');
+                    $('#errorEmail').css('display', 'none');
+                    $('#errorPrioridad').text('');
+
+                }, 2000);
+                return
+            }
+
+
+            
+        })
 
         console.log(filtroPrioridad);
         if (filtroPrioridad.length > 0 && prioridad == 6) {
@@ -863,8 +909,7 @@
                     id_usuario: id
                 },
                 dataType: "json",
-            }).done(function(data) {
-            })
+            }).done(function(data) {})
         });
 
     }

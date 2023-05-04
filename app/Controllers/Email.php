@@ -65,4 +65,25 @@ class Email extends BaseController
             return 1;
         }
     }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombreActu = $this->request->getPost('nombreActu');
+
+        $filtro = $this->email->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $nombreActu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = false;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = true;
+        }
+        return $this->response->setJSON($respuesta);
+    }
 }

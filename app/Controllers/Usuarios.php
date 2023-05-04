@@ -127,6 +127,15 @@ class Usuarios extends BaseController
         }
         echo json_encode($returnData);
     }
+    public function obtenerUsuarios()
+    {
+        $returnData = array();
+        $usuario = $this->usuario->obtenerUsuarios();
+        if (!empty($usuario)) {
+            array_push($returnData, $usuario);
+        }
+        echo json_encode($returnData);
+    }
 
     public function cambiarEstado($id, $estado)
     {
