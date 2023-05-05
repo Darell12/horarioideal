@@ -21,7 +21,7 @@
                     <th class="text-center">Nombres</th>
                     <th class="text-center">Apellidos</th>
                     <th class="text-center">Rol</th>
-                    <th class="text-center">Estado</th>
+                    <!-- <th class="text-center">Estado</th> -->
                     <!-- <th class="text-center">Emails</th> -->
                     <!-- <th class="text-center">Telefonos</th> -->
                     <th class="text-center">Acciones</th>
@@ -34,7 +34,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form id="formulario" method="POST" action="<?php echo base_url('/usuarios/insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
+    <form id="formulario">
         <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -161,7 +161,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
+                        <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -265,8 +265,8 @@
     </div>
 </div>
 <!-- tabla telefonos -->
-<div id="Modaltelefonos" class="modal">
-    <div class="modal-dialog">
+<div id="Modaltelefonos" class="">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
 
@@ -274,77 +274,66 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="btn-group mb-3" id="btn-group-salarios" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAgregarTelefono" id="btn-agregar-tel">
-                        <i class="bi bi-plus-circle-fill"></i> Agregar</button>
-
-                    <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
-                        <i class="bi bi-file-x"></i> Eliminados</button>
-                    <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
-
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
-                            <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Telefono</th>
-                                <th class="text-center">Periodo</th>
-                                <th class="text-center">Estado</th>
-                                <th class="text-center" colspan="2">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- </div> -->
-
-<!-- modal agregar Telefonos -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modalAgregarTelefono" data-bs-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="titulo_telefono_modal">Agregar telefono</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Telefono:</label>
-                    <div class="flex ">
-                        <input type="telefono" name="telefono_modal" class="form-control" id="telefono_modal" min="1300606">
+                <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
+                    <i class="bi bi-file-x"></i> Eliminados</button>
+                <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="message-text" class="col-form-label">Número:</label>
+                        <input type="number" name="telefono" class="form-control" id="telefono" placeholder="Ej: JhonDoe@gmail.com">
+                        <div class="invalid-feedback" id="errorTel"></div>
                     </div>
-                    <label for="message-text" class="col-form-label">Prioridad:</label>
-                    <div class="flex ">
-                        <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
-                            <?php foreach ($prioridad as $valor) { ?>
+
+                    <div class="col">
+                        <label for="message-text" class="col-form-label">Tipo:</label>
+                        <select name="tipo" class="form-select form-select" id="tipo">
+                            <option value="">-Seleccione una opción-</option>
+                            <?php foreach ($tipo as $valor) { ?>
                                 <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
                             <?php } ?>
                         </select>
+                        <div class="invalid-feedback" id="errorTipoTel"></div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <div class="flex ">
-                        <input type="text" id="id_usuario_tel" name="id_usuario_tel" hidden>
-                        <input type="text" id="tp_telefono" name="tp_telefono" hidden>
-                        <input type="text" id="id_telefono" name="id_telefono" hidden>
+                    <div class="col">
+                        <label for="message-text" class="col-form-label">Prioridad:</label>
+                        <div class="input-group">
+                            <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
+                                <option value="">-Seleccione una opción-</option>
+                                <?php foreach ($prioridad as $valor) { ?>
+                                    <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefono" title="Agregar Email"><i class="bi bi-plus"></i></button>
+                            <div class="invalid-feedback" id="errorPrioridadTel"></div>
+                        </div>
+                        <input hidden type="text" id="id_telefono" name="id_telefono">
+                        <input hidden type="text" id="tpExist" name="tpExistTel">
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-outline-primary" id="btn_insertarTelefono">Guardar</button>
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Telefono</th>
+                            <th class="text-center">Periodo</th>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
+
+                    </tbody>
+                </table>
             </div>
+
         </div>
+
     </div>
 </div>
+
 <!-- eliminar emails y restaurar -->
 
 <div class="modal fade" id="modal-confirma-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -435,9 +424,6 @@
                 data: "rol"
             },
             {
-                data: "estado"
-            },
-            {
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group">
@@ -452,7 +438,10 @@
                             </div>`
                 },
             }
-        ]
+        ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
     })
 
     $.validator.addMethod("soloLetras", function(value, element) {
@@ -572,153 +561,61 @@
         }
     });
 
+
     $('#formulario').on('submit', function(e) {
+        console.log('activo');   
         e.preventDefault();
-        let data = {
-            tp: $('#tp').val(),
-            id: $('#id').val(),
-            numeroActu: $('#numeroActu').val(),
-            id_rol: $('#rol').val(),
-            tipo_documento: $('#tipo_documento').val(),
-            n_documento: $('#n_documento').val(),
-            primer_nombre: $('#primer_nombre').val(),
-            segundo_nombre: $('#segundo_nombre').val(),
-            primer_apellido: $('#primer_apellido').val(),
-            segundo_apellido: $('#segundo_apellido').val(),
-            direccionX: $('#direccionX').val(),
-            contraseña: $('#contraseña').val(),
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('/usuarios/insertar'); ?>",
-            data: {
-                tp: $('#tp').val(),
-                id: $('#id').val(),
-                numeroActu: $('#numeroActu').val(),
-                id_rol: $('#rol').val(),
-                tipo_documento: $('#tipo_documento').val(),
-                n_documento: $('#n_documento').val(),
-                primer_nombre: $('#primer_nombre').val(),
-                segundo_nombre: $('#segundo_nombre').val(),
-                primer_apellido: $('#primer_apellido').val(),
-                segundo_apellido: $('#segundo_apellido').val(),
-                direccionX: $('#direccionX').val(),
-                contraseña: $('#contraseña').val(),
-
-            },
-            dataType: "json",
-        }).done(function(data) {
-            $('#UsuarioModal').modal('hide');
-            let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'success',
-                title: 'Registro almacenado con exito!'
-            })
-            insertarEmail(data);
-            contador = 0
-            tablaUsuarios.ajax.reload(null, false)
-        })
-
     })
 
-    // telefonos
-    function TelefonoUsuario(id, estado) {
-        console.log(estado)
-
-        dataURL = "<?php echo base_url('/telefono/Telefono'); ?>" + "/" + id + '/' + estado
-
-        if (estado == 'E') {
+    $('#btnGuardar').on('click', function(e) {
+        if ($('#formulario').valid()) {
             $.ajax({
                 type: "POST",
-                url: dataURL,
-                dataType: "json",
-                success: function(res) {
-                    $('#tabla_telefono').empty();
-                    var contenido = '';
-                    if (!$(res).length == 0) {
-                        for (let i = 0; i < res.length; i++) {
-                            contenido += `
-                            <tr>
-                            <th class="text-center"> ${res[i].id_telefono}</th>
-                            <th class="text-center"> ${res[i].numero}</th>
-                            <th class="text-center"> ${res[i].prioridad}</th>
-                            <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
-                            <th class="text-center">
-                            
-              <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarIdTel(${res[i].id_telefono},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
-              </th>
-              </tr>
-              `
-                        }
-                        $('#titulo_salario').html('Administrar telefonos eliminados');
-                    } else {
-                        contenido = '<tr><th class="text-center h1" colspan="5">SIN TELEFONOS ELIMINADOS</th></tr>'
-                    }
+                url: "<?php echo base_url('/usuarios/insertar'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#id').val(),
+                    numeroActu: $('#numeroActu').val(),
+                    id_rol: $('#rol').val(),
+                    tipo_documento: $('#tipo_documento').val(),
+                    n_documento: $('#n_documento').val(),
+                    primer_nombre: $('#primer_nombre').val(),
+                    segundo_nombre: $('#segundo_nombre').val(),
+                    primer_apellido: $('#primer_apellido').val(),
+                    segundo_apellido: $('#segundo_apellido').val(),
+                    direccionX: $('#direccionX').val(),
+                    contraseña: $('#contraseña').val(),
 
-                    $('#tabla_telefono').html(contenido);
-                    $('#btn-regresar-tel').attr('onclick', 'TelefonoUsuario(' + id + ',' + '"A")');
-                    $('#btn-eliminados-tel').hide();
-                    $('#btn-regresar-tel').show();
-                    $('#btn-agregar-tel').hide();
-                    $('#Modaltelefonos').modal('show');
-                }
-            })
-        } else {
-            $.ajax({
-                type: "POST",
-                url: dataURL,
+                },
                 dataType: "json",
-                success: function(res) {
-                    console.log(res)
-                    var contenido = '';
-                    if (!$(res).length == 0) {
-                        for (let i = 0; i < res.length; i++) {
-                            contenido += `
-                            <tr>
-                            <th class="text-center"> ${res[i].id_telefono}</th>
-                            <th class="text-center"> ${res[i].numero}</th>
-                            <th class="text-center"> ${res[i].prioridad}</th>
-                            <th class="text-center text-success"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
-                            <th class="text-center">
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button class="btn btn-outline-primary" onclick="seleccionarTelefono( ${res[i].id_telefono} ,2 );"><i class="bi bi-pencil"></i></button>
-  
-                                        <button class="btn btn-outline-danger" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarIdTel(${res[i].id_telefono},${res[i].id_usuario}, 'E')"><i class="bi bi-trash3"></i></button>
-                                        </div>
-                                        </th>
-                                        </tr>`
-                        }
-                        $('#tituloTelefono').html('Administrar Telefonos de ' + res[0].nombre_empleado);
-
-                    } else {
-                        contenido = '<tr><th class="text-center h1" colspan="5">SIN TELEFONOS ASIGNADOS</th></tr>'
+            }).done(function(data) {
+                $('#UsuarioModal').modal('hide');
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-                    $('#titulo_salario').html('Administrar telefonos');
-                    $('#btn-eliminados-tel').attr('onclick', 'TelefonoUsuario(' + id + ',' + '"E")');
-                    $('#btn-agregar-tel').show();
-                    $('#tabla_telefono').empty();
-                    $('#tabla_telefono').html(contenido);
-                    $('#btn-agregar-tel').attr('onclick', 'seleccionarTelefono(' + id + ',' + '1)');
-                    $('#btn-eliminados-tel').show();
-                    $('#btn-regresar').hide();
-                    $('#Modaltelefonos').modal('show');
-                }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro almacenado con exito!'
+                })
+                console.log('insertar');
+                insertarEmail(data);
+                contador = 0
+                return
             })
+        tablaUsuarios.ajax.reload(null, false)
+        }else {
+            console.log('Formulario Invalido');
         }
-    }
-    // -------------------------------- Emails -----------------------------------------------
+    })
 
     function generarTablaEmail(Emails) {
 
@@ -847,7 +744,9 @@
     }
 
     function insertarEmail(id) {
+        console.log(tablaTemporal);
         tablaTemporal.forEach(registro => {
+            console.log('1');
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/email/insertar'); ?>",
@@ -866,13 +765,13 @@
 
     function seleccionaUsuario(id, tp) {
         if (tp == 2) {
+            console.log('Actualizar function');
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
             $.ajax({
                 type: "POST",
                 url: dataURL,
                 dataType: "json",
                 success: function(rs) {
-                    console.log(rs[0])
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#tipo_documento').val(rs[0]['tipo_documento']);
@@ -884,6 +783,24 @@
                     $('#primer_apellido').val(rs[0]['apellido_p']);
                     $('#segundo_apellido').val(rs[0]['apellido_s']);
                     $('#direccionX').val(rs[0]['direccion']);
+                    $('#email_modal').val('');
+                    $('#prioridad').val('');
+
+                    let str = rs[0]['direccion']
+                    let partes = str.split(/[\s-]+/);
+                    if (partes.length > 4) {
+                        $('#dir').val(partes[0] + ' ' + partes[1]);
+                        $('#dir2').val(partes[2]);
+                        $('#dir3').val(partes[3]);
+                        $('#dir4').val(partes[4]);
+                    } else {
+                        $('#dir').val(partes[0]);
+                        $('#dir2').val(partes[1]);
+                        $('#dir3').val(partes[2]);
+                        $('#dir4').val(partes[3]);
+
+                    }
+
                     $('#tituloModal').text('Editar Usuario');
                     $('#contraseña').attr('hidden', '');
                     $('#password_label').attr('hidden', '');
@@ -900,7 +817,6 @@
                 url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
                 dataType: "JSON",
                 success: function(rs) {
-                    console.log(rs);
                     rs.forEach(element => {
 
                         tablaTemporal.push({
@@ -910,7 +826,6 @@
                             id_email: element.id_email,
                         })
                     });
-                    console.log(tablaTemporal);
                     generarTablaEmail(tablaTemporal);
                     let principal = tablaTemporal.find(p => p.prioridad == 6)
                     $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
@@ -929,6 +844,8 @@
             $('#primer_apellido').val('');
             $('#segundo_apellido').val('');
             $('#contraseña').val('');
+            $('#email_modal').val('');
+            $('#prioridad').val('');
             $('#contraseña').removeAttr('hidden', '');
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
@@ -958,6 +875,37 @@
     });
 
     // ----------------------------------- Telefonos --------------------------------------------
+
+    function generarTablaTel(Telefonos) {
+
+        let contador = 0;
+        let parametros = {
+            '6': 'Principal',
+            '7': 'Secundario',
+            '22': 'Fijo',
+            '23': 'Celular'
+        }
+
+
+        let contenido = '';
+        Telefonos.forEach(telefono => {
+            contador++
+            contenido += `
+            <tr id="util${contador}">
+            <td class="text-center">${telefono.telefono}</td>
+            <td class="text-center">${parametros[telefono.tipo]}</td>
+            <td class="text-center">${parametros[telefono.prioridad]}</td>
+            <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
+            <td hidden class="text-center">${telefono.tp}</td>
+                            <td class="text-center">
+                            <button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-outline-danger" onclick="seleccionarEmail( ${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
+                            </td>
+                            </tr>`
+        });
+        $('#tabla_telefono').html(contenido);
+    }
+
     function seleccionarTelefono(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/telefono/telefonoUsuario'); ?>" + "/" + id;
@@ -1000,33 +948,76 @@
         $("#modal-confirma-telefono").modal('show');
     }
 
-
+    let tablaTemporalTelefonos = [];
     $('#btn_insertarTelefono').click(function() {
-        console.log('Onclick Button');
-        var data = {
-            tp_telefono: $('#tp_telefono').val(),
-            numero: $('#telefono_modal').val(),
-            id_usuario: $('#id_usuario_tel').val(),
-            prioridad: $('#prioridad_tel').val(),
-            id_telefono: $('#id_telefono').val()
-        };
-        console.log(data)
-        if (data.telefono == "" || data.prioridad == 0) {
-            return swal.fire({
-                postition: 'top-end',
-                icon: 'error',
-                title: 'Error campos incompletos',
-                text: 'Debe llenar todos los campos',
-                showConfirmButton: false,
-                timer: 1500
-            })
+        let telefono = $('#telefono').val();
+        let prioridad = $('#prioridad_tel').val();
+        let tipo = $('#tipo').val();
+        let id_telefono = $('#id_telefono').val();
+        let tp = $('#tpExistTel').val();
+
+        filtroPrioridad = tablaTemporalTelefonos.filter(p => p.prioridad == 6);
+        filtroTel = tablaTemporalTelefonos.filter(p => p.telefono == telefono);
+
+        datosValidar = {
+            valor: telefono,
+            campo: 'telefono',
+            nombreActu: tp == 2 ? telefono : '',
         }
 
-        $.post("<?php echo base_url('/telefono/insertar'); ?>", data, function(response) {
-            // Actualiza el contenido de la página
-            TelefonoUsuario(data.id_usuario, 'A')
-            $("#modalAgregarTelefono").modal('hide');
-        });
+        $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
+            if (response == true) {
+                $('#telefono').addClass('is-invalid');
+                $('#errorTel').text('Este telefono ya se encuentra Registrado');
+                setTimeout(() => {
+                    $('#telefono').removeClass('is-invalid');
+                    $('#errorTel').text('');
+                }, 2000);
+            } else if ([email, prioridad].includes('')) {
+                $('#telefono').addClass('is-invalid');
+                $('#prioridadTel').addClass('is-invalid');
+                $('#errorTel').text('Todos los campos son obligatorios');
+                setTimeout(() => {
+                    $('#telefono').removeClass('is-invalid');
+                    $('#prioridad').removeClass('is-invalid');
+                    $('#errorTel').text('');
+                    $('#prioridadTel').val('');
+                }, 2000)
+            } else if (filtroPrioridad.length > 0 && prioridad == 6) {
+                $('#prioridad').addClass('is-invalid');
+                $('#errorPrioridad').text('Ya hay un email Principal');
+                setTimeout(() => {
+                    $('#prioridad').removeClass('is-invalid');
+                    $('#errorPrioridad').text('');
+                }, 2000)
+            } else if (filtroEmail.length > 0) {
+                $('#email_modal').addClass('is-invalid');
+                $('#errorEmail').text('Este email ya esta registrado');
+                setTimeout(() => {
+                    $('#email_modal').removeClass('is-invalid');
+                    $('#errorEmail').text('');
+                }, 2000)
+            } else {
+                tablaTemporalTelefonos.push({
+                    tp: tp == '' ? 1 : tp,
+                    email: email,
+                    prioridad: prioridad,
+                    id_email: id_email
+
+                })
+                generarTablaEmail(tablaTemporalTelefonos);
+
+                let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
+                $('#email').val(!principal ? tablaTemporalTelefonos[0].email : principal.email);
+
+
+                optionPrincipal = $('#prioridad').find('option[value="6"]')
+                $('#prioridad').val(7);
+                prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
+                $('#email_modal').val('');
+            }
+        })
+        $('#tpExist').val('')
     });
 
     $('#btnEliminarTel').click(function() {

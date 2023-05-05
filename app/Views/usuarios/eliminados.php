@@ -14,49 +14,16 @@
           <table id="tablaUsuarios" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
                <thead class="table-dark">
                     <tr>
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Tipo Documento</th>
-                    <th class="text-center">Documento</th>
-                    <th class="text-center">N_Usuario</th>
-                    <th class="text-center">Nombres</th>
-                    <th class="text-center">Apellidos</th>
-                    <th class="text-center">Rol</th>
-                    <th class="text-center">Estado</th>
-                    <th class="text-center">Acciones</th>
+                         <th class="text-center">Id</th>
+                         <th class="text-center">Tipo Documento</th>
+                         <th class="text-center">Documento</th>
+                         <th class="text-center">Nombres</th>
+                         <th class="text-center">Apellidos</th>
+                         <th class="text-center">Rol</th>
+                         <th class="text-center">Acciones</th>
                     </tr>
                </thead>
                <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                    <?php if ($datos == 'vacio') { ?>
-                         <tr>
-                              <th class="text-center h1" colspan="11">SIN REGISTROS ELIMINADOS</th>
-                         </tr>
-                    <?php } else { ?>
-                         <?php foreach ($datos as $valor) { ?>
-                              <tr>
-                                   <td class="text-center"><?php echo $valor['id_usuario']; ?></td>
-                                   <td class="text-center"><?php echo $valor['t_documento']; ?></td>
-                                   <td class="text-center"><?php echo $valor['n_documento']; ?></td>
-                                   <td class="text-center"><?php echo $valor['nombre_corto']; ?></td>
-                                   <td class="text-center"><?php echo $valor['nombre_p'] . ' ' . $valor['nombre_s']; ?></td>
-                                   <td class="text-center"><?php echo $valor['apellido_p'] . ' ' . $valor['apellido_s']; ?></td>
-                                   <?php if ($valor['rol'] == 'Estudiante') { ?>
-                                        <td class="text-center"><a href="<?php echo base_url('estudiantes') ?>" class="nav-link text-success"><?php echo $valor['rol']; ?></a></td>
-                                   <?php } else { ?>
-                                        <td class="text-center"><?php echo $valor['rol']; ?></td>
-                                   <?php } ?>
-                                   <th class="text-center">
-                                        <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : '<span class="text-danger"> Inactivo </span>'; ?>
-                                   </th>
-                                   <th class="grid grid text-center" colspan="2">
-
-                                        <div class="btn-group">
-                                             <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') . '/' . $valor['id_usuario'] . '/' . 'A'; ?>"><i class="bi bi-arrow-clockwise"></i></button>
-                                        </div>
-                                   </th>
-
-                              </tr>
-                         <?php } ?>
-                    <?php } ?>
 
                </tbody>
           </table>
@@ -141,11 +108,58 @@
           $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
      });
 
-     $('#tablaUsuarios').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        }
-    });
+     var contador = 0
+     var tablaUsuarios = $('#tablaUsuarios').DataTable({
+          ajax: {
+               url: '<?= base_url('usuarios/obtenerUsuarios') ?>',
+               method: "POST",
+               data: {
+                    estado: 'E'
+               },
+               dataSrc: "",
+          },
+          columns: [{
+                    data: null,
+                    render: function(data, type, row) {
+                         contador = contador + 1
+                         return "<b>" + contador + "</b>";
+                    },
+               },
+               {
+                    data: "t_documento"
+               },
+               {
+                    data: "n_documento"
+               },
+               {
+                    data: null,
+                    render: function(data, type, row) {
+                         return data.nombre_p + " " + data.nombre_s
+                    },
+               },
+               {
+                    data: null,
+                    render: function(data, type, row) {
+                         return data.apellido_p + " " + data.apellido_s
+                    },
+               },
+               {
+                    data: "rol"
+               },
+               {
+                    data: null,
+                    render: function(data, type, row) {
+                         return `
+                         <div class="btn-group">
+                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado')?>/${data.id_usuario}/A"><i class="bi bi-arrow-clockwise"></i></button>
+                         </div>`
+                    },
+               }
+          ],
+          "language": {
+               "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+          }
+     })
 
      $('.close').click(function() {
           $("#modal-confirma").modal("hide");

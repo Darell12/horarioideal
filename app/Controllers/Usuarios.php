@@ -15,7 +15,7 @@ class Usuarios extends BaseController
 {
     protected $usuario, $eliminados;
     protected $roles, $horario;
-    protected $prioridad, $emails;
+    protected $prioridad, $tipotel, $emails;
     protected $telefonos;
 
     public function __construct()
@@ -25,21 +25,20 @@ class Usuarios extends BaseController
         $this->roles = new RolesModel();
         $this->horario = new HorarioModel();
         $this->prioridad = new Parametros_detModel();
+        $this->tipotel = new Parametros_detModel();
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
     }
     public function index()
     {
-        
-        // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
-        $prioridad = $this->prioridad->ObtenerPrioridad();
+        $prioridad = $this->prioridad->ObtenerParametro(2);
+        $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad];
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
-        // echo view('/principal/footer', $data);
     }
     public function perfil($id)
     {
@@ -102,20 +101,9 @@ class Usuarios extends BaseController
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerUsuariosEliminados();
-
-
-        // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            // echo view('/errors/html/no_eliminados');
-            $data = ['titulo' => 'Administrar Usuarios Eliminados',  'datos' => 'vacio'];
+            $data = ['titulo' => 'Administrar Usuarios Eliminados', ];
             echo view('/principal/sidebar', $data);
             echo view('/usuarios/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Usuarios Eliminados', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/usuarios/eliminados', $data);
-        }
     }
     public function buscarUsuario($id)
     {
@@ -132,7 +120,6 @@ class Usuarios extends BaseController
         $usuario = $this->usuario->obtenerUsuarios($estado);
         echo json_encode($usuario);
     }
-
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);
