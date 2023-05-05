@@ -33,7 +33,7 @@ class Usuarios extends BaseController
     {
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerParametro(2);
-        $tipotel = $this->tipotel->ObtenerParametro(9);
+        $tipotel = $this->tipotel->ObtenerParametro(8);
 
         $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
 

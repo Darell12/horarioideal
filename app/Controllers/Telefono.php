@@ -29,6 +29,7 @@ class Telefono extends BaseController
 
             $this->telefono->save([
                 'numero' => $this->request->getPost('numero'),
+                'tipo' => $this->request->getPost('tipo'),
                 'prioridad' => $this->request->getPost('prioridad'),
                 'id_usuario' => $this->request->getPost('id_usuario'),
                 'usuario_crea' => session('id'),
@@ -37,6 +38,7 @@ class Telefono extends BaseController
         } else {
             $this->telefono->update($this->request->getPost('id_telefono'), [
                 'numero' => $this->request->getPost('numero'),
+                'tipo' => $this->request->getPost('tipo'),
                 'prioridad' => $this->request->getPost('prioridad'),
             ]);
             return 'Actualizado';
