@@ -61,7 +61,7 @@ class UsuariosModel extends Model
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.id_usuario', $id);
         $this->where('usuarios.estado', 'A');
-        $this->where('emails.prioridad', '6');    
+        $this->where('emails.prioridad', '6');     
         $datos = $this->first();
         return $datos;
     }
@@ -80,6 +80,14 @@ class UsuariosModel extends Model
         $this->select('usuarios.*, roles.nombre as rol');
         $this->join('roles', 'usuarios.id_rol = roles.id_rol');
         $this->where('n_documento', $nombre);
+        $this->where('usuarios.estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function ActualizarContra($id)
+    {
+        $this->select('usuarios.contraseña');
+        $this->where('id_usuario', $id);
         $this->where('usuarios.estado', 'A');
         $datos = $this->findAll();
         return $datos;

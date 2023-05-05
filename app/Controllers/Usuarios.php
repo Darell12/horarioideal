@@ -12,8 +12,8 @@ use App\Models\TelefonosModel;
 
 
 class Usuarios extends BaseController
-{
-    protected $usuario, $eliminados;
+{   
+    protected $usuario, $eliminados, $contraseña;
     protected $roles, $horario;
     protected $prioridad, $emails;
     protected $telefonos;
@@ -30,7 +30,6 @@ class Usuarios extends BaseController
     }
     public function index()
     {
-        
         // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerPrioridad();
@@ -47,7 +46,6 @@ class Usuarios extends BaseController
             return redirect()->to(base_url('iniciarSesion'));
         }
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
-        // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerPrioridad();
         $emails = $this->emails->ObtenerEmailUsuario($id, 'A');
@@ -55,7 +53,7 @@ class Usuarios extends BaseController
 
         $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos];
 
-        
+  
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
         echo view('/principal/footer', $data);
@@ -65,8 +63,7 @@ class Usuarios extends BaseController
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
             $password = $this->request->getVar('contraseña');
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
             $this->usuario->save([
                 'tipo_documento' => $this->request->getPost('tipo_documento'),
                 'n_documento' => $this->request->getPost('n_documento'),
@@ -133,7 +130,6 @@ class Usuarios extends BaseController
         $usuario = $this->usuario->obtenerUsuarios($estado);
         echo json_encode($usuario);
     }
-
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);
@@ -148,13 +144,26 @@ class Usuarios extends BaseController
     public function resetearContrasena($id, $contraseña)
     {
         $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
-
         $usuario = $this->usuario->resetearContraseña($id, $hashedPassword);
         return redirect()->to(base_url('/usuarios'));
     }
     public function actualizarContraseña()
     {
-        // Ya me dio weba
+        $contraseña = $this->request->getVar('contraseña');
+        $contraseña_nueva = $this->request->getVar('nueva_contraseña');
+        $id = $this->request->getPost('id');
+
+        $ContraseñaActu = $this->usuario->ActualizarContra($id);
+        
+        $hashedPasswordNueva = password_hash($contraseña_nueva, PASSWORD_DEFAULT); 
+
+        if(count($ContraseñaActu)>0 && password_verify($contraseña, $ContraseñaActu[0]['contraseña'])){
+           $this->usuario->update($id, ['contraseña' => $hashedPasswordNueva]);
+           $respuesta = true;
+           return $this->response->setJSON($respuesta);
+        }
+        $respuesta = false;
+        return $this->response->setJSON($respuesta);
     }
     public function validar()
     {

@@ -6,7 +6,6 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <i class='bx bxs-user-circle  bx-lg'></i>
-
                         <h5 class="my-2"><?php echo $datos['nombre_p']. ' ' . $datos['apellido_p'] ?></h5>
                         <p class="text-muted mb-1"><?php echo $datos['rol'] ?></p>
                         <p class="text-muted mb-1"><?php echo $datos['direccion'] ?></p>
@@ -95,7 +94,7 @@
     </div>
 </section>
 
-<form method="POST" action="<?php echo base_url('/usuarios/perfil'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate id="agregrar_usuario">
+<form method="POST" action="<?php echo base_url('/usuarios/actualizarContraseña'); ?>" autocomplete="off" class="needs-validation" id="CambiarContraseña" novalidate id="agregrar_usuario">
     <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -112,7 +111,7 @@
                             </div>
                             <div class="col">
                                 <label id="password_label" for="password">Nueva Contraseña</label>
-                                <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
+                                <input id="nueva_contraseña" name="nueva_contraseña" type="password" class="form-control" required />
                             </div>
                         </div>
                         <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
@@ -133,32 +132,44 @@
 
 <script>
 
-$('#formulario').on('submit', function(e) {
+$('#CambiarContraseña').on('submit', function(e) {
         e.preventDefault();
-        data = {
+        data = {    
             contraseña: $('#contraseña').val(),
+            nueva_contraseña: $('#nueva_contraseña').val(),
         };
         console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/usuarios/actualizarContraseña'); ?>",
+            data: {
+                contraseña: $('#contraseña').val(),
+                nueva_contraseña: $('#nueva_contraseña').val(),
+                id: <?php echo $datos['id_usuario'] ?>
+            },
 
-        $.post('<?php echo base_url('/usuarios/perfil') ?>', data, function(response) {
-            if (response == 'success') {
-                window.location.replace('<?php echo base_url('/perfil'); ?>');
-            }
-            if (response == 'error') {
-                $('#login-error').text('Esta contraseña no existe');
-                $('#contraseña').addClass('is-invalid');
+    }).done(function(response){
+        console.log(response);
+        if(response == true){
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
-                setTimeout(() => {
-                    $('#login-error').text('')
-                    $('#contraseña').removeClass('is-invalid');
-
-                }, 2000);
-            }
-
-        })
-
-    });
-
+            Toast.fire({
+                icon: 'success',
+                title: 'La contraseña ha sido actualizada!'
+            })
+        }
+    })
+});
 
     function EditarPerfil(id) {
         let newElement = `

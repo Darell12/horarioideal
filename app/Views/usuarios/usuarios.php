@@ -498,7 +498,7 @@
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_usuario} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') ?>/ ${data.id_usuario}/ .${data.n_documento}" title="Resetear Contraseña">
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') ?>/${data.id_usuario}/${data.n_documento}" title="Resetear Contraseña">
                                     <i class="bi bi-arrow-clockwise"></i>
                                 </button>` + " " + `<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado') ?>/${data.id_usuario}/ 'E'; ?>" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
