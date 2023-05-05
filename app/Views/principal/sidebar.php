@@ -18,17 +18,17 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     
     <!-- Custom fonts for this template-->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url()?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
 
-    <script src="<?php echo base_url() ?>/librerias/sweetalert2.js"></script>
-    <script src="<?php echo base_url() ?>/librerias/jquery-3.6.4.js"></script>
-    <script src="<?php echo base_url() ?>/librerias/jquery.validate.js"></script>
-    <script src="<?php echo base_url() ?>/librerias/chart.js"></script>
-    <script src="<?php echo base_url() ?>/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>librerias/sweetalert2.js"></script>
+    <script src="<?php echo base_url() ?>librerias/jquery-3.6.4.js"></script>
+    <script src="<?php echo base_url() ?>librerias/jquery.validate.js"></script>
+    <script src="<?php echo base_url() ?>librerias/chart.js"></script>
+    <script src="<?php echo base_url() ?>bootstrap/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url()?>DataTable/datatables.min.js"></script>
 
     <!-- // *TODO DESCARGAR BOXICON -->
