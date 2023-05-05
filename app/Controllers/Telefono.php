@@ -38,7 +38,6 @@ class Telefono extends BaseController
             $this->telefono->update($this->request->getPost('id_telefono'), [
                 'numero' => $this->request->getPost('numero'),
                 'prioridad' => $this->request->getPost('prioridad'),
-                // 'id_usuario' => $this->request->getPost('id_usuario'),
             ]);
             return 'Actualizado';
         }
@@ -63,5 +62,26 @@ class Telefono extends BaseController
         ) {
             return 1;
         }
+    }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $emailActu = $this->request->getPost('emailActu');
+
+        $filtro = $this->telefono->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $emailActu) {
+            $respuesta = false;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = false;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = true;
+        }
+        return $this->response->setJSON($respuesta);
     }
 }

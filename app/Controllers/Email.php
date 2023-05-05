@@ -53,17 +53,10 @@ class Email extends BaseController
         }
         echo json_encode($email);
     }
-    public function cambiarEstado()
+    public function cambiarEstado($id, $estado)
     {
-        $id = $this->request->getPost('id_email');
-        $estado = $this->request->getPost('estado');
-
         $email = $this->email->cambiarEstado($id, $estado);
-        if (
-            $estado == 'E'
-        ) {
-            return 1;
-        }
+        return json_encode('eliminao');
     }
     public function validar()
     {
@@ -74,7 +67,7 @@ class Email extends BaseController
 
         $filtro = $this->email->filtro($campo, $valor);
         if ($tp == 2 && $valor == $nombreActu) {
-            $respuesta = true;
+            $respuesta = false;
             return $this->response->setJSON($respuesta);
         }
 
