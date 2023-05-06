@@ -44,28 +44,90 @@
             <h3>Horario Ideal</h3>
         </div>
 
-        <ul class="list-unstyled components">
-            <p><i class="bx bxs-user-circle icon bx-sm"></i><?php echo session('usuario')?></p>
+        <ul class="list-unstyled">
+            <div style="margin-top: 0.5em;"  >
+                <p><i class="bx bxs-user-circle icon bx-sm"></i>
+                <?php echo session('usuario')?> </p>
+                <p class="rol">
+                    <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
+                </p>
+            </div>
+            <hr style="background: #fafafa" class="sidebar-divider">
             <li>
-                <a href="#">About</a>
+            <a href="<?php echo base_url('inicio') ?>" title="Inicio">
+                            <i class='bx bx-home-alt icon'> </i>
+                            <span class="text nav-text">Inicio</span>
+                        </a>
             </li>
+            <hr style="background: #fafafa" class="sidebar-divider">
             </li>
             <li>
-                <a href="#">Portfolio</a>
+            <a href="<?php echo base_url('ver_roles') ?>" title="Roles">
+                            <i class='bx bx-wrench icon'></i>
+                            <span class="text fs-6 nav-text">Roles</span>
+                        </a>
             </li>
             <li>
-                <a href="#">Contact</a>
+            <a href="<?php echo base_url('ver_permisos') ?>" title="Permisos">
+                            <i class='bx bx-slider-alt icon'></i>
+                            <span class="text fs-6 nav-text">Permisos</span>
+                        </a>
+            </li>
+            <li>
+            <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
+                            <i class='bx bx-cog icon'></i>
+                            <span class="text fs-6 nav-text">Acciones</span>
+                        </a>
+            </li>
+            <hr style="background: #fafafa" class="sidebar-divider">
+            <li>
+            <a href="<?php echo base_url('usuarios') ?>" title="Usuarios">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text fs-6 nav-text">Usuarios</span>
+                        </a>
+            </li>
+            <li>
+            <a href="<?php echo base_url('estudiantes') ?>" title="Estudiantes">
+                            <i class='bx bxs-graduation icon'></i>
+                            <span class="text nav-text">Estudiantes</span>
+                        </a>
+            </li>
+            <li>
+            <a href="<?php echo base_url('profesores') ?>" title="Profesores">
+                            <i class='bx bx-id-card icon'></i>
+                            <span class="text nav-text">Profesores</span>
+                        </a>
+            </li>
+            <hr style="background: #fafafa" class="sidebar-divider">
+            <li>
+            <a href="<?php echo base_url('ver_aulas') ?>" title="Aulas">
+                            <i class='bx bx-chalkboard icon'></i>
+                            <span class="text nav-text">Aulas</span>
+                        </a>
+            </li>
+            <li>
+            <a href="<?php echo base_url('asignaturas') ?>" title="Asignaturas">
+                            <i class='bx bx-book icon'></i>
+                            <span class="text nav-text">Asignaturas</span>
+                        </a>
+            </li>
+            <li>
+            <a href="<?php echo base_url('ver_horarios') ?>" title="Horarios">
+                            <i class='bx bx-calendar icon'></i>
+                            <span class="text nav-text">Horarios</span>
+                        </a>
             </li>
         </ul>
-
+        <hr style="background: #fafafa" class="sidebar-divider">
         <ul class="list-unstyled CTAs">
             <li>
-                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-            </li>
-            <li>
-                <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+            <a href="<?php echo base_url('auth/logout') ?>">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
             </li>
         </ul>
+        
     </nav>
 
     <!-- Page Content  -->
@@ -74,10 +136,9 @@
         <nav class="navbar navbar-expand-lg navbar-white bg-white">
             <div class="container-fluid">
 
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class='bx bx-menu-alt-left'></i>                    
-                <span>Toggle Sidebar</span>
-                </button>
+                <button type="button" id="sidebarCollapse" class="btn">
+                <i class='bx bx-menu'></i>
+                </button> 
                 <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-align-justify"></i>
                 </button>

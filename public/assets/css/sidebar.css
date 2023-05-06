@@ -3,6 +3,20 @@
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+:root{
+   
+    --body-color: #daeaf4;
+    --sidebar-color: #FFF;
+    --primary-color: #418ab7;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
@@ -12,7 +26,7 @@ p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
-    line-height: 1.7em;
+    line-height: 1.7em; 
     color: #999;
 }
 
@@ -55,11 +69,21 @@ a:focus {
     width: 100%;
     align-items: stretch;
 }
-
+#dropdownMenuButton{
+    color: #fff;
+}
+#sidebarCollapse{
+    color: #fff;
+    background: #47748b;
+}
+#sidebarCollapse:hover{
+    color: #47748b;
+        background: #fff;
+}
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background-color: var(--primary-color);
     color: #fff;
     transition: all 0.3s;
 }
@@ -70,7 +94,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #387eaa;
 }
 
 #sidebar ul.components {
@@ -80,17 +104,18 @@ a:focus {
 
 #sidebar ul p {
     color: #fff;
-    padding: 10px;
+    padding: 0px 20px;
+    margin: 0;
 }
 
 #sidebar ul li a {
-    padding: 10px;
+    padding: 0.5em 1.5em;
     font-size: 1.1em;
     display: block;
 }
 
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #47748b;
     background: #fff;
 }
 
