@@ -1,4 +1,4 @@
-<div class="container bg-white mt-5  rounded rounded-3">
+<div class="container bg-white rounded rounded-3">
     <div class="pt-1">
         <h1 class="titulo_Vista text-center ">
             <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
