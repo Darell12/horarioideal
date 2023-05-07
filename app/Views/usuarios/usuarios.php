@@ -99,7 +99,7 @@
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Telefonos:</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" disabled>
+                                    <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" disabled>
                                     <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
                                 </div>
                             </div>
@@ -324,7 +324,7 @@
                             </tr>
                         </thead>
                         <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
-    
+
                         </tbody>
                     </table>
                 </div>
@@ -826,6 +826,7 @@
                     $('#prioridad').val('');
 
                     let str = rs[0]['direccion']
+                    str = str.replace('#', '');
                     let partes = str.split(/[\s-]+/);
                     if (partes.length > 4) {
                         $('#dir').val(partes[0] + ' ' + partes[1]);
@@ -867,14 +868,40 @@
                     });
                     generarTablaEmail(tablaTemporal);
                     let principal = tablaTemporal.find(p => p.prioridad == 6)
-                    $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+                    console.log(rs.length);
+                    if (rs.length = 0) {
+                        $('#email').val('');
+                    } else {
+                        $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+                    }
                 }
             })
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
+                dataType: "JSON",
+                success: function(rs) {
+                    rs.forEach(element => {
+
+                        tablaTemporalTelefonos.push({
+                            tp: 2,
+                            telefono: element.numero,
+                            prioridad: element.prioridad,
+                            tipo: element.tipo,
+                            id_telefono: element.id_telefono,
+                        })
+                    });
+                    generarTablaTel(tablaTemporalTelefonos);
+                    let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
+                    $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
+                }
+            })
+
         } else {
             tablaTemporal = []
             generarTablaEmail(tablaTemporal);
             $("#email").val('');
-
+            $('#telUsuario').val('')
             $("#tp").val(1);
             $('#tipo_documento').val('');
             $('#n_documento').val('');
@@ -948,6 +975,7 @@
         let contadortel = 0;
         let parametros = {
             '6': 'Principal',
+            "6": 'Principal',
             '7': 'Secundario',
             '22': 'Fijo',
             '23': 'Celular'
@@ -1026,7 +1054,7 @@
                 }, 2000)
             } else {
                 tablaTemporalTelefonos.push({
-                    tp: tp == '' ? 1 : tp,
+                    tp: tp == 2 ? 2 : 1,
                     telefono: telefono,
                     tipo: tipo,
                     id_telefono: id_telefono,
@@ -1036,7 +1064,7 @@
                 generarTablaTel(tablaTemporalTelefonos);
 
                 let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
-                // $('#email').val(!principal ? tablaTemporalTelefonos[0].email : principal.email);
+                $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
                 optionPrincipal = $('#prioridad').find('option[value="6"]')
                 $('#prioridad_tel').val(7);
                 prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
@@ -1082,10 +1110,11 @@
         console.log(tablaTemporalTelefonos);
         generarTablaTel(tablaTemporalTelefonos);
     }
-    function insertarTelefono(id){
+
+    function insertarTelefono(id) {
         console.log(tablaTemporalTelefonos);
         tablaTemporalTelefonos.forEach(registro => {
-            console.log('1');
+            console.log(registro.tp);
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/telefono/insertar'); ?>",

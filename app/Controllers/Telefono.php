@@ -24,7 +24,7 @@ class Telefono extends BaseController
     }
     public function insertar()
     {
-        $tp = $this->request->getPost('tp_telefono');
+        $tp = $this->request->getPost('tp');
         if ($tp == 1) {
 
             $this->telefono->save([
@@ -44,7 +44,7 @@ class Telefono extends BaseController
             return 'Actualizado';
         }
     }
-    public function telefonoUsuario($id)
+    public function telefonosUsuario($id)
     {
         $dataArray = array();
         $telefono = $this->telefono->ObtenerTelefono($id);

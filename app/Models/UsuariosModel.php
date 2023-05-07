@@ -61,7 +61,6 @@ class UsuariosModel extends Model
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.id_usuario', $id);
         $this->where('usuarios.estado', 'A');
-        $this->where('emails.prioridad', '6');     
         $datos = $this->first();
         return $datos;
     }

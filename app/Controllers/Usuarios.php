@@ -33,7 +33,7 @@ class Usuarios extends BaseController
     {
         $roles = $this->roles->obtenerRoles();
         $prioridad = $this->prioridad->ObtenerParametro(2);
-        $tipotel = $this->tipotel->ObtenerParametro(8);
+        $tipotel = $this->tipotel->ObtenerParametro(3);
 
         $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
 
@@ -47,12 +47,13 @@ class Usuarios extends BaseController
         }
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
         $roles = $this->roles->obtenerRoles();
-        $prioridad = $this->prioridad->ObtenerPrioridad();
+        $prioridad = $this->prioridad->ObtenerParametro(2);
         $emails = $this->emails->ObtenerEmailUsuario($id, 'A');
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
 
         $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos];
-  
+        
+        // return json_encode($data);
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
         echo view('/principal/footer', $data);
@@ -121,13 +122,6 @@ class Usuarios extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);
-        // if (
-        //     $estado == 'E'
-        // ) {
-        //     return redirect()->to(base_url('/usuarios'));
-        // } else {
-        //     return redirect()->to(base_url('/usuarios/eliminados'));
-        // }
         return json_encode('Todo bien');
     }
     public function resetearContrasena($id, $contraseña)
