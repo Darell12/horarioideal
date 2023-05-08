@@ -12,10 +12,10 @@ use App\Models\TelefonosModel;
 
 
 class Usuarios extends BaseController
-{
-    protected $usuario, $eliminados;
+{   
+    protected $usuario, $eliminados, $contraseña;
     protected $roles, $horario;
-    protected $prioridad, $emails;
+    protected $prioridad, $tipotel, $emails;
     protected $telefonos;
 
     public function __construct()
@@ -25,22 +25,20 @@ class Usuarios extends BaseController
         $this->roles = new RolesModel();
         $this->horario = new HorarioModel();
         $this->prioridad = new Parametros_detModel();
+        $this->tipotel = new Parametros_detModel();
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
     }
     public function index()
     {
-
-        $usuario = $this->usuario->obtenerUsuarios();
-        // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
-        $prioridad = $this->prioridad->ObtenerPrioridad();
+        $prioridad = $this->prioridad->ObtenerParametro(2);
+        $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad];
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
-        // echo view('/principal/footer', $data);
     }
     public function perfil($id)
     {
@@ -48,14 +46,14 @@ class Usuarios extends BaseController
             return redirect()->to(base_url('iniciarSesion'));
         }
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
-        // $horario = $this->horario->vistaHorarioPrueba();
         $roles = $this->roles->obtenerRoles();
-        $prioridad = $this->prioridad->ObtenerPrioridad();
+        $prioridad = $this->prioridad->ObtenerParametro(2);
         $emails = $this->emails->ObtenerEmailUsuario($id, 'A');
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
 
         $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos];
-
+        
+        // return json_encode($data);
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
         echo view('/principal/footer', $data);
@@ -65,8 +63,7 @@ class Usuarios extends BaseController
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
             $password = $this->request->getVar('contraseña');
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
             $this->usuario->save([
                 'tipo_documento' => $this->request->getPost('tipo_documento'),
                 'n_documento' => $this->request->getPost('n_documento'),
@@ -97,25 +94,15 @@ class Usuarios extends BaseController
                 'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionX'),
             ]);
+            return json_encode($this->request->getPost('id'));
         }
 
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerUsuariosEliminados();
-
-
-        // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            // echo view('/errors/html/no_eliminados');
-            $data = ['titulo' => 'Administrar Usuarios Eliminados',  'datos' => 'vacio'];
+            $data = ['titulo' => 'Administrar Usuarios Eliminados', ];
             echo view('/principal/sidebar', $data);
             echo view('/usuarios/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Usuarios Eliminados', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/usuarios/eliminados', $data);
-        }
     }
     public function buscarUsuario($id)
     {
@@ -126,28 +113,40 @@ class Usuarios extends BaseController
         }
         echo json_encode($returnData);
     }
-
+    public function obtenerUsuarios()
+    {
+        $estado = $this->request->getPost('estado');
+        $usuario = $this->usuario->obtenerUsuarios($estado);
+        echo json_encode($usuario);
+    }
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/usuarios'));
-        } else {
-            return redirect()->to(base_url('/usuarios/eliminados'));
-        }
+        return json_encode('Todo bien');
     }
     public function resetearContrasena($id, $contraseña)
     {
         $hashedPassword = password_hash($contraseña, PASSWORD_DEFAULT);
-
         $usuario = $this->usuario->resetearContraseña($id, $hashedPassword);
         return redirect()->to(base_url('/usuarios'));
     }
     public function actualizarContraseña()
     {
-        // Ya me dio weba
+        $contraseña = $this->request->getVar('contraseña');
+        $contraseña_nueva = $this->request->getVar('nueva_contraseña');
+        $id = $this->request->getPost('id');
+
+        $ContraseñaActu = $this->usuario->ActualizarContra($id);
+        
+        $hashedPasswordNueva = password_hash($contraseña_nueva, PASSWORD_DEFAULT); 
+
+        if(count($ContraseñaActu)>0 && password_verify($contraseña, $ContraseñaActu[0]['contraseña'])){
+           $this->usuario->update($id, ['contraseña' => $hashedPasswordNueva]);
+           $respuesta = true;
+           return $this->response->setJSON($respuesta);
+        }
+        $respuesta = false;
+        return $this->response->setJSON($respuesta);
     }
     public function validar()
     {

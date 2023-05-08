@@ -75,7 +75,7 @@
                                     <select class="form-select form-select" name="id_usuario" id="id_usuario" required>
                                         <option value="">Seleccione un usuario</option>
                                         <?php foreach ($usuarios as $usuario) { ?>
-                                            <option value="<?php echo $usuario['id_usuario']; ?>"><?php echo $usuario['nombre_corto']; ?></option>
+                                            <option value="<?php echo $usuario['id_usuario']; ?>"><?php echo $usuario['nombre_p'] . ' ' .$usuario['apellido_p']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

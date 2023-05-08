@@ -35,14 +35,22 @@ class TelefonosModel extends Model
     }
     public function ObtenerTelefono($id)
     {
-        $this->select('telefonos.numero, telefonos.estado, telefonos.id_telefono, telefonos.id_usuario, telefonos.prioridad');
-        $this->where('id_telefono', $id);
-        $datos = $this->first();
+        $this->select('telefonos.numero, telefonos.estado, telefonos.id_telefono, telefonos.id_usuario, telefonos.prioridad, telefonos.tipo');
+        $this->where('id_usuario', $id);
+        $datos = $this->findAll();
         return $datos;
     }
     public function cambiarEstado($id, $estado)
     {
         $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
+    public function filtro($campo ,$valor)
+    {
+        $this->select('telefonos.*');
+        $this->where($campo, $valor);
+        $this->where('estado', 'A');
+        $datos = $this->first();
         return $datos;
     }
 }

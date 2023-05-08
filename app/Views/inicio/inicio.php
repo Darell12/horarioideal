@@ -1,7 +1,7 @@
 <section>
   <div class="container py-5">
 
-    <div style="margin-top: 13%;" class="card mb-3">
+    <div class="card mb-3">
       <div class="row g-0">
         <div class="col-md-4">
           <img style="height: 30em; padding: 10px; margin-left:50px ;" class="img-fluid rounded-start" src="<?php echo base_url('/img/este.svg'); ?>">

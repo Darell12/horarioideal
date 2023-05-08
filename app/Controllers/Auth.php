@@ -28,7 +28,7 @@ class Auth extends BaseController
         if (count($usuarioDatos) > 0 && password_verify($password, $usuarioDatos[0]['contraseña'])) {
 
             $data = [
-                "usuario" => $usuarioDatos[0]['nombre_corto'],
+                "usuario" => $usuarioDatos[0]['nombre_p'] . " " . $usuarioDatos[0]['apellido_p'],
                 "id" => $usuarioDatos[0]['id_usuario'],
                 "rol" => $usuarioDatos[0]['rol'],
                 'logged_in' => true,

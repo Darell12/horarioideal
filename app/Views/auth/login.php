@@ -64,6 +64,7 @@
                 $('#password').addClass('is-invalid');
                 $('#n_documento').addClass('is-invalid');
 
+                
                 setTimeout(() => {
                     $('#login-error').text('')
                     $('#password').removeClass('is-invalid');

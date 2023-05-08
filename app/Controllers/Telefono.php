@@ -24,11 +24,12 @@ class Telefono extends BaseController
     }
     public function insertar()
     {
-        $tp = $this->request->getPost('tp_telefono');
+        $tp = $this->request->getPost('tp');
         if ($tp == 1) {
 
             $this->telefono->save([
                 'numero' => $this->request->getPost('numero'),
+                'tipo' => $this->request->getPost('tipo'),
                 'prioridad' => $this->request->getPost('prioridad'),
                 'id_usuario' => $this->request->getPost('id_usuario'),
                 'usuario_crea' => session('id'),
@@ -37,13 +38,13 @@ class Telefono extends BaseController
         } else {
             $this->telefono->update($this->request->getPost('id_telefono'), [
                 'numero' => $this->request->getPost('numero'),
+                'tipo' => $this->request->getPost('tipo'),
                 'prioridad' => $this->request->getPost('prioridad'),
-                // 'id_usuario' => $this->request->getPost('id_usuario'),
             ]);
             return 'Actualizado';
         }
     }
-    public function telefonoUsuario($id)
+    public function telefonosUsuario($id)
     {
         $dataArray = array();
         $telefono = $this->telefono->ObtenerTelefono($id);
@@ -63,5 +64,26 @@ class Telefono extends BaseController
         ) {
             return 1;
         }
+    }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $emailActu = $this->request->getPost('emailActu');
+
+        $filtro = $this->telefono->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $emailActu) {
+            $respuesta = false;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = false;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = true;
+        }
+        return $this->response->setJSON($respuesta);
     }
 }

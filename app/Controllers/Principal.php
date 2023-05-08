@@ -17,10 +17,9 @@ class Principal extends BaseController
     }
     public function index()
     {
-        $usuario = $this->usuario->obtenerUsuarios();
         $roles = $this->roles->obtenerRoles();
 
-        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles];
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles];
 
         echo view('/principal/sidebar', $data);
         echo view('/inicio/inicio', $data);

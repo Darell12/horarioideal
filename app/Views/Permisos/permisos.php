@@ -50,7 +50,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/permisos_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+    <form method="POST" id="formulario" action="<?php echo base_url('/permisos_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
         <div class="modal fade" id="PermisosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -136,6 +136,7 @@
                     $("#id").val(id)
                     $('#id_rol').val(rs[0]['id_rol']);
                     $('#id_accion').val(rs[0]['id_accion']);
+                    $('#formulario').validate().resetForm();
                     $("#btn_Guardar").text('Actualizar');
                     $("#PermisosModal").modal("show");
                 }
@@ -144,6 +145,7 @@
             $("#tp").val(1);
             $('#id_rol').val('');
             $('#id_accion').val('');
+            $('#formulario').validate().resetForm();
             $("#btn_Guardar").text('Guardar');
             $("#PermisosModal").modal("show");
         }
@@ -151,4 +153,27 @@
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
+
+    $("#formulario").validate({
+        rules: {
+            id_rol: {
+                required: true,
+            },
+            id_accion: {
+                required: true,
+            },
+        },
+        messages: {
+            id_rol: {
+                required: "Por favor seleccione una opción",
+            },
+            id_accion: {
+                required: "Por favor seleccione una opción",
+            },
+        }
+    });
+
+
+
+
 </script>

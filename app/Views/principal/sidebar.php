@@ -10,136 +10,176 @@
     <meta name="author" content="">
 
     <title>Horario Ideal</title>
-    
+
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css"> -->
     <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
     <!-- <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script> -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-    
-    <!-- Custom fonts for this template-->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap/bootstrap.min.css">
-    <link href="<?php echo base_url()?>DataTable/datatables.min.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
 
-    <script src="<?php echo base_url() ?>/librerias/sweetalert2.js"></script>
-    <script src="<?php echo base_url() ?>/librerias/jquery-3.6.4.js"></script>
-    <script src="<?php echo base_url() ?>/librerias/jquery.validate.js"></script>
-    <script src="<?php echo base_url() ?>/librerias/chart.js"></script>
-    <script src="<?php echo base_url() ?>/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url()?>DataTable/datatables.min.js"></script>
+    <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
+    <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
+
+    <script src="<?php echo base_url() ?>librerias/sweetalert2.js"></script>
+    <script src="<?php echo base_url() ?>librerias/jquery-3.6.4.js"></script>
+    <script src="<?php echo base_url() ?>librerias/jquery.validate.js"></script>
+    <script src="<?php echo base_url() ?>librerias/chart.js"></script>
+    <script src="<?php echo base_url() ?>bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>DataTable/datatables.min.js"></script>
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebar.css">
 
 </head>
 
-    <nav class="sidebar close">
-        <header>
-            <a class="nav-link" href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
-                <div class="image-text">
-                    <span class="image" href="">
-                        <i class="bx bxs-user-circle icon bx-sm"></i>
-                    </span>
-
-                    <div id="usuarioInfo" class="text logo-text">
-                        <?php echo session('usuario') ?>
-                        <span style="font-size: 14px;" class="text nav-text"><?php echo session('rol') ?></span>
-                    </div>
-                </div>
-            </a>
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-                <ul style="padding-left: 0;" class="menu-links">
-                    <li style="padding-left: 0;" class="nav-link">
-                        <a href="<?php echo base_url('inicio') ?>" title="Inicio">
-                            <i class='bx bx-home-alt icon'> </i>
-                            <span class="text nav-text">Inicio</span>
-                        </a>
-                    </li>
-                    <hr style="background: #418ab7;" class="sidebar-divider">
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('ver_roles') ?>" title="Roles">
-                            <i class='bx bx-wrench icon'></i>
-                            <span class="text fs-6 nav-text">Roles</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('ver_permisos') ?>" title="Permisos">
-                            <i class='bx bx-slider-alt icon'></i>
-                            <span class="text fs-6 nav-text">Permisos</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="text fs-6 nav-text">Acciones</span>
-                        </a>
-                    </li>
-                    <hr style="background: #418ab7;" class="sidebar-divider">
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('usuarios') ?>" title="Usuarios">
-                            <i class='bx bx-user icon'></i>
-                            <span class="text fs-6 nav-text">Usuarios</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('estudiantes') ?>" title="Estudiantes">
-                            <i class='bx bxs-graduation icon'></i>
-                            <span class="text nav-text">Estudiantes</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('profesores') ?>" title="Profesores">
-                            <i class='bx bx-id-card icon'></i>
-                            <span class="text nav-text">Profesores</span>
-                        </a>
-                    </li>
-                    <hr style="background: #418ab7;" class="sidebar-divider">
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('ver_aulas') ?>" title="Aulas">
-                            <i class='bx bx-chalkboard icon'></i>
-                            <span class="text nav-text">Aulas</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('asignaturas') ?>" title="Asignaturas">
-                            <i class='bx bx-book icon'></i>
-                            <span class="text nav-text">Asignaturas</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="<?php echo base_url('ver_horarios') ?>" title="Horarios">
-                            <i class='bx bx-calendar icon'></i>
-                            <span class="text nav-text">Horarios</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="<?php echo base_url('auth/logout') ?>">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-            </div>
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Horario Ideal</h3>
         </div>
+
+        <ul class="list-unstyled">
+            <div style="margin-top: 0.5em;">
+            <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
+                <p><i class="bx bxs-user-circle icon bx-sm"></i>
+                    <?php echo session('usuario') ?> </p>
+                <p class="rol">
+                    <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
+                </p>
+            </a>
+            </div>
+            <hr style="background: #fafafa" class="sidebar-divider">
+            <li>
+                <a href="<?php echo base_url('inicio') ?>" title="Inicio">
+                    <i class='bx bx-home-alt icon'> </i>
+                    <span class="text nav-text">Inicio</span>
+                </a>
+            </li>
+            <hr style="background: #fafafa" class="sidebar-divider">
+            </li>
+            <li>
+                <a href="<?php echo base_url('ver_roles') ?>" title="Roles">
+                    <i class='bx bx-wrench icon'></i>
+                    <span class="text fs-6 nav-text">Roles</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('ver_permisos') ?>" title="Permisos">
+                    <i class='bx bx-slider-alt icon'></i>
+                    <span class="text fs-6 nav-text">Permisos</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
+                    <i class='bx bx-cog icon'></i>
+                    <span class="text fs-6 nav-text">Acciones</span>
+                </a>
+            </li>
+            <hr style="background: #fafafa" class="sidebar-divider">
+            <li>
+                <a href="<?php echo base_url('usuarios') ?>" title="Usuarios">
+                    <i class='bx bx-user icon'></i>
+                    <span class="text fs-6 nav-text">Usuarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('estudiantes') ?>" title="Estudiantes">
+                    <i class='bx bxs-graduation icon'></i>
+                    <span class="text nav-text">Estudiantes</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('profesores') ?>" title="Profesores">
+                    <i class='bx bx-id-card icon'></i>
+                    <span class="text nav-text">Profesores</span>
+                </a>
+            </li>
+            <hr style="background: #fafafa" class="sidebar-divider">
+            <li>
+                <a href="<?php echo base_url('ver_aulas') ?>" title="Aulas">
+                    <i class='bx bx-chalkboard icon'></i>
+                    <span class="text nav-text">Aulas</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('asignaturas') ?>" title="Asignaturas">
+                    <i class='bx bx-book icon'></i>
+                    <span class="text nav-text">Asignaturas</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('ver_horarios') ?>" title="Horarios">
+                    <i class='bx bx-calendar icon'></i>
+                    <span class="text nav-text">Horarios</span>
+                </a>
+            </li>
+        </ul>
+        <hr style="background: #fafafa" class="sidebar-divider">
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="<?php echo base_url('auth/logout') ?>">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+
     </nav>
 
-<script>
-    const body = document.querySelector('body'),
-        sidebar = body.querySelector('nav'),
-        toggle = body.querySelector(".toggle");
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-white bg-white">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class='bx bx-menu'></i>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </nav>
 
 
-    toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-    })
-</script>
+
+        <script>
+            // const body = document.querySelector('body'),
+            //     sidebar = body.querySelector('nav'),
+            //     toggle = body.querySelector(".toggle");
+
+
+            // toggle.addEventListener("click", () => {
+            //     sidebar.classList.toggle("close");
+            // })
+
+            // $(document).ready(function() {
+                $("#sidebarCollapse").on("click", function() {
+                    $("#sidebar").toggleClass("active");
+                    $(this).toggleClass("active");
+                });
+            // });
+        </script>

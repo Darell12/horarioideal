@@ -22,7 +22,7 @@ class Email extends BaseController
         }
         echo json_encode($email);
     }
-    public function insertar()
+    public function insertar()  
     {
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
@@ -39,8 +39,8 @@ class Email extends BaseController
             $this->email->update($this->request->getPost('id_email'), [
                 'email' => $this->request->getPost('email'),
                 'prioridad' => $this->request->getPost('prioridad'),
-                // 'id_usuario' => $this->request->getPost('id_usuario'),
             ]);
+            return 'Se Actualizo el email y su id es: ' . $this->request->getPost('id_email');
         }
 
     }
@@ -53,16 +53,30 @@ class Email extends BaseController
         }
         echo json_encode($email);
     }
-    public function cambiarEstado()
+    public function cambiarEstado($id, $estado)
     {
-        $id = $this->request->getPost('id_email');
-        $estado = $this->request->getPost('estado');
-
         $email = $this->email->cambiarEstado($id, $estado);
-        if (
-            $estado == 'E'
-        ) {
-            return 1;
+        return json_encode('eliminao');
+    }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombreActu = $this->request->getPost('nombreActu');
+
+        $filtro = $this->email->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $nombreActu) {
+            $respuesta = false;
+            return $this->response->setJSON($respuesta);
         }
+
+        if (empty($filtro)) {
+            $respuesta = false;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = true;
+        }
+        return $this->response->setJSON($respuesta);
     }
 }
