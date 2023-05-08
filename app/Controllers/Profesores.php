@@ -45,4 +45,5 @@ class Profesores extends BaseController
         }
         echo json_encode($returnData);
     }
+    
 }
