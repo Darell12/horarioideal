@@ -1,4 +1,4 @@
-<div class="container bg-white mt-5 shadow rounded-4">
+<div class="container bg-white rounded rounded-3">
      <div class="pt-1">
           <h1 class="titulo_Vista text-center">
                <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
@@ -151,7 +151,7 @@
                     render: function(data, type, row) {
                          return `
                          <div class="btn-group">
-                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/usuarios/cambiarEstado')?>/${data.id_usuario}/A"><i class="bi bi-arrow-clockwise"></i></button>
+                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" title="Resetear Contraseña" data-href="<?php echo base_url('/usuarios/cambiarEstado')?>/${data.id_usuario}/A"><i class="bi bi-arrow-clockwise"></i></button>
                          </div>`
                     },
                }

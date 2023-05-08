@@ -92,12 +92,12 @@ class UsuariosModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-    public function obtenerEstudiantes()
+    public function obtenerEstudiantes($estado)
     {
         $this->select('usuarios.*, estudiantes.id_grado, estudiantes.id_estudiante, grados.alias as grado');
         $this->join('estudiantes', 'usuarios.id_usuario = estudiantes.id_usuario', 'left');
         $this->join('grados', 'estudiantes.id_grado = grados.id_grado', 'left');
-        $this->where('usuarios.estado', 'A');
+        $this->where('usuarios.estado', $estado);
         $this->where('usuarios.id_rol', '3');
         $datos = $this->findAll();
         return $datos;
@@ -130,6 +130,16 @@ class UsuariosModel extends Model
         $this->where($campo, $valor);
         $this->where('estado', 'A');
         $datos = $this->first();
+        return $datos;
+    }
+    public function ObtenterDispos($id)
+    {
+        $this->select('usuarios.*, disponibilidad_prof.id_usuario as id, parametro_det.nombre as dia');
+        $this->join('disponibilidad_prof', 'usuarios.id_usuario = disponibilidad_prof.id_usuario');
+        $this->join('parametro_det', 'disponibilidad_prof.id_parametro_det = parametro_det.nombre');
+        $this->where('disponibilidad_prof.estado', 'A');
+        $this->where('id_usuario', $id);
+        $datos = $this->findAll();
         return $datos;
     }
 }

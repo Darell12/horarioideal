@@ -18,7 +18,7 @@
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Nombre</th>
-                    <th class="text-center">Codigo</th>
+                    <th class="text-center">Codigo de Area</th>
                     <th class="text-center">Estado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
@@ -28,7 +28,7 @@
                     <tr>
                         <td class="text-center"><?php echo $valor['id_asignatura']; ?></td>
                         <td class="text-center"><?php echo $valor['nombre']; ?></td>
-                        <td class="text-center"><?php echo $valor['codigo']; ?></td>
+                        <td class="text-center"><span title="<?php echo $valor['nombre']?>"><?php echo $valor['Codigo']; ?></span></td>
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
@@ -69,7 +69,14 @@
                                 <input type="text" id="id" name="id" hidden>
                                 <div class="col">
                                     <label for="codigo" class="col-form-label">Codigo:</label>
-                                    <input type="number" class="form-control" name="codigo" id="codigo" required>
+                                    <!-- <input type="number" class="form-control" name="codigo" id="codigo" required> -->
+                                    <select name="codigo" class="form-select form-select" id="codigo">
+                                            <option value="">-Seleccione una opción-</option>
+                                            <?php foreach ($Area as $valor) { ?>
+                                                <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
+                                            <?php } ?>
+    
+                                        </select>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +193,7 @@
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#nombre_asignatura').val(rs[0]['nombre']);
-                    $('#codigo').val(rs[0]['codigo']);
+                    $('#codigo').val(rs[0]['Codigo']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#RolModal").modal("show");
                 }

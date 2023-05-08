@@ -50,4 +50,13 @@ class Parametros_detModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function ObtenerAreas()
+    {
+        $this->select('parametro_det.id_parametro_det ,parametro_det.nombre, parametro_det.resumen, parametro_enc.nombre as encabezado');
+        $this->join('parametro_enc', 'parametro_det.id_enc = parametro_enc.id_enc');
+        $this->where('parametro_det.estado', 'A');
+        $this->where('parametro_det.id_enc', '11');
+        $datos = $this->findAll();
+        return $datos;
+    }
 }
