@@ -11,37 +11,18 @@
 
     <br>
     <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table class="table table-bordered table-sm table-hover" id="tableGrados" width="100%" cellspacing="0">
+        <table id="tablaEstudiantes" class="table table-bordered table-sm table-hover" id="tableGrados" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center">Id estudiantes</th>
-                    <th class="text-center">Id usuarios</th>
-                    <th class="text-center">Id grado</th>
-                    <th class="text-center">Estado</th>
-                    <th class="text-center" colspan="2">Acciones</th>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Nombres</th>
+                    <th class="text-center">Apellidos</th>
+                    <th class="text-center">Grado</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                <?php if ($datos == 'vacio') { ?>
-                    <tr>
-                        <th class="text-center h1" colspan="6">SIN REGISTROS ELIMINADOS</th>
-                    </tr>
-                <?php } else { ?>
-                    <?php foreach ($datos as $valor) { ?>
-                        <tr>
-                            <td class="text-center"><?php echo $valor['id_estudiante']; ?></td>
-                            <td class="text-center"><?php echo $valor['id_usuario']; ?></td>
-                            <td class="text-center"><?php echo $valor['id_grado']; ?></td>
-                            <th class="text-center">
-                                <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
-                            </th>
-                            <th class="grid grid text-center" colspan="2">
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estudiantes/cambiarEstado') . '/' . $valor['id_estudiante'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
-                            </th>
 
-                        </tr>
-                    <?php } ?>
-                <?php } ?>
             </tbody>
         </table>
     </div>
@@ -69,8 +50,87 @@
 
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        $(this).find('.btn-ok').attr('onclick', 'RestaurarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
+
+    function RestaurarRegistro(id) {
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/estudiantes/cambiarEstado/'); ?>" + id + '/' + 'A',
+            dataType: "json",
+        }).done(function(data) {
+            $("#modal-confirma").modal("hide");
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            contador = 0;
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro eliminado con exito!'
+            })
+            tablaUsuarios.ajax.reload(null, false);
+        })
+    }
+    var contador = 0
+    var tablaUsuarios = $('#tablaEstudiantes').DataTable({
+        ajax: {
+            url: '<?= base_url('estudiantes/obtenerEstudiantes') ?>',
+            method: "POST",
+            data: {
+                estado: 'E'
+            },
+            dataSrc: "",
+        },
+        columns: [{
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return data.nombre_p + " " + data.nombre_s
+                },
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return data.apellido_p + " " + data.apellido_s
+                },
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    if (data.grado) {
+                        return data.grado;
+                    } else {
+                        return `Grado por asignar <input onchange="AsignarGrado(${data.id_usuario})" id="asignarGrado${data.id_usuario}" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">`
+                    }
+                }
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_estudiante}" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>`
+                },
+            }
+        ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    })
+
 
 
     $('.close').click(function() {

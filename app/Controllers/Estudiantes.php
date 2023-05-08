@@ -30,8 +30,6 @@ class Estudiantes extends BaseController
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
         $this->prioridad = new Parametros_detModel();
-
-
     }
     public function index()
     {
@@ -77,7 +75,7 @@ class Estudiantes extends BaseController
             ]);
 
             $idIngreso = $this->usuarios->getInsertID();
-            
+
             $this->estudiantes->save([
                 'id_usuario' => $idIngreso,
                 'id_grado' => $this->request->getPost('id_grado'),
@@ -112,7 +110,8 @@ class Estudiantes extends BaseController
         }
     }
 
-    public function insertarGrado(){
+    public function insertarGrado()
+    {
         $this->estudiantes->save([
             'id_usuario' => $this->request->getPost('id_usuario'),
             'id_grado' => $this->request->getPost('id_grado'),
@@ -132,30 +131,16 @@ class Estudiantes extends BaseController
 
     public function cambiarEstado($id, $estado)
     {
-        $estudiantes = $this->estudiantes->cambiar_Estado($id, $estado);
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_estudiantes'));
-        } else {
-            return redirect()->to(base_url('/eliminados_estudiantes'));
-        }
+        $this->estudiantes->cambiar_Estado($id, $estado);
+        $id_usuario = $this->estudiantes->buscarEstudiantes($id);      
+        $this->usuarios->cambiarEstado($id_usuario, $estado);
+        return json_encode('Todo bien');
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerEstudiantesEliminados();
-
-
         // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Estudiantes Eliminados', 'datos' => 'vacio'];
-            echo view('/principal/sidebar', $data);
-            echo view('/estudiante  s/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Estudiantes Eliminados', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/estudiantes/eliminados', $data);
-        }
+        $data = ['titulo' => 'Administrar Estudiantes Eliminados'];
+        echo view('/principal/sidebar', $data);
+        echo view('/estudiantes/eliminados', $data);
     }
 }
