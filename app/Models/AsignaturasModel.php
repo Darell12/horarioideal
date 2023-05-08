@@ -13,7 +13,7 @@ class AsignaturasModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre', 'codigo',  'estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre', 'Codigo',  'estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -26,7 +26,7 @@ class AsignaturasModel extends Model
     
     public function obtenerAsignaturas()
     {
-        $this->select('asignaturas.id_asignatura, asignaturas.nombre, asignaturas.codigo, asignaturas.estado');
+        $this->select('asignaturas.id_asignatura, asignaturas.nombre, asignaturas.Codigo, asignaturas.estado');
         $this->where('asignaturas.estado', 'A');
         $datos = $this->findAll();
         return $datos;

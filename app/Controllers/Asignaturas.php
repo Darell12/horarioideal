@@ -3,20 +3,24 @@
 namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\AsignaturasModel;
+use App\Models\Parametros_detModel;
 
 class Asignaturas extends BaseController
 {
     protected $asignaturas, $eliminados;
+    protected $paramAreas;
     
     public function __construct()
     { 
         $this->asignaturas = new AsignaturasModel();
         $this->eliminados = new AsignaturasModel();
+        $this->paramAreas = new Parametros_detModel();
     }
     public function index()
     {
         $asignaturas = $this->asignaturas->obtenerAsignaturas();    
-        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'datos' => $asignaturas ];
+        $paramAreas = $this->paramAreas->ObtenerAreas();
+        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'Area' => $paramAreas, 'datos' => $asignaturas ];
 
         echo view('/principal/sidebar', $data);
         echo view('/asignaturas/asignaturas', $data);
@@ -28,13 +32,13 @@ class Asignaturas extends BaseController
 
             $this->asignaturas->save([
                 'nombre' => $this->request->getPost('nombre_asignatura'),
-                'codigo' => $this->request->getPost('codigo'),
+                'Codigo' => $this->request->getPost('codigo'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->asignaturas->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_asignatura'),
-                'codigo' => $this->request->getPost('codigo'),
+                'Codigo' => $this->request->getPost('codigo'),
                 'usuario_crea'=> session('id')
             ]);
         }

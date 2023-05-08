@@ -31,7 +31,7 @@
             <tr>
               <th class="text-center"><?php echo $valor['id_asignatura']; ?></th>
               <th class="text-center"><?php echo $valor['nombre']; ?></th>
-              <th class="text-center"><?php echo $valor['codigo']; ?></th>
+              <th class="text-center"><?php echo $valor['Codigo']; ?></th>
               <th class="text-center">
                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
               </th>
