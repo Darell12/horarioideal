@@ -1,18 +1,3 @@
-<!-- <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css">
-    <script src="<?php echo base_url('/bootstrap/bootstrap.bundle.min.js'); ?>"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</head> -->
-
-
 <div class="container">
     <div class="container bg-white mt-5 shadow rounded-4">
         <div>
@@ -33,41 +18,19 @@
             <table class="table table-bordered table-sm table-hover" id="tablaFranjas" width="100%" cellspacing="0">
                 <thead class="table-dark">
                     <tr>
-                        <th class="text-center">Id</th>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Día</th>
                         <th class="text-center">Hora Inicio</th>
                         <th class="text-center">Hora Fin</th>
-                        <th class="text-center">Estado</th>
-                        <th class="text-center" >Acciones</th>
+                        <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                    <?php foreach ($datos as $valor) { ?>
-                        <tr>
-                            <td class="text-center"><?php echo $valor['id_franja_horaria']; ?></td>
-                            <td class="text-center"><?php echo $valor['hora_inicio']; ?></td>
-                            <td class="text-center"><?php echo $valor['hora_fin']; ?></td>
-                            <td class="text-center">
-                                <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                            </td>
-                            <td class="grid grid text-center" colspan="2">
-
-                                <button class="btn btn-outline-primary" onclick="seleccionaFranja(<?php echo $valor['id_franja_horaria'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#FranjaModal">
-
-                                    <i class="bi bi-pencil"></i>
-
-                                </button>
-
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_franjas') . '/' . $valor['id_franja_horaria'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                            </td>
-
-                        </tr>
-                    <?php } ?>
-
                 </tbody>
             </table>
         </div>
         <!-- Modal -->
-        <form method="POST" action="<?php echo base_url('/franjas_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+        <form id="formulario">
             <div class="modal fade" id="FranjaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -77,22 +40,28 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
+                                <div class="col">
+                                    <label class="col-form-label">Dia de la Semana:</label>
+                                    <select class="form-select form-select" name="dia" id="dia" required>
+                                        <option value="">Seleccione un Grado</option>
+                                        <?php foreach ($dias as $dia) { ?>
+                                            <option value="<?php echo $dia['id_parametro_det']; ?>"><?php echo $dia['nombre']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                                 <div class="row">
-
                                     <div class="col">
                                         <label for="nombre" class="col-form-label">Hora Inicio:</label>
                                         <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" required>
                                     </div>
-
+                                    <input type="text" id="tp" name="tp" hidden>
+                                    <input type="text" id="id" name="id" hidden>
+                                </div>
+                                <div class="row">
                                     <div class="col">
                                         <label for="nombre" class="col-form-label">Hora Fin:</label>
                                         <input type="time" class="form-control" name="hora_fin" id="hora_fin" required>
                                     </div>
-
-                                    <input type="text" id="tp" name="tp" hidden>
-                                    <input type="text" id="id" name="id" hidden>
-
-
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -127,72 +96,191 @@
 
     <script>
         $('#modal-confirma').on('show.bs.modal', function(e) {
-            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
         });
-        $('#tablaFranjas').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+
+        function EliminarRegistro(id) {
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/franjas_horarias/cambiarEstado/'); ?>" + id + '/' + 'E',
+                dataType: "json",
+            }).done(function(data) {
+                $("#modal-confirma").modal("hide");
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado con exito!'
+                })
+                contador = 0;
+                tablaFranja.ajax.reload(null, false);
+            })
         }
-    });
-    $("#formulario").validate({
-        rules: {
-            hora_inicio: {
-                required: true,
-                remote: {
-                    url: '<?php echo base_url() ?>franjas_horarias/validar',
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        campo: function() {
-                            return 'hora_inicio';
-                        },
-                        valor: function() {
-                            return $("#hora_inicio").val();
-                        },
-                        tp: function() {
-                            return $("#tp").val();
-                        },
-                        hora_inicio: function() {
-                            return $("#hora_inicio").val();
-                        },
+
+        var contador = 0
+        var tablaFranja = $('#tablaFranjas').DataTable({
+            ajax: {
+                url: '<?= base_url('franjas_horarias/obtenerFranjas') ?>',
+                method: "POST",
+                data: {
+                    estado: 'A'
+                },
+                dataSrc: "",
+            },
+            columns: [{
+                    data: null,
+                    render: function(data, type, row) {
+                        contador = contador + 1
+                        return "<b>" + contador + "</b>";
+                    },
+                },
+                {
+                    data: 'diaN',
+
+                },
+                {
+                    data: 'hora_inicio',
+
+                },
+                {
+                    data: 'hora_fin',
+
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return `<div class="btn-group">
+                                <button class="btn btn-outline-primary" onclick="seleccionaFranja(${data.id_franja_horaria} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                    <i class="bi bi-pencil"></i>
+                                </button>` + " " + `<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_franja_horaria}" title="Eliminar Registro">
+                                <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>`
                     },
                 }
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        })
+
+        $("#formulario").validate({
+            rules: {
+                hora_inicio: {
+                    required: true,
+                    remote: {
+                        url: '<?php echo base_url() ?>franjas_horarias/validar',
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            campo: function() {
+                                return 'hora_inicio';
+                            },
+                            valor: function() {
+                                return $("#hora_inicio").val();
+                            },
+                            tp: function() {
+                                return $("#tp").val();
+                            },
+                            hora_inicio: function() {
+                                return $("#hora_inicio").val();
+                            },
+                        },
+                    }
+                },
+                hora_fin: {
+                    required: true,
+                    remote: {
+                        url: '<?php echo base_url() ?>franjas_horarias/validar',
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            campo: function() {
+                                return 'hora_fin';
+                            },
+                            valor: function() {
+                                return $("#hora_fin").val();
+                            },
+                            tp: function() {
+                                return $("#tp").val();
+                            },
+                            hora_fin: function() {
+                                return $("#hora_fin").val();
+                            },
+                        },
+                    }
+
+                },
             },
-           hora_fin: {
-                required: true,
-                remote: {
-                    url: '<?php echo base_url() ?>franjas_horarias/validar',
-                    type: "post",
-                    dataType: "json",
+            messages: {
+                hora_inicio: {
+                    required: "La hora es requerida",
+                    remote: "Esta hora de inicio ya existe"
+                },
+                hora_fin: {
+                    required: "La hora es requerida",
+                },
+
+            }
+        });
+
+        $('#formulario').on('submit', function(e) {
+            console.log('activo');
+            e.preventDefault();
+        })
+
+        $('#btn_Guardar').on('click', function(e) {
+            e.preventDefault();
+            if ($('#formulario').valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('/franjas_horarias/insertar'); ?>",
                     data: {
-                        campo: function() {
-                            return 'hora_fin';
-                        },
-                        valor: function() {
-                            return $("#hora_fin").val();
-                        },
-                        tp: function() {
-                            return $("#tp").val();
-                        },
-                        hora_fin: function() {
-                            return $("#hora_fin").val();
-                        },
+                        tp: $('#tp').val(),
+                        id: $('#id').val(),
+                        id_dia: $('#dia').val(),
+                        hora_inicio: $('#hora_inicio').val(),
+                        hora_fin: $('#hora_fin').val(),
                     },
-                }
-                
-            },
-        },
-        messages: {
-            hora_inicio: {
-                required: "La hora es requerida",
-                remote: "Esta hora de inicio ya existe"
-            },
-            hora_fin: {
-                required: "La hora es requerida",
-            },
-            
-        }
-    });
+                    dataType: "json",
+                }).done(function(data) {
+                    $('#FranjaModal').modal('hide');
+                    let Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Acción realizada con exito!'
+                    })
+                    console.log('insertar');
+                    contador = 0
+                    tablaFranja.ajax.reload(null, false)
+                    return
+                })
+            } else {
+                console.log('Formulario Invalido');
+            }
+        })
 
         function seleccionaFranja(id, tp) {
             if (tp == 2) {
@@ -205,6 +293,7 @@
                         console.log(rs[0])
                         $("#tp").val(2);
                         $("#id").val(id)
+                        $("#dia").val(rs[0]['dia'])
                         $('#hora_inicio').val(rs[0]['hora_inicio']);
                         $('#hora_fin').val(rs[0]['hora_fin']);
                         $("#btn_Guardar").text('Actualizar');
@@ -213,6 +302,7 @@
                 })
             } else {
                 $("#tp").val(1);
+                $('#dia').val('');
                 $('#hora_inicio').val('');
                 $('#hora_fin').val('');
                 $("#btn_Guardar").text('Guardar');

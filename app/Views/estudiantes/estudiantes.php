@@ -378,7 +378,7 @@
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
                 })
-
+                
                 Toast.fire({
                     icon: 'success',
                     title: 'Registro eliminado con exito!'

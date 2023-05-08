@@ -46,13 +46,13 @@
 
         <ul class="list-unstyled">
             <div style="margin-top: 0.5em;">
-            <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
-                <p><i class="bx bxs-user-circle icon bx-sm"></i>
-                    <?php echo session('usuario') ?> </p>
-                <p class="rol">
-                    <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
-                </p>
-            </a>
+                <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
+                    <p><i class="bx bxs-user-circle icon bx-sm"></i>
+                        <?php echo session('usuario') ?> </p>
+                    <p class="rol">
+                        <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
+                    </p>
+                </a>
             </div>
             <hr style="background: #fafafa" class="sidebar-divider">
             <li>
@@ -76,9 +76,15 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
+                <a href="<?php echo base_url('ver_franjas') ?>" title="Acciones">
                     <i class='bx bx-cog icon'></i>
                     <span class="text fs-6 nav-text">Acciones</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
+                    <i class='bx bx-time-five'></i>
+                    <span class="text fs-6 nav-text">Franjas horarias</span>
                 </a>
             </li>
             <hr style="background: #fafafa" class="sidebar-divider">
@@ -108,8 +114,14 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo base_url('ver_grados') ?>" title="Aulas">
+                    <i class='bx bx-hash'></i>
+                    <span class="text nav-text">grados</span>
+                </a>
+            </li>
+            <li>
                 <a href="<?php echo base_url('asignaturas') ?>" title="Asignaturas">
-                    <i class='bx bx-book icon'></i>
+                    <i class='bx bx-math'></i>
                     <span class="text nav-text">Asignaturas</span>
                 </a>
             </li>
@@ -177,9 +189,9 @@
             // })
 
             // $(document).ready(function() {
-                $("#sidebarCollapse").on("click", function() {
-                    $("#sidebar").toggleClass("active");
-                    $(this).toggleClass("active");
-                });
+            $("#sidebarCollapse").on("click", function() {
+                $("#sidebar").toggleClass("active");
+                $(this).toggleClass("active");
+            });
             // });
         </script>

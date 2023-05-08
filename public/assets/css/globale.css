@@ -29,6 +29,10 @@ body {
     /* border: 1px solid transparent !important; */
 }
 
+td{
+    text-justify: center;
+}
+
 div.dataTables_wrapper div.dataTables_filter input {
     border: #daeaf4;
     border-radius: 0;

@@ -13,7 +13,7 @@ class Franjas_horariasModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['hora_inicio', 'hora_fin', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['dia', 'hora_inicio', 'hora_fin', 'estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -23,10 +23,11 @@ class Franjas_horariasModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function obtenerFranjas()
+    public function obtenerFranjas($estado)
     {
-        $this->select('franjas_horarias.*');
-        $this->where('estado', 'A');
+        $this->select('franjas_horarias.*, parametro_det.nombre as diaN');
+        $this->join('parametro_det', 'franjas_horarias.dia = parametro_det.id_parametro_det');
+        $this->where('franjas_horarias.estado', $estado);
         $datos = $this->findAll();
         return $datos;
     }

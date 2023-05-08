@@ -4,46 +4,60 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Franjas_horariasModel;
+use App\Models\Parametros_detModel;
 
 
 
 class Franjas_horarias extends BaseController
 {
     protected $franja, $eliminados;
+    protected $dia;
 
     public function __construct()
     {
         $this->franja = new Franjas_horariasModel();
         $this->eliminados = new Franjas_horariasModel();
+        $this->dia = new Parametros_detModel();
     }
     public function index()
     {
-        $franja = $this->franja->obtenerFranjas();
-
-        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $franja];
+        $dia = $this->dia->ObtenerParametro(4);
+        $franja = $this->franja->obtenerFranjas($estado = 'A');
+        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $franja, 'dias' => $dia];
 
         echo view('/principal/sidebar', $data);
         echo view('/franjas_horarias/franjas_horarias', $data);
     }
+
+    public function obtenerFranjas()
+    {
+        $estado = $this->request->getPost('estado');
+        $franja = $this->franja->obtenerFranjas($estado);
+        echo json_encode($franja);
+    }
+
     public function insertar()
     {
-       
+
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
             $this->franja->save([
+                'dia' => $this->request->getPost('id_dia'),
                 'hora_inicio' => $this->request->getPost('hora_inicio'),
                 'hora_fin' => $this->request->getPost('hora_fin'),
                 'usuario_crea' => session('id')
-
             ]);
+            $idIngreso = $this->franja->getInsertID();
+            return json_encode($idIngreso);
         } else {
             $this->franja->update($this->request->getPost('id'), [
+                'dia' => $this->request->getPost('id_dia'),
                 'hora_inicio' => $this->request->getPost('hora_inicio'),
                 'hora_fin' => $this->request->getPost('hora_fin'),
                 'usuario_crea' => session('id')
             ]);
         }
-        return redirect()->to(base_url('/franjas_horarias'));
+        return json_encode($this->request->getPost('id'));
     }
 
     public function eliminados()
@@ -74,7 +88,7 @@ class Franjas_horarias extends BaseController
             $respuesta = true;
             return $this->response->setJSON($respuesta);
         }
-        
+
         if ($tp == 2 && $valor == $hora_inicio) {
             $respuesta = true;
             return $this->response->setJSON($respuesta);
@@ -87,8 +101,6 @@ class Franjas_horarias extends BaseController
             $respuesta = false;
         }
         return $this->response->setJSON($respuesta);
-
-        
     }
 
     public function buscarFranjas($id)
@@ -104,12 +116,7 @@ class Franjas_horarias extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $franja = $this->franja->cambiar_Estado($id, $estado);
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_franjas'));
-        } else {
-            return redirect()->to(base_url('/eliminados_franjas'));
-        }
+        return json_encode('Todo bien');
+
     }
 }
