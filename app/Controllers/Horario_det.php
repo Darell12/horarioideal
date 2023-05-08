@@ -29,7 +29,7 @@ class Horario_det extends BaseController
     public function index($id)
     {
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
-        $usuarios = $this->usuarios->obtenerUsuarios();
+        $usuarios = $this->usuarios->obtenerUsuarios($estado = "A");
         $horario = $this->horario->vistaHorarioPrueba();
         $grados = $this->grados->obtenerGrados();
 
@@ -37,7 +37,6 @@ class Horario_det extends BaseController
 
        echo view('/principal/sidebar', $data);
        echo view('/horarios_det/detalle', $data);
-       return json_encode($horario);
     }
 
     public function insertar()

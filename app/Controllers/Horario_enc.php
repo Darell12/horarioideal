@@ -26,7 +26,7 @@ class Horario_enc extends BaseController
     public function index()
     {
         $horario_enc = $this->horario_enc->obtenerHorarios_enc();
-        $usuarios = $this->usuarios->obtenerUsuarios();
+        $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
         $grados = $this->grados->obtenerGrados();
 
         $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario_enc, 'usuarios' => $usuarios, 'grados' => $grados  ];
