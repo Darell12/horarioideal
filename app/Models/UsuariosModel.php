@@ -91,12 +91,12 @@ class UsuariosModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-    public function obtenerEstudiantes()
+    public function obtenerEstudiantes($estado)
     {
         $this->select('usuarios.*, estudiantes.id_grado, estudiantes.id_estudiante, grados.alias as grado');
         $this->join('estudiantes', 'usuarios.id_usuario = estudiantes.id_usuario', 'left');
         $this->join('grados', 'estudiantes.id_grado = grados.id_grado', 'left');
-        $this->where('usuarios.estado', 'A');
+        $this->where('usuarios.estado', $estado);
         $this->where('usuarios.id_rol', '3');
         $datos = $this->findAll();
         return $datos;
