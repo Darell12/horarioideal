@@ -52,7 +52,7 @@ class UsuariosModel extends Model
     }
     public function buscarUsuarioPerfil($id)
     {
-        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.resumen as t_documento, usuarios.direccion, grados.alias as grado, emails.email, usuarios.id_rol, telefonos.numero ');
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.resumen as t_documento, usuarios.direccion, grados.alias as grado, emails.email, usuarios.id_rol, telefonos.numero,');
         $this->join('telefonos', 'usuarios.id_usuario = telefonos.id_usuario', 'left');
         $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
         $this->join('estudiantes', 'usuarios.id_usuario = estudiantes.id_usuario', 'left');
@@ -60,7 +60,8 @@ class UsuariosModel extends Model
         $this->join('emails', 'usuarios.id_usuario = emails.id_usuario', 'left');
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.id_usuario', $id);
-        $this->where('usuarios.estado', 'A');
+        $this->where('usuarios.estado', 'A');   
+        $this->where('emails.estado', 'A');   
         $datos = $this->first();
         return $datos;
     }

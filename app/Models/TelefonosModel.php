@@ -25,7 +25,7 @@ class TelefonosModel extends Model
 
     public function ObtenerTelefonoUsuario($id, $estado)
     {
-        $this->select('telefonos.numero, telefonos.estado, telefonos.id_telefono, telefonos.id_usuario, parametro_det.nombre as prioridad');
+        $this->select('telefonos.numero, telefonos.estado, telefonos.id_telefono, telefonos.id_usuario, parametro_det.nombre as prioridad, telefonos.prioridad as id_prioridad');
         $this->join('parametro_det', 'telefonos.prioridad = parametro_det.id_parametro_det');
 
         $this->where('id_usuario', $id);

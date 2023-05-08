@@ -42,6 +42,16 @@ class Horario_encModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function obtenerProfesores()
+    {
+        $this->select('usuarios.*, usuarios.id_usuario, usuarios.id_usuario,  usuarios.estado');
+        $this->join('usuarios', 'usuarios.id_usuario = usuarios.id_usuario', 'left');
+        $this->where('usuarios.estado', 'A');
+        $this->where('usuarios.id_rol', '4');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    
     public function buscarAccion($id)
     {
         $this->select('horarios_enc.*');

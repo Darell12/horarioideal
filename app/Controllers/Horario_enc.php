@@ -13,6 +13,7 @@ class Horario_enc extends BaseController
 {
     protected $horario_enc, $eliminados;
     protected $usuarios, $grados;
+    protected $profesores;
 
 
     public function __construct()
@@ -21,15 +22,18 @@ class Horario_enc extends BaseController
         $this->eliminados = new Horario_encModel();
         $this->usuarios = new UsuariosModel();
         $this->grados = new GradosModel();
+        $this->profesores = new Horario_encModel();
+ 
     }
 
     public function index()
     {
         $horario_enc = $this->horario_enc->obtenerHorarios_enc();
         $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
+        $profesores = $this->profesores->obtenerProfesores();
         $grados = $this->grados->obtenerGrados();
 
-        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario_enc, 'usuarios' => $usuarios, 'grados' => $grados  ];
+        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario_enc, 'profesores' => $profesores, 'usuarios' => $usuarios, 'grados' => $grados  ];
 
        echo view('/principal/sidebar', $data);
        echo view('/horarios_enc/horarios_enc', $data);
@@ -68,6 +72,7 @@ class Horario_enc extends BaseController
         }
         echo json_encode($returnData);
     }
+    
 
     public function cambiarEstado($id, $estado)
     {
