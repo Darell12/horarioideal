@@ -13,7 +13,7 @@
         <div>
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/estudiantes/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            <a href="<?php echo base_url('/profesores'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
         <br>
         <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
@@ -21,11 +21,11 @@
                 <thead class="table-dark">
                     <tr>
                         <th class="text-center">Id usuario</th>
-                        <th class="text-center">Nombres</th>
-                        <th class="text-center">Apellidos</th>
-                        <th class="text-center">Asignatuas</th>
+                        <th class="text-center">Dia</th>
+                        <th class="text-center">Hora de inicio</th>
+                        <th class="text-center">Hora de fin</th>
                         <th class="text-center">Estado</th>
-                        <th class="text-center">Disponibilidad</th>
+                        
                         <th class="text-center" colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -34,35 +34,21 @@
                         <tr>
                             <td class="text-center" hidden><input id="util<?php echo $valor['id_usuario'] ?>" type="text" value="<?php echo $valor['id_usuario']; ?>"></td>
                             <td class="text-center"><?php echo $valor['id_usuario']; ?></td>
+                            <td class="text-center"><?php echo $valor['dia']; ?></td>
+                            <td class="text-center"><?php echo $valor['hora_inicio']; ?></td>
+                            <td class="text-center"><?php echo $valor['hora_fin']; ?></td>
+                            <td class="text-center"><?php echo $valor['estado']; ?></td>
+                            
+                            
 
-                            <td class="text-center"><?php echo $valor['nombre_p'] . ' ' . $valor['nombre_s']; ?></td>
-                            <td class="text-center"><?php echo $valor['apellido_s'] . ' ' . $valor['apellido_p']; ?></td>
-
-                            <?php if ($valor['grado']) { ?>
-                                <td class="text-center">
-                                    <button class="btn btn-outline-warning" onclick="Asignaturas(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');">
-                                        <i class="bi bi-journal-bookmark"></i>
-                                    </button>
-                                </td>
-                            <?php } else { ?>
-                                <td class="text-center">
-                                    <button onclick="Asignaturas(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" id="asignarGrado<?php echo $valor['id_usuario']; ?>" class="btn btn-outline-warning" value="" id="flexCheckDefault">
-                                        <i class="bi bi-journal-bookmark"></i>
-                                    </button>
-
-                                    <span class="text-danger"> <br>Sin Asignaturas <br> Bajo Cargo <br> </span>
-                                </td>
-                            <?php } ?>
+                            
 
                             <td class="text-center">
                                 <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                             </td>
                             
-                            <td class="text-center">
-                                    <a href="<?php echo base_url('/disponibilidad/disponibilidadXProfesor/') . $valor['id_usuario'] ?>"><button onclick="Disponibilidad(<?php echo $valor['id_usuario'] . ',' ?> '<?php echo $valor['estado'] ?>');" id="asignarGrado<?php echo $valor['id_usuario']; ?>" class="btn btn-outline-warning" value="" id="flexCheckDefault">
-                                    <i class="bi bi-clipboard-check"></i>
-                                    </button>
-                                    
+                            
+                             
                                     
                             <td class="grid grid text-center" colspan="2">
                                 <div class="btn-group">
@@ -311,7 +297,6 @@
     </div>
 
     <script>
-
 $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[A-Za-z#&]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
@@ -584,7 +569,92 @@ function seleccionaUsuario(id, tp) {
                 })
             }
         }
-        
+        function Disponibilidad(id, estado) {
+
+            dataURL = "<?php echo base_url('/profesores/obtenerDisponibilidadProfesor'); ?>" + "/" + id
+
+            if (estado == 'E') {
+                $.ajax({
+                    type: "POST",
+                    url: dataURL,
+                    dataType: "json",
+                    success: function(res) {
+                        res = res[0];
+
+                        $('#tabla_asignatura').empty();
+                        var contenido = '';
+                        if (!$(res).length == 0) {
+                            for (let i = 0; i < res.length; i++) {
+                                contenido += `
+                    <tr>
+                    <th class="text-center"> ${res[i].id_disponibilidad_prof}</th>
+                    <th class="text-center"> ${res[i].usuarios}</th>
+                    <th class="text-center"> ${res[i].alias}</th>
+                    <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+                    <th class="text-center">
+
+      <button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id_disponibilidad_prof},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
+      </th>
+      </tr>
+      `
+                            }
+                            $('#titulo_salario').html('Administrar emails eliminados');
+                        } else {
+                            contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ELIMINADOS</th></tr>'
+                        }
+
+                        $('#tabla_asignatura').html(contenido);
+                        $('#btn-regresar').attr('onclick', 'EmailUsuario(' + id + ',' + '"A")');
+                        $('#btn-eliminados-salarios').hide();
+                        $('#btn-regresar').show();
+                        $('#btn-agregar-salario').hide();
+                        $('#ModalAsignaturas').modal('show');
+                    }
+                })
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: dataURL,
+                    dataType: "json",
+                    success: function(res) {
+                        res = res[0];
+                        console.log(res)
+                        var contenido = '';
+                        if (!$(res).length == 0) {
+                            for (let i = 0; i < res.length; i++) {
+                                contenido += `
+                    <tr>
+                    <th class="text-center"> ${res[i].id_disponibilidad_prof}</th>
+                    <th class="text-center"> ${res[i].usuario}</th>
+                    <th class="text-center"> ${res[i].alias}</th>
+
+                        <th class="text-center text-success"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
+                        <th class="text-center">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id_disponibilidad_prof},${res[i].id_usuario}, 'E')"><i class="bi bi-trash3"></i></button>
+                            </div>
+                        </th>
+                    </tr>`
+                            }
+                            $('#tituloEmail').html('Administrar Emails de ' + res[0].nombre_empleado);
+
+                        } else {
+                            contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ASIGNADOS</th></tr>'
+                        }
+                        $('#titulo_salario').html('Administrar emails');
+                        $('#btn-eliminados-salarios').attr('onclick', 'EmailUsuario(' + id + ',' + '"E")');
+                        $('#btn-agregar-salario').show();
+                        $('#tabla_asignatura').empty();
+                        $('#tabla_asignatura').html(contenido);
+                        $('#btn-agregar-salario').attr('onclick', 'seleccionarAsig(' + id + ',' + '1)');
+                        $('#btn-eliminados-salarios').show();
+                        $('#btn-regresar').hide();
+                        $('#ModalAsignaturas').modal('show');
+                    }
+                })
+            }
+        }
 
         function seleccionarAsig(id, tp) {
             if (tp == 2) {

@@ -123,4 +123,14 @@ class UsuariosModel extends Model
         $datos = $this->first();
         return $datos;
     }
+    public function ObtenterDispos($id)
+    {
+        $this->select('usuarios.*, disponibilidad_prof.id_usuario as id, parametro_det.nombre as dia');
+        $this->join('disponibilidad_prof', 'usuarios.id_usuario = disponibilidad_prof.id_usuario');
+        $this->join('parametro_det', 'disponibilidad_prof.id_parametro_det = parametro_det.nombre');
+        $this->where('disponibilidad_prof.estado', 'A');
+        $this->where('id_usuario', $id);
+        $datos = $this->findAll();
+        return $datos;
+    }
 }
