@@ -69,22 +69,22 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <label class="col-form-label">Usuario:</label>
-                                    <select class="form-select form-select" name="id_usuario" id="id_usuario" required>
-                                        <option value="">Seleccione un usuario</option>
-                                        <?php foreach ($usuarios as $usuario) { ?>
-                                            <option value="<?php echo $usuario['id_usuario']; ?>"><?php echo $usuario['nombre_p'] . ' ' .$usuario['apellido_p']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
                                 <div class="col">
                                     <label class="col-form-label">Grado:</label>
                                     <select class="form-select form-select" name="id_grado" id="id_grado" required>
                                         <option value="">Seleccione un Grado</option>
                                         <?php foreach ($grados as $grado) { ?>
                                             <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                <div class="col">
+                                    <label class="col-form-label">Usuario:</label>
+                                    <select class="form-select form-select" name="id_usuario" id="id_usuario" required>
+                                        <option value="">Seleccione un usuario</option>
+                                        <?php foreach ($profesores as $usuario) { ?>
+                                            <option value="<?php echo $usuario['id_usuario']; ?>"><?php echo $usuario['nombre_p'] . ' ' .$usuario['apellido_p']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

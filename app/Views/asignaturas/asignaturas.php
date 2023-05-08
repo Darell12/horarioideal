@@ -28,7 +28,7 @@
                     <tr>
                         <td class="text-center"><?php echo $valor['id_asignatura']; ?></td>
                         <td class="text-center"><?php echo $valor['nombre']; ?></td>
-                        <td class="text-center"><?php echo $valor['Codigo']; ?></td>
+                        <td class="text-center"><span title="<?php echo $valor['nombre']?>"><?php echo $valor['Codigo']; ?></span></td>
                         <td class="text-center">
                             <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
                         </td>
