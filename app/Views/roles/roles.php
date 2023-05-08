@@ -1,5 +1,5 @@
 <div class="container bg-white mt-5 shadow rounded-4">
-    <div>
+    <div >
         <h1 class="titulo_Vista text-center">
             <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
         </h1>
@@ -11,7 +11,7 @@
     </div>
 
     <br>
-    <div class="table-responsive">
+    <div  class="table-responsive">
         <table id="tablaRoles" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>

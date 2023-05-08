@@ -5,6 +5,7 @@
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/prueba.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/login.css" rel="stylesheet">
 
     <script src="<?php echo base_url() ?>/librerias/sweetalert2.js"></script>
     <script src="<?php echo base_url() ?>/librerias/jquery-3.6.4.js"></script>
@@ -13,9 +14,8 @@
     <script src="<?php echo base_url() ?>/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url() ?>DataTable/datatables.min.js"></script>
 
-
 </head>
-<section class="vh-100 position-relative" style="background-color: #0b2c44;">
+<!-- <section class="vh-100 position-relative" style="background-color: #0b2c44;">
     <div class="position-absolute top-50 start-50 translate-middle">
         <form method="post" action="<?php echo base_url('/auth/login'); ?>" id="login">
             <div class="card text-center" style="width: 26rem;">
@@ -26,11 +26,11 @@
                         <input type="text" class="form-control" name="n_documento" id="n_documento" placeholder="Nombre de Usuario" value="<?= old('nombre_corto') ?>">
                         <label style="color:#0b2c44" for="floatingInput">Número de documento</label>
                     </div>
-                    <!-- <div>
+                     <div>
                         <label class="form-label" for="email">Nombre de Usuario</label>
                         <input type="text" class="form-control border border-dark-subtle" name="nombre_corto" id="nombre_corto" value="<?= old('nombre_corto') ?>">
                     </div> -->
-                    <div style="margin: 20px 10px;" class="form-floating mb-3">
+                    <!-- <div style="margin: 20px 10px;" class="form-floating mb-3">
                         <input style="margin: 20px 0;" type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
                         <label for="floatingPassword">Contraseña</label>
                         <div>
@@ -45,7 +45,37 @@
                     </div>
         </form>
     </div>
-</section>
+</section> --> 
+<div class="container">
+    <div style="background-color: #418ab7;" class="info">
+        <p class="txt-1">Gracias por visitarnos</p>
+        <h2>Bienvenido</h2>
+        <hr />
+        <p class="txt-2">
+            "El orden de los tiempos es la clave del éxito en la vida" - Charles Darwin.
+        </p>
+    </div>
+    <form class="form" action="<?php echo base_url('/auth/login'); ?>" id="login">
+        <h2>Iniciar Sesión</h2>
+        <p>¡Hola! Gracias por visitarnos. Por favor, ingresa tus credenciales para acceder a tu cuenta. </p>
+        <div class="inputs">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="n_documento" id="n_documento" placeholder="Nombre de Usuario" value="<?= old('nombre_corto') ?>">
+                <label style="color:#0b2c44" for="floatingInput">Número de documento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+            <div>
+                <label id="login-error" class="error" for="rol">
+            </div>
+
+            <input type="submit" value="Iniciar Sesión" class="submit">
+        </div>
+    </form>
+
+</div>
 
 <script>
     $('#login').on('submit', function(e) {
