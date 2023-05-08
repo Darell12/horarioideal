@@ -14,7 +14,7 @@
         <table id="tablaUsuarios" class="table table-bordered table-sm table-hover table-light" width="100%" cellspacing="0">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center">Id</th>
+                    <th class="text-center">#</th>
                     <th class="text-center">Tipo Documento</th>
                     <th class="text-center">Documento</th>
                     <th class="text-center">Nombres</th>
@@ -204,7 +204,6 @@
         </div>
     </div>
 </div>
-<!-- emails -->
 
 <!-- tabla emalis -->
 <div id="ModalEmail" class="modal" tabindex="-1">
@@ -640,6 +639,8 @@
                 insertarTelefono(data)
                 contador = 0
                 tablaUsuarios.ajax.reload(null, false)
+                tablaTemporal = [];
+                tablaTemporalTelefonos = [];
                 return
             })
         } else {
@@ -868,8 +869,7 @@
                     });
                     generarTablaEmail(tablaTemporal);
                     let principal = tablaTemporal.find(p => p.prioridad == 6)
-                    console.log(rs.length);
-                    if (rs.length = 0) {
+                    if (rs.length == 0) {
                         $('#email').val('');
                     } else {
                         $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
@@ -893,7 +893,11 @@
                     });
                     generarTablaTel(tablaTemporalTelefonos);
                     let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
-                    $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
+                    if (rs.length == 0) {
+                        $('#telUsuario').val('');
+                    } else {
+                        $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
+                    }
                 }
             })
 
