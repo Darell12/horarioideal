@@ -1,5 +1,4 @@
-<!-- <div class="container"> -->
-<div class="container bg-white mt-4 shadow rounded-4">
+<div class="container bg-white rounded rounded-3">
     <div>
         <h1 class="titulo_Vista text-center"></h1>
     </div>

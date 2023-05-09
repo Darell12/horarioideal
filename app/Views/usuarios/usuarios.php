@@ -1,19 +1,28 @@
 <div class="container bg-white rounded rounded-3">
-    <div class="pt-1">
+    <!-- <div class="pt-1">
         <h1 class="titulo_Vista text-center ">
             <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
         </h1>
-    </div>
+    </div> -->
     <div>
-        <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-        <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-        <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="border-0">
+                <h3 class="mb-0"><?php echo $titulo ?></h3>
+            </div>
+
+            <div>
+                <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+                <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+                <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            </div>
+
+        </div>
+
     </div>
     <br>
-    <div class="d-flex justify-content-center align-items-center flex-wrap ocultar">
+    <div class="d-flex align-items-center flex-wrap ocultar">
         <b class="fs-6 text-black"> Ocultar Columnas:</b> <a class="toggle-vis btn" data-column="1">Tipo Documento</a> - <a class="toggle-vis btn" data-column="2">Documento</a> - <a class="toggle-vis btn" data-column="3">Nombres</a> - <a class="toggle-vis btn" data-column="4">Apellidos</a> - <a class="toggle-vis btn" data-column="5">Rol</a>
     </div>
-    
     <div class="table-responsive">
         <table id="tablaUsuarios" class="table align-items-center table-flush">
             <thead class="thead-light">
