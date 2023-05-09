@@ -1,3 +1,4 @@
+<div class=" bg-white">
 <section style="background-color: #eee;">
     <div class="container py-5">
 
@@ -102,7 +103,7 @@
         </div>
     </div>
 </section>
-
+</div>
 <form method="POST" action="<?php echo base_url('/usuarios/actualizarContraseña'); ?>" autocomplete="off" class="needs-validation" id="CambiarContraseña" novalidate id="agregrar_usuario">
     <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-lg modal-dialog-centered">

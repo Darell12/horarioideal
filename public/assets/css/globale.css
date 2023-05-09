@@ -22,6 +22,10 @@ label.error {
     color: #dc3545;
 }
 
+#content{
+  background: #eee !important;
+}
+
 body {
     min-height: 100vh;
     background-color: var(--body-color);
