@@ -1,13 +1,15 @@
 <div class="container bg-white rounded rounded-3">
-     <div class="pt-1">
-          <h1 class="titulo_Vista text-center">
-               <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
-          </h1>
+     <div class="d-flex justify-content-between flex-wrap">
+          <div class="pt-1">
+               <h1 class="titulo_Vista text-center">
+               </h1>
+          </div>
+          <!-- <div style="height: 30px;"></div> -->
+          <div>
+               <a href="<?php echo base_url('/usuarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+          </div>
      </div>
-     <!-- <div style="height: 30px;"></div> -->
-     <div>
-          <a href="<?php echo base_url('/usuarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
-     </div>
+
 
      <br>
      <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important;">

@@ -1,7 +1,6 @@
 <div class="container bg-white mt-5 shadow rounded-4">
     <div>
         <h1 class="titulo_Vista text-center">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
         </h1>
     </div>
     <div style="height: 30px;"></div>
