@@ -26,7 +26,7 @@
 </section>
 
 <!-- <table class="table align-items-center table-flush"> -->
-		<caption>curso 2018-2019</caption> 
+		<!-- <caption>curso 2018-2019</caption> 
 		<thead class="thead-light">
 			<tr>
 				<th></th>
@@ -103,4 +103,4 @@
 
 			</tr>
 		</tbody>
-	</table>
+	</table> -->
