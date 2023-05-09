@@ -5,7 +5,7 @@
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/prueba.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/login.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/logi.css" rel="stylesheet">
 
     <script src="<?php echo base_url() ?>/librerias/sweetalert2.js"></script>
     <script src="<?php echo base_url() ?>/librerias/jquery-3.6.4.js"></script>
@@ -46,8 +46,9 @@
         </form>
     </div>
 </section> --> 
-<div class="container">
-    <div style="background-color: #418ab7;" class="info">
+<div class="container mt-4" style="height: 600px !important;">
+    <div style="background-color: #00b0ff;   background-image: url('<?php echo base_url()?>img/bgLogin.jpg');
+" class="info">
         <p class="txt-1">Gracias por visitarnos</p>
         <h2>Bienvenido</h2>
         <hr />

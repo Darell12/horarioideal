@@ -33,7 +33,8 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebar.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebars.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/tables.css">
 
 </head>
 

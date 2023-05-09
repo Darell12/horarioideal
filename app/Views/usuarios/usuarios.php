@@ -11,15 +11,15 @@
     </div>
     <br>
     <div class="table-responsive">
-        <table id="tablaUsuarios" class="table table-bordered table-sm table-hover table-light" width="100%" cellspacing="0">
-            <thead class="table-dark">
+        <table id="tablaUsuarios" class="table align-items-center table-flush">
+            <thead class="thead-light">
                 <tr>
-                    <th class="text-center">#</th>
-                    <th class="text-center">Tipo Documento</th>
-                    <th class="text-center">Documento</th>
-                    <th class="text-center">Nombres</th>
-                    <th class="text-center">Apellidos</th>
-                    <th class="text-center">Rol</th>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Tipo Documento</th>
+                    <th class="text-center" scope="col">Documento</th>
+                    <th class="text-center" scope="col">Nombres</th>
+                    <th class="text-center" scope="col">Apellidos</th>
+                    <th class="text-center" scope="col">Rol</th>
                     <!-- <th class="text-center">Estado</th> -->
                     <!-- <th class="text-center">Emails</th> -->
                     <!-- <th class="text-center">Telefonos</th> -->
