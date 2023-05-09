@@ -1,48 +1,27 @@
-<div class="container bg-white mt-5 shadow rounded-4">
-    <div >
+<div class="container bg-white shadow rounded-4">
+    <div class="d-flex justify-content-between flex-wrap">
         <h1 class="titulo_Vista text-center">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+            <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
         </h1>
-    </div>
-    <div>
-        <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-        <a href="<?php echo base_url('/roles/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-        <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        <div>
+            <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <a href="<?php echo base_url('/roles/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        </div>
     </div>
 
     <br>
     <div  class="table-responsive">
-        <table id="tablaRoles" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
+        <table id="tablaRoles" style="text-align: center;" class="table align-items-center table-flush">
             <thead class="table-dark">
                 <tr>
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Nombre</th>
-                    <th class="text-center">Estado</th>
+                    <th class="text-center" scope="col">Id</th>
+                    <th class="text-center" scope="col">Nombre</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                <?php foreach ($datos as $valor) { ?>
-                    <tr>
-                        <td class="text-center"><?php echo $valor['id_rol']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre']; ?></td>
-                        <td class="text-center">
-                            <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </td>
-                        <td class="grid grid text-center">
-
-                            <button class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_rol'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol">
-
-                                <i class="bi bi-pencil"></i>
-
-                            </button>
-
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_roles') . '/' . $valor['id_rol'] . '/' . 'E'; ?>" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
-                        </td>
-
-                    </tr>
-                <?php } ?>
-
+               
             </tbody>
         </table>
     </div>
@@ -104,18 +83,74 @@
 
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
-
-    $('#tablaRoles').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        }
+        $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
 
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
+
+    function EliminarRegistro(id) {
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/roles/cambiarEstado/'); ?>" + id + '/' + 'E',
+            dataType: "json",
+        }).done(function(data) {
+            $("#modal-confirma").modal("hide");
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro eliminado con exito!'
+            })
+            tablaRoles.ajax.reload(null, false);
+        })
+    }
+
+    var contador = 0
+    var tablaRoles = $('#tablaAcciones').DataTable({
+        ajax: {
+            url: '<?= base_url('roles/obtenerRoles') ?>',
+            method: "POST",
+            data: {
+                estado: 'A'
+            },
+            dataSrc: "",
+        },
+        columns: [{
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
+            },
+            {
+                data: "nombre"
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<div class="btn-group">
+                    <button class="btn btn-outline-primary" onclick="seleccionaRol(${data.id_rol} , 2);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol"><i class="bi bi-pencil"></i></button><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_rol}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
+                    </div>`
+                },
+            }
+        ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    })
 
       $("#formulario").validate({
         rules: {
