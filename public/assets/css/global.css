@@ -66,3 +66,12 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 #acciones {
     border: none;
 }
+
+/* -- DIV OCULTAR COLUMNAS -- */
+.ocultar > a:is(.toggle-vis).active,
+.ocultar > a:is(.toggle-vis):hover {
+  border-radius: none !important;
+  color: blue;
+  font-weight: 700;
+  border: none;
+}

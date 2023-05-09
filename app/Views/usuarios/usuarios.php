@@ -10,6 +10,10 @@
         <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
     </div>
     <br>
+    <div class="d-flex justify-content-center align-items-center flex-wrap ocultar">
+        <b class="fs-6 text-black"> Ocultar Columnas:</b> <a class="toggle-vis btn" data-column="1">Tipo Documento</a> - <a class="toggle-vis btn" data-column="2">Documento</a> - <a class="toggle-vis btn" data-column="3">Nombres</a> - <a class="toggle-vis btn" data-column="4">Apellidos</a> - <a class="toggle-vis btn" data-column="5">Rol</a>
+    </div>
+    
     <div class="table-responsive">
         <table id="tablaUsuarios" class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -20,9 +24,6 @@
                     <th class="text-center" scope="col">Nombres</th>
                     <th class="text-center" scope="col">Apellidos</th>
                     <th class="text-center" scope="col">Rol</th>
-                    <!-- <th class="text-center">Estado</th> -->
-                    <!-- <th class="text-center">Emails</th> -->
-                    <!-- <th class="text-center">Telefonos</th> -->
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -375,6 +376,24 @@
 </div>
 
 <script>
+    //Mostrar Ocultar Columnas
+    $('a.toggle-vis').on('click', function(e) {
+        e.preventDefault();
+        // Get the column API object
+        var column = tablaUsuarios.column($(this).attr('data-column'));
+        // Toggle the visibility
+        column.visible(!column.visible());
+    });
+    //Div ocualtar columnas de la tabla
+    var botones = $(".ocultar a");
+    botones.click(function() {
+        if ($(this).attr('class').includes('active')) {
+            $(this).removeClass('active');
+        } else {
+            $(this).addClass('active');
+        }
+    })
+
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
