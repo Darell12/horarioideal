@@ -69,122 +69,41 @@
             </table>
         </div>
         <!-- Modal -->
-        <form id="formulario" method="POST" action="<?php echo base_url('/profesores/insertar'); ?>" onchange="Validardireccion()" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+        <form method="POST" action="<?php echo base_url('/disponibilidad/insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
             <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="tituloModal">Añadir Usuario</h1>
+                            <h1 class="modal-title fs-5" id="tituloModal">Añadir Disponibilidad</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
                                 <div class="row">
+
                                     <div class="col">
-                                        <label class="col-form-label">Rol:</label>
-                                        <select class="form-select form-select" name="id_rol" id="rol" required>
-                                            <option value="">Seleccione un Rol</option>
-                                            <?php foreach ($roles as $rol) { ?>
-                                                <?php if ($rol['id_rol'] == '4') { ?>
-                                                    <option value="<?php echo $rol['id_rol']; ?>" selected><?php echo $rol['nombre']; ?></option>
-                                                <?php } else { ?>
-                                                    <option value="<?php echo $rol['id_rol']; ?>" disabled><?php echo $rol['nombre']; ?></option>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <label class="col-form-label">Tipo de Documento:</label>
-                                        <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
-                                            <option value="0">Seleccione un Tipo</option>
-                                            <option value="2">Cedula de Ciudadania</option>
-                                            <option value="1">Tarjeta de Identidad</option>
-                                            <option value="3">Cedula de Extranjeria</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                                        <input type="number" class="form-control" name="n_documento" id="n_documento" required>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <label id="direccion_telefono" for="email">Nombre de Usuario</label>
-                                    <input id="nombre_corto" name="nombre_corto" type="text" class="form-control" placeholder="Con este nombre iniciará sesion" required />
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="nombre" class="col-form-label">Primer Nombre:</label>
-                                        <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
-                                    </div>
-                                    <div class="col">
-                                        <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
-                                        <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+" >
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="nombre" class="col-form-label">Primer Apellido:</label>
-                                        <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
-                                    </div>
-                                    <div class="col">
-                                        <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                        <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
-                                    </div>
-                                </div>
-                                <label id="direccion_usuario" for="direccion">Dirección:</label>
-                                <div class="row">
-                                    <div class="col">
-                                        <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select">
-                                            <option value="">--Selecciona--</option>
-                                            <option>Carrera</option>
-                                            <option>Calle</option>
-                                            <option>Avenida Calle</option>
-                                            <option>Avenida Carrera</option>
-                                            <option>Autopista</option>
-                                            <option>Avenida</option>
-                                            <option>Circunvalar</option>
-                                            <option>Diagonal</option>
-                                            <option>Transversal</option>
-                                            <option>Kilometro</option>
-                                            <option>Circular</option>
-                                        </select>
+                                        <label for="nombre" class="col-form-label">Hora Inicio:</label>
+                                        <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" required>
                                     </div>
 
                                     <div class="col">
-                                        <input id="dir2" name="dir2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
+                                        <label for="nombre" class="col-form-label">Hora Fin:</label>
+                                        <input type="time" class="form-control" name="hora_fin" id="hora_fin" required>
                                     </div>
                                     <div class="col">
-                                        <input id="dir3" maxLength="4" name="dir3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
-                                    </div>
-                                    <div class="col">
-                                        <input id="dir4" maxLength="4" name="dir4" type="text" class="form-control" placeholder="Ej: 23" required />
-                                    </div>
+                                    <label class="col-form-label">Día:</label>
+                                    <select class="form-select form-select" name="grado" id="grado" required>
+                                        <option value="">Seleccione un Grado</option>
+                                        <?php foreach ($grados as $grado) { ?>
+                                            <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
+                                    <input type="text" id="tp" name="tp" hidden>
+                                    <input type="text" id="id" name="id" hidden>
 
-                                <div class="mb-3">
-                                    <label id="direccion_usuario" for="direccion"></label>
-                                    <input id="direccionX" name="direccionX" type="text" class="form-control" readonly class="form-control-plaintext">
+
                                 </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <label id="password_label" for="Password">Contraseña</label>
-                                        <input id="contraseña" name="contraseña" type="password" class="form-control" required />
-                                    </div>
-                                    <div class="col">
-                                        <label id="password_label" for="password">Confirme Contraseña</label>
-                                        <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
-                                    </div>
-                                </div>
-
-                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
-                                <input type="text" id="tp" name="tp" hidden>
-                                <input type="text" id="id" name="id_usuario" hidden>
-                                <input type="text" id="id" name="id_profesor" hidden>
-
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -194,6 +113,7 @@
                     </div>
                 </div>
         </form>
+
 
 
         <!-- Modal Confirma Eliminar -->
@@ -433,7 +353,36 @@ $.validator.addMethod("soloLetras", function(value, element) {
             },
         }
     });
+    function seleccionaFranja(id, tp) {
+            if (tp == 2) {
+                dataURL = "<?php echo base_url('/disponibilidad_prof/ObtenerDispo'); ?>" + "/" + id;
+                $.ajax({
+                    type: "POST",
+                    url: dataURL,
+                    dataType: "json",
+                    success: function(rs) {
+                        console.log(rs[0])
+                        $("#tp").val(2);
+                        $("#id").val(id)
+                        $('#hora_inicio').val(rs[0]['hora_inicio']);
+                        $('#hora_fin').val(rs[0]['hora_fin']);
+                        $("#btn_Guardar").text('Actualizar');
+                        $("#FranjaModal").modal("show");
+                    }
+                })
+            } else {
+                $("#tp").val(1);
+                $('#hora_inicio').val('');
+                $('#hora_fin').val('');
+                $("#btn_Guardar").text('Guardar');
+                $("#FranjaModal").modal("show");
+            }
+        }
 
+
+        $('.close').click(function() {
+            $("#modal-confirma").modal("hide");
+        });
         
 
 function seleccionaUsuario(id, tp) {
