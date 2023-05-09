@@ -40,10 +40,16 @@ class Profesores extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/profesores/profesores', $data);
     }
+    public function eliminados() 
+    {
+            $data = ['titulo' => 'Administrar Profesores Eliminados', ];
+            echo view('/principal/sidebar', $data);
+            echo view('/profesores/eliminados', $data);
+    }
     public function obtenerProfesores()
     {
         $estado = $this->request->getPost('estado');
-        $usuario = $this->usuarios->obtenerProfesores($estado='A');
+        $usuario = $this->usuarios->obtenerProfesores($estado);
         echo json_encode($usuario);
     }
     public function obtenerCarga($id)

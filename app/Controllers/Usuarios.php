@@ -100,7 +100,7 @@ class Usuarios extends BaseController
         }
 
     }
-    public function eliminados() //Mostrar vista de Paises Eliminados
+    public function eliminados() 
     {
             $data = ['titulo' => 'Administrar Usuarios Eliminados', ];
             echo view('/principal/sidebar', $data);
