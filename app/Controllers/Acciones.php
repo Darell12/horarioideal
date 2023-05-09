@@ -19,12 +19,18 @@ class Acciones extends BaseController
 
     public function index()
     {
-        $accion = $this->accion->obtenerAcciones();
+        $accion = $this->accion->obtenerAcciones('E');
 
         $data = ['titulo' => 'Administrar Acciones', 'datos' => $accion];
 
        echo view('/principal/sidebar', $data);
        echo view('/acciones/acciones', $data);
+    }
+    public function obtenerAcciones()
+    {
+        $estado = $this->request->getPost('estado');
+        $accion = $this->accion->obtenerAcciones($estado);
+        echo json_encode($accion);
     }
 
     public function insertar()
@@ -58,14 +64,7 @@ class Acciones extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $accion = $this->accion->cambiar_Estado($id, $estado);
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_acciones'));
-        } else {
-            return redirect()->to(base_url('/eliminados_acciones'));
-        }
+        return json_encode('😊');
     }
 
     public function eliminados() //Mostrar vista de Paises Eliminados

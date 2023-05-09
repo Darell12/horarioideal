@@ -78,6 +78,7 @@
             </li>
             <li>
                 <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
+                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
                     <i class='bx bx-cog icon'></i>
                     <span class="text fs-6 nav-text">Acciones</span>
                 </a>
@@ -154,7 +155,11 @@
                 <button type="button" id="sidebarCollapse" class="btn">
                 <i class='bx bx-chevron-left bx-sm'></i>
                 </button>
-                <h3 class="mt-2">Administrar Usuarios</h3>
+                <div class="border-0">
+                    <h3 class="mb-0"><?php echo $titulo ?></h3>
+                </div>
+                <!-- <h3 class="mt-2">Admin
+                    istrar Usuarios</h3> -->
                 <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-align-justify"></i>
                 </button>
@@ -178,6 +183,7 @@
         </nav>
 
 
+        <!-- #48a4cd -->
         <!-- #48a4cd -->
 
         <script>
