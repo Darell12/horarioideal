@@ -1,13 +1,7 @@
 <div class="container bg-white rounded rounded-3">
-    <!-- <div class="pt-1">
-        <h1 class="titulo_Vista text-center ">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
-        </h1>
-    </div> -->
     <div>
         <div class="d-flex justify-content-between flex-wrap">
             <div class="border-0">
-                <h3 class="mb-0"><?php echo $titulo ?></h3>
             </div>
 
             <div>
@@ -27,13 +21,13 @@
         <table id="tablaUsuarios" class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
-                    <th class="text-center" scope="col">#</th>
-                    <th class="text-center" scope="col">Tipo Documento</th>
-                    <th class="text-center" scope="col">Documento</th>
-                    <th class="text-center" scope="col">Nombres</th>
-                    <th class="text-center" scope="col">Apellidos</th>
-                    <th class="text-center" scope="col">Rol</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">#</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Tipo Documento</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Documento</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Nombres</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Apellidos</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Rol</th>
+                    <th class="text-center" style="width: 1% !important;">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -101,17 +95,15 @@
                         <div class="row mb-1">
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Emails:</label>
-                                <div class="input-group">
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" aria-label="" aria-describedby="button-addon2" disabled>
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                <div class="input-group d-flex">
+                                    <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" required readonly>
                                 </div>
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Telefonos:</label>
-                                <div class="input-group">
-                                    <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" disabled>
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
-                                </div>
+                                <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
                             </div>
                         </div>
                         <div class="row">
@@ -935,6 +927,7 @@
             $("#email").val('');
             $('#telUsuario').val('')
             $("#tp").val(1);
+            $("#rol").val('');
             $('#tipo_documento').val('');
             $('#n_documento').val('');
             $('#primer_nombre').val('');
@@ -944,6 +937,12 @@
             $('#contraseña').val('');
             $('#email_modal').val('');
             $('#prioridad').val('');
+            $('#dir').val('');
+            $('#dir2').val('');
+            $('#dir3').val('');
+            $('#dir4').val('');
+            $('#confirmar_contraseña').val('');
+
             $('#contraseña').removeAttr('hidden', '');
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');

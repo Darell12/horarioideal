@@ -45,7 +45,6 @@
     width: device-width;
 }
 
-
 table {
     border-collapse: collapse;
 }
@@ -72,7 +71,7 @@ th {
     border-bottom: 2px solid #e9ecef;
 }
 
-.table tbody + tbody {
+.table tbody+tbody {
     border-top: 2px solid #e9ecef;
 }
 
@@ -81,8 +80,8 @@ th {
 }
 
 .table-dark,
-.table-dark > th,
-.table-dark > td {
+.table-dark>th,
+.table-dark>td {
     background-color: #c1c2c3;
 }
 
@@ -191,12 +190,10 @@ a.btn.disabled {
     from {
         background-position: 1rem 0;
     }
-
     to {
         background-position: 0 0;
     }
 }
-
 
 .btn .badge:not(:first-child) {
     margin-left: .5rem;
@@ -255,32 +252,27 @@ a.btn-icon-only {
     height: 2rem;
 }
 
-
 @media (min-width: 768px) {
-
-@keyframes show-navbar-dropdown {
+    @keyframes show-navbar-dropdown {
         0% {
-      transition: visibility .25s, opacity .25s, transform .25s;
-        transform: translate(0, 10px) perspective(200px) rotateX(-2deg);
-        opacity: 0;
+            transition: visibility .25s, opacity .25s, transform .25s;
+            transform: translate(0, 10px) perspective(200px) rotateX(-2deg);
+            opacity: 0;
+        }
+        100% {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
     }
-
-    100% {
-        transform: translate(0, 0);
-        opacity: 1;
+    @keyframes hide-navbar-dropdown {
+        from {
+            opacity: 1;
+        }
+        to {
+            transform: translate(0, 10px);
+            opacity: 0;
+        }
     }
-}
-
-@keyframes hide-navbar-dropdown {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        transform: translate(0, 10px);
-        opacity: 0;
-    }
-}
 }
 
 @keyframes show-navbar-collapse {
@@ -289,7 +281,6 @@ a.btn-icon-only {
         transform-origin: 100% 0;
         opacity: 0;
     }
-
     100% {
         transform: scale(1);
         opacity: 1;
@@ -302,13 +293,11 @@ a.btn-icon-only {
         transform-origin: 100% 0;
         opacity: 1;
     }
-
     to {
         transform: scale(.95);
         opacity: 0;
     }
 }
-
 
 .table thead th {
     font-size: .65rem;
