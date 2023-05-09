@@ -36,6 +36,7 @@ class TelefonosModel extends Model
     {
         $this->select('telefonos.numero, telefonos.estado, telefonos.id_telefono, telefonos.id_usuario, telefonos.prioridad, telefonos.tipo');
         $this->where('id_usuario', $id);
+        $this->where('telefonos.estado', $estado = 'A');
         $datos = $this->findAll();
         return $datos;
     }

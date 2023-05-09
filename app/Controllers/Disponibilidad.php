@@ -27,6 +27,26 @@ class disponibilidad extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/disponibilidad/disponibilidad', $data);
     }
+    public function insertar()
+    {
+       
+        $tp = $this->request->getPost('tp');
+        if ($tp == 1) {
+            $this->disponibilidad->save([
+                'hora_inicio' => $this->request->getPost('hora_inicio'),
+                'hora_fin' => $this->request->getPost('hora_fin'),
+                'usuario_crea' => session('id')
+
+            ]);
+        } else {
+            $this->franja->update($this->request->getPost('id'), [
+                'hora_inicio' => $this->request->getPost('hora_inicio'),
+                'hora_fin' => $this->request->getPost('hora_fin'),
+                'usuario_crea' => session('id')
+            ]);
+        }
+        return redirect()->to(base_url('disponibilidad/disponibilidadXProfesor'),$this->request->getPost('id'));
+    }
     public function disponibilidadXProfesor($id)
     {
         $disponibilidad = $this->disponibilidad->ObtenterDisponibilidad($id);

@@ -25,8 +25,7 @@ class Horario_encModel extends Model
 
     public function obtenerHorarios_enc()
     {
-        $this->select('horarios_enc.*, u.nombre_corto as usuario, g.alias as grado, p.nombre as jornada');
-        $this->join('usuarios as u', 'horarios_enc.id_usuario = u.id_usuario');
+        $this->select('horarios_enc.*, g.alias as grado, p.nombre as jornada');
         $this->join('grados as g', 'horarios_enc.id_grado = g.id_grado');
         $this->join('parametro_det as p', 'horarios_enc.jornada = p.id_parametro_det');
         $this->where('horarios_enc.estado', 'A');
@@ -42,15 +41,7 @@ class Horario_encModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-    public function obtenerProfesores()
-    {
-        $this->select('usuarios.*, usuarios.id_usuario, usuarios.id_usuario,  usuarios.estado');
-        $this->join('usuarios', 'usuarios.id_usuario = usuarios.id_usuario', 'left');
-        $this->where('usuarios.estado', 'A');
-        $this->where('usuarios.id_rol', '4');
-        $datos = $this->findAll();
-        return $datos;
-    }
+    
     
     public function buscarAccion($id)
     {
@@ -73,5 +64,6 @@ class Horario_encModel extends Model
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
         return $datos;
     }
+   
 
 }
