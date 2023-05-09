@@ -102,8 +102,10 @@
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Telefonos:</label>
-                                <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
-                                <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
+                                <div class="input-group">
+                                    <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                    <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -1001,6 +1003,55 @@
         }
     }
 
+    function eliminarTelefono(id, tp) {
+
+        const fila = $('#utilT' + id);
+        const telefonoEditar = fila.find('td').eq(1)
+        const prioridadTelEditar = fila.find('td').eq(2)
+        const tipoTel = fila.find('td').eq(3)
+        const idTelefono = fila.find('td').eq(4)
+        const tpExistTel = fila.find('td').eq(5)
+        const telefonoActu = fila.find('td').eq(6)
+        optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
+
+
+        if (tp == 1) {
+            console.log('tp1')
+            tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefonoEditar !== telefonoEditar.text());
+            generarTablaTel(tablaTemporalTelefonos);
+        } else {
+            console.log('Ya existe en la base de datos')
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/telefono/cambiarEstado/'); ?>" + id + "/" + 'E',
+                dataType: "json",
+            }).done(function(data) {
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado con exito!'
+                })
+                tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.id_telefono !== id);
+
+                console.log(tablaTemporalTelefonos[0].id_telefono)
+                generarTablaTel(tablaTemporalTelefonos);
+                contador = 0
+                return
+            })
+        }
+    }
+
     function generarTablaTel(Telefonos) {
 
         let contadortel = 0;
@@ -1027,7 +1078,7 @@
             <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
                             <td class="text-center">
                             <button class="btn btn-outline-primary" onclick="editarTelefono( ${contadortel});"><i class="bi bi-pencil"></i></button>
-                            <button class="btn btn-outline-danger" onclick="seleccionarEmail( ${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-outline-danger" onclick="eliminarTelefono(${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
         });

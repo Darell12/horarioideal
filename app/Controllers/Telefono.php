@@ -47,23 +47,16 @@ class Telefono extends BaseController
     public function telefonosUsuario($id)
     {
         $dataArray = array();
-        $telefono = $this->telefono->ObtenerTelefono($id);
+        $telefono = $this->telefono->ObtenerTelefono($id, $estado = 'A');
         if (!empty($telefono)) {
             array_push($dataArray, $telefono);
         }
         echo json_encode($telefono);
     }
-    public function cambiarEstado()
+    public function cambiarEstado($id, $estado)
     {
-        $id = $this->request->getPost('id_telefono');
-        $estado = $this->request->getPost('estado');
-
-        $telefono = $this->telefono->cambiarEstado($id, $estado);
-        if (
-            $estado == 'E'
-        ) {
-            return 1;
-        }
+        $this->telefono->cambiarEstado($id, $estado);
+        return json_encode('todo bien');
     }
     public function validar()
     {

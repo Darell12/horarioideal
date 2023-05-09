@@ -43,7 +43,7 @@
                                 <div class="col">
                                     <label class="col-form-label">Dia de la Semana:</label>
                                     <select class="form-select form-select" name="dia" id="dia" required>
-                                        <option value="">Seleccione un Grado</option>
+                                        <option value="">Seleccione una opción</option>
                                         <?php foreach ($dias as $dia) { ?>
                                             <option value="<?php echo $dia['id_parametro_det']; ?>"><?php echo $dia['nombre']; ?></option>
                                         <?php } ?>
@@ -196,6 +196,9 @@
                             hora_inicio: function() {
                                 return $("#hora_inicio").val();
                             },
+                            dia: function() {
+                                return $("#dia").val();
+                            },   
                         },
                     }
                 },
