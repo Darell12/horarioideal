@@ -27,7 +27,6 @@ class TelefonosModel extends Model
     {
         $this->select('telefonos.numero, telefonos.estado, telefonos.id_telefono, telefonos.id_usuario, parametro_det.nombre as prioridad, telefonos.prioridad as id_prioridad');
         $this->join('parametro_det', 'telefonos.prioridad = parametro_det.id_parametro_det');
-
         $this->where('id_usuario', $id);
         $this->where('telefonos.estado', $estado);
         $datos = $this->findAll();
