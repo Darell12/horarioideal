@@ -23,10 +23,10 @@ class RolesModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function obtenerRoles()
+    public function obtenerRoles($estado)
     {
         $this->select('roles.*');
-        $this->where('estado', 'A');
+        $this->where('estado', $estado);
         $datos = $this->findAll();
         return $datos;
     }

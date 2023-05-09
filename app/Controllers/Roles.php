@@ -18,12 +18,18 @@ class Roles extends BaseController
     }
     public function index()
     {
-        $rol = $this->rol->obtenerRoles();
+        $rol = $this->rol->obtenerRoles('E');
 
         $data = ['titulo' => 'Administrar Roles', 'datos' => $rol];
 
-       echo view('/principal/sidebar', $data);
+        echo view('/principal/sidebar', $data);
         echo view('/roles/roles', $data);
+    }
+    public function obtenerRoles()
+    {
+        $estado = $this->request->getPost('estado');
+        $rol = $this->rol->obtenerRoles($estado);
+        echo json_encode($rol);
     }
     public function insertar()
     {
@@ -56,14 +62,7 @@ class Roles extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $rol = $this->rol->cambiar_Estado($id, $estado);
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_franjas'));
-        } else {
-            return redirect()->to(base_url('/eliminados_roles'));
-        }
+        return json_encode('😊');
     }
     
     public function eliminados() //Mostrar vista de Paises Eliminados
