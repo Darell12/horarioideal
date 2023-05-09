@@ -148,9 +148,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-salarios">
-                    <i class="bi bi-file-x"></i> Eliminados</button> -->
-
                 <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i> Regresar</button>
                 <div class="row mb-3">
                     <div class="col">
@@ -214,6 +211,95 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
                 <a class="btn btn-outline-danger btn-ok" id="btnEliminar">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- tabla telefonos -->
+<div id="ModalTelefonos" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question" hidden></i></a></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
+                    <i class="bi bi-file-x"></i> Eliminados</button>
+                <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="message-text" class="col-form-label">Número:</label>
+                        <input type="text" name="telefono" class="form-control" id="telefono">
+                        <div class="invalid-feedback" id="errorTel"></div>
+                    </div>
+
+                    <div class="col">
+                        <label for="message-text" class="col-form-label">Tipo:</label>
+                        <select name="tipo" class="form-select form-select" id="tipo">
+                            <option value="">-Seleccione una opción-</option>
+                            <?php foreach ($tipo as $valor) { ?>
+                                <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback" id="errorTipoTel"></div>
+                    </div>
+                    <div class="col">
+                        <label for="message-text" class="col-form-label">Prioridad:</label>
+                        <div class="input-group">
+                            <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
+                                <option value="">-Seleccione una opción-</option>
+                                <?php foreach ($prioridad as $valor) { ?>
+                                    <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefono" title="Agregar Email"><i class="bi bi-plus"></i></button>
+                            <div class="invalid-feedback" id="errorPrioridadTel"></div>
+                        </div>
+                        <input hidden type="text" id="id_telefono" name="id_telefono">
+                        <input hidden type="text" id="tpExist" name="tpExistTel">
+                        <input hidden type="text" id="telefonoActu" name="telefonoActu">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Telefono</th>
+                                <th class="text-center">Periodo</th>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-confirma-telefono" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header">
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea Eliminar éste Registro?</p>
+                <input type="text" hidden id="id_almacenar_secundario"><input type="text" hidden id="id_almacenar_usuario_secundario"><input type="text" hidden id="id_almacenar_estado_secundario">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-danger btn-ok" id="btnEliminarTel">Confirmar</a>
             </div>
         </div>
     </div>
@@ -385,7 +471,6 @@
         const idEmail = fila.find('td').eq(2)
         const tpExist = fila.find('td').eq(3)
 
-
         if (tp == 1) {
             console.log('tp1')
             tablaTemporal = tablaTemporal.filter(p => p.email !== emailEditar.text());
@@ -423,10 +508,166 @@
         }
     }
 
+    function generarTablaTel(Telefonos) {
+
+        let contadortel = 0;
+        let parametros = {
+            '6': 'Principal',
+            "6": 'Principal',
+            '7': 'Secundario',
+            '22': 'Fijo',
+            '23': 'Celular'
+        }
 
 
+        let contenido = '';
+        Telefonos.forEach(telefono => {
+            contadortel++
+            contenido += `
+    <tr id="utilT${contadortel}">
+    <td class="text-center">${contadortel}</td>
+    <td class="text-center">${telefono.telefono}</td>
+    <td class="text-center">${parametros[telefono.tipo]}</td>
+    <td class="text-center">${parametros[telefono.prioridad]}</td>
+    <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
+    <td hidden class="text-center">${telefono.tp}</td>
+    <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
+                    <td class="text-center">
+                    <button class="btn btn-outline-primary" onclick="editarTelefono( ${contadortel});"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-outline-danger" onclick="seleccionarEmail( ${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
+                    </td>
+                    </tr>`
+        });
+        $('#tabla_telefono').html(contenido);
+    }
 
+    let tablaTemporalTelefonos = [];
+    $('#btn_insertarTelefono').click(function() {
+        let telefono = $('#telefono').val();
+        let prioridad = $('#prioridad_tel').val();
+        let tipo = $('#tipo').val();
+        let id_telefono = $('#id_telefono').val();
+        let tp = $('#tpExistTel').val();
 
+        filtroPrioridad = tablaTemporalTelefonos.filter(p => p.prioridad == 6);
+        filtroTel = tablaTemporalTelefonos.filter(p => p.telefono == telefono);
+
+        datosValidar = {
+            valor: telefono,
+            campo: 'numero',
+            nombreActu: tp == 2 ? telefono : '',
+        }
+        console.log($('#telefono'))
+        $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
+            if (response == true) {
+                $('#telefono').addClass('is-invalid');
+                $('#errorTel').text('Este telefono ya se encuentra Registrado');
+                setTimeout(() => {
+                    $('#telefono').removeClass('is-invalid');
+                    $('#errorTel').text('');
+                }, 2000);
+            } else if ([telefono, prioridad, tipo].includes('')) {
+                $('#telefono').addClass('is-invalid');
+                $('#prioridad_tel').addClass('is-invalid');
+                $('#errorTel').text('Todos los campos son obligatorios');
+                setTimeout(() => {
+                    $('#telefono').removeClass('is-invalid');
+                    $('#prioridad_tel').removeClass('is-invalid');
+                    $('#errorTel').text('');
+                    $('#prioridadTel').val('');
+                }, 2000)
+            } else if (filtroPrioridad.length > 0 && prioridad == 6) {
+                $('#prioridad_tel').addClass('is-invalid');
+                $('#errorPrioridadTel').text('Ya hay un telefono Principal');
+                setTimeout(() => {
+                    $('#prioridad_tel').removeClass('is-invalid');
+                    $('#errorPrioridadTel').text('');
+                }, 2000)
+            } else if (filtroTel.length > 0) {
+                $('#telefono').addClass('is-invalid');
+                $('#errorTel').text('Este email ya esta registrado');
+                setTimeout(() => {
+                    $('#telefono').removeClass('is-invalid');
+                    $('#errorTel').text('');
+                }, 2000)
+            } else {
+                tablaTemporalTelefonos.push({
+                    tp: tp == 2 ? 2 : 1,
+                    telefono: telefono,
+                    tipo: tipo,
+                    id_telefono: id_telefono,
+                    prioridad: prioridad,
+
+                })
+                generarTablaTel(tablaTemporalTelefonos);
+
+                let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
+                $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
+                optionPrincipal = $('#prioridad').find('option[value="6"]')
+                $('#prioridad_tel').val(7);
+                prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
+                $('#tipo').val('');
+                $('#telefono').val('');
+                $('#tpExistTel').val('')
+            }
+        })
+    });
+
+    function editarTelefono(id) {
+
+        const fila = $('#utilT' + id);
+        const telefonoEditar = fila.find('td').eq(1)
+        const prioridadTelEditar = fila.find('td').eq(2)
+        const tipoTel = fila.find('td').eq(3)
+        const idTelefono = fila.find('td').eq(4)
+        const tpExistTel = fila.find('td').eq(5)
+        const telefonoActu = fila.find('td').eq(6)
+        optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
+
+        console.log(telefonoEditar.text())
+        if (prioridadTelEditar.text() === 'Principal') {
+            optionPrincipal.removeAttr('disabled', '')
+            $('#prioridad_tel').val(6);
+            $('#telefono').val(telefonoEditar.text());
+            $('#id_telefono').val(idTelefono.text());
+            $('#tipo').val(tipoTel.text() == 22 ? 22 : 23);
+            $('#tpExistTel').val(tpExistTel.text());
+            $('#telefonoActu').val(telefonoActu.text());
+        } else {
+            $('#prioridad_tel').val(7);
+            $('#telefono').val(telefonoEditar.text());
+            $('#id_telefono').val(idTelefono.text());
+            $('#tipo').val(tipoTel.text() == 22 ? 22 : 23);
+            $('#tpExistTel').val(tpExistTel.text());
+            $('#telefonoActu').val(telefonoActu.text());
+        }
+        tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefono !== telefonoEditar.text());
+
+        let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
+        // $('#email').val(!principal ? tablaTemporalTelefonos[0].email : principal.email);
+        console.log(tablaTemporalTelefonos);
+        generarTablaTel(tablaTemporalTelefonos);
+    }
+
+    function insertarTelefono(id) {
+        console.log(tablaTemporalTelefonos);
+        tablaTemporalTelefonos.forEach(registro => {
+            console.log(registro.tp);
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/telefono/insertar'); ?>",
+                data: {
+                    tp: registro.tp,
+                    numero: registro.telefono,
+                    prioridad: registro.prioridad,
+                    id_telefono: registro.id_telefono,
+                    tipo: registro.tipo,
+                    id_usuario: id
+                },
+                dataType: "json",
+            }).done(function(data) {})
+        });
+    }
 
     function EditarPerfil(id) {
         let newElement = `
@@ -554,6 +795,7 @@
                         </div>
                         </form>
             `
+
         $('#EditarPerfil').replaceWith(newElement);
         // Código de tu función aquí
         console.log('La función se ha activado!' + id);
@@ -571,8 +813,6 @@
         console.log(data);
 
         seleccionaUsuario(id, "2");
-
-
     }
 
     $('#formularioPerfil').on('submit', function(e) {
@@ -597,6 +837,7 @@
         $.post("<?php echo base_url('/usuarios/insertar'); ?>", data, function(response) {
             location.reload();
             insertarEmail(<?php echo $datos['id_usuario']; ?>);
+            insertarTelefono(<?php echo $datos['id_usuario']; ?>);
         });
     }
 
@@ -646,32 +887,56 @@
 
                     }
                     tablaTemporal = []
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
-                dataType: "JSON",
-                success: function(rs) {
-                    rs.forEach(element => {
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
+                        dataType: "JSON",
+                        success: function(rs) {
+                            rs.forEach(element => {
 
-                        tablaTemporal.push({
-                            tp: 2,
-                            email: element.email,
-                            prioridad: element.prioridad,
-                            id_email: element.id_email,
-                        })
-                    });
-                    generarTablaEmail(tablaTemporal);
-                    let principal = tablaTemporal.find(p => p.prioridad == 6)
-                    console.log(rs.length);
-                    if (rs.length = 0) {
-                        $('#email').val('');
-                    } else {
-                        $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
-                    }
+                                tablaTemporal.push({
+                                    tp: 2,
+                                    email: element.email,
+                                    prioridad: element.prioridad,
+                                    id_email: element.id_email,
+                                })
+                            });
+                            generarTablaEmail(tablaTemporal);
+                            let principal = tablaTemporal.find(p => p.prioridad == 6)
+                            console.log(rs.length);
+                            if (rs.length = 0) {
+                                $('#email').val('');
+                            } else {
+                                $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+                            }
+                        }
+                    })
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
+                        dataType: "JSON",
+                        success: function(rs) {
+                            rs.forEach(element => {
+
+                                tablaTemporalTelefonos.push({
+                                    tp: 2,
+                                    telefono: element.numero,
+                                    prioridad: element.prioridad,
+                                    tipo: element.tipo,
+                                    id_telefono: element.id_telefono,
+                                })
+                            });
+                            generarTablaTel(tablaTemporalTelefonos);
+                            let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
+                            if (rs.length == 0) {
+                                $('#telUsuario').val('');
+                            } else {
+                                $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
+                            }
+                        }
+                    })
                 }
-            })
-                }
-                
+
             })
         } else {
             $("#tp").val(1);
@@ -685,5 +950,77 @@
         }
     }
 
-   
+    $('#CambiarContraseña').on('submit', function(e) {
+        e.preventDefault();
+        data = {    
+            contraseña: $('#contraseña').val(),
+            nueva_contraseña: $('#nueva_contraseña').val(),
+        };
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/usuarios/actualizarContraseña'); ?>",
+            data: {
+                contraseña: $('#contraseña').val(),
+                nueva_contraseña: $('#nueva_contraseña').val(),
+                id: <?php echo $datos['id_usuario'] ?>
+            },
+
+    }).done(function(response){
+        console.log(response);
+        if(response == 1){
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'La contraseña ha sido actualizada!'
+            })
+        }if(response == true){
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: 'el campo no debe ser vacio!'
+            })
+        }else{
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'warning',
+                title: 'el campo no debe ser vacio!'
+            })
+        }
+    })
+});
+
 </script>

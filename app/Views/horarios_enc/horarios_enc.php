@@ -17,7 +17,6 @@
             <thead class="table-dark">
                 <tr>
                     <th class="text-center">Id</th>
-                    <th class="text-center">Encargado</th>
                     <th class="text-center">Grado</th>
                     <th class="text-center">Año</th>
                     <th class="text-center">Jornada</th>
@@ -29,7 +28,6 @@
                 <?php foreach ($datos as $valor) { ?>
                     <tr>
                         <td class="text-center"><?php echo $valor['id_horarios_enc']; ?></td>
-                        <td class="text-center"><?php echo $valor['usuario']; ?></td>
                         <td class="text-center"><?php echo $valor['grado']; ?></td>
                         <td class="text-center"><?php echo $valor['periodo_año']; ?></td>
                         <td class="text-center"><?php echo $valor['jornada']; ?></td>
@@ -59,7 +57,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/horarios_enc_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+    <form method="POST" action="<?php echo base_url('/horario_enc_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
         <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -78,24 +76,14 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="row">
-                                <div class="col">
-                                    <label class="col-form-label">Usuario:</label>
-                                    <select class="form-select form-select" name="id_usuario" id="id_usuario" required>
-                                        <option value="">Seleccione un usuario</option>
-                                        <?php foreach ($profesores as $usuario) { ?>
-                                            <option value="<?php echo $usuario['id_usuario']; ?>"><?php echo $usuario['nombre_p'] . ' ' .$usuario['apellido_p']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
                                 <div class="col">
                                     <label class="col-form-label">Año:</label>
-                                    <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="año" id="año" required>
+                                    <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="periodo_año" id="periodo_año" required>
 
                                 </div>
                                 <div class="col">
                                     <label class="col-form-label">Jornada:</label>
-                                    <select class="form-select form-select" name="periodo_año" id="periodo_año" required>
+                                    <select class="form-select form-select" name="jornada" id="jornada" required>
                                         <option value="">Seleccione un Jornada</option>
                                         <option value="1">Mañana</option>
                                         <option value="2">Tarde</option>
@@ -167,4 +155,5 @@
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
+    
 </script>

@@ -51,7 +51,7 @@
 " class="info">
         <p class="txt-1">Gracias por visitarnos</p>
         <h2>Bienvenido</h2>
-        <hr />
+        <hr />  
         <p class="txt-2">
             "El orden de los tiempos es la clave del éxito en la vida" - Charles Darwin.
         </p>

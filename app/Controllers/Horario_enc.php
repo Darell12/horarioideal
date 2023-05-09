@@ -30,10 +30,9 @@ class Horario_enc extends BaseController
     {
         $horario_enc = $this->horario_enc->obtenerHorarios_enc();
         $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
-        $profesores = $this->profesores->obtenerProfesores();
         $grados = $this->grados->obtenerGrados();
 
-        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario_enc, 'profesores' => $profesores, 'usuarios' => $usuarios, 'grados' => $grados  ];
+        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario_enc,  'usuarios' => $usuarios, 'grados' => $grados  ];
 
        echo view('/principal/sidebar', $data);
        echo view('/horarios_enc/horarios_enc', $data);
@@ -45,19 +44,21 @@ class Horario_enc extends BaseController
         if ($tp == 1) {
 
             $this->horario_enc->save([
-                'id_usuario' => $this->request->getPost('id_usuario'),
+                'id_usuario'=> session('id'),
                 'id_grado' => $this->request->getPost('id_grado'),
                 'periodo_año' => $this->request->getPost('periodo_año'),
                 'jornada' => $this->request->getPost('jornada'),
-                'usuario_crea'=> session('id')
+                'usuario_crea'=> session('id'),
+              
             ]);
         } else {
             $this->horario_enc->update($this->request->getPost('id'), [
-                'id_usuario' => $this->request->getPost('id_usuario'),
+                'id_usuario'=> session('id'),
                 'id_grado' => $this->request->getPost('id_grado'),
                 'periodo_año' => $this->request->getPost('periodo_año'),
                 'jornada' => $this->request->getPost('jornada'),
-                'usuario_crea'=> session('id')
+                'usuario_crea'=> session('id'),
+                
             ]);
         }
         return redirect()->to(base_url('/horarios_enc'));

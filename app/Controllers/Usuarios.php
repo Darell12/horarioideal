@@ -15,7 +15,7 @@ class Usuarios extends BaseController
 {   
     protected $usuario, $eliminados, $contraseña;
     protected $roles, $horario;
-    protected $prioridad, $tipotel, $emails, $tipo;
+    protected $prioridad, $tipotel, $emails;
     protected $telefonos;
 
     public function __construct()
@@ -28,7 +28,7 @@ class Usuarios extends BaseController
         $this->tipotel = new Parametros_detModel();
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
-        $this->tipo = new Parametros_detModel();
+
     }
     public function index()
     {
@@ -51,9 +51,10 @@ class Usuarios extends BaseController
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $emails = $this->emails->ObtenerEmailUsuario($id, 'A');
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
+        $tipo = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos];
-        
+        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos,'tipo'=>$tipo];
+            
         // return json_encode($data);
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
