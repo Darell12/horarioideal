@@ -1,13 +1,7 @@
 <div class="container bg-white rounded rounded-3">
-    <!-- <div class="pt-1">
-        <h1 class="titulo_Vista text-center ">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
-        </h1>
-    </div> -->
     <div>
         <div class="d-flex justify-content-between flex-wrap">
             <div class="border-0">
-                <h3 class="mb-0"><?php echo $titulo ?></h3>
             </div>
 
             <div>
@@ -27,13 +21,13 @@
         <table id="tablaUsuarios" class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
-                    <th class="text-center" scope="col">#</th>
-                    <th class="text-center" scope="col">Tipo Documento</th>
-                    <th class="text-center" scope="col">Documento</th>
-                    <th class="text-center" scope="col">Nombres</th>
-                    <th class="text-center" scope="col">Apellidos</th>
-                    <th class="text-center" scope="col">Rol</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">#</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Tipo Documento</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Documento</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Nombres</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Apellidos</th>
+                    <th class="text-center" style="width: 1% !important;" scope="col">Rol</th>
+                    <th class="text-center" style="width: 1% !important;">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -101,16 +95,16 @@
                         <div class="row mb-1">
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Emails:</label>
-                                <div class="input-group">
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" aria-label="" aria-describedby="button-addon2" disabled>
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                <div class="input-group d-flex">
+                                    <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" required readonly>
                                 </div>
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Telefonos:</label>
                                 <div class="input-group">
-                                    <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" disabled>
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                    <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                    <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
                                 </div>
                             </div>
                         </div>
@@ -935,6 +929,7 @@
             $("#email").val('');
             $('#telUsuario').val('')
             $("#tp").val(1);
+            $("#rol").val('');
             $('#tipo_documento').val('');
             $('#n_documento').val('');
             $('#primer_nombre').val('');
@@ -944,6 +939,12 @@
             $('#contraseña').val('');
             $('#email_modal').val('');
             $('#prioridad').val('');
+            $('#dir').val('');
+            $('#dir2').val('');
+            $('#dir3').val('');
+            $('#dir4').val('');
+            $('#confirmar_contraseña').val('');
+
             $('#contraseña').removeAttr('hidden', '');
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
@@ -1002,6 +1003,55 @@
         }
     }
 
+    function eliminarTelefono(id, tp) {
+
+        const fila = $('#utilT' + id);
+        const telefonoEditar = fila.find('td').eq(1)
+        const prioridadTelEditar = fila.find('td').eq(2)
+        const tipoTel = fila.find('td').eq(3)
+        const idTelefono = fila.find('td').eq(4)
+        const tpExistTel = fila.find('td').eq(5)
+        const telefonoActu = fila.find('td').eq(6)
+        optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
+
+
+        if (tp == 1) {
+            console.log('tp1')
+            tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefonoEditar !== telefonoEditar.text());
+            generarTablaTel(tablaTemporalTelefonos);
+        } else {
+            console.log('Ya existe en la base de datos')
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/telefono/cambiarEstado/'); ?>" + id + "/" + 'E',
+                dataType: "json",
+            }).done(function(data) {
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado con exito!'
+                })
+                tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.id_telefono !== id);
+
+                console.log(tablaTemporalTelefonos[0].id_telefono)
+                generarTablaTel(tablaTemporalTelefonos);
+                contador = 0
+                return
+            })
+        }
+    }
+
     function generarTablaTel(Telefonos) {
 
         let contadortel = 0;
@@ -1028,7 +1078,7 @@
             <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
                             <td class="text-center">
                             <button class="btn btn-outline-primary" onclick="editarTelefono( ${contadortel});"><i class="bi bi-pencil"></i></button>
-                            <button class="btn btn-outline-danger" onclick="seleccionarEmail( ${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-outline-danger" onclick="eliminarTelefono(${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
         });

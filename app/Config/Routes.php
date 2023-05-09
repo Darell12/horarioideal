@@ -65,6 +65,7 @@ $routes->post('/roles_insertar', 'roles::insertar');
 $routes->post('/asignaturas_insertar', 'asignaturas::insertar');
 $routes->post('/acciones_insertar', 'acciones::insertar');
 $routes->post('/franjas_insertar', 'franjas_horarias::insertar');
+$routes->post('/disponibilidad_insertar', 'Dsiponibilidad_prof::insertar');
 $routes->post('/aulas_insertar', 'aulas::insertar');
 $routes->post('/permisos_insertar', 'permisos::insertar');
 $routes->post('/grados_insertar', 'grados::insertar');
