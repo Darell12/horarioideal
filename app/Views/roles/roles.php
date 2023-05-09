@@ -1,4 +1,4 @@
-<div class="container bg-white shadow rounded-4">
+<div class="container bg-white rounded rounded-3">
     <div class="d-flex justify-content-between flex-wrap">
         <h1 class="titulo_Vista text-center">
             <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
@@ -11,22 +11,22 @@
     </div>
 
     <br>
-    <div  class="table-responsive">
+    <div class="table-responsive">
         <table id="tablaRoles" style="text-align: center;" class="table align-items-center table-flush">
-            <thead class="table-dark">
+            <thead class="thead-light">
                 <tr>
-                    <th class="text-center" scope="col">Id</th>
-                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Nombre</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-               
+
             </tbody>
         </table>
     </div>
     <!-- Modal -->
-    <form id="formulario" method="POST" action="<?php echo base_url('/roles_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+    <form id="formulario">
         <div class="modal fade" id="RolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -119,7 +119,7 @@
     }
 
     var contador = 0
-    var tablaRoles = $('#tablaAcciones').DataTable({
+    var tablaRoles = $('#tablaRoles').DataTable({
         ajax: {
             url: '<?= base_url('roles/obtenerRoles') ?>',
             method: "POST",
@@ -141,7 +141,7 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return `<div class="btn-group">
+                    return `<div class="btn-group container">
                     <button class="btn btn-outline-primary" onclick="seleccionaRol(${data.id_rol} , 2);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol"><i class="bi bi-pencil"></i></button><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_rol}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
                     </div>`
                 },
@@ -152,7 +152,7 @@
         }
     })
 
-      $("#formulario").validate({
+    $("#formulario").validate({
         rules: {
             nombre_rol: {
                 required: true,
@@ -183,6 +183,11 @@
         }
     });
 
+    $('#formulario').on('submit', function(e) {
+        console.log('activo');
+        e.preventDefault();
+    })
+
     function seleccionaRol(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/roles/buscarRol'); ?>" + "/" + id;
@@ -206,6 +211,48 @@
             $("#RolModal").modal("show");
         }
     }
+
+    $('#btn_Guardar').on('click', function(e) {
+        e.preventDefault();
+        if ($('#formulario').valid()) {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/roles/insertar'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#id').val(),
+                    nombre_rol: $('#nombre_rol').val(),
+
+                },
+                dataType: "json",
+            }).done(function(data) {
+                $('#RolModal').modal('hide');
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Acción realizada con exito!'
+                })
+                console.log('insertar');
+                contador = 0
+                tablaRoles.ajax.reload(null, false)
+                return
+            })
+        } else {
+            console.log('Formulario Invalido');
+        }
+    })
+
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });

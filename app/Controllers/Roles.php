@@ -46,7 +46,7 @@ class Roles extends BaseController
                 'usuario_crea'=> session('id')
             ]);
         }
-        return redirect()->to(base_url('/roles'));
+        return json_encode('Se inserto un rol');
     }
 
     public function buscarRol($id)
