@@ -48,6 +48,15 @@ class AsignaturasModel extends Model
         $datos = $this->first();
         return $datos;
     }
+    public function buscarAsignaturasxGrado($id_grado)
+    {
+        $this->select('asignaturas.id_asignatura, asignaturas.nombre, g.id_grado_asignatura');
+        $this->join('grados_asignatura as g', 'asignaturas.id_asignatura = g.id_asignatura');
+        $this->where('g.id_grado', $id_grado);
+        $this->where('asignaturas.estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
     public function cambiar_Estado($id, $estado)
     {
         $datos = $this->update($id, ['estado' => $estado]);
