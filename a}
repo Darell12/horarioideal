@@ -1,0 +1,565 @@
+[33mcommit 639570baa143c21c31bccd1953b717dc4e652eb1[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: b3670f3 1a0fe57
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Tue May 9 11:29:12 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit b3670f3931c13d550069d0d795c2647c25a66b2e[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Tue May 9 11:29:07 2023 -0500
+
+    style::Perfil
+
+[33mcommit 1a0fe574ec63dcfb351aa10506320ca5b2f946e7[m
+Merge: f3b4b98 3fce5fc
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Tue May 9 11:17:10 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit f3b4b98909372471e98cbfdaa9f05de813223d92[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Tue May 9 11:17:01 2023 -0500
+
+    fix:perfil
+
+[33mcommit 3fce5fc892eb874863f979795f6b7b040e90b208[m
+Merge: 0331036 bb07354
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue May 9 10:38:11 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit bb07354c6aec2efefeb57230950830dfaa97d9f2[m
+Merge: cf4e8fd 615ad2e
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Tue May 9 10:22:51 2023 -0500
+
+    feat::acciones
+
+[33mcommit cf4e8fd4a0c80a39fbb0ea9c54ea04cca45115d1[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Tue May 9 10:22:00 2023 -0500
+
+    feat::acciones
+
+[33mcommit 03310362ad4b19e67a513df95b774174b7ff7228[m
+Merge: 947f3b5 615ad2e
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue May 9 10:14:23 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 947f3b5838daa62a361902a6c8cd800664f4d175[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue May 9 10:14:07 2023 -0500
+
+    feat::horarios
+
+[33mcommit 615ad2ec0ed76e433e194427d9cc029e0190b6c7[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Tue May 9 10:12:04 2023 -0500
+
+    fix:restaurarUser, fix:viewdbDetalle
+
+[33mcommit 36ac45569299bb8ffec3a3c03ec9c7fbe9e3b7a2[m
+Merge: 0ff9fad 19628e6
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Tue May 9 08:06:04 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 0ff9fad529e5cc20619d58d339483a3c021d32fb[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Tue May 9 08:02:59 2023 -0500
+
+    fix:limpiarInputsUsuario
+
+[33mcommit 19628e62aa9e2aca2bc5f1759dc8f859c0a9c7af[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue May 9 07:50:55 2023 -0500
+
+    feat::disponibilidad
+
+[33mcommit 3e9cc5b1311006314781c608b29d9f20ed0c4f7d[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Mon May 8 22:30:15 2023 -0500
+
+    style:tables
+
+[33mcommit 5fba45ea5cd9ac488081e9fc723fa8a6099f7fbe[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Mon May 8 20:39:19 2023 -0500
+
+    feat:OcultarColumnas, pd:Gracias Moi
+
+[33mcommit f09aa7eb3f5f659a3c61ede52bed375361ae140d[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Mon May 8 20:29:18 2023 -0500
+
+    style:tables
+
+[33mcommit 1f8ac08018321ce638a9784c8cfd3ca2ff4b471b[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon May 8 14:24:56 2023 -0500
+
+    style:Login
+
+[33mcommit 486e899681f96c787ba662fe98d1318ee9f93ffb[m
+Merge: e049454 04e4487
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon May 8 11:32:19 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit e04945405ae18a266f400630e16c6c9894ad5c27[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon May 8 11:32:15 2023 -0500
+
+    fix:AsignaturasAsync-feat:sidebarItems
+
+[33mcommit 04e4487cfaa432cd0222665187c6c6d290e35124[m
+Merge: d6359fa bb57c23
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Mon May 8 11:30:56 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit d6359fa91bb622b8fc59cf8a6d8d3f2b030ebb6f[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Mon May 8 11:30:47 2023 -0500
+
+    fix:perfil
+
+[33mcommit bb57c237a22ca99d493522ba4341da261e874870[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Mon May 8 10:59:03 2023 -0500
+
+    feat::horarios
+
+[33mcommit efa85b852660b6a9939481c2b056ac114f7f2521[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon May 8 10:07:18 2023 -0500
+
+    fix:EstudiantesFinish
+
+[33mcommit d68af0a3b07a1bf0f12a23cf8a11ee50f6192be2[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon May 8 09:36:11 2023 -0500
+
+    fix:errorHorarios
+
+[33mcommit 7f04ec29e24c503fe3cce71360206e8054137352[m
+Merge: bb94802 7862671
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Mon May 8 09:21:20 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit bb9480239299c7e2f7904f9c3e2435770979d22a[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Mon May 8 09:21:14 2023 -0500
+
+    feat::asignaturas
+
+[33mcommit 7862671cdb6a20542883a28da9ba6908718401ef[m
+Merge: b746d7d 6995257
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon May 8 09:14:47 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit b746d7d20dfe9d8aba73357d332ad6a89493198b[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon May 8 09:13:47 2023 -0500
+
+    fix:estudiantesMainView
+
+[33mcommit 699525712fcfa1c718f22f90e67cc8a98ad3d9ff[m
+Merge: 540c8ca b047126
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Mon May 8 07:51:57 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 540c8ca22160fd60f0af608dae81bac5aaec5dc4[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Mon May 8 07:49:26 2023 -0500
+
+    feat::disponibilidad
+
+[33mcommit b047126f7cdaa9460588d12bd232ca777ea863c7[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Sat May 6 23:46:15 2023 -0500
+
+    fix:telOnForm
+
+[33mcommit b2e8c38d38b9943737245d1270dc92c0a00fdf38[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Sat May 6 16:29:44 2023 -0500
+
+    style:sidebar again
+
+[33mcommit 01aba3276171702a60359c1f8a5b6d88633e3592[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Sat May 6 11:46:47 2023 -0500
+
+    feat:newsidebarproto
+
+[33mcommit d39a6b7212d4f2401ec6dc0b7e06dbfb620cd841[m
+Author: Yuleavilez <yuleidisavilezm@gmail.com>
+Date:   Fri May 5 15:04:01 2023 -0500
+
+    feat:telefonosfinish
+
+[33mcommit e67ab2211ca5d22fd0b7e27e96a3f4997042d8f9[m
+Merge: 2c92b1c ee37294
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Fri May 5 10:28:04 2023 -0500
+
+    fix:perfil
+
+[33mcommit 2c92b1c1376ba41d5b88c07735948e79e5b6b8de[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Fri May 5 10:25:38 2023 -0500
+
+    fix:perfil
+
+[33mcommit ee3729434876cf6db4e9e4ac724b49c4836dfc23[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Fri May 5 10:22:59 2023 -0500
+
+    feat:telefonos
+
+[33mcommit ae8cd3198eec5f649b44e2b6e159e5c3109b465f[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Thu May 4 23:05:31 2023 -0500
+
+    fix:submitFormUser
+
+[33mcommit 79c4a6a11480f2d0fd1e2b3772ff5177c56ea2dd[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Thu May 4 10:32:16 2023 -0500
+
+    fix:EmailValidacionDTABASE
+
+[33mcommit 8549ae4941ccf2d8fea4769adebb1f8bf15739a2[m
+Merge: 16102d4 a2702a6
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Thu May 4 07:56:48 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 16102d4bca012228a96edd6bcc562ed8f9cd0154[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Thu May 4 07:56:32 2023 -0500
+
+    fix:perfil
+
+[33mcommit a2702a6e26cbcc8bf42bde81f586ee26f3c54434[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Thu May 4 07:52:38 2023 -0500
+
+    fix:tableUsuariosGenerate
+
+[33mcommit 3c46fdb818699e8d725f547cdbbf4d7174d151db[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Wed May 3 22:27:56 2023 -0500
+
+    No sé ni que hice
+
+[33mcommit 70e8d3799af322a8e5a9c0aa86c741bd5105ed1e[m
+Merge: 1ef7712 085e8c5
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Wed May 3 10:49:12 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 085e8c56d359ac6dd74d22e2f4847d13d05a2783[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Wed May 3 10:48:22 2023 -0500
+
+    fix:estilos y validaciones
+
+[33mcommit 1ef7712d2c004c7c5b0eb29c4594053be0c2448e[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Wed May 3 10:48:12 2023 -0500
+
+    fix:acciones
+
+[33mcommit 6aac16b2cea575402515ef688dfb72fce2f903df[m
+Merge: 079fc90 94330ff
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Wed May 3 10:31:11 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 079fc909aa5365481687ece160de1879b5470f23[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Wed May 3 10:30:52 2023 -0500
+
+    fix:emailsActualizar
+
+[33mcommit 94330ff7f4dadd7114fb7800cbb4d9aa93c0d53b[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Wed May 3 09:11:36 2023 -0500
+
+    feat::franjas
+
+[33mcommit e90df74b0f775e97ca9c73fec42b1bed3caf74b1[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Wed May 3 07:53:58 2023 -0500
+
+    fix:session
+
+[33mcommit ae75c15acdc99d148d0e987acbbf520d5352f428[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Wed May 3 00:24:51 2023 -0500
+
+    rebuild:emails
+
+[33mcommit d745e4bb7c5a84c860428edb5971b6a10d7e83d7[m
+Merge: 58b5fef 6787ba3
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Tue May 2 11:23:08 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 58b5fef109e464f791553e41a67dac9638a03543[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Tue May 2 11:21:59 2023 -0500
+
+    fix:usuarios
+
+[33mcommit 6787ba34c5cbf107b6dc0e937965f92be398513f[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Tue May 2 11:14:41 2023 -0500
+
+    fix:login and otherthings
+
+[33mcommit 862a394df9fc81f2d186572383245ed03c42ccec[m
+Merge: 07a5e1a 1c9b623
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Tue May 2 09:43:59 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 07a5e1aaa4bddf37c1f043b2aa1fa334ce02c445[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Tue May 2 09:42:59 2023 -0500
+
+    fix:profesores
+
+[33mcommit 1c9b6234ea9c7fe66c083a2d2d83a99259d85228[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Tue May 2 09:41:19 2023 -0500
+
+    fix:resetFormValidate
+
+[33mcommit 5ef4bf502643d9cef789cfb816ca965ca01c29b4[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Mon May 1 22:16:02 2023 -0500
+
+    fix:idk
+
+[33mcommit c2b65860877ef7859b24daf8ea746358e3971167[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Sat Apr 29 15:51:39 2023 -0500
+
+    feat:ValidacionUsuarios
+
+[33mcommit 72fa1c22b73c98ff74696afc6ac3022eabf48b29[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Sat Apr 29 14:13:44 2023 -0500
+
+    fix:LibreriasDescargadas+DataTable
+
+[33mcommit 1703985eaccb5179890a8ed21c521865b9ba2f02[m
+Merge: 20683bb f24093d
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Fri Apr 28 10:27:06 2023 -0500
+
+    fix:login
+
+[33mcommit 20683bb27d40cd9f5260721c04fe5287f3595ea5[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Fri Apr 28 10:25:37 2023 -0500
+
+    fix:login
+
+[33mcommit f24093d3abd721602fa52eebaf820794205b3acf[m
+Merge: a8d06ac 34d4e54
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Fri Apr 28 10:22:02 2023 -0500
+
+    style:tablas and sidebar
+
+[33mcommit a8d06ac7d232bffb94ff29a438996a02d80975c2[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Fri Apr 28 10:18:43 2023 -0500
+
+    style:tablas and sidebar
+
+[33mcommit 34d4e540d2f6cc5320f0017a9d92fa33c64f9ca4[m
+Author: Daniel Sanchez <danielandresanchez2004@gmail.com>
+Date:   Fri Apr 28 10:17:10 2023 -0500
+
+    feat:grados_asignaturas
+
+[33mcommit 11d6a2a99c64ecea480a2e55d0625a053e5951d3[m
+Merge: aa3916c b2405d9
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Thu Apr 27 11:33:57 2023 -0500
+
+    style:inicio
+
+[33mcommit aa3916cf9666a9aa607b545f4e64f482120e6b07[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Thu Apr 27 11:23:06 2023 -0500
+
+    style:inicio
+
+[33mcommit b2405d99906827e2512a308533372479b7edd5aa[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Thu Apr 27 11:06:26 2023 -0500
+
+    feat:profesores
+
+[33mcommit c1cbd1aa5b256155a897507f60cdd56c45da6f8d[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Thu Apr 27 08:08:42 2023 -0500
+
+    feat:RutasProtegidas
+
+[33mcommit f95804ed5695dc968c273acfcf9b92347ae7266c[m
+Merge: b8cff4a 8492be5
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Wed Apr 26 11:05:29 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 8492be5ae6608001c3da06b6c042d6df1767ed51[m
+Merge: d0d3207 e07ebce
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Wed Apr 26 10:59:32 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit b8cff4a84c1b32d7e5c34be7287ecf6b14ae6254[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Wed Apr 26 10:48:44 2023 -0500
+
+    fix:telefonos
+
+[33mcommit d0d32075817127a0853660bf5939f81c5f489c59[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Wed Apr 26 10:47:41 2023 -0500
+
+    fix:perfil
+
+[33mcommit e07ebce3db09cc575b2e4634215ecebc2b75e0b0[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Wed Apr 26 09:45:24 2023 -0500
+
+    fix:EstudiantesCRUD-LeastDelete
+
+[33mcommit 3f9f97df51e2889ce71051c817d79d4217559316[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Tue Apr 25 21:50:32 2023 -0500
+
+    fix:cambiosVarios
+
+[33mcommit 884cdd17a4c24b9cfef6a41cd3b59e430bf19db7[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Tue Apr 25 17:38:31 2023 -0500
+
+    feat:estudiantes
+
+[33mcommit 8088dc8d75ad0905f611c63b73447d32c58f318a[m
+Merge: 1de89f7 39c3c1e
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue Apr 25 11:29:04 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 1de89f78dcd82c2b4e3da9d5a22671856fd6010a[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue Apr 25 11:28:42 2023 -0500
+
+    fix:Cambios Varios
+
+[33mcommit 39c3c1ebcb838f2158ac6fc30b647e2e01d4b34f[m
+Merge: 8b0c419 60342d7
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue Apr 25 11:26:40 2023 -0500
+
+    Merge branch 'main' of https://github.com/Darell12/horarioideal
+
+[33mcommit 8b0c419b04f344ae02ad38d8af880920c99b5d42[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue Apr 25 11:26:07 2023 -0500
+
+    fix:direcciones
+
+[33mcommit 60342d7fa3ab456c4755bf8ef84c1f04c2c756cf[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Tue Apr 25 11:24:44 2023 -0500
+
+    style:usuarios
+
+[33mcommit 044c72794861976a17b03cb54ad097953bbce9d2[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Tue Apr 25 07:39:19 2023 -0500
+
+    feat:ResetPassword
+
+[33mcommit 9460a69853e75f65ff200ebc27f6af1cd224a6da[m
+Author: darell12 <darellorlandoe@gmail.com>
+Date:   Mon Apr 24 23:23:58 2023 -0500
+
+    feat:perfil
+
+[33mcommit 0309ed8282862bd61b2ce68b28d4c2b35414af80[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon Apr 24 11:48:03 2023 -0500
+
+    style:vistas en general
+
+[33mcommit dc3da717927e448c9136707f236e366c1139c29d[m
+Author: camiloski10 <camilocp282@gmail.com>
+Date:   Mon Apr 24 10:30:52 2023 -0500
+
+    feat:estudiantes y asignaturas
+
+[33mcommit 2cb2c9a93f745fba5238499373f3ce8089b6763f[m
+Merge: 4ae43a6 bd4b638
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon Apr 24 10:29:36 2023 -0500
+
+    style:vistas en general
+
+[33mcommit 4ae43a6f57dacbe1563c078396737ce4aa48d869[m
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon Apr 24 10:28:51 2023 -0500
+
+    style:vistas en general
+
+[33mcommit bd4b6384ed838a7179ef690a0dd032e502fabc61[m
+Author: RosmyPachon <97260587+RosmyPachon@users.noreply.github.com>
+Date:   Mon Apr 24 10:27:53 2023 -0500
+
+    Delete writable/logs directory
+
+[33mcommit 27c0834c0886d4ee5d8ab5025dacce9423e74601[m
+Author: RosmyPachon <97260587+RosmyPachon@users.noreply.github.com>
+Date:   Mon Apr 24 10:27:42 2023 -0500
+
+    Delete writable/debugbar directory
+
+[33mcommit 58cd50acab21253a08dc8c457615bb0a882ca17f[m
+Merge: 5599b13 4cb426f
+Author: RosmyPachon <rosmypachon@gmail.com>
+Date:   Mon Apr 24 10:21:34 2023 -0500
+
+    style:vistas en general
