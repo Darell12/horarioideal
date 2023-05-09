@@ -105,9 +105,37 @@
 
 <script>
      $('#modal-confirma').on('show.bs.modal', function(e) {
-          $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+          $(this).find('.btn-ok').attr('onclick', 'Restaurar(' + $(e.relatedTarget).data('href') + ')');
      });
 
+
+     function Restaurar(id) {
+
+          $.ajax({
+               type: "POST",
+               url: "<?php echo base_url('/usuarios/cambiarEstado/'); ?>" + id + '/' + 'A',
+               dataType: "json",
+          }).done(function(data) {
+               $("#modal-confirma").modal("hide");
+               let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                         toast.addEventListener('mouseenter', Swal.stopTimer)
+                         toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+               })
+
+               Toast.fire({
+                    icon: 'success',
+                    title: 'Registro restaurar con exito!'
+               })
+               tablaUsuarios.ajax.reload(null, false);
+          })
+     }
      var contador = 0
      var tablaUsuarios = $('#tablaUsuarios').DataTable({
           ajax: {
@@ -151,7 +179,7 @@
                     render: function(data, type, row) {
                          return `
                          <div class="btn-group">
-                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" title="Resetear Contraseña" data-href="<?php echo base_url('/usuarios/cambiarEstado')?>/${data.id_usuario}/A"><i class="bi bi-arrow-clockwise"></i></button>
+                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" title="Resetear Contraseña" data-href="${data.id_usuario}"><i class="bi bi-arrow-clockwise"></i></button>
                          </div>`
                     },
                }

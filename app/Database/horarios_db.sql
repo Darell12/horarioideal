@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2023 a las 19:38:07
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Tiempo de generación: 09-05-2023 a las 17:10:36
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -89,7 +89,8 @@ CREATE TABLE `asignatura_profesores` (
 
 INSERT INTO `asignatura_profesores` (`id_asignatura_profesor`, `id_usuario`, `id_grado_asignatura`, `fecha_crea`, `usuario_crea`, `estado`) VALUES
 (1, 4, 1, '2023-04-19 02:39:00', 5, 'A'),
-(2, 3, 2, '2023-04-19 03:32:38', 5, 'A');
+(2, 3, 2, '2023-04-19 03:32:38', 5, 'A'),
+(3, 4, 3, '2023-05-09 13:48:16', 6, 'A');
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,6 @@ CREATE TABLE `detalle` (
 ,`hora_inicio` time
 ,`hora_fin` time
 ,`dia` smallint(2)
-,`profesor` varchar(30)
 );
 
 -- --------------------------------------------------------
@@ -184,7 +184,8 @@ INSERT INTO `emails` (`id_email`, `email`, `prioridad`, `estado`, `fecha_crea`, 
 (2, 'belzera22@gmail.com', 6, 'A', '2023-05-05 07:12:00', 13, 5),
 (3, 'belzera22@gmail.com', 6, 'A', '2023-05-05 07:12:00', 13, 5),
 (4, 'belzera22@gmail.scom', 6, 'A', '2023-05-05 07:19:02', 14, 5),
-(5, 'belzera227@gmail.com', 6, 'A', '2023-05-05 03:57:46', 3, 5);
+(5, 'belzera227@gmail.com', 6, 'A', '2023-05-05 03:57:46', 3, 5),
+(6, 'a@gmail.com', 6, 'A', '2023-05-09 17:39:48', 6, 6);
 
 -- --------------------------------------------------------
 
@@ -232,7 +233,7 @@ CREATE TABLE `franjas_horarias` (
 --
 
 INSERT INTO `franjas_horarias` (`id_franja_horaria`, `estado`, `usuario_crea`, `fecha_crea`, `hora_inicio`, `hora_fin`, `dia`) VALUES
-(1, 'A', 5, '2023-05-05 01:04:50', '06:30:00', '07:30:00', 8);
+(1, 'A', 6, '2023-05-09 13:30:57', '06:30:00', '07:30:00', 8);
 
 -- --------------------------------------------------------
 
@@ -277,7 +278,8 @@ CREATE TABLE `grados_asignatura` (
 
 INSERT INTO `grados_asignatura` (`id_grado_asignatura`, `id_grado`, `id_asignatura`, `fecha_crea`, `usuario_crea`, `estado`) VALUES
 (1, 1, 1, '2023-04-19 01:09:46', 5, 'A'),
-(2, 1, 2, '2023-04-19 03:31:35', 5, 'A');
+(2, 1, 2, '2023-04-19 03:31:35', 5, 'A'),
+(3, 2, 4, '2023-05-09 13:45:54', 7, 'A');
 
 -- --------------------------------------------------------
 
@@ -320,7 +322,7 @@ CREATE TABLE `horarios_enc` (
 --
 
 INSERT INTO `horarios_enc` (`id_horarios_enc`, `id_usuario`, `id_grado`, `periodo_año`, `jornada`, `estado`, `fecha_crea`, `usuario_crea`) VALUES
-(1, 4, 1, '2023', 20, 'A', '2023-04-19 02:48:30', 5);
+(1, 4, 1, 2023, 20, 'A', '2023-04-19 02:48:30', 5);
 
 -- --------------------------------------------------------
 
@@ -477,6 +479,17 @@ CREATE TABLE `telefonos` (
   `usuario_crea` smallint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `telefonos`
+--
+
+INSERT INTO `telefonos` (`id_telefono`, `id_usuario`, `numero`, `tipo`, `prioridad`, `estado`, `fecha_crea`, `usuario_crea`) VALUES
+(1, 6, '3012484', 22, 6, 'A', '2023-05-09 17:39:48', 6),
+(2, 3, 'a@gmail.com', 22, 6, 'E', '2023-05-09 14:26:23', 5),
+(3, 3, 'b@gmail.com', 22, 6, 'E', '2023-05-09 14:28:07', 5),
+(4, 3, 'z@gmail.com', 22, 6, 'E', '2023-05-09 14:28:38', 5),
+(5, 3, 'aw@gmail.com', 22, 6, 'E', '2023-05-09 14:39:50', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -509,10 +522,10 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_corto`, `n_documento`, `nombre_p`,
 (3, 'Belzera', '1044606928', 'Darell', 'Orlando', 'Estren', 'Escorcia', 'daniel123', 1, 'A', '2023-05-05 03:58:31', 5, 2, 'Circular #57D ##49 - 47'),
 (4, 'Socie', '1042241687', 'Santiago', 'Franchesco', 'Lobelo', 'Orozco', 'santy123', 4, 'A', '2023-04-25 16:28:03', 6, 2, 'Calle 45K #85A - 96'),
 (5, 'Root', '1234', 'root', 'root', 'root', 'root', '$2y$10$OHIbghN0jnRl69yCYcSeTeXJHCsE20NyJvaVzLz5rey7QERwFZ4oC', 1, 'A', '2023-04-19 04:04:00', 2, 2, 'root'),
-(6, 'daniel.exe', '1043663815', 'Daniel', 'Andres', 'Sanchez', 'Castro', '$2y$10$dECdR0EbQk0CADmlEsWw6e29Z0CAAw2ZG/NTaDYiiOr.EPeVhQjwa', 1, 'A', '2023-04-26 15:20:15', 6, 2, 'Carrera 17B #68C - 23'),
-(7, 'pepe.prueba', '1243569', 'prueba', 'prueba', 'prueba', 'prueba', '$2y$10$jR0UeFeMbPg9xB5bXcixDe3loKnRqPMrCkIhY0XU87/PRz1iMTHgS', 3, 'E', '2023-04-28 14:06:11', 6, 1, ''),
-(8, 'prueba', '00000000000', 'prueba', 'prueba', 'prueba', 'prueba', '$2y$10$TOxV6TE5bkGBZ8hPrtBqEOGzGTaDykIk4UvDU7ebLhF.gqWDSnhVC', 3, 'E', '2023-04-25 16:24:55', 6, 2, 'Carrera 1111 #1111 - 1111'),
-(9, 'prueba', '1000000', 'dsad', 'dsad', 'dsad', 'dsad', '$2y$10$gHQ6lte0CfG9MwN45nlL0eg0U9TzoGykinYV7M1BWovVZKyQiUu0y', 3, 'E', '2023-04-25 16:24:52', 6, 2, 'Carrera 17B #69 - 23'),
+(6, 'daniel.exe', '1043663815', 'Daniel', 'Andres', 'Sanchez', 'Castro', '$2y$10$0MllpTzQIIHtbK/CeX9tl.6Ym2vI2Ay3KfR58EBwoEKLMGqN9TXi6', 1, 'A', '2023-05-09 12:36:51', 6, 2, 'Carrera 17B #68C - 23'),
+(7, 'pepe.prueba', '1243569', 'prueba', 'prueba', 'prueba', 'prueba', '$2y$10$jR0UeFeMbPg9xB5bXcixDe3loKnRqPMrCkIhY0XU87/PRz1iMTHgS', 3, 'A', '2023-05-09 14:50:40', 6, 1, ''),
+(8, 'prueba', '00000000000', 'prueba', 'prueba', 'prueba', 'prueba', '$2y$10$TOxV6TE5bkGBZ8hPrtBqEOGzGTaDykIk4UvDU7ebLhF.gqWDSnhVC', 3, 'A', '2023-05-09 14:48:25', 6, 2, 'Carrera 1111 #1111 - 1111'),
+(9, 'prueba', '1000000', 'dsad', 'dsad', 'dsad', 'dsad', '$2y$10$gHQ6lte0CfG9MwN45nlL0eg0U9TzoGykinYV7M1BWovVZKyQiUu0y', 3, 'A', '2023-05-09 14:46:10', 6, 2, 'Carrera 17B #69 - 23'),
 (10, 'prueba.estudian', '1143659723', 'Benito', 'Adidas', 'Valenciaga', 'Nike', '$2y$10$Epv0.LbHbpCq05XCwNWhOebehwxXo31DRv0JFQZMyoQYbtrLVhojW', 3, 'A', '2023-04-26 18:11:30', 6, 1, 'Autopista 45H #78B - 75'),
 (11, 'padilla.exe', '1044606953', 'Juan', 'David', 'Padilla', 'Salcedo', '$2y$10$ufXV6GqJpDuF9j/qz8xBFeDND4FaOi54BbZhcX4lHjD/dDhrY2qZS', 3, 'A', '2023-04-26 16:05:32', 11, 1, 'Autopista 78A #45 - 95'),
 (12, 'prueba.daniel', '00000000', 'prueba', 'prueba', 'prueba', 'prueba', '$2y$10$4feQNN.y1QORbuKOf2xA1u22Eqj/adnjLSnRq8pBAUM.8uIZjmW3S', 3, 'A', '2023-04-28 19:05:51', 6, 1, 'Carrera 45A #755 - 32'),
@@ -542,7 +555,7 @@ CREATE TABLE `vw_param_det` (
 --
 DROP TABLE IF EXISTS `detalle`;
 
-CREATE  VIEW `detalle`  AS SELECT `horarios_enc`.`id_horarios_enc` AS `id_encabezado`, `horarios_enc`.`periodo_año` AS `periodo`, `grados`.`alias` AS `grado`, `parametro_det`.`nombre` AS `jornada`, `horario_det`.`id_horario_det` AS `id_horario_det`, `asignaturas`.`nombre` AS `asignatura`, `aulas`.`nombre` AS `aula`, `franjas_horarias`.`hora_inicio` AS `hora_inicio`, `franjas_horarias`.`hora_fin` AS `hora_fin`, `franjas_horarias`.`dia` AS `dia`, `usuarios`.`nombre_corto` AS `profesor` FROM ((((((((`horarios_enc` join `grados` on(`horarios_enc`.`id_grado` = `grados`.`id_grado`)) join `parametro_det` on(`horarios_enc`.`jornada` = `parametro_det`.`id_parametro_det`)) join `horario_det` on(`horarios_enc`.`id_horarios_enc` = `horario_det`.`id_horario_enc`)) join `usuarios` on(`horario_det`.`profesor` = `usuarios`.`id_usuario`)) join `grados_asignatura` on(`horario_det`.`id_grado_asignatura` = `grados_asignatura`.`id_grado_asignatura`)) join `asignaturas` on(`grados_asignatura`.`id_grado_asignatura` = `asignaturas`.`id_asignatura`)) join `aulas` on(`horario_det`.`id_aula` = `aulas`.`id_aula`)) join `franjas_horarias` on(`horario_det`.`id_franja_horaria` = `franjas_horarias`.`id_franja_horaria`)) WHERE `horarios_enc`.`estado` = 'A' AND `horarios_enc`.`id_horarios_enc` = `horario_det`.`id_horario_enc` ;
+CREATE VIEW `detalle`  AS SELECT `horarios_enc`.`id_horarios_enc` AS `id_encabezado`, `horarios_enc`.`periodo_año` AS `periodo`, `grados`.`alias` AS `grado`, `parametro_det`.`nombre` AS `jornada`, `horario_det`.`id_horario_det` AS `id_horario_det`, `asignaturas`.`nombre` AS `asignatura`, `aulas`.`nombre` AS `aula`, `franjas_horarias`.`hora_inicio` AS `hora_inicio`, `franjas_horarias`.`hora_fin` AS `hora_fin`, `franjas_horarias`.`dia` AS `dia` FROM (((((((`horarios_enc` join `grados` on(`horarios_enc`.`id_grado` = `grados`.`id_grado`)) join `parametro_det` on(`horarios_enc`.`jornada` = `parametro_det`.`id_parametro_det`)) join `horario_det` on(`horarios_enc`.`id_horarios_enc` = `horario_det`.`id_horario_enc`)) join `grados_asignatura` on(`horario_det`.`id_grado_asignatura` = `grados_asignatura`.`id_grado_asignatura`)) join `asignaturas` on(`grados_asignatura`.`id_grado_asignatura` = `asignaturas`.`id_asignatura`)) join `aulas` on(`horario_det`.`id_aula` = `aulas`.`id_aula`)) join `franjas_horarias` on(`horario_det`.`id_franja_horaria` = `franjas_horarias`.`id_franja_horaria`)) WHERE `horarios_enc`.`estado` = 'A' AND `horarios_enc`.`id_horarios_enc` = `horario_det`.`id_horario_enc``id_horario_enc`  ;
 
 -- --------------------------------------------------------
 
@@ -551,7 +564,7 @@ CREATE  VIEW `detalle`  AS SELECT `horarios_enc`.`id_horarios_enc` AS `id_encabe
 --
 DROP TABLE IF EXISTS `vw_param_det`;
 
-CREATE VIEW `vw_param_det`  AS SELECT `parametro_det`.`id_parametro_det` AS `id_parametro_det`, `parametro_det`.`nombre` AS `nombre`, `parametro_det`.`resumen` AS `resumen`, `parametro_det`.`estado` AS `estado`, `parametro_det`.`fecha_crea` AS `fecha_crea`, `parametro_det`.`usuario_crea` AS `usuario_crea`, `parametro_det`.`id_enc` AS `id_enc` FROM `parametro_det` ;
+CREATE VIEW `vw_param_det`  AS SELECT `parametro_det`.`id_parametro_det` AS `id_parametro_det`, `parametro_det`.`nombre` AS `nombre`, `parametro_det`.`resumen` AS `resumen`, `parametro_det`.`estado` AS `estado`, `parametro_det`.`fecha_crea` AS `fecha_crea`, `parametro_det`.`usuario_crea` AS `usuario_crea`, `parametro_det`.`id_enc` AS `id_enc` FROM `parametro_det``parametro_det`  ;
 
 --
 -- Índices para tablas volcadas
@@ -731,7 +744,7 @@ ALTER TABLE `asignaturas`
 -- AUTO_INCREMENT de la tabla `asignatura_profesores`
 --
 ALTER TABLE `asignatura_profesores`
-  MODIFY `id_asignatura_profesor` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_asignatura_profesor` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `aulas`
@@ -749,7 +762,7 @@ ALTER TABLE `disponibilidad_prof`
 -- AUTO_INCREMENT de la tabla `emails`
 --
 ALTER TABLE `emails`
-  MODIFY `id_email` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_email` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiantes`
@@ -773,7 +786,7 @@ ALTER TABLE `grados`
 -- AUTO_INCREMENT de la tabla `grados_asignatura`
 --
 ALTER TABLE `grados_asignatura`
-  MODIFY `id_grado_asignatura` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_grado_asignatura` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios_enc`
@@ -815,7 +828,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `telefonos`
 --
 ALTER TABLE `telefonos`
-  MODIFY `id_telefono` smallint(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_telefono` smallint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

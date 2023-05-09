@@ -34,7 +34,7 @@
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebars.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/tables.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>
 
@@ -78,12 +78,13 @@
             </li>
             <li>
                 <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
+                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
                     <i class='bx bx-cog icon'></i>
                     <span class="text fs-6 nav-text">Acciones</span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
+                <a href="<?php echo base_url('ver_franjas') ?>" title="Acciones">
                     <i class='bx bx-time-five'></i>
                     <span class="text fs-6 nav-text">Franjas horarias</span>
                 </a>
@@ -152,7 +153,7 @@
             <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
-                    <i class='bx bx-menu'></i>
+                <i class='bx bx-chevron-left bx-sm'></i>
                 </button>
                 <div class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
@@ -182,6 +183,7 @@
         </nav>
 
 
+        <!-- #48a4cd -->
         <!-- #48a4cd -->
 
         <script>
