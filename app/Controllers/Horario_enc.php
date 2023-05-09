@@ -43,8 +43,7 @@ class Horario_enc extends BaseController
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
 
-            $this->horario_enc->save([
-                'id_usuario'=> session('id'),
+            $this->horario_enc->save([    
                 'id_grado' => $this->request->getPost('id_grado'),
                 'periodo_año' => $this->request->getPost('periodo_año'),
                 'jornada' => $this->request->getPost('jornada'),
@@ -53,7 +52,6 @@ class Horario_enc extends BaseController
             ]);
         } else {
             $this->horario_enc->update($this->request->getPost('id'), [
-                'id_usuario'=> session('id'),
                 'id_grado' => $this->request->getPost('id_grado'),
                 'periodo_año' => $this->request->getPost('periodo_año'),
                 'jornada' => $this->request->getPost('jornada'),
@@ -63,6 +61,7 @@ class Horario_enc extends BaseController
         }
         return redirect()->to(base_url('/horarios_enc'));
     }
+    
 
     public function buscarhorario_enc($id)
     {

@@ -79,14 +79,15 @@
                                 <div class="col">
                                     <label class="col-form-label">Año:</label>
                                     <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="periodo_año" id="periodo_año" required>
+                                    
 
                                 </div>
                                 <div class="col">
                                     <label class="col-form-label">Jornada:</label>
                                     <select class="form-select form-select" name="jornada" id="jornada" required>
                                         <option value="">Seleccione un Jornada</option>
-                                        <option value="1">Mañana</option>
-                                        <option value="2">Tarde</option>
+                                        <option value="20">Mañana</option>
+                                        <option value="21">Tarde</option>
                                     </select>
                                     <input type="text" id="tp" name="tp" hidden>
                                     <input type="text" id="id" name="id" hidden>
