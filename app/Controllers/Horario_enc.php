@@ -76,15 +76,8 @@ class Horario_enc extends BaseController
 
     public function cambiarEstado($id, $estado)
     {
-        $horario_enc = $this->horario_enc->cambiar_Estado($id, $estado);
+        $horarios_enc = $this->horarios_enc->cambiar_Estado($id, $estado);
 
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_horarios_enc'));
-        } else {
-            return redirect()->to(base_url('/eliminados_horarios_enc'));
-        }
     }
 
     public function eliminados() //Mostrar vista de Paises Eliminados

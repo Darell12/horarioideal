@@ -64,7 +64,7 @@ class Acciones extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $accion = $this->accion->cambiar_Estado($id, $estado);
-        return json_encode('😊');
+        return json_encode('');
     }
 
     public function eliminados() //Mostrar vista de Paises Eliminados
