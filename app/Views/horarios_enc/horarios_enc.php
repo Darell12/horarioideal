@@ -46,7 +46,7 @@
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_acciones') . '/' . $valor['id_horarios_enc'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_horarios_enc') . '/' . $valor['id_horarios_enc'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
                             </div>
                         </td>
 
@@ -126,6 +126,38 @@
 </div>
 
 <script>
+    $('#modal-confirma').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
+        });
+
+        function EliminarRegistro(id) {
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/horarios_enc/cambiarEstado/'); ?>" + id + '/' + 'E',
+                dataType: "json",
+            }).done(function(data) {
+                $("#modal-confirma").modal("hide");
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado con exito!'
+                })
+                contador = 0;
+                tablaFranja.ajax.reload(null, false);
+            })
+        }
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     })
