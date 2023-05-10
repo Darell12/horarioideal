@@ -15,7 +15,6 @@
       <thead class="table-dark">
         <tr>
           <th class="text-center">Id</th>
-          <th class="text-center">Usuario</th>
           <th class="text-center">Grado</th>
           <th class="text-center">Año</th>
           <th class="text-center">Jornada</th>
@@ -31,16 +30,15 @@
         <?php } else { ?>
           <?php foreach ($datos as $valor) { ?>
             <tr>
-              <th class="text-center"><?php echo $valor['id_horarios_enc']; ?></th>
-              <th class="text-center"><?php echo $valor['usuario']; ?></th>
-              <th class="text-center"><?php echo $valor['grado']; ?></th>
-              <th class="text-center"><?php echo $valor['periodo_año']; ?></th>
-              <th class="text-center"><?php echo $valor['jornada']; ?></th>
+                 <td class="text-center"><?php echo $valor['id_horarios_enc']; ?></td>
+                        <td class="text-center"><?php echo $valor['id_grado']; ?></td>
+                        <td class="text-center"><?php echo $valor['periodo_año']; ?></td>
+                        <td class="text-center"><?php echo $valor['jornada']; ?></td>
               <th class="text-center">
                 <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
               </th>
               <th class="grid grid text-center" colspan="2">
-                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/horarios_enc/cambiar_Estado') . '/' . $valor['id_horarios_enc'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
+                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_horarios_enc') . '/' . $valor['id_horarios_enc'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
               </th>
 
             </tr>
