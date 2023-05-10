@@ -13,7 +13,7 @@ class Grados_asignaturaModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_grado', 'id_asignatura', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['id_grado', 'id_asignatura', 'estado', 'usuario_crea','horas_semanales'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -28,6 +28,7 @@ class Grados_asignaturaModel extends Model
         $this->select('grados_asignatura.*, asignaturas.nombre as asignatura, asignaturas.nombre as nombre, asignaturas.codigo as codigo');
         $this->join('asignaturas', 'grados_asignatura.id_asignatura = asignaturas.id_asignatura');
         $this->where('grados_asignatura.id_grado', $id);
+        $this->where('grados_asignatura.estado', 'A');
         $datos = $this->findAll();
         return $datos;
 
