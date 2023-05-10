@@ -9,7 +9,8 @@ class Inicio extends BaseController
 {
     public function index()
     {
-       echo view('/principal/sidebar');
-        echo view('/inicio/inicio');
+        $data = ['titulo' => 'Horario'];
+        echo view('/principal/sidebar', $data);
+        echo view('/inicio/inicio', $data);
     }
 }
