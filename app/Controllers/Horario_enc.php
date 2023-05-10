@@ -76,7 +76,7 @@ class Horario_enc extends BaseController
 
     public function cambiarEstado($id, $estado)
     {
-        $horarios_enc = $this->horarios_enc->cambiar_Estado($id, $estado);
+        $horario_enc = $this->horario_enc->cambiar_Estado($id, $estado);
 
     }
 
