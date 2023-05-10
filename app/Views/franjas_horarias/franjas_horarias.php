@@ -202,27 +202,13 @@
                         },
                     }
                 },
+                dia: {
+                    required: true,
+                    
+                },
                 hora_fin: {
                     required: true,
-                    remote: {
-                        url: '<?php echo base_url() ?>franjas_horarias/validar',
-                        type: "post",
-                        dataType: "json",
-                        data: {
-                            campo: function() {
-                                return 'hora_fin';
-                            },
-                            valor: function() {
-                                return $("#hora_fin").val();
-                            },
-                            tp: function() {
-                                return $("#tp").val();
-                            },
-                            hora_fin: function() {
-                                return $("#hora_fin").val();
-                            },
-                        },
-                    }
+                   
 
                 },
             },
@@ -230,6 +216,9 @@
                 hora_inicio: {
                     required: "La hora es requerida",
                     remote: "Esta hora de inicio ya existe"
+                },
+                dia: {
+                    required: "El dia es requerido"
                 },
                 hora_fin: {
                     required: "La hora es requerida",

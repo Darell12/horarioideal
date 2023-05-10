@@ -83,16 +83,8 @@ class Franjas_horarias extends BaseController
         $campo = $this->request->getPost('campo');
         $tp = $this->request->getPost('tp');
         $hora_inicio = $this->request->getPost('hora_inicio');
+        $dia = $this->request->getPost('dia');
         $filtro = $this->franja->filtro($campo, $valor);
-        if ($tp == 2 && $valor == $hora_inicio) {
-            $respuesta = true;
-            return $this->response->setJSON($respuesta);
-        }
-
-        if ($tp == 2 && $valor == $hora_inicio) {
-            $respuesta = true;
-            return $this->response->setJSON($respuesta);
-        }
 
         if (empty($filtro)) {
             $respuesta = true;
@@ -101,8 +93,10 @@ class Franjas_horarias extends BaseController
             $respuesta = false;
         }
         return $this->response->setJSON($respuesta);
+       
     }
 
+    
     public function buscarFranjas($id)
     {
         $returnData = array();

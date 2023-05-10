@@ -66,8 +66,8 @@ class Franjas_horariasModel extends Model
     public function filtro($campo ,$valor)
     {
         $this->select('franjas_horarias.*');
-        $this->where($campo, $valor);
         $this->where('estado', 'A');
+        $this->where($campo, $valor);
         $datos = $this->first();
         return $datos;
     }
