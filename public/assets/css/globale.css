@@ -486,6 +486,7 @@ ul {
   .container-lecture .section-nav .list-lecture {
     display: flex;
     margin-bottom: 0;
+    overflow-x: scroll;
   }
 
   .container-lecture .section-nav .list-lecture .card-lecture {
@@ -513,7 +514,7 @@ ul {
 }
 
 .container-lecture .section-list {
-  width: calc(100% - 25rem);
+  width: calc(100% - 5rem);
   padding-bottom: 7.5rem;
 }
 
@@ -672,6 +673,8 @@ ul {
   display: flex;
   position: relative;
   padding: 0 1rem;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (max-width: 1199px) {
@@ -815,7 +818,7 @@ ul {
   }
 
   .table-schedule .table-schedule-subject .timeline-vertical ul {
-    height: 66.25rem;
+    height: 91.1rem;
     display: block;
     overflow: visible;
     padding: 0;
@@ -862,12 +865,17 @@ ul {
     visibility: hidden;
   }
 
+  /* DURACION */
   .table-schedule .table-schedule-subject .two-hr {
     height: 14rem;
   }
 
+  /* FRANJAS */
   .table-schedule .table-schedule-subject .hr-6 {
     top: 0;
+  }
+  .table-schedule .table-schedule-subject .hr-6-3 {
+    top: 3.5rem;
   }
 
   .table-schedule .table-schedule-subject .hr-7 {
@@ -903,16 +911,16 @@ ul {
   }
 
   .table-schedule .table-schedule-subject .hr-15 {
-    top: 112rem;
+    top: 63rem;
   }
   .table-schedule .table-schedule-subject .hr-16 {
-    top: 224rem;
+    top: 70rem;
   }
   .table-schedule .table-schedule-subject .hr-17 {
-    top: 448rem;
+    top: 77rem;
   }
   .table-schedule .table-schedule-subject .hr-18 {
-    top: 445rem;
+    top: 84rem;
   }
 }
 

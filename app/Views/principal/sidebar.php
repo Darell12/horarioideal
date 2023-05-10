@@ -157,11 +157,6 @@
                 <div class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
                 </div>
-                <!-- <h3 class="mt-2">Admin
-                    istrar Usuarios</h3> -->
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
-                </button>
                 <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">

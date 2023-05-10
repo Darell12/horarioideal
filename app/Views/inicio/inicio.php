@@ -24,213 +24,235 @@
   </div>
 </section> -->
 
-<div class="container-lecture">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
 
-  <section class="section-list">
-    <div class="container-xl">
-      <div class="table-schedule">
-        <div class="timeline">
-          <ul>
-            <li><span>06:00</span></li>
-            <li><span>06:30</span></li>
-            <li><span>07:00</span></li>
-            <li><span>07:30</span></li>
-            <li><span>08:00</span></li>
-            <li><span>08:30</span></li>
-            <li><span>09:00</span></li>
-            <li><span>09:30</span></li>
-            <li><span>10:00</span></li>
-            <li><span>10:30</span></li>
-            <li><span>11:00</span></li>
-            <li><span>11:30</span></li>
-            <li><span>12:00</span></li>
-            <li><span>12:30</span></li>
-            <li><span>13:00</span></li>
-            <li><span>13:30</span></li>
-            <li><span>14:00</span></li>
-            <li><span>14:30</span></li>
-            <li><span>15:00</span></li>
-            <li><span>15:30</span></li>
-            <li><span>16:00</span></li>
-            <li><span>16:30</span></li>
-            <li><span>17:00</span></li>
-            <li><span>17:30</span></li>
-            <li><span>18:00</span></li>
-            <li><span>18:30</span></li>
-          </ul>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Horario 9-A</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-lecture" style="background-color: white !important;">
 
-        <div class="table-schedule-subject">
-          <ul class="list-lecture-item">
-            <li class="timeline-vertical">
-              <div class="top-info">
-                <h4 class="day">Lunes</h4>
+          <section class="section-list">
+            <div class="container-xl">
+              <div class="table-schedule">
+                <div class="timeline">
+                  <ul>
+                    <li><span>06:00</span></li>
+                    <li><span>06:30</span></li>
+                    <li><span>07:00</span></li>
+                    <li><span>07:30</span></li>
+                    <li><span>08:00</span></li>
+                    <li><span>08:30</span></li>
+                    <li><span>09:00</span></li>
+                    <li><span>09:30</span></li>
+                    <li><span>10:00</span></li>
+                    <li><span>10:30</span></li>
+                    <li><span>11:00</span></li>
+                    <li><span>11:30</span></li>
+                    <li><span>12:00</span></li>
+                    <li><span>12:30</span></li>
+                    <li><span>13:00</span></li>
+                    <li><span>13:30</span></li>
+                    <li><span>14:00</span></li>
+                    <li><span>14:30</span></li>
+                    <li><span>15:00</span></li>
+                    <li><span>15:30</span></li>
+                    <li><span>16:00</span></li>
+                    <li><span>16:30</span></li>
+                    <li><span>17:00</span></li>
+                    <li><span>17:30</span></li>
+                    <li><span>18:00</span></li>
+                    <li><span>18:30</span></li>
+                  </ul>
+                </div>
+
+                <div class="table-schedule-subject">
+                  <ul class="list-lecture-item">
+                    <li class="timeline-vertical">
+                      <div class="top-info">
+                        <h4 class="day">Lunes</h4>
+                      </div>
+                      <ul>
+                        <li class="lecture-time two-hr hr-6-3  text-wrap" data-event="lecture-01">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Programación web</h6>
+                              <h6 class="lecture-location">Edificio de Ingeniería 204</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time two-hr hr-10" data-event="lecture-02">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title ">Principios de programación</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time hr-18" data-event="lecture-03">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Diseño lógico </h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="timeline-vertical">
+                      <div class="top-info">
+                        <h4 class="day">Martes</h4>
+                      </div>
+                      <ul>
+                        <li class="lecture-time two-hr hr-10" data-event="lecture-04">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Estructura de datos</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time hr-12" data-event="lecture-05">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Algoritmo</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time hr-16 two-hr" data-event="lecture-06">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Red de computadoras</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="timeline-vertical">
+                      <div class="top-info">
+                        <h4 class="day">Miercoles</h4>
+                      </div>
+
+                      <ul>
+                        <li class="lecture-time two-hr hr-10" data-event="lecture-01">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Programación web</h6>
+                              <h6 class="lecture-location">Edificio de ingeniería 204</h6>
+                            </div>
+
+                          </a>
+                        </li>
+
+                        <li class="lecture-time hr-12" data-event="lecture-07">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Compilador</h6>
+                              <h6 class="lecture-location">Edificio de ingeniería 602</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time two-hr hr-13" data-event="lecture-02">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title ">Principios de programacion</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                      </ul>
+                    </li>
+
+                    <li class="timeline-vertical">
+                      <div class="top-info">
+                        <h4 class="day">Jueves</h4>
+                      </div>
+
+                      <ul>
+                        <li class="lecture-time two-hr hr-10" data-event="lecture-04">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Estructura de datos</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time hr-12" data-event="lecture-05">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Algoritmo</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time hr-6" data-event="lecture-08">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Base de datos</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                      </ul>
+                    </li>
+
+                    <li class="timeline-vertical">
+                      <div class="top-info">
+                        <h4 class="day">Viernes</h4>
+                      </div>
+
+                      <ul>
+                        <li class="lecture-time hr-10" data-event="lecture-09">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Comunicacion de datos</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="lecture-time two-hr hr-12" data-event="lecture-10">
+                          <a href="#">
+                            <div class="lecture-info">
+                              <h6 class="lecture-title">Sistema operativo</h6>
+                              <h6 class="lecture-location">Sala de ingeniería 102</h6>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <ul>
-                <li class="lecture-time two-hr hr-6" data-event="lecture-01">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Programación web</h6>
-                      <h6 class="lecture-location">Edificio de Ingeniería 204</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time two-hr hr-10" data-event="lecture-02">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title ">Principios de programación</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time hr-14" data-event="lecture-03">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Diseño lógico </h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="timeline-vertical">
-              <div class="top-info">
-                <h4 class="day">Martes</h4>
-              </div>
-              <ul>
-                <li class="lecture-time two-hr hr-10" data-event="lecture-04">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Estructura de datos</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time hr-12" data-event="lecture-05">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Algoritmo</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time hr-16" data-event="lecture-06">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Red de computadoras</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="timeline-vertical">
-              <div class="top-info">
-                <h4 class="day">Miercoles</h4>
-              </div>
-
-              <ul>
-                <li class="lecture-time two-hr hr-10" data-event="lecture-01">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Programación web</h6>
-                      <h6 class="lecture-location">Edificio de ingeniería 204</h6>
-                    </div>
-
-                  </a>
-                </li>
-
-                <li class="lecture-time hr-12" data-event="lecture-07">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Compilador</h6>
-                      <h6 class="lecture-location">Edificio de ingeniería 602</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time two-hr hr-13" data-event="lecture-02">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title ">Principios de programacion</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-              </ul>
-            </li>
-
-            <li class="timeline-vertical">
-              <div class="top-info">
-                <h4 class="day">Jueves</h4>
-              </div>
-
-              <ul>
-                <li class="lecture-time two-hr hr-10" data-event="lecture-04">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Estructura de datos</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time hr-12" data-event="lecture-05">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Algoritmo</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time hr-6" data-event="lecture-08">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Base de datos</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-              </ul>
-            </li>
-
-            <li class="timeline-vertical">
-              <div class="top-info">
-                <h4 class="day">Viernes</h4>
-              </div>
-
-              <ul>
-                <li class="lecture-time hr-10" data-event="lecture-09">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Comunicacion de datos</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-
-                <li class="lecture-time two-hr hr-12" data-event="lecture-10">
-                  <a href="#">
-                    <div class="lecture-info">
-                      <h6 class="lecture-title">Sistema operativo</h6>
-                      <h6 class="lecture-location">Sala de ingeniería 102</h6>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+            </div>
+          </section>
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-  </section>
+  </div>
 </div>
