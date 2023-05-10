@@ -18,13 +18,20 @@ class Asignaturas extends BaseController
     }
     public function index()
     {
-        $asignaturas = $this->asignaturas->obtenerAsignaturas();    
+        $asignaturas = $this->asignaturas->obtenerAsignaturas('E');    
         $paramAreas = $this->paramAreas->ObtenerAreas();
         $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'Area' => $paramAreas, 'datos' => $asignaturas ];
 
         echo view('/principal/sidebar', $data);
         echo view('/asignaturas/asignaturas', $data);
     }
+    public function obtenerAsignaturas()
+    {
+        $estado = $this->request->getPost('estado');
+        $asignaturas = $this->asignaturas->obtenerAsignaturas($estado);
+        echo json_encode($asignaturas);
+    }
+
     public function insertar()
     {
         $tp = $this->request->getPost('tp');
@@ -67,14 +74,7 @@ class Asignaturas extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $asignaturas = $this->asignaturas->cambiar_Estado($id, $estado);
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_asignaturas'));
-        } else {
-            return redirect()->to(base_url('/eliminados_asignaturas'));
-        }
+        return json_encode('');
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {

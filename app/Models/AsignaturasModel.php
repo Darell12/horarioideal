@@ -24,10 +24,10 @@ class AsignaturasModel extends Model
     protected $skipValidation     = false;
     
     
-    public function obtenerAsignaturas()
+    public function obtenerAsignaturas($estado)
     {
         $this->select('asignaturas.id_asignatura, asignaturas.nombre, asignaturas.Codigo, asignaturas.estado');
-        $this->where('asignaturas.estado', 'A');
+        $this->where('asignaturas.estado', $estado);
         $datos = $this->findAll();
         return $datos;
     }

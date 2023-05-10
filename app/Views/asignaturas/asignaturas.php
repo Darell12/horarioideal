@@ -1,55 +1,33 @@
-<div class="container bg-white mt-5  rounded rounded-3">
-    <div class="pt-1">
+<div class="container bg-white rounded rounded-3">
+    <div class="d-flex justify-content-between flex-wrap">
         <h1 class="titulo_Vista text-center ">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+            <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
         </h1>
+        <div>
+            <button type="button" onclick="seleccionaAsignatura(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#AsignaturaModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <a href="<?php echo base_url('/asignaturas/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        </div>
     </div>
-    <div style="height: 30px;"></div>
-    <div>
-        <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-        <a href="<?php echo base_url('/asignaturas/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-        <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
-    </div>
-
     <br>
     <div class="table-responsive">
-        <table class="table table-bordered table-sm table-hover" id="tableAsignaturas" width="100%" cellspacing="0">
-            <thead class="table-dark">
+        <table style="text-align: center;" class="table align-items-center table-flush" id="tableAsignaturas">
+            <thead class="thead-light">
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Codigo de Area</th>
-                    <th class="text-center">Estado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                <?php foreach ($datos as $valor) { ?>
-                    <tr>
-                        <td class="text-center"><?php echo $valor['id_asignatura']; ?></td>
-                        <td class="text-center"><?php echo $valor['nombre']; ?></td>
-                        <td class="text-center"><span title="<?php echo $valor['nombre']?>"><?php echo $valor['Codigo']; ?></span></td>
-                        <td class="text-center">
-                            <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </td>
-                        <td class="grid grid text-center" colspan="2">
-
-                            <button id="acciones" class="btn btn-outline-primary" onclick="seleccionaRol(<?php echo $valor['id_asignatura'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#RolModal">
-
-                                <i class="bi bi-pencil"></i>
-
-                            </button>
-
-                            <button id="acciones" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_asignaturas') . '/' . $valor['id_asignatura'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                        </td>
-
-                    <?php } ?>
+                
             </tbody>
         </table>
     </div>
     <!-- Modal -->
     <form method="POST" action="<?php echo base_url('/asignaturas_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
-        <div class="modal fade" id="RolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal fade" id="AsignaturaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -71,12 +49,12 @@
                                     <label for="codigo" class="col-form-label">Codigo:</label>
                                     <!-- <input type="number" class="form-control" name="codigo" id="codigo" required> -->
                                     <select name="codigo" class="form-select form-select" id="codigo">
-                                            <option value="">-Seleccione una opción-</option>
-                                            <?php foreach ($Area as $valor) { ?>
-                                                <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
-                                            <?php } ?>
-    
-                                        </select>
+                                        <option value="">-Seleccione una opción-</option>
+                                        <?php foreach ($Area as $valor) { ?>
+                                            <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
+                                        <?php } ?>
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -115,17 +93,79 @@
 
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
-    $('#tableAsignaturas').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        }
+        $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
-    
+
+    function EliminarRegistro(id) {
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/asignaturas/cambiarEstado/'); ?>" + id + '/' + 'E',
+            dataType: "json",
+        }).done(function(data) {
+            $("#modal-confirma").modal("hide");
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro eliminado con exito!'
+            })
+            tableAsignaturas.ajax.reload(null, false);
+        })
+    }
+    var contador = 0
+    var tableAsignaturas = $('#tableAsignaturas').DataTable({
+        ajax: {
+            url: '<?= base_url('asignaturas/obtenerAsignaturas') ?>',
+            method: "POST",
+            data: {
+                estado: 'A'
+            },
+            dataSrc: "",
+        },
+        columns: [{
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
+            },
+            {
+                data: "nombre"
+            },
+            {
+                data: "Codigo"
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<div class="btn-group">
+                    <button id="acciones" class="btn btn-outline-primary" onclick="seleccionaAsignatura(${data.id_asignatura} , 2)" data-bs-toggle="modal" data-bs-target="#AsignaturaModal"><i class="bi bi-pencil"></i></button>
+                    <button id="acciones" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_asignatura}"><i class="bi bi-trash3"></i></button>
+                            </div>`
+                },
+            }
+        ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    })
+
+
+
     $("#formulario").validate({
         rules: {
             nombre_asignatura: {
@@ -181,7 +221,7 @@
         }
     });
 
-    function seleccionaRol(id, tp) {
+    function seleccionaAsignatura(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/asignaturas/buscarAsignaturas'); ?>" + "/" + id;
             $.ajax({
@@ -194,8 +234,8 @@
                     $("#id").val(id)
                     $('#nombre_asignatura').val(rs[0]['nombre']);
                     $('#codigo').val(rs[0]['Codigo']);
-                    $("#btn_Guardar").text('Actualizar');
-                    $("#RolModal").modal("show");
+                    $("#btn_Guardar").text('Actualizar');s
+                    $("#AsignaturaModal").modal("show");
                 }
             })
         } else {
@@ -203,7 +243,7 @@
             $('#nombre_asignatura').val('');
             $('#codigo').val('');
             $("#btn_Guardar").text('Guardar');
-            $("#RolModal").modal("show");
+            $("#AsignaturaModal").modal("show");
         }
     }
 

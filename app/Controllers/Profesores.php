@@ -31,7 +31,7 @@ class Profesores extends BaseController
 
     public function index()
     {
-        $roles = $this->roles->obtenerRoles();
+        $roles = $this->roles->obtenerRoles('A');
         $grados = $this->grados->obtenerGrados();
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
