@@ -32,7 +32,7 @@ class Usuarios extends BaseController
     }
     public function index()
     {
-        $roles = $this->roles->obtenerRoles();
+        $roles = $this->roles->obtenerRoles('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 

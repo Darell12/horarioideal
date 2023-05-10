@@ -25,8 +25,8 @@ class Permisos extends BaseController
     public function index()
     {
         $permiso = $this->permiso->obtenerPermisos();
-        $roles = $this->roles->obtenerRoles();
-        $acciones = $this->acciones->obtenerAcciones();
+        $roles = $this->roles->obtenerRoles('A');
+        $acciones = $this->acciones->obtenerAcciones('A');
 
         $data = ['titulo' => 'Administrar Permisos', 'datos' => $permiso, 'roles' => $roles, 'acciones' => $acciones];
 
