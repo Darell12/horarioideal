@@ -1,7 +1,7 @@
-<div class="container bg-white mt-5 shadow rounded-4">
+<div class="container bg-white shadow rounded-4">
   <div>
     <h1 class="titulo_Vista text-center">
-      <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+      <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
     </h1>
   </div>
   <div style="height: 30px;"></div>
@@ -12,12 +12,11 @@
   <br>
   <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
     <table class="table table-bordered table-sm table-hover" id="tableRoles" width="100%" cellspacing="0">
-      <thead class="table-dark">
+      <thead class="thead-light">
         <tr>
           <th class="text-center">Id</th>
           <th class="text-center">Rol</th>
           <th class="text-center">Acción</th>
-          <th class="text-center">Estado</th>
           <th class="text-center" colspan="2">Acciones</th>
         </tr>
       </thead>
