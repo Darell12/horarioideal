@@ -14,10 +14,10 @@ class Horario_encModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $allowedFields = ['id_grado', 'periodo_año', 'jornada', 'estado', 'usuario_crea',];
-    protected $useTimestamps = true; 
-    protected $createdField  = 'fecha_crea'; 
+    protected $useTimestamps = true;
+    protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';
-    protected $deletedField  = ''; 
+    protected $deletedField  = '';
 
     protected $validationRules    = [];
     protected $validationMessages = [];
@@ -29,7 +29,17 @@ class Horario_encModel extends Model
         $this->join('grados as g', 'horarios_enc.id_grado = g.id_grado');
         $this->join('parametro_det as p', 'horarios_enc.jornada = p.id_parametro_det');
         $this->where('horarios_enc.estado', 'A');
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
+        return $datos;
+    }
+
+    public function obtenerEncabezados($estado)
+    {
+        $this->select('horarios_enc.*, g.alias as grado, p.nombre as jornada');
+        $this->join('grados as g', 'horarios_enc.id_grado = g.id_grado');
+        $this->join('parametro_det as p', 'horarios_enc.jornada = p.id_parametro_det');
+        $this->where('horarios_enc.estado', $estado);
+        $datos = $this->findAll();
         return $datos;
     }
 
@@ -41,8 +51,8 @@ class Horario_encModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-    
-    
+
+
     public function buscarAccion($id)
     {
         $this->select('horarios_enc.*');
@@ -64,6 +74,13 @@ class Horario_encModel extends Model
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
         return $datos;
     }
-   
+    public function filtro($campo, $valor)
+    {
+        $this->select('horarios_enc.*');
+        $this->where($campo, $valor);
+        $this->where('estado', 'A');
 
+        $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
+        return $datos;
+    }
 }

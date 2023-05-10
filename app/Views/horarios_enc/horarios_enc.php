@@ -1,63 +1,33 @@
-<div class="container bg-white mt-5 shadow rounded-4">
-    <div>
-        <h1 class="titulo_Vista text-center">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
-        </h1>
-    </div>
-    <div style="height: 30px;"></div>
-    <div>
-        <button type="button" onclick="seleccionaHorarios_enc(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-        <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-        <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+<div class="container bg-white rounded rounded-3">
+    <div class="d-flex justify-content-between flex-wrap">
+        <div class="border-0">
+        </div>
+
+        <div>
+            <button type="button" onclick="seleccionaHorarios_enc(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        </div>
     </div>
 
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table id="TablaHorario" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
-            <thead class="table-dark">
+    <div class="table-responsive">
+        <table id="TablaHorario" class="table align-items-center table-flush">
+            <thead class="thead-light">
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Grado</th>
                     <th class="text-center">Año</th>
                     <th class="text-center">Jornada</th>
-                    <th class="text-center">Estado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                <?php foreach ($datos as $valor) { ?>
-                    <tr>
-                        <td class="text-center"><?php echo $valor['id_horarios_enc']; ?></td>
-                        <td class="text-center"><?php echo $valor['grado']; ?></td>
-                        <td class="text-center"><?php echo $valor['periodo_año']; ?></td>
-                        <td class="text-center"><?php echo $valor['jornada']; ?></td>
-                        <td class="text-center">
-                            <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </td>
-                        <td class="grid grid text-center" colspan="2">
-
-                            <div class="btn-group">
-                                <a href="<?php echo base_url('ver_detalle/') . $valor['id_horarios_enc']?>" class="nav-link">
-                                    <button class="btn btn-outline-warning"  title="Administrar">
-                                        <i class="bi bi-gear-wide"></i>
-                                    </button>
-                                </a>
-                                <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(<?php echo $valor['id_horarios_enc'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#Horarios_encModal">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_horarios_enc') . '/' . $valor['id_horarios_enc'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                            </div>
-                        </td>
-
-                    </tr>
-                <?php } ?>
-
             </tbody>
         </table>
     </div>
-    <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/horario_enc_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+
+    <form id="formulario">
         <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -67,44 +37,42 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                                <div class="col">
-                                    <label class="col-form-label">Grado:</label>
-                                    <select class="form-select form-select" name="id_grado" id="id_grado" required>
-                                        <option value="">Seleccione un Grado</option>
-                                        <?php foreach ($grados as $grado) { ?>
-                                            <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label class="col-form-label">Año:</label>
-                                    <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="periodo_año" id="periodo_año" required>
-                                    
+                            <div class="col">
+                                <label class="col-form-label">Grado:</label>
+                                <select class="form-select form-select" name="id_grado" id="id_grado" required>
+                                    <option value="">Seleccione un Grado</option>
+                                    <?php foreach ($grados as $grado) { ?>
+                                        <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="col-form-label">Año:</label>
+                                <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="periodo_año" id="periodo_año" required>
 
-                                </div>
-                                <div class="col">
-                                    <label class="col-form-label">Jornada:</label>
-                                    <select class="form-select form-select" name="jornada" id="jornada" required>
-                                        <option value="">Seleccione un Jornada</option>
-                                        <option value="20">Mañana</option>
-                                        <option value="21">Tarde</option>
-                                    </select>
-                                    <input type="text" id="tp" name="tp" hidden>
-                                    <input type="text" id="id" name="id" hidden>
-                                </div>
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
+                            <div class="col">
+                                <label class="col-form-label">Jornada:</label>
+                                <select class="form-select form-select" name="jornada" id="jornada" required>
+                                    <option value="">Seleccione un Jornada</option>
+                                    <option value="20">Mañana</option>
+                                    <option value="21">Tarde</option>
+                                </select>
+                                <input type="text" id="tp" name="tp" hidden>
+                                <input type="text" id="id" name="id" hidden>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
                         </div>
                     </div>
                 </div>
+            </div>
     </form>
 
 
-    <!-- Modal Confirma Eliminar -->
-    <!-- Modal Elimina -->
 </div>
 
 <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,17 +95,158 @@
 
 <script>
     $('#modal-confirma').on('show.bs.modal', function(e) {
-            $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
-        });
+        $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
+    });
 
-        function EliminarRegistro(id) {
+    $("#formulario").validate({
+        rules: {
+            id_grado: {
+                required: true,
+            },
+            jornada: {
+                required: true,
+            },
+            periodo_año: {
+                required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>Horario_enc/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'periodo_año';
+                        },
+                        valor: function() {
+                            return $("#periodo_año").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        id_grado: function() {
+                            return $("#id_grado").val();
+                        },
+                    },
+                }
+            },
+            messages: {
+                id_grado: {
+                    required: "Por favor seleccione una opción",
+                },
+                jornada: {
+                    required: "Por favor seleccione una opción",
+                },
+                periodo_año: {
+                    required: "Debe ingresar un año",
+                }
+            }
+        }
+    });
 
+    $('#formulario').on('submit', function(e) {
+        console.log('activo');
+        e.preventDefault();
+    })
+
+    function EliminarRegistro(id) {
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/horarios_enc/cambiarEstado/'); ?>" + id + '/' + 'E',
+            dataType: "json",
+        }).done(function(data) {
+            $("#modal-confirma").modal("hide");
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro eliminado con exito!'
+            })
+            contador = 0;
+            tablaFranja.ajax.reload(null, false);
+        })
+    }
+    $('#modal-confirma').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    })
+
+    var contador = 0
+    var tablaHorario = $('#TablaHorario').DataTable({
+        ajax: {
+            url: '<?= base_url('Horario_enc/obtenerEncabezados') ?>',
+            method: "POST",
+            data: {
+                estado: 'A'
+            },
+            dataSrc: "",
+        },
+        columns: [{
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
+            },
+            {
+                data: "grado"
+            },
+            {
+                data: "periodo_año"
+            },
+            {
+                data: "jornada"
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<div class="btn-group container">
+                                <a href="<?php echo base_url('ver_detalle/') ?>" class="nav-link">
+                                    <button class="btn btn-outline-warning" title="Administrar">
+                                        <i class="bi bi-gear-wide"></i>
+                                    </button>
+                                </a>
+                                
+                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_horarios_enc} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
+                                <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>`
+                },
+            }
+        ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    })
+
+    $('#btnGuardar').on('click', function(e) {
+        e.preventDefault();
+        if ($('#formulario').valid()) {
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url('/horarios_enc/cambiarEstado/'); ?>" + id + '/' + 'E',
+                url: "<?php echo base_url('/horario_enc_insertar'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#id').val(),
+                    id_grado: $('#id_grado').val(),
+                    periodo_año: $('#periodo_año').val(),
+                    jornada: $('#jornada').val(),
+
+                },
                 dataType: "json",
             }).done(function(data) {
-                $("#modal-confirma").modal("hide");
+                $('#Horarios_encModal').modal('hide');
                 let Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -152,17 +261,18 @@
 
                 Toast.fire({
                     icon: 'success',
-                    title: 'Registro eliminado con exito!'
+                    title: 'Acción realizada con exito!'
                 })
-                contador = 0;
-                tablaFranja.ajax.reload(null, false);
+                console.log('insertar');
+                contador = 0
+                tablaHorario.ajax.reload(null, false)
+                return
             })
+        } else {
+            console.log('Formulario Invalido');
         }
-    $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     })
 
-    $('#TablaHorario').DataTable({});
     function seleccionaHorarios_enc(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/acciones/buscarAccion'); ?>" + "/" + id;
@@ -189,5 +299,4 @@
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
-    
 </script>
