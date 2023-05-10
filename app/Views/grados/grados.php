@@ -13,60 +13,66 @@
 
     <br>
     <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
-            <thead class="table-dark">
+        <table id="tablaGrados" class="table align-items-center table-flush">
+            <thead class="thead-light">
                 <tr>
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Nombre</th>
-                    <th class="text-center">Asignaturas</th>
-                    <th class="text-center">Estado</th>
-                    <th class="text-center" colspan="2">Acciones</th>
+                    <th class="text-center" style="width: 8% !important;">#</th>
+                    <th class="text-center">Grado</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                <?php foreach ($datos as $valor) { ?>
-                    <tr>
-                        <td class="text-center"><?php echo $valor['id_grado']; ?></td>
-                        <td class="text-center"><?php echo $valor['alias']; ?></td>
-            
-                        <?php if ($valor['id_grado']) { ?>
-                            <td class="text-center">
-                                    <button class="btn btn-outline-success" onclick="Asignaturas(<?php echo $valor['id_grado'] . ',' ?> '<?php echo $valor['estado'] ?>');">
-                                        <i class="bi bi-journal-bookmark"></i>
-                                    </button>
-                                </td>
-                            <?php } else { ?>
-                                <td class="text-center">
-                                <button onclick="Asignaturas(<?php echo $valor['id_grado'] . ',' ?> '<?php echo $valor['estado'] ?>');" id="asignarGrado<?php echo $valor['id_grado']; ?>" class="btn btn-outline-warning" value="" id="flexCheckDefault">
-                                        <i class="bi bi-journal-bookmark"></i>
-                                    </button>
-                                    <span class="text-success">Sin Asignaturas</span>
-                                </td>
-                            <?php } ?>
-                            
-                            <td class="text-center">
-                        
-                            <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </td>
-                       
-                        
-                        <th class="grid grid text-center" colspan="2">
-
-                            <button class="btn btn-outline-primary" onclick="seleccionaGrado(<?php echo $valor['id_grado'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#GradoModal">
-
-                                <i class="bi bi-pencil"></i>
-
-                            </button>
-
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_grados') . '/' . $valor['id_grado'] . '/' . 'E'; ?>"><i class="bi bi-trash3"></i></button>
-                        </th>
-
-                    </tr>
-                <?php } ?>
-
             </tbody>
         </table>
     </div>
+
+    <!-- Modal Asignaturas  -->
+    <div class="modal" id="modalAsignaturas" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="tituloAsig" class="modal-title">Carga Asignaturas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="h5">Asignaturas:</h5>
+                    <div class="col mb-3">
+                        <button class="btn btn-success btn-sm" id="btn_agregar">Agregar</button>
+                        <button class="btn"></button>
+                    </div>
+                    <div class="col">
+                        <label class="col-form-label">Asignatura:</label>
+                        <select class="form-select form-select" name="asignatura" id="asignatura" required>
+                            <option value="">Seleccione una opción</option>
+                            <?php foreach ($asignaturas as $asignatura) { ?>
+                                <option value="<?php echo $asignatura['id_asignatura'] ?>"><?php echo $asignatura['nombre'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="col-form-label">Horas Semanales:</label>
+                        <input type="text" class="form-control" name="horas" id="horas" required>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <th>#</th>
+                            <th>Nombre de la asignatura</th>
+                            <th>Intensidad horaria</th>
+                            <th>Acciones</th>
+                        </thead>
+                        <tbody id="tablaAsignaturas"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <form method="POST" action="<?php echo base_url('/grados_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
         <div class="modal fade" id="GradoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -101,8 +107,8 @@
     </form>
 
 
-    <!-- Modal Confirma Eliminar -->
-    <!-- Modal Elimina -->
+
+    <!-- Modal confirma -->
 </div>
 
 <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,54 +129,159 @@
     </div>
 </div>
 
-<!-- Modal Asignaturas  -->
+<!-- Modal Asignaturas eliminadas  -->
+<div class="modal fade" id="modalEliminaAsig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header">
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
 
-<div id="ModalAsignaturas" class="modal">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-
-                    <h5 class="modal-title" id="titulo_salario"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="btn-group mb-3" id="btn-group-salarios" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAgregarEmail" id="btn-agregar-salario">
-                            <i class="bi bi-plus-circle-fill"></i> Agregar</button>
-
-                            <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-salarios">
-                            <i class="bi bi-file-x"></i> Eliminados</button>
-
-                        <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i> Regresar</button>
-
-                    </div>
-
-                    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-                        <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th class="text-center">ID</th>
-                                    <th class="text-center">Asignaturas</th>
-                                    <th class="text-center">Codigo</th>
-                                    <th class="text-center">Estado</th>
-                                    <th class="text-center" colspan="2">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody style="font-family:Arial;font-size:12px;" id="tabla_asignatura">
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-
-                </div>
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea retirar la asignatura seleccionada?</p>
+                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input type="text" hidden id="id_almacenar_estado">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-danger btn-ok" id="btnEliminar">Confirmar</a>
             </div>
         </div>
     </div>
+</div>
 
 <script>
+    var contador = 0
+    var tablaUsuarios = $('#tablaGrados').DataTable({
+        ajax: {
+            url: '<?= base_url('grados/obtenerGrados') ?>',
+            method: "POST",
+            data: {
+                estado: 'A'
+            },
+            dataSrc: "",
+        },
+        columns: [{
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
+            },
+            {
+                data: 'alias',
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<div class="btn-group container">
+                                <button class="btn btn-outline-primary" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+
+                                <button class="btn btn-outline-warning" onclick="generarTablaAsignatura(${data.id_grado});" data-bs-toggle="modal" data-bs-target="#modalAsignaturas" title="Editar Registro">
+                                    <i class="bi bi-journal-bookmark"></i>
+                                </button>
+
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_grado}" title="Eliminar Registro">
+                                <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>`
+                },
+            }
+        ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    })
+
+    function generarTablaAsignatura(id) {
+        let contador = 0;
+        let contenido = '';
+        $('#btn_agregar').attr('onclick', `insertarCarg(${id})`)
+        $.ajax({
+            url: "<?php echo base_url('grados/obtenerAsignaturasS/'); ?>" + id,
+            type: 'POST',
+            dataType: 'json',
+            success: function(Asignaturas) {
+                $('#tablaAsignaturas').html('contenido');
+                Asignaturas.forEach(asignatura => {
+                    contador++
+                    contenido += `
+                            <tr id="util${contador}">
+                                <td class="text-center">${contador}</td>
+                                <td class="text-center">${asignatura.nombre}</td>
+                                <td class="text-center">${asignatura.horas_semanales}</td>
+                                <td class="text-center">
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminaAsig" data-href="${ id + ',' + asignatura.id_grado_asignatura},${id}"><i class="bi bi-trash"></i></button>
+                            </td>
+                            </tr>`
+                });
+                $('#tablaAsignaturas').html(contenido);
+            }
+        })
+    }
+
+    function insertarCarg(id) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/grados/insertarCarg'); ?>",
+            data: {
+                id_grado: id,
+                id_asignatura: $('#asignatura').val(),
+                horas_semanales: $('#horas').val(),
+            },
+            dataType: "json",
+        }).done(function(data) {
+            generarTablaAsignatura(id)
+            $('#asignatura').val('')
+            $('#horas').val('')
+        })
+    }
+
+    function retirarCarga(id, id_grado_asignatura) {
+
+        let data = {
+            id_grado_asignatura: id_grado_asignatura,
+        }
+
+        $.post('<?php echo base_url('/grados/retirarCarg'); ?>', data, function(response) {
+
+            generarTablaAsignatura(id)
+
+            $("#modalEliminaAsig").modal("hide");
+
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro eliminado con exito!'
+            })
+        })
+    }
+
+    $('#modalEliminaAsig').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
+    });
+
+    $('.close').click(function() {
+        $("#modalEliminaAsig").modal("hide");
+    });
+
+
+
+
+
+
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
@@ -201,125 +312,4 @@
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
-
-
-function Asignaturas(id, estado) {
-dataURL = "<?php echo base_url('/grados/obtenerAsignaturasS'); ?>" + "/" + id
-
-if (estado == 'E') {
-    $.ajax({
-        type: "POST",
-        url: dataURL,
-        dataType: "json",
-        success: function(res) {
-            res = res[0];
-
-            $('#tabla_asignatura').empty();
-            var contenido = '';
-            if (!$(res).length == 0) {
-                for (let i = 0; i < res.length; i++) {
-                    contenido += `
-        <tr>
-        <th class="text-center"> ${res[i].id_asignatura}</th>
-        <th class="text-center"> ${res[i].nombre}</th>
-        <th class="text-center"> ${res[i].codigo}</th>
-        <th class="text-center text-danger"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
-        <th class="text-center">
-
-<button class="btn btn-outline-warning" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id_asignatura_profesor},${res[i].id_usuario}, 'A')" ?><i class="bi bi-arrow-clockwise"></i></button>
-</th>
-</tr>
-`
-                }
-                $('#titulo_salario').html('Administrar emails eliminados');
-            } else {
-                contenido = '<tr><th class="text-center h1" colspan="5">SIN EMAILS ELIMINADOS</th></tr>'
-            }
-
-            $('#tabla_asignatura').html(contenido);
-            $('#btn-regresar').attr('onclick', 'EmailUsuario(' + id + ',' + '"A")');
-            $('#btn-eliminados-salarios').hide();
-            $('#btn-regresar').show();
-            $('#btn-agregar-salario').hide();
-            $('#ModalAsignaturas').modal('show');
-        }
-    })
-} else {
-    $.ajax({
-        type: "POST",
-        url: dataURL,
-        dataType: "json",
-        success: function(res) {
-            res = res[0];
-            console.log(res)
-            var contenido = '';
-            if (!$(res).length == 0) {
-                for (let i = 0; i < res.length; i++) {
-                    contenido += `
-        <tr>
-        <th class="text-center"> ${res[i].id_asignatura}</th>
-        <th class="text-center"> ${res[i].nombre}</th>
-        <th class="text-center"> ${res[i].codigo}</th>
-
-            <th class="text-center text-success"> ${res[i].estado == 'A' ? 'Activo' : 'Inactivo'}</th>
-            <th class="text-center">
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-
-                    <button class="btn btn-outline-danger" data-bs-toggle="modal" hidden-bs-modal(#modal) data-bs-target="#modal-confirma-salario" onclick="almacenarId(${res[i].id_asignatura},${res[i].id_asignatura}, 'E')"><i class="bi bi-trash3"></i></button>
-                </div>
-            </th>
-        </tr>`
-                }
-
-            } else {
-                contenido = '<tr><th class="text-center h1" colspan="5">SIN ASIGNATURAS ASIGNADAS</th></tr>'
-            }
-            $('#titulo_salario').html('Administrar emails');
-            $('#btn-eliminados-salarios').attr('onclick', 'EmailUsuario(' + id + ',' + '"E")');
-            $('#btn-agregar-salario').show();
-            $('#tabla_asignatura').empty();
-            $('#tabla_asignatura').html(contenido);
-            $('#btn-agregar-salario').attr('onclick', 'seleccionarAsig(' + id + ',' + '1)');
-            $('#btn-eliminados-salarios').show();
-            $('#btn-regresar').hide();
-            $('#ModalAsignaturas').modal('show');
-        }
-    })
-}
-}
-
-function seleccionarAsig(id, tp) {
-if (tp == 2) {
-    dataURL = "<?php echo base_url('/grados/obtenerAsignaturas'); ?>" + "/" + id;
-    $.ajax({
-        type: "POST",
-        url: dataURL,
-        dataType: "json",
-        success: function(rs) {
-            console.log(rs);
-            $("#tp_email").val(2)
-            $("#id_email").val(id)
-            $("#email_modal").val(rs.email)
-            $("#prioridad").val(rs.prioridad)
-            $("#id_usuario").val(rs.id_usuario)
-            $('#salario_modal').val(rs.sueldo);
-            // EmailUsuario(rs.id_usuario, rs.estado)
-
-            $("#btn_Guardar").text('Actualizar');
-            $("#titulo_salario_modal").text('Actualizar el salario de ' + rs.nombre_empleado + ' en el periodo ' + rs.periodo);
-            $("#modalAgregarEmail").modal("show");
-        }
-    })
-} else {
-    $("#tp_email").val(1);
-    $("#id_usuario").val(id)
-    $("#email_modal").val('')
-    $('#prioridad').val(0);
-    $("#btn_Guardar").text('Guardar');
-    $("#titulo_salario_modal").text('Agregar nuevo salario');
-    $("#modalAgregarEmail").modal("show");
-}
-}
-
-
 </script>

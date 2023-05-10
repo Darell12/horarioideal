@@ -35,18 +35,23 @@ class Grados extends BaseController
         if ($tp == 1) {
 
             $this->grado->save([
-                'alias' => $this->request->getPost('nombre_grado'),
+                'alias' => $this->request->getPost('alias'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->grado->update($this->request->getPost('id'), [
-                'alias' => $this->request->getPost('nombre_grado'),
+                'alias' => $this->request->getPost('alias'),
                 'usuario_crea'=> session('id')
             ]);
         }
         return redirect()->to(base_url('/grados'));
     }
-
+    public function obtenerGrados()
+    {
+        $estado = $this->request->getPost('estado');
+        $grado = $this->grado->obtenerGrados($estado);
+        echo json_encode($grado);
+    }
     public function buscarGrado($id)
     {
         $returnData = array();
@@ -69,12 +74,24 @@ class Grados extends BaseController
 
     public function obtenerAsignaturasS($id)
     {
-        $returnData = array();
         $grado_asignatura = $this->grado_asignatura->obtenerAsignaturasGrado($id);
-        if (!empty($grado_asignatura)) {
-            array_push($returnData, $grado_asignatura);
-        }
-        echo json_encode($returnData);
+        echo json_encode($grado_asignatura);
+    }
+
+    public function insertarCarg()
+    {
+        $this->grado_asignatura->save([
+            'id_asignatura' => $this->request->getPost('id_asignatura'),
+            'id_grado' => $this->request->getPost('id_grado'),
+            'horas_semanales' => $this->request->getPost('horas_semanales'),
+            'usuario_crea'=> session('id')
+        ]); 
+        return json_encode('1');
+    }
+    public function retirarCarg()
+    {
+        $this->grado_asignatura->update($this->request->getPost('id_grado_asignatura'), ['estado'=>'E']);
+        return json_encode('1');
     }
 
     public function cambiarEstado($id, $estado)
