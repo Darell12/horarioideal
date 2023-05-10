@@ -32,7 +32,7 @@ class Usuarios extends BaseController
     }
     public function index()
     {
-        $roles = $this->roles->obtenerRoles();
+        $roles = $this->roles->obtenerRoles('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
@@ -47,7 +47,7 @@ class Usuarios extends BaseController
             return redirect()->to(base_url('iniciarSesion'));
         }
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
-        $roles = $this->roles->obtenerRoles();
+        $roles = $this->roles->obtenerRoles('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $emails = $this->emails->ObtenerEmailUsuario($id, 'A');
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');

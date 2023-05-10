@@ -80,7 +80,7 @@ $routes->get('/estado_aulas/(:num)/(:alpha)', 'aulas::cambiarEstado/$1/$2');
 $routes->get('/estado_franjas/(:num)/(:alpha)', 'franjas_horarias::cambiarEstado/$1/$2');
 $routes->get('/estado_grados/(:num)/(:alpha)', 'grados::cambiarEstado/$1/$2');
 $routes->get('/estado_permisos/(:num)/(:alpha)', 'permisos::cambiarEstado/$1/$2');
-$routes->get('/estado_horarios_enc/(:num)/(:alpha)', 'horarios_enc::cambiarEstado/$1/$2');
+$routes->get('/estado_horarios_enc/(:num)/(:alpha)', 'horario_enc::cambiarEstado/$1/$2');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

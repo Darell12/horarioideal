@@ -23,12 +23,12 @@ class AulaModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function obtenerAulas()
+    public function obtenerAulas($estado)
     {
         $this->select('aulas.*,  p.nombre as sede, vw_param_det.nombre as bloque ');
         $this->join('parametro_det as p', 'aulas.sede = p.id_parametro_det');
         $this->join('vw_param_det', 'aulas.bloque = vw_param_det.id_parametro_det ');
-        $this->where('aulas.estado', 'A');
+        $this->where('aulas.estado', $estado);
         $datos = $this->findAll();
         return $datos;
     }

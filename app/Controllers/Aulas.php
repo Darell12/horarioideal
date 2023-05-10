@@ -24,7 +24,7 @@ class Aulas extends BaseController
     }
     public function index()
     {
-        $aula = $this->aula->obtenerAulas();
+        $aula = $this->aula->obtenerAulas('E');
         $paramSede = $this->paramSede->ObtenerSedes();
         $paramBloque = $this->paramBloque->ObtenerBloques();
         $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'sedes' => $paramSede, 'bloques' => $paramBloque];
@@ -32,6 +32,13 @@ class Aulas extends BaseController
     echo view('/principal/sidebar', $data);
     echo view('/aulas/aulas', $data);
     }
+    public function obtenerAulas()
+    {
+        $estado = $this->request->getPost('estado');
+        $aula = $this->aula->obtenerAulas($estado);
+        echo json_encode($aula);
+    }
+
     public function insertar()
     {
         $tp = $this->request->getPost('tp');
@@ -69,14 +76,7 @@ class Aulas extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $aula = $this->aula->cambiar_Estado($id, $estado);
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_aulas'));
-        } else {
-            return redirect()->to(base_url('/eliminados_aulas'));
-        }
+        return json_encode('');
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
