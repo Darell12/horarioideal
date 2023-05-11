@@ -45,7 +45,7 @@
 
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
-
+                                <input type="text" id="nombreActu" name="nombreActu" hidden>
 
                             </div>
                         </div>
