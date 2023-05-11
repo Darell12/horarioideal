@@ -12,11 +12,11 @@
     </div>
 
     <br>
-    <div class="table-responsive" ">
+    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
         <table id="tablaGrados" class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
-                    <th class="text-center" >#</th>
+                    <th class="text-center" style="width: 8% !important;">#</th>
                     <th class="text-center">Grado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
@@ -53,14 +53,24 @@
                         <label class="col-form-label">Horas Semanales:</label>
                         <input type="text" class="form-control" name="horas" id="horas" required>
                     </div>
+                    <div>
+                    <label id="asig-error" class="error" for="rol">
                 </div>
+                </div>
+
+                <input type="text" id="tp" name="tp" hidden>
+                <input type="text" id="id" name="id" hidden>
+                <input type="text" id="nombreActu" name="nombreActu" hidden>
+                <input type="text" id="numeroActu" name="numeroActu" hidden>
+                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
-                            <th class="text-center">#</th>
-                            <th class="text-center">Nombre de la asignatura</th>
-                            <th class="text-center">Intensidad horaria</th>
-                            <th class="text-center">Acciones</th>
+                            <th>#</th>
+                            <th>Nombre de la asignatura</th>
+                            <th>Intensidad horaria</th>
+                            <th>Acciones</th>
                         </thead>
                         <tbody id="tablaAsignaturas"></tbody>
                     </table>
@@ -85,6 +95,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <div class="row">
+
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Nombre:</label>
                                     <input type="text" class="form-control" name="nombre_grado" id="nombre_grado" required>
@@ -92,6 +103,9 @@
 
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="nombreActu" name="nombreActu" hidden>
+                                <input type="text" id="numeroActu" name="numeroActu" hidden>
+                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
 
 
                             </div>
@@ -149,13 +163,12 @@
 </div>
 
 <script>
-
-$('#modal-confirma').on('show.bs.modal', function(e) {
+    $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
-    
+
     var contador = 0
-    var tablaGrados = $('#tablaGrados').DataTable({
+    var tablaUsuarios = $('#tablaGrados').DataTable({
         ajax: {
             url: '<?= base_url('grados/obtenerGrados') ?>',
             method: "POST",
@@ -172,13 +185,13 @@ $('#modal-confirma').on('show.bs.modal', function(e) {
                 },
             },
             {
-                data: "alias",
+                data: 'alias',
             },
             {
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group container">
-                                <button class="btn btn-outline-primary "class="text-center" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                <button class="btn btn-outline-primary" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
@@ -186,7 +199,9 @@ $('#modal-confirma').on('show.bs.modal', function(e) {
                                     <i class="bi bi-journal-bookmark"></i>
                                 </button>
 
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_grado}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_grado}" title="Eliminar Registro">
+                                <i class="bi bi-trash3"></i>
+                                </button>
                             </div>`
                 },
             }
@@ -195,34 +210,6 @@ $('#modal-confirma').on('show.bs.modal', function(e) {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         }
     })
-
-    function EliminarRegistro(id) {
-
-$.ajax({
-    type: "POST",
-    url: "<?php echo base_url('/grados/cambiarEstado/'); ?>" + id + '/' + 'E',
-    dataType: "json",
-}).done(function(data) {
-    $("#modal-confirma").modal("hide");
-    let Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
-
-    Toast.fire({
-        icon: 'success',
-        title: 'Registro eliminado con exito!'
-    })
-    tablaRoles.ajax.reload(null, false);
-})
-}
 
     function generarTablaAsignatura(id) {
         let contador = 0;
@@ -252,8 +239,27 @@ $.ajax({
     }
 
     function insertarCarg(id) {
+
+        if ($('#asignatura').val() == "" || $('#horas').val() == "") {
+            $('#asig-error').text('Los campos no deben estar vacios');
+            $('#asignatura').addClass('is-invalid');
+            $('#horas').addClass('is-invalid');
+
+            setTimeout(() => {
+                    $('#asig-error').text('')
+                    $('#asignatura').removeClass('is-invalid');
+                    $('#horas').removeClass('is-invalid');
+
+                }, 2000);
+
+                $('#asignatura').val("")
+            $('#horas').val("") 
+
+            return
+        }
+
         $.ajax({
-            type: "POST",
+            type: "POST",   
             url: "<?php echo base_url('/grados/insertarCarg'); ?>",
             data: {
                 id_grado: id,
@@ -263,10 +269,12 @@ $.ajax({
             dataType: "json",
         }).done(function(data) {
             generarTablaAsignatura(id)
-            $('#asignatura').val('')
-            $('#horas').val('')
+            $('#asignatura').val("")
+            $('#horas').val("") 
         })
     }
+
+
 
     function retirarCarga(id, id_grado_asignatura) {
 
@@ -299,6 +307,34 @@ $.ajax({
         })
     }
 
+    function EliminarRegistro(id) {
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/grados/cambiarEstado/'); ?>" + id + '/' + 'E',
+            dataType: "json",
+        }).done(function(data) {
+            $("#modal-confirma").modal("hide");
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro eliminado con exito!'
+            })
+            tablaUsuarios.ajax.reload(null, false);
+        })
+    }
+
     $('#modalEliminaAsig').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
     });
@@ -307,10 +343,6 @@ $.ajax({
         $("#modalEliminaAsig").modal("hide");
     });
 
-
-    $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
 
     function seleccionaGrado(id, tp) {
         if (tp == 2) {
@@ -324,7 +356,9 @@ $.ajax({
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#nombre_grado').val(rs[0]['alias']);
+                    $('#numeroActu').val(rs[0]['alias']);
                     $("#btn_Guardar").text('Actualizar');
+                    $('#formulario').validate().resetForm();
                     $("#GradoModal").modal("show");
                 }
             })
@@ -332,10 +366,44 @@ $.ajax({
             $("#tp").val(1);
             $('#nombre_grado').val('');
             $("#btn_Guardar").text('Guardar');
+            $('#formulario').validate().resetForm();
             $("#GradoModal").modal("show");
         }
     }
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
+    });
+
+    $("#formulario").validate({
+        rules: {
+            nombre_grado: {
+                required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>grados/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'alias';
+                        },
+                        valor: function() {
+                            return $("#nombre_grado").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#numeroActu").val();
+                        },
+                    },
+                }
+            },
+        },
+        messages: {
+            nombre_grado: {
+                required: "Este campo es requerido",
+                remote: "Este grado ya esta registrado"
+            },
+        }
     });
 </script>

@@ -44,7 +44,7 @@ class Roles extends BaseController
                 'usuario_crea'=> session('id')
             ]);
         }
-        return json_encode('Se inserto un rol');
+        return json_encode('Se insertó un rol');
     }
 
     public function buscarRol($id)
@@ -85,9 +85,14 @@ class Roles extends BaseController
         $campo = $this->request->getPost('campo');
         $tp = $this->request->getPost('tp');
         $nombre_rol = $this->request->getPost('nombre_rol');
+        $numeroActu = $this->request->getPost('numeroActu');
 
         $filtro = $this->rol->filtro($campo, $valor);
         if ($tp == 2 && $valor == $nombre_rol) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        if ($tp == 2 && $valor == $numeroActu) {
             $respuesta = true;
             return $this->response->setJSON($respuesta);
         }

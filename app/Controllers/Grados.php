@@ -45,6 +45,7 @@ class Grados extends BaseController
             ]);
         }
         return redirect()->to(base_url('/grados'));
+        // return json_encode('😊');
     }
     public function obtenerGrados()
     {
@@ -97,7 +98,7 @@ class Grados extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $grado = $this->grado->cambiar_Estado($id, $estado);
-        
+        return json_encode('To biem');
     }
     
     public function eliminados() //Mostrar vista de Paises Eliminados
@@ -115,6 +116,62 @@ class Grados extends BaseController
             echo view('/principal/sidebar', $data);
             echo view('/grados/eliminados', $data);
         }
+    }
+
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombreActu = $this->request->getPost('nombreActu');
+        $numeroActu = $this->request->getPost('numeroActu');
+
+        $filtro = $this->grado->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $nombreActu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        
+        if ($tp == 2 && $valor == $numeroActu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
+    }
+
+    public function validarAsignatura()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombreActu = $this->request->getPost('nombreActu');
+        $numeroActu = $this->request->getPost('numeroActu');
+
+        $filtro = $this->grado_asignatura->filtroGA($campo, $valor);
+        if ($tp == 2 && $valor == $nombreActu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        
+        if ($tp == 2 && $valor == $numeroActu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
     }
 
 }

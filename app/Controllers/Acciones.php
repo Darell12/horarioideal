@@ -97,7 +97,6 @@ class Acciones extends BaseController
             $respuesta = true;
             return $this->response->setJSON($respuesta);
         }
-        
         if ($tp == 2 && $valor == $numeroActu) {
             $respuesta = true;
             return $this->response->setJSON($respuesta);
