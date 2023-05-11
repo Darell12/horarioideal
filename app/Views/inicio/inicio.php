@@ -81,7 +81,7 @@
                         <h4 class="day">Lunes</h4>
                       </div>
                       <ul>
-                        <li class="lecture-time two-hr hr-6-3  text-wrap" data-event="lecture-01">
+                        <li class="lecture-time two-hr hr-8-3  text-wrap" data-event="lecture-01">
                           <a href="#">
                             <div class="lecture-info">
                               <h6 class="lecture-title">Programación web</h6>
@@ -90,7 +90,7 @@
                           </a>
                         </li>
 
-                        <li class="lecture-time two-hr hr-10" data-event="lecture-02">
+                        <li class="lecture-time two-hr hr-13-3" data-event="lecture-02">
                           <a href="#">
                             <div class="lecture-info">
                               <h6 class="lecture-title ">Principios de programación</h6>
@@ -99,7 +99,7 @@
                           </a>
                         </li>
 
-                        <li class="lecture-time hr-18" data-event="lecture-03">
+                        <li class="lecture-time hr-18-3" data-event="lecture-03">
                           <a href="#">
                             <div class="lecture-info">
                               <h6 class="lecture-title">Diseño lógico </h6>

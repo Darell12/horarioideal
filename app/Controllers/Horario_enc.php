@@ -14,6 +14,7 @@ class Horario_enc extends BaseController
     protected $horario_enc, $eliminados;
     protected $usuarios, $grados;
     protected $profesores;
+    protected $franja;
 
 
     public function __construct()
@@ -23,18 +24,28 @@ class Horario_enc extends BaseController
         $this->usuarios = new UsuariosModel();
         $this->grados = new GradosModel();
         $this->profesores = new Horario_encModel();
+        $this->franja = new Parametros_detModel();
     }
 
     public function index()
     {
-        $horario_enc = $this->horario_enc->obtenerHorarios_enc();
         $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
-        $grados = $this->grados->obtenerGrados();
+        $grados = $this->grados->obtenerGrados('A');
 
-        $data = ['titulo' => 'Administrar Horarios', 'datos' => $horario_enc,  'usuarios' => $usuarios, 'grados' => $grados];
+
+        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_enc/horarios_enc', $data);
+    }
+    public function obtenerfranjas($id)
+    {
+        $returnData = array();
+        $franja = $this->franja->ObtenerParametro($id);
+        if (!empty($franja)) {
+        return  json_encode($franja);
+        }
+        return json_encode($returnData);
     }
 
     public function insertar()
@@ -71,7 +82,7 @@ class Horario_enc extends BaseController
     public function buscarhorario_enc($id)
     {
         $returnData = array();
-        $horario_enc = $this->horario_enc->buscarhorario_enc($id);
+        $horario_enc = $this->horario_enc->traer_horario_enc($id);
         if (!empty($horario_enc)) {
             array_push($returnData, $horario_enc);
         }
@@ -82,6 +93,7 @@ class Horario_enc extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $horario_enc = $this->horario_enc->cambiar_Estado($id, $estado);
+        return '1';
     }
 
     public function eliminados() //Mostrar vista de Paises Eliminados

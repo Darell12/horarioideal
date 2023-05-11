@@ -31,7 +31,7 @@ class Horario_det extends BaseController
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         $usuarios = $this->usuarios->obtenerUsuarios($estado = "A");
         $horario = $this->horario->vistaHorarioPrueba();
-        $grados = $this->grados->obtenerGrados();
+        $grados = $this->grados->obtenerGrados('A');
 
         $data = ['titulo' => 'Administrar Horario de '. $horario[0]['grado'], 'datos' => $horario, 'usuarios' => $usuarios, 'grados' => $grados  ];
 
@@ -63,10 +63,10 @@ class Horario_det extends BaseController
         return redirect()->to(base_url('/horarios_enc'));
     }
 
-    public function buscarhorario_enc($id)
+    public function buscarDetalle($id)
     {
         $returnData = array();
-        $horario_enc = $this->horario_enc->buscarhorario_enc($id);
+        $horario_enc = $this->horario_det->buscarhorario_enc($id);
         if (!empty($horario_enc)) {
             array_push($returnData, $horario_enc);
         }

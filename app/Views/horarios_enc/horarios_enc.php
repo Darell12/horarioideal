@@ -37,28 +37,57 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <div class="col">
-                                <label class="col-form-label">Grado:</label>
-                                <select class="form-select form-select" name="id_grado" id="id_grado" required>
-                                    <option value="">Seleccione un Grado</option>
-                                    <?php foreach ($grados as $grado) { ?>
-                                        <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
-                                    <?php } ?>
-                                </select>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="col-form-label">Grado:</label>
+                                    <select class="form-select form-select" name="id_grado" id="id_grado" required>
+                                        <option value="">Seleccione un Grado</option>
+                                        <?php foreach ($grados as $grado) { ?>
+                                            <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label class="col-form-label">Año:</label>
+                                    <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="periodo_año" id="periodo_año" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="col-form-label">Duración:</label>
+                                    <select class="form-select form-select" name="duracion" id="duracion" required>
+                                        <option value='' selected>Seleccione un parametro</option>
+                                        <option value="12">45 Minutos</option>
+                                        <option value="13">60 Minutos</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label class="col-form-label">Jornada:</label>
+                                    <select class="form-select form-select" name="jornada" id="jornada" required>
+                                        <option value="">Seleccione un Jornada</option>
+                                        <option value="20">Mañana</option>
+                                        <option value="21">Tarde</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label class="col-form-label">Inicio:</label>
+                                    <select class="form-select form-select" name="inicio" id="inicio" required>
+                                        <option value="">Seleccione un hora</option>
+
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label class="col-form-label">Fin:</label>
+                                    <select class="form-select form-select" name="fin" id="fin" required>
+                                        <option value="">Seleccione un hora</option>
+
+                                    </select>
+                                </div>
                             </div>
                             <div class="col">
-                                <label class="col-form-label">Año:</label>
-                                <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="periodo_año" id="periodo_año" required>
-
-
-                            </div>
-                            <div class="col">
-                                <label class="col-form-label">Jornada:</label>
-                                <select class="form-select form-select" name="jornada" id="jornada" required>
-                                    <option value="">Seleccione un Jornada</option>
-                                    <option value="20">Mañana</option>
-                                    <option value="21">Tarde</option>
-                                </select>
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                             </div>
@@ -94,6 +123,8 @@
 </div>
 
 <script>
+    $('#duracion').val('');
+
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
@@ -148,10 +179,9 @@
     })
 
     function EliminarRegistro(id) {
-
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('/horarios_enc/cambiarEstado/'); ?>" + id + '/' + 'E',
+            url: "<?php echo base_url('/horario_enc/cambiarEstado/'); ?>" + id + '/' + 'E',
             dataType: "json",
         }).done(function(data) {
             $("#modal-confirma").modal("hide");
@@ -172,12 +202,9 @@
                 title: 'Registro eliminado con exito!'
             })
             contador = 0;
-            tablaFranja.ajax.reload(null, false);
+            tablaHorario.ajax.reload(null, false);
         })
     }
-    $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    })
 
     var contador = 0
     var tablaHorario = $('#TablaHorario').DataTable({
@@ -209,13 +236,13 @@
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group container">
-                                <a href="<?php echo base_url('ver_detalle/') ?>" class="nav-link">
+                                <a href="<?php echo base_url('ver_detalle/') ?>${data.id_horarios_enc}" class="nav-link">
                                     <button class="btn btn-outline-warning" title="Administrar">
                                         <i class="bi bi-gear-wide"></i>
                                     </button>
                                 </a>
                                 
-                                <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_horarios_enc} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(${data.id_horarios_enc} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
@@ -275,7 +302,7 @@
 
     function seleccionaHorarios_enc(id, tp) {
         if (tp == 2) {
-            dataURL = "<?php echo base_url('/acciones/buscarAccion'); ?>" + "/" + id;
+            dataURL = "<?php echo base_url('/horario_enc/buscarhorario_enc'); ?>" + "/" + id;
             $.ajax({
                 type: "POST",
                 url: dataURL,
@@ -284,7 +311,9 @@
                     console.log(rs)
                     $("#tp").val(2);
                     $("#id").val(id)
-                    $('#nombre_accion').val(rs[0]['nombre']);
+                    $('#id_grado').val(rs[0]['id_grado']);
+                    $('#periodo_año').val(rs[0]['periodo_año']);
+                    $('#jornada').val(rs[0]['jornada']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#Horarios_encModal").modal("show");
                 }
@@ -298,5 +327,53 @@
     }
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
+    });
+
+    $('#duracion').on('change', function(e) {
+        console.log('evento grado');
+        let duracion = $('#duracion').val()
+        $.ajax({
+            url: "<?php echo base_url('horario_enc/obtenerfranjas/'); ?>" + duracion,
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                console.log(res);
+                $('#inicio').empty();
+                $('#fin').empty();
+
+                var cadena
+                if (!res.length > 0) {
+                    cadena = `<option selected value="" readonly>No tiene franjas activas</option>`
+                } else {
+                    cadena = `<option selected value="">Seleccione una opcion</option>`
+                    res.forEach(element => {
+                        cadena += `<option class="${element.nombre >= 46 && element.nombre <= 52 ? 'Mañana' : 'Tarde'}" value='${element.id_parametro_det}'>${element.nombre}</option>`
+                    });
+                }
+                $('#inicio').html(cadena)
+                $('#fin').html(cadena)
+            }
+        })
+    })
+
+    $('#jornada').on('change', function(e) {
+        let jornada = $('#jornada').val();
+
+        switch (jornada) {
+            case '':
+                $('.Mañana').removeAttr('hidden', '')
+                $('.Tarde').removeAttr('hidden', '')
+                break;
+            case '20':
+                $('.Tarde').attr('hidden', '')
+                $('.Mañana').removeAttr('hidden', '')
+                break;
+                case '21':
+                    $('.Mañana').attr('hidden', '')
+                    $('.Tarde').removeAttr('hidden', '')
+
+                break;
+
+        }
     });
 </script>

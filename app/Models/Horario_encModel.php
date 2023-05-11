@@ -23,12 +23,12 @@ class Horario_encModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function obtenerHorarios_enc()
+    public function obtenerHorarios_enc($estado)
     {
         $this->select('horarios_enc.*, g.alias as grado, p.nombre as jornada');
         $this->join('grados as g', 'horarios_enc.id_grado = g.id_grado');
         $this->join('parametro_det as p', 'horarios_enc.jornada = p.id_parametro_det');
-        $this->where('horarios_enc.estado', 'A');
+        $this->where('horarios_enc.estado', $estado);
         $datos = $this->findAll();
         return $datos;
     }
@@ -51,16 +51,6 @@ class Horario_encModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-
-
-    public function buscarAccion($id)
-    {
-        $this->select('horarios_enc.*');
-        $this->where('id_horarios_enc', $id);
-        $this->where('estado', 'A');
-        $datos = $this->first();
-        return $datos;
-    }
     public function cambiar_Estado($id, $estado)
     {
         $datos = $this->update($id, ['estado' => $estado]);
@@ -69,7 +59,7 @@ class Horario_encModel extends Model
     public function traer_horario_enc($id)
     {
         $this->select('horarios_enc.*');
-        $this->where('id', $id);
+        $this->where('id_horarios_enc', $id);
 
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
         return $datos;
