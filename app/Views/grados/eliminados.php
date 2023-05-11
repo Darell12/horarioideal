@@ -1,45 +1,25 @@
-<div class="container bg-white mt-5 shadow rounded-4">
-  <div>
-    <h1 class="titulo_Vista text-center">
-      <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
-    </h1>
+<div class="container bg-white rounded rounded-3">
+  <div class="d-flex justify-content-between flex-wrap">
+    <div class="pt-1">
+      <h1 class="titulo_Vista text-center">
+      </h1>
+    </div>
+    <div>
+      <a href="<?php echo base_url('/ver_grados'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+    </div>
   </div>
-  <div style="height: 30px;"></div>
-  <div>
-    <a href="<?php echo base_url('/ver_grados'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
-  </div>
-
   <br>
-  <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-    <table class="table table-bordered table-sm table-hover" id="tableGrados" width="100%" cellspacing="0">
-      <thead class="table-dark">
+  <div class="table-responsive">
+    <table class="table align-items-center table-flush" id="tablaGrados" width="100%" cellspacing="0">
+      <thead class="thead-light">
         <tr>
           <th class="text-center">Id</th>
-          <th class="text-center">Nombre</th>
-          <th class="text-center">Estado</th>
-          <th class="text-center" colspan="2">Acciones</th>
+          <th class="text-center">Grados</th>
+          <th class="text-center">Acciones</th>
         </tr>
       </thead>
-      <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-        <?php if ($datos == 'vacio') { ?>
-          <tr>
-            <th class="text-center h1" colspan="6">SIN REGISTROS ELIMINADOS</th>
-          </tr>
-        <?php } else { ?>
-          <?php foreach ($datos as $valor) { ?>
-            <tr>
-              <th class="text-center"><?php echo $valor['id_grado']; ?></th>
-              <th class="text-center">+<?php echo $valor['alias']; ?></th>
-              <th class="text-center">
-                <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
-              </th>
-              <th class="grid grid text-center" colspan="2">
-                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/grados/cambiarEstado') . '/' . $valor['id_grado'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
-              </th>
+      <tbody class="table-group-divider">
 
-            </tr>
-          <?php } ?>
-        <?php } ?>
       </tbody>
     </table>
   </div>
@@ -67,9 +47,70 @@
 
 <script>
   $('#modal-confirma').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    $(this).find('.btn-ok').attr('onclick', 'Restaurar(' + $(e.relatedTarget).data('href') + ')');
   });
 
+  function Restaurar(id) {
+
+    $.ajax({
+      type: "POST",
+      url: "<?php echo base_url('/grados/cambiarEstado/'); ?>" + id + '/' + 'A',
+      dataType: "json",
+    }).done(function(data) {
+      $("#modal-confirma").modal("hide");
+      let Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Registro restaurar con exito!'
+      })
+      tablaGrados.ajax.reload(null, false);
+    })
+  }
+
+  var contador = 0
+  var tablaGrados = $('#tablaGrados').DataTable({
+    ajax: {
+      url: '<?= base_url('grados/obtenerGrados') ?>',
+      method: "POST",
+      data: {
+        estado: 'E'
+      },
+      dataSrc: "",
+    },
+    columns: [{
+        data: null,
+        render: function(data, type, row) {
+          contador = contador + 1
+          return "<b>" + contador + "</b>";
+        },
+      },
+      {
+        data: "alias"
+      },
+      {
+        data: null,
+        render: function(data, type, row) {
+          return `<div class="btn-group container">
+                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" title="Resetear Contraseña" data-href="${data.id_grado}"><i class="bi bi-arrow-clockwise"></i></button>
+                         </div>`
+        },
+      }
+    ],
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+    }
+  })
 
   $('.close').click(function() {
     $("#modal-confirma").modal("hide");

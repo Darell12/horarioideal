@@ -12,11 +12,11 @@
     </div>
 
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
+    <div class="table-responsive" ">
         <table id="tablaGrados" class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
-                    <th class="text-center" style="width: 8% !important;">#</th>
+                    <th class="text-center" >#</th>
                     <th class="text-center">Grado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
@@ -57,10 +57,10 @@
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
-                            <th>#</th>
-                            <th>Nombre de la asignatura</th>
-                            <th>Intensidad horaria</th>
-                            <th>Acciones</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Nombre de la asignatura</th>
+                            <th class="text-center">Intensidad horaria</th>
+                            <th class="text-center">Acciones</th>
                         </thead>
                         <tbody id="tablaAsignaturas"></tbody>
                     </table>
@@ -85,7 +85,6 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <div class="row">
-
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Nombre:</label>
                                     <input type="text" class="form-control" name="nombre_grado" id="nombre_grado" required>
@@ -150,8 +149,13 @@
 </div>
 
 <script>
+
+$('#modal-confirma').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
+    });
+    
     var contador = 0
-    var tablaUsuarios = $('#tablaGrados').DataTable({
+    var tablaGrados = $('#tablaGrados').DataTable({
         ajax: {
             url: '<?= base_url('grados/obtenerGrados') ?>',
             method: "POST",
@@ -168,13 +172,13 @@
                 },
             },
             {
-                data: 'alias',
+                data: "alias",
             },
             {
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group container">
-                                <button class="btn btn-outline-primary" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                <button class="btn btn-outline-primary "class="text-center" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
@@ -182,9 +186,7 @@
                                     <i class="bi bi-journal-bookmark"></i>
                                 </button>
 
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_grado}" title="Eliminar Registro">
-                                <i class="bi bi-trash3"></i>
-                                </button>
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_grado}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>>
                             </div>`
                 },
             }
@@ -193,6 +195,34 @@
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         }
     })
+
+    function EliminarRegistro(id) {
+
+$.ajax({
+    type: "POST",
+    url: "<?php echo base_url('/grados/cambiarEstado/'); ?>" + id + '/' + 'E',
+    dataType: "json",
+}).done(function(data) {
+    $("#modal-confirma").modal("hide");
+    let Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: 'success',
+        title: 'Registro eliminado con exito!'
+    })
+    tablaRoles.ajax.reload(null, false);
+})
+}
 
     function generarTablaAsignatura(id) {
         let contador = 0;
@@ -276,10 +306,6 @@
     $('.close').click(function() {
         $("#modalEliminaAsig").modal("hide");
     });
-
-
-
-
 
 
     $('#modal-confirma').on('show.bs.modal', function(e) {

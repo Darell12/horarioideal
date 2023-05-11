@@ -21,8 +21,8 @@ class Grados extends BaseController
     }
     public function index()
     {
-        $grado = $this->grado->obtenerGrados();
-        $asignaturas = $this->asignaturas->obtenerAsignaturas();
+        $grado = $this->grado->obtenerGrados('A');
+        $asignaturas = $this->asignaturas->obtenerAsignaturas('A');
 
         $data = ['titulo' => 'Administrar Grados', 'datos' => $grado, 'asignaturas'=> $asignaturas];
 
@@ -35,12 +35,12 @@ class Grados extends BaseController
         if ($tp == 1) {
 
             $this->grado->save([
-                'alias' => $this->request->getPost('alias'),
+                'alias' => $this->request->getPost('nombre_grado'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->grado->update($this->request->getPost('id'), [
-                'alias' => $this->request->getPost('alias'),
+                'alias' => $this->request->getPost('nombre_grado'),
                 'usuario_crea'=> session('id')
             ]);
         }
@@ -97,14 +97,7 @@ class Grados extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $grado = $this->grado->cambiar_Estado($id, $estado);
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_grados'));
-        } else {
-            return redirect()->to(base_url('/eliminados_grados'));
-        }
+        
     }
     
     public function eliminados() //Mostrar vista de Paises Eliminados

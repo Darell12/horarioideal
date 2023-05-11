@@ -23,12 +23,10 @@ class GradosModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function obtenerGrados()
+    public function obtenerGrados($estado)
     {
         $this->select('grados.*');
-        // $this->select('MAX(CASE WHEN grados_asignatura.id_grado IS NOT NULL THEN "SI" ELSE "NO" END) AS grados_asignatura');
-        // $this->join('grados_asignatura', 'grados.id_grado = grados_asignatura.id_grado', 'left');
-        $this->where('grados.estado', 'A');
+        $this->where('estado', $estado);
         $datos = $this->findAll();
         return $datos;
     }
