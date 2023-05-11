@@ -11,7 +11,7 @@ use App\Models\Parametros_detModel;
 class Aulas extends BaseController
 {
     protected $aula, $eliminados;
-    protected $paramSede, $paramBloque;
+    protected $paramSede, $paramTipo;
 
 
     public function __construct()
@@ -19,23 +19,27 @@ class Aulas extends BaseController
         $this->aula = new AulaModel();
         $this->eliminados = new AulaModel();
         $this->paramSede = new Parametros_detModel();
-        $this->paramBloque = new Parametros_detModel();
-
+        $this->paramTipo = new Parametros_detModel();
     }
     public function index()
     {
-        $aula = $this->aula->obtenerAulas('E');
+        $aula = $this->aula->obtenerAulas('A');
         $paramSede = $this->paramSede->ObtenerSedes();
-        $paramBloque = $this->paramBloque->ObtenerBloques();
-        $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'sedes' => $paramSede, 'bloques' => $paramBloque];
+        $paramTipo = $this->paramTipo->ObtenerParametro(14);
+        $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'sedes' => $paramSede, 'tipos' => $paramTipo];
 
-    echo view('/principal/sidebar', $data);
-    echo view('/aulas/aulas', $data);
+        echo view('/principal/sidebar', $data);
+        echo view('/aulas/aulas', $data);
     }
     public function obtenerAulas()
     {
         $estado = $this->request->getPost('estado');
         $aula = $this->aula->obtenerAulas($estado);
+        echo json_encode($aula);
+    }
+    public function obtenerAulasxTipo($id)
+    {
+        $aula = $this->aula->obtenerAulasxTipo($id);
         echo json_encode($aula);
     }
 
@@ -47,17 +51,15 @@ class Aulas extends BaseController
             $this->aula->save([
                 'nombre' => $this->request->getPost('nombre_aula'),
                 'descripcion' => $this->request->getPost('descripcion'),
-                'bloque' => $this->request->getPost('bloque'),
-                'sede' => $this->request->getPost('sede'),
-                'usuario_crea'=> session('id')
+                'tipo' => $this->request->getPost('tipo'),
+                'usuario_crea' => session('id')
             ]);
         } else {
             $this->aula->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_aula'),
                 'descripcion' => $this->request->getPost('descripcion'),
-                'bloque' => $this->request->getPost('bloque'),
-                'sede' => $this->request->getPost('sede'),
-                 'usuario_crea'=> session('id')
+                'tipo' => $this->request->getPost('tipo'),
+                'usuario_crea' => session('id')
             ]);
         }
         return redirect()->to(base_url('/aulas'));
@@ -84,9 +86,8 @@ class Aulas extends BaseController
 
 
         // Redireccionar a la URL anterior
-            $data = ['titulo' => 'Administrar Aulas Eliminados', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/aulas/eliminados', $data);
+        $data = ['titulo' => 'Administrar Aulas Eliminados', 'datos' => $eliminados];
+        echo view('/principal/sidebar', $data);
+        echo view('/aulas/eliminados', $data);
     }
-
 }

@@ -19,13 +19,12 @@
                     <th class="text-center">Id</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Descripcion</th>
-                    <th class="text-center">bloque</th>
-                    <th class="text-center">sede</th>
+                    <th class="text-center">Tipo</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-                
+
             </tbody>
         </table>
     </div>
@@ -48,30 +47,21 @@
                                 <input type="text" class="form-control" name="nombre_aula" id="nombre_aula" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Descripción:</label>
-                                <textarea type="text-area" class="form-control" name="descripcion" id="descripcion" required></textarea>
+                                <div class="col">
+                                    <label for="nombre" class="col-form-label">Tipo de Aula:</label>
+                                    <select name="tipo" class="form-select form-select" id="tipo">
+                                        <option value="">-Seleccione una opción-</option>
+                                        <?php foreach ($tipos as $valor) { ?>
+                                            <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
+                                        <?php } ?>
+
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
-                                <label for="nombre" class="col-form-label">Bloque:</label>
-                                <select name="bloque" class="form-select form-select" id="bloque">
-                                    <option value="">-Seleccione una opción-</option>
-                                    <?php foreach ($bloques as $valor) { ?>
-                                        <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
-                                    <?php } ?>
-
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="nombre" class="col-form-label">Sede:</label>
-                                <select name="sede" class="form-select form-select" id="sede">
-                                    <option value="">-Seleccione una opción-</option>
-                                    <?php foreach ($sedes as $valor) { ?>
-                                        <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
+                            <label for="nombre" class="col-form-label">Descripción:</label>
+                            <textarea type="text-area" class="form-control" name="descripcion" id="descripcion" required></textarea>
                         </div>
 
                         <input type="text" id="tp" name="tp" hidden>
@@ -173,10 +163,7 @@
                 data: "descripcion"
             },
             {
-                data: "bloque"
-            },
-            {
-                data: "sede"
+                data: "tipo"
             },
             {
                 data: null,
@@ -199,14 +186,11 @@
             },
             descripcion: {
                 required: true,
-                maxlenght: 100,
             },
-            bloque: {
+            tipo: {
                 required: true,
             },
-            sede: {
-                required: true,
-            },
+
         },
         messages: {
             nombre_aula: {
@@ -215,12 +199,10 @@
             descripcion: {
                 required: "Este campo es requerido",
             },
-            bloque: {
+            tipo: {
                 required: "Este campo es requerido",
             },
-            sede: {
-                required: "Este campo es requerido",
-            },
+
 
         }
     });

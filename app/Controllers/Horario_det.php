@@ -3,104 +3,50 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\AsignaturasModel;
 use App\Models\Horario_detModel;
 use App\Models\UsuariosModel;
 use App\Models\GradosModel;
-use App\Models\Parametros_detModel;
+use App\Models\Horario_encModel;
 use App\Models\HorarioModel;
+use App\Models\Grados_asignaturaModel;
 
 
 class Horario_det extends BaseController
 {
     protected $horario_det, $eliminados;
     protected $horario;
-    protected $usuarios, $grados;
+    protected $usuarios, $grados, $asignatura;
 
 
     public function __construct()
     {
         $this->horario_det = new Horario_detModel();
-        $this->horario = new HorarioModel();
+        $this->horario = new Horario_encModel();
         $this->eliminados = new Horario_detModel();
         $this->usuarios = new UsuariosModel();
         $this->grados = new GradosModel();
+        $this->asignatura = new AsignaturasModel();
     }
 
     public function index($id)
     {
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         $usuarios = $this->usuarios->obtenerUsuarios($estado = "A");
-        $horario = $this->horario->vistaHorarioPrueba();
+        $horario = $this->horario->traer_horario_enc($id);
         $grados = $this->grados->obtenerGrados('A');
+        $asignatura = $this->asignatura->buscarAsignaturasxGrado($horario['id_grado']);
 
-        $data = ['titulo' => 'Administrar Horario de '. $horario[0]['grado'], 'datos' => $horario, 'usuarios' => $usuarios, 'grados' => $grados  ];
+        $data = ['titulo' => 'Administrar Horario de ', 'datos' => $horario, 'id' =>$id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura];
 
-       echo view('/principal/sidebar', $data);
-       echo view('/horarios_det/detalle', $data);
+        echo view('/principal/sidebar', $data);
+        echo view('/horarios_det/detalle', $data);
     }
 
-    public function insertar()
+    public function buscarDetalle()
     {
-        $tp = $this->request->getPost('tp');
-        if ($tp == 1) {
-
-            $this->horario_enc->save([
-                'id_usuario' => $this->request->getPost('id_usuario'),
-                'id_grado' => $this->request->getPost('id_grado'),
-                'periodo_año' => $this->request->getPost('periodo_año'),
-                'jornada' => $this->request->getPost('jornada'),
-                'usuario_crea'=> session('id')
-            ]);
-        } else {
-            $this->horario_enc->update($this->request->getPost('id'), [
-                'id_usuario' => $this->request->getPost('id_usuario'),
-                'id_grado' => $this->request->getPost('id_grado'),
-                'periodo_año' => $this->request->getPost('periodo_año'),
-                'jornada' => $this->request->getPost('jornada'),
-                'usuario_crea'=> session('id')
-            ]);
-        }
-        return redirect()->to(base_url('/horarios_enc'));
+        $id = $this->request->getPost('id');
+        $horario_det = $this->horario_det->obtenerDetalle_horario($id);
+        echo json_encode($horario_det);
     }
-
-    public function buscarDetalle($id)
-    {
-        $returnData = array();
-        $horario_enc = $this->horario_det->buscarhorario_enc($id);
-        if (!empty($horario_enc)) {
-            array_push($returnData, $horario_enc);
-        }
-        echo json_encode($returnData);
-    }
-
-    public function cambiarEstado($id, $estado)
-    {
-        $horario_enc = $this->horario_enc->cambiar_Estado($id, $estado);
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/ver_horarios_enc'));
-        } else {
-            return redirect()->to(base_url('/eliminados_horarios_enc'));
-        }
-    }
-
-    public function eliminados() //Mostrar vista de Paises Eliminados
-    {
-        $eliminados = $this->eliminados->obtenerHorarios_encEliminados();
-
-
-        // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Horariosenc Eliminadas','datos' => 'vacio'];
-            echo view('/principal/sidebar', $data);
-            echo view('/horarios_enc/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Horariosenc Eliminadas', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/horarios_enc/eliminados', $data);
-        }
-    }
-
 }

@@ -57,6 +57,9 @@ class Horario_enc extends BaseController
                 'id_grado' => $this->request->getPost('id_grado'),
                 'periodo_año' => $this->request->getPost('periodo_año'),
                 'jornada' => $this->request->getPost('jornada'),
+                'duracion_hora' => $this->request->getPost('duracion'),
+                'inicio' => $this->request->getPost('inicio'),
+                'fin' => $this->request->getPost('fin'),
                 'usuario_crea' => session('id'),
 
             ]);
@@ -65,6 +68,9 @@ class Horario_enc extends BaseController
                 'id_grado' => $this->request->getPost('id_grado'),
                 'periodo_año' => $this->request->getPost('periodo_año'),
                 'jornada' => $this->request->getPost('jornada'),
+                'duracion' => $this->request->getPost('duracion'),
+                'inicio' => $this->request->getPost('inicio'),
+                'fin' => $this->request->getPost('fin'),
                 'usuario_crea' => session('id'),
 
             ]);

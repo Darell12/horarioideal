@@ -1,4 +1,4 @@
-<div class="container bg-white rounded rounded-3">
+<div class="container bg-white shadow rounded-4">
     <div class="d-flex justify-content-between flex-wrap">
         <div class="border-0">
         </div>
@@ -269,6 +269,9 @@
                     id_grado: $('#id_grado').val(),
                     periodo_año: $('#periodo_año').val(),
                     jornada: $('#jornada').val(),
+                    inicio: $('#inicio').val(),
+                    fin: $('#fin').val(),
+                    duracion: $('#duracion').val(),
 
                 },
                 dataType: "json",
@@ -314,6 +317,9 @@
                     $('#id_grado').val(rs[0]['id_grado']);
                     $('#periodo_año').val(rs[0]['periodo_año']);
                     $('#jornada').val(rs[0]['jornada']);
+                    $('#inicio').val(rs[0]['inicio']);
+                    $('#fin').val(rs[0]['fin']);
+                    $('#duracion_hora').val(rs[0]['duracion_hora']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#Horarios_encModal").modal("show");
                 }
@@ -331,7 +337,8 @@
 
     $('#duracion').on('change', function(e) {
         console.log('evento grado');
-        let duracion = $('#duracion').val()
+        let duracion = $('#duracion').val();
+        let pertenece = '';
         $.ajax({
             url: "<?php echo base_url('horario_enc/obtenerfranjas/'); ?>" + duracion,
             type: 'POST',
@@ -347,7 +354,26 @@
                 } else {
                     cadena = `<option selected value="">Seleccione una opcion</option>`
                     res.forEach(element => {
-                        cadena += `<option class="${element.nombre >= 46 && element.nombre <= 52 ? 'Mañana' : 'Tarde'}" value='${element.id_parametro_det}'>${element.nombre}</option>`
+
+                        const [horas, minutos, segundos] = element.nombre.split(':');
+
+                        let tiempo = new Date();
+                        tiempo.setHours(parseInt(horas));
+                        tiempo.setMinutes(parseInt(minutos));
+                        tiempo.setSeconds(parseInt(segundos));
+
+
+                        tiempo = tiempo.getHours();
+                        console.log(tiempo);
+                        if (tiempo >= 6 && tiempo <= 12) {
+                            pertenece = 'AM'
+                        } else if (tiempo > 12 && tiempo < 18.5) {
+                            pertenece = 'PM'
+                        } else {
+                            console.log('No está en el rango de mañana o tarde');
+                        }
+
+                        cadena += `<option class="${pertenece}" value='${element.id_parametro_det}'>${element.nombre}</option>`
                     });
                 }
                 $('#inicio').html(cadena)
@@ -361,16 +387,16 @@
 
         switch (jornada) {
             case '':
-                $('.Mañana').removeAttr('hidden', '')
-                $('.Tarde').removeAttr('hidden', '')
+                $('.AM').removeAttr('hidden', '')
+                $('.PM').removeAttr('hidden', '')
                 break;
             case '20':
-                $('.Tarde').attr('hidden', '')
-                $('.Mañana').removeAttr('hidden', '')
+                $('.PM').attr('hidden', '')
+                $('.AM').removeAttr('hidden', '')
                 break;
-                case '21':
-                    $('.Mañana').attr('hidden', '')
-                    $('.Tarde').removeAttr('hidden', '')
+            case '21':
+                $('.AM').attr('hidden', '')
+                $('.PM').removeAttr('hidden', '')
 
                 break;
 

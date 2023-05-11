@@ -32,7 +32,7 @@ class Profesores extends BaseController
     public function index()
     {
         $roles = $this->roles->obtenerRoles('A');
-        $grados = $this->grados->obtenerGrados();
+        $grados = $this->grados->obtenerGrados('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
         $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel];
@@ -51,6 +51,11 @@ class Profesores extends BaseController
         $estado = $this->request->getPost('estado');
         $usuario = $this->usuarios->obtenerProfesores($estado);
         echo json_encode($usuario);
+    }
+    public function obtenerProfesoresAsignatura($id)
+    {
+        $AsigProf = $this->AsigProf->obtenerProfesoresAsignatura($id);
+        echo json_encode($AsigProf);
     }
     public function obtenerCarga($id)
     {

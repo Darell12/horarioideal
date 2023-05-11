@@ -13,7 +13,7 @@ class Horario_encModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_grado', 'periodo_año', 'jornada', 'estado', 'usuario_crea',];
+    protected $allowedFields = ['id_grado', 'periodo_año', 'jornada', 'duracion_hora', 'inicio', 'fin', 'estado', 'usuario_crea',];
     protected $useTimestamps = true;
     protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';

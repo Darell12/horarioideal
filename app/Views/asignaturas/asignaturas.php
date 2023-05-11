@@ -17,6 +17,7 @@
                     <th class="text-center">Id</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Codigo de Area</th>
+                    <th class="text-center">Tipo requerido</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -51,6 +52,17 @@
                                     <select name="codigo" class="form-select form-select" id="codigo">
                                         <option value="">-Seleccione una opción-</option>
                                         <?php foreach ($Area as $valor) { ?>
+                                            <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
+                                        <?php } ?>
+
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="codigo" class="col-form-label">Tipo:</label>
+                                    <!-- <input type="number" class="form-control" name="codigo" id="codigo" required> -->
+                                    <select name="tipo" class="form-select form-select" id="tipo">
+                                        <option value="">-Seleccione una opción-</option>
+                                        <?php foreach ($tipos as $valor) { ?>
                                             <option class="" value="<?php echo $valor['id_parametro_det'] ?>"><?php echo $valor['nombre'] ?></option>
                                         <?php } ?>
 
@@ -150,6 +162,9 @@
                 data: "Codigo"
             },
             {
+                data: "tipo_requerido"
+            },
+            {
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group">
@@ -208,6 +223,9 @@
                     },
                 }
             },
+            tipo: {
+                required: true,
+            }
         },
         messages: {
             nombre_asignatura: {
@@ -234,7 +252,8 @@
                     $("#id").val(id)
                     $('#nombre_asignatura').val(rs[0]['nombre']);
                     $('#codigo').val(rs[0]['Codigo']);
-                    $("#btn_Guardar").text('Actualizar');s
+                    $('#tipo').val(rs[0]['tipo_requerido']);
+                    $("#btn_Guardar").text('Actualizar');
                     $("#AsignaturaModal").modal("show");
                 }
             })
@@ -242,6 +261,7 @@
             $("#tp").val(1);
             $('#nombre_asignatura').val('');
             $('#codigo').val('');
+            $('#tipo').val('');
             $("#btn_Guardar").text('Guardar');
             $("#AsignaturaModal").modal("show");
         }

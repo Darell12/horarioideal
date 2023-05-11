@@ -13,7 +13,7 @@ class AulaModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre', 'descripcion', 'bloque', 'sede', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre', 'descripcion', 'tipo', 'tipo' ,'estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -25,18 +25,25 @@ class AulaModel extends Model
 
     public function obtenerAulas($estado)
     {
-        $this->select('aulas.*,  p.nombre as sede, vw_param_det.nombre as bloque ');
-        $this->join('parametro_det as p', 'aulas.sede = p.id_parametro_det');
-        $this->join('vw_param_det', 'aulas.bloque = vw_param_det.id_parametro_det ');
+        $this->select('aulas.*,  p.nombre as tipo, p.id_parametro_det as id_param');
+        $this->join('parametro_det as p', 'aulas.tipo = p.id_parametro_det');
         $this->where('aulas.estado', $estado);
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function obtenerAulasxTipo($tipo)
+    {
+        $this->select('aulas.*,  p.nombre as tipo');
+        $this->join('parametro_det as p', 'aulas.tipo = p.id_parametro_det');
+        $this->join('asignaturas as a', 'aulas.tipo = a.tipo_requerido');
+        $this->where('a.id_asignatura', $tipo);
         $datos = $this->findAll();
         return $datos;
     }
     public function obtenerAulasEliminados()
     {
-        $this->select('aulas.*,  p.nombre as sede, vw_param_det.nombre as bloque ');
+        $this->select('aulas.*,  p.nombre as tipo');
         $this->join('parametro_det as p', 'aulas.sede = p.id_parametro_det');
-        $this->join('vw_param_det', 'aulas.bloque = vw_param_det.id_parametro_det ');
         $this->where('aulas.estado', 'E');
         $datos = $this->findAll();
         return $datos;

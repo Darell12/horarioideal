@@ -23,9 +23,10 @@ class HorarioModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function vistaHorarioPrueba()
+    public function vistaHorarioPrueba($id)
     {
         $this->select('*');
+        $this->where('id_encabezado', $id);
         // $this->from('horario');
         $datos = $this->findAll();
         return $datos;
