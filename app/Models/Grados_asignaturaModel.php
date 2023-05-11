@@ -31,6 +31,15 @@ class Grados_asignaturaModel extends Model
         $this->where('grados_asignatura.estado', 'A');
         $datos = $this->findAll();
         return $datos;
-
     }
+
+    public function filtroGA($campo ,$valor)
+    {
+        $this->select('grados_asignatura.*');
+        $this->where($campo, $valor);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+
 }
