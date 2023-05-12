@@ -27,9 +27,6 @@
                         <td class="text-center"><?php echo $valor['id_permiso']; ?></td>
                         <td class="text-center"><?php echo $valor['rol']; ?></td>
                         <td class="text-center"><?php echo $valor['accion']; ?></td>
-                        <td class="text-center">
-                            <?php echo $valor['estado'] == 'A' ?  '<span class="text-success"> Activo </span>' : 'Inactivo'; ?>
-                        </td>
                         <td class="grid grid text-center" colspan="2">
 
                             <button class="btn btn-outline-primary" onclick="seleccionaPermisos(<?php echo $valor['id_permiso'] . ',' . 2 ?>);" data-bs-toggle="modal" data-bs-target="#PermisosModal">

@@ -82,12 +82,6 @@
                     <span class="text fs-6 nav-text">Acciones</span>
                 </a>
             </li>
-            <li>
-                <a href="<?php echo base_url('ver_franjas') ?>" title="Acciones">
-                    <i class='bx bx-time-five'></i>
-                    <span class="text fs-6 nav-text">Franjas horarias</span>
-                </a>
-            </li>
             <hr style="background: #fafafa" class="sidebar-divider">
             <li>
                 <a href="<?php echo base_url('usuarios') ?>" title="Usuarios">

@@ -1,14 +1,18 @@
-<div class="container bg-white mt-5 shadow rounded-4">
-    <div>
+<div class="container bg-white shadow rounded-4">
+    <div class="d-flex justify-content-between flex-wrap">
         <h1 class="titulo_Vista text-center">
-            <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+            <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
         </h1>
-    </div>
-    <div style="height: 30px;"></div>
-    <div>
-        <button type="button" onclick="seleccionaGrado(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#GradoModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-        <a href="<?php echo base_url('/grados/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-        <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        <div style="height: 30px;"></div>
+        <div>
+            <button type="button" onclick="seleccionaGrado(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success "
+                data-bs-toggle="modal" data-bs-target="#GradoModal"><i class="bi bi-plus-circle-fill"></i>
+                Agregar</button>
+            <a href="<?php echo base_url('/grados/eliminados'); ?>"><button type="button"
+                    class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i
+                        class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        </div>
     </div>
 
     <br>
@@ -54,8 +58,8 @@
                         <input type="text" class="form-control" name="horas" id="horas" required>
                     </div>
                     <div>
-                    <label id="asig-error" class="error" for="rol">
-                </div>
+                        <label id="asig-error" class="error" for="rol">
+                    </div>
                 </div>
 
                 <input type="text" id="tp" name="tp" hidden>
@@ -84,8 +88,10 @@
     </div>
 
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/grados_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
-        <div class="modal fade" id="GradoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <form method="POST" action="<?php echo base_url('/grados_insertar'); ?>" autocomplete="off" class="needs-validation"
+        id="formulario" novalidate>
+        <div class="modal fade" id="GradoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -98,20 +104,23 @@
 
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Nombre:</label>
-                                    <input type="text" class="form-control" name="nombre_grado" id="nombre_grado" required>
+                                    <input type="text" class="form-control" name="nombre_grado" id="nombre_grado"
+                                        required>
                                 </div>
 
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <input type="text" id="nombreActu" name="nombreActu" hidden>
                                 <input type="text" id="numeroActu" name="numeroActu" hidden>
-                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>"
+                                    hidden>
 
 
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
                         </div>
                     </div>
@@ -124,11 +133,13 @@
     <!-- Modal confirma -->
 </div>
 
-<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">
+                    Eliminación de Registro</h5>
 
             </div>
             <div style="text-align:center;font-weight:bold;" class="modal-body">
@@ -143,16 +154,19 @@
 </div>
 
 <!-- Modal Asignaturas eliminadas  -->
-<div class="modal fade" id="modalEliminaAsig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEliminaAsig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">
+                    Eliminación de Registro</h5>
 
             </div>
             <div style="text-align:center;font-weight:bold;" class="modal-body">
                 <p>Seguro Desea retirar la asignatura seleccionada?</p>
-                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input type="text" hidden id="id_almacenar_estado">
+                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input
+                    type="text" hidden id="id_almacenar_estado">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
@@ -163,7 +177,7 @@
 </div>
 
 <script>
-    $('#modal-confirma').on('show.bs.modal', function(e) {
+    $('#modal-confirma').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
 
@@ -178,19 +192,19 @@
             dataSrc: "",
         },
         columns: [{
-                data: null,
-                render: function(data, type, row) {
-                    contador = contador + 1
-                    return "<b>" + contador + "</b>";
-                },
+            data: null,
+            render: function (data, type, row) {
+                contador = contador + 1
+                return "<b>" + contador + "</b>";
             },
-            {
-                data: 'alias',
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return `<div class="btn-group container">
+        },
+        {
+            data: 'alias',
+        },
+        {
+            data: null,
+            render: function (data, type, row) {
+                return `<div class="btn-group container">
                                 <button class="btn btn-outline-primary" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
@@ -203,8 +217,8 @@
                                 <i class="bi bi-trash3"></i>
                                 </button>
                             </div>`
-                },
-            }
+            },
+        }
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -219,7 +233,7 @@
             url: "<?php echo base_url('grados/obtenerAsignaturasS/'); ?>" + id,
             type: 'POST',
             dataType: 'json',
-            success: function(Asignaturas) {
+            success: function (Asignaturas) {
                 $('#tablaAsignaturas').html('contenido');
                 Asignaturas.forEach(asignatura => {
                     contador++
@@ -229,7 +243,7 @@
                                 <td class="text-center">${asignatura.nombre}</td>
                                 <td class="text-center">${asignatura.horas_semanales}</td>
                                 <td class="text-center">
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminaAsig" data-href="${ id + ',' + asignatura.id_grado_asignatura},${id}"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminaAsig" data-href="${id + ',' + asignatura.id_grado_asignatura},${id}"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
                 });
@@ -246,20 +260,20 @@
             $('#horas').addClass('is-invalid');
 
             setTimeout(() => {
-                    $('#asig-error').text('')
-                    $('#asignatura').removeClass('is-invalid');
-                    $('#horas').removeClass('is-invalid');
+                $('#asig-error').text('')
+                $('#asignatura').removeClass('is-invalid');
+                $('#horas').removeClass('is-invalid');
 
-                }, 2000);
+            }, 2000);
 
-                $('#asignatura').val("")
-            $('#horas').val("") 
+            $('#asignatura').val("")
+            $('#horas').val("")
 
             return
         }
 
         $.ajax({
-            type: "POST",   
+            type: "POST",
             url: "<?php echo base_url('/grados/insertarCarg'); ?>",
             data: {
                 id_grado: id,
@@ -267,10 +281,10 @@
                 horas_semanales: $('#horas').val(),
             },
             dataType: "json",
-        }).done(function(data) {
+        }).done(function (data) {
             generarTablaAsignatura(id)
             $('#asignatura').val("")
-            $('#horas').val("") 
+            $('#horas').val("")
         })
     }
 
@@ -282,7 +296,7 @@
             id_grado_asignatura: id_grado_asignatura,
         }
 
-        $.post('<?php echo base_url('/grados/retirarCarg'); ?>', data, function(response) {
+        $.post('<?php echo base_url('/grados/retirarCarg'); ?>', data, function (response) {
 
             generarTablaAsignatura(id)
 
@@ -313,7 +327,7 @@
             type: "POST",
             url: "<?php echo base_url('/grados/cambiarEstado/'); ?>" + id + '/' + 'E',
             dataType: "json",
-        }).done(function(data) {
+        }).done(function (data) {
             $("#modal-confirma").modal("hide");
             let Toast = Swal.mixin({
                 toast: true,
@@ -335,11 +349,11 @@
         })
     }
 
-    $('#modalEliminaAsig').on('show.bs.modal', function(e) {
+    $('#modalEliminaAsig').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
     });
 
-    $('.close').click(function() {
+    $('.close').click(function () {
         $("#modalEliminaAsig").modal("hide");
     });
 
@@ -351,7 +365,7 @@
                 type: "POST",
                 url: dataURL,
                 dataType: "json",
-                success: function(rs) {
+                success: function (rs) {
                     console.log(rs)
                     $("#tp").val(2);
                     $("#id").val(id)
@@ -370,7 +384,7 @@
             $("#GradoModal").modal("show");
         }
     }
-    $('.close').click(function() {
+    $('.close').click(function () {
         $("#modal-confirma").modal("hide");
     });
 
@@ -383,16 +397,16 @@
                     type: "post",
                     dataType: "json",
                     data: {
-                        campo: function() {
+                        campo: function () {
                             return 'alias';
                         },
-                        valor: function() {
+                        valor: function () {
                             return $("#nombre_grado").val();
                         },
-                        tp: function() {
+                        tp: function () {
                             return $("#tp").val();
                         },
-                        nombreActu: function() {
+                        nombreActu: function () {
                             return $("#numeroActu").val();
                         },
                     },
