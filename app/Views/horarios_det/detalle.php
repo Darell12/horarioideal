@@ -20,6 +20,7 @@
                     <th class="text-center">Aula</th>
                     <th class="text-center">Día</th>
                     <th class="text-center">Hora Incio</th>
+                    <th class="text-center">Hora Fin</th>
                     <th class="text-center">Duración</th>
                     <th class="text-center">Acciones</th>
                 </tr>
@@ -114,6 +115,9 @@
                 },
                 {
                     data: "inicio"
+                },
+                {
+                    data: "fin"
                 },
                 {
                     data: null,
@@ -213,11 +217,155 @@
                     } else {
                         cadena = `<option selected value="">Seleccione una opcion</option>`
                         res.forEach(element => {
-                            cadena += `<option value='${element.id_param}'>${element.nombre}</option>`
+                            cadena += `<option value='${element.id_aula}'>${element.nombre}</option>`
                         });
                     }
                     $('#aula').html(cadena)
                 }
             })
         })
-    </script>
+
+        $('#formulario').on('submit', function(e) {
+            console.log('activo');
+            e.preventDefault();
+        })
+
+        // $('#btn_Guardar').click(function() {
+
+        //     const dias = {
+        //         "8": 'Lunes',
+        //         "9": 'Martes',
+        //         "10": 'Miercoles',
+        //         "11": 'Jueves',
+        //         "12": 'Viernes',
+        //         "13": 'Sabado',
+        //     }
+        //     const id_dias = {
+        //         'Lunes': '8',
+        //         'Martes': '9',
+        //         'Miercoles': '10',
+        //         'Jueves': '11',
+        //         'Viernes': '12',
+        //         'Sabado': '13',
+        //     }
+        //     let inicio = ''
+        //     let fin = ''
+        //     let data = {};
+
+        //     const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
+
+
+        //     $.ajax({url: "<?php echo base_url('horario_enc/buscarhorario_enc/') . $id ?>",type: 'POST', dataType: 'json',
+        //         success: function(res) {
+        //             console.table(res);
+        //             inicio = res.hora_inicio;
+        //             fin = res.hora_fin;
+        //             console.log('inicio: '+inicio);
+        //             console.log('fin: '+fin);
+        //         }
+        //     })
+        //     $.ajax({
+        //         url: "<?php echo base_url('horario_det/obtenerDetalles/'); ?>",
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         success: function(res) {
+        //             console.table(res);
+
+        //             const diasSiAsignados = [...new Set(res.map(element => element.dia))];
+
+        //             console.table(diasSiAsignados);
+
+        //             let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+
+        //             console.table(diasNoAsignados);
+
+        //             if (diasNoAsignados.length > 0) {
+        //                 console.log('Hay dias Sin asignar');
+        //                 data = {
+        //                     asignatura: $('#asignatura').val(),
+        //                     profesor: $('#profesor').val(),
+        //                     aula: $('#aula').val(),
+        //                     dia: diasNoAsignados[0],
+        //                     id_dia: id_dias[diasNoAsignados[0]],
+        //                 }
+        //             }
+        //             console.table(data);
+        //         }
+        //     })
+        // })
+
+        $('#btn_Guardar').click(function() {
+
+        })
+
+        function consultarFranjasHorarias(callback) {
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerDetalles/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    frajasOcupadas = data
+                }
+            });
+        }
+        
+        let franjas = []
+        let franjasOcupadas = []
+        function consultarParametrosHorarios(callback) {
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerFranjas/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    franjasOcupadas  = data;
+                    console.log(franjasOcupadas);
+                }
+            });
+        }
+        
+        
+        function encontrarFranjaDisponible(franjasOcupadas, franjasParametro) {
+            console.log(franjasOcupadas);
+            console.log(franjasParametro);
+            for (let franja of franjasParametro) {
+                let franjaDisponible = true;
+
+                for (let franjaOcupada of franjasOcupadas) {
+                    if (franjaOcupada.dia === franjaOcupada.dia) {
+                        if (franjaOcupada.inicio === franja.nombre) {
+                            franjaDisponible = false;
+                            break;
+                        }
+                    }
+                }
+                
+                if (franjaDisponible) {
+                    // La franja está disponible
+                    return {
+                        inicio: franja.nombre,
+                        // fin: agregarDuracion(franja.nombre),
+                        dia: franjaOcupada.dia,
+                        duracion: '1hr' // Puedes ajustar esto según tus necesidades
+                    };
+                }
+            }
+            
+            // No se encontró ninguna franja disponible
+            return null;
+        }
+
+        function agregarDuracion(hora) {
+            // Aquí puedes implementar la lógica para agregar la duración a la hora de inicio
+            // por ejemplo, si la duración es de 1hr:
+            // 07:30:00 + 1hr = 08:30:00
+            
+            return hora;
+        }
+        
+        consultarFranjasHorarias()
+        consultarParametrosHorarios()
+        
+        const franjaDisponible = encontrarFranjaDisponible(franjasOcupadas, franjas);
+        console.log(franjaDisponible);
+        </script>

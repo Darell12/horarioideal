@@ -10,6 +10,7 @@ use App\Models\GradosModel;
 use App\Models\Horario_encModel;
 use App\Models\HorarioModel;
 use App\Models\Grados_asignaturaModel;
+use App\Models\Parametros_detModel;
 
 
 class Horario_det extends BaseController
@@ -17,7 +18,7 @@ class Horario_det extends BaseController
     protected $horario_det, $eliminados;
     protected $horario;
     protected $usuarios, $grados, $asignatura;
-
+    protected $franja;
 
     public function __construct()
     {
@@ -27,6 +28,8 @@ class Horario_det extends BaseController
         $this->usuarios = new UsuariosModel();
         $this->grados = new GradosModel();
         $this->asignatura = new AsignaturasModel();
+        $this->franja = new Parametros_detModel();
+
     }
 
     public function index($id)
@@ -37,7 +40,7 @@ class Horario_det extends BaseController
         $grados = $this->grados->obtenerGrados('A');
         $asignatura = $this->asignatura->buscarAsignaturasxGrado($horario['id_grado']);
 
-        $data = ['titulo' => 'Administrar Horario de ', 'datos' => $horario, 'id' =>$id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura];
+        $data = ['titulo' => 'Administrar Horario de ', 'datos' => $horario, 'id' => $id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_det/detalle', $data);
@@ -48,5 +51,15 @@ class Horario_det extends BaseController
         $id = $this->request->getPost('id');
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         echo json_encode($horario_det);
+    }
+    public function obtenerDetalles()
+    {
+        $horario_det = $this->horario_det->obtenerDetalles();
+        echo json_encode($horario_det);
+    }
+    public function obtenerFranjas()
+    {
+        $franja = $this->franja->ObtenerParametro(13);
+        echo json_encode($franja);
     }
 }

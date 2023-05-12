@@ -87,12 +87,8 @@ class Horario_enc extends BaseController
 
     public function buscarhorario_enc($id)
     {
-        $returnData = array();
         $horario_enc = $this->horario_enc->traer_horario_enc($id);
-        if (!empty($horario_enc)) {
-            array_push($returnData, $horario_enc);
-        }
-        echo json_encode($returnData);
+        echo json_encode($horario_enc);
     }
 
 

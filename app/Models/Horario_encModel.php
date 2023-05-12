@@ -58,7 +58,9 @@ class Horario_encModel extends Model
     }
     public function traer_horario_enc($id)
     {
-        $this->select('horarios_enc.*');
+        $this->select('horarios_enc.*, param.nombre as hora_inicio, param2.nombre as hora_fin');
+        $this->join('parametro_det as param', 'horarios_enc.inicio = param.id_parametro_det');
+        $this->join('vw_param_det as param2', 'horarios_enc.fin = param2.id_parametro_det');
         $this->where('id_horarios_enc', $id);
 
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
