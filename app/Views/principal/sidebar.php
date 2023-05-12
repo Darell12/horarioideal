@@ -146,9 +146,9 @@
             <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
-                <i class='bx bx-chevron-left bx-sm'></i>
+                <i class='bx bx-chevron-right toggle bx-sm'></i>
                 </button>
-                <div class="border-0">
+                <div style="margin-top: 10px;" class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
                 </div>
                 <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">

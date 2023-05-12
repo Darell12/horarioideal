@@ -16,13 +16,13 @@
     </div>
 
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table id="tablaGrados" class="table align-items-center table-flush">
+    <div class="table-responsive">
+        <table id="tablaGrados" style="text-align: center;" class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
-                    <th class="text-center" style="width: 8% !important;">#</th>
+                    <th class="text-center">#</th>
                     <th class="text-center">Grado</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="text-center" colspan="3">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -203,7 +203,7 @@
         {
             data: null,
             render: function (data, type, row) {
-                return `<div class="btn-group container">
+                return `<div class="btn-group">
                                 <button class="btn btn-outline-primary" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>

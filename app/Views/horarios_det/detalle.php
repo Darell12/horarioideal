@@ -11,7 +11,7 @@
     </div>
     <br>
     <div class="table-responsive">
-        <table class="table align-items-center table-flush" id="tablaDetalle">
+        <table class="table align-items-center table-flush" style="text-align: center;" id="tablaDetalle">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">Id</th>
@@ -22,7 +22,7 @@
                     <th class="text-center">Hora Incio</th>
                     <th class="text-center">Hora Fin</th>
                     <th class="text-center">Duración</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="text-center" colspan="3">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -134,13 +134,17 @@
                                     <i class="bi bi-eye"></i>
                                     </button>
                                 </a>
-                                
+                                <a>
                                 <button class="btn btn-outline-primary" onclick="seleccionaDetalle(${data.id_horarios_enc} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
+                                </a>
+                                <a>
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
+                                </a>
+                                
                             </div>`
                     },
                 }

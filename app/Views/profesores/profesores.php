@@ -12,7 +12,7 @@
 
     <br>
     <div class="table-responsive">
-        <table id="tablaUsuarios" class="table align-items-center table-flush" id="tablePaises">
+        <table id="tablaUsuarios" style="text-align: center;" class="table align-items-center table-flush" id="tablePaises">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center" style="width: 8% !important;">#</th>
@@ -708,7 +708,7 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return `<div class="btn-group container">
+                    return `<div class="btn-group">
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_usuario}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
