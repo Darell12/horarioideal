@@ -203,39 +203,14 @@
                     },
                 }
             },
-            codigo: {
-                required: true,
-                digits: true,
-                remote: {
-                    url: '<?php echo base_url() ?>asignaturas/validar',
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        campo: function() {
-                            return 'codigo';
-                        },
-                        valor: function() {
-                            return $("#codigo").val();
-                        },
-                        tp: function() {
-                            return $("#tp").val();
-                        },
-                    },
-                }
-            },
-            tipo: {
-                required: true,
-            }
+            
         },
         messages: {
             nombre_asignatura: {
                 required: "Este campo es requerido",
                 remote: "Esta asignatura ya está registrada"
             },
-            codigo: {
-                required: "Este campo es requerido",
-                remote: "Este codigo ya está registrado"
-            },
+        
         }
     });
 

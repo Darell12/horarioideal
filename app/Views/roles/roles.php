@@ -141,7 +141,7 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return `<div class="btn-group container">
+                    return `<div class="btn-group">
                     <button class="btn btn-outline-primary" onclick="seleccionaRol(${data.id_rol} , 2);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol"><i class="bi bi-pencil"></i></button><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_rol}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
                     </div>`
                 },  

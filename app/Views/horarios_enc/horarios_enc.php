@@ -12,14 +12,14 @@
 
     <br>
     <div class="table-responsive">
-        <table id="TablaHorario" class="table align-items-center table-flush">
+        <table style="text-align: center;" id="TablaHorario" class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">Id</th>
                     <th class="text-center">Grado</th>
                     <th class="text-center">Año</th>
                     <th class="text-center">Jornada</th>
-                    <th class="text-center">Acciones</th>
+                    <th class="text-center" colspan="3">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -235,19 +235,22 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return `<div class="btn-group container">
+                    return `<div class="btn-group">
                                 <a href="<?php echo base_url('ver_detalle/') ?>${data.id_horarios_enc}" class="nav-link">
                                     <button class="btn btn-outline-warning" title="Administrar">
                                         <i class="bi bi-gear-wide"></i>
                                     </button>
                                 </a>
-                                
+                                <a>
                                 <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(${data.id_horarios_enc} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
+                                </a>
+                                <a>
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
+                                </a>
                             </div>`
                 },
             }

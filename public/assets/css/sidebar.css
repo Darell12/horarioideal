@@ -75,6 +75,7 @@ a:focus {
 #sidebarCollapse{
     color: #fff;
     background: #00b0ff;
+    border-radius: 15px;
 }
 #sidebarCollapse:hover{
     color: #00b0ff;
