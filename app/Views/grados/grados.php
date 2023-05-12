@@ -88,8 +88,7 @@
     </div>
 
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/grados_insertar'); ?>" autocomplete="off" class="needs-validation"
-        id="formulario" novalidate>
+    <form id="formulario">
         <div class="modal fade" id="GradoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
             data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -182,7 +181,7 @@
     });
 
     var contador = 0
-    var tablaUsuarios = $('#tablaGrados').DataTable({
+    var tablaGrados = $('#tablaGrados').DataTable({
         ajax: {
             url: '<?= base_url('grados/obtenerGrados') ?>',
             method: "POST",
@@ -345,7 +344,7 @@
                 icon: 'success',
                 title: 'Registro eliminado con exito!'
             })
-            tablaUsuarios.ajax.reload(null, false);
+            tablaGrados.ajax.reload(null, false);
         })
     }
 
@@ -372,16 +371,16 @@
                     $('#nombre_grado').val(rs[0]['alias']);
                     $('#numeroActu').val(rs[0]['alias']);
                     $("#btn_Guardar").text('Actualizar');
-                    $('#formulario').validate().resetForm();
                     $("#GradoModal").modal("show");
+                    $('#formulario').validate().resetForm();
                 }
             })
         } else {
             $("#tp").val(1);
             $('#nombre_grado').val('');
+            $("#GradoModal").modal("show");
             $("#btn_Guardar").text('Guardar');
             $('#formulario').validate().resetForm();
-            $("#GradoModal").modal("show");
         }
     }
     $('.close').click(function () {
@@ -420,4 +419,53 @@
             },
         }
     });
+
+    
+    $('#btn_Guardar').on('click', function(e) {
+        e.preventDefault();
+        if ($('#formulario').valid()) {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/grados/insertar'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#id').val(),
+                    alias: $('#nombre_grado').val(),
+
+                },
+                dataType: "json",
+            }).done(function(data) {
+                $('#GradoModal').modal('hide');
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Acción realizada con exito!'
+                })
+                console.log('insertar');
+                contador = 0
+                tablaGrados.ajax.reload(null, false)
+                return
+            })
+        } else {
+            console.log('Formulario Invalido');
+        }
+    })
+    $('#formulario').on('submit', function(e) {
+        console.log('activo');
+        e.preventDefault();
+    })
+
+
+
 </script>

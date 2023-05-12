@@ -89,9 +89,6 @@
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
-    $.validator.addMethod("soloLetras", function(value, element) {
-        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
-    }, "Por favor ingrese solamente letras.");
 
     function EliminarRegistro(id) {
 
@@ -155,6 +152,10 @@
         }
     })
 
+    $.validator.addMethod("soloLetras", function(value, element) {
+        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+    }, "Por favor ingrese solamente letras.");
+
     $("#formulario").validate({
         rules: {
             nombre_accion: {
@@ -189,11 +190,6 @@
         }
     });
 
-    $('#formulario').on('submit', function(e) {
-        console.log('activo');
-        e.preventDefault();
-    })
-
     function seleccionaAccion(id, tp) {
         if (tp == 2) {
             dataURL = "<?php echo base_url('/acciones/buscarAccion'); ?>" + "/" + id;
@@ -206,8 +202,9 @@
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#nombre_accion').val(rs[0]['nombre']);
-                    $('#formulario').validate().resetForm();
+                    $('#numeroActu').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
+                    $('#formulario').validate().resetForm();
                     $("#AccionModal").modal("show");
                 }
             })

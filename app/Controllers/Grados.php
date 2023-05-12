@@ -35,17 +35,17 @@ class Grados extends BaseController
         if ($tp == 1) {
 
             $this->grado->save([
-                'alias' => $this->request->getPost('nombre_grado'),
+                'alias' => $this->request->getPost('alias'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->grado->update($this->request->getPost('id'), [
-                'alias' => $this->request->getPost('nombre_grado'),
+                'alias' => $this->request->getPost('alias'),
                 'usuario_crea'=> session('id')
             ]);
         }
-        return redirect()->to(base_url('/grados'));
-        // return json_encode('😊');
+         return json_encode('Se insertó un grado');
+        // return redirect()->to(base_url('/grados'));
     }
     public function obtenerGrados()
     {
