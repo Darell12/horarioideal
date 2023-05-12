@@ -230,142 +230,158 @@
             e.preventDefault();
         })
 
-        // $('#btn_Guardar').click(function() {
-
-        //     const dias = {
-        //         "8": 'Lunes',
-        //         "9": 'Martes',
-        //         "10": 'Miercoles',
-        //         "11": 'Jueves',
-        //         "12": 'Viernes',
-        //         "13": 'Sabado',
-        //     }
-        //     const id_dias = {
-        //         'Lunes': '8',
-        //         'Martes': '9',
-        //         'Miercoles': '10',
-        //         'Jueves': '11',
-        //         'Viernes': '12',
-        //         'Sabado': '13',
-        //     }
-        //     let inicio = ''
-        //     let fin = ''
-        //     let data = {};
-
-        //     const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
 
+        let duracionAsignaturas = [];
+        let franjasTotales = [];
+        let franjasTotalesOcupadas = [];
+        let franjasTotalesOcupadasAula = [];
+        let franjasProfesor = [];
+        let numeroRepeticiones = 0;
 
-        //     $.ajax({url: "<?php echo base_url('horario_enc/buscarhorario_enc/') . $id ?>",type: 'POST', dataType: 'json',
-        //         success: function(res) {
-        //             console.table(res);
-        //             inicio = res.hora_inicio;
-        //             fin = res.hora_fin;
-        //             console.log('inicio: '+inicio);
-        //             console.log('fin: '+fin);
-        //         }
-        //     })
-        //     $.ajax({
-        //         url: "<?php echo base_url('horario_det/obtenerDetalles/'); ?>",
-        //         type: 'POST',
-        //         dataType: 'json',
-        //         success: function(res) {
-        //             console.table(res);
+        $(document).ready(function() {
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    franjasTotales = data;
+                }
+            });
 
-        //             const diasSiAsignados = [...new Set(res.map(element => element.dia))];
 
-        //             console.table(diasSiAsignados);
+            $.ajax({
+                url: "<?php echo base_url('grados/obtenerAsignaturasS/') . $id ?>",
+                dataType: "json",
+                success: function(data) {
+                    duracionAsignaturas = data;
+                }
+            });
 
-        //             let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+        });
 
-        //             console.table(diasNoAsignados);
-
-        //             if (diasNoAsignados.length > 0) {
-        //                 console.log('Hay dias Sin asignar');
-        //                 data = {
-        //                     asignatura: $('#asignatura').val(),
-        //                     profesor: $('#profesor').val(),
-        //                     aula: $('#aula').val(),
-        //                     dia: diasNoAsignados[0],
-        //                     id_dia: id_dias[diasNoAsignados[0]],
-        //                 }
-        //             }
-        //             console.table(data);
-        //         }
-        //     })
-        // })
-
+        let duracion = ''
         $('#btn_Guardar').click(function() {
+            let i = 0;
 
-        })
+            const dias = {
+                "8": 'Lunes',
+                "9": 'Martes',
+                "10": 'Miercoles',
+                "11": 'Jueves',
+                "12": 'Viernes',
+                "13": 'Sabado',
+            }
+            const id_dias = {
+                'Lunes': '8',
+                'Martes': '9',
+                'Miercoles': '10',
+                'Jueves': '11',
+                'Viernes': '12',
+                'Sabado': '13',
+            }
+            let inicio = ''
+            let fin = ''
+            let data = [];
 
-        function consultarFranjasHorarias(callback) {
-            $.ajax({
-                url: "<?php echo base_url('horario_det/obtenerDetalles/'); ?>",
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    frajasOcupadas = data
+            const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+
+            let asignatura = $('#asignatura').val();
+            let profesor = $('#profesor').val();
+
+            duracionAsignaturas.forEach(element => {
+                if (element.id_grado_asignatura == asignatura) {
+                    numeroRepeticiones = element.horas_semanales / 2;
+                    console.log(numeroRepeticiones)
                 }
             });
-        }
-        
-        let franjas = []
-        let franjasOcupadas = []
-        function consultarParametrosHorarios(callback) {
-            $.ajax({
-                url: "<?php echo base_url('horario_det/obtenerFranjas/'); ?>",
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    franjasOcupadas  = data;
-                    console.log(franjasOcupadas);
-                }
-            });
-        }
-        
-        
-        function encontrarFranjaDisponible(franjasOcupadas, franjasParametro) {
-            console.log(franjasOcupadas);
-            console.log(franjasParametro);
-            for (let franja of franjasParametro) {
-                let franjaDisponible = true;
 
-                for (let franjaOcupada of franjasOcupadas) {
-                    if (franjaOcupada.dia === franjaOcupada.dia) {
-                        if (franjaOcupada.inicio === franja.nombre) {
-                            franjaDisponible = false;
-                            break;
+            $.ajax({
+                url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>"+profesor,
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    franjasProfesor = res
+                }
+            })
+            $.ajax({
+                url: "<?php echo base_url('horario_det/buscarDetalles/') ?>",
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    franjasTotalesOcupadas = res
+                }
+            })
+
+            $.ajax({
+                url: "<?php echo base_url('horario_det/buscarDetalleAula/') ?>"+ $('#aula').val(),
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    franjasTotalesOcupadasAula = res
+                }
+            })
+
+            $.ajax({
+                url: "<?php echo base_url('horario_enc/buscarhorario_enc/') . $id ?>",
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    console.table(res);
+                    inicio = res.hora_inicio;
+                    fin = res.hora_fin;
+                }
+            })
+
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerDetalles/')  . $id  ?>",
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    console.table(res);
+
+                    const diasSiAsignados = [...new Set(res.map(element => element.dia))];
+
+                    // console.table(diasSiAsignados);
+
+                    let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+
+                    let LibreProfe = franjasTotales.filter(franja => !franjasProfesor.some(element => element.hora_inicio == franja.id_parametro_det));
+
+                    let LibreAula = franjasTotales.filter(franja => !franjasTotalesOcupadasAula.some(element => element.hora_inicio == franja.id_parametro_det));
+
+                    console.log(LibreProfe)
+                    console.log(LibreAula)
+
+                    console.table(diasNoAsignados);
+
+
+                    while (i < numeroRepeticiones) {
+                        i++
+                        if (diasNoAsignados.length > 0) {
+                            // console.log('Hay dias Sin asignar');
+                            let dia = diasNoAsignados[0];
+                            
+                            data.push({
+                                asignatura: asignatura,
+                                profesor: profesor,
+                                aula: $('#aula').val(),
+                                dia: diasNoAsignados[0],
+                                id_dia: id_dias[diasNoAsignados[0]],
+                                inicio: franjasTotales[0].id_parametro_det,
+                                hora_inicio: franjasTotales[0].nombre,
+                                fin: numeroRepeticiones - i < 0 ? franjasTotales[1].id_parametro_det : franjasTotales[2].id_parametro_det
+                            })
+                            diasNoAsignados.shift()
+                            diasSiAsignados.push(dia)
+
+                            console.log(diasSiAsignados)
+                            console.log(diasNoAsignados)
+                        } else {
+
                         }
                     }
+                    console.table(data)
                 }
-                
-                if (franjaDisponible) {
-                    // La franja está disponible
-                    return {
-                        inicio: franja.nombre,
-                        // fin: agregarDuracion(franja.nombre),
-                        dia: franjaOcupada.dia,
-                        duracion: '1hr' // Puedes ajustar esto según tus necesidades
-                    };
-                }
-            }
-            
-            // No se encontró ninguna franja disponible
-            return null;
-        }
-
-        function agregarDuracion(hora) {
-            // Aquí puedes implementar la lógica para agregar la duración a la hora de inicio
-            // por ejemplo, si la duración es de 1hr:
-            // 07:30:00 + 1hr = 08:30:00
-            
-            return hora;
-        }
-        
-        consultarFranjasHorarias()
-        consultarParametrosHorarios()
-        
-        const franjaDisponible = encontrarFranjaDisponible(franjasOcupadas, franjas);
-        console.log(franjaDisponible);
-        </script>
+            })
+        })
+    </script>

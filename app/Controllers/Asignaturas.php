@@ -65,6 +65,7 @@ class Asignaturas extends BaseController
         }
         echo json_encode($returnData);
     }
+
     public function buscarAsignaturasxGrado($id_grado)
     {
         $returnData = array();

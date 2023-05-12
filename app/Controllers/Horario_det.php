@@ -52,12 +52,27 @@ class Horario_det extends BaseController
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         echo json_encode($horario_det);
     }
-    public function obtenerDetalles()
+    public function buscarDetalles()
     {
-        $horario_det = $this->horario_det->obtenerDetalles();
+        $horario_det = $this->horario_det->buscarDetalles();
         echo json_encode($horario_det);
     }
-    public function obtenerFranjas()
+    public function buscarDetalleProfe($id)
+    {
+        $horario_det = $this->horario_det->buscarDetalleProfe($id);
+        echo json_encode($horario_det);
+    }
+    public function buscarDetalleAula($id)
+    {
+        $horario_det = $this->horario_det->buscarDetalleAula($id);
+        echo json_encode($horario_det);
+    }
+    public function obtenerDetalles($id)
+    {
+        $horario_det = $this->horario_det->obtenerDetalles($id);
+        echo json_encode($horario_det);
+    }
+    public function obtenerFranjas60()
     {
         $franja = $this->franja->ObtenerParametro(13);
         echo json_encode($franja);
