@@ -220,23 +220,70 @@
                     $("#id").val(id)
                     $('#nombre_aula').val(rs[0]['nombre']);
                     $('#descripcion').val(rs[0]['descripcion']);
-                    $('#bloque').val(rs[0]['bloque']);
-                    $('#sede').val(rs[0]['sede']);
+                    $('#tipo').val(rs[0]['tipo']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#AulaModal").modal("show");
                 }
             })
         } else {
             $("#tp").val(1);
-            $('#nombre_rol').val('');
+            $('#nombre_aula').val('');
             $('#descripcion').val('');
-            $('#bloque').val('');
-            $('##sede').val('');
+            $('#tipo').val('');
             $("#btn_Guardar").text('Guardar');
             $("#AulaModal").modal("show");
         }
     }
+
+    
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
+
+    $('#btn_Guardar').on('click', function(e) {
+        e.preventDefault();
+        if ($('#formulario').valid()) {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/aulas/insertar'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#id').val(),
+                    nombre_aula: $('#nombre_aula').val(),
+                    descripcion: $('#descripcion').val(),
+                    tipo: $('#tipo').val(),
+
+                },
+                dataType: "json",
+            }).done(function(data) {
+                $('#AulaModal').modal('hide');
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Acción realizada con exito!'
+                })
+                console.log('insertar');
+                contador = 0
+                tablaAulas.ajax.reload(null, false)
+                return
+            })
+        } else {
+            console.log('Formulario Invalido');
+        }
+    })
+    $('#formulario').on('submit', function(e) {
+        console.log('activo');
+        e.preventDefault();
+    })
 </script>

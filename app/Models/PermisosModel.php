@@ -23,12 +23,12 @@ class PermisosModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function obtenerPermisos()
+    public function obtenerPermisos($estado)
     {
         $this->select('permisos.*, r.nombre as rol, a.nombre as accion ');
         $this->join('roles as r', 'permisos.id_rol = r.id_rol');
         $this->join('acciones as a', 'permisos.id_accion = a.id_acciones');
-        $this->where('permisos.estado', 'A');
+        $this->where('permisos.estado', $estado);
         $datos = $this->findAll(); 
         return $datos;
     }

@@ -62,7 +62,7 @@ class Aulas extends BaseController
                 'usuario_crea' => session('id')
             ]);
         }
-        return redirect()->to(base_url('/aulas'));
+        return json_encode('Sirve');
     }
 
     public function buscaraula($id)
@@ -78,7 +78,7 @@ class Aulas extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $aula = $this->aula->cambiar_Estado($id, $estado);
-        return json_encode('');
+        return json_encode('Cambiado');
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {

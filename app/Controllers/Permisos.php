@@ -24,7 +24,7 @@ class Permisos extends BaseController
 
     public function index()
     {
-        $permiso = $this->permiso->obtenerPermisos();
+        $permiso = $this->permiso->obtenerPermisos('A');
         $roles = $this->roles->obtenerRoles('A');
         $acciones = $this->acciones->obtenerAcciones('A');
 
@@ -51,7 +51,14 @@ class Permisos extends BaseController
                 'usuario_crea'=> session('id')
             ]);
         }
-        return redirect()->to(base_url('/permisos'));
+        return json_encode('sirve');
+    }
+
+    public function obtenerPermisos()
+    {
+        $estado = $this->request->getPost('estado');
+        $permiso = $this->permiso->obtenerPermisos($estado);
+        echo json_encode($permiso);
     }
 
     public function buscarPermiso($id)
@@ -67,17 +74,8 @@ class Permisos extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $permiso = $this->permiso->cambiarEstado($id, $estado);
-        
-
-        if (
-            $estado == 'E'
-        ) {
-            return redirect()->to(base_url('/permisos'));
-        } else {
-            return redirect()->to(base_url('/eliminados_permisos'));
-        }
+        return json_encode('sdf');
     }
-
     public function eliminados() //Mostrar vista de Permisos Eliminados
     {
         $eliminados = $this->eliminados->obtenerPermisosEliminados();
