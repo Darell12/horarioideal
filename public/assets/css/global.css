@@ -1087,21 +1087,21 @@ ul {
     background-color: #5F7F90;
 }
 
-.table-schedule .lecture-time[data-event="lecture-10"] {
+.table-schedule .lecture-time[data-event="lecture-010"] {
     background: #FBE9E7;
 }
 
-.table-schedule .lecture-time[data-event="lecture-10"] .lecture-title,
-.table-schedule .lecture-time[data-event="lecture-10"] .lecture-location,
-.table-schedule .lecture-time[data-event="lecture-10"] .lecture-noti-title {
+.table-schedule .lecture-time[data-event="lecture-010"] .lecture-title,
+.table-schedule .lecture-time[data-event="lecture-010"] .lecture-location,
+.table-schedule .lecture-time[data-event="lecture-010"] .lecture-noti-title {
     color: #FF5722;
 }
 
-.table-schedule .lecture-time[data-event="lecture-10"]:hover {
+.table-schedule .lecture-time[data-event="lecture-010"]:hover {
     background-color: #FFCCBC;
 }
 
-.table-schedule .lecture-time[data-event="lecture-10"]:before {
+.table-schedule .lecture-time[data-event="lecture-010"]:before {
     background-color: #FF5722;
 }
 

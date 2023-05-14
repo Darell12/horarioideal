@@ -35,6 +35,7 @@ class Horario_detModel extends Model
         $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura');
         $this->where('horario_det.estado', 'A');
         $this->where('horario_det.id_horario_enc', $id);
+        $this->groupBy('horario_det.dia');
         $datos = $this->findAll(); 
         return $datos;
     }
@@ -64,7 +65,7 @@ class Horario_detModel extends Model
         $this->join('grados_asignatura as a', 'a.id_grado_asignatura = horario_det.id_grado_asignatura');
         $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura');
         $this->where('horario_det.estado', 'A');
-        $this->where('horario_det.id_aula', $id);
+        $this->where('horario_det.dia', $id);
         $datos = $this->findAll(); 
         return $datos;
     }

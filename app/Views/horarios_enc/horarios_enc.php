@@ -122,7 +122,184 @@
     </div>
 </div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TituloModal">Horario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-lecture" style="background-color: white !important;">
+
+                    <section class="section-list">
+                        <div class="container-xl">
+                            <div class="table-schedule">
+                                <div class="timeline">
+                                    <ul>
+                                        <li><span>06:00</span></li>
+                                        <li><span>06:30</span></li>
+                                        <li><span>07:00</span></li>
+                                        <li><span>07:30</span></li>
+                                        <li><span>08:00</span></li>
+                                        <li><span>08:30</span></li>
+                                        <li><span>09:00</span></li>
+                                        <li><span>09:30</span></li>
+                                        <li><span>10:00</span></li>
+                                        <li><span>10:30</span></li>
+                                        <li><span>11:00</span></li>
+                                        <li><span>11:30</span></li>
+                                        <li><span>12:00</span></li>
+                                        <li><span>12:30</span></li>
+                                        <li><span>13:00</span></li>
+                                        <li><span>13:30</span></li>
+                                        <li><span>14:00</span></li>
+                                        <li><span>14:30</span></li>
+                                        <li><span>15:00</span></li>
+                                        <li><span>15:30</span></li>
+                                        <li><span>16:00</span></li>
+                                        <li><span>16:30</span></li>
+                                        <li><span>17:00</span></li>
+                                        <li><span>17:30</span></li>
+                                        <li><span>18:00</span></li>
+                                        <li><span>18:30</span></li>
+                                    </ul>
+                                </div>
+
+                                <div class="table-schedule-subject">
+                                    <ul class="list-lecture-item">
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Lunes</h4>
+                                            </div>
+                                            <ul id="Lunes">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Martes</h4>
+                                            </div>
+                                            <ul id="Martes">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Miercoles</h4>
+                                            </div>
+
+                                            <ul id="Miercoles">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Jueves</h4>
+                                            </div>
+
+                                            <ul id="Jueves">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Viernes</h4>
+                                            </div>
+
+                                            <ul id="Viernes">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Sabado</h4>
+                                            </div>
+
+                                            <ul id="Sabado">
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+
+
+
+    function visualizarHorario(id) {
+        $(`#Lunes`).html('');
+        $(`#Martes`).html('');
+        $(`#Miercoles`).html('');
+        $(`#Jueves`).html('');
+        $(`#Viernes`).html('');
+        $(`#Sabado`).html('');
+
+        let franjasTotales
+        $.ajax({
+            url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+            dataType: "json",
+            success: function(data) {
+                franjasTotales = data;
+                console.log('franjasTotales');
+                console.log(franjasTotales);
+            }
+        });
+
+        dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
+        $.ajax({
+            type: "POST",
+            url: dataURL,
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(rs) {
+                console.log(rs);
+                contenido = ''
+                $.ajax({
+                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                    dataType: "json",
+                    success: function(data) {
+                        franjasTotales = data;
+                        rs.forEach(element => {
+                            let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+                            contenido = `<li class="lecture-time ${franjasTotales
+                                                .find(objeto => objeto.id_parametro_det == element.hora_inicio)
+                                                ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
+                                                <a href="#">
+                                                    <div class="lecture-info">
+                                                        <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
+                                                        <h6 class="lecture-location">${element.aula}</h6>
+                                                    </div>
+                                                </a>
+                                            </li>`
+                            $(`#${element.dia}`).append(contenido)
+                        });
+                    }
+                });
+            }
+        })
+    }
+
     $('#duracion').val('');
 
     $('#modal-confirma').on('show.bs.modal', function(e) {
@@ -236,6 +413,11 @@
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group">
+                                <a class="nav-link">
+                                    <button onclick="visualizarHorario(${data.id_horarios_enc})" class="btn btn-outline-warning" title="Visualizar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="bi bi-eye"></i>
+                                    </button>
+                                </a>
                                 <a href="<?php echo base_url('ver_detalle/') ?>${data.id_horarios_enc}" class="nav-link">
                                     <button class="btn btn-outline-warning" title="Administrar">
                                         <i class="bi bi-gear-wide"></i>
@@ -334,6 +516,7 @@
             $("#Horarios_encModal").modal("show");
         }
     }
+
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });

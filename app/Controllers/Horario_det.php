@@ -29,7 +29,6 @@ class Horario_det extends BaseController
         $this->grados = new GradosModel();
         $this->asignatura = new AsignaturasModel();
         $this->franja = new Parametros_detModel();
-
     }
 
     public function index($id)
@@ -44,6 +43,22 @@ class Horario_det extends BaseController
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_det/detalle', $data);
+    }
+    public function insertar($asignatura, $aula, $dia, $inicio, $fin, $encabezado, $profesor, $duracion)
+    {
+
+        $this->horario_det->save([
+            'id_grado_asignatura' => $asignatura,
+            'id_aula' => $aula,
+            'dia' => $dia,
+            'hora_inicio' => $inicio,
+            'hora_fin' =>  $fin,
+            'id_horario_enc' => $encabezado,
+            'profesor' => $profesor,
+            'duracion' => $duracion,
+            'usuario_crea' => session('id'),
+        ]);
+        return json_encode(1);
     }
 
     public function buscarDetalle()
@@ -65,6 +80,11 @@ class Horario_det extends BaseController
     public function buscarDetalleAula($id)
     {
         $horario_det = $this->horario_det->buscarDetalleAula($id);
+        echo json_encode($horario_det);
+    }
+    public function buscarDetalleDia()
+    {
+        $horario_det = $this->horario_det->buscarDetalleAula(8);
         echo json_encode($horario_det);
     }
     public function obtenerDetalles($id)
