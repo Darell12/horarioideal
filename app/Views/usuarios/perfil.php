@@ -1,108 +1,110 @@
-<div class=" bg-white">
-<section style="background-color: #eee;">
-    <div class="container py-5">
+<input hidden id="accion" value="<?php echo session('accion') ?>"></input>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <i class='bx bxs-user-circle  bx-lg'></i>
-                        <h5 class="my-2"><?php echo $datos['nombre_p'] . ' ' . $datos['apellido_p'] ?></h5>
-                        <p class="text-muted mb-1"><?php echo $datos['rol'] ?></p>
-                        <p class="text-muted mb-1"><?php echo $datos['direccion'] ?></p>
-                        <?php if ($datos['rol'] == 'Estudiante') { ?>
-                            <p class="text-muted mb-4"><?php echo $datos['grado'] ?></p>
-                        <?php } ?>
-                        <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-outline-info" data-bs-target="#UsuarioModal" title="Actualizar Contraseña" data-bs-toggle="modal">Cambiar <br> Contraseña</button>
-                            <button onClick="EditarPerfil(<?php echo $datos['id_usuario'] ?>)" type="button" class="btn btn-outline-success ms-1">Editar Perfil</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-bodxcy p-0">
-                        <ul class="list-group list-group-flush rounded-3">
-                            <?php if ($datos['rol'] == 'Profesor') { ?>
-                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <i class="fas fa-globe fa-lg text-warning"></i>
-                                    <p class="mb-0">Matematicas 9-A (Esto solo aparece si es un profesor)</p>
-                                </li>
+<div class=" bg-white">
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <i class='bx bxs-user-circle  bx-lg'></i>
+                            <h5 class="my-2"><?php echo $datos['nombre_p'] . ' ' . $datos['apellido_p'] ?></h5>
+                            <p class="text-muted mb-1"><?php echo $datos['rol'] ?></p>
+                            <p class="text-muted mb-1"><?php echo $datos['direccion'] ?></p>
+                            <?php if ($datos['rol'] == 'Estudiante') { ?>
+                                <p class="text-muted mb-4"><?php echo $datos['grado'] ?></p>
                             <?php } ?>
-                        </ul>
+                            <div class="d-flex justify-content-center mb-2">
+                                <button type="button" class="btn btn-outline-info" data-bs-target="#UsuarioModal" title="Actualizar Contraseña" data-bs-toggle="modal">Cambiar <br> Contraseña</button>
+                                <button onClick="EditarPerfil(<?php echo $datos['id_usuario'] ?>)" type="button" class="btn btn-outline-success ms-1">Editar Perfil</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-bodxcy p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <?php if ($datos['rol'] == 'Profesor') { ?>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <i class="fas fa-globe fa-lg text-warning"></i>
+                                        <p class="mb-0">Matematicas 9-A (Esto solo aparece si es un profesor)</p>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="card  p-4">
-                    <div class="card-body" id="EditarPerfil">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Documento</p>
+                <div class="col-lg-8">
+                    <div class="card  p-4">
+                        <div class="card-body" id="EditarPerfil">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Documento</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p id="documentos" class="text-muted mb-0"><?php echo $datos['t_documento'] . ': ' . $datos['n_documento'] ?></p>
+                                </div>
                             </div>
-                            <div class="col-sm-9">
-                                <p id="documentos" class="text-muted mb-0"><?php echo $datos['t_documento'] . ': ' . $datos['n_documento'] ?></p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Nombres</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p id="nombres" class="text-muted mb-0"><?php echo $datos['nombre_p'] . ' ' . $datos['nombre_s'] ?></p>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Nombres</p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Apellidos</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p id="apellidos" class="text-muted mb-0"><?php echo $datos['apellido_p'] . ' ' . $datos['apellido_s'] ?></p>
+                                </div>
                             </div>
-                            <div class="col-sm-9">
-                                <p id="nombres" class="text-muted mb-0"><?php echo $datos['nombre_p'] . ' ' . $datos['nombre_s'] ?></p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email Principal</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p id="email" class="text-muted mb-0">
+                                        <?php foreach ($emails as $valor) { ?>
+                                            <?php if ($valor['prioridad'] == '6') { ?>
+                                                <?php echo $valor['email']; ?>
+                                            <?php } ?>
+                                        <?php } ?></p>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Apellidos</p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Telefono Principal</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p id="telefono" class="text-muted mb-0"><?php foreach ($telefonos as $valor) { ?>
+                                            <?php if ($valor['id_prioridad'] == '6') { ?>
+                                                <?php echo $valor['numero']; ?>
+                                            <?php } ?>
+                                        <?php } ?></p>
+                                </div>
                             </div>
-                            <div class="col-sm-9">
-                                <p id="apellidos" class="text-muted mb-0"><?php echo $datos['apellido_p'] . ' ' . $datos['apellido_s'] ?></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Email Principal</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p id="email" class="text-muted mb-0">
-                                    <?php foreach ($emails as $valor) { ?>
-                                        <?php if ($valor['prioridad'] == '6') { ?>
-                                            <?php echo $valor['email']; ?>
-                                        <?php } ?>
-                                    <?php } ?></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Telefono Principal</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p id="telefono" class="text-muted mb-0"><?php foreach ($telefonos as $valor) { ?>
-                                        <?php if ($valor['id_prioridad'] == '6') { ?>
-                                            <?php echo $valor['numero']; ?>
-                                        <?php } ?>
-                                    <?php } ?></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Direccion</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p id="direccion" class="text-muted mb-0"><?php echo $datos['direccion'] ?></p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Direccion</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p id="direccion" class="text-muted mb-0"><?php echo $datos['direccion'] ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </div>
 <form method="POST" action="<?php echo base_url('/usuarios/actualizarContraseña'); ?>" autocomplete="off" class="needs-validation" id="CambiarContraseña" novalidate id="agregrar_usuario">
     <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -952,7 +954,7 @@
 
     $('#CambiarContraseña').on('submit', function(e) {
         e.preventDefault();
-        data = {    
+        data = {
             contraseña: $('#contraseña').val(),
             nueva_contraseña: $('#nueva_contraseña').val(),
         };
@@ -966,61 +968,75 @@
                 id: <?php echo $datos['id_usuario'] ?>
             },
 
-    }).done(function(response){
-        console.log(response);
-        if(response == 1){
-            let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+        }).done(function(response) {
+            console.log(response);
+            if (response == 1) {
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
 
-            Toast.fire({
-                icon: 'success',
-                title: 'La contraseña ha sido actualizada!'
-            })
-        }if(response == true){
-            let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+                Toast.fire({
+                    icon: 'success',
+                    title: 'La contraseña ha sido actualizada!'
+                })
+            }
+            if (response == true) {
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
 
-            Toast.fire({
-                icon: 'error',
-                title: 'el campo no debe ser vacio!'
-            })
-        }else{
-            let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+                Toast.fire({
+                    icon: 'error',
+                    title: 'el campo no debe ser vacio!'
+                })
+            } else {
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
 
-            Toast.fire({
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'el campo no debe ser vacio!'
+                })
+            }
+        })
+    });
+
+
+    $(document).ready(function() {
+
+        let accion = $('#accion').val()
+        console.log(accion);
+        if (accion == '1') {
+            Swal.fire({
                 icon: 'warning',
-                title: 'el campo no debe ser vacio!'
+                title: 'Acción Requerida',
+                text: 'Su contraseña fue restablecida, por favor cambiela antes de continuar'
             })
         }
-    })
-});
-
+    });
 </script>

@@ -23,4 +23,22 @@ class Principal extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/inicio/inicio', $data);
     }
+    public function graficaUsuarios()
+    {
+        $returnData = array();
+        $usuario = $this->usuario->obtenerUsuariosChart();
+        if (!empty($usuario)) {
+            array_push($returnData, $usuario);
+        }
+        echo json_encode($returnData);
+    }
+    public function graficaProfesores()
+    {
+        $returnData = array();
+        $usuario = $this->usuario->obtenerPChart();
+        if (!empty($usuario)) {
+            array_push($returnData, $usuario);
+        }
+        echo json_encode($returnData);
+    }
 }

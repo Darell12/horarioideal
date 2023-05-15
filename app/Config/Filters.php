@@ -21,7 +21,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'Session' => \App\Filters\SessionFilter::class
+        'Session' => \App\Filters\SessionFilter::class,
+        'Accion' => \App\Filters\AccionRequeridaFilter::class
     ];
 
     /**
@@ -63,6 +64,41 @@ class Filters extends BaseConfig
      */
     public array $filters = [
         'Session' => [
+            'before' => [
+                "/principal",
+                "/",
+                "/perfil/(:num)",
+                "/perfil",
+                '/ver_roles',
+                '/ver_asignaturas', 
+                '/ver_acciones', 
+                '/ver_aulas',
+                '/ver_franjas',
+                '/ver_grados',
+                '/ver_permisos',
+                '/ver_horarios',
+                '/ver_detalle',
+                '/ver_estudiantes',
+                '/ver_usuarios',
+                '/eliminados_roles',
+                '/eliminados_asignaturas',
+                '/eliminados_acciones',
+                '/eliminados_aulas',
+                '/eliminados_franjas',
+                '/eliminados_grados', 
+                '/eliminados_permisos', 
+                '/eliminados_horarios_enc', 
+                '/roles_insertar', 
+                '/asignaturas_insertar', 
+                '/acciones_insertar', 
+                '/franjas_insertar', 
+                '/aulas_insertar', 
+                '/permisos_insertar', 
+                '/grados_insertar', 
+                '/horario_enc_insertar', 
+            ],
+        ],
+        'Accion' => [
             'before' => [
                 "/principal",
                 "/",

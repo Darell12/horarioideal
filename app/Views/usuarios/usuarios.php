@@ -472,7 +472,7 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return `<div class="btn-group">
+                    return `<div class="btn-group text-center">
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_usuario} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>

@@ -1,15 +1,16 @@
-<div class="container bg-white mt-5 shadow rounded-4">
-  <div>
-    <h1 class="titulo_Vista text-center">
-      <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
-    </h1>
-  </div>
-  <div style="height: 30px;"></div>
+<div class="container bg-white rounded rounded-3">
+
+
   <div class="d-flex justify-content-between flex-wrap">
+    <div class="border-0">
+    </div>
+
+    <div class="d-flex justify-content-between flex-wrap">
     <a href="<?php echo base_url('/ver_acciones'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
   </div>
 
-  <br>
+
+  </div>
   <div class="table-responsive">
     <table style="text-align: center;" class="table table-bordered table-sm table-hover" id="tablaAcciones" width="100%" cellspacing="0">
       <thead class="thead-light">

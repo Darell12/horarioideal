@@ -35,10 +35,6 @@
                 </div>
                 <div class="modal-body">
                     <h5 class="h5">Asignaturas:</h5>
-                    <div class="col mb-3">
-                        <button class="btn btn-success btn-sm" id="btn_agregar">Agregar</button>
-                        <button class="btn"></button>
-                    </div>
                     <div class="col">
                         <label class="col-form-label">Grados:</label>
                         <select class="form-select form-select" name="grado" id="grado" required>
@@ -68,6 +64,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-success" id="btn_agregar">Agregar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                 </div>
@@ -112,7 +109,11 @@
                                 <select class="form-select form-select" name="id_rol" id="rol" required>
                                     <option value="">Seleccione un Rol</option>
                                     <?php foreach ($roles as $rol) { ?>
-                                        <option value="<?php echo $rol['id_rol']; ?>"><?php echo $rol['nombre']; ?></option>
+                                        <?php if ($rol['id_rol'] == '4') { ?>
+                                            <option value="<?php echo $rol['id_rol']; ?>" selected><?php echo $rol['nombre']; ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $rol['id_rol']; ?>" disabled><?php echo $rol['nombre']; ?></option>
+                                        <?php } ?>
                                     <?php } ?>
                                 </select>
                             </div>

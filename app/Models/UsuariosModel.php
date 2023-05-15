@@ -32,6 +32,26 @@ class UsuariosModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function obtenerUsuariosChart()
+    {
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
+        $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
+        $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
+        $this->where('usuarios.id_rol', '3');
+
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function obtenerPChart()
+    {
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
+        $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
+        $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
+        $this->where('usuarios.id_rol', '4');
+
+        $datos = $this->findAll();
+        return $datos;
+    }
 
     public function obtenerUsuariosEliminados()
     {
@@ -121,7 +141,7 @@ class UsuariosModel extends Model
         $datos = $this->first();
         return $datos;
     }
-    public function filtro($campo ,$valor)
+    public function filtro($campo, $valor)
     {
         $this->select('usuarios.*');
         $this->where($campo, $valor);

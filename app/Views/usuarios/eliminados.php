@@ -13,8 +13,8 @@
 
      <br>
      <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important;">
-          <table id="tablaUsuarios" class="table table-bordered table-sm table-hover" id="tablePaises" width="100%" cellspacing="0">
-               <thead class="table-dark">
+          <table id="tablaUsuarios" class="table align-items-center table-flush">
+               <thead class="thead-light">
                     <tr>
                          <th class="text-center">Id</th>
                          <th class="text-center">Tipo Documento</th>
@@ -180,7 +180,7 @@
                     data: null,
                     render: function(data, type, row) {
                          return `
-                         <div class="btn-group">
+                         <div class="btn-group text-center">
                               <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" title="Resetear Contraseña" data-href="${data.id_usuario}"><i class="bi bi-arrow-clockwise"></i></button>
                          </div>`
                     },
