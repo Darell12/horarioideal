@@ -12,7 +12,7 @@ use App\Models\TelefonosModel;
 
 
 class Usuarios extends BaseController
-{   
+{
     protected $usuario, $eliminados, $contraseña;
     protected $roles, $horario;
     protected $prioridad, $tipotel, $emails;
@@ -28,7 +28,6 @@ class Usuarios extends BaseController
         $this->tipotel = new Parametros_detModel();
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
-
     }
     public function index()
     {
@@ -36,7 +35,7 @@ class Usuarios extends BaseController
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel] ;
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
@@ -53,8 +52,8 @@ class Usuarios extends BaseController
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
         $tipo = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos,'tipo'=>$tipo];
-            
+        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo];
+
         // return json_encode($data);
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
@@ -65,7 +64,7 @@ class Usuarios extends BaseController
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
             $password = $this->request->getVar('contraseña');
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $this->usuario->save([
                 'tipo_documento' => $this->request->getPost('tipo_documento'),
                 'n_documento' => $this->request->getPost('n_documento'),
@@ -98,13 +97,12 @@ class Usuarios extends BaseController
             ]);
             return json_encode($this->request->getPost('id'));
         }
-
     }
-    public function eliminados() 
+    public function eliminados()
     {
-            $data = ['titulo' => 'Administrar Usuarios Eliminados', ];
-            echo view('/principal/sidebar', $data);
-            echo view('/usuarios/eliminados', $data);
+        $data = ['titulo' => 'Administrar Usuarios Eliminados',];
+        echo view('/principal/sidebar', $data);
+        echo view('/usuarios/eliminados', $data);
     }
     public function buscarUsuario($id)
     {
@@ -139,13 +137,27 @@ class Usuarios extends BaseController
         $id = $this->request->getPost('id');
 
         $ContraseñaActu = $this->usuario->ActualizarContra($id);
-        
-        $hashedPasswordNueva = password_hash($contraseña_nueva, PASSWORD_DEFAULT); 
 
-        if(count($ContraseñaActu)>0 && password_verify($contraseña, $ContraseñaActu[0]['contraseña'])){
-           $this->usuario->update($id, ['contraseña' => $hashedPasswordNueva]);
-           $respuesta = true;
-           return $this->response->setJSON($respuesta);
+        $hashedPasswordNueva = password_hash($contraseña_nueva, PASSWORD_DEFAULT);
+
+        if (count($ContraseñaActu) > 0 && password_verify($contraseña, $ContraseñaActu[0]['contraseña'])) {
+            $this->usuario->update($id, [
+                'contraseña' => $hashedPasswordNueva,
+                'accion_requerida' => '0'
+            ]);
+            $session = session();
+            $session->destroy();
+
+            $data = [
+                "usuario" => $ContraseñaActu[0]['nombre_p'] . " " . $ContraseñaActu[0]['apellido_p'],
+                "id" => $ContraseñaActu[0]['id_usuario'],
+                "rol" => $ContraseñaActu[0]['rol'],
+                "accion" => 0,
+                'logged_in' => true,
+            ];
+            $session->set($data);
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
         }
         $respuesta = false;
         return $this->response->setJSON($respuesta);
@@ -163,7 +175,7 @@ class Usuarios extends BaseController
             $respuesta = true;
             return $this->response->setJSON($respuesta);
         }
-        
+
         if ($tp == 2 && $valor == $numeroActu) {
             $respuesta = true;
             return $this->response->setJSON($respuesta);
