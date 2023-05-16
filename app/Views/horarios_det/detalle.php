@@ -247,6 +247,7 @@
             let franjasTotalesOcupadasAula = [];
             let franjasProfesor = [];
             let numeroRepeticiones = 0;
+            // let id_grado = '';
 
             $(document).ready(function() {
                 $.ajax({
@@ -259,15 +260,7 @@
                     }
                 });
 
-
-                $.ajax({
-                    url: "<?php echo base_url('grados/obtenerAsignaturasS/') . $id ?>",
-                    dataType: "json",
-                    success: function(data) {
-                        duracionAsignaturas = data;
-                    }
-                });
-
+                let id_grado
                 $.ajax({
                     url: "<?php echo base_url('horario_enc/buscarhorario_enc/') . $id ?>",
                     type: 'POST',
@@ -276,11 +269,25 @@
                         // console.table(res);
                         inicio = res.hora_inicio;
                         fin = res.hora_fin;
-
+                        id_grado = res.id_grado;
+                        console.log(id_grado)
                         console.log(inicio);
                         console.log(fin);
                     }
                 })
+
+
+                setTimeout(() => {
+
+                    $.ajax({
+                        url: "<?php echo base_url('grados/obtenerAsignaturasS/') ?>" + id_grado,
+                        dataType: "json",
+                        success: function(data) {
+                            duracionAsignaturas = data;
+                        }
+                    });
+
+                }, 1000);
 
             });
 
@@ -407,6 +414,7 @@
                         })
 
                         while (i < numeroRepeticiones) {
+                            let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasSiAsignados[0], res, inicio, fin)
                             i++
                             if (diasNoAsignados.length > 0) {
                                 let dia = diasNoAsignados[0];
@@ -417,18 +425,18 @@
                                     "aula": $('#aula').val(),
                                     "dia": diasNoAsignados[0],
                                     "id_dia": id_dias[diasNoAsignados[0]],
-                                    "inicio": franjasTotales[0].id_parametro_det,
-                                    "hora_inicio": franjasTotales[0].nombre,
-                                    "fin": numeroRepeticiones - i < 0 ? franjasTotales[1].id_parametro_det : franjasTotales[2].id_parametro_det,
-                                    "hora_fin": numeroRepeticiones - i < 0 ? franjasTotales[1].nombre : franjasTotales[2].nombre,
+                                    "inicio": FiltroTotal[0].id_parametro_det,
+                                    "hora_inicio": FiltroTotal[0].nombre,
+                                    "fin": numeroRepeticiones - i < 0 ? FiltroTotal[1].id_parametro_det : FiltroTotal[2].id_parametro_det,
+                                    "hora_fin": numeroRepeticiones - i < 0 ? FiltroTotal[1].nombre : FiltroTotal[2].nombre,
                                     "duracion": numeroRepeticiones - i < 0 ? 1 : 2,
                                     "id_encabezado": <?php echo $id ?>
                                 })
                                 diasNoAsignados.shift()
                                 diasSiAsignados.push(dia)
                             } else {
-                                console.log(numeroRepeticiones - i);
                                 let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasSiAsignados[0], res, inicio, fin)
+                                console.log(numeroRepeticiones - i);
                                 data.push({
                                     "asignatura": asignatura,
                                     "profesor": profesor,
@@ -439,9 +447,7 @@
                                         Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
                                     "hora_inicio": (numeroRepeticiones - i < 0) ?
                                         Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
-                                    "fin": (numeroRepeticiones - i < 0) ? LibreTotal
-                                        .find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || +Libres2Horas[0].id_parametro_det + 1)
-                                        ?.id_parametro_det : LibreTotal
+                                    "fin": (numeroRepeticiones - i < 0) ? +Libres1Hora[0]?.id_parametro_det + 1 || +Libres2Horas[0].id_parametro_det + 1 : FiltroTotal
                                         .find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
 
                                     "hora_fin": (numeroRepeticiones - i < 0) ? FiltroTotal
