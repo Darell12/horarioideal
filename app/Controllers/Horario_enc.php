@@ -31,13 +31,21 @@ class Horario_enc extends BaseController
     {
         $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
         $grados = $this->grados->obtenerGrados('A');
+        $horario_enc = $this-> horario_enc -> obtenerHorarios_enc('E');
 
-
-        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados];
+        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados, 'datos' => $horario_enc];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_enc/horarios_enc', $data);
     }
+
+    public function obtenerHorarios_enc()
+    {
+        $estado = $this->request->getPost('estado');
+        $horario_enc = $this-> horario_enc -> obtenerHorarios_enc($estado);
+        echo json_encode($horario_enc);
+    }
+
     public function obtenerfranjas($id)
     {
         $returnData = array();

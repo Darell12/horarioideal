@@ -1,49 +1,27 @@
-<div class="container bg-white mt-5 shadow rounded-4">
-  <div>
+<div class="container bg-white shadow rounded-4">
+  <div class="d-flex justify-content-between flex-wrap">
     <h1 class="titulo_Vista text-center">
-      <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1>
+      <!-- <h1 class="titulo_Vista  text-center"><?php echo $titulo ?></h1> -->
     </h1>
+    <div style="height: 30px;"></div>
+    <div>
+      <a href="<?php echo base_url('/ver_horarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+    </div>
   </div>
-  <div style="height: 30px;"></div>
-  <div>
-    <a href="<?php echo base_url('/ver_horarios_enc'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
-  </div>
-
   <br>
-  <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-    <table class="table table-bordered table-sm table-hover" id="tableRoles" width="100%" cellspacing="0">
-      <thead class="table-dark">
+  <div class="table-responsive">
+    <table style="text-align: center;" class="table align-items-center table-flush" id="tablaHorario_Enc" width="100%" cellspacing="0">
+      <thead class="thead-light">
         <tr>
           <th class="text-center">Id</th>
           <th class="text-center">Grado</th>
           <th class="text-center">Año</th>
           <th class="text-center">Jornada</th>
-          <th class="text-center">Estado</th>
-          <th class="text-center" colspan="2">Acciones</th>
+          <th class="text-center">Acciones</th>
         </tr>
       </thead>
-      <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-        <?php if ($datos == 'vacio') { ?>
-          <tr>
-            <th class="text-center h1" colspan="6">SIN REGISTROS ELIMINADOS</th>
-          </tr>
-        <?php } else { ?>
-          <?php foreach ($datos as $valor) { ?>
-            <tr>
-                 <td class="text-center"><?php echo $valor['id_horarios_enc']; ?></td>
-                        <td class="text-center"><?php echo $valor['id_grado']; ?></td>
-                        <td class="text-center"><?php echo $valor['periodo_año']; ?></td>
-                        <td class="text-center"><?php echo $valor['jornada']; ?></td>
-              <th class="text-center">
-                <?php echo $valor['estado'] = 'A' ? '<span class="text-danger"> Inactivo </span>' : '<span class="text-succes"> Inactivo </span>'; ?>
-              </th>
-              <th class="grid grid text-center" colspan="2">
-                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="<?php echo base_url('/estado_horarios_enc') . '/' . $valor['id_horarios_enc'] . '/' . 'A'; ?>" title="Restaurar"><i class="bi bi-arrow-clockwise"></i></button>
-              </th>
+      <tbody class="table-group-divider">
 
-            </tr>
-          <?php } ?>
-        <?php } ?>
       </tbody>
     </table>
   </div>
@@ -71,8 +49,76 @@
 
 <script>
   $('#modal-confirma').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    $(this).find('.btn-ok').attr('onclick', 'Restaurar(' + $(e.relatedTarget).data('href') + ')');
   });
+
+  function Restaurar(id) {
+
+    $.ajax({
+      type: "POST",
+      url: "<?php echo base_url('/horario_enc/cambiarEstado/'); ?>" + id + '/' + 'A',
+      dataType: "json",
+    }).done(function(data) {
+      $("#modal-confirma").modal("hide");
+      let Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Registro restaurado con exito!'
+      })
+      tablaHorario_Enc.ajax.reload(null, false);
+    })
+  }
+
+  var contador = 0
+  var tablaHorario_Enc = $('#tablaHorario_Enc').DataTable({
+    ajax: {
+      url: '<?= base_url('horario_enc/obtenerHorarios_enc') ?>',
+      method: "POST",
+      data: {
+        estado: 'E'
+      },
+      dataSrc: "",
+    },
+    columns: [{
+        data: null,
+        render: function(data, type, row) {
+          contador = contador + 1
+          return "<b>" + contador + "</b>";
+        },
+      },
+      {
+        data: "grado"
+      },
+      {
+        data: "periodo_año"
+      },
+      {
+        data: "jornada"
+      },
+      {
+        data: null,
+        render: function(data, type, row) {
+          return `<div class="btn-group">
+                              <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" title="Activar Horario" data-href="${data.id_horarios_enc}"><i class="bi bi-arrow-clockwise"></i></button>
+                         </div>`
+        },
+      }
+    ],
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+    }
+  })
 
 
   $('.close').click(function() {

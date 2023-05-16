@@ -130,7 +130,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="container-lecture" style="background-color: white !important;">
+                <div class="container-lecture">
 
                     <section class="section-list">
                         <div class="container-xl">
@@ -167,65 +167,67 @@
                                 </div>
 
                                 <div class="table-schedule-subject">
-                                    <ul class="list-lecture-item">
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Lunes</h4>
-                                            </div>
-                                            <ul id="Lunes">
+                                    <tr>
+                                        <ul class="list-lecture-item">
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Lunes</h4>
+                                                </div>
+                                                <ul id="Lunes">
 
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li> 
+                                        </tr>
 
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Martes</h4>
-                                            </div>
-                                            <ul id="Martes">
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Martes</h4>
+                                                </div>
+                                                <ul id="Martes">
 
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
 
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Miercoles</h4>
-                                            </div>
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Miercoles</h4>
+                                                </div>
 
-                                            <ul id="Miercoles">
+                                                <ul id="Miercoles">
 
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
 
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Jueves</h4>
-                                            </div>
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Jueves</h4>
+                                                </div>
 
-                                            <ul id="Jueves">
+                                                <ul id="Jueves">
 
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
 
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Viernes</h4>
-                                            </div>
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Viernes</h4>
+                                                </div>
 
-                                            <ul id="Viernes">
+                                                <ul id="Viernes">
 
-                                            </ul>
-                                        </li>
+                                                </ul>
+                                            </li>
+<!-- 
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Sabado</h4>
+                                                </div>
 
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Sabado</h4>
-                                            </div>
+                                                <ul id="Sabado">
 
-                                            <ul id="Sabado">
-
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                                </ul>
+                                            </li> -->
+                                        </ul>
                                 </div>
                             </div>
                         </div>
@@ -241,9 +243,6 @@
 </div>
 
 <script>
-
-
-
     function visualizarHorario(id) {
         $(`#Lunes`).html('');
         $(`#Martes`).html('');

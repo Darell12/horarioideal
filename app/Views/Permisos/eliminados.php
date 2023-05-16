@@ -73,7 +73,7 @@
 
       Toast.fire({
         icon: 'success',
-        title: 'Registro restaurar con exito!'
+        title: 'Registro restaurado con exito!'
       })
       tablaPermisos.ajax.reload(null, false);
     })
@@ -105,7 +105,7 @@
       {
         data: null,
         render: function(data, type, row) {
-          return `<div class="btn-group container">
+          return `<div class="btn-group">
                               <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal-confirma" title="Activar permiso" data-href="${data.id_permiso}"><i class="bi bi-arrow-clockwise"></i></button>
                          </div>`
         },
