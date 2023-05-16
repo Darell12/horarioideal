@@ -36,7 +36,8 @@ class AulaModel extends Model
         $this->select('aulas.*,  p.nombre as tipo');
         $this->join('parametro_det as p', 'aulas.tipo = p.id_parametro_det');
         $this->join('asignaturas as a', 'aulas.tipo = a.tipo_requerido');
-        $this->where('a.id_asignatura', $tipo);
+        $this->join('grados_asignatura as g', 'a.id_asignatura = g.id_asignatura');
+        $this->where('g.id_grado_asignatura', $tipo);
         $datos = $this->findAll();
         return $datos;
     }
