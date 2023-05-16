@@ -289,6 +289,7 @@
                                                     <div class="lecture-info">
                                                         <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
                                                         <h6 class="lecture-location">${element.aula}</h6>
+                                                        <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
                                                     </div>
                                                 </a>
                                             </li>`
