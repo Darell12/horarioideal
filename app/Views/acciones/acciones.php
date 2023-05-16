@@ -200,7 +200,7 @@
                 success: function(rs) {
                     console.log(rs)
                     $("#tp").val(2);
-                    $("#id").val(id)
+                    $("#id").val(id)+
                     $('#nombre_accion').val(rs[0]['nombre']);
                     $('#numeroActu').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');

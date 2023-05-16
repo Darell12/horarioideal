@@ -147,15 +147,6 @@ class Usuarios extends BaseController
             ]);
             $session = session();
             $session->destroy();
-
-            $data = [
-                "usuario" => $ContraseñaActu[0]['nombre_p'] . " " . $ContraseñaActu[0]['apellido_p'],
-                "id" => $ContraseñaActu[0]['id_usuario'],
-                "rol" => $ContraseñaActu[0]['rol'],
-                "accion" => 0,
-                'logged_in' => true,
-            ];
-            $session->set($data);
             $respuesta = true;
             return $this->response->setJSON($respuesta);
         }

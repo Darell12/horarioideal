@@ -92,7 +92,10 @@ class UsuariosModel extends Model
     }
     public function resetearContraseña($id, $contraseña)
     {
-        $datos = $this->update($id, ['contraseña' => $contraseña]);
+        $datos = $this->update($id, [
+            'contraseña' => $contraseña,
+            'accion_requerida'=> '1'
+        ]);
         return $datos;
     }
     public function login($nombre)

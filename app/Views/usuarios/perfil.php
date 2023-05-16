@@ -24,12 +24,6 @@
                     <div class="card">
                         <div class="card-bodxcy p-0">
                             <ul class="list-group list-group-flush rounded-3">
-                                <?php if ($datos['rol'] == 'Profesor') { ?>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fas fa-globe fa-lg text-warning"></i>
-                                        <p class="mb-0">Matematicas 9-A (Esto solo aparece si es un profesor)</p>
-                                    </li>
-                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -797,6 +791,117 @@
                         </div>
                         </form>
             `
+        $.validator.addMethod("soloLetras", function(value, element) {
+            return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+        }, "Por favor ingrese solamente letras.");
+
+        $("#formularioPerfil").validate({
+            rules: {
+                tipo_documento: {
+                    required: true,
+                },
+                n_documento: {
+                    required: true,
+                    minlength: 4,
+                    maxlength: 12,
+                    digits: true,
+                    remote: {
+                        url: '<?php echo base_url() ?>usuarios/validar',
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            campo: function() {
+                                return 'n_documento';
+                            },
+                            valor: function() {
+                                return $("#n_documento").val();
+                            },
+                            tp: function() {
+                                return $("#tp").val();
+                            },
+                            nombreActu: function() {
+                                return $("#numeroActu").val();
+                            },
+                        },
+                    }
+                },
+                primer_nombre: {
+                    required: true,
+                    soloLetras: true,
+                },
+                segundo_nombre: {
+                    soloLetras: true,
+                },
+                primer_apellido: {
+                    required: true,
+                    soloLetras: true,
+                },
+                segundo_apellido: {
+                    required: true,
+                    soloLetras: true,
+                },
+                dir: {
+                    required: true,
+                },
+                dir2: {
+                    required: true,
+                },
+                dir3: {
+                    required: true,
+                },
+                dir4: {
+                    required: true,
+                },
+                contraseña: {
+                    required: true,
+                },
+                confirmar_contraseña: {
+                    required: true,
+                    equalTo: "#contraseña"
+                },
+            },
+            messages: {
+                tipo_documento: {
+                    required: "Por favor seleccione una opción",
+                },
+                n_documento: {
+                    required: "El número de documento es requerido",
+                    digits: "Solo ingrese digitos por favor",
+                    minlength: "El número de documento debe tener al menos 4 caracteres",
+                    maxlength: "El número de documento no puede tener más de 12 caracteres",
+                    remote: "Este número de documento ya esta registrado"
+                },
+                primer_nombre: {
+                    required: "Este campo es requerido",
+                },
+                primer_apellido: {
+                    required: "Este campo es requerido",
+                },
+                segundo_apellido: {
+                    required: "Este campo es requerido",
+                },
+                dir: {
+                    required: "Este campo es requerido",
+                },
+                dir2: {
+                    required: "Este campo es requerido",
+                },
+                dir3: {
+                    required: "Este campo es requerido",
+                },
+                dir4: {
+                    required: "Este campo es requerido",
+                },
+                contraseña: {
+                    required: "Este campo es requerido",
+                },
+                confirmar_contraseña: {
+                    required: "Este campo es requerido",
+                    equalTo: "Las contraseñas no coinciden"
+                },
+            }
+        });
+
 
         $('#EditarPerfil').replaceWith(newElement);
         // Código de tu función aquí
@@ -970,24 +1075,6 @@
 
         }).done(function(response) {
             console.log(response);
-            if (response == 1) {
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'La contraseña ha sido actualizada!'
-                })
-            }
             if (response == true) {
                 let Toast = Swal.mixin({
                     toast: true,
@@ -1000,11 +1087,12 @@
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
                 })
-
                 Toast.fire({
-                    icon: 'error',
-                    title: 'el campo no debe ser vacio!'
-                })
+                    icon: 'success',
+                    title: 'La contraseña ha sido actualizada!'
+                }).then(
+                    location.reload()
+                )
             } else {
                 let Toast = Swal.mixin({
                     toast: true,
@@ -1019,13 +1107,12 @@
                 })
 
                 Toast.fire({
-                    icon: 'warning',
-                    title: 'el campo no debe ser vacio!'
+                    icon: 'error',
+                    title: 'Las contraseñas no coinciden!'
                 })
             }
         })
     });
-
 
     $(document).ready(function() {
 
