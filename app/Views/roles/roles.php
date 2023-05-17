@@ -46,6 +46,7 @@
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <input type="text" id="nombreActu" name="nombreActu" hidden>
+                                <input type="text" id="numeroActu" name="numeroActu" hidden>
 
                             </div>
                         </div>
@@ -85,10 +86,6 @@
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
-
-    $.validator.addMethod("soloLetras", function(value, element) {
-        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
-    }, "Por favor ingrese solamente letras.");
 
     function EliminarRegistro(id) {
 
@@ -142,7 +139,10 @@
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group">
-                    <button class="btn btn-outline-primary" onclick="seleccionaRol(${data.id_rol} , 2);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol"><i class="bi bi-pencil"></i></button><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_rol}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
+
+                    <button class="btn btn-outline-primary" onclick="seleccionaRol(${data.id_rol} , 2);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol"><i class="bi bi-pencil"></i></button>
+                    
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_rol}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
                     </div>`
                 },  
             }
@@ -152,6 +152,9 @@
         }
     })
 
+    $.validator.addMethod("soloLetras", function(value, element) {
+        return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
+    }, "Por favor ingrese solamente letras.");
     $("#formulario").validate({
         rules: {
             nombre_rol: {
@@ -171,6 +174,9 @@
                         tp: function() {
                             return $("#tp").val();
                         },
+                        nombreActu: function() {
+                            return $("#numeroActu").val();
+                        },
                     },
                 }
             },
@@ -182,11 +188,6 @@
             },
         }
     });
-
-    $('#formulario').on('submit', function(e) {
-        console.log('activo');
-        e.preventDefault();
-    })
 
     function seleccionaRol(id, tp) {
         if (tp == 2) {
@@ -200,8 +201,10 @@
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#nombre_rol').val(rs[0]['nombre']);
+                    $('#numeroActu').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#RolModal").modal("show");
+                    $('#formulario').validate().resetForm();
                 }
             })
         } else {
@@ -209,6 +212,7 @@
             $('#nombre_rol').val('');
             $("#btn_Guardar").text('Guardar');
             $("#RolModal").modal("show");
+            $('#formulario').validate().resetForm();
         }
     }
 
@@ -251,6 +255,11 @@
         } else {
             console.log('Formulario Invalido');
         }
+    })
+
+    $('#formulario').on('submit', function(e) {
+        console.log('activo');
+        e.preventDefault();
     })
 
     $('.close').click(function() {
