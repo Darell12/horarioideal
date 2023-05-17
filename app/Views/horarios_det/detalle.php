@@ -5,8 +5,10 @@
 
         <div>
             <button type="button" onclick="seleccionaDetalle(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <button onclick="visualizarHorario(<?php echo $id ?>)" class="btn btn-outline-warning" title="Visualizar" data-bs-toggle="modal" data-bs-target="#ModalHorario"> <i class="bi bi-eye"></i> Visualizar</button>
+
             <!-- <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a> -->
-            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            <a href="<?php echo base_url('/ver_horarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
     </div>
     <br>
@@ -22,7 +24,7 @@
                     <th class="text-center">Hora Incio</th>
                     <th class="text-center">Hora Fin</th>
                     <th class="text-center">Duración</th>
-                    <th class="text-center" colspan="3">Acciones</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -30,119 +32,285 @@
             </tbody>
         </table>
     </div>
+</div>
 
-    <!-- <form id="formulario"> -->
-    <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal fade" id="ModalHorario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="tituloModal">Añadir Accion</h1>
+                    <h5 class="modal-title" id="TituloModal">Horario</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <label class="col-form-label">Asignaturas:</label>
-                                <select class="form-select form-select" name="asignatura" id="asignatura" required>
-                                    <option value='' selected>Seleccione un parametro</option>
-                                    <?php foreach ($asignaturas as $asignatura) { ?>
-                                        <option value="<?php echo $asignatura['id_grado_asignatura'] ?>"><?php echo $asignatura['nombre'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label class="col-form-label">Profesor:</label>
-                                <select class="form-select form-select" name="profesor" id="profesor" required>
-                                    <option value="">Seleccione un Jornada</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="container-lecture">
 
-                        <div class="row">
-                            <div class="col">
-                                <label class="col-form-label">Aula:</label>
-                                <select class="form-select form-select" name="aula" id="aula" required>
-                                    <option value="">Seleccione un aula</option>
+                        <section class="section-list">
+                            <div class="container-xl">
+                                <div class="table-schedule">
+                                    <div class="timeline">
+                                        <ul>
+                                            <li><span>06:00</span></li>
+                                            <li><span>06:30</span></li>
+                                            <li><span>07:00</span></li>
+                                            <li><span>07:30</span></li>
+                                            <li><span>08:00</span></li>
+                                            <li><span>08:30</span></li>
+                                            <li><span>09:00</span></li>
+                                            <li><span>09:30</span></li>
+                                            <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                                <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
+                                            </li>
+                                            <li><span>10:30</span></li>
+                                            <li><span>11:00</span></li>
+                                            <li><span>11:30</span></li>
+                                            <li><span>12:00</span></li>
+                                            <li><span>12:30</span></li>
+                                            <li><span>13:00</span></li>
+                                            <li><span>13:30</span></li>
+                                            <li><span>14:00</span></li>
+                                            <li><span>14:30</span></li>
+                                            <li><span>15:00</span></li>
+                                            <li><span>15:30</span></li>
+                                            <li><span>16:00</span></li>
+                                            <li><span>16:30</span></li>
+                                            <li><span>17:00</span></li>
+                                            <li><span>17:30</span></li>
+                                            <li><span>18:00</span></li>
+                                            <li><span>18:30</span></li>
+                                        </ul>
+                                    </div>
 
-                                </select>
+                                    <div class="table-schedule-subject">
+                                        <tr>
+                                            <ul class="list-lecture-item">
+                                                <li class="timeline-vertical">
+                                                    <div class="top-info">
+                                                        <h4 class="day">Lunes</h4>
+                                                    </div>
+                                                    <ul id="Lunes">
+
+                                                    </ul>
+                                                </li>
+                                        </tr>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Martes</h4>
+                                            </div>
+                                            <ul id="Martes">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Miercoles</h4>
+                                            </div>
+
+                                            <ul id="Miercoles">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Jueves</h4>
+                                            </div>
+
+                                            <ul id="Jueves">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Viernes</h4>
+                                            </div>
+
+                                            <ul id="Viernes">
+
+                                            </ul>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <input type="text" id="tp" name="tp" hidden>
-                            <input type="text" id="id" name="id" hidden>
-                        </div>
+                        </section>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-primary" id="btn_Guardar">verificar</button>
-                        <button type="button" class="btn btn-outline-primary" id="btn_enviar">enviar</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
-        <!-- </form> -->
+    </div>
 
-        <script>
-            let inicio = ''
-            let fin = ''
+<!-- <form id="formulario"> -->
+<div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="tituloModal">Añadir Accion</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label class="col-form-label">Asignaturas:</label>
+                            <select class="form-select form-select" name="asignatura" id="asignatura" required>
+                                <option value='' selected>Seleccione un parametro</option>
+                                <?php foreach ($asignaturas as $asignatura) { ?>
+                                    <option value="<?php echo $asignatura['id_grado_asignatura'] ?>"><?php echo $asignatura['nombre'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label class="col-form-label">Profesor:</label>
+                            <select class="form-select form-select" name="profesor" id="profesor" required>
+                                <option value="">Seleccione un Jornada</option>
+                            </select>
+                        </div>
+                    </div>
 
-            var contador = 0
-            var tablaDetalle = $('#tablaDetalle').DataTable({
-                ajax: {
-                    url: '<?= base_url('horario_det/buscarDetalle') ?>',
-                    method: "POST",
-                    data: {
-                        id: <?php echo $id ?>,
-                        estado: 'A'
-                    },
-                    dataSrc: "",
+                    <div class="row">
+                        <div class="col">
+                            <label class="col-form-label">Aula:</label>
+                            <select class="form-select form-select" name="aula" id="aula" required>
+                                <option value="">Seleccione un aula</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="tp" name="tp" hidden>
+                        <input type="text" id="id" name="id" hidden>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-outline-primary" id="btn_Guardar">verificar</button>
+                    <button type="button" class="btn btn-outline-primary" id="btn_enviar">enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </form> -->
+
+    <!-- horario -->
+
+
+
+    <script>
+        function visualizarHorario(id) {
+            $(`#Lunes`).html('');
+            $(`#Martes`).html('');
+            $(`#Miercoles`).html('');
+            $(`#Jueves`).html('');
+            $(`#Viernes`).html('');
+            $(`#Sabado`).html('');
+            $(`#ModalHorario`).modal('show');
+
+
+            let franjasTotales
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    franjasTotales = data;
+                    console.log('franjasTotales');
+                    console.log(franjasTotales);
+                }
+            });
+
+            dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
+            $.ajax({
+                type: "POST",
+                url: dataURL,
+                data: {
+                    id: id
                 },
-                columns: [{
-                        data: null,
-                        render: function(data, type, row) {
-                            contador = contador + 1
-                            return "<b>" + contador + "</b>";
-                        },
+                dataType: "json",
+                success: function(rs) {
+                    console.log(rs);
+                    contenido = ''
+                    $.ajax({
+                        url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                        dataType: "json",
+                        success: function(data) {
+                            franjasTotales = data;
+                            rs.forEach(element => {
+                                let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+                                contenido = `<li class="lecture-time ${franjasTotales
+                                                .find(objeto => objeto.id_parametro_det == element.hora_inicio)
+                                                ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
+                                                <a href="#">
+                                                    <div class="lecture-info">
+                                                        <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
+                                                        <h6 class="lecture-location">${element.aula}</h6>
+                                                        <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
+                                                    </div>
+                                                </a>
+                                            </li>`
+                                $(`#${element.dia}`).append(contenido)
+                            });
+                        }
+                    });
+                }
+            })
+        }
+
+        let inicio = ''
+        let fin = ''
+
+        var contador = 0
+        var tablaDetalle = $('#tablaDetalle').DataTable({
+            ajax: {
+                url: '<?= base_url('horario_det/buscarDetalle') ?>',
+                method: "POST",
+                data: {
+                    id: <?php echo $id ?>,
+                    estado: 'A'
+                },
+                dataSrc: "",
+            },
+            columns: [{
+                    data: null,
+                    render: function(data, type, row) {
+                        contador = contador + 1
+                        return "<b>" + contador + "</b>";
                     },
-                    {
-                        data: "profesor"
+                },
+                {
+                    data: "profesor"
+                },
+                {
+                    data: "asignatura"
+                },
+                {
+                    data: "aula"
+                },
+                {
+                    data: "dia"
+                },
+                {
+                    data: "inicio"
+                },
+                {
+                    data: "fin"
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return `${data.duracion} Hrs`
                     },
-                    {
-                        data: "asignatura"
-                    },
-                    {
-                        data: "aula"
-                    },
-                    {
-                        data: "dia"
-                    },
-                    {
-                        data: "inicio"
-                    },
-                    {
-                        data: "fin"
-                    },
-                    {
-                        data: null,
-                        render: function(data, type, row) {
-                            return `${data.duracion} Hrs`
-                        },
-                    },
-                    {
-                        data: null,
-                        render: function(data, type, row) {
-                            return `<div class="btn-group container">
-                                <a href="<?php echo base_url('ver_detalle/') ?>${data.id_horarios_enc}" class="nav-link">
-                                    <button class="btn btn-outline-warning" title="Visualizar">
-                                    <i class="bi bi-eye"></i>
-                                    </button>
-                                </a>
-                                <a>
-                                <button class="btn btn-outline-primary" onclick="seleccionaDetalle(${data.id_horarios_enc} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                </a>
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return `<div class="btn-group container">
                                 <a>
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
@@ -150,413 +318,401 @@
                                 </a>
                                 
                             </div>`
-                        },
-                    }
-                ],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                    },
                 }
-            })
-
-            function seleccionaDetalle(id, tp) {
-                if (tp == 2) {
-                    dataURL = "<?php echo base_url('/horario_enc/buscarhorario_enc'); ?>" + "/" + id;
-                    $.ajax({
-                        type: "POST",
-                        url: dataURL,
-                        dataType: "json",
-                        success: function(rs) {
-                            console.log(rs)
-                            $("#tp").val(2);
-                            $("#id").val(id)
-                            $('#id_grado').val(rs[0]['id_grado']);
-                            $('#periodo_año').val(rs[0]['periodo_año']);
-                            $('#jornada').val(rs[0]['jornada']);
-                            $('#inicio').val(rs[0]['inicio']);
-                            $('#fin').val(rs[0]['fin']);
-                            $('#duracion_hora').val(rs[0]['duracion_hora']);
-                            $("#btn_Guardar").text('Actualizar');
-                            $("#Horarios_encModal").modal("show");
-                        }
-                    })
-                } else {
-                    $("#tp").val(1);
-                    $('#nombre_accion').val('');
-                    $("#btn_Guardar").text('Generar');
-                    $("#Horarios_encModal").modal("show");
-                }
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             }
+        })
 
-            $('#asignatura').on('change', function(e) {
-                console.log('evento grado');
-                let asignatura = $('#asignatura').val();
-                let pertenece = '';
+        function seleccionaDetalle(id, tp) {
+            if (tp == 2) {
+                dataURL = "<?php echo base_url('/horario_enc/buscarhorario_enc'); ?>" + "/" + id;
                 $.ajax({
-                    url: "<?php echo base_url('profesores/obtenerProfesoresAsignatura/'); ?>" + asignatura,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(res) {
-                        console.log(res);
-                        $('#profesor').empty();
-
-                        var cadena
-                        if (!res.length > 0) {
-                            cadena = `<option selected value="" readonly>No hay un profesor asignado</option>`
-                        } else {
-                            cadena = `<option selected value="">Seleccione una opcion</option>`
-                            res.forEach(element => {
-                                cadena += `<option value='${element.id_usuario}'>${element.profesor}</option>`
-                            });
-                        }
-                        $('#profesor').html(cadena)
-                    }
-                })
-                $.ajax({
-                    url: "<?php echo base_url('aulas/obtenerAulasxTipo/'); ?>" + asignatura,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(res) {
-                        console.log(res);
-                        $('#aula').empty();
-
-                        var cadena
-                        if (!res.length > 0) {
-                            cadena = `<option selected value="" readonly>No hay aulas asignadas</option>`
-                        } else {
-                            cadena = `<option selected value="">Seleccione una opcion</option>`
-                            res.forEach(element => {
-                                cadena += `<option value='${element.id_aula}'>${element.nombre}</option>`
-                            });
-                        }
-                        $('#aula').html(cadena)
-                    }
-                })
-            })
-
-            $('#formulario').on('submit', function(e) {
-                console.log('activo');
-                e.preventDefault();
-            })
-
-
-
-            let duracionAsignaturas = [];
-            let franjasTotales = [];
-            let franjasTotalesOcupadas = [];
-            let franjasTotalesOcupadasLunes = [];
-            let franjasTotalesOcupadasAula = [];
-            let franjasProfesor = [];
-            let numeroRepeticiones = 0;
-            // let id_grado = '';
-
-            $(document).ready(function() {
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                    type: "POST",
+                    url: dataURL,
                     dataType: "json",
-                    success: function(data) {
-                        franjasTotales = data;
-                        console.log('franjasTotales');
-                        console.log(franjasTotales);
-                    }
-                });
-
-                let id_grado
-                $.ajax({
-                    url: "<?php echo base_url('horario_enc/buscarhorario_enc/') . $id ?>",
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(res) {
-                        // console.table(res);
-                        inicio = res.hora_inicio;
-                        fin = res.hora_fin;
-                        id_grado = res.id_grado;
-                        console.log(id_grado)
-                        console.log(inicio);
-                        console.log(fin);
+                    success: function(rs) {
+                        console.log(rs)
+                        $("#tp").val(2);
+                        $("#id").val(id)
+                        $('#id_grado').val(rs[0]['id_grado']);
+                        $('#periodo_año').val(rs[0]['periodo_año']);
+                        $('#jornada').val(rs[0]['jornada']);
+                        $('#inicio').val(rs[0]['inicio']);
+                        $('#fin').val(rs[0]['fin']);
+                        $('#duracion_hora').val(rs[0]['duracion_hora']);
+                        $("#btn_Guardar").text('Actualizar');
+                        $("#Horarios_encModal").modal("show");
                     }
                 })
+            } else {
+                $("#tp").val(1);
+                $('#nombre_accion').val('');
+                $("#btn_Guardar").text('Generar');
+                $("#Horarios_encModal").modal("show");
+            }
+        }
+
+        $('#asignatura').on('change', function(e) {
+            console.log('evento grado');
+            let asignatura = $('#asignatura').val();
+            let pertenece = '';
+            $.ajax({
+                url: "<?php echo base_url('profesores/obtenerProfesoresAsignatura/'); ?>" + asignatura,
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    console.log(res);
+                    $('#profesor').empty();
+
+                    var cadena
+                    if (!res.length > 0) {
+                        cadena = `<option selected value="" readonly>No hay un profesor asignado</option>`
+                    } else {
+                        cadena = `<option selected value="">Seleccione una opcion</option>`
+                        res.forEach(element => {
+                            cadena += `<option value='${element.id_usuario}'>${element.profesor}</option>`
+                        });
+                    }
+                    $('#profesor').html(cadena)
+                }
+            })
+            $.ajax({
+                url: "<?php echo base_url('aulas/obtenerAulasxTipo/'); ?>" + asignatura,
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    console.log(res);
+                    $('#aula').empty();
+
+                    var cadena
+                    if (!res.length > 0) {
+                        cadena = `<option selected value="" readonly>No hay aulas asignadas</option>`
+                    } else {
+                        cadena = `<option selected value="">Seleccione una opcion</option>`
+                        res.forEach(element => {
+                            cadena += `<option value='${element.id_aula}'>${element.nombre}</option>`
+                        });
+                    }
+                    $('#aula').html(cadena)
+                }
+            })
+        })
+
+        $('#formulario').on('submit', function(e) {
+            console.log('activo');
+            e.preventDefault();
+        })
 
 
-                setTimeout(() => {
 
-                    $.ajax({
-                        url: "<?php echo base_url('grados/obtenerAsignaturasS/') ?>" + id_grado,
-                        dataType: "json",
-                        success: function(data) {
-                            duracionAsignaturas = data;
-                        }
-                    });
+        let duracionAsignaturas = [];
+        let franjasTotales = [];
+        let franjasTotalesOcupadas = [];
+        let franjasTotalesOcupadasLunes = [];
+        let franjasTotalesOcupadasAula = [];
+        let franjasProfesor = [];
+        let numeroRepeticiones = 0;
+        // let id_grado = '';
 
-                }, 1000);
-
+        $(document).ready(function() {
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    franjasTotales = data;
+                    console.log('franjasTotales');
+                    console.log(franjasTotales);
+                }
             });
 
-            function dividirArray(array, horaInicio, horaFin) {
-                let arrayRango = [];
-                let array1 = [];
-                let array2 = [];
-
-                console.log(array);
-                console.log(horaInicio);
-                console.log(horaFin);
-
-                //DEFINO INICIO Y FIN DE LA JORNDADA
-                const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
-                const fechaFin = new Date(`2000-01-01T${horaFin}`);
-
-                for (let i = 0; i < array.length; i++) {
-                    const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
-
-                    if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
-                        arrayRango.push(array[i]);
-                    }
+            let id_grado
+            $.ajax({
+                url: "<?php echo base_url('horario_enc/buscarhorario_enc/') . $id ?>",
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    // console.table(res);
+                    inicio = res.hora_inicio;
+                    fin = res.hora_fin;
+                    id_grado = res.id_grado;
+                    console.log(id_grado)
+                    console.log(inicio);
+                    console.log(fin);
                 }
-                //DIVIDO EN 2 ARRAYS 
-                for (let i = 0; i < arrayRango.length; i++) {
-                    const idActual = parseInt(arrayRango[i].id_parametro_det);
-                    const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
-
-                    if (idSiguiente - idActual === 2) {
-                        array1.push(arrayRango[i]);
-                    } else {
-                        array2.push(arrayRango[i]);
-                    }
-                }
-                array1 = array1.filter(franja => franja.id_parametro_det !== '50');
-                array1 = array1.filter(franja => franja.id_parametro_det !== '49');
-                array1 = array1.filter(franja => franja.id_parametro_det !== '53');
-                array2 = array2.filter(franja => franja.id_parametro_det !== '50');
-                array2 = array2.filter(franja => franja.id_parametro_det !== '49');
-                array2 = array2.filter(franja => franja.id_parametro_det !== '53');
-                arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '50');
-                arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '49');
-                arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '53');
-                return [array1, array2, arrayRango];
-            }
+            })
 
 
+            setTimeout(() => {
 
-            let data = [];
-            let duracion = ''
-            $('#btn_Guardar').on('click', function() {
-                let i = 0;
-
-                const dias = {
-                    "8": 'Lunes',
-                    "9": 'Martes',
-                    "10": 'Miercoles',
-                    "11": 'Jueves',
-                    "12": 'Viernes',
-                    "13": 'Sabado',
-                }
-                const id_dias = {
-                    'Lunes': '8',
-                    'Martes': '9',
-                    'Miercoles': '10',
-                    'Jueves': '11',
-                    'Viernes': '12',
-                    'Sabado': '13',
-                }
-                const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
-
-                let asignatura = $('#asignatura').val();
-                let profesor = $('#profesor').val();
-
-                duracionAsignaturas.forEach(element => {
-                    if (element.id_grado_asignatura == asignatura) {
-                        numeroRepeticiones = element.horas_semanales / 2;
-                        // console.log(numeroRepeticiones)
+                $.ajax({
+                    url: "<?php echo base_url('grados/obtenerAsignaturasS/') ?>" + id_grado,
+                    dataType: "json",
+                    success: function(data) {
+                        duracionAsignaturas = data;
                     }
                 });
 
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(res) {
-                        franjasProfesor = res
-                    }
-                })
+            }, 1000);
 
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/buscarDetalles/') ?>",
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(res) {
-                        franjasTotalesOcupadas = res
-                        // console.log('franjas totales ocupadas');
-                        // console.log(franjasTotalesOcupadas);
-                    }
-                })
+        });
 
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/buscarDetalleAula/') ?>" + $('#aula').val(),
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(res) {
-                        franjasTotalesOcupadasAula = res
-                    }
-                })
+        function dividirArray(array, horaInicio, horaFin) {
+            console.log('funcion arrata')
+            let arrayRango = [];
+            let array1 = [];
+            let array2 = [];
 
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/obtenerDetalles/')  . $id  ?>",
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(res) {
+            // array = arrayRango.filter(franja => franja.id_parametro_det !== '50');
 
-                        const diasSiAsignados = [...new Set(res.map(element => element.dia))];
+            //DEFINO INICIO Y FIN DE LA JORNDADA
+            const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
+            const fechaFin = new Date(`2000-01-01T${horaFin}`);
 
-                        let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+            for (let i = 0; i < array.length; i++) {
+                const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
 
-                        Swal.fire({
-                            icon: 'info',
-                            title: 'Cargando...',
-                            text: 'Estamos buscando la mejor ubicación...',
-                            footer: '',
-                            timer: 2000,
-                        })
+                if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
+                    arrayRango.push(array[i]);
+                }
+            }
+            arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '50');
+            //DIVIDO EN 2 ARRAYS 
+            for (let i = 0; i < arrayRango.length; i++) {
+                const idActual = parseInt(arrayRango[i].id_parametro_det);
+                const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
+                console.log(idSiguiente - idActual)
+                if (idSiguiente - idActual >= 2) {
+                    array1.push(arrayRango[i]);
+                } else {
+                    array2.push(arrayRango[i]);
+                }
+            }
+            array1 = array1.filter(franja => franja.id_parametro_det !== '49');
+            array1 = array1.filter(franja => franja.id_parametro_det !== '53');
+            array2 = array2.filter(franja => franja.id_parametro_det !== '49');
+            array2 = array2.filter(franja => franja.id_parametro_det !== '53');
+            arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '49');
+            arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '53');
+            console.log(array1)
+            console.log(array2)
+            console.log(arrayRango)
+            return [array1, array2, arrayRango];
+        }
 
-                        while (i < numeroRepeticiones) {
-                            try {
-                                let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasNoAsignados[0], res, inicio, fin);
+
+
+        const dias = {
+            "8": 'Lunes',
+            "9": 'Martes',
+            "10": 'Miercoles',
+            "11": 'Jueves',
+            "12": 'Viernes',
+        }
+        const id_dias = {
+            'Lunes': '8',
+            'Martes': '9',
+            'Miercoles': '10',
+            'Jueves': '11',
+            'Viernes': '12'
+        }
+        let data = [];
+        let duracion = ''
+        $('#btn_Guardar').on('click', function() {
+            let i = 0;
+
+            const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+
+            let asignatura = $('#asignatura').val();
+            let profesor = $('#profesor').val();
+
+            duracionAsignaturas.forEach(element => {
+                if (element.id_grado_asignatura == asignatura) {
+                    numeroRepeticiones = element.horas_semanales / 2;
+                    // console.log(numeroRepeticiones)
+                }
+            });
+
+            $.ajax({
+                url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    franjasProfesor = res
+                }
+            })
+
+            $.ajax({
+                url: "<?php echo base_url('horario_det/buscarDetalles/') ?>",
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    franjasTotalesOcupadas = res
+                    // console.log('franjas totales ocupadas');
+                    // console.log(franjasTotalesOcupadas);
+                }
+            })
+
+            $.ajax({
+                url: "<?php echo base_url('horario_det/buscarDetalleAula/') ?>" + $('#aula').val(),
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    franjasTotalesOcupadasAula = res
+                }
+            })
+
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerDetalles/')  . $id  ?>",
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+
+                    const diasSiAsignados = [...new Set(res.map(element => element.dia))];
+
+                    let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Cargando...',
+                        text: 'Estamos buscando la mejor ubicación...',
+                        footer: '',
+                        timer: 2000,
+                    })
+
+                    // while (i < numeroRepeticiones) {
+                    //     console.log('diasID')
+                    //     console.log(id_dias[diasSemana])
+                    //     i++;
+                    //     let [filtro] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
+                    //     diasSemana.shift();
+
+                    // }
+
+                    while (i < numeroRepeticiones) {
+                        try {
+                            if (diasNoAsignados.length > 0) {
+                                let dia = diasNoAsignados[0];
+                                data.push({
+                                    "asignatura": asignatura,
+                                    "profesor": profesor,
+                                    "aula": $('#aula').val(),
+                                    "dia": dia,
+                                    "id_dia": id_dias[dia],
+                                    "inicio": franjasTotales[0].id_parametro_det,
+                                    "hora_inicio": franjasTotales[0].nombre,
+                                    "fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].id_parametro_det : franjasTotales[2].id_parametro_det,
+                                    "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].nombre : franjasTotales[2].nombre,
+                                    "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
+                                    "id_encabezado": <?php echo $id ?>
+                                });
+                                diasNoAsignados.shift();
+                                diasSiAsignados.push(dia);
                                 i++;
-
-                                if (diasNoAsignados.length > 0) {
-                                    let dia = diasNoAsignados[0];
+                            } else {
+                                let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
+                                let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
+                                let dia = diasSemana[0];
+                                diasSemana.shift();
+                                if (Libres2Horas.length > 0) {
+                                    i++;
+                                }
+                                console.log((numeroRepeticiones - i < 0))
+                                console.log(LibreTotal)
+                                if (diasSemana.length > 0) {
                                     data.push({
                                         "asignatura": asignatura,
                                         "profesor": profesor,
                                         "aula": $('#aula').val(),
                                         "dia": dia,
                                         "id_dia": id_dias[dia],
-                                        "inicio": franjasTotales[0].id_parametro_det,
-                                        "hora_inicio": franjasTotales[0].nombre,
-                                        "fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].id_parametro_det : franjasTotales[2].id_parametro_det,
-                                        "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].nombre : franjasTotales[2].nombre,
+                                        "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
+                                        "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
+                                        "fin": (numeroRepeticiones - i < 0) ? FiltroTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+                                        "hora_fin": (numeroRepeticiones - i < 0) ? FiltroTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.nombre || FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
                                         "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
                                         "id_encabezado": <?php echo $id ?>
                                     });
-                                    diasNoAsignados.shift();
-                                    diasSiAsignados.push(dia);
+                                    console.log(data)
                                 } else {
-                                    let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasSemana[0], res, inicio, fin);
-                                    let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
-
-                                    if (diasSiAsignados.length > 0) {
-                                        let dia = diasSiAsignados[0];
-                                        data.push({
-                                            "asignatura": asignatura,
-                                            "profesor": profesor,
-                                            "aula": $('#aula').val(),
-                                            "dia": dia,
-                                            "id_dia": id_dias[dia],
-                                            "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
-                                            "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
-                                            "fin": (numeroRepeticiones - i < 0) ? franja1Hora[0]?.id_parametro_det || Libres2Horas[0].id_parametro_det : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
-                                            "hora_fin": (numeroRepeticiones - i < 0) ? franja1Hora[0]?.nombre || Libres2Horas[0].id_parametro_det : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
-                                            "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
-                                            "id_encabezado": <?php echo $id ?>
-                                        });
-                                        diasSiAsignados.shift();
-                                    } else {
-                                        throw new Error("No hay más días disponibles para asignar.");
-                                    }
+                                    throw new Error("No hay más días disponibles para asignar.");
                                 }
-                            } catch (error) {
-                                console.error("Ocurrió un error:", error);
                             }
+                        } catch (error) {
+                            console.error("Ocurrió un error:", error);
                         }
-                        console.table(data)
+
                     }
-                })
+                    console.table(data)
+                }
             })
+        })
 
-            $('#btn_enviar').on('click', function() {
+        $('#btn_enviar').on('click', function() {
 
-                data.forEach(element => {
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url('horario_det/insertar/') ?>" + element.asignatura + '/' + element.aula + '/' + element.id_dia + '/' + element.inicio + '/' + element.fin + '/' + element.id_encabezado + '/' + element.profesor + '/' + element.duracion,
-                        dataType: "json",
-                    }).done(function(data) {
-                        // $('#RolModal').modal('hide');
-                        let Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                    });
+            data.forEach(element => {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('horario_det/insertar/') ?>" + element.asignatura + '/' + element.aula + '/' + element.id_dia + '/' + element.inicio + '/' + element.fin + '/' + element.id_encabezado + '/' + element.profesor + '/' + element.duracion,
+                    dataType: "json",
+                }).done(function(data) {
+                    // $('#RolModal').modal('hide');
+                    let Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                });
 
 
-                })
-            });
+            })
+        });
 
-            // function FiltroGeneral() {
-            //     let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
-            //     console.log(diasNoAsignados);
-            //     let LibreProfe = franjasTotales.filter(franja => !franjasProfesor.some(element => element.hora_inicio == franja.id_parametro_det));
-            //     console.log(LibreProfe);
 
-            //     let LibreAula = LibreProfe.filter(franja => !franjasTotalesOcupadasAula.some(element => element.hora_inicio == franja.id_parametro_det));
-            //     console.log(LibreAula);
+        function filtroPorDia(dia, res, inicio, fin, aula) {
+            console.log(dia)
+            // console.log(res)
+            let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('primerFiltro')
+            // console.table(primerFiltro);
+            let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('segundoFiltro')
+            // console.table(segundoFiltro);
 
-            //     let LibreGeneral = LibreAula.filter(franja => !franjasTotalesOcupadas.some(element => element.hora_inicio == franja.id_parametro_det));
-            //     console.log(LibreGeneral);
+            let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('tercerFiltro')
+            // console.table(tercerFiltro);
 
-            //     let LibreGrado = LibreGeneral.filter(franja => !res.some(element => element.hora_inicio == franja.id_parametro_det));
+            let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('cuartoFiltro')
+            // console.table(cuartoFiltro);
 
-            //     console.log('FiltroTotal:');
-            //     console.log(LibreGrado);
+            // return [cuartoFiltro];
 
-            //     const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(LibreGrado, inicio, fin);
+            let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+            console.log('sextoFiltro:');
+            // console.log(sextoFiltro);
 
-            //     // console.log("Array 1 (franjas con una hora faltante en su sucesión):");
-            //     // console.log(Libres1Hora);
+            const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
 
-            //     // console.log("Array 2 (franjas que siguen su sucesión):");
-            //     // console.log(Libres2Horas);
+            console.log("Array 1 (franjas con una hora faltante en su sucesión):");
+            console.log(Libres1Hora);
 
-            //     // console.log("Array de franjas dentro del rango:");
-            //     // console.log(arrayRango);
-            // }
+            console.log("Array 2 (franjas que siguen su sucesión):");
+            console.log(Libres2Horas);
 
-            function filtroPorDia(dia, res, inicio, fin) {
-                console.log(dia);
-                let diaFiltro = franjasTotalesOcupadas.filter(element => element.dia == dia);
-                console.log(diaFiltro);
+            console.log("Array de franjas dentro del rango:");
+            console.log(arrayRango);
 
-                let LibreDia = franjasTotales.filter(franja => !franjasTotalesOcupadas.some(element => element.hora_inicio == franja.id_parametro_det && element.dia == dia));
-
-                let LibreProfe = LibreDia.filter(franja => !franjasProfesor.some(element => element.hora_inicio == franja.id_parametro_det));
-
-                let LibreAula = LibreProfe.filter(franja => !franjasTotalesOcupadasAula.some(element => element.hora_inicio == franja.id_parametro_det));
-
-                let LibreGeneral = LibreAula.filter(franja => !franjasTotalesOcupadas.some(element => element.hora_inicio == franja.id_parametro_det));
-
-                let LibreGrado = LibreGeneral.filter(franja => !res.some(element => element.hora_inicio == franja.id_parametro_det && element.dia == dia));
-                console.log(res);
-
-                // console.log('FiltroTotal:');
-                // console.log(LibreGrado);
-
-                const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(LibreGrado, inicio, fin);
-
-                // console.log("Array 1 (franjas con una hora faltante en su sucesión):");
-                // console.log(Libres1Hora);
-
-                // console.log("Array 2 (franjas que siguen su sucesión):");
-                // console.log(Libres2Horas);
-
-                // console.log("Array de franjas dentro del rango:");
-                // console.log(arrayRango);
-
-                return [Libres1Hora, Libres2Horas, arrayRango, LibreGeneral];
-
-            }
-        </script>
+            return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
+        }
+    </script>
