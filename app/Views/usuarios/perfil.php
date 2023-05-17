@@ -144,7 +144,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i> Regresar</button>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="message-text" class="col-form-label">Email:</label>
@@ -172,7 +171,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Prioridad</th>
@@ -222,9 +221,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
-                    <i class="bi bi-file-x"></i> Eliminados</button>
-                <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="message-text" class="col-form-label">Número:</label>
@@ -262,7 +258,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Telefono</th>

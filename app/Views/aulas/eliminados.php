@@ -11,14 +11,12 @@
 
   <br>
   <div class="table-responsive">
-    <table id="tablaAulas" class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
+    <table style="text-align: center;" id="tablaAulas" class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
       <thead class="thead-light">
         <tr>
           <th class="text-center">Id</th>
           <th class="text-center">Nombre</th>
           <th class="text-center">Descripcion</th>
-          <th class="text-center">bloque</th>
-          <th class="text-center">sede</th>
           <th class="text-center">Acciones</th>
         </tr>
       </thead>
@@ -105,12 +103,6 @@
       },
       {
         data: "descripcion"
-      },
-      {
-        data: "bloque"
-      },
-      {
-        data: "sede"
       },
       {
         data: null,

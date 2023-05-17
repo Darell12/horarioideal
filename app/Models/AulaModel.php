@@ -41,14 +41,6 @@ class AulaModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-    public function obtenerAulasEliminados()
-    {
-        $this->select('aulas.*,  p.nombre as tipo');
-        $this->join('parametro_det as p', 'aulas.sede = p.id_parametro_det');
-        $this->where('aulas.estado', 'E');
-        $datos = $this->findAll();
-        return $datos;
-    }
     public function buscarAula($id)
     {
         $this->select('aulas.*');

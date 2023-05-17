@@ -11,22 +11,20 @@ use App\Models\Parametros_detModel;
 class Aulas extends BaseController
 {
     protected $aula, $eliminados;
-    protected $paramSede, $paramTipo;
+    protected $paramTipo;
 
 
     public function __construct()
     {
         $this->aula = new AulaModel();
         $this->eliminados = new AulaModel();
-        $this->paramSede = new Parametros_detModel();
         $this->paramTipo = new Parametros_detModel();
     }
     public function index()
     {
         $aula = $this->aula->obtenerAulas('A');
-        $paramSede = $this->paramSede->ObtenerSedes();
         $paramTipo = $this->paramTipo->ObtenerParametro(14);
-        $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'sedes' => $paramSede, 'tipos' => $paramTipo];
+        $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'tipos' => $paramTipo];
 
         echo view('/principal/sidebar', $data);
         echo view('/aulas/aulas', $data);
@@ -82,11 +80,9 @@ class Aulas extends BaseController
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerAulasEliminados();
-
 
         // Redireccionar a la URL anterior
-        $data = ['titulo' => 'Administrar Aulas Eliminados', 'datos' => $eliminados];
+        $data = ['titulo' => 'Administrar Aulas Eliminados'];
         echo view('/principal/sidebar', $data);
         echo view('/aulas/eliminados', $data);
     }
