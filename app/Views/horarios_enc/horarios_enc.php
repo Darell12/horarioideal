@@ -145,7 +145,10 @@
                                         <li><span>08:30</span></li>
                                         <li><span>09:00</span></li>
                                         <li><span>09:30</span></li>
-                                        <li><span>10:00</span></li>
+                                        <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                            <h3 style="text-align: center;
+margin-top: -15px;"> D E S C A N S O</h3>
+                                        </li>
                                         <li><span>10:30</span></li>
                                         <li><span>11:00</span></li>
                                         <li><span>11:30</span></li>
@@ -176,48 +179,48 @@
                                                 <ul id="Lunes">
 
                                                 </ul>
-                                            </li> 
-                                        </tr>
-
-                                            <li class="timeline-vertical">
-                                                <div class="top-info">
-                                                    <h4 class="day">Martes</h4>
-                                                </div>
-                                                <ul id="Martes">
-
-                                                </ul>
                                             </li>
+                                    </tr>
 
-                                            <li class="timeline-vertical">
-                                                <div class="top-info">
-                                                    <h4 class="day">Miercoles</h4>
-                                                </div>
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Martes</h4>
+                                        </div>
+                                        <ul id="Martes">
 
-                                                <ul id="Miercoles">
+                                        </ul>
+                                    </li>
 
-                                                </ul>
-                                            </li>
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Miercoles</h4>
+                                        </div>
 
-                                            <li class="timeline-vertical">
-                                                <div class="top-info">
-                                                    <h4 class="day">Jueves</h4>
-                                                </div>
+                                        <ul id="Miercoles">
 
-                                                <ul id="Jueves">
+                                        </ul>
+                                    </li>
 
-                                                </ul>
-                                            </li>
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Jueves</h4>
+                                        </div>
 
-                                            <li class="timeline-vertical">
-                                                <div class="top-info">
-                                                    <h4 class="day">Viernes</h4>
-                                                </div>
+                                        <ul id="Jueves">
 
-                                                <ul id="Viernes">
+                                        </ul>
+                                    </li>
 
-                                                </ul>
-                                            </li>
-<!-- 
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Viernes</h4>
+                                        </div>
+
+                                        <ul id="Viernes">
+
+                                        </ul>
+                                    </li>
+                                    <!-- 
                                             <li class="timeline-vertical">
                                                 <div class="top-info">
                                                     <h4 class="day">Sabado</h4>
@@ -227,7 +230,7 @@
 
                                                 </ul>
                                             </li> -->
-                                        </ul>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
