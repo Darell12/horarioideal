@@ -273,9 +273,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
-                    <i class="bi bi-file-x"></i> Eliminados</button>
-                <button class="btn btn-outline-primary" id="btn-regresar-tel"><i class="bi bi-arrow-return-left"></i> Regresar</button>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="message-text" class="col-form-label">Número:</label>
@@ -315,7 +312,6 @@
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
                         <thead class="thead-light">
                             <tr>
-                                <th class="text-center">ID</th>
                                 <th class="text-center">Telefono</th>
                                 <th class="text-center">Periodo</th>
                                 <th class="text-center">Tipo</th>
@@ -769,7 +765,7 @@
 
 
                 let principal = tablaTemporal.find(p => p.prioridad == 6)
-                $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+                $('#email').val(!principal ? tablaTemporal[0]?.email || '' : principal.email);
 
 
                 optionPrincipal = $('#prioridad').find('option[value="6"]')
@@ -901,7 +897,7 @@
                     if (rs.length == 0) {
                         $('#email').val('');
                     } else {
-                        $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+                        $('#email').val(!principal ? tablaTemporal[0]?.email || '' : principal.email);
                     }
                 }
             })
@@ -1002,7 +998,7 @@
                 })
                 tablaTemporal = tablaTemporal.filter(p => p.id_email !== idEmail.text());
 
-                console.log(tablaTemporal[0].id_email)
+                // console.log(tablaTemporal[0].id_email)
                 generarTablaEmail(tablaTemporal);
                 contador = 0
                 return
@@ -1013,18 +1009,18 @@
     function eliminarTelefono(id, tp) {
 
         const fila = $('#utilT' + id);
-        const telefonoEditar = fila.find('td').eq(1)
-        const prioridadTelEditar = fila.find('td').eq(2)
-        const tipoTel = fila.find('td').eq(3)
-        const idTelefono = fila.find('td').eq(4)
-        const tpExistTel = fila.find('td').eq(5)
-        const telefonoActu = fila.find('td').eq(6)
+        const telefonoEditar = fila.find('td').eq(0)
+        const prioridadTelEditar = fila.find('td').eq(1)
+        const tipoTel = fila.find('td').eq(2)
+        const idTelefono = fila.find('td').eq(3)
+        const tpExistTel = fila.find('td').eq(4)
+        const telefonoActu = fila.find('td').eq(5)
         optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
 
 
         if (tp == 1) {
             console.log('tp1')
-            tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefonoEditar !== telefonoEditar.text());
+            tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefono !== telefonoEditar.text());
             generarTablaTel(tablaTemporalTelefonos);
         } else {
             console.log('Ya existe en la base de datos')
@@ -1049,9 +1045,8 @@
                     icon: 'success',
                     title: 'Registro eliminado con exito!'
                 })
-                tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.id_telefono !== id);
-
-                console.log(tablaTemporalTelefonos[0].id_telefono)
+                tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefono !== telefonoEditar.text());
+                // console.log(tablaTemporalTelefonos[0].id_telefono)
                 generarTablaTel(tablaTemporalTelefonos);
                 contador = 0
                 return
@@ -1076,16 +1071,15 @@
             contadortel++
             contenido += `
             <tr id="utilT${contadortel}">
-            <td class="text-center">${contadortel}</td>
             <td class="text-center">${telefono.telefono}</td>
             <td class="text-center">${parametros[telefono.tipo]}</td>
             <td class="text-center">${parametros[telefono.prioridad]}</td>
             <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
             <td hidden class="text-center">${telefono.tp}</td>
-            <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
+            <td hidden class="text-center">${telefono.tp == 2 ? telefono.telefono : ''}</td>
                             <td class="text-center">
                             <button class="btn btn-outline-primary" onclick="editarTelefono( ${contadortel});"><i class="bi bi-pencil"></i></button>
-                            <button class="btn btn-outline-danger" onclick="eliminarTelefono(${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-outline-danger" onclick="eliminarTelefono(${telefono.id_telefono}, ${telefono.tp});"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
         });
@@ -1153,7 +1147,7 @@
                 generarTablaTel(tablaTemporalTelefonos);
 
                 let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
-                $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
+                $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0]?.telefono || '' : principal.telefono);
                 optionPrincipal = $('#prioridad').find('option[value="6"]')
                 $('#prioridad_tel').val(7);
                 prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
