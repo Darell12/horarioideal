@@ -84,11 +84,11 @@ class Roles extends BaseController
         $valor = $this->request->getPost('valor');
         $campo = $this->request->getPost('campo');
         $tp = $this->request->getPost('tp');
-        $nombre_rol = $this->request->getPost('nombre_rol');
+        $nombreActu = $this->request->getPost('nombreActu');
         $numeroActu = $this->request->getPost('numeroActu');
 
         $filtro = $this->rol->filtro($campo, $valor);
-        if ($tp == 2 && $valor == $nombre_rol) {
+        if ($tp == 2 && $valor == $nombreActu) {
             $respuesta = true;
             return $this->response->setJSON($respuesta);
         }

@@ -63,6 +63,7 @@ class RolesModel extends Model
     {
         $this->select('roles.*');
         $this->where($campo, $valor);
+        $this->where('estado', 'A');
         $datos = $this->first();
         return $datos;
     }
