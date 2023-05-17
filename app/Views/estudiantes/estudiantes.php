@@ -5,13 +5,9 @@
         <div style="height: 30px;"></div>
         <div>
             <div>
-                <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);"
-                    class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i
-                        class="bi bi-plus-circle-fill"></i> Agregar</button>
-                <a href="<?php echo base_url('/estudiantes/eliminados'); ?>"><button type="button"
-                        class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-                <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i
-                            class="bi bi-arrow-return-left"></i> Regresar</button></a>
+                <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+                <a href="<?php echo base_url('/estudiantes/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+                <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
             </div>
         </div>
         <div class="table-responsive">
@@ -32,13 +28,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div style="text-align:center;" class="modal-header">
-                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title"
-                        id="exampleModalLabel">Eliminación de Registro</h5>
+                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
 
                 </div>
                 <div style="text-align:center;font-weight:bold;" class="modal-body">
@@ -52,13 +46,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="Resetear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="Resetear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div style="text-align:center;" class="modal-header">
-                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title"
-                        id="exampleModalLabel">Reinicio de Contraseña</h5>
+                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Reinicio de Contraseña</h5>
 
                 </div>
                 <div style="text-align:center;font-weight:bold;" class="modal-body">
@@ -74,8 +66,7 @@
     </div>
 
     <form id="formulario">
-        <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            data-bs-backdrop="static">
+        <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -112,8 +103,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="col-form-label">Tipo de Documento:</label>
-                                    <select class="form-select form-select" name="tipo_documento" id="tipo_documento"
-                                        required>
+                                    <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
                                         <option value="">Seleccione un Tipo</option>
                                         <option value="2">Cedula de Ciudadania</option>
                                         <option value="1">Tarjeta de Identidad</option>
@@ -122,61 +112,49 @@
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                                    <input type="number" class="form-control" name="n_documento" id="n_documento"
-                                        required>
+                                    <input type="number" class="form-control" name="n_documento" id="n_documento" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Primer Nombre:</label>
-                                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre"
-                                        maxlength="20" pattern="[A-Za-z]+" required>
+                                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
-                                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre"
-                                        maxlength="20" pattern="[A-Za-z]+">
+                                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Primer Apellido:</label>
-                                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido"
-                                        maxlength="20" pattern="[A-Za-z]+" required>
+                                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                    <input type="text" class="form-control" name="segundo_apellido"
-                                        id="segundo_apellido" required>
+                                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
                                 </div>
                             </div>
                             <div class="row mb-1">
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Emails:</label>
                                     <div class="input-group">
-                                        <input type="text" id="email" name="email" class="form-control"
-                                            placeholder="Agregar un email" aria-label=""
-                                            aria-describedby="button-addon2" disabled>
-                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                        <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" aria-label="" aria-describedby="button-addon2" readonly required><br>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Telefonos:</label>
                                     <div class="input-group">
-                                        <input type="text" id="telUsuario" name="telUsuario" class="form-control"
-                                            placeholder="Agregar telefonos" aria-label=""
-                                            aria-describedby="button-addon2" disabled>
-                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                        <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" readonly required><br>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <label id="direccion_usuario" for="direccion">Dirección:</label>
                                 <div class="col">
-                                    <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select"
-                                        required onchange="Validardireccion()">
+                                    <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select" required onchange="Validardireccion()">
                                         <option value="">--Selecciona--</option>
                                         <option>Carrera</option>
                                         <option>Calle</option>
@@ -193,43 +171,33 @@
                                 </div>
 
                                 <div class="col">
-                                    <input onchange="Validardireccion()" id="dir2" name="dir2" type="text" maxLength="4"
-                                        class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                        placeholder="Ej: 17B" required />
+                                    <input onchange="Validardireccion()" id="dir2" name="dir2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
                                 </div>
                                 <div class="col">
-                                    <input onchange="Validardireccion()" id="dir3" maxLength="4" name="dir3" type="text"
-                                        class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                        placeholder="Ej: #68C" required />
+                                    <input onchange="Validardireccion()" id="dir3" maxLength="4" name="dir3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
                                 </div>
                                 <div class="col">
-                                    <input onchange="Validardireccion()" id="dir4" maxLength="4" name="dir4" type="text"
-                                        class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                        placeholder="Ej: 23" required />
+                                    <input onchange="Validardireccion()" id="dir4" maxLength="4" name="dir4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label id="direccion_usuario" for="direccion"></label>
-                                <input id="direccionX" name="direccionX" type="text" class="form-control" readonly
-                                    class="form-control-plaintext">
+                                <input id="direccionX" name="direccionX" type="text" class="form-control" readonly class="form-control-plaintext">
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <label id="password_label" for="Password">Contraseña</label>
-                                    <input id="contraseña" name="contraseña" type="password" class="form-control"
-                                        required />
+                                    <input id="contraseña" name="contraseña" type="password" class="form-control" required />
                                 </div>
                                 <div class="col">
                                     <label id="password_label_c" for="password">Confirme Contraseña</label>
-                                    <input id="confirmar_contraseña" name="confirmar_contraseña" type="password"
-                                        class="form-control" required />
+                                    <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
                                 </div>
                             </div>
 
-                            <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>"
-                                hidden>
+                            <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                             <input type="text" id="tp" name="tp" hidden>
                             <input type="text" id="id" name="id" hidden>
                             <input type="text" id="id_estudiante" name="id_estudiante" hidden>
@@ -252,22 +220,18 @@
         <div class="modal-dialog  modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="#"
-                            title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i
-                                class="bi bi-question"></i></a></h5>
+                    <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="#" title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-salarios">
                     <i class="bi bi-file-x"></i> Eliminados</button> -->
 
-                    <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i>
-                        Regresar</button>
+                    <!-- <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i>Regresar</button> -->
                     <div class="row mb-3">
                         <div class="col">
                             <label for="message-text" class="col-form-label">Email:</label>
-                            <input type="email" name="email_modal" class="form-control" id="email_modal"
-                                placeholder="Ej: JhonDoe@gmail.com">
+                            <input type="email" name="email_modal" class="form-control" id="email_modal" placeholder="Ej: JhonDoe@gmail.com">
                             <div class="invalid-feedback" id="errorEmail"></div>
                         </div>
 
@@ -280,8 +244,7 @@
                                         <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
                                     <?php } ?>
                                 </select>
-                                <button class="btn btn-outline-success" type="button" id="btn_insertar"
-                                    title="Agregar Email"><i class="bi bi-plus"></i></button>
+                                <button class="btn btn-success" type="button" id="btn_insertar" title="Agregar Email"><i class="bi bi-plus"></i></button>
                                 <div class="invalid-feedback" id="errorPrioridad"></div>
                             </div>
                             <input hidden type="text" id="id_email" name="id_email">
@@ -291,9 +254,8 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%"
-                            cellspacing="0">
-                            <thead class="table-dark">
+                        <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                            <thead class="thead-light">
                                 <tr>
                                     <th class="text-center">Email</th>
                                     <th class="text-center">Prioridad</th>
@@ -317,16 +279,14 @@
             <div class="modal-content">
                 <div class="modal-header">
 
-                    <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#"
-                            title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i
-                                class="bi bi-question"></i></a></h5>
+                    <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel">
-                        <i class="bi bi-file-x"></i> Eliminados</button>
-                    <button class="btn btn-outline-primary" id="btn-regresar-tel"><i
-                            class="bi bi-arrow-return-left"></i> Regresar</button>
+                    <!-- <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-tel"> -->
+                    <!-- <i class="bi bi-file-x"></i> Eliminados</button> -->
+                    <!-- <button class="btn btn-outline-primary" id="btn-regresar-tel"><i
+                            class="bi bi-arrow-return-left"></i> Regresar</button> -->
                     <div class="row mb-3">
                         <div class="col">
                             <label for="message-text" class="col-form-label">Número:</label>
@@ -353,8 +313,7 @@
                                         <option value="<?php echo $valor['id_parametro_det']; ?>"><?php echo $valor['nombre']; ?></option>
                                     <?php } ?>
                                 </select>
-                                <button class="btn btn-outline-success" type="button" id="btn_insertarTelefono"
-                                    title="Agregar Email"><i class="bi bi-plus"></i></button>
+                                <button class="btn btn-success" type="button" id="btn_insertarTelefono" title="Agregar Email"><i class="bi bi-plus"></i></button>
                                 <div class="invalid-feedback" id="errorPrioridadTel"></div>
                             </div>
                             <input hidden type="text" id="id_telefono" name="id_telefono">
@@ -364,9 +323,8 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%"
-                            cellspacing="0">
-                            <thead class="table-dark">
+                        <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                            <thead class="thead-light">
                                 <tr>
                                     <th class="text-center">ID</th>
                                     <th class="text-center">Telefono</th>
@@ -388,11 +346,11 @@
 
 
     <script>
-        $('#modal-confirma').on('show.bs.modal', function (e) {
+        $('#modal-confirma').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
         });
 
-        $('#Resetear').on('show.bs.modal', function (e) {
+        $('#Resetear').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
             console.log('Hola')
         });
@@ -403,7 +361,7 @@
                 type: "POST",
                 url: "<?php echo base_url('/usuarios/cambiarEstado/'); ?>" + id + '/' + 'E',
                 dataType: "json",
-            }).done(function (data) {
+            }).done(function(data) {
                 $("#modal-confirma").modal("hide");
                 let Toast = Swal.mixin({
                     toast: true,
@@ -437,65 +395,60 @@
                 dataSrc: "",
             },
             columns: [{
-                data: null,
-                render: function (data, type, row) {
-                    contador = contador + 1
-                    return "<b>" + contador + "</b>";
+                    data: null,
+                    render: function(data, type, row) {
+                        contador = contador + 1
+                        return "<b>" + contador + "</b>";
+                    },
                 },
-            },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return data.nombre_p + " " + data.nombre_s
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return data.nombre_p + " " + data.nombre_s
+                    },
                 },
-            },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return data.apellido_p + " " + data.apellido_s
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return data.apellido_p + " " + data.apellido_s
+                    },
                 },
-            },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    if (data.grado) {
-                        return data.grado;
-                    } else {
-                        return `Grado por asignar <input onchange="AsignarGrado(${data.id_usuario})" id="asignarGrado${data.id_usuario}" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">`
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        if (data.grado) {
+                            return data.grado;
+                        } else {
+                            return `Grado por asignar <input onchange="AsignarGrado(${data.id_usuario})" id="asignarGrado${data.id_usuario}" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">`
+                        }
                     }
-                }
-            },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return `<div class="btn-group">
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return `<div class="btn-group">
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_usuario} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Resetear" data-href="<?php echo base_url('/usuarios/resetearContrasena') ?>/${data.id_usuario}/${data.n_documento}" title="Resetear Contraseña">
-                                    <i class="bi bi-arrow-clockwise"></i>
-                                </button>` + " " + `<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_usuario}" title="Eliminar Registro">
+                                ` + " " + `<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_usuario}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
                             </div>`
-                },
-            }
+                    },
+                }
             ],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             }
         })
 
-        $.validator.addMethod("soloLetras", function (value, element) {
+        $.validator.addMethod("soloLetras", function(value, element) {
             return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
         }, "Por favor ingrese solamente letras.");
 
         $("#formulario").validate({
             rules: {
                 id_rol: {
-                    required: true,
-                },
-                grado: {
                     required: true,
                 },
                 tipo_documento: {
@@ -511,16 +464,16 @@
                         type: "post",
                         dataType: "json",
                         data: {
-                            campo: function () {
+                            campo: function() {
                                 return 'n_documento';
                             },
-                            valor: function () {
+                            valor: function() {
                                 return $("#n_documento").val();
                             },
-                            tp: function () {
+                            tp: function() {
                                 return $("#tp").val();
                             },
-                            nombreActu: function () {
+                            nombreActu: function() {
                                 return $("#numeroActu").val();
                             },
                         },
@@ -540,6 +493,12 @@
                 segundo_apellido: {
                     required: true,
                     soloLetras: true,
+                },
+                telUsuario: {
+                    required: true,
+                },
+                email: {
+                    required: true,
                 },
                 dir: {
                     required: true,
@@ -565,9 +524,6 @@
                 id_rol: {
                     required: "Por favor seleccione una opción",
                 },
-                grado: {
-                    required: "Por favor seleccione una opción",
-                },
                 tipo_documento: {
                     required: "Por favor seleccione una opción",
                 },
@@ -585,6 +541,12 @@
                     required: "Este campo es requerido",
                 },
                 segundo_apellido: {
+                    required: "Este campo es requerido",
+                },
+                telUsuario: {
+                    required: "Este campo es requerido",
+                },
+                email: {
                     required: "Este campo es requerido",
                 },
                 dir: {
@@ -609,12 +571,12 @@
             }
         });
 
-        $('#formulario').on('submit', function (e) {
+        $('#formulario').on('submit', function(e) {
             console.log('activo');
             e.preventDefault();
         })
 
-        $('#btnGuardar').on('click', function (e) {
+        $('#btnGuardar').on('click', function(e) {
             e.preventDefault();
             if ($('#formulario').valid()) {
                 $.ajax({
@@ -638,7 +600,7 @@
 
                     },
                     dataType: "json",
-                }).done(function (data) {
+                }).done(function(data) {
                     $('#UsuarioModal').modal('hide');
                     let Toast = Swal.mixin({
                         toast: true,
@@ -698,7 +660,7 @@
         }
 
         let tablaTemporal = []
-        $('#btn_insertar').click(function () {
+        $('#btn_insertar').click(function() {
 
             let email = $('#email_modal').val();
             let prioridad = $('#prioridad').val();
@@ -715,7 +677,7 @@
                 tp: tp
             }
 
-            $.post('<?php echo base_url() ?>/email/validar', datosValidar, function (response) {
+            $.post('<?php echo base_url() ?>/email/validar', datosValidar, function(response) {
                 if (response == true) {
                     $('#email_modal').addClass('is-invalid');
                     $('#errorEmail').text('Este email ya se encuentra Registrado');
@@ -820,7 +782,7 @@
                         id_usuario: id
                     },
                     dataType: "json",
-                }).done(function (data) { })
+                }).done(function(data) {})
             });
 
         }
@@ -844,7 +806,7 @@
                     type: "POST",
                     url: "<?php echo base_url('/email/cambiarEstado/'); ?>" + idEmail.text() + "/" + 'E',
                     dataType: "json",
-                }).done(function (data) {
+                }).done(function(data) {
                     let Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -879,7 +841,7 @@
                     type: "POST",
                     url: dataURL,
                     dataType: "json",
-                    success: function (rs) {
+                    success: function(rs) {
                         $("#tp").val(2);
                         $("#id").val(id)
                         $("#id_estudiante").val(rs[0]['id_estudiante'])
@@ -927,7 +889,7 @@
                     type: "POST",
                     url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
                     dataType: "JSON",
-                    success: function (rs) {
+                    success: function(rs) {
                         rs.forEach(element => {
 
                             tablaTemporal.push({
@@ -950,7 +912,7 @@
                     type: "POST",
                     url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
                     dataType: "JSON",
-                    success: function (rs) {
+                    success: function(rs) {
                         rs.forEach(element => {
 
                             tablaTemporalTelefonos.push({
@@ -1032,7 +994,7 @@
         }
 
         let tablaTemporalTelefonos = [];
-        $('#btn_insertarTelefono').click(function () {
+        $('#btn_insertarTelefono').click(function() {
             let telefono = $('#telefono').val();
             let prioridad = $('#prioridad_tel').val();
             let tipo = $('#tipo').val();
@@ -1048,7 +1010,7 @@
                 nombreActu: tp == 2 ? telefono : '',
             }
             console.log($('#telefono'))
-            $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function (response) {
+            $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
                 if (response == true) {
                     $('#telefono').addClass('is-invalid');
                     $('#errorTel').text('Este telefono ya se encuentra Registrado');
@@ -1155,15 +1117,15 @@
                         id_usuario: id
                     },
                     dataType: "json",
-                }).done(function (data) { })
+                }).done(function(data) {})
             });
         }
 
-        $('.close').click(function () {
+        $('.close').click(function() {
             $("#modal-confirma").modal("hide");
         });
 
-        $('.close').click(function () {
+        $('.close').click(function() {
             $("#Resetear").modal("hide");
         });
 
@@ -1200,7 +1162,7 @@
                 id_grado: $('#id_grado_asig').val(),
             };
             console.log(data);
-            $.post("<?php echo base_url('/estudiantes/insertarGrado'); ?>", data, function (response) {
+            $.post("<?php echo base_url('/estudiantes/insertarGrado'); ?>", data, function(response) {
                 let Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -1222,7 +1184,7 @@
             });
         }
 
-        $('.close').click(function () {
+        $('.close').click(function() {
             $("#modal-confirma").modal("hide");
         });
 

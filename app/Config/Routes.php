@@ -48,6 +48,8 @@ $routes->get('/ver_horarios', 'Horario_enc::index');
 $routes->get('/ver_detalle/(:num)', 'Horario_det::index/$1');
 $routes->get('/ver_estudiantes', 'Estudiantes::index');
 $routes->get('/ver_usuarios', 'Usuarios::index');
+$routes->get('/ver_profesores', 'Profesores::index');
+$routes->get('/ver_estudiantes', 'Estudiantes::index');
 $routes->get('/ver_disponibilidad', 'Disponibilidad_prof::index');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS

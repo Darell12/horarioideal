@@ -12,9 +12,9 @@
 
     </div>
     <br>
-    <div class="d-flex align-items-center flex-wrap ocultar">
+    <!-- <div class="d-flex align-items-center flex-wrap ocultar">
         <b class="fs-6 text-black"> Ocultar Columnas:</b> <a class="toggle-vis btn" data-column="1">Tipo Documento</a> - <a class="toggle-vis btn" data-column="2">Documento</a> - <a class="toggle-vis btn" data-column="3">Nombres</a> - <a class="toggle-vis btn" data-column="4">Apellidos</a> - <a class="toggle-vis btn" data-column="5">Rol</a>
-    </div>
+    </div> -->
     <div class="table-responsive">
         <table id="tablaUsuarios" class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -216,8 +216,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- <button type="button" class="btn btn-outline-secondary" id="btn-eliminados-salarios">
-                    <i class="bi bi-file-x"></i> Eliminados</button> -->
 
                 <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i> Regresar</button>
                 <div class="row mb-3">
@@ -247,7 +245,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Prioridad</th>
@@ -315,7 +313,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Telefono</th>
@@ -542,6 +540,12 @@
                 required: true,
                 soloLetras: true,
             },
+            telUsuario: {
+                required: true,
+            },
+            email: {
+                required: true,
+            },
             dir: {
                 required: true,
             },
@@ -583,6 +587,12 @@
                 required: "Este campo es requerido",
             },
             segundo_apellido: {
+                required: "Este campo es requerido",
+            },
+            telUsuario: {
+                required: "Este campo es requerido",
+            },
+            email: {
                 required: "Este campo es requerido",
             },
             dir: {

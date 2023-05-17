@@ -5,13 +5,10 @@
         </h1>
         <div style="height: 30px;"></div>
         <div>
-            <button type="button" onclick="seleccionaGrado(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success "
-                data-bs-toggle="modal" data-bs-target="#GradoModal"><i class="bi bi-plus-circle-fill"></i>
+            <button type="button" onclick="seleccionaGrado(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#GradoModal"><i class="bi bi-plus-circle-fill"></i>
                 Agregar</button>
-            <a href="<?php echo base_url('/grados/eliminados'); ?>"><button type="button"
-                    class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i
-                        class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            <a href="<?php echo base_url('/grados/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
     </div>
 
@@ -40,10 +37,6 @@
                 </div>
                 <div class="modal-body">
                     <h5 class="h5">Asignaturas:</h5>
-                    <div class="col mb-3">
-                        <button class="btn btn-success btn-sm" id="btn_agregar">Agregar</button>
-                        <button class="btn"></button>
-                    </div>
                     <div class="col">
                         <label class="col-form-label">Asignatura:</label>
                         <select class="form-select form-select" name="asignatura" id="asignatura" required>
@@ -80,6 +73,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-success" id="btn_agregar">Agregar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                 </div>
@@ -89,8 +83,7 @@
 
     <!-- Modal -->
     <form id="formulario">
-        <div class="modal fade" id="GradoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            data-bs-backdrop="static">
+        <div class="modal fade" id="GradoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -103,23 +96,20 @@
 
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Nombre:</label>
-                                    <input type="text" class="form-control" name="nombre_grado" id="nombre_grado"
-                                        required>
+                                    <input type="text" class="form-control" name="nombre_grado" id="nombre_grado" required>
                                 </div>
 
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <input type="text" id="nombreActu" name="nombreActu" hidden>
                                 <input type="text" id="numeroActu" name="numeroActu" hidden>
-                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>"
-                                    hidden>
+                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
 
 
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary"
-                                data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
                         </div>
                     </div>
@@ -132,8 +122,7 @@
     <!-- Modal confirma -->
 </div>
 
-<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
@@ -153,8 +142,7 @@
 </div>
 
 <!-- Modal Asignaturas eliminadas  -->
-<div class="modal fade" id="modalEliminaAsig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="modalEliminaAsig" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
@@ -164,8 +152,7 @@
             </div>
             <div style="text-align:center;font-weight:bold;" class="modal-body">
                 <p>Seguro Desea retirar la asignatura seleccionada?</p>
-                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input
-                    type="text" hidden id="id_almacenar_estado">
+                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input type="text" hidden id="id_almacenar_estado">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
@@ -176,7 +163,7 @@
 </div>
 
 <script>
-    $('#modal-confirma').on('show.bs.modal', function (e) {
+    $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
 
@@ -191,19 +178,19 @@
             dataSrc: "",
         },
         columns: [{
-            data: null,
-            render: function (data, type, row) {
-                contador = contador + 1
-                return "<b>" + contador + "</b>";
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
             },
-        },
-        {
-            data: 'alias',
-        },
-        {
-            data: null,
-            render: function (data, type, row) {
-                return `<div class="btn-group">
+            {
+                data: 'alias',
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<div class="btn-group">
                                 <button class="btn btn-outline-primary" onclick="seleccionaGrado(${data.id_grado}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
@@ -216,8 +203,8 @@
                                 <i class="bi bi-trash3"></i>
                                 </button>
                             </div>`
-            },
-        }
+                },
+            }
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -232,7 +219,7 @@
             url: "<?php echo base_url('grados/obtenerAsignaturasS/'); ?>" + id,
             type: 'POST',
             dataType: 'json',
-            success: function (Asignaturas) {
+            success: function(Asignaturas) {
                 $('#tablaAsignaturas').html('contenido');
                 Asignaturas.forEach(asignatura => {
                     contador++
@@ -280,7 +267,7 @@
                 horas_semanales: $('#horas').val(),
             },
             dataType: "json",
-        }).done(function (data) {
+        }).done(function(data) {
             generarTablaAsignatura(id)
             $('#asignatura').val("")
             $('#horas').val("")
@@ -295,7 +282,7 @@
             id_grado_asignatura: id_grado_asignatura,
         }
 
-        $.post('<?php echo base_url('/grados/retirarCarg'); ?>', data, function (response) {
+        $.post('<?php echo base_url('/grados/retirarCarg'); ?>', data, function(response) {
 
             generarTablaAsignatura(id)
 
@@ -326,7 +313,7 @@
             type: "POST",
             url: "<?php echo base_url('/grados/cambiarEstado/'); ?>" + id + '/' + 'E',
             dataType: "json",
-        }).done(function (data) {
+        }).done(function(data) {
             $("#modal-confirma").modal("hide");
             let Toast = Swal.mixin({
                 toast: true,
@@ -348,11 +335,11 @@
         })
     }
 
-    $('#modalEliminaAsig').on('show.bs.modal', function (e) {
+    $('#modalEliminaAsig').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
     });
 
-    $('.close').click(function () {
+    $('.close').click(function() {
         $("#modalEliminaAsig").modal("hide");
     });
 
@@ -364,7 +351,7 @@
                 type: "POST",
                 url: dataURL,
                 dataType: "json",
-                success: function (rs) {
+                success: function(rs) {
                     console.log(rs)
                     $("#tp").val(2);
                     $("#id").val(id)
@@ -383,7 +370,7 @@
             $('#formulario').validate().resetForm();
         }
     }
-    $('.close').click(function () {
+    $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
 
@@ -396,16 +383,16 @@
                     type: "post",
                     dataType: "json",
                     data: {
-                        campo: function () {
+                        campo: function() {
                             return 'alias';
                         },
-                        valor: function () {
+                        valor: function() {
                             return $("#nombre_grado").val();
                         },
-                        tp: function () {
+                        tp: function() {
                             return $("#tp").val();
                         },
-                        nombreActu: function () {
+                        nombreActu: function() {
                             return $("#numeroActu").val();
                         },
                     },
@@ -420,7 +407,7 @@
         }
     });
 
-    
+
     $('#btn_Guardar').on('click', function(e) {
         e.preventDefault();
         if ($('#formulario').valid()) {
@@ -465,7 +452,4 @@
         console.log('activo');
         e.preventDefault();
     })
-
-
-
 </script>

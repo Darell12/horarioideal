@@ -324,10 +324,13 @@
                 }
                 array1 = array1.filter(franja => franja.id_parametro_det !== '50');
                 array1 = array1.filter(franja => franja.id_parametro_det !== '49');
+                array1 = array1.filter(franja => franja.id_parametro_det !== '53');
                 array2 = array2.filter(franja => franja.id_parametro_det !== '50');
                 array2 = array2.filter(franja => franja.id_parametro_det !== '49');
+                array2 = array2.filter(franja => franja.id_parametro_det !== '53');
                 arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '50');
                 arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '49');
+                arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '53');
                 return [array1, array2, arrayRango];
             }
 
@@ -354,7 +357,7 @@
                     'Viernes': '12',
                     'Sabado': '13',
                 }
-                const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+                const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
 
                 let asignatura = $('#asignatura').val();
                 let profesor = $('#profesor').val();
@@ -381,8 +384,8 @@
                     dataType: 'json',
                     success: function(res) {
                         franjasTotalesOcupadas = res
-                        console.log('franjas totales ocupadas');
-                        console.log(franjasTotalesOcupadas);
+                        // console.log('franjas totales ocupadas');
+                        // console.log(franjasTotalesOcupadas);
                     }
                 })
 
@@ -414,52 +417,53 @@
                         })
 
                         while (i < numeroRepeticiones) {
-                            let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasSiAsignados[0], res, inicio, fin)
-                            i++
-                            if (diasNoAsignados.length > 0) {
-                                let dia = diasNoAsignados[0];
-                                console.log(numeroRepeticiones - i);
-                                data.push({
-                                    "asignatura": asignatura,
-                                    "profesor": profesor,
-                                    "aula": $('#aula').val(),
-                                    "dia": diasNoAsignados[0],
-                                    "id_dia": id_dias[diasNoAsignados[0]],
-                                    "inicio": FiltroTotal[0].id_parametro_det,
-                                    "hora_inicio": FiltroTotal[0].nombre,
-                                    "fin": numeroRepeticiones - i < 0 ? FiltroTotal[1].id_parametro_det : FiltroTotal[2].id_parametro_det,
-                                    "hora_fin": numeroRepeticiones - i < 0 ? FiltroTotal[1].nombre : FiltroTotal[2].nombre,
-                                    "duracion": numeroRepeticiones - i < 0 ? 1 : 2,
-                                    "id_encabezado": <?php echo $id ?>
-                                })
-                                diasNoAsignados.shift()
-                                diasSiAsignados.push(dia)
-                            } else {
-                                let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasSiAsignados[0], res, inicio, fin)
-                                console.log(numeroRepeticiones - i);
-                                data.push({
-                                    "asignatura": asignatura,
-                                    "profesor": profesor,
-                                    "aula": $('#aula').val(),
-                                    "dia": diasSiAsignados[0],
-                                    "id_dia": id_dias[diasSiAsignados[0]],
-                                    "inicio": (numeroRepeticiones - i < 0) ?
-                                        Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
-                                    "hora_inicio": (numeroRepeticiones - i < 0) ?
-                                        Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
-                                    "fin": (numeroRepeticiones - i < 0) ? +Libres1Hora[0]?.id_parametro_det + 1 || +Libres2Horas[0].id_parametro_det + 1 : FiltroTotal
-                                        .find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+                            try {
+                                let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasNoAsignados[0], res, inicio, fin);
+                                i++;
 
-                                    "hora_fin": (numeroRepeticiones - i < 0) ? FiltroTotal
-                                        .find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || +Libres2Horas[0]?.id_parametro_det + 1)
-                                        ?.nombre : FiltroTotal
-                                        .find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
-                                    "duracion": numeroRepeticiones - i < 0 ? 1 : 2,
-                                    "id_encabezado": <?php echo $id ?>
-                                })
-                                diasSiAsignados.shift()
-                                console.log((numeroRepeticiones - i < 0) ? FiltroTotal
-                                    .find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '')
+                                if (diasNoAsignados.length > 0) {
+                                    let dia = diasNoAsignados[0];
+                                    data.push({
+                                        "asignatura": asignatura,
+                                        "profesor": profesor,
+                                        "aula": $('#aula').val(),
+                                        "dia": dia,
+                                        "id_dia": id_dias[dia],
+                                        "inicio": franjasTotales[0].id_parametro_det,
+                                        "hora_inicio": franjasTotales[0].nombre,
+                                        "fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].id_parametro_det : franjasTotales[2].id_parametro_det,
+                                        "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].nombre : franjasTotales[2].nombre,
+                                        "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
+                                        "id_encabezado": <?php echo $id ?>
+                                    });
+                                    diasNoAsignados.shift();
+                                    diasSiAsignados.push(dia);
+                                } else {
+                                    let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(diasSemana[0], res, inicio, fin);
+                                    let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
+
+                                    if (diasSiAsignados.length > 0) {
+                                        let dia = diasSiAsignados[0];
+                                        data.push({
+                                            "asignatura": asignatura,
+                                            "profesor": profesor,
+                                            "aula": $('#aula').val(),
+                                            "dia": dia,
+                                            "id_dia": id_dias[dia],
+                                            "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
+                                            "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
+                                            "fin": (numeroRepeticiones - i < 0) ? franja1Hora[0]?.id_parametro_det || Libres2Horas[0].id_parametro_det : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+                                            "hora_fin": (numeroRepeticiones - i < 0) ? franja1Hora[0]?.nombre || Libres2Horas[0].id_parametro_det : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
+                                            "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
+                                            "id_encabezado": <?php echo $id ?>
+                                        });
+                                        diasSiAsignados.shift();
+                                    } else {
+                                        throw new Error("No hay más días disponibles para asignar.");
+                                    }
+                                }
+                            } catch (error) {
+                                console.error("Ocurrió un error:", error);
                             }
                         }
                         console.table(data)
@@ -493,33 +497,39 @@
                 })
             });
 
-            function FiltroGeneral() {
-                let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+            // function FiltroGeneral() {
+            //     let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+            //     console.log(diasNoAsignados);
+            //     let LibreProfe = franjasTotales.filter(franja => !franjasProfesor.some(element => element.hora_inicio == franja.id_parametro_det));
+            //     console.log(LibreProfe);
 
-                let LibreProfe = franjasTotales.filter(franja => !franjasProfesor.some(element => element.hora_inicio == franja.id_parametro_det));
+            //     let LibreAula = LibreProfe.filter(franja => !franjasTotalesOcupadasAula.some(element => element.hora_inicio == franja.id_parametro_det));
+            //     console.log(LibreAula);
 
-                let LibreAula = LibreProfe.filter(franja => !franjasTotalesOcupadasAula.some(element => element.hora_inicio == franja.id_parametro_det));
+            //     let LibreGeneral = LibreAula.filter(franja => !franjasTotalesOcupadas.some(element => element.hora_inicio == franja.id_parametro_det));
+            //     console.log(LibreGeneral);
 
-                let LibreGeneral = LibreAula.filter(franja => !franjasTotalesOcupadas.some(element => element.hora_inicio == franja.id_parametro_det));
+            //     let LibreGrado = LibreGeneral.filter(franja => !res.some(element => element.hora_inicio == franja.id_parametro_det));
 
-                let LibreGrado = LibreGeneral.filter(franja => !res.some(element => element.hora_inicio == franja.id_parametro_det));
+            //     console.log('FiltroTotal:');
+            //     console.log(LibreGrado);
 
-                console.log('FiltroTotal:');
-                console.log(LibreGrado);
+            //     const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(LibreGrado, inicio, fin);
 
-                const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(LibreGrado, inicio, fin);
+            //     // console.log("Array 1 (franjas con una hora faltante en su sucesión):");
+            //     // console.log(Libres1Hora);
 
-                console.log("Array 1 (franjas con una hora faltante en su sucesión):");
-                console.log(Libres1Hora);
+            //     // console.log("Array 2 (franjas que siguen su sucesión):");
+            //     // console.log(Libres2Horas);
 
-                console.log("Array 2 (franjas que siguen su sucesión):");
-                console.log(Libres2Horas);
-
-                console.log("Array de franjas dentro del rango:");
-                console.log(arrayRango);
-            }
+            //     // console.log("Array de franjas dentro del rango:");
+            //     // console.log(arrayRango);
+            // }
 
             function filtroPorDia(dia, res, inicio, fin) {
+                console.log(dia);
+                let diaFiltro = franjasTotalesOcupadas.filter(element => element.dia == dia);
+                console.log(diaFiltro);
 
                 let LibreDia = franjasTotales.filter(franja => !franjasTotalesOcupadas.some(element => element.hora_inicio == franja.id_parametro_det && element.dia == dia));
 
@@ -529,23 +539,24 @@
 
                 let LibreGeneral = LibreAula.filter(franja => !franjasTotalesOcupadas.some(element => element.hora_inicio == franja.id_parametro_det));
 
-                let LibreGrado = LibreGeneral.filter(franja => !res.some(element => element.hora_inicio == franja.id_parametro_det));
+                let LibreGrado = LibreGeneral.filter(franja => !res.some(element => element.hora_inicio == franja.id_parametro_det && element.dia == dia));
+                console.log(res);
 
-                console.log('FiltroTotal:');
-                console.log(LibreGrado);
+                // console.log('FiltroTotal:');
+                // console.log(LibreGrado);
 
                 const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(LibreGrado, inicio, fin);
 
-                console.log("Array 1 (franjas con una hora faltante en su sucesión):");
-                console.log(Libres1Hora);
+                // console.log("Array 1 (franjas con una hora faltante en su sucesión):");
+                // console.log(Libres1Hora);
 
-                console.log("Array 2 (franjas que siguen su sucesión):");
-                console.log(Libres2Horas);
+                // console.log("Array 2 (franjas que siguen su sucesión):");
+                // console.log(Libres2Horas);
 
-                console.log("Array de franjas dentro del rango:");
-                console.log(arrayRango);
+                // console.log("Array de franjas dentro del rango:");
+                // console.log(arrayRango);
 
-                return [Libres1Hora, Libres2Horas, arrayRango, LibreGrado];
+                return [Libres1Hora, Libres2Horas, arrayRango, LibreGeneral];
 
             }
         </script>

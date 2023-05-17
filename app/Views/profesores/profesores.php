@@ -30,11 +30,10 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 id="tituloAsig" class="modal-title">Carga Académica del profesor@ {nombre}</h5>
+                    <h5 id="tituloAsig" class="modal-title">Carga Académica del profesor</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="h5">Asignaturas:</h5>
                     <div class="col">
                         <label class="col-form-label">Grados:</label>
                         <select class="form-select form-select" name="grado" id="grado" required>
@@ -50,6 +49,7 @@
                             <option value="">Seleccione una opción</option>
                         </select>
                     </div>
+                    <button class="btn btn-success mt-3" id="btn_agregar">Agregar</button>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -64,9 +64,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" id="btn_agregar">Agregar</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -308,7 +306,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Prioridad</th>
@@ -376,7 +374,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Telefono</th>
@@ -458,7 +456,7 @@
 
                 <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="table-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Asignaturas</th>
@@ -553,6 +551,12 @@
                 required: true,
                 soloLetras: true,
             },
+            telUsuario: {
+                required: true,
+            },
+            email: {
+                required: true,
+            },
             dir: {
                 required: true,
             },
@@ -594,6 +598,12 @@
                 required: "Este campo es requerido",
             },
             segundo_apellido: {
+                required: "Este campo es requerido",
+            },
+            telUsuario: {
+                required: "Este campo es requerido",
+            },
+            email: {
                 required: "Este campo es requerido",
             },
             dir: {
@@ -714,7 +724,7 @@
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
-                                <button class="btn btn-outline-warning" onclick="generarTablaAsignatura(${data.id_usuario});" data-bs-toggle="modal" data-bs-target="#modalAsignaturas" title="Editar Registro">
+                                <button class="btn btn-outline-warning" onclick="generarTablaAsignatura(${data.id_usuario});" data-bs-toggle="modal" data-bs-target="#modalAsignaturas" title="Asignar carga Académica">
                                     <i class="bi bi-journal-bookmark"></i>
                                 </button>
 

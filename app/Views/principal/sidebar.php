@@ -84,19 +84,19 @@
             </li>
             <hr style="background: #fafafa" class="sidebar-divider">
             <li>
-                <a href="<?php echo base_url('usuarios') ?>" title="Usuarios">
+                <a href="<?php echo base_url('ver_usuarios') ?>" title="Usuarios">
                     <i class='bx bx-user icon'></i>
                     <span class="text fs-6 nav-text">Usuarios</span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url('estudiantes') ?>" title="Estudiantes">
+                <a href="<?php echo base_url('ver_estudiantes') ?>" title="Estudiantes">
                     <i class='bx bxs-graduation icon'></i>
                     <span class="text nav-text">Estudiantes</span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url('profesores') ?>" title="Profesores">
+                <a href="<?php echo base_url('ver_profesores') ?>" title="Profesores">
                     <i class='bx bx-id-card icon'></i>
                     <span class="text nav-text">Profesores</span>
                 </a>
