@@ -5,7 +5,7 @@
 
         <div>
             <button type="button" onclick="seleccionaDetalle(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-            <button onclick="visualizarHorario(<?php echo $id ?>)" class="btn btn-outline-warning" title="Visualizar" data-bs-toggle="modal" data-bs-target="#ModalHorario"> <i class="bi bi-eye"></i> Visualizar</button>
+            <button onclick="visualizarHorario(<?php echo $id ?>)" class="btn btn-outline" id="prueba" title="Visualizar" data-bs-toggle="modal" data-bs-target="#ModalHorario"> <i class="bi bi-eye"></i> Visualizar</button>
 
             <!-- <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a> -->
             <a href="<?php echo base_url('/ver_horarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
