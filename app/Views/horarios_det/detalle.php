@@ -638,14 +638,6 @@
 
                     let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
 
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Cargando...',
-                        text: 'Estamos buscando la mejor ubicación...',
-                        footer: '',
-                        timer: 2000,
-                    })
-
                     while (i < numeroRepeticiones) {
                         try {
                             if (diasNoAsignados.length > 0) {
@@ -670,7 +662,6 @@
                                 let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
                                 let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
                                 let dia = diasSemana[0];
-                                console.log(dia);
                                 if (Libres2Horas.length > 0) {
                                     i++;
                                 }
@@ -689,6 +680,8 @@
                                         "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
                                         "id_encabezado": <?php echo $id ?>
                                     });
+
+                                    // RETIRA HORA EN CASO DE EXCESO
                                     if (data[i - 1].fin == 54) {
                                         console.log('SE PASO');
                                         data[i - 1].fin = 53
@@ -712,7 +705,22 @@
                                         })
                                     }
                                 } else {
-                                    throw new Error("No hay más días disponibles para asignar.");
+                                    // ERROR DIA SIN ESPACIO
+                                    let Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 1000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
+                                    Toast.fire({
+                                        icon: 'error',
+                                        title: `No hay más franjas disponibles para el dia!`
+                                    })
                                 }
                             }
                         } catch (error) {
@@ -723,9 +731,10 @@
                     let rellenoAlerta = ''
                     data.forEach(element => {
                         let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
-                        rellenoAlerta += `<li class="lecture-time ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
-                                                <a href="#">
+                        rellenoAlerta += `<li class="lecture-time ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}" style="text-decoration: none !important; list-style-type: none;">
+                                                <a>
                                                     <div class="lecture-info">
+                                                        <h6 class="lecture-title">${element.dia}</h6>
                                                         <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
                                                     </div>
                                                 </a>
@@ -744,7 +753,7 @@
                             confirmButtonText: 'Continuar!',
                             confirmButtonAriaLabel: 'Thumbs up, great!',
                         })
-                    }, 3000);
+                    }, 1500);
                     $('#btn_enviar').removeAttr('disabled', '');
                     console.table(data)
                 }
@@ -760,6 +769,7 @@
                     dataType: "json",
                 }).done(function(data) {
                     $('#Horarios_encModal').modal('hide');
+                    contador = 0
                     tablaDetalle.ajax.reload(null, false);
                     let Toast = Swal.mixin({
                         toast: true,

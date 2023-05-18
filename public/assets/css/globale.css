@@ -829,6 +829,9 @@ ul {
     }
     .table-schedule .table-schedule-subject .lecture-time a {
         padding: 0.5rem 0.75rem;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: gray;
     }
     .table-schedule .table-schedule-subject .lecture-time a .lecture-noti {
         display: flex;
@@ -1304,8 +1307,3 @@ ul {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
-
-
-
-
-

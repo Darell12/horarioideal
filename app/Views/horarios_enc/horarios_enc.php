@@ -49,7 +49,13 @@
                                 </div>
                                 <div class="col">
                                     <label class="col-form-label">Año:</label>
-                                    <input type="text" maxlength="4" pattern="[0-9]+" class="form-control" name="periodo_año" id="periodo_año" required>
+                                    <select type="text" class="form-select" class="form-control" name="periodo_año" id="periodo_año" required>
+                                        <option value=""> Seleccione un año </option>
+                                        <?php $years = range(strftime("%Y", time()), 2000); ?>
+                                        <?php foreach ($years as $year) : ?>
+                                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -57,7 +63,7 @@
                                     <label class="col-form-label">Duración:</label>
                                     <select class="form-select form-select" name="duracion" id="duracion" required>
                                         <option value='' selected>Seleccione un parametro</option>
-                                        <option value="12">45 Minutos</option>
+                                        <option value="12" disabled>45 Minutos</option>
                                         <option value="13">60 Minutos</option>
                                     </select>
                                 </div>
@@ -146,8 +152,7 @@
                                         <li><span>09:00</span></li>
                                         <li><span>09:30</span></li>
                                         <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
-                                            <h3 style="text-align: center;
-margin-top: -15px;"> D E S C A N S O</h3>
+                                            <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
                                         </li>
                                         <li><span>10:30</span></li>
                                         <li><span>11:00</span></li>
@@ -220,16 +225,7 @@ margin-top: -15px;"> D E S C A N S O</h3>
 
                                         </ul>
                                     </li>
-                                    <!-- 
-                                            <li class="timeline-vertical">
-                                                <div class="top-info">
-                                                    <h4 class="day">Sabado</h4>
-                                                </div>
 
-                                                <ul id="Sabado">
-
-                                                </ul>
-                                            </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -260,8 +256,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
             dataType: "json",
             success: function(data) {
                 franjasTotales = data;
-                console.log('franjasTotales');
-                console.log(franjasTotales);
             }
         });
 
@@ -274,7 +268,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
             },
             dataType: "json",
             success: function(rs) {
-                console.log(rs);
                 contenido = ''
                 $.ajax({
                     url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
@@ -354,7 +347,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
     });
 
     $('#formulario').on('submit', function(e) {
-        console.log('activo');
         e.preventDefault();
     })
 
@@ -427,11 +419,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
                                     </button>
                                 </a>
                                 <a>
-                                <button class="btn btn-outline-primary" onclick="seleccionaHorarios_enc(${data.id_horarios_enc} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                </a>
-                                <a>
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
@@ -481,7 +468,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
                     icon: 'success',
                     title: 'Acción realizada con exito!'
                 })
-                console.log('insertar');
                 contador = 0
                 tablaHorario.ajax.reload(null, false)
                 return
@@ -499,7 +485,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
                 url: dataURL,
                 dataType: "json",
                 success: function(rs) {
-                    console.log(rs)
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#id_grado').val(rs[0]['id_grado']);
@@ -525,7 +510,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
     });
 
     $('#duracion').on('change', function(e) {
-        console.log('evento grado');
         let duracion = $('#duracion').val();
         let pertenece = '';
         $.ajax({
@@ -533,7 +517,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
             type: 'POST',
             dataType: 'json',
             success: function(res) {
-                console.log(res);
                 $('#inicio').empty();
                 $('#fin').empty();
 
@@ -553,7 +536,6 @@ margin-top: -15px;"> D E S C A N S O</h3>
 
 
                         tiempo = tiempo.getHours();
-                        console.log(tiempo);
                         if (tiempo >= 6 && tiempo <= 12) {
                             pertenece = 'AM'
                         } else if (tiempo > 12 && tiempo < 18.5) {

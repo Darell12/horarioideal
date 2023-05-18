@@ -51,7 +51,6 @@
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <button class="btn btn-success mt-3" id="btn_agregar">Agregar</button>
                         </div>
                         <div id="horasProfe" class="mt-3">
 
@@ -72,6 +71,8 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-success " id="btn_agregar">Agregar</button>
+
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
