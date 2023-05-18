@@ -409,7 +409,7 @@
                 render: function(data, type, row) {
                     return `<div class="btn-group">
                                 <a class="nav-link">
-                                    <button onclick="visualizarHorario(${data.id_horarios_enc})" class="btn btn-brand-primary" title="Visualizar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button onclick="visualizarHorario(${data.id_horarios_enc})" class="btn btn-brand-primary" id="prueba" title="Visualizar" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="bi bi-eye"></i>
                                     </button>
                                 </a>
