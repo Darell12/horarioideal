@@ -9,9 +9,9 @@
     </div>
 
     <br>
-    <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important; height: 600px;">
-        <table id="tablaEstudiantes" class="table table-bordered table-sm table-hover" id="tableGrados" width="100%" cellspacing="0">
-            <thead class="table-dark">
+    <div class="table-responsive">
+        <table id="tablaEstudiantes" class="table align-items-center table-flush" >
+            <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">Nombres</th>

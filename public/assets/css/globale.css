@@ -1305,6 +1305,17 @@ ul {
     margin-bottom: 0.5rem;
 }
 
+/* Visualizar */
+#prueba:hover{
+    background-color: #7807ff;
+    border-color: #7807ff;
+    color: white;
+}
+
+#prueba {
+    color:#7807ff;
+} 
+
 
 
 
