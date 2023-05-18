@@ -34,117 +34,134 @@
     </div>
 </div>
 
-<div class="modal fade" id="ModalHorario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModal">Horario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-lecture">
+<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header">
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
 
-                        <section class="section-list">
-                            <div class="container-xl">
-                                <div class="table-schedule">
-                                    <div class="timeline">
-                                        <ul>
-                                            <li><span>06:00</span></li>
-                                            <li><span>06:30</span></li>
-                                            <li><span>07:00</span></li>
-                                            <li><span>07:30</span></li>
-                                            <li><span>08:00</span></li>
-                                            <li><span>08:30</span></li>
-                                            <li><span>09:00</span></li>
-                                            <li><span>09:30</span></li>
-                                            <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
-                                                <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
-                                            </li>
-                                            <li><span>10:30</span></li>
-                                            <li><span>11:00</span></li>
-                                            <li><span>11:30</span></li>
-                                            <li><span>12:00</span></li>
-                                            <li><span>12:30</span></li>
-                                            <li><span>13:00</span></li>
-                                            <li><span>13:30</span></li>
-                                            <li><span>14:00</span></li>
-                                            <li><span>14:30</span></li>
-                                            <li><span>15:00</span></li>
-                                            <li><span>15:30</span></li>
-                                            <li><span>16:00</span></li>
-                                            <li><span>16:30</span></li>
-                                            <li><span>17:00</span></li>
-                                            <li><span>17:30</span></li>
-                                            <li><span>18:00</span></li>
-                                            <li><span>18:30</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="table-schedule-subject">
-                                        <tr>
-                                            <ul class="list-lecture-item">
-                                                <li class="timeline-vertical">
-                                                    <div class="top-info">
-                                                        <h4 class="day">Lunes</h4>
-                                                    </div>
-                                                    <ul id="Lunes">
-
-                                                    </ul>
-                                                </li>
-                                        </tr>
-
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Martes</h4>
-                                            </div>
-                                            <ul id="Martes">
-
-                                            </ul>
-                                        </li>
-
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Miercoles</h4>
-                                            </div>
-
-                                            <ul id="Miercoles">
-
-                                            </ul>
-                                        </li>
-
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Jueves</h4>
-                                            </div>
-
-                                            <ul id="Jueves">
-
-                                            </ul>
-                                        </li>
-
-                                        <li class="timeline-vertical">
-                                            <div class="top-info">
-                                                <h4 class="day">Viernes</h4>
-                                            </div>
-
-                                            <ul id="Viernes">
-
-                                            </ul>
-                                        </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea Eliminar éste Registro?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-danger btn-ok">Confirmar</a>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="ModalHorario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TituloModal">Horario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-lecture">
+
+                    <section class="section-list">
+                        <div class="container-xl">
+                            <div class="table-schedule">
+                                <div class="timeline">
+                                    <ul>
+                                        <li><span>06:00</span></li>
+                                        <li><span>06:30</span></li>
+                                        <li><span>07:00</span></li>
+                                        <li><span>07:30</span></li>
+                                        <li><span>08:00</span></li>
+                                        <li><span>08:30</span></li>
+                                        <li><span>09:00</span></li>
+                                        <li><span>09:30</span></li>
+                                        <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                            <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
+                                        </li>
+                                        <li><span>10:30</span></li>
+                                        <li><span>11:00</span></li>
+                                        <li><span>11:30</span></li>
+                                        <li><span>12:00</span></li>
+                                        <li><span>12:30</span></li>
+                                        <li><span>13:00</span></li>
+                                        <li><span>13:30</span></li>
+                                        <li><span>14:00</span></li>
+                                        <li><span>14:30</span></li>
+                                        <li><span>15:00</span></li>
+                                        <li><span>15:30</span></li>
+                                        <li><span>16:00</span></li>
+                                        <li><span>16:30</span></li>
+                                        <li><span>17:00</span></li>
+                                        <li><span>17:30</span></li>
+                                        <li><span>18:00</span></li>
+                                        <li><span>18:30</span></li>
+                                    </ul>
+                                </div>
+
+                                <div class="table-schedule-subject">
+                                    <tr>
+                                        <ul class="list-lecture-item">
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Lunes</h4>
+                                                </div>
+                                                <ul id="Lunes">
+
+                                                </ul>
+                                            </li>
+                                    </tr>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Martes</h4>
+                                        </div>
+                                        <ul id="Martes">
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Miercoles</h4>
+                                        </div>
+
+                                        <ul id="Miercoles">
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Jueves</h4>
+                                        </div>
+
+                                        <ul id="Jueves">
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Viernes</h4>
+                                        </div>
+
+                                        <ul id="Viernes">
+
+                                        </ul>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- <form id="formulario"> -->
 <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -189,20 +206,55 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-outline-primary" id="btn_Guardar">verificar</button>
-                    <button type="button" class="btn btn-outline-primary" id="btn_enviar">enviar</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-outline-warning" id="btn_Guardar">verificar</button>
+                    <button type="button" class="btn btn-outline-success" id="btn_enviar" disabled title="Generé primero las franjas">Confirmar</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- </form> -->
 
-    <!-- horario -->
 
 
 
     <script>
+        $('#modal-confirma').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
+        });
+
+        function EliminarRegistro(id) {
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/horario_det/cambiarEstado/'); ?>" + id + '/' + 'E',
+                dataType: "json",
+            }).done(function(data) {
+                $("#modal-confirma").modal("hide");
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado con exito!'
+                })
+                contador = 0;
+                tablaDetalle.ajax.reload(null, false);
+            })
+        }
+
+        $('.close').click(function() {
+            $("#modal-confirma").modal("hide");
+        });
+
         function visualizarHorario(id) {
             $(`#Lunes`).html('');
             $(`#Martes`).html('');
@@ -312,7 +364,7 @@
                     render: function(data, type, row) {
                         return `<div class="btn-group container">
                                 <a>
-                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
+                                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horario_det}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
                                 </a>
@@ -406,8 +458,6 @@
             e.preventDefault();
         })
 
-
-
         let duracionAsignaturas = [];
         let franjasTotales = [];
         let franjasTotalesOcupadas = [];
@@ -418,6 +468,8 @@
         // let id_grado = '';
 
         $(document).ready(function() {
+
+
             $.ajax({
                 url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
                 dataType: "json",
@@ -471,6 +523,8 @@
             const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
             const fechaFin = new Date(`2000-01-01T${horaFin}`);
 
+            console.log(fechaFin.getHours());
+
             for (let i = 0; i < array.length; i++) {
                 const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
 
@@ -478,6 +532,7 @@
                     arrayRango.push(array[i]);
                 }
             }
+
             arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '50');
             //DIVIDO EN 2 ARRAYS 
             for (let i = 0; i < arrayRango.length; i++) {
@@ -521,6 +576,9 @@
         let data = [];
         let duracion = ''
         $('#btn_Guardar').on('click', function() {
+
+
+            data = [];
             let i = 0;
 
             const diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
@@ -528,10 +586,16 @@
             let asignatura = $('#asignatura').val();
             let profesor = $('#profesor').val();
 
+            if (asignatura == '' || profesor == '' || $('#aula').val() == '') {
+                return Swal.fire({
+                    title: 'Todos los campos deben estar llenos',
+                    icon: 'error',
+                })
+            }
+
             duracionAsignaturas.forEach(element => {
                 if (element.id_grado_asignatura == asignatura) {
                     numeroRepeticiones = element.horas_semanales / 2;
-                    // console.log(numeroRepeticiones)
                 }
             });
 
@@ -582,15 +646,6 @@
                         timer: 2000,
                     })
 
-                    // while (i < numeroRepeticiones) {
-                    //     console.log('diasID')
-                    //     console.log(id_dias[diasSemana])
-                    //     i++;
-                    //     let [filtro] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
-                    //     diasSemana.shift();
-
-                    // }
-
                     while (i < numeroRepeticiones) {
                         try {
                             if (diasNoAsignados.length > 0) {
@@ -615,13 +670,12 @@
                                 let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
                                 let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
                                 let dia = diasSemana[0];
-                                diasSemana.shift();
+                                console.log(dia);
                                 if (Libres2Horas.length > 0) {
                                     i++;
                                 }
-                                console.log((numeroRepeticiones - i < 0))
-                                console.log(LibreTotal)
                                 if (diasSemana.length > 0) {
+                                    diasSemana.shift();
                                     data.push({
                                         "asignatura": asignatura,
                                         "profesor": profesor,
@@ -630,12 +684,33 @@
                                         "id_dia": id_dias[dia],
                                         "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
                                         "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
-                                        "fin": (numeroRepeticiones - i < 0) ? FiltroTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
-                                        "hora_fin": (numeroRepeticiones - i < 0) ? FiltroTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.nombre || FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : FiltroTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
+                                        "fin": (numeroRepeticiones - i < 0) ? LibreTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+                                        "hora_fin": (numeroRepeticiones - i < 0) ? LibreTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.nombre || LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
                                         "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
                                         "id_encabezado": <?php echo $id ?>
                                     });
-                                    console.log(data)
+                                    if (data[i - 1].fin == 54) {
+                                        console.log('SE PASO');
+                                        data[i - 1].fin = 53
+                                        data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 53).nombre
+                                        console.log('DATA CORREGIDA');
+                                        console.log(data);
+                                        let Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                        Toast.fire({
+                                            icon: 'info',
+                                            title: `Para la franja del dia ${data[i-1].dia} se le ha retirado una hora por exceder el limite!`
+                                        })
+                                    }
                                 } else {
                                     throw new Error("No hay más días disponibles para asignar.");
                                 }
@@ -645,6 +720,32 @@
                         }
 
                     }
+                    let rellenoAlerta = ''
+                    data.forEach(element => {
+                        let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+                        rellenoAlerta += `<li class="lecture-time ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
+                                                <a href="#">
+                                                    <div class="lecture-info">
+                                                        <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
+                                                    </div>
+                                                </a>
+                                            </li>`
+                    })
+                    setTimeout(() => {
+                        Swal.fire({
+                            title: '<h3 class="h3"> Franjas Generadas </h3>',
+                            icon: 'info',
+                            html: `Frajas Generadas ${rellenoAlerta}
+                                    <br>
+                                    Recuerde Confirmar
+                                    `,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Continuar!',
+                            confirmButtonAriaLabel: 'Thumbs up, great!',
+                        })
+                    }, 3000);
+                    $('#btn_enviar').removeAttr('disabled', '');
                     console.table(data)
                 }
             })
@@ -658,7 +759,8 @@
                     url: "<?php echo base_url('horario_det/insertar/') ?>" + element.asignatura + '/' + element.aula + '/' + element.id_dia + '/' + element.inicio + '/' + element.fin + '/' + element.id_encabezado + '/' + element.profesor + '/' + element.duracion,
                     dataType: "json",
                 }).done(function(data) {
-                    // $('#RolModal').modal('hide');
+                    $('#Horarios_encModal').modal('hide');
+                    tablaDetalle.ajax.reload(null, false);
                     let Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -669,6 +771,10 @@
                             toast.addEventListener('mouseenter', Swal.stopTimer)
                             toast.addEventListener('mouseleave', Swal.resumeTimer)
                         }
+                    })
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Franjas ingresadas con exito!'
                     })
                 });
 
@@ -699,19 +805,19 @@
 
             let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
             let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-            console.log('sextoFiltro:');
+            // console.log('sextoFiltro:');
             // console.log(sextoFiltro);
 
             const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
 
-            console.log("Array 1 (franjas con una hora faltante en su sucesión):");
-            console.log(Libres1Hora);
+            // console.log("Array 1 (franjas con una hora faltante en su sucesión):");
+            // console.log(Libres1Hora);
 
-            console.log("Array 2 (franjas que siguen su sucesión):");
-            console.log(Libres2Horas);
+            // console.log("Array 2 (franjas que siguen su sucesión):");
+            // console.log(Libres2Horas);
 
-            console.log("Array de franjas dentro del rango:");
-            console.log(arrayRango);
+            // console.log("Array de franjas dentro del rango:");
+            // console.log(arrayRango);
 
             return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
         }

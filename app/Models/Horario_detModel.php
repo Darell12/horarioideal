@@ -39,6 +39,11 @@ class Horario_detModel extends Model
         $datos = $this->findAll(); 
         return $datos;
     }
+    public function cambiarEstado($id, $estado)
+    {
+        $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
     public function buscarDetalleProfe($id)
     {
         $this->select('horario_det.*, u.nombre_p as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as dia, param3.nombre as fin');

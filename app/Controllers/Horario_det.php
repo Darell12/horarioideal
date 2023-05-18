@@ -60,6 +60,11 @@ class Horario_det extends BaseController
         ]);
         return json_encode(1);
     }
+    public function cambiarEstado($id, $estado)
+    {
+        $horario_det = $this->horario_det->cambiarEstado($id, $estado);
+        return json_encode('Todo bien');
+    }
 
     public function buscarDetalle()
     {

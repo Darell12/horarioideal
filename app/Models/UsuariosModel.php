@@ -94,7 +94,7 @@ class UsuariosModel extends Model
     {
         $datos = $this->update($id, [
             'contraseña' => $contraseña,
-            'accion_requerida'=> '1'
+            'accion_requerida' => '1'
         ]);
         return $datos;
     }
@@ -162,4 +162,5 @@ class UsuariosModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+
 }

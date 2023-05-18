@@ -49,7 +49,15 @@
                             <option value="">Seleccione una opción</option>
                         </select>
                     </div>
-                    <button class="btn btn-success mt-3" id="btn_agregar">Agregar</button>
+                    <div class="d-flex justify-content-between mt-3">
+                        <div>
+                            <button class="btn btn-success mt-3" id="btn_agregar">Agregar</button>
+                        </div>
+                        <div id="horasProfe" class="mt-3">
+
+                        </div>
+
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -1177,14 +1185,14 @@
         Telefonos.forEach(telefono => {
             contadortel++
             contenido += `
-    <tr id="utilT${contadortel}">
-    <td class="text-center">${contadortel}</td>
-    <td class="text-center">${telefono.telefono}</td>
-    <td class="text-center">${parametros[telefono.tipo]}</td>
-    <td class="text-center">${parametros[telefono.prioridad]}</td>
-    <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
-    <td hidden class="text-center">${telefono.tp}</td>
-    <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
+        <tr id="utilT${contadortel}">
+        <td class="text-center">${contadortel}</td>
+        <td class="text-center">${telefono.telefono}</td>
+        <td class="text-center">${parametros[telefono.tipo]}</td>
+        <td class="text-center">${parametros[telefono.prioridad]}</td>
+        <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
+        <td hidden class="text-center">${telefono.tp}</td>
+        <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
                     <td class="text-center">
                     <button class="btn btn-outline-primary" onclick="editarTelefono( ${contadortel});"><i class="bi bi-pencil"></i></button>
                     <button class="btn btn-outline-danger" onclick="eliminarTelefono(${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
@@ -1341,8 +1349,6 @@
         document.getElementById('direccionX').value = direccionReal;
     }
 
-
-
     // Modal asignaturas
     $('#grado').on('change', function(e) {
         console.log('evento grado');
@@ -1377,6 +1383,7 @@
 
     function generarTablaAsignatura(id) {
         let contador = 0;
+        let contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarga(${id})`)
         $.ajax({
@@ -1387,17 +1394,30 @@
                 $('#tablaAsignaturas').html('contenido');
                 Asignaturas.forEach(asignatura => {
                     contador++
+                    contadorHoras += +asignatura.horas_semanales;
                     contenido += `
-                            <tr id="util${contador}">
-                                <td class="text-center">${contador}</td>
-                                <td class="text-center">${asignatura.grado}</td>
-                                <td class="text-center">${asignatura.nombre}</td>
-                                <td class="text-center">${asignatura.horas_semanales}</td>
-                                <td class="text-center">
-                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminaAsig" data-href="${asignatura.id_asignatura_profesor},${id}"><i class="bi bi-trash"></i></button>
-                            </td>
-                            </tr>`
+                    <tr id="util${contador}">
+                    <td class="text-center">${contador}</td>
+                    <td class="text-center">${asignatura.grado}</td>
+                    <td class="text-center">${asignatura.nombre}</td>
+                    <td class="text-center">${asignatura.horas_semanales}</td>
+                    <td class="text-center">
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminaAsig" data-href="${asignatura.id_asignatura_profesor},${id}"><i class="bi bi-trash"></i></button>
+                    </td>
+                    </tr>`
                 });
+                let color
+                if (contadorHoras < 10) {
+                    color = 'text-danger';
+                } else if (contadorHoras >= 10 && contadorHoras < 20) {
+                    color = 'text-warning';
+                } else if (contadorHoras >= 20 && contadorHoras < 30) {
+                    color = 'text-warning';
+                }
+
+                contenidoHead = `<h4>Horas <span class="${color}">${contadorHoras}<span class="text-dark">/</span><span class="text-success">30</span></span></h4>`
+                console.log(contenidoHead);
+                $('#horasProfe').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
             }
         })
