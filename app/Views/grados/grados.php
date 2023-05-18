@@ -50,9 +50,19 @@
                         <label class="col-form-label">Horas Semanales:</label>
                         <input type="text" class="form-control" name="horas" id="horas" required>
                     </div>
+
+
                     <div>
                         <label id="asig-error" class="error" for="rol">
                     </div>
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <div>
+                        </div>
+                        <div id="horasAsig" class="mt-3">
+                        </div>
+                    </div>
+
                 </div>
 
                 <input type="text" id="tp" name="tp" hidden>
@@ -72,10 +82,10 @@
                         <tbody id="tablaAsignaturas"></tbody>
                     </table>
                 </div>
+
                 <div class="modal-footer">
-                    <button class="btn btn-success" id="btn_agregar">Agregar</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-success" id="btn_agregar">Agregar</button> 
                 </div>
             </div>
         </div>
@@ -213,6 +223,7 @@
 
     function generarTablaAsignatura(id) {
         let contador = 0;
+        let contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarg(${id})`)
         $.ajax({
@@ -223,6 +234,7 @@
                 $('#tablaAsignaturas').html('contenido');
                 Asignaturas.forEach(asignatura => {
                     contador++
+                    contadorHoras += +asignatura.horas_semanales;
                     contenido += `
                             <tr id="util${contador}">
                                 <td class="text-center">${contador}</td>
@@ -233,6 +245,17 @@
                             </td>
                             </tr>`
                 });
+                let color
+                if (contadorHoras < 10) {
+                    color = 'text-danger';
+                } else if (contadorHoras >= 10 && contadorHoras < 20) {
+                    color = 'text-warning';
+                } else if (contadorHoras >= 20 && contadorHoras < 30) {
+                    color = 'text-warning';
+                }
+                contenidoHead = `<h4>Horas <span class="${color}">${contadorHoras}<span class="text-dark">/</span><span class="text-success">30</span></span></h4>`
+                console.log(contenidoHead);
+                $('#horasAsig').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
             }
         })
