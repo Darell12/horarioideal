@@ -72,7 +72,7 @@
                                     <select class="form-select form-select" name="jornada" id="jornada" required>
                                         <option value="">Seleccione un Jornada</option>
                                         <option value="20">Mañana</option>
-                                        <option value="21">Tarde</option>
+                                        <option value="21" disabled>Tarde</option>
                                     </select>
                                 </div>
                             </div>
@@ -234,8 +234,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

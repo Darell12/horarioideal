@@ -1,16 +1,16 @@
-<div class="container bg-white mt-5 shadow rounded-4">
-    <div>
-        <h1 class="titulo_Vista text-center">
-        </h1>
-    </div>
-    <div style="height: 30px;"></div>
-    <div>
-        <a href="<?php echo base_url('/ver_estudiantes'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+<div class="container bg-white rounded rounded-3">
+
+    <div class="d-flex justify-content-between flex-wrap">
+        <div>
+        </div>
+        <div>
+            <a href="<?php echo base_url('/ver_estudiantes'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        </div>
     </div>
 
     <br>
     <div class="table-responsive">
-        <table id="tablaEstudiantes" class="table align-items-center table-flush" >
+        <table id="tablaEstudiantes" class="table align-items-center table-flush">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>

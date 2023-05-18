@@ -1,14 +1,14 @@
 <div class="container bg-white shadow rounded-4">
-  <div>
-    <h1 class="titulo_Vista text-center">
-      <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
-    </h1>
-  </div>
-  <div style="height: 30px;"></div>
   <div class="d-flex justify-content-between flex-wrap">
-    <a href="<?php echo base_url('/ver_aulas'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
-  </div>
+    <div>
+    </div>
 
+    <div>
+      <a href="<?php echo base_url('/ver_aulas'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+    </div>
+  </div>
+  <div>
+  </div>  
   <br>
   <div class="table-responsive">
     <table style="text-align: center;" id="tablaAulas" class="table table-bordered table-sm table-hover" width="100%" cellspacing="0">
@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-      
+
       </tbody>
     </table>
   </div>

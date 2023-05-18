@@ -205,7 +205,7 @@
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
-                                <button class="btn btn-outline-warning" onclick="generarTablaAsignatura(${data.id_grado});" data-bs-toggle="modal" data-bs-target="#modalAsignaturas" title="Editar Registro">
+                                <button class="btn btn-outline-warning" onclick="generarTablaAsignatura(${data.id_grado});" data-bs-toggle="modal" data-bs-target="#modalAsignaturas" title="Carga Academica">
                                     <i class="bi bi-journal-bookmark"></i>
                                 </button>
 

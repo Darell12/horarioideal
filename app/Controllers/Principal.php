@@ -18,7 +18,7 @@ class Principal extends BaseController
     public function index()
     {
 
-        $data = ['titulo' => 'Administrar Usuarios'];
+        $data = ['titulo' => 'Bienvenido!'];
 
         echo view('/principal/sidebar', $data);
         echo view('/inicio/inicio', $data);

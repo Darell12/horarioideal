@@ -2,7 +2,6 @@
     <div class="d-flex justify-content-between flex-wrap">
         <h1 class="titulo_Vista text-center"></h1>
 
-        <div style="height: 30px;"></div>
         <div>
             <div>
                 <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
