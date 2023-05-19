@@ -260,7 +260,6 @@
                     <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
                         <thead class="thead-light">
                             <tr>
-                                <th class="text-center">ID</th>
                                 <th class="text-center">Telefono</th>
                                 <th class="text-center">Periodo</th>
                                 <th class="text-center">Tipo</th>
@@ -1058,10 +1057,27 @@
         };
         console.log(data);
         $.post("<?php echo base_url('/usuarios/insertar'); ?>", data, function(response) {
-            location.reload();
             insertarEmail(<?php echo $datos['id_usuario']; ?>);
             insertarTelefono(<?php echo $datos['id_usuario']; ?>);
         });
+        let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Informacion de usuario actualizada con exito!'
+            }).then(() => {
+                location.reload();
+            });
     }
 
     function Direccion() {

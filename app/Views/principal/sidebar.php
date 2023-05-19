@@ -44,7 +44,9 @@
         <div class="sidebar-header">
             <h3>Horario Ideal</h3>
         </div>
-
+        <!-- <button onclick="enviarwp()">
+            boton
+        </button> -->
         <ul class="list-unstyled">
             <div style="margin-top: 0.5em;">
                 <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
@@ -146,7 +148,7 @@
             <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
-                <i class='bx bx-chevron-right toggle bx-sm'></i>
+                    <i class='bx bx-chevron-right toggle bx-sm'></i>
                 </button>
                 <div style="margin-top: 10px;" class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
@@ -190,4 +192,17 @@
                 $(this).toggleClass("active");
             });
             // });
+
+            function enviarwp() {
+                const message = {
+                    phone_number: '3014566632', // Número de teléfono del destinatario
+                    text: 'Hola, este es un mensaje desde mi aplicación.',
+                };
+                try {
+                    $.post('https://api.whatsapp.com/send?phone=' + message.phone_number + '&text=' + encodeURIComponent(message.text))
+                    console.log('Mensaje enviado');
+                } catch (error) {
+                    console.error('Error al enviar el mensaje:', error);
+                }
+            }
         </script>

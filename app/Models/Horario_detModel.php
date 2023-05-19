@@ -13,16 +13,16 @@ class Horario_detModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_grado_asignatura', 'id_aula',  'profesor','id_horario_enc', 'dia','hora_inicio', 'hora_fin', 'duracion' ,'estado', 'usuario_crea'];
-    protected $useTimestamps = true; 
-    protected $createdField  = 'fecha_crea'; 
+    protected $allowedFields = ['id_grado_asignatura', 'id_aula',  'profesor', 'id_horario_enc', 'dia', 'hora_inicio', 'hora_fin', 'duracion', 'estado', 'usuario_crea'];
+    protected $useTimestamps = true;
+    protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';
-    protected $deletedField  = ''; 
+    protected $deletedField  = '';
 
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
-    
+
     public function obtenerDetalle_horario($id)
     {
         $this->select('horario_det.*, u.nombre_p as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as dia, param3.nombre as fin');
@@ -36,7 +36,7 @@ class Horario_detModel extends Model
         $this->where('horario_det.estado', 'A');
         $this->where('horario_det.id_horario_enc', $id);
         // $this->groupBy('horario_det.dia');
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
     public function cambiarEstado($id, $estado)
@@ -56,7 +56,7 @@ class Horario_detModel extends Model
         $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura');
         $this->where('horario_det.estado', 'A');
         $this->where('horario_det.profesor', $id);
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
     public function buscarDetalleAula($id)
@@ -71,7 +71,7 @@ class Horario_detModel extends Model
         $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura');
         $this->where('horario_det.estado', 'A');
         $this->where('horario_det.dia', $id);
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
     public function buscarDetalles()
@@ -85,10 +85,11 @@ class Horario_detModel extends Model
         $this->join('grados_asignatura as a', 'a.id_grado_asignatura = horario_det.id_grado_asignatura');
         $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura');
         $this->where('horario_det.estado', 'A');
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
-    public function obtenerDetalles($id){
+    public function obtenerDetalles($id)
+    {
         $this->select('horario_det.*, horario_det.dia as id_dia, u.nombre_p as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as dia, param3.nombre as fin');
         $this->join('usuarios as u', 'horario_det.profesor = u.id_usuario');
         $this->join('parametro_det as param', 'param.id_parametro_det = horario_det.hora_inicio');
@@ -97,11 +98,10 @@ class Horario_detModel extends Model
         $this->join('aulas', 'horario_det.id_aula = aulas.id_aula');
         $this->join('grados_asignatura as a', 'a.id_grado_asignatura = horario_det.id_grado_asignatura');
         $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura');
-        
+
         $this->where('horario_det.id_horario_enc', $id);
         $this->where('horario_det.estado', 'A');
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
-
 }

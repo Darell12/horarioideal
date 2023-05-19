@@ -39,7 +39,7 @@ class Horario_det extends BaseController
         $grados = $this->grados->obtenerGrados('A');
         $asignatura = $this->asignatura->buscarAsignaturasxGrado($horario['id_grado']);
 
-        $data = ['titulo' => 'Administrar Horario de ', 'datos' => $horario, 'id' => $id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura];
+        $data = ['titulo' => 'Administrar Horario de ', 'datos' => $horario, 'id' => $id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura, ];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_det/detalle', $data);
