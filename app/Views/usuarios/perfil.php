@@ -311,12 +311,12 @@
         Emails.forEach(email => {
             contador++
             contenido += `
-    <tr id="util${contador}">
-    <td class="text-center">${email.email}</td>
-    <td class="text-center">${prioridades[email.prioridad]}</td>
-    <td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
-    <td hidden class="text-center">${email.tp}</td>
-    <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
+                <tr id="util${contador}">
+                <td class="text-center">${email.email}</td>
+                <td class="text-center">${prioridades[email.prioridad]}</td>
+                <td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
+                <td hidden class="text-center">${email.tp}</td>
+                <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
                     <td class="text-center">
                     <button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
                     <button class="btn btn-outline-danger" onclick="eliminarEmail(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
@@ -326,13 +326,55 @@
         $('#tabla_email').html(contenido);
     }
 
+    function validarPrioridadTel() {
+        const existeValor = tablaTemporalTelefonos.some(telefono => telefono.prioridad == 6);
+
+        if (existeValor) {
+            $('#prioridad_tel').val(7)
+            $('#Principal').attr('disabled', '');
+            $('#Secundario').removeAttr('disabled', '');
+        } else {
+            $('#prioridad_tel').val(6)
+            $('#Secundario').attr('disabled', '');
+            $('#Principal').removeAttr('disabled', '');
+        }
+    }
+
+    function validarPrioridadEmail() {
+        const existeValor = tablaTemporal.some(email => email.prioridad == 6);
+
+        if (existeValor) {
+            $('#prioridad').val(7)
+            $('#PrincipalE').attr('disabled', '');
+            $('#SecundarioE').removeAttr('disabled', '');
+        } else {
+            $('#prioridad').val(6)
+            $('#SecundarioE').attr('disabled', '');
+            $('#PrincipalE').removeAttr('disabled', '');
+        }
+    }
+
+
     let tablaTemporal = []
     $('#btn_insertar').click(function() {
+
+        //Expresion regular de formato email
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         let email = $('#email_modal').val();
         let prioridad = $('#prioridad').val();
         let id_email = $('#id_email').val();
         let tp = $('#tpExist').val();
+
+        if (!regex.test(email)) {
+            $('#email_modal').addClass('is-invalid');
+            $('#errorEmail').text('Este no es un formato valido de email');
+            setTimeout(() => {
+                $('#email_modal').removeClass('is-invalid');
+                $('#errorEmail').text('');
+            }, 2000);
+            return; // El email no es válido
+        }
 
         filtroPrioridad = tablaTemporal.filter(p => p.prioridad == 6);
         filtroEmail = tablaTemporal.filter(p => p.email == email);
@@ -391,7 +433,7 @@
 
 
                 let principal = tablaTemporal.find(p => p.prioridad == 6)
-                $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+                $('#email').val(!principal ? '' : principal.email);
 
 
                 optionPrincipal = $('#prioridad').find('option[value="6"]')
@@ -400,6 +442,7 @@
                 $('#email_modal').val('');
             }
         })
+        validarPrioridadEmail()
     });
 
     function editarEmail(id) {
@@ -429,9 +472,10 @@
         tablaTemporal = tablaTemporal.filter(p => p.email !== emailEditar.text());
 
         let principal = tablaTemporal.find(p => p.prioridad == 6)
-        $('#email').val(!principal ? tablaTemporal[0].email : principal.email);
+        $('#email').val(!principal ? '' : principal.email);
         console.log(tablaTemporal);
         generarTablaEmail(tablaTemporal);
+        validarPrioridadEmail()
     }
 
     function insertarEmail(id) {
@@ -450,9 +494,8 @@
                 },
                 dataType: "json",
             }).done(function(data) {})
-            location.reload();
         });
-
+        validarPrioridadEmail()
     }
 
     function eliminarEmail(id, tp) {
@@ -462,6 +505,7 @@
         const prioridadEditar = fila.find('td').eq(1)
         const idEmail = fila.find('td').eq(2)
         const tpExist = fila.find('td').eq(3)
+
 
         if (tp == 1) {
             console.log('tp1')
@@ -492,12 +536,70 @@
                 })
                 tablaTemporal = tablaTemporal.filter(p => p.id_email !== idEmail.text());
 
-                console.log(tablaTemporal[0].id_email)
+                // console.log(tablaTemporal[0].id_email)
                 generarTablaEmail(tablaTemporal);
                 contador = 0
                 return
             })
         }
+        let principal = tablaTemporal.find(p => p.prioridad == 6)
+        $('#email').val(!principal ? '' : principal.email);
+        validarPrioridadEmail()
+    }
+
+    function eliminarTelefono(id, tp) {
+
+        const fila = $('#utilT' + id);
+        const telefonoEditar = fila.find('td').eq(0)
+        const prioridadTelEditar = fila.find('td').eq(1)
+        const tipoTel = fila.find('td').eq(2)
+        const idTelefono = fila.find('td').eq(3)
+        const tpExistTel = fila.find('td').eq(4)
+        const telefonoActu = fila.find('td').eq(5)
+        optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
+
+
+        if (tp == 1) {
+            console.log('tp1')
+            tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefono !== telefonoEditar.text());
+            generarTablaTel(tablaTemporalTelefonos);
+        } else {
+            console.log('Ya existe en la base de datos')
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/telefono/cambiarEstado/'); ?>" + idTelefono.text() + "/" + 'E',
+                dataType: "json",
+            }).done(function(data) {
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado con exito!'
+                })
+                console.log(tablaTemporal);
+                console.log(telefonoEditar.text());
+                tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefono !== telefonoEditar.text());
+                // console.log(tablaTemporalTelefonos[0].id_telefono)
+                generarTablaTel(tablaTemporalTelefonos);
+                contador = 0
+                return
+            })
+        }
+
+
+        let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
+        $('#telUsuario').val(!principal ? '' : principal.telefono);
+        validarPrioridadTel()
     }
 
     function generarTablaTel(Telefonos) {
@@ -516,35 +618,50 @@
         Telefonos.forEach(telefono => {
             contadortel++
             contenido += `
-    <tr id="utilT${contadortel}">
-    <td class="text-center">${contadortel}</td>
-    <td class="text-center">${telefono.telefono}</td>
-    <td class="text-center">${parametros[telefono.tipo]}</td>
-    <td class="text-center">${parametros[telefono.prioridad]}</td>
-    <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
-    <td hidden class="text-center">${telefono.tp}</td>
-    <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
+            <tr id="utilT${contadortel}">
+            <td class="text-center">${telefono.telefono}</td>
+            <td class="text-center">${parametros[telefono.tipo]}</td>
+            <td class="text-center">${parametros[telefono.prioridad]}</td>
+            <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
+            <td hidden class="text-center">${telefono.tp}</td>
+            <td hidden class="text-center">${telefono.tp == 2 ? telefono.telefono : ''}</td>
                     <td class="text-center">
                     <button class="btn btn-outline-primary" onclick="editarTelefono( ${contadortel});"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-outline-danger" onclick="seleccionarEmail( ${telefono.id_telefono} ,2 );"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-outline-danger" onclick="eliminarTelefono(${contadortel}, ${telefono.tp});"><i class="bi bi-trash"></i></button>
                     </td>
                     </tr>`
         });
         $('#tabla_telefono').html(contenido);
+        validarPrioridadTel()
     }
 
     let tablaTemporalTelefonos = [];
     $('#btn_insertarTelefono').click(function() {
+
+        // Expresión regular solo numeros
+        const regex = /^\d{1,11}$/;
+
         let telefono = $('#telefono').val();
         let prioridad = $('#prioridad_tel').val();
         let tipo = $('#tipo').val();
         let id_telefono = $('#id_telefono').val();
         let tp = $('#tpExistTel').val();
 
+        if (!regex.test(parseInt(telefono))) {
+            $('#telefono').addClass('is-invalid');
+            $('#errorTel').text('El telefono no puede contener caracteres diferentes a numeros');
+            setTimeout(() => {
+                $('#telefono').removeClass('is-invalid');
+                $('#errorTel').text('');
+            }, 2000);
+            return
+        }
+
         filtroPrioridad = tablaTemporalTelefonos.filter(p => p.prioridad == 6);
         filtroTel = tablaTemporalTelefonos.filter(p => p.telefono == telefono);
 
         datosValidar = {
+            tp: tp,
             valor: telefono,
             campo: 'numero',
             nombreActu: tp == 2 ? telefono : '',
@@ -594,7 +711,7 @@
                 generarTablaTel(tablaTemporalTelefonos);
 
                 let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
-                $('#telUsuario').val(!principal ? tablaTemporalTelefonos[0].telefono : principal.telefono);
+                $('#telUsuario').val(!principal ? '' : principal.telefono);
                 optionPrincipal = $('#prioridad').find('option[value="6"]')
                 $('#prioridad_tel').val(7);
                 prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
@@ -603,17 +720,18 @@
                 $('#tpExistTel').val('')
             }
         })
+        validarPrioridadTel()
     });
 
     function editarTelefono(id) {
 
         const fila = $('#utilT' + id);
-        const telefonoEditar = fila.find('td').eq(1)
+        const telefonoEditar = fila.find('td').eq(0)
+        const tipoTel = fila.find('td').eq(1)
         const prioridadTelEditar = fila.find('td').eq(2)
-        const tipoTel = fila.find('td').eq(3)
-        const idTelefono = fila.find('td').eq(4)
-        const tpExistTel = fila.find('td').eq(5)
-        const telefonoActu = fila.find('td').eq(6)
+        const idTelefono = fila.find('td').eq(3)
+        const tpExistTel = fila.find('td').eq(4)
+        const telefonoActu = fila.find('td').eq(5)
         optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
 
         console.log(telefonoEditar.text())
@@ -639,6 +757,7 @@
         // $('#email').val(!principal ? tablaTemporalTelefonos[0].email : principal.email);
         console.log(tablaTemporalTelefonos);
         generarTablaTel(tablaTemporalTelefonos);
+        validarPrioridadTel()
     }
 
     function insertarTelefono(id) {
@@ -659,6 +778,7 @@
                 dataType: "json",
             }).done(function(data) {})
         });
+        validarPrioridadTel()
     }
 
     function EditarPerfil(id) {
@@ -728,7 +848,7 @@
                                 <label for="nombre" class="col-form-label">Emails:</label>
                                 <div class="input-group">
                                     <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" aria-label="" aria-describedby="button-addon2" disabled>
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                    <button class="btn btn-success" type="button" onclick="validarPrioridadEmail()" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -737,7 +857,7 @@
                                 <label for="nombre" class="col-form-label">Telefonos:</label>
                                 <div class="input-group">
                                     <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" disabled>
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                    <button class="btn btn-success" type="button" onclick="validarPrioridadTel()" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
                                 </div>
                             </div>
                         <hr>

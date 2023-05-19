@@ -45,6 +45,7 @@ class Usuarios extends BaseController
         if (!session('logged_in') == 'true') {
             return redirect()->to(base_url('iniciarSesion'));
         }
+
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
         $roles = $this->roles->obtenerRoles('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
@@ -58,6 +59,12 @@ class Usuarios extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
         echo view('/principal/footer', $data);
+    }
+
+    public function test($id)
+    {
+        $usuario = $this->usuario->buscarUsuarioPerfil($id);
+        return json_encode($usuario);
     }
     public function insertar()
     {

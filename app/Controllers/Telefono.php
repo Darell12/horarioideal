@@ -63,10 +63,10 @@ class Telefono extends BaseController
         $valor = $this->request->getPost('valor');
         $campo = $this->request->getPost('campo');
         $tp = $this->request->getPost('tp');
-        $emailActu = $this->request->getPost('emailActu');
+        $nombreActu = $this->request->getPost('nombreActu');
 
         $filtro = $this->telefono->filtro($campo, $valor);
-        if ($tp == 2 && $valor == $emailActu) {
+        if ($tp == 2 && $valor == $nombreActu) {
             $respuesta = false;
             return $this->response->setJSON($respuesta);
         }

@@ -465,7 +465,6 @@
         let franjasTotalesOcupadasAula = [];
         let franjasProfesor = [];
         let numeroRepeticiones = 0;
-        // let id_grado = '';
 
         $(document).ready(function() {
 
@@ -490,9 +489,6 @@
                     inicio = res.hora_inicio;
                     fin = res.hora_fin;
                     id_grado = res.id_grado;
-                    console.log(id_grado)
-                    console.log(inicio);
-                    console.log(fin);
                 }
             })
 
@@ -684,6 +680,7 @@
                                     // RETIRA HORA EN CASO DE EXCESO
                                     if (data[i - 1].fin == 54) {
                                         console.log('SE PASO');
+                                        data[i - 1].duracion = 1
                                         data[i - 1].fin = 53
                                         data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 53).nombre
                                         console.log('DATA CORREGIDA');
