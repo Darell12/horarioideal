@@ -29,7 +29,7 @@
     <div class="modal" id="modalAsignaturas" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background: #0f9dba; color:#FFF;">
                     <h5 id="tituloAsig" class="modal-title">Carga Académica del profesor</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -58,7 +58,7 @@
 
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" style="padding: 1rem 2rem">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <th>#</th>
@@ -104,7 +104,7 @@
     <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background: #0f9dba; color:#FFF;">
                     <h1 class="modal-title fs-5" id="tituloModal">Añadir Usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -276,10 +276,10 @@
 </div>
 
 <!-- tabla emalis -->
-<div id="ModalEmail" class="modal" tabindex="-1">
+<div id="ModalEmail" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog  modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: #0f9dba">
                 <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="#" title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -332,10 +332,10 @@
     </div>
 </div>
 <!-- tabla telefonos -->
-<div id="ModalTelefonos" class="modal" tabindex="-1">
+<div id="ModalTelefonos" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: #0f9dba">
 
                 <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

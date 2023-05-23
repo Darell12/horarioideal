@@ -4,10 +4,15 @@
         </div>
 
         <div>
-            <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
-            <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);"
+                class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i
+                    class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i>
+                Reporte Excel</button>
+            <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button"
+                    class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i
+                        class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
 
 
@@ -55,10 +60,11 @@
 </table>
 <!-- Modal -->
 <form id="formulario">
-    <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal fade" id="UsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background: #0f9dba; color:#FFF;">
                     <h1 class="modal-title fs-5" id="tituloModal">Añadir Usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -76,7 +82,8 @@
                             </div>
                             <div class="col">
                                 <label class="col-form-label">Tipo de Documento:</label>
-                                <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
+                                <select class="form-select form-select" name="tipo_documento" id="tipo_documento"
+                                    required>
                                     <option value="">Seleccione un Tipo</option>
                                     <option value="2">Cedula de Ciudadania</option>
                                     <option value="1">Tarjeta de Identidad</option>
@@ -91,43 +98,54 @@
                         <div class="row">
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Primer Nombre:</label>
-                                <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
+                                <input type="text" class="form-control" name="primer_nombre" id="primer_nombre"
+                                    maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
-                                <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+">
+                                <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre"
+                                    maxlength="20" pattern="[A-Za-z]+">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Primer Apellido:</label>
-                                <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
+                                <input type="text" class="form-control" name="primer_apellido" id="primer_apellido"
+                                    maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
+                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido"
+                                    required>
                             </div>
                         </div>
                         <div class="row mb-1">
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Emails:</label>
                                 <div class="input-group d-flex">
-                                    <button class="btn btn-success btn-sm" type="button" onclick="validarPrioridadEmail()" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
-                                    <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" required readonly>
+                                    <button class="btn btn-success btn-sm" type="button"
+                                        onclick="validarPrioridadEmail()" data-bs-toggle="modal"
+                                        data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
+                                    <input type="text" id="email" name="email" class="form-control"
+                                        placeholder="Agregar un email" required readonly>
                                 </div>
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Telefonos:</label>
                                 <div class="input-group">
-                                    <button class="btn btn-success btn-sm" onclick="validarPrioridadTel()" id="btnTelefono" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
-                                    <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
+                                    <button class="btn btn-success btn-sm" onclick="validarPrioridadTel()"
+                                        id="btnTelefono" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
+                                    <input class="form-control" type="text" id="telUsuario" name="telUsuario"
+                                        placeholder="Agregar telefonos" readonly required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label id="direccion_usuario" for="direccion">Dirección:</label>
                             <div class="col">
-                                <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select" required onchange="Validardireccion()">
+                                <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select"
+                                    required onchange="Validardireccion()">
                                     <option value="">--Selecciona--</option>
                                     <option>Carrera</option>
                                     <option>Calle</option>
@@ -144,29 +162,38 @@
                             </div>
 
                             <div class="col">
-                                <input onchange="Validardireccion()" id="dir2" name="dir2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
+                                <input onchange="Validardireccion()" id="dir2" name="dir2" type="text" maxLength="4"
+                                    class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                    placeholder="Ej: 17B" required />
                             </div>
                             <div class="col">
-                                <input onchange="Validardireccion()" id="dir3" maxLength="4" name="dir3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
+                                <input onchange="Validardireccion()" id="dir3" maxLength="4" name="dir3" type="text"
+                                    class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                    placeholder="Ej: #68C" required />
                             </div>
                             <div class="col">
-                                <input onchange="Validardireccion()" id="dir4" maxLength="4" name="dir4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
+                                <input onchange="Validardireccion()" id="dir4" maxLength="4" name="dir4" type="text"
+                                    class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                    placeholder="Ej: 23" required />
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label id="direccion_usuario" for="direccion"></label>
-                            <input id="direccionX" name="direccionX" type="text" class="form-control" readonly class="form-control-plaintext">
+                            <input id="direccionX" name="direccionX" type="text" class="form-control" readonly
+                                class="form-control-plaintext">
                         </div>
 
                         <div class="row">
                             <div class="col">
                                 <label id="password_label" for="Password">Contraseña</label>
-                                <input id="contraseña" name="contraseña" type="password" class="form-control" required />
+                                <input id="contraseña" name="contraseña" type="password" class="form-control"
+                                    required />
                             </div>
                             <div class="col">
                                 <label id="password_label_c" for="password">Confirme Contraseña</label>
-                                <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
+                                <input id="confirmar_contraseña" name="confirmar_contraseña" type="password"
+                                    class="form-control" required />
                             </div>
                         </div>
 
@@ -188,11 +215,13 @@
     </div>
 </form>
 
-<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">
+                    Eliminación de Registro</h5>
 
             </div>
             <div style="text-align:center;font-weight:bold;" class="modal-body">
@@ -206,11 +235,13 @@
     </div>
 </div>
 <!-- Resetear Modal -->
-<div class="modal fade" id="Resetear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Resetear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Reinicio de Contraseña</h5>
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">
+                    Reinicio de Contraseña</h5>
 
             </div>
             <div style="text-align:center;font-weight:bold;" class="modal-body">
@@ -226,20 +257,21 @@
 </div>
 
 <!-- tabla emalis -->
-<div id="ModalEmail" class="modal" tabindex="-1">
+<div id="ModalEmail" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog  modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="#" title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
+            <div class="modal-header" style="background: #0f9dba">
+                <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="#"
+                        title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i
+                            class="bi bi-question"></i></a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-                <button class="btn btn-outline-primary" id="btn-regresar"><i class="bi bi-arrow-return-left"></i> Regresar</button>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="message-text" class="col-form-label">Email:</label>
-                        <input type="email" name="email_modal" class="form-control" id="email_modal" placeholder="Ej: JhonDoe@gmail.com">
+                        <input type="email" name="email_modal" class="form-control" id="email_modal"
+                            placeholder="Ej: JhonDoe@gmail.com">
                         <div class="invalid-feedback" id="errorEmail"></div>
                     </div>
 
@@ -249,10 +281,13 @@
                             <select name="prioridad" class="form-select form-select" id="prioridad">
                                 <option value="">-Seleccione una opción-</option>
                                 <?php foreach ($prioridad as $valor) { ?>
-                                    <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre'] ?>E"><?php echo $valor['nombre']; ?></option>
+                                    <option value="<?php echo $valor['id_parametro_det']; ?>"
+                                        id="<?php echo $valor['nombre'] ?>E"><?php echo $valor['nombre']; ?></option>
                                 <?php } ?>
                             </select>
-                            <button class="btn btn-outline-success" type="button" id="btn_insertar" onclick="validarPrioridadEmail()" title="Agregar Email"><i class="bi bi-plus"></i></button>
+                            <button class="btn btn-outline-success" type="button" id="btn_insertar"
+                                onclick="validarPrioridadEmail()" title="Agregar Email"><i
+                                    class="bi bi-plus"></i></button>
                             <div class="invalid-feedback" id="errorPrioridad"></div>
                         </div>
                         <input hidden type="text" id="id_email" name="id_email">
@@ -262,7 +297,8 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%"
+                        cellspacing="0">
                         <thead class="thead-light">
                             <tr>
                                 <th class="text-center">Email</th>
@@ -282,12 +318,14 @@
     </div>
 </div>
 <!-- tabla telefonos -->
-<div id="ModalTelefonos" class="modal" tabindex="-1">
+<div id="ModalTelefonos" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: #0f9dba">
 
-                <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
+                <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#"
+                        title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i
+                            class="bi bi-question"></i></a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -303,7 +341,8 @@
                         <select name="tipo" class="form-select form-select" id="tipo">
                             <option value="">-Seleccione una opción-</option>
                             <?php foreach ($tipo as $valor) { ?>
-                                <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre']; ?>"><?php echo $valor['nombre']; ?></option>
+                                <option value="<?php echo $valor['id_parametro_det']; ?>"
+                                    id="<?php echo $valor['nombre']; ?>"><?php echo $valor['nombre']; ?></option>
                             <?php } ?>
                         </select>
                         <div class="invalid-feedback" id="errorTipoTel"></div>
@@ -314,10 +353,13 @@
                             <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
                                 <option value="">-Seleccione una opción-</option>
                                 <?php foreach ($prioridad as $valor) { ?>
-                                    <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre'] ?>"><?php echo $valor['nombre']; ?></option>
+                                    <option value="<?php echo $valor['id_parametro_det']; ?>"
+                                        id="<?php echo $valor['nombre'] ?>"><?php echo $valor['nombre']; ?></option>
                                 <?php } ?>
                             </select>
-                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefono" onclick="validarPrioridadTel()" title="Agregar numero"><i class="bi bi-plus"></i></button>
+                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefono"
+                                onclick="validarPrioridadTel()" title="Agregar numero"><i
+                                    class="bi bi-plus"></i></button>
                             <div class="invalid-feedback" id="errorPrioridadTel"></div>
                         </div>
                         <input hidden type="text" id="id_telefono" name="id_telefono">
@@ -327,7 +369,8 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%"
+                        cellspacing="0">
                         <thead class="thead-light">
                             <tr>
                                 <th class="text-center">Telefono</th>
@@ -348,16 +391,19 @@
 </div>
 
 <!-- eliminar emails y restaurar -->
-<div class="modal fade" id="modal-confirma-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-confirma-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">
+                    Eliminación de Registro</h5>
 
             </div>
             <div style="text-align:center;font-weight:bold;" class="modal-body">
                 <p>Seguro Desea Eliminar éste Registro?</p>
-                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input type="text" hidden id="id_almacenar_estado">
+                <input type="text" hidden id="id_almacenar"><input type="text" hidden id="id_almacenar_usuario"><input
+                    type="text" hidden id="id_almacenar_estado">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
@@ -368,16 +414,19 @@
 </div>
 <!-- eliminar telefonos y restaurar -->
 
-<div class="modal fade" id="modal-confirma-telefono" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-confirma-telefono" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">
+                    Eliminación de Registro</h5>
 
             </div>
             <div style="text-align:center;font-weight:bold;" class="modal-body">
                 <p>Seguro Desea Eliminar éste Registro?</p>
-                <input type="text" hidden id="id_almacenar_secundario"><input type="text" hidden id="id_almacenar_usuario_secundario"><input type="text" hidden id="id_almacenar_estado_secundario">
+                <input type="text" hidden id="id_almacenar_secundario"><input type="text" hidden
+                    id="id_almacenar_usuario_secundario"><input type="text" hidden id="id_almacenar_estado_secundario">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
@@ -397,7 +446,7 @@
                 estado: 'A'
             },
             dataType: "json",
-        }).done(function(data) {
+        }).done(function (data) {
             data.forEach(usuario => {
                 let _row = '';
                 _row += `
@@ -423,7 +472,7 @@
     }
 
     //Mostrar Ocultar Columnas
-    $('a.toggle-vis').on('click', function(e) {
+    $('a.toggle-vis').on('click', function (e) {
         e.preventDefault();
         // Get the column API object
         var column = tablaUsuarios.column($(this).attr('data-column'));
@@ -432,7 +481,7 @@
     });
     //Div ocualtar columnas de la tabla
     var botones = $(".ocultar a");
-    botones.click(function() {
+    botones.click(function () {
         if ($(this).attr('class').includes('active')) {
             $(this).removeClass('active');
         } else {
@@ -440,7 +489,7 @@
         }
     })
 
-    $('#modal-confirma').on('show.bs.modal', function(e) {
+    $('#modal-confirma').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
 
@@ -450,7 +499,7 @@
             type: "POST",
             url: "<?php echo base_url('/usuarios/cambiarEstado/'); ?>" + id + '/' + 'E',
             dataType: "json",
-        }).done(function(data) {
+        }).done(function (data) {
             $("#modal-confirma").modal("hide");
             let Toast = Swal.mixin({
                 toast: true,
@@ -472,7 +521,7 @@
         })
     }
 
-    $('#Resetear').on('show.bs.modal', function(e) {
+    $('#Resetear').on('show.bs.modal', function (e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         console.log('Hola')
     });
@@ -488,37 +537,37 @@
             dataSrc: "",
         },
         columns: [{
-                data: null,
-                render: function(data, type, row) {
-                    contador = contador + 1
-                    return "<b>" + contador + "</b>";
-                },
+            data: null,
+            render: function (data, type, row) {
+                contador = contador + 1
+                return "<b>" + contador + "</b>";
             },
-            {
-                data: "t_documento"
+        },
+        {
+            data: "t_documento"
+        },
+        {
+            data: "n_documento"
+        },
+        {
+            data: null,
+            render: function (data, type, row) {
+                return data.nombre_p + " " + data.nombre_s
             },
-            {
-                data: "n_documento"
+        },
+        {
+            data: null,
+            render: function (data, type, row) {
+                return data.apellido_p + " " + data.apellido_s
             },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return data.nombre_p + " " + data.nombre_s
-                },
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return data.apellido_p + " " + data.apellido_s
-                },
-            },
-            {
-                data: "rol"
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return `<div class="btn-group text-center">
+        },
+        {
+            data: "rol"
+        },
+        {
+            data: null,
+            render: function (data, type, row) {
+                return `<div class="btn-group text-center">
                                 <button class="btn btn-outline-primary" onclick="seleccionaUsuario(${data.id_usuario} , 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
@@ -528,15 +577,15 @@
                                 <i class="bi bi-trash3"></i>
                                 </button>
                             </div>`
-                },
-            }
+            },
+        }
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         }
     })
 
-    $.validator.addMethod("soloLetras", function(value, element) {
+    $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
 
@@ -558,16 +607,16 @@
                     type: "post",
                     dataType: "json",
                     data: {
-                        campo: function() {
+                        campo: function () {
                             return 'n_documento';
                         },
-                        valor: function() {
+                        valor: function () {
                             return $("#n_documento").val();
                         },
-                        tp: function() {
+                        tp: function () {
                             return $("#tp").val();
                         },
-                        nombreActu: function() {
+                        nombreActu: function () {
                             return $("#numeroActu").val();
                         },
                     },
@@ -666,12 +715,12 @@
     });
 
 
-    $('#formulario').on('submit', function(e) {
+    $('#formulario').on('submit', function (e) {
         console.log('activo');
         e.preventDefault();
     })
 
-    $('#btnGuardar').on('click', function(e) {
+    $('#btnGuardar').on('click', function (e) {
         e.preventDefault();
         if ($('#formulario').valid()) {
             $.ajax({
@@ -693,7 +742,7 @@
 
                 },
                 dataType: "json",
-            }).done(function(data) {
+            }).done(function (data) {
                 $('#UsuarioModal').modal('hide');
                 let Toast = Swal.mixin({
                     toast: true,
@@ -781,7 +830,7 @@
     }
 
     let tablaTemporal = []
-    $('#btn_insertar').click(function() {
+    $('#btn_insertar').click(function () {
 
         //Expresion regular de formato email
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -811,7 +860,7 @@
             tp: tp
         }
 
-        $.post('<?php echo base_url() ?>/email/validar', datosValidar, function(response) {
+        $.post('<?php echo base_url() ?>/email/validar', datosValidar, function (response) {
             if (response == true) {
                 $('#email_modal').addClass('is-invalid');
                 $('#errorEmail').text('Este email ya se encuentra Registrado');
@@ -918,7 +967,7 @@
                     id_usuario: id
                 },
                 dataType: "json",
-            }).done(function(data) {})
+            }).done(function (data) { })
         });
         validarPrioridadEmail()
     }
@@ -931,7 +980,7 @@
                 type: "POST",
                 url: dataURL,
                 dataType: "json",
-                success: function(rs) {
+                success: function (rs) {
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#tipo_documento').val(rs[0]['tipo_documento']);
@@ -977,7 +1026,7 @@
                 type: "POST",
                 url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
                 dataType: "JSON",
-                success: function(rs) {
+                success: function (rs) {
                     rs.forEach(element => {
 
                         tablaTemporal.push({
@@ -1000,7 +1049,7 @@
                 type: "POST",
                 url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
                 dataType: "JSON",
-                success: function(rs) {
+                success: function (rs) {
                     rs.forEach(element => {
 
                         tablaTemporalTelefonos.push({
@@ -1074,7 +1123,7 @@
                 type: "POST",
                 url: "<?php echo base_url('/email/cambiarEstado/'); ?>" + idEmail.text() + "/" + 'E',
                 dataType: "json",
-            }).done(function(data) {
+            }).done(function (data) {
                 let Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -1126,7 +1175,7 @@
                 type: "POST",
                 url: "<?php echo base_url('/telefono/cambiarEstado/'); ?>" + idTelefono.text() + "/" + 'E',
                 dataType: "json",
-            }).done(function(data) {
+            }).done(function (data) {
                 let Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -1193,7 +1242,7 @@
     }
 
     let tablaTemporalTelefonos = [];
-    $('#btn_insertarTelefono').click(function() {
+    $('#btn_insertarTelefono').click(function () {
 
         // Expresión regular solo numeros
         const regex = /^\d{1,11}$/;
@@ -1224,7 +1273,7 @@
             nombreActu: tp == 2 ? telefono : '',
         }
         console.log($('#telefono'))
-        $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
+        $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function (response) {
             if (response == true) {
                 $('#telefono').addClass('is-invalid');
                 $('#errorTel').text('Este telefono ya se encuentra Registrado');
@@ -1333,16 +1382,16 @@
                     id_usuario: id
                 },
                 dataType: "json",
-            }).done(function(data) {})
+            }).done(function (data) { })
         });
         validarPrioridadTel()
     }
 
-    $('.close').click(function() {
+    $('.close').click(function () {
         $("#modal-confirma").modal("hide");
     });
 
-    $('.close').click(function() {
+    $('.close').click(function () {
         $("#Resetear").modal("hide");
     });
 
