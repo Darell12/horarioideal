@@ -32,6 +32,14 @@ class EmailsModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function ObtenerEmailUsuarioExcel($id, $estado)
+    {
+        $this->select('email');
+        $this->where('id_usuario', $id);
+        $this->where('emails.estado', $estado);
+        $datos = $this->first();
+        return $datos;
+    }
     public function ObtenerEmail($id)
     {
         $this->select('emails.email, emails.estado, emails.id_email, emails.id_usuario, emails.prioridad');

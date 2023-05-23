@@ -111,6 +111,12 @@ class Usuarios extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/eliminados', $data);
     }
+    public function masivo()
+    {
+        $data = ['titulo' => 'Ingreso Masivo de Usuarios',];
+        echo view('/principal/sidebar', $data);
+        echo view('/usuarios/masivo', $data);
+    }
     public function buscarUsuario($id)
     {
         $returnData = array();
@@ -125,6 +131,21 @@ class Usuarios extends BaseController
         $estado = $this->request->getPost('estado');
         $usuario = $this->usuario->obtenerUsuarios($estado);
         echo json_encode($usuario);
+    }
+    public function buscarUsuarioExcel()
+    {
+        $dataReturn = array();
+        $estado = $this->request->getPost('estado');
+        $usuario = $this->usuario->buscarUsuarioExcel($estado);
+
+        foreach ($usuario as $U) {
+            $email = $this->emails->ObtenerEmailUsuarioExcel($U['id_usuario'], 'A');
+            $telefonos = $this->telefonos->ObtenerTelefonoUsuarioExcel($U['id_usuario'], 'A');
+            array_push($U, $email, $telefonos);
+            array_push($dataReturn, $U);
+        }
+
+        echo json_encode($dataReturn);
     }
     public function cambiarEstado($id, $estado)
     {
