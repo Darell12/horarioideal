@@ -128,7 +128,8 @@ class UsuariosModel extends Model
     }
     public function obtenerProfesores($estado)
     {
-        $this->select('usuarios.*');
+        $this->select('usuarios.*, p.nombre as t_documento');
+        $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.estado', $estado);
         $this->where('usuarios.id_rol', '4');
         $datos = $this->findAll();

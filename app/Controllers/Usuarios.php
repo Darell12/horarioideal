@@ -120,12 +120,21 @@ class Usuarios extends BaseController
         }
         echo json_encode($returnData);
     }
+
     public function obtenerUsuarios()
     {
         $estado = $this->request->getPost('estado');
         $usuario = $this->usuario->obtenerUsuarios($estado);
         echo json_encode($usuario);
     }
+
+    public function obtenerProfesores()
+    {
+        $estado = $this->request->getPost('estado');
+        $usuario = $this->usuario->obtenerProfesores($estado);
+        echo json_encode($usuario);
+    }
+
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);
