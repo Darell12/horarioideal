@@ -26,51 +26,54 @@
         </table>
     </div>
 
-         <!-- Modal Permisos  -->
+    <!-- Modal Permisos  -->
     <form id="formulario">
-    <div class="modal fade" id="PermisosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="tituloModal">Añadir Permiso</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="">
-                                <label class="col-form-label">Rol:</label>
-                                <select class="form-select form-select" name="rol" id="rol" required>
-                                    <option value="">Seleccione un Rol</option>
-                                    <?php foreach ($roles as $rol) { ?>
-                                        <option value="<?php echo $rol['id_rol']; ?>"><?php echo $rol['nombre']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="">
-                                <label class="col-form-label">Acciones:</label>
-                                <select class="form-select form-select" name="accion" id="accion" required>
-                                    <option value="">Seleccione una acción</option>
-                                    <?php foreach ($acciones as $accion) { ?>
-                                        <option value="<?php echo $accion['id_acciones']; ?>"><?php echo $accion['nombre']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-
-                            <input type="text" id="tp" name="tp" hidden>
-                            <input type="text" id="id" name="id" hidden>
-
-
-                        </div>
+        <div class="modal fade" id="PermisosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="tituloModal">Añadir Permiso</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="">
+                                    <label class="col-form-label">Rol:</label>
+                                    <select class="form-select form-select" name="rol" id="rol" required>
+                                        <option value="">Seleccione un Rol</option>
+                                        <?php foreach ($roles as $rol) { ?>
+                                            <option value="<?php echo $rol['id_rol']; ?>"><?php echo $rol['nombre']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <label class="col-form-label">Acciones:</label>
+                                    <select class="form-select form-select" name="accion" id="accion" required>
+                                        <option value="">Seleccione una acción</option>
+                                        <?php foreach ($acciones as $accion) { ?>
+                                            <option value="<?php echo $accion['id_acciones']; ?>"><?php echo $accion['nombre']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                <input type="text" id="tp" name="tp" hidden>
+                                <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="nombreActu" name="nombreActu" hidden>
+                                <input type="text" id="numeroActu" name="numeroActu" hidden>
+                                <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-outline-primary" id="btn_Guardar">Guardar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-</form>
+    </form>
 
 </div>
 <!-- Modal -->
@@ -98,8 +101,7 @@
 </div>
 
 <script>
-    
-    $('#modal-confirma').on('show.bs.modal', function (e) {
+    $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
 
@@ -116,18 +118,19 @@
                     $("#id").val(id)
                     $('#rol').val(rs[0]['id_rol']);
                     $('#accion').val(rs[0]['id_accion']);
-                    $('#formulario').validate().resetForm();
+                    $('#numeroActu').val(rs[0]['id_accion']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#PermisosModal").modal("show");
+                    $('#formulario').validate().resetForm();
                 }
             })
         } else {
             $("#tp").val(1);
             $('#rol').val('');
             $('#accion').val('');
-            $('#formulario').validate().resetForm();
             $("#btn_Guardar").text('Guardar');
             $("#PermisosModal").modal("show");
+            $('#formulario').validate().resetForm();
         }
     }
     $('.close').click(function() {
@@ -146,22 +149,22 @@
             dataSrc: "",
         },
         columns: [{
-            data: null,
-            render: function (data, type, row) {
-                contador = contador + 1
-                return "<b>" + contador + "</b>";
+                data: null,
+                render: function(data, type, row) {
+                    contador = contador + 1
+                    return "<b>" + contador + "</b>";
+                },
             },
-        },
-        {
-            data: 'rol',
-        },
-        {
-            data: 'accion',
-        },
-        {
-            data: null,
-            render: function (data, type, row) {
-                return `<div class="btn-group">
+            {
+                data: 'rol',
+            },
+            {
+                data: 'accion',
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return `<div class="btn-group">
                                 <button class="btn btn-outline-primary" onclick="seleccionaPermisos(${data.id_permiso}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
@@ -170,8 +173,8 @@
                                 <i class="bi bi-trash3"></i>
                                 </button>
                             </div>`
-            },
-        }
+                },
+            }
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -180,19 +183,39 @@
 
     $("#formulario").validate({
         rules: {
-            id_rol: {
+            rol: {
                 required: true,
             },
-            id_accion: {
+            accion: {
                 required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>permisos/validarP',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'id_accion';
+                        },
+                        valor: function() {
+                            return $("#accion").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#numeroActu").val();
+                        },
+                    },  
+                }
             },
         },
         messages: {
-            id_rol: {
+            rol: {
                 required: "Por favor seleccione una opción",
             },
-            id_accion: {
+            accion: {
                 required: "Por favor seleccione una opción",
+                remote: "El usuario ya tiene esta accion asignada"
             },
         }
     });
@@ -208,7 +231,6 @@
                     id: $('#id').val(),
                     id_rol: $('#rol').val(),
                     id_accion: $('#accion').val(),
-
                 },
                 dataType: "json",
             }).done(function(data) {
@@ -245,31 +267,29 @@
 
     function EliminarRegistro(id) {
 
-$.ajax({
-    type: "POST",
-    url: "<?php echo base_url('/permisos/cambiarEstado/'); ?>" + id + '/' + 'E',
-    dataType: "json",
-}).done(function (data) {
-    $("#modal-confirma").modal("hide");
-    let Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/permisos/cambiarEstado/'); ?>" + id + '/' + 'E',
+            dataType: "json",
+        }).done(function(data) {
+            $("#modal-confirma").modal("hide");
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
-    Toast.fire({
-        icon: 'success',
-        title: 'Registro eliminado con exito!'
-    })
-    tablaPermisos.ajax.reload(null, false);
-})
-}
-
-
+            Toast.fire({
+                icon: 'success',
+                title: 'Registro eliminado con exito!'
+            })
+            tablaPermisos.ajax.reload(null, false);
+        })
+    }
 </script>

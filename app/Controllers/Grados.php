@@ -24,7 +24,7 @@ class Grados extends BaseController
         $grado = $this->grado->obtenerGrados('A');
         $asignaturas = $this->asignaturas->obtenerAsignaturas('A');
 
-        $data = ['titulo' => 'Administrar Grados', 'datos' => $grado, 'asignaturas'=> $asignaturas];
+        $data = ['titulo' => 'Administrar Grados', 'datos' => $grado, 'asignaturas'=> $asignaturas,'tituloModal'=>''];
 
        echo view('/principal/sidebar', $data);
         echo view('/grados/grados', $data);

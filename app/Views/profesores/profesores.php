@@ -5,6 +5,7 @@
 
         <div>
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <button type="button" class="btn btn-outline-success" onclick="fnExcelProfesores()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
             <a href="<?php echo base_url('/profesores/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
@@ -25,6 +26,23 @@
             </tbody>
         </table>
     </div>
+
+    <table id="tablaUsuariosExport" class="table align-items-center table-flush" hidden>
+    <thead class="thead-light">
+        <tr>
+            <th class="text-center" style="width: 1% !important;" scope="col">#</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Tipo Documento</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Documento</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Primer Nombre</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Segundo Nombre</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Primer Apellido</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Segundo Apellido</th>
+        </tr>
+    </thead>
+    <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider" id="cuerpoExcel">
+
+    </tbody>
+</table>
 
     <div class="modal" id="modalAsignaturas" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -502,6 +520,43 @@
 </div>
 
 <script>
+
+function fnExcelProfesores() {
+
+$.ajax({
+    url: '<?= base_url('usuarios/obtenerProfesores') ?>',
+    type: "POST",
+    data: {
+        estado: 'A'
+    },
+    dataType: "json",
+}).done(function(data) {
+    data.forEach(usuario => {
+        let _row = '';
+        _row += `
+                <tr style="background-color:yellow;color:#070606;font-weight:300;text-align:center;font-family:Arial;font-size:12px;">
+                <td style="width:50px;">${usuario.id_usuario}</td>
+                <td style="width:50px;">${usuario.t_documento}</td>
+                <td style="width:50px;">${usuario.n_documento}</td>
+                <td style="width:50px;">${usuario.nombre_p}</td>
+                <td style="width:50px;">${usuario.nombre_s}</td>
+                <td style="width:50px;">${usuario.apellido_p}</td>
+                <td style="width:50px;">${usuario.apellido_s}</td>
+                
+                </tr>`;
+        $('#tablaUsuariosExport').append(_row)
+    });
+}).then(() => {
+    // /* Create worksheet from HTML DOM TABLE */
+    var wb = XLSX.utils.table_to_book(document.getElementById("tablaUsuariosExport"));
+    /* Export to file (start a download) */
+    XLSX.writeFile(wb, "ReporteUsuarios.xlsx");
+});
+
+}
+
+
+
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");

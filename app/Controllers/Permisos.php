@@ -93,4 +93,33 @@ class Permisos extends BaseController
         }
     }
 
+    public function validarP()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombreActu = $this->request->getPost('nombreActu');
+        $numeroActu = $this->request->getPost('numeroActu');
+
+        $filtro = $this->permiso->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $nombreActu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        
+        if ($tp == 2 && $valor == $numeroActu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
+    }
+
+
 }
