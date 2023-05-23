@@ -25,7 +25,7 @@ class UsuariosModel extends Model
 
     public function obtenerUsuarios($estado)
     {
-        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento');
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento, usuarios.direccion');
         $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
         $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.estado', $estado);
@@ -85,6 +85,15 @@ class UsuariosModel extends Model
         $datos = $this->first();
         return $datos;
     }
+    public function buscarUsuarioExcel()
+    {
+        $this->select('usuarios.id_usuario, usuarios.n_documento, usuarios.nombre_p, usuarios.nombre_s, usuarios.apellido_p, usuarios.apellido_s, usuarios.estado, r.nombre as rol, p.nombre as t_documento, usuarios.direccion');
+        $this->join('roles as r', 'usuarios.id_rol = r.id_rol');
+        $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
+        $this->where('usuarios.estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+     }
 
     public function cambiarEstado($id, $estado)
     {
@@ -128,7 +137,8 @@ class UsuariosModel extends Model
     }
     public function obtenerProfesores($estado)
     {
-        $this->select('usuarios.*');
+        $this->select('usuarios.*, p.nombre as t_documento');
+        $this->join('parametro_det as p', 'usuarios.tipo_documento = p.id_parametro_det');
         $this->where('usuarios.estado', $estado);
         $this->where('usuarios.id_rol', '4');
         $datos = $this->findAll();

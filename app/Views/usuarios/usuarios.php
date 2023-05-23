@@ -4,15 +4,12 @@
         </div>
 
         <div>
-            <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);"
-                class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i
-                    class="bi bi-plus-circle-fill"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i>
-                Reporte Excel</button>
-            <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button"
-                    class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i
-                        class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
+            <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            <label for="formFile" class="form-label">Subir archivo</label>
+            <input class="form-control " id="uploadFile" name="uploadFile" type="file" onchange="handleFile(this.files)" />
         </div>
 
 
@@ -52,6 +49,9 @@
             <th class="text-center" style="width: 1% !important;" scope="col">Segundo Nombre</th>
             <th class="text-center" style="width: 1% !important;" scope="col">Primer Apellido</th>
             <th class="text-center" style="width: 1% !important;" scope="col">Segundo Apellido</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Direccion</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Email</th>
+            <th class="text-center" style="width: 1% !important;" scope="col">Telefono</th>
         </tr>
     </thead>
     <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider" id="cuerpoExcel">
@@ -437,16 +437,84 @@
 </div>
 
 <script>
-    function fnExcel() {
+    function handleFile(files) {
+        // Obtener el archivo seleccionado
+        const file = files[0];
 
+        // Crear un objeto FileReader
+        const reader = new FileReader();
+
+        // Configurar el evento onload
+        reader.onload = (event) => {
+            // Obtener los datos del archivo
+            const data = event.target.result;
+
+            // Leer el archivo de Excel
+            const workbook = XLSX.read(data, {
+                type: 'binary'
+            });
+
+            // Obtener la primera hoja de trabajo
+            const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+
+            // Convertir la hoja de trabajo en un objeto JSON
+            const json = XLSX.utils.sheet_to_json(worksheet);
+
+            // Pasar los datos a otra vista
+            excelUpload = JSON.stringify(json)
+
+            console.log(json);
+
+            cargar_Excel(json)
+        };
+
+        // Leer el archivo como una cadena binaria
+        reader.readAsBinaryString(file);
+    }
+
+    function cargar_Excel(json) {
+        json.forEach(usuario => {
+            let _row = '';
+            _row += `
+                        <tr style="background-color:yellow;color:#070606;font-weight:300;text-align:center;font-family:Arial;font-size:12px;">
+                        <td style="width:50px;">${usuario['#']}</td>
+                        <td style="width:50px;">${usuario['Tipo Documento']}</td>
+                        <td style="width:50px;">${usuario['Documento']}</td>
+                        <td style="width:50px;">${usuario['Primer Nombre']}</td>
+                        <td style="width:50px;">${usuario['Segundo Nombre']}</td>
+                        
+                        <td style="width:50px;">${usuario['Primer Apellido']}</td>
+                        <td style="width:50px;">${usuario['Segundo Apellido']}</td>
+                        <td style="width:50px;">${usuario['Direccion']}</td>
+                        <td style="width:50px;">${usuario['Email']}</td>
+                        <td style="width:50px;">${usuario['Telefono']}</td>
+                        
+                        </tr>`;
+            $('#cuerpoExcel').append(_row)
+        });
+    }
+
+    function fnExcel() {
+        $('#cuerpoExcel').empty();
+        let Toast = Swal.mixin({
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
         $.ajax({
-            url: '<?= base_url('usuarios/obtenerUsuarios') ?>',
+            url: '<?= base_url('usuarios/buscarUsuarioExcel') ?>',
             type: "POST",
             data: {
                 estado: 'A'
             },
             dataType: "json",
-        }).done(function (data) {
+        }).done(function(data) {
             data.forEach(usuario => {
                 let _row = '';
                 _row += `
@@ -466,8 +534,13 @@
             // /* Create worksheet from HTML DOM TABLE */
             var wb = XLSX.utils.table_to_book(document.getElementById("tablaUsuariosExport"));
             /* Export to file (start a download) */
-            XLSX.writeFile(wb, "ReporteUsuarios.xlsx");
-        });
+            XLSX.writeFile(wb, "REPORTE_USUARIOS.xlsx");
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Descargando!'
+            })
+        })
 
     }
 

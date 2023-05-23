@@ -32,6 +32,14 @@ class TelefonosModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function ObtenerTelefonoUsuarioExcel($id, $estado)
+    {
+        $this->select('telefonos.numero');
+        $this->where('id_usuario', $id);
+        $this->where('telefonos.estado', $estado);
+        $datos = $this->first();
+        return $datos;
+    }
     public function ObtenerTelefono($id)
     {
         $this->select('telefonos.numero, telefonos.estado, telefonos.id_telefono, telefonos.id_usuario, telefonos.prioridad, telefonos.tipo');
