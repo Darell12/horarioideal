@@ -257,6 +257,7 @@
                 console.log(contenidoHead);
                 $('#horasAsig').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
+                $('#tituloAsig').text(titulo);
             }
         })
     }

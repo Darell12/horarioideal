@@ -63,4 +63,13 @@ class PermisosModel extends Model
         return $datos;
     }
 
+    public function filtro($campo ,$valor)
+    {
+        $this->select('permisos.*');
+        $this->where($campo, $valor);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+
 }
