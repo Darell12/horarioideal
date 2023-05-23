@@ -30,6 +30,7 @@
     <script src="<?php echo base_url() ?>librerias/chart.js"></script>
     <script src="<?php echo base_url() ?>bootstrap/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url() ?>DataTable/datatables.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
