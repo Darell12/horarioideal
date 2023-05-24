@@ -13,7 +13,7 @@ class AcudientesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre_p','nombre_s','apellido_p','apellido_s','direccion','id_estudiante','estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre_p','nombre_s','tipo_documento','n_documento','apellido_p','apellido_s','direccion','id_estudiante','estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -25,8 +25,9 @@ class AcudientesModel extends Model
 
     public function obtenerAcudientes($estado, $id)
     {
-        $this->select('acudientes.*');
-        $this->where('estado', $estado);
+        $this->select('acudientes.*, p.resumen as tipo_documento');
+        $this->join('parametro_det as p', 'acudientes.tipo_documento = p.id_parametro_det');
+        $this->where('acudientes.estado', $estado);
         $this->where('id_estudiante', $id);
         $datos = $this->findAll();
         return $datos;

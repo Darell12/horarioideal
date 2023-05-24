@@ -23,22 +23,21 @@
                         </div>
                     </div>
 
+                    <?php if ($datos['rol'] == 'Estudiante') { ?>
                     <div class="card mb-4">
                         <div class="card-body text-center">
                             <i class="bi bi-emoji-smile"></i>
 
                             <h5 class="my-2">Datos del Acudiente</h5>
-
-                            <?php if ($datos['rol'] == 'Estudiante') { ?>
-                                <p class="my-2"><?php echo $acudiente['nombre_p'] . ' ' . $acudiente['apellido_p'] ?></p>
-                            <?php } ?>
-
-                            <?php if ($datos['rol'] == 'Estudiante') { ?>
-                                <p class="text-muted mb-4"><?php echo $acudiente['direccion'] ?></p>
-                            <?php } ?>
-
+                           
+                                <p class="my-2"><?php echo $acudiente[0]['nombre_p'] . ' ' . $acudiente[0]['apellido_p'] ?></p>
+                                <p id="documentos" class="text-muted mb-0"><?php echo $acudiente[0]['tipo_documento'] . ': ' . $acudiente[0]['n_documento'] ?></p>
+                                <p class="my-2"><?php echo 'N° documento:'.' '. $acudiente[0]['n_documento']?></p>
+                                <p class="text-muted mb-4"><?php echo $acudiente[0]['direccion'] ?></p>
+                        
                         </div>
                     </div>
+                    <?php } ?>
 
                     <div class="card">
                         <div class="card-bodxcy p-0">
