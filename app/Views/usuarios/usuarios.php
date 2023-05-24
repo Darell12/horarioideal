@@ -5,11 +5,10 @@
 
         <div>
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <a href="<?php echo base_url('/usuarios/masivo'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-files"></i>Ingreso Masivo</button></a>
             <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
             <a href="<?php echo base_url('/usuarios/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
-            <label for="formFile" class="form-label">Subir archivo</label>
-            <input class="form-control " id="uploadFile" name="uploadFile" type="file" onchange="handleFile(this.files)" />
         </div>
 
 
@@ -39,7 +38,7 @@
     </div>
 </div>
 
-<table id="tablaUsuariosExport" class="table align-items-center table-flush">
+<table hidden id="tablaUsuariosExport" class="table align-items-center table-flush">
     <thead class="thead-light">
         <tr>
             <th class="text-center" style="width: 1% !important;" scope="col">#</th>
@@ -437,40 +436,6 @@
 </div>
 
 <script>
-    function handleFile(files) {
-        // Obtener el archivo seleccionado
-        const file = files[0];
-
-        // Crear un objeto FileReader
-        const reader = new FileReader();
-
-        // Configurar el evento onload
-        reader.onload = (event) => {
-            // Obtener los datos del archivo
-            const data = event.target.result;
-
-            // Leer el archivo de Excel
-            const workbook = XLSX.read(data, {
-                type: 'binary'
-            });
-
-            // Obtener la primera hoja de trabajo
-            const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-
-            // Convertir la hoja de trabajo en un objeto JSON
-            const json = XLSX.utils.sheet_to_json(worksheet);
-
-            // Pasar los datos a otra vista
-            excelUpload = JSON.stringify(json)
-
-            console.log(json);
-
-            cargar_Excel(json)
-        };
-
-        // Leer el archivo como una cadena binaria
-        reader.readAsBinaryString(file);
-    }
 
     function cargar_Excel(json) {
         json.forEach(usuario => {
@@ -526,6 +491,9 @@
                         <td style="width:50px;">${usuario.nombre_s}</td>
                         <td style="width:50px;">${usuario.apellido_p}</td>
                         <td style="width:50px;">${usuario.apellido_s}</td>
+                        <td style="width:50px;">${usuario.direccion}</td>
+                        <td style="width:50px;">${usuario[0]?.email || 'null'}</td>
+                        <td style="width:50px;">${usuario[1]?.numero || 'null'}</td>
                         
                         </tr>`;
                 $('#tablaUsuariosExport').append(_row)
