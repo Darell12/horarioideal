@@ -248,7 +248,7 @@
                     title: 'Acción realizada con exito!'
                 })
                 console.log('insertar');
-                contador = 0
+                contador = 0|
                 tablaRoles.ajax.reload(null, false)
                 return
             })
