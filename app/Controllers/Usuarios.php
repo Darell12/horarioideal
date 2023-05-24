@@ -9,6 +9,7 @@ use App\Models\RolesModel;
 use App\Models\Parametros_detModel;
 use App\Models\EmailsModel;
 use App\Models\TelefonosModel;
+use App\Models\AcudientesModel;
 
 
 class Usuarios extends BaseController
@@ -16,7 +17,7 @@ class Usuarios extends BaseController
     protected $usuario, $eliminados, $contraseña;
     protected $roles, $horario;
     protected $prioridad, $tipotel, $emails;
-    protected $telefonos;
+    protected $telefonos, $acudientes;
 
     public function __construct()
     {
@@ -28,6 +29,7 @@ class Usuarios extends BaseController
         $this->tipotel = new Parametros_detModel();
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
+        $this->acudientes = new AcudientesModel();
     }
     public function index()
     {
@@ -53,7 +55,15 @@ class Usuarios extends BaseController
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
         $tipo = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo];
+        $estudiante = $this->usuario->buscarEstudiantes($id);
+
+        
+        if ($estudiante == null) {
+            $acudientes = '';
+        } else {
+            $acudientes = $this->acudientes->ObtenerAcudientes('A', $estudiante['id_estudiante']);
+        }
+        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes[0]];
 
         // return json_encode($data);
         echo view('/principal/sidebar', $data);
