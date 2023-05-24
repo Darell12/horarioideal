@@ -1407,26 +1407,26 @@
         validarPrioridadTel()
     }
 
-    function insertarTelefono(id) {
-        console.log(tablaTemporalTelefonos);
-        tablaTemporalTelefonos.forEach(registro => {
-            console.log(registro.tp);
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/telefono/insertar'); ?>",
-                data: {
-                    tp: registro.tp,
-                    numero: registro.telefono,
-                    prioridad: registro.prioridad,
-                    id_telefono: registro.id_telefono,
-                    tipo: registro.tipo,
-                    id_usuario: id
-                },
-                dataType: "json",
-            }).done(function (data) { })
-        });
-        validarPrioridadTel()
-    }
+        function insertarTelefono(id) {
+            console.log(tablaTemporalTelefonos);
+            tablaTemporalTelefonos.forEach(registro => {
+                console.log(registro.tp);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('/telefono/insertar'); ?>",
+                    data: {
+                        tp: registro.tp,
+                        numero: registro.telefono,
+                        prioridad: registro.prioridad,
+                        id_telefono: registro.id_telefono,
+                        tipo: registro.tipo,
+                        id_usuario: id
+                    },
+                    dataType: "json",
+                }).done(function (data) { })
+            });
+            validarPrioridadTel()
+        }
 
     $('.close').click(function () {
         $("#modal-confirma").modal("hide");

@@ -34,12 +34,12 @@ class Usuarios extends BaseController
     public function index()
     {
         $roles = $this->roles->obtenerRoles('A');
-        $acudientes = $this->acudientes->obtenerAcudientes('A');
+        // $acudientes = $this->acudientes->obtenerAcudientes('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'acudientes'=>$acudientes];
-
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
+        // 'acudientes'=>$acudientes
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
     }

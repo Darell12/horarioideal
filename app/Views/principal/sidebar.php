@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
 
     <script src="<?php echo base_url() ?>librerias/sweetalert2.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery-3.6.4.js"></script>
