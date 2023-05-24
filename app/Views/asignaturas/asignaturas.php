@@ -31,7 +31,7 @@
         <div class="modal fade" id="AsignaturaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header" style="background: #0f9dba; color:#FFF;">
+                    <div class="modal-header" style="background: #427dbb; color:#FFF;">
                         <h1 class="modal-title fs-5" id="tituloModal">Añadir Asignatura </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>

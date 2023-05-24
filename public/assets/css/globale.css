@@ -20,6 +20,17 @@
 #titulo_email{
     color: #FFF;
 }
+.carrusel {
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    height: 100px; /* Ajusta la altura según tus necesidades */
+    overflow: hidden;
+  }
+  
+  .frase {
+    display: none;
+  }
+  
+
 label.error {
     color: #dc3545;
 }

@@ -22,8 +22,11 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
+    
+   
     <script src="<?php echo base_url() ?>librerias/sweetalert2.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery-3.6.4.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery.validate.js"></script>
@@ -34,7 +37,7 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebar.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sideba.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>

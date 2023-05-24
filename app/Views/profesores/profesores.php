@@ -47,7 +47,7 @@
     <div class="modal" id="modalAsignaturas" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header" style="background: #0f9dba; color:#FFF;">
+                <div class="modal-header" style="background: #427dbb; color:#FFF;">
                     <h5 id="tituloAsig" class="modal-title">Carga Académica del profesor</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
