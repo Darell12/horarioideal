@@ -34,12 +34,11 @@ class Usuarios extends BaseController
     public function index()
     {
         $roles = $this->roles->obtenerRoles('A');
-        // $acudientes = $this->acudientes->obtenerAcudientes('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
         $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
-        // 'acudientes'=>$acudientes
+
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
     }
@@ -56,7 +55,16 @@ class Usuarios extends BaseController
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
         $tipo = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo];
+        $estudiante = $this->usuario->buscarEstudiantes($id);
+
+        
+        if ($estudiante == null) {
+            $acudientes = '';
+        } else {
+            $acudientes = $this->acudientes->ObtenerAcudientes('A', $estudiante['id_estudiante']);
+        }
+
+        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo,'acudiente' => $acudientes];
 
         // return json_encode($data);
         echo view('/principal/sidebar', $data);

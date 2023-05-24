@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use CodeIgniter\Model;
 
 class AcudientesModel extends Model
@@ -12,7 +13,7 @@ class AcudientesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_estudiante','nombre_p', 'nombre_s','apellido_a','apellido_s','direccion', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre_p','nombre_s','tipo_documento','n_documento','apellido_p','apellido_s','direccion','id_estudiante','estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -22,13 +23,14 @@ class AcudientesModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    public function obtenerAcudientes($estado)
+    public function obtenerAcudientes($estado, $id)
     {
-        $this->select('acudientes.*');
-        $this->where('estado', $estado);
+        $this->select('acudientes.*, p.resumen as tipo_documento');
+        $this->join('parametro_det as p', 'acudientes.tipo_documento = p.id_parametro_det');
+        $this->where('acudientes.estado', $estado);
+        $this->where('id_estudiante', $id);
         $datos = $this->findAll();
         return $datos;
     }
 
 }
-

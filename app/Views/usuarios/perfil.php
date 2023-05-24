@@ -15,12 +15,30 @@
                             <?php if ($datos['rol'] == 'Estudiante') { ?>
                                 <p class="text-muted mb-4"><?php echo $datos['grado'] ?></p>
                             <?php } ?>
+
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-outline-info" data-bs-target="#UsuarioModal" title="Actualizar Contraseña" data-bs-toggle="modal">Cambiar <br> Contraseña</button>
                                 <button onClick="EditarPerfil(<?php echo $datos['id_usuario'] ?>)" type="button" class="btn btn-outline-success ms-1">Editar Perfil</button>
                             </div>
                         </div>
                     </div>
+
+                    <?php if ($datos['rol'] == 'Estudiante') { ?>
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-emoji-smile"></i>
+
+                            <h5 class="my-2">Datos del Acudiente</h5>
+                           
+                                <p class="my-2"><?php echo $acudiente[0]['nombre_p'] . ' ' . $acudiente[0]['apellido_p'] ?></p>
+                                <p id="documentos" class="text-muted mb-0"><?php echo $acudiente[0]['tipo_documento'] . ': ' . $acudiente[0]['n_documento'] ?></p>
+                                <p class="my-2"><?php echo 'N° documento:'.' '. $acudiente[0]['n_documento']?></p>
+                                <p class="text-muted mb-4"><?php echo $acudiente[0]['direccion'] ?></p>
+                        
+                        </div>
+                    </div>
+                    <?php } ?>
+
                     <div class="card">
                         <div class="card-bodxcy p-0">
                             <ul class="list-group list-group-flush rounded-3">
@@ -1061,23 +1079,23 @@
             insertarTelefono(<?php echo $datos['id_usuario']; ?>);
         });
         let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Informacion de usuario actualizada con exito!'
-            }).then(() => {
-                location.reload();
-            });
+        Toast.fire({
+            icon: 'success',
+            title: 'Informacion de usuario actualizada con exito!'
+        }).then(() => {
+            location.reload();
+        });
     }
 
     function Direccion() {
