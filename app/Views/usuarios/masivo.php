@@ -8,7 +8,7 @@
         <div>
             <button type="button" onclick="procesar()" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Procesar</button>
             <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
-            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            <a href="<?php echo base_url('/ver_usuarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
 
 
@@ -80,12 +80,14 @@
         // Leer el archivo como una cadena binaria
         reader.readAsBinaryString(file);
     }
+    let contador = 0
 
     function cargar_Excel(json) {
         json.forEach(usuario => {
+            contador++
             let _row = '';
             _row += `
-                        <tr class="text-center">
+                        <tr class="text-center" id="util${usuario['Documento']}">
                             <td style="width:50px;">${usuario['#']}</td>
                             <td style="width:50px;">${usuario['Tipo Documento']}</td>
                             <td style="width:50px;">${usuario['Documento']}</td>
@@ -105,11 +107,16 @@
     function procesar() {
 
         let tipo = {
-            'Cedula de Ciudadania' : '2',
-            'Tarjeta de Identidad' : '1',
+            'Tarjeta de Identidad': '1',
+            'Cedula de Ciudadania': '2',
+            'Cedula de Extranjeria': '3',
+            'Pasaporte': '4',
+            'Permiso de Permanencia': '5',
         }
-
+        contador = 0
+        let fila
         json.forEach(usuario => {
+            console.log(contador);
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/usuarios/insertar'); ?>",
@@ -124,11 +131,11 @@
                     segundo_apellido: usuario['Segundo Apellido'],
                     direccionX: usuario['Direccion'],
                     contraseña: usuario['Documento'],
-    
+                    
                 },
                 dataType: "json",
             }).done(function(data) {
-                $('#UsuarioModal').modal('hide');
+                contador++;
                 let Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -140,19 +147,32 @@
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
                 })
-    
+                
+                // Obtén una referencia a la fila específica
+                fila = $('#util'+usuario['Documento']);
+                
+                // Obtén la última celda de la fila
+                var ultimaCelda = fila.find('td:last');
+                
+                // Manipula el contenido de la última celda
+                ultimaCelda.html('<span class="text-success">Insertado</span>');
+                
+                
                 Toast.fire({
                     icon: 'success',
                     title: 'Acción realizada con exito!'
                 })
-                console.log('insertar');
-                insertarEmail(data);
-                insertarTelefono(data)
-                contador = 0
-                tablaUsuarios.ajax.reload(null, false)
-                tablaTemporal = [];
-                tablaTemporalTelefonos = [];
                 return
+            }).fail(function() {
+                contador++;
+                fila = $('#util'+usuario['Documento']);
+                console.log('Fallo');
+
+                // Obtén la última celda de la fila
+                var ultimaCelda = fila.find('td:last');
+                
+                // Manipula el contenido de la última celda
+                ultimaCelda.html('<span class="text-danger">Falló</span>');
             })
         });
     }
