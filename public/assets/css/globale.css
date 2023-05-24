@@ -17,19 +17,10 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-#titulo_email{
+
+#titulo_email {
     color: #FFF;
 }
-.carrusel {
-    width: 300px; /* Ajusta el ancho según tus necesidades */
-    height: 100px; /* Ajusta la altura según tus necesidades */
-    overflow: hidden;
-  }
-  
-  .frase {
-    display: none;
-  }
-  
 
 label.error {
     color: #dc3545;
@@ -49,6 +40,25 @@ body {
 td {
     text-justify: center;
 }
+
+
+/*  */
+
+.nb-spinner {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    background: transparent;
+    border-top: 4px solid #00b0ff;
+    border-right: 4px solid transparent;
+    border-radius: 50%;
+    -webkit-animation: 1s spin linear infinite;
+    animation: 1s spin linear infinite;
+    margin-left: 25%;
+}
+
+
+/*  */
 
 div.dataTables_wrapper div.dataTables_filter input {
     border: #daeaf4;
