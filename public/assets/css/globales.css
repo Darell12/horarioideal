@@ -17,7 +17,9 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+#titulo_email{
+    color: #FFF;
+}
 label.error {
     color: #dc3545;
 }
@@ -1113,7 +1115,7 @@ ul {
 }
 
 .modal-body {
-    padding: 0 2rem 2rem;
+    padding: 2rem 2rem 2rem;
 }
 
 .modal-body .lecture-title {

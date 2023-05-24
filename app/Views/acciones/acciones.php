@@ -25,12 +25,12 @@
             </tbody>
         </table>
     </div>
-    <!-- Modal -->
+    <!-- Modal Acciones -->
     <form method="POST" id="formulario" action="<?php echo base_url('/acciones_insertar'); ?>" autocomplete="off" class="needs-validation" novalidate>
         <div class="modal fade" id="AccionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background: #0f9dba; color:#FFF;">
                         <h1 class="modal-title fs-5" id="tituloModal">Añadir Accion</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>

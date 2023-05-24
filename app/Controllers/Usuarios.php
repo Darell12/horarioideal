@@ -34,10 +34,11 @@ class Usuarios extends BaseController
     public function index()
     {
         $roles = $this->roles->obtenerRoles('A');
+        $acudientes = $this->acudientes->obtenerAcudientes('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'acudientes'=>$acudientes];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
@@ -121,6 +122,12 @@ class Usuarios extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/eliminados', $data);
     }
+    public function masivo()
+    {
+        $data = ['titulo' => 'Ingreso Masivo de Usuarios',];
+        echo view('/principal/sidebar', $data);
+        echo view('/usuarios/masivo', $data);
+    }
     public function buscarUsuario($id)
     {
         $returnData = array();
@@ -145,6 +152,21 @@ class Usuarios extends BaseController
         echo json_encode($usuario);
     }
 
+    public function buscarUsuarioExcel()
+    {
+        $dataReturn = array();
+        $estado = $this->request->getPost('estado');
+        $usuario = $this->usuario->buscarUsuarioExcel($estado);
+
+        foreach ($usuario as $U) {
+            $email = $this->emails->ObtenerEmailUsuarioExcel($U['id_usuario'], 'A');
+            $telefonos = $this->telefonos->ObtenerTelefonoUsuarioExcel($U['id_usuario'], 'A');
+            array_push($U, $email, $telefonos);
+            array_push($dataReturn, $U);
+        }
+
+        echo json_encode($dataReturn);
+    }
     public function cambiarEstado($id, $estado)
     {
         $usuario = $this->usuario->cambiarEstado($id, $estado);

@@ -31,8 +31,8 @@
         <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="tituloModal">Añadir Accion</h1>
+                    <div class="modal-header" style="background: #0f9dba; color:#FFF;">
+                        <h1 class="modal-title fs-5" id="tituloModal">Añadir Horario</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

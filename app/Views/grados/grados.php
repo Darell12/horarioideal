@@ -31,7 +31,7 @@
     <div class="modal" id="modalAsignaturas" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="background: #0f9dba; color:#FFF;">
                     <h5 id="tituloAsig" class="modal-title">Carga Asignaturas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -71,7 +71,7 @@
                 <input type="text" id="numeroActu" name="numeroActu" hidden>
                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
 
-                <div class="table-responsive">
+                <div class="table-responsive" style="padding: 2rem 2rem;">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <th>#</th>
@@ -96,7 +96,7 @@
         <div class="modal fade" id="GradoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background: #0f9dba; color:#FFF;">
                         <h1 class="modal-title fs-5" id="tituloModal">Añadir Grado</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
