@@ -25,8 +25,8 @@
     <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
-    
-   
+
+
     <script src="<?php echo base_url() ?>librerias/sweetalert2.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery-3.6.4.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery.validate.js"></script>
@@ -68,8 +68,20 @@
                     <span class="text nav-text">Inicio</span>
                 </a>
             </li>
-            <hr style="background: #fafafa" class="sidebar-divider">
-            </li>
+            <?php foreach ($Modulos as $modulo) { ?>
+                <?php if ($modulo['tipo'] == 'Carpeta') { ?>
+                    <hr style="background: #fafafa" class="sidebar-divider">
+                <?php } else { ?>
+                    <li>
+                        <a href="<?php echo base_url() . $modulo['codigo'] ?>" title="<?php echo $modulo['nombre']?>">
+                            <i class='bx <?php echo $modulo['icono']?> icon'></i>
+                            <span class="text nav-text"><?php echo $modulo['nombre'] ?></span>
+                        </a>
+                    </li>
+                <?php } ?>
+
+            <?php } ?>
+<!--             
             <li>
                 <a href="<?php echo base_url('ver_roles') ?>" title="Roles">
                     <i class='bx bx-wrench icon'></i>
@@ -132,8 +144,8 @@
                     <span class="text nav-text">Horarios</span>
                 </a>
             </li>
-        </ul>
-        <hr style="background: #fafafa" class="sidebar-divider">
+        </ul> -->
+        <!-- <hr style="background: #fafafa" class="sidebar-divider"> -->
         <ul class="list-unstyled CTAs">
             <li>
                 <a href="<?php echo base_url('auth/logout') ?>">

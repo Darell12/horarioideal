@@ -13,7 +13,7 @@ class AccionesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre','estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre', 'id_modulo','estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -30,10 +30,10 @@ class AccionesModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-    public function obtenerAccionesRol($rol)
+    public function obtenerAccionesRol($id)
     {
-        $this->select('acciones.*');
-        // $this->where('id', $rol);
+        $this->select('acciones.id_modulo');
+        $this->where('id_acciones', $id);
         $datos = $this->findAll();
         return $datos;
     }

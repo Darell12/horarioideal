@@ -6,13 +6,14 @@ use App\Models\UsuariosModel;
 
 class Auth extends BaseController
 {
-    protected $usuario, $eliminados;
+    protected $usuario, $eliminados, $controlador;
 
 
     public function __construct()
     {
         $this->usuario = new UsuariosModel();
         $this->eliminados = new UsuariosModel();
+
     }
     public function iniciarSesion()
     {

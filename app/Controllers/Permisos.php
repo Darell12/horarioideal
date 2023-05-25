@@ -6,12 +6,14 @@ use App\Controllers\BaseController;
 use App\Models\PermisosModel;
 use App\Models\RolesModel;
 use App\Models\AccionesModel;
+use App\Controllers\Principal;
 
 
 class Permisos extends BaseController
 {
     protected $permiso, $eliminados;
     protected $roles, $acciones;
+    protected $metodos;
 
 
     public function __construct()
@@ -20,15 +22,17 @@ class Permisos extends BaseController
         $this->eliminados = new PermisosModel();
         $this->roles = new RolesModel();
         $this->acciones = new AccionesModel();
+        $this->metodos = new Principal();
     }
 
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $permiso = $this->permiso->obtenerPermisos('A');
         $roles = $this->roles->obtenerRoles('A');
         $acciones = $this->acciones->obtenerAcciones('A');
 
-        $data = ['titulo' => 'Administrar Permisos', 'datos' => $permiso, 'roles' => $roles, 'acciones' => $acciones];
+        $data = ['titulo' => 'Administrar Permisos', 'datos' => $permiso, 'roles' => $roles, 'acciones' => $acciones, 'Modulos' => $cargaSideBar];
 
        echo view('/principal/sidebar', $data);
        echo view('/permisos/permisos', $data);
@@ -78,16 +82,17 @@ class Permisos extends BaseController
     }
     public function eliminados() //Mostrar vista de Permisos Eliminados
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $eliminados = $this->eliminados->obtenerPermisosEliminados();
 
 
         // Redireccionar a la URL anterior
         if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Permisos Eliminadas','datos' => 'vacio'];
+            $data = ['titulo' => 'Administrar Permisos Eliminadas','datos' => 'vacio', 'Modulos' => $cargaSideBar];
             echo view('/principal/sidebar', $data);
             echo view('/permisos/eliminados', $data);
         } else {
-            $data = ['titulo' => 'Administrar Permisos Eliminadas', 'datos' => $eliminados];
+            $data = ['titulo' => 'Administrar Permisos Eliminadas', 'datos' => $eliminados,'Modulos' => $cargaSideBar];
             echo view('/principal/sidebar', $data);
             echo view('/permisos/eliminados', $data);
         }

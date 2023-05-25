@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\UsuariosModel;
 use App\Models\RolesModel;
 use App\Models\ModulosModel;
@@ -23,14 +24,29 @@ class Principal extends BaseController
     }
     public function index()
     {
-        $session = session();
-        // $session['id_rol']
-        $accionees = $this->acciones->obtenerAcciones('Ä');
-        $modulos = $this->modulos->obtenerModulos('A');
-        $data = ['titulo' => 'Bienvenido!', 'Modulos' => $modulos];
+        // $modulos = $this->modulos->obtenerModulos('A');
+        $cargaSideBar = $this->getModulos();
+        $data = ['titulo' => 'Bienvenido!', 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/inicio/inicio', $data);
+    }
+    public function getModulos()
+    {
+        $session = session();
+        $rol = $session->get('id_rol');
+        $permisos = $this->permisos->obtenerPermisosRol($rol);
+        $acciones = [];
+        $cargaSideBar = [];
+        foreach ($permisos as $permiso) {
+            $accion = $this->acciones->obtenerAccionesRol($permiso['id_accion']);
+            array_push($acciones, $accion[0]);
+        }
+        foreach ($acciones as $acc) {
+            $modulos = $this->modulos->obtenerModulosRol($acc['id_modulo']);
+            array_push($cargaSideBar, $modulos[0]);
+        }
+        return $cargaSideBar;
     }
     public function graficaUsuarios()
     {
