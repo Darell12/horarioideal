@@ -35,6 +35,7 @@ class Usuarios extends BaseController
         $this->acudientes = new AcudientesModel();
         $this->metodos = new Principal();
     }
+    
     public function index()
     {
         $cargaSideBar = $this->metodos->getModulos();

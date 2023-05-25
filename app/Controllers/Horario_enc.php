@@ -7,7 +7,7 @@ use App\Models\Horario_encModel;
 use App\Models\UsuariosModel;
 use App\Models\GradosModel;
 use App\Models\Parametros_detModel;
-
+use App\Controllers\Principal;
 
 class Horario_enc extends BaseController
 {
@@ -15,7 +15,7 @@ class Horario_enc extends BaseController
     protected $usuarios, $grados;
     protected $profesores;
     protected $franja;
-
+    protected $metodos;
 
     public function __construct()
     {
@@ -25,15 +25,17 @@ class Horario_enc extends BaseController
         $this->grados = new GradosModel();
         $this->profesores = new Horario_encModel();
         $this->franja = new Parametros_detModel();
+        $this->metodos = new Principal();
     }
 
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
         $grados = $this->grados->obtenerGrados('A');
-        $horario_enc = $this-> horario_enc -> obtenerHorarios_enc('E');
+        $horario_enc = $this->horario_enc->obtenerHorarios_enc('E');
 
-        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados, 'datos' => $horario_enc];
+        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados, 'datos' => $horario_enc, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_enc/horarios_enc', $data);
@@ -42,7 +44,7 @@ class Horario_enc extends BaseController
     public function obtenerHorarios_enc()
     {
         $estado = $this->request->getPost('estado');
-        $horario_enc = $this-> horario_enc -> obtenerHorarios_enc($estado);
+        $horario_enc = $this->horario_enc->obtenerHorarios_enc($estado);
         echo json_encode($horario_enc);
     }
 
@@ -51,7 +53,7 @@ class Horario_enc extends BaseController
         $returnData = array();
         $franja = $this->franja->ObtenerParametro($id);
         if (!empty($franja)) {
-        return  json_encode($franja);
+            return  json_encode($franja);
         }
         return json_encode($returnData);
     }
@@ -108,19 +110,12 @@ class Horario_enc extends BaseController
 
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerHorarios_encEliminados();
-
+        $cargaSideBar = $this->metodos->getModulos();
 
         // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Horariosenc Eliminadas', 'datos' => 'vacio'];
-            echo view('/principal/sidebar', $data);
-            echo view('/horarios_enc/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Horariosenc Eliminadas', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/horarios_enc/eliminados', $data);
-        }
+        $data = ['titulo' => 'Administrar Horariosenc Eliminadas', 'datos' => 'vacio', 'Modulos' => $cargaSideBar];
+        echo view('/principal/sidebar', $data);
+        echo view('/horarios_enc/eliminados', $data);
     }
     public function validar()
     {
@@ -138,7 +133,7 @@ class Horario_enc extends BaseController
         if (empty($filtro)) {
             $respuesta = true;
             return $this->response->setJSON($respuesta);
-        } else if($filtro['periodo_año'] == $valor && $filtro['id_grado'] == $id_grado){
+        } else if ($filtro['periodo_año'] == $valor && $filtro['id_grado'] == $id_grado) {
             $respuesta = false;
         }
         $respuesta = false;

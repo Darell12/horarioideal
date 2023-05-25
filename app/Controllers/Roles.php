@@ -4,21 +4,23 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\RolesModel;
-
+use App\Controllers\Principal;
 
 class Roles extends BaseController
 {
     protected $rol, $eliminados;
-
+    protected $metodos;
 
     public function __construct()
     {
         $this->rol = new RolesModel();
         $this->eliminados = new RolesModel();
+        $this->metodos = new Principal();
     }
     public function index()
     {
-        $data = ['titulo' => 'Administrar Roles'];
+        $cargaSideBar = $this->metodos->getModulos();
+        $data = ['titulo' => 'Administrar Roles', 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/roles/roles', $data);
@@ -36,12 +38,12 @@ class Roles extends BaseController
 
             $this->rol->save([
                 'nombre' => $this->request->getPost('nombre_rol'),
-                'usuario_crea'=> session('id')
+                'usuario_crea' => session('id')
             ]);
         } else {
             $this->rol->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_rol'),
-                'usuario_crea'=> session('id')
+                'usuario_crea' => session('id')
             ]);
         }
         return json_encode('Se insertó un rol');
@@ -62,22 +64,14 @@ class Roles extends BaseController
         $rol = $this->rol->cambiar_Estado($id, $estado);
         return json_encode('😊');
     }
-    
+
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerRolesEliminados();
-
-
+        $cargaSideBar = $this->metodos->getModulos();
         // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Roles Eliminados','datos' => 'vacio'];
-            echo view('/principal/sidebar', $data);
-            echo view('/roles/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Roles Eliminados', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/roles/eliminados', $data);
-        }
+        $data = ['titulo' => 'Administrar Roles Eliminados', 'datos' => 'vacio', 'Modulos' => $cargaSideBar];
+        echo view('/principal/sidebar', $data);
+        echo view('/roles/eliminados', $data);
     }
     public function validar()
     {
