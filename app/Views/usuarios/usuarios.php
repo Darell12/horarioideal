@@ -350,7 +350,7 @@
                         <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
 
                         </tbody>
-                        
+
                     </table>
                 </div>
             </div>
@@ -566,10 +566,10 @@
     </div>
 </div>
 <!-- tabla telefonos Acudientes -->
-<div id="ModalTelefonosAcudientes" class="modal" tabindex="-1"  style="background: rgb(0 0 0 / 43%);">
+<div id="ModalTelefonosAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header"style="background: #427dbb; color:#FFF;">
+            <div class="modal-header" style="background: #427dbb; color:#FFF;">
 
                 <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1695,6 +1695,7 @@
         }
     })
 
+
     $('#btnGuardarAcudiente').on('click', function(e) {
         e.preventDefault();
         if ($('#formulario').valid()) {
@@ -1733,12 +1734,12 @@
                     title: 'Acción realizada con exito!'
                 })
                 console.log('insertar');
-                insertarEmail(data);
-                insertarTelefono(data)
+                insertarEmailAcudiente(data);
+                insertarTelefonoAcudiente(data)
                 contador = 0
                 tablaUsuarios.ajax.reload(null, false)
-                tablaTemporal = [];
-                tablaTemporalTelefonos = [];
+                tablaTemporalAcudientes = [];
+                tablaTemporalTelefonosAcudientes = [];
                 return
             })
         } else {
@@ -1803,7 +1804,7 @@
     }
 
     function validarPrioridadTelAcudientes() {
-        const existeValor = tablaTemporalTelefonos.some(telefono => telefono.prioridad == 6);
+        const existeValor = tablaTemporalTelefonosAcudientes.some(telefono => telefono.prioridad == 6);
 
         if (existeValor) {
             $('#prioridad_tel').val(7)
@@ -1817,7 +1818,7 @@
     }
 
     function validarPrioridadEmailAcudientes() {
-        const existeValor = tablaTemporal.some(email => email.prioridad == 6);
+        const existeValor = tablaTemporalAcudientes.some(email => email.prioridad == 6);
 
         if (existeValor) {
             $('#prioridad').val(7)
@@ -1946,7 +1947,7 @@
         }
         tablaTemporalAcudientes = tablaTemporalAcudientes.filter(p => p.email !== emailEditar.text());
 
-        let principal = tablaTemporal.find(p => p.prioridad == 6)
+        let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
         $('#email').val(!principal ? '' : principal.email);
         console.log(tablaTemporalAcudientes);
         generarTablaEmail(tablaTemporalAcudientes);
@@ -1954,7 +1955,7 @@
     }
 
     function insertarEmailAcudientes(id) {
-        console.log(tablaTemporal);
+        console.log(tablaTemporalAcudientes);
         tablaTemporal.forEach(registro => {
             console.log('1');
             $.ajax({
@@ -1974,53 +1975,53 @@
     }
 
     tablaTemporalAcudientes = []
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
-                dataType: "JSON",
-                success: function(rs) {
-                    rs.forEach(element => {
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
+        dataType: "JSON",
+        success: function(rs) {
+            rs.forEach(element => {
 
-                        tablaTemporalAcudientes.push({
-                            tp: 2,
-                            email: element.email,
-                            prioridad: element.prioridad,
-                            id_email: element.id_email,
-                        })
-                    });
-                    generarTablaEmailAcudientes(tablaTemporalAcudientes);
-                    let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-                    if (rs.length == 0) {
-                        $('#email').val('');
-                    } else {
-                        $('#email').val(!principal ? tablaTemporalAcudientes[0]?.email || '' : principal.email);
-                    }
-                }
-            })
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
-                dataType: "JSON",
-                success: function(rs) {
-                    rs.forEach(element => {
+                tablaTemporalAcudientes.push({
+                    tp: 2,
+                    email: element.email,
+                    prioridad: element.prioridad,
+                    id_email: element.id_email,
+                })
+            });
+            generarTablaEmailAcudientes(tablaTemporalAcudientes);
+            let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
+            if (rs.length == 0) {
+                $('#email').val('');
+            } else {
+                $('#email').val(!principal ? tablaTemporalAcudientes[0]?.email || '' : principal.email);
+            }
+        }
+    })
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
+        dataType: "JSON",
+        success: function(rs) {
+            rs.forEach(element => {
 
-                        tablaTemporalTelefonosAcudientes.push({
-                            tp: 2,
-                            telefono: element.numero,
-                            prioridad: element.prioridad,
-                            tipo: element.tipo,
-                            id_telefono: element.id_telefono,
-                        })
-                    });
-                    generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
-                    let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
-                    if (rs.length == 0) {
-                        $('#telUsuario').val('');
-                    } else {
-                        $('#telUsuario').val(!principal ? tablaTemporalTelefonosAcudientes[0].telefono : principal.telefono);
-                    }
-                }
-            })
+                tablaTemporalTelefonosAcudientes.push({
+                    tp: 2,
+                    telefono: element.numero,
+                    prioridad: element.prioridad,
+                    tipo: element.tipo,
+                    id_telefono: element.id_telefono,
+                })
+            });
+            generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
+            let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
+            if (rs.length == 0) {
+                $('#telUsuario').val('');
+            } else {
+                $('#telUsuario').val(!principal ? tablaTemporalTelefonosAcudientes[0].telefono : principal.telefono);
+            }
+        }
+    })
 
     function eliminarEmailAcudientes(id, tp) {
 
@@ -2233,7 +2234,7 @@
                 })
                 generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
 
-                let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
+                let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
                 $('#telUsuario').val(!principal ? '' : principal.telefono);
                 optionPrincipal = $('#prioridad').find('option[value="6"]')
                 $('#prioridad_tel').val(7);
@@ -2311,8 +2312,4 @@
     $('.close').click(function() {
         $("#Resetear").modal("hide");
     });
-
-
-
-
 </script>
