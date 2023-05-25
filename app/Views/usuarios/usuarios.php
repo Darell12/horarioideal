@@ -3,7 +3,7 @@
         <div class="border-0">
         </div>
 
-        <div>
+        <div style="margin-top: 1em;">
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/usuarios/masivo'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-files"></i>Ingreso Masivo</button></a>
             <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>

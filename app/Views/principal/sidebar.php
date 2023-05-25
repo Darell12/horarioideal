@@ -148,13 +148,13 @@
     <!-- Page Content  -->
     <div id="content">
 
-        <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <nav class="navbar navbar-expand-lg" style="background: #29588abd  !important;">
             <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
                     <i class='bx bx-chevron-right toggle bx-sm'></i>
                 </button>
-                <div style="margin-top: 10px;" class="border-0">
+                <div style="margin-top: 10px; color:#fff" class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
                 </div>
                 <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">

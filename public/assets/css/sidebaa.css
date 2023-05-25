@@ -40,7 +40,7 @@ a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fff;
+    background: #29588a !important; 
     border: none;
     border-radius: 0;
     /* margin-bottom: 40px; */
