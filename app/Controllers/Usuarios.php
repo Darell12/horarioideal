@@ -10,6 +10,7 @@ use App\Models\Parametros_detModel;
 use App\Models\EmailsModel;
 use App\Models\TelefonosModel;
 use App\Models\AcudientesModel;
+use App\Controllers\Principal;
 
 
 class Usuarios extends BaseController
@@ -18,6 +19,8 @@ class Usuarios extends BaseController
     protected $roles, $horario;
     protected $prioridad, $tipotel, $emails;
     protected $telefonos, $acudientes;
+    protected $metodos;
+
 
     public function __construct()
     {
@@ -30,14 +33,17 @@ class Usuarios extends BaseController
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
         $this->acudientes = new AcudientesModel();
+        $this->metodos = new Principal();
     }
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
+
         $roles = $this->roles->obtenerRoles('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel];
+        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
@@ -57,14 +63,14 @@ class Usuarios extends BaseController
 
         $estudiante = $this->usuario->buscarEstudiantes($id);
 
-        
+
         if ($estudiante == null) {
             $acudientes = '';
         } else {
             $acudientes = $this->acudientes->ObtenerAcudientes('A', $estudiante['id_estudiante']);
         }
 
-        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo,'acudiente' => $acudientes];
+        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes];
 
         // return json_encode($data);
         echo view('/principal/sidebar', $data);
@@ -118,7 +124,9 @@ class Usuarios extends BaseController
     }
     public function eliminados()
     {
-        $data = ['titulo' => 'Administrar Usuarios Eliminados',];
+        $cargaSideBar = $this->metodos->getModulos();
+
+        $data = ['titulo' => 'Administrar Usuarios Eliminados', 'Modulos' => $cargaSideBar];
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/eliminados', $data);
     }
