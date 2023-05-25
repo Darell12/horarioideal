@@ -30,6 +30,13 @@ class AccionesModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function obtenerAccionesRol($rol)
+    {
+        $this->select('acciones.*');
+        // $this->where('id', $rol);
+        $datos = $this->findAll();
+        return $datos;
+    }
 
     public function obtenerAccionesEliminados()
     {

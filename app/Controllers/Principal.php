@@ -3,22 +3,31 @@
 namespace App\Controllers;
 use App\Models\UsuariosModel;
 use App\Models\RolesModel;
+use App\Models\ModulosModel;
+use App\Models\PermisosModel;
+use App\Models\AccionesModel;
 
 class Principal extends BaseController
 {
     protected $usuario, $eliminados;
-    protected $roles;
+    protected $roles, $modulos, $permisos, $acciones;
 
     public function __construct()
     {
         $this->usuario = new UsuariosModel();
         $this->eliminados = new UsuariosModel();
         $this->roles = new RolesModel();
+        $this->modulos = new ModulosModel();
+        $this->permisos = new PermisosModel();
+        $this->acciones = new AccionesModel();
     }
     public function index()
     {
-
-        $data = ['titulo' => 'Bienvenido!'];
+        $session = session();
+        // $session['id_rol']
+        $accionees = $this->acciones->obtenerAcciones('Ä');
+        $modulos = $this->modulos->obtenerModulos('A');
+        $data = ['titulo' => 'Bienvenido!', 'Modulos' => $modulos];
 
         echo view('/principal/sidebar', $data);
         echo view('/inicio/inicio', $data);
