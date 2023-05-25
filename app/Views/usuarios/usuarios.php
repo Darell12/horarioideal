@@ -1280,6 +1280,7 @@
                     $('#confirmar_contraseña').attr('hidden', '');
                     $('#password_label_c').attr('hidden', '');
                     $('#formulario').validate().resetForm();
+                    $('#Divacudientes').attr('hidden', '');
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
                 }
