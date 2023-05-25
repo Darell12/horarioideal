@@ -23,9 +23,10 @@ class Acudientes extends BaseController
         $this->acudientes = new AcudientesModel();
     }
 
-    public function index()
+    public function index($id)
     {
-        $acudientes = $this->acudientes->obtenerRoles('A');
+        $estudiante = $this->usuario->buscarEstudiantes($id);
+        $acudientes = $this->acudientes->ObtenerAcudientes('A', $estudiante['id_estudiante']);
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
@@ -40,25 +41,25 @@ class Acudientes extends BaseController
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
             $this->acudientes->save([
-                'tipo_documento' => $this->request->getPost('tipo_documento'),
-                'n_documento' => $this->request->getPost('numero_documento'),
-                'nombre_p' => $this->request->getPost('primer_nombre'),
-                'nombre_s' => $this->request->getPost('segundo_nombre'),
-                'apellido_p' => $this->request->getPost('primer_apellido'),
-                'apellido_s' => $this->request->getPost('segundo_apellido'),
-                'email' => $this->request->getPost('email'),
+                'tipo_documento' => $this->request->getPost('tipo_documentoAcu'),
+                'n_documento' => $this->request->getPost('numero_documentoAcu'),
+                'nombre_p' => $this->request->getPost('primer_nombreAcu'),
+                'nombre_s' => $this->request->getPost('segundo_nombreAcu'),
+                'apellido_p' => $this->request->getPost('primer_apellidoAcu'),
+                'apellido_s' => $this->request->getPost('segundo_apellidoAcu'),
+                'email' => $this->request->getPost('emailAcu'),
                 'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionAcu'),
             ]);
         } else {
             $this->acudientes->update($this->request->getPost('id'), [
-                'tipo_documento' => $this->request->getPost('tipo_documento'),
-                'n_documento' => $this->request->getPost('numero_documento'),
-                'nombre_p' => $this->request->getPost('primer_nombre'),
-                'nombre_s' => $this->request->getPost('segundo_nombre'),
-                'apellido_p' => $this->request->getPost('primer_apellido'),
-                'apellido_s' => $this->request->getPost('segundo_apellido'),
-                'email' => $this->request->getPost('email'),
+                'tipo_documento' => $this->request->getPost('tipo_documentoAcu'),
+                'n_documento' => $this->request->getPost('numero_documentoAcu'),
+                'nombre_p' => $this->request->getPost('primer_nombreAcu'),
+                'nombre_s' => $this->request->getPost('segundo_nombreAcu'),
+                'apellido_p' => $this->request->getPost('primer_apellidoAcu'),
+                'apellido_s' => $this->request->getPost('segundo_apellidoAcu'),
+                'email' => $this->request->getPost('emailAcu'),
                 'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionAcu'),
             ]);
