@@ -53,7 +53,7 @@ class Usuarios extends BaseController
         if (!session('logged_in') == 'true') {
             return redirect()->to(base_url('iniciarSesion'));
         }
-
+        $cargaSideBar = $this->metodos->getModulos();
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
         $roles = $this->roles->obtenerRoles('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
@@ -70,7 +70,7 @@ class Usuarios extends BaseController
             $acudientes = $this->acudientes->ObtenerAcudientes('A', $estudiante['id_estudiante']);
         }
 
-        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes];
+        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes,'Modulos' => $cargaSideBar];
 
         // return json_encode($data);
         echo view('/principal/sidebar', $data);
