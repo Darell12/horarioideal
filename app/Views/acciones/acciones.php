@@ -5,7 +5,7 @@
             <!-- <h3 class="mb-0"><?php echo $titulo ?></h3> -->
         </div>
 
-        <div>
+        <div style="margin-top: 2em;">
             <button type="button" onclick="seleccionaAccion(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#AccionModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/acciones/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>

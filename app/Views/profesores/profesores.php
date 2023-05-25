@@ -3,7 +3,7 @@
         <div>
         </div>
 
-        <div>
+        <div style="margin-top: 1em;">
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <button type="button" class="btn btn-outline-success" onclick="fnExcelProfesores()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
             <a href="<?php echo base_url('/profesores/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
