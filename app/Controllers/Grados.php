@@ -6,11 +6,12 @@ use App\Controllers\BaseController;
 use App\Models\GradosModel;
 use App\Models\AsignaturasModel;
 use App\Models\Grados_asignaturaModel;
+use App\Controllers\Principal;
 
 class Grados extends BaseController
 {
     protected $grado, $eliminados, $asignaturas, $grado_asignatura;
-
+    protected $metodos;
 
     public function __construct()
     {
@@ -18,13 +19,15 @@ class Grados extends BaseController
         $this->eliminados = new GradosModel();
         $this->asignaturas = new AsignaturasModel();
         $this->grado_asignatura = new Grados_asignaturaModel();
+        $this->metodos = new Principal();
     }
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $grado = $this->grado->obtenerGrados('A');
         $asignaturas = $this->asignaturas->obtenerAsignaturas('A');
 
-        $data = ['titulo' => 'Administrar Grados', 'datos' => $grado, 'asignaturas'=> $asignaturas,'tituloModal'=>''];
+        $data = ['titulo' => 'Administrar Grados', 'datos' => $grado, 'asignaturas'=> $asignaturas,'tituloModal'=>'', 'Modulos' => $cargaSideBar];
 
        echo view('/principal/sidebar', $data);
         echo view('/grados/grados', $data);
@@ -103,19 +106,13 @@ class Grados extends BaseController
     
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerGradosEliminados();
-
+        $cargaSideBar = $this->metodos->getModulos();
 
         // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Grados Eliminados','datos' => 'vacio'];
+            $data = ['titulo' => 'Administrar Grados Eliminados','datos' => 'vacio', 'Modulos' => $cargaSideBar];
             echo view('/principal/sidebar', $data);
             echo view('/grados/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Grados Eliminados', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/grados/eliminados', $data);
-        }
+ 
     }
 
     public function validar()

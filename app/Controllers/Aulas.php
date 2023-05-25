@@ -5,26 +5,28 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\AulaModel;
 use App\Models\Parametros_detModel;
-
+use App\Controllers\Principal;
 
 
 class Aulas extends BaseController
 {
     protected $aula, $eliminados;
     protected $paramTipo;
-
+    protected $metodos;
 
     public function __construct()
     {
         $this->aula = new AulaModel();
         $this->eliminados = new AulaModel();
         $this->paramTipo = new Parametros_detModel();
+        $this->metodos = new Principal();
     }
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $aula = $this->aula->obtenerAulas('A');
         $paramTipo = $this->paramTipo->ObtenerParametro(14);
-        $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'tipos' => $paramTipo];
+        $data = ['titulo' => 'Administrar Aulas', 'datos' => $aula, 'tipos' => $paramTipo, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/aulas/aulas', $data);
@@ -80,9 +82,9 @@ class Aulas extends BaseController
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-
+        $cargaSideBar = $this->metodos->getModulos();
         // Redireccionar a la URL anterior
-        $data = ['titulo' => 'Administrar Aulas Eliminados'];
+        $data = ['titulo' => 'Administrar Aulas Eliminados', 'Modulos' => $cargaSideBar];
         echo view('/principal/sidebar', $data);
         echo view('/aulas/eliminados', $data);
     }
