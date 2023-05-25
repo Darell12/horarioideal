@@ -3,7 +3,7 @@
         <div class="border-0">
         </div>
 
-        <div>
+        <div style="margin-top: 2em;">
             <button type="button" onclick="seleccionaDetalle(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <button onclick="visualizarHorario(<?php echo $id ?>)" class="btn btn-outline" id="prueba" title="Visualizar" data-bs-toggle="modal" data-bs-target="#ModalHorario"> <i class="bi bi-eye"></i> Visualizar</button>
 
