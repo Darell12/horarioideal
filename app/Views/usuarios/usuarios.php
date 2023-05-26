@@ -238,7 +238,7 @@
     </div>
 </div>
 
-<!-- tabla emalis -->
+<!-- tabla emails -->
 <div id="ModalEmail" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog  modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -414,7 +414,7 @@
                     <div class="row">
                         <div class="col">
                             <label class="col-form-label">Tipo de Documento:</label>
-                            <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
+                            <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
                                 <option value="">Seleccione un Tipo</option>
                                 <option value="2">Cedula de Ciudadania</option>
                                 <option value="1">Tarjeta de Identidad</option>
@@ -423,27 +423,27 @@
                         </div>
                         <div class="col">
                             <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                            <input type="number" class="form-control" name="numero_documento" id="numero_documento" required>
+                            <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="nombre" class="col-form-label">Primer Nombre:</label>
-                            <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
+                            <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
                         </div>
                         <div class="col">
                             <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
-                            <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+">
+                            <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="nombre" class="col-form-label">Primer Apellido:</label>
-                            <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
+                            <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
                         </div>
                         <div class="col">
                             <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                            <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
+                            <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -451,14 +451,14 @@
                             <label for="nombre" class="col-form-label">Emails:</label>
                             <div class="input-group d-flex">
                                 <button class="btn btn-success btn-sm" type="button" onclick="validarPrioridadEmailAcudientes()" data-bs-toggle="modal" data-bs-target="#ModalEmailAcudientes"><i class="bi bi-plus"></i></button>
-                                <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" required readonly>
+                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required readonly>
                             </div>
                         </div>
                         <div class="col">
                             <label for="nombre" class="col-form-label">Telefonos:</label>
                             <div class="input-group">
-                                <button class="btn btn-success btn-sm" onclick="validarPrioridadTelAcudientes()" id="btnTelefono" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonosAcudientes"><i class="bi bi-plus"></i></button>
-                                <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
+                                <button class="btn btn-success btn-sm" onclick="validarPrioridadTelAcudientes()" id="btnTelefonoAcu" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonosAcudientes"><i class="bi bi-plus"></i></button>
+                                <input class="form-control" type="text" id="telUsuarioAcu" name="telUsuarioAcu" placeholder="Agregar telefonos" readonly required>
                             </div>
                         </div>
                     </div>
@@ -523,25 +523,25 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="message-text" class="col-form-label">Email:</label>
-                        <input type="email" name="email_modal" class="form-control" id="email_modal" placeholder="Ej: JhonDoe@gmail.com">
-                        <div class="invalid-feedback" id="errorEmail"></div>
+                        <input type="email" name="email_modalAcu" class="form-control" id="email_modalAcu" placeholder="Ej: JhonDoe@gmail.com">
+                        <div class="invalid-feedback" id="errorEmailAcu"></div>
                     </div>
 
                     <div class="col">
                         <label for="message-text" class="col-form-label">Prioridad:</label>
                         <div class="input-group">
-                            <select name="prioridad" class="form-select form-select" id="prioridad">
+                            <select name="prioridadAcu" class="form-select form-select" id="prioridadAcu">
                                 <option value="">-Seleccione una opción-</option>
                                 <?php foreach ($prioridad as $valor) { ?>
                                     <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre'] ?>E"><?php echo $valor['nombre']; ?></option>
                                 <?php } ?>
                             </select>
-                            <button class="btn btn-outline-success" type="button" id="btn_insertar" onclick="validarPrioridadEmailAcudientes()" title="Agregar Email"><i class="bi bi-plus"></i></button>
-                            <div class="invalid-feedback" id="errorPrioridad"></div>
+                            <button class="btn btn-outline-success" type="button" id="btn_insertarAcu" onclick="validarPrioridadEmailAcudientes()" title="Agregar Email"><i class="bi bi-plus"></i></button>
+                            <div class="invalid-feedback" id="errorPrioridadAcu"></div>
                         </div>
-                        <input hidden type="text" id="id_email" name="id_email">
-                        <input hidden type="text" id="emailActu" name="emailActu">
-                        <input hidden type="text" id="tpExist" name="tpExist">
+                        <input hidden type="text" id="id_emailAcu" name="id_emailAcu">
+                        <input hidden type="text" id="emailActuAcu" name="emailActuAcu">
+                        <input hidden type="text" id="tpExistAcu" name="tpExistAcu">
                     </div>
                 </div>
 
@@ -554,7 +554,7 @@
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_email">
+                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_emailAcu">
 
                         </tbody>
                     </table>
@@ -578,35 +578,35 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="message-text" class="col-form-label">Número:</label>
-                        <input type="text" name="telefono" class="form-control" id="telefono">
+                        <input type="text" name="telefonoAcu" class="form-control" id="telefonoAcu">
                         <div class="invalid-feedback" id="errorTel"></div>
                     </div>
 
                     <div class="col">
                         <label for="message-text" class="col-form-label">Tipo:</label>
-                        <select name="tipo" class="form-select form-select" id="tipo">
+                        <select name="tipoAcu" class="form-select form-select" id="tipoAcu">
                             <option value="">-Seleccione una opción-</option>
                             <?php foreach ($tipo as $valor) { ?>
                                 <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre']; ?>"><?php echo $valor['nombre']; ?></option>
                             <?php } ?>
                         </select>
-                        <div class="invalid-feedback" id="errorTipoTel"></div>
+                        <div class="invalid-feedback" id="errorTipoTelAcu"></div>
                     </div>
                     <div class="col">
                         <label for="message-text" class="col-form-label">Prioridad:</label>
                         <div class="input-group">
-                            <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
+                            <select name="prioridad_telAcu" class="form-select form-select" id="prioridad_telAcu">
                                 <option value="">-Seleccione una opción-</option>
                                 <?php foreach ($prioridad as $valor) { ?>
                                     <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre'] ?>"><?php echo $valor['nombre']; ?></option>
                                 <?php } ?>
                             </select>
-                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefono" onclick="validarPrioridadTelAcudientes()" title="Agregar numero"><i class="bi bi-plus"></i></button>
-                            <div class="invalid-feedback" id="errorPrioridadTel"></div>
+                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefonoAcu" onclick="validarPrioridadTelAcudientes()" title="Agregar numero"><i class="bi bi-plus"></i></button>
+                            <div class="invalid-feedback" id="errorPrioridadTelAcu"></div>
                         </div>
-                        <input hidden type="text" id="id_telefono" name="id_telefono">
-                        <input hidden type="text" id="tpExistTel" name="tpExistTel">
-                        <input hidden type="text" id="telefonoActu" name="telefonoActu">
+                        <input hidden type="text" id="id_telefonoAcu" name="id_telefonoAcu">
+                        <input hidden type="text" id="tpExistTelAcu" name="tpExistTelAcu">
+                        <input hidden type="text" id="telefonoActuAcu" name="telefonoActuAcu">
                     </div>
                 </div>
 
@@ -620,7 +620,7 @@
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
+                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefonoAcu">
 
                         </tbody>
                     </table>
@@ -951,7 +951,6 @@
         }
     });
 
-
     $('#formulario').on('submit', function(e) {
         console.log('activo');
         e.preventDefault();
@@ -1258,7 +1257,6 @@
                     $('#direccionX').val(rs[0]['direccion']);
                     $('#email_modal').val('');
                     $('#prioridad').val('');
-
                     let str = rs[0]['direccion']
                     str = str.replace('#', '');
                     let partes = str.split(/[\s-]+/);
@@ -1357,7 +1355,6 @@
             $('#dir3').val('');
             $('#dir4').val('');
             $('#confirmar_contraseña').val('');
-
             $('#contraseña').removeAttr('hidden', '');
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
@@ -1690,7 +1687,7 @@
             $('#Divacudientes').removeAttr('hidden', '')
 
         } else {
-            console.log('sirve esta vrga')
+            console.log('sirve')
             $('#Divacudientes').attr('hidden', '')
         }
     })
@@ -1698,21 +1695,19 @@
 
     $('#btnGuardarAcudiente').on('click', function(e) {
         e.preventDefault();
-        if ($('#formulario').valid()) {
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
                 data: {
                     tp: $('#tp').val(),
                     id: $('#id').val(),
-                    tipo_documento: $('#tipo_documento').val(),
-                    numero_documento: $('#numero_documento').val(),
-                    primer_nombre: $('#primer_nombre').val(),
-                    segundo_nombre: $('#segundo_nombre').val(),
-                    primer_apellido: $('#primer_apellido').val(),
-                    segundo_apellido: $('#segundo_apellido').val(),
+                    tipo_documentoAcu: $('#tipo_documentoAcu').val(),
+                    numero_documentoAcu: $('#numero_documentoAcu').val(),
+                    primer_nombreAcu: $('#primer_nombreAcu').val(),
+                    segundo_nombreAcu: $('#segundo_nombreAcu').val(),
+                    primer_apellidoAcu: $('#primer_apellidoAcu').val(),
+                    segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
                     direccionAcu: $('#direccionAcu').val(),
-
                 },
                 dataType: "json",
             }).done(function(data) {
@@ -1734,20 +1729,19 @@
                     title: 'Acción realizada con exito!'
                 })
                 console.log('insertar');
-                insertarEmailAcudiente(data);
-                insertarTelefonoAcudiente(data)
+                insertarEmailAcudientes(data);
+                insertarTelefonoAcudientes(data)
                 contador = 0
                 tablaUsuarios.ajax.reload(null, false)
                 tablaTemporalAcudientes = [];
                 tablaTemporalTelefonosAcudientes = [];
                 return
             })
-        } else {
-            console.log('Formulario Invalido');
-        }
     })
 
+
     // EMAILS Y TELEFONOS DE ACUDIENTES
+
 
     function generarTablaEmailAcudientes(Emails) {
 
@@ -1768,50 +1762,23 @@
     <td hidden class="text-center">${email.tp}</td>
     <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
                     <td class="text-center">
-                    <button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-outline-danger" onclick="eliminarEmail(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-outline-primary" onclick="editarEmailAcudientes( ${contador});"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-outline-danger" onclick="eliminarEmailAcudientes(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
                     </td>
                     </tr>`
         });
-        $('#tabla_email').html(contenido);
-    }
-
-    function generarTablaEmailAcudientes(Emails) {
-
-        let contador = 0;
-        let prioridades = {
-            '6': 'Principal',
-            '7': 'Secundario'
-        }
-
-        let contenido = '';
-        Emails.forEach(email => {
-            contador++
-            contenido += `
-<tr id="util${contador}">
-<td class="text-center">${email.email}</td>
-<td class="text-center">${prioridades[email.prioridad]}</td>
-<td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
-<td hidden class="text-center">${email.tp}</td>
-<td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
-<td class="text-center">
-<button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
-<button class="btn btn-outline-danger" onclick="eliminarEmail(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
-</td>
-</tr>`
-        });
-        $('#tabla_email').html(contenido);
+        $('#tabla_emailAcu').html(contenido);
     }
 
     function validarPrioridadTelAcudientes() {
         const existeValor = tablaTemporalTelefonosAcudientes.some(telefono => telefono.prioridad == 6);
 
         if (existeValor) {
-            $('#prioridad_tel').val(7)
+            $('#prioridad_telAcu').val(7)
             $('#Principal').attr('disabled', '');
             $('#Secundario').removeAttr('disabled', '');
         } else {
-            $('#prioridad_tel').val(6)
+            $('#prioridad_telAcu').val(6)
             $('#Secundario').attr('disabled', '');
             $('#Principal').removeAttr('disabled', '');
         }
@@ -1821,33 +1788,33 @@
         const existeValor = tablaTemporalAcudientes.some(email => email.prioridad == 6);
 
         if (existeValor) {
-            $('#prioridad').val(7)
+            $('#prioridadAcu').val(7)
             $('#PrincipalE').attr('disabled', '');
             $('#SecundarioE').removeAttr('disabled', '');
         } else {
-            $('#prioridad').val(6)
+            $('#prioridadAcu').val(6)
             $('#SecundarioE').attr('disabled', '');
             $('#PrincipalE').removeAttr('disabled', '');
         }
     }
 
     let tablaTemporalAcudientes = []
-    $('#btn_insertar').click(function() {
+    $('#btn_insertarAcu').click(function() {
 
         //Expresion regular de formato email
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        let email = $('#email_modal').val();
-        let prioridad = $('#prioridad').val();
-        let id_email = $('#id_email').val();
-        let tp = $('#tpExist').val();
+        let email = $('#email_modalAcu').val();
+        let prioridad = $('#prioridadAcu').val();
+        let id_email = $('#id_emailAcu').val();
+        let tp = $('#tpExistAcu').val();
 
         if (!regex.test(email)) {
-            $('#email_modal').addClass('is-invalid');
-            $('#errorEmail').text('Este no es un formato valido de email');
+            $('#email_modalAcu').addClass('is-invalid');
+            $('#errorEmailAcu').text('Este no es un formato valido de email');
             setTimeout(() => {
-                $('#email_modal').removeClass('is-invalid');
-                $('#errorEmail').text('');
+                $('#email_modalAcu').removeClass('is-invalid');
+                $('#errorEmailAcu').text('');
             }, 2000);
             return; // El email no es válido
         }
@@ -1864,35 +1831,35 @@
 
         $.post('<?php echo base_url() ?>/email/validar', datosValidar, function(response) {
             if (response == true) {
-                $('#email_modal').addClass('is-invalid');
-                $('#errorEmail').text('Este email ya se encuentra Registrado');
+                $('#email_modalAcu').addClass('is-invalid');
+                $('#errorEmailAcu').text('Este email ya se encuentra Registrado');
                 setTimeout(() => {
-                    $('#email_modal').removeClass('is-invalid');
-                    $('#errorEmail').text('');
+                    $('#email_modalAcu').removeClass('is-invalid');
+                    $('#errorEmailAcu').text('');
                 }, 2000);
             } else if ([email, prioridad].includes('')) {
-                $('#email_modal').addClass('is-invalid');
-                $('#prioridad').addClass('is-invalid');
-                $('#errorEmail').text('Todos los campos son obligatorios');
+                $('#email_modalAcu').addClass('is-invalid');
+                $('#prioridadAcu').addClass('is-invalid');
+                $('#errorEmailAcu').text('Todos los campos son obligatorios');
                 setTimeout(() => {
-                    $('#email_modal').removeClass('is-invalid');
-                    $('#prioridad').removeClass('is-invalid');
-                    $('#errorEmail').text('');
-                    $('#prioridad').val('');
+                    $('#email_modalAcu').removeClass('is-invalid');
+                    $('#prioridadAcu').removeClass('is-invalid');
+                    $('#errorEmailAcu').text('');
+                    $('#prioridadAcu').val('');
                 }, 2000)
             } else if (filtroPrioridad.length > 0 && prioridad == 6) {
-                $('#prioridad').addClass('is-invalid');
-                $('#errorPrioridad').text('Ya hay un email Principal');
+                $('#prioridadAcu').addClass('is-invalid');
+                $('#errorPrioridadAcu').text('Ya hay un email Principal');
                 setTimeout(() => {
-                    $('#prioridad').removeClass('is-invalid');
-                    $('#errorPrioridad').text('');
+                    $('#prioridadAcu').removeClass('is-invalid');
+                    $('#errorPrioridadAcu').text('');
                 }, 2000)
             } else if (filtroEmail.length > 0) {
-                $('#email_modal').addClass('is-invalid');
-                $('#errorEmail').text('Este email ya esta registrado');
+                $('#email_modalAcu').addClass('is-invalid');
+                $('#errorEmailAcu').text('Este email ya esta registrado');
                 setTimeout(() => {
-                    $('#email_modal').removeClass('is-invalid');
-                    $('#errorEmail').text('');
+                    $('#email_modalAcu').removeClass('is-invalid');
+                    $('#errorEmailAcu').text('');
                 }, 2000)
             } else {
                 tablaTemporalAcudientes.push({
@@ -1903,19 +1870,19 @@
 
                 })
                 generarTablaEmailAcudientes(tablaTemporalAcudientes);
-                $('#tpExist').val('');
-                $('#id_email').val('');
-                $('#emailActu').val('');
+                $('#tpExistAcu').val('');
+                $('#id_emailAcu').val('');
+                $('#emailActuAcu').val('');
 
 
                 let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-                $('#email').val(!principal ? '' : principal.email);
+                $('#emailAcu').val(!principal ? '' : principal.email);
 
 
-                optionPrincipal = $('#prioridad').find('option[value="6"]')
-                $('#prioridad').val(7);
+                optionPrincipal = $('#prioridadAcu').find('option[value="6"]')
+                $('#prioridadAcu').val(7);
                 prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
-                $('#email_modal').val('');
+                $('#email_modalAcu').val('');
             }
         })
         validarPrioridadEmailAcudientes()
@@ -1929,26 +1896,26 @@
         const idEmail = fila.find('td').eq(2)
         const tpExist = fila.find('td').eq(3)
         const emailActu = fila.find('td').eq(4)
-        optionPrincipal = $('#prioridad').find('option[value="6"]')
+        optionPrincipal = $('#prioridadAcu').find('option[value="6"]')
 
         if (prioridadEditar.text() === 'Principal') {
             optionPrincipal.removeAttr('disabled', '')
-            $('#prioridad').val(6);
-            $('#email_modal').val(emailEditar.text());
-            $('#id_email').val(idEmail.text());
-            $('#tpExist').val(tpExist.text());
-            $('#emailActu').val(emailActu.text());
+            $('#prioridadAcu').val(6);
+            $('#email_modalAcu').val(emailEditar.text());
+            $('#id_emailAcu').val(idEmail.text());
+            $('#tpExistAcu').val(tpExist.text());
+            $('#emailActuAcu').val(emailActu.text());
         } else {
-            $('#prioridad').val(7);
-            $('#email_modal').val(emailEditar.text());
-            $('#id_email').val(idEmail.text());
-            $('#tpExist').val(tpExist.text());
+            $('#prioridadAcu').val(7);
+            $('#email_modalAcu').val(emailEditar.text());
+            $('#id_emailAcu').val(idEmail.text());
+            $('#tpExistAcu').val(tpExist.text());
             $('#emailActu').val(emailActu.text());
         }
         tablaTemporalAcudientes = tablaTemporalAcudientes.filter(p => p.email !== emailEditar.text());
 
         let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-        $('#email').val(!principal ? '' : principal.email);
+        $('#emailAcu').val(!principal ? '' : principal.email);
         console.log(tablaTemporalAcudientes);
         generarTablaEmail(tablaTemporalAcudientes);
         validarPrioridadEmailAcudientes()
@@ -1992,9 +1959,9 @@
             generarTablaEmailAcudientes(tablaTemporalAcudientes);
             let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
             if (rs.length == 0) {
-                $('#email').val('');
+                $('#emailAcu').val('');
             } else {
-                $('#email').val(!principal ? tablaTemporalAcudientes[0]?.email || '' : principal.email);
+                $('#emailAcu').val(!principal ? tablaTemporalAcudientes[0]?.email || '' : principal.email);
             }
         }
     })
@@ -2016,9 +1983,9 @@
             generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
             let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
             if (rs.length == 0) {
-                $('#telUsuario').val('');
+                $('#telUsuarioAcu').val('');
             } else {
-                $('#telUsuario').val(!principal ? tablaTemporalTelefonosAcudientes[0].telefono : principal.telefono);
+                $('#telUsuarioAcu').val(!principal ? tablaTemporalTelefonosAcudientes[0].telefono : principal.telefono);
             }
         }
     })
@@ -2067,7 +2034,7 @@
             })
         }
         let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-        $('#email').val(!principal ? '' : principal.email);
+        $('#emailAcu').val(!principal ? '' : principal.email);
         validarPrioridadEmail()
     }
 
@@ -2080,8 +2047,7 @@
         const idTelefono = fila.find('td').eq(3)
         const tpExistTel = fila.find('td').eq(4)
         const telefonoActu = fila.find('td').eq(5)
-        optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
-
+        optionPrincipal = $('#prioridad_telAcu').find('option[value="6"]')
 
         if (tp == 1) {
             console.log('tp1')
@@ -2119,10 +2085,8 @@
                 return
             })
         }
-
-
         let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
-        $('#telUsuario').val(!principal ? '' : principal.telefono);
+        $('#telUsuarioAcu').val(!principal ? '' : principal.telefono);
         validarPrioridadTelAcudientes()
     }
 
@@ -2150,33 +2114,33 @@
             <td hidden class="text-center">${telefono.tp}</td>
             <td hidden class="text-center">${telefono.tp == 2 ? telefono.telefono : ''}</td>
                             <td class="text-center">
-                            <button class="btn btn-outline-primary" onclick="editarTelefono( ${contadortel});"><i class="bi bi-pencil"></i></button>
-                            <button class="btn btn-outline-danger" onclick="eliminarTelefono(${contadortel}, ${telefono.tp});"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-outline-primary" onclick="editarTelefonoAcudientes( ${contadortel});"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-outline-danger" onclick="eliminarTelefonoAcudientes(${contadortel}, ${telefono.tp});"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
         });
-        $('#tabla_telefono').html(contenido);
+        $('#tabla_telefonoAcu').html(contenido);
         validarPrioridadTelAcudientes()
     }
 
     let tablaTemporalTelefonosAcudientes = [];
-    $('#btn_insertarTelefono').click(function() {
+    $('#btn_insertarTelefonoAcu').click(function() {
 
         // Expresión regular solo numeros
         const regex = /^\d{1,11}$/;
 
-        let telefono = $('#telefono').val();
-        let prioridad = $('#prioridad_tel').val();
-        let tipo = $('#tipo').val();
-        let id_telefono = $('#id_telefono').val();
-        let tp = $('#tpExistTel').val();
+        let telefono = $('#telefonoAcu').val();
+        let prioridad = $('#prioridad_telAcu').val();
+        let tipo = $('#tipoAcu').val();
+        let id_telefono = $('#id_telefonoAcu').val();
+        let tp = $('#tpExistTelAcu').val();
 
         if (!regex.test(parseInt(telefono))) {
-            $('#telefono').addClass('is-invalid');
-            $('#errorTel').text('El telefono no puede contener caracteres diferentes a numeros');
+            $('#telefonoAcu').addClass('is-invalid');
+            $('#errorTelAcu').text('El telefono no puede contener caracteres diferentes a numeros');
             setTimeout(() => {
-                $('#telefono').removeClass('is-invalid');
-                $('#errorTel').text('');
+                $('#telefonoAcu').removeClass('is-invalid');
+                $('#errorTelAcu').text('');
             }, 2000);
             return
         }
@@ -2190,38 +2154,38 @@
             campo: 'numero',
             nombreActu: tp == 2 ? telefono : '',
         }
-        console.log($('#telefono'))
+        console.log($('#telefonoAcu'))
         $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
             if (response == true) {
-                $('#telefono').addClass('is-invalid');
-                $('#errorTel').text('Este telefono ya se encuentra Registrado');
+                $('#telefonoAcu').addClass('is-invalid');
+                $('#errorTelAcu').text('Este telefono ya se encuentra Registrado');
                 setTimeout(() => {
-                    $('#telefono').removeClass('is-invalid');
-                    $('#errorTel').text('');
+                    $('#telefonoAcu').removeClass('is-invalid');
+                    $('#errorTelAcu').text('');
                 }, 2000);
             } else if ([telefono, prioridad, tipo].includes('')) {
-                $('#telefono').addClass('is-invalid');
-                $('#prioridad_tel').addClass('is-invalid');
-                $('#errorTel').text('Todos los campos son obligatorios');
+                $('#telefonoAcu').addClass('is-invalid');
+                $('#prioridad_telAcu').addClass('is-invalid');
+                $('#errorTelAcu').text('Todos los campos son obligatorios');
                 setTimeout(() => {
-                    $('#telefono').removeClass('is-invalid');
-                    $('#prioridad_tel').removeClass('is-invalid');
-                    $('#errorTel').text('');
-                    $('#prioridadTel').val('');
+                    $('#telefonoAcu').removeClass('is-invalid');
+                    $('#prioridad_telAcu').removeClass('is-invalid');
+                    $('#errorTelAcu').text('');
+                    $('#prioridadTelAcu').val('');
                 }, 2000)
             } else if (filtroPrioridad.length > 0 && prioridad == 6) {
-                $('#prioridad_tel').addClass('is-invalid');
-                $('#errorPrioridadTel').text('Ya hay un telefono Principal');
+                $('#prioridad_telAcu').addClass('is-invalid');
+                $('#errorPrioridadTelAcu').text('Ya hay un telefono Principal');
                 setTimeout(() => {
-                    $('#prioridad_tel').removeClass('is-invalid');
-                    $('#errorPrioridadTel').text('');
+                    $('#prioridad_telAcu').removeClass('is-invalid');
+                    $('#errorPrioridadTelAcu').text('');
                 }, 2000)
             } else if (filtroTel.length > 0) {
-                $('#telefono').addClass('is-invalid');
-                $('#errorTel').text('Este email ya esta registrado');
+                $('#telefonoAcu').addClass('is-invalid');
+                $('#errorTelAcu').text('Este email ya esta registrado');
                 setTimeout(() => {
-                    $('#telefono').removeClass('is-invalid');
-                    $('#errorTel').text('');
+                    $('#telefonoAcu').removeClass('is-invalid');
+                    $('#errorTelAcu').text('');
                 }, 2000)
             } else {
                 tablaTemporalTelefonosAcudientes.push({
@@ -2235,13 +2199,13 @@
                 generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
 
                 let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
-                $('#telUsuario').val(!principal ? '' : principal.telefono);
-                optionPrincipal = $('#prioridad').find('option[value="6"]')
-                $('#prioridad_tel').val(7);
+                $('#telUsuarioAcu').val(!principal ? '' : principal.telefono);
+                optionPrincipal = $('#prioridadAcu').find('option[value="6"]')
+                $('#prioridad_telAcu').val(7);
                 prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
-                $('#tipo').val('');
-                $('#telefono').val('');
-                $('#tpExistTel').val('')
+                $('#tipoAcu').val('');
+                $('#telefonoAcu').val('');
+                $('#tpExistTelAcu').val('')
             }
         })
         validarPrioridadTelAcudientes()
@@ -2256,24 +2220,24 @@
         const idTelefono = fila.find('td').eq(3)
         const tpExistTel = fila.find('td').eq(4)
         const telefonoActu = fila.find('td').eq(5)
-        optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
+        optionPrincipal = $('#prioridad_telAcu').find('option[value="6"]')
 
         console.log(telefonoEditar.text())
         if (prioridadTelEditar.text() === 'Principal') {
             optionPrincipal.removeAttr('disabled', '')
-            $('#prioridad_tel').val(6);
-            $('#telefono').val(telefonoEditar.text());
-            $('#id_telefono').val(idTelefono.text());
-            $('#tipo').val(tipoTel.text() == 22 ? 22 : 23);
-            $('#tpExistTel').val(tpExistTel.text());
-            $('#telefonoActu').val(telefonoActu.text());
+            $('#prioridad_telAcu').val(6);
+            $('#telefonoAcu').val(telefonoEditar.text());
+            $('#id_telefonoAcu').val(idTelefono.text());
+            $('#tipoAcu').val(tipoTel.text() == 22 ? 22 : 23);
+            $('#tpExistTelAcu').val(tpExistTel.text());
+            $('#telefonoActuAcu').val(telefonoActu.text());
         } else {
-            $('#prioridad_tel').val(7);
-            $('#telefono').val(telefonoEditar.text());
-            $('#id_telefono').val(idTelefono.text());
-            $('#tipo').val(tipoTel.text() == 22 ? 22 : 23);
-            $('#tpExistTel').val(tpExistTel.text());
-            $('#telefonoActu').val(telefonoActu.text());
+            $('#prioridad_telAcu').val(7);
+            $('#telefonoAcu').val(telefonoEditar.text());
+            $('#id_telefonoAcu').val(idTelefono.text());
+            $('#tipoAcu').val(tipoTel.text() == 22 ? 22 : 23);
+            $('#tpExistTelAcu').val(tpExistTel.text());
+            $('#telefonoActuAcu').val(telefonoActu.text());
         }
         tablaTemporalTelefonosAcudientes = tablaTemporalTelefonosAcudientes.filter(p => p.telefono !== telefonoEditar.text());
 
