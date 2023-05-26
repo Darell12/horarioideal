@@ -50,18 +50,19 @@ $routes->get('/ver_estudiantes', 'Estudiantes::index');
 $routes->get('/ver_usuarios', 'Usuarios::index');
 $routes->get('/ver_profesores', 'Profesores::index');
 $routes->get('/ver_estudiantes', 'Estudiantes::index');
+$routes->get('/ver_asignaturas_estudiante', 'Asignaturas::AsignaturasUnica');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
-$routes->get('/eliminados_roles', 'roles::eliminados');
-$routes->get('/eliminados_asignaturas', 'asignaturas::eliminados');
-$routes->get('/eliminados_usuarios', 'usuarios::eliminados');
-$routes->get('/eliminados_estudiantes', 'estudiantes::eliminados');
-$routes->get('/eliminados_profesores', 'profesores::eliminados');
-$routes->get('/eliminados_acciones', 'acciones::eliminados');
-$routes->get('/eliminados_aulas', 'aulas::eliminados');
-$routes->get('/eliminados_franjas', 'franjas_horarias::eliminados');
-$routes->get('/eliminados_grados', 'grados::eliminados');
-$routes->get('/eliminados_permisos', 'permisos::eliminados');
+$routes->get('/eliminados_roles', 'Roles::eliminados');
+$routes->get('/eliminados_asignaturas', 'Asignaturas::eliminados');
+$routes->get('/eliminados_usuarios', 'Usuarios::eliminados');
+$routes->get('/eliminados_estudiantes', 'Estudiantes::eliminados');
+$routes->get('/eliminados_profesores', 'Profesores::eliminados');
+$routes->get('/eliminados_acciones', 'Acciones::eliminados');
+$routes->get('/eliminados_aulas', 'Aulas::eliminados');
+$routes->get('/eliminados_franjas', 'Franjas_horarias::eliminados');
+$routes->get('/eliminados_grados', 'Grados::eliminados');
+$routes->get('/eliminados_permisos', 'Permisos::eliminados');
 $routes->get('/eliminados_horarios_enc', 'horario_enc::eliminados');
 
 //! RUTAS PARA INSERTAR

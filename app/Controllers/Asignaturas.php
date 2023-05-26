@@ -32,6 +32,20 @@ class Asignaturas extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/asignaturas/asignaturas', $data);
     }
+    public function AsignaturasUnica()
+    {
+        $cargaSideBar = $this->metodos->getModulos();
+        $asignaturas = $this->asignaturas->obtenerAsignaturas('E');
+        $paramAreas = $this->paramAreas->ObtenerParametro(9);
+        $paramTipos = $this->paramTipos->ObtenerParametro(14);
+
+        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'Area' => $paramAreas, 'datos' => $asignaturas, 'tipos' => $paramTipos, 'Modulos' => $cargaSideBar];
+
+        echo view('/principal/sidebar', $data);
+        echo view('/asignaturas/consulta', $data);
+    }
+
+
     public function obtenerAsignaturas()
     {
         $estado = $this->request->getPost('estado');

@@ -71,8 +71,8 @@
     </nav>
     <div id="content">
 
-        <nav class="navbar navbar-expand-lg" style="background: #29588abd  !important;">
-            <div class="d-flex">
+        <nav class="navbar navbar-expand-lg d-flex justify-content-between" style="background: #29588abd  !important;">
+            <div class="d-flex justify-content-between">
 
                 <button type="button" id="sidebarCollapse" class="btn">
                     <i class='bx bx-chevron-right toggle bx-sm'></i>
@@ -80,6 +80,13 @@
                 <div style="margin-top: 10px; color:#fff" class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
                 </div>
+                
+            </div>
+            <div>
+                <button class="profile-btn">
+                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
+                    <span>Aybüke C.</span>
+                </button>
             </div>
         </nav>
 
