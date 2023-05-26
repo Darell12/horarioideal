@@ -19,6 +19,7 @@
                     <th class="text-center" scope="col">Id</th>
                     <th class="text-center" scope="col">Nombre</th>
                     <th class="text-center" scope="col">Modulo</th>
+                    <th class="text-center" scope="col">Carpeta </th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -45,8 +46,14 @@
                                 </div>
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Modulo:</label>
-                                    <select type="text" class="form-control" name="nombre_accion" id="nombre_accion" required>
-                                        
+                                    <select class="form-control form-select" name="modulo" id="modulo" required>
+
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="nombre" class="col-form-label">Carpeta:</label>
+                                    <select class="form-control form-select" name="carpeta" id="carpeta" required>
+
                                     </select>
                                 </div>
 
@@ -126,6 +133,77 @@
         })
     }
 
+    $('#btn_Guardar').on('click', function(e) {
+        e.preventDefault();
+        if ($('#formulario').valid()) {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/acciones_insertar'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#id').val(),
+                    nombre_accion: $('#nombre_accion').val(),
+                    modulo: $('#modulo').val(),
+                    carpeta: $('#carpeta').val(),
+                },
+                dataType: "json",
+            }).done(function(data) {
+                $('#AccionModal').modal('hide');
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Acción realizada con exito!'
+                })
+                console.log('insertar');
+                contador = 0
+                tablaAcciones.ajax.reload(null, false)
+                return
+            })
+        } else {
+            console.log('Formulario Invalido');
+        }
+    })
+
+    let contenido = '<option value="">Seleccione una opción</option>'
+    let contenidoC = '<option value="">Seleccione una opción</option>'
+    let modulos = []
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url('/acciones/Modulos/'); ?>",
+        dataType: "json",
+    }).done(function(data) {
+
+        data.forEach(modulo => {
+            let id = modulo.id_modulo;
+            modulos.push({
+                id: modulo.id_modulo,
+                nombre: modulo.nombre,
+            });
+
+            if (modulo.tipo == 'Modulo') {
+                contenido += `<option value="${modulo.id_modulo}">${modulo.nombre}</option>`
+            }
+            if (modulo.tipo == 'Carpeta') {
+                contenidoC += `<option value="${modulo.id_modulo}">${modulo.nombre}</option>`
+            }
+
+        });
+        $('#modulo').html(contenido);
+        $('#carpeta').html(contenidoC);
+    })
+
+
     var contador = 0
     var tablaAcciones = $('#tablaAcciones').DataTable({
         ajax: {
@@ -147,14 +225,20 @@
                 data: "nombre"
             },
             {
-                data: "modulo"
+                data: null,
+                render: function(data, type, row) {
+                    return modulos.find(m => m.id == row.id_modulo)?.nombre || ''
+                },
+            },
+            {
+                data: "carpeta"
             },
             {
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group">
                     <button class="btn btn-outline-primary" onclick="seleccionaAccion(${data.id_acciones} , 2);" data-bs-toggle="modal" data-bs-target="#AccionModal"><i class="bi bi-pencil"></i></button><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_acciones}"><i class="bi bi-trash3"></i></button>
-                            </div>`
+                    </div>`
                 },
             }
         ],
@@ -211,8 +295,10 @@
                 success: function(rs) {
                     console.log(rs)
                     $("#tp").val(2);
-                    $("#id").val(id)+
-                    $('#nombre_accion').val(rs[0]['nombre']);
+                    $("#id").val(id) +
+                        $('#nombre_accion').val(rs[0]['nombre']);
+                    $('#modulo').val(rs[0]['id_modulo']);
+                    $('#carpeta').val(rs[0]['id_padre']);
                     $('#numeroActu').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
                     $('#formulario').validate().resetForm();
