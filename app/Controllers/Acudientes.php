@@ -48,28 +48,35 @@ class Acudientes extends BaseController
                 'nombre_s' => $this->request->getPost('segundo_nombreAcu'),
                 'apellido_p' => $this->request->getPost('primer_apellidoAcu'),
                 'apellido_s' => $this->request->getPost('segundo_apellidoAcu'),
-                'email' => $this->request->getPost('emailAcu'),
-                'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionAcu'),
                 'telefono' => $this->request->getPost('telefonoAcu'),
                 'email' => $this->request->getPost('emailAcu'),
+                'usuario_crea' => session('id'),
             ]);
         } else {
             $this->acudientes->update($this->request->getPost('id'), [
-                'id_estudiante'=> $this->request->getPost('id'),
                 'tipo_documento' => $this->request->getPost('tipo_documentoAcu'),
                 'n_documento' => $this->request->getPost('numero_documentoAcu'),
                 'nombre_p' => $this->request->getPost('primer_nombreAcu'),
                 'nombre_s' => $this->request->getPost('segundo_nombreAcu'),
                 'apellido_p' => $this->request->getPost('primer_apellidoAcu'),
                 'apellido_s' => $this->request->getPost('segundo_apellidoAcu'),
-                'email' => $this->request->getPost('emailAcu'),
-                'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionAcu'),
                 'telefono' => $this->request->getPost('telefonoAcu'),
                 'email' => $this->request->getPost('emailAcu'),
+                'usuario_crea' => session('id'),
             ]);
             return json_encode($this->request->getPost('id'));
         }
     }
+    public function buscarAcudiente($id)
+    {
+        $returnData = array();
+        $acudientes = $this->acudientes->obtenerAcudientes('A', $id);
+        if (!empty($acudientes)) {
+            array_push($returnData, $acudientes[0]);
+        }
+        echo json_encode($returnData);
+    }
+
 }

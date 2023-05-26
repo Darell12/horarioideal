@@ -497,6 +497,7 @@
 
                     <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
                     <input type="text" id="tp" name="tp" hidden>
+                    <input type="text" id="id_acu" name="id_acu" hidden>
                     <input type="text" id="id" name="id" hidden>
                 </div>
             </div>
@@ -1162,7 +1163,6 @@
                     $("#UsuarioModal").modal("show");
                     if (rs[0]['id_rol'] == '3') {
                         $('#Divacudientes').removeAttr('hidden', '')
-                        console.log('bolas')
                     }
 
                 }
@@ -1170,26 +1170,42 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url(); ?>/acudientes/insertarAcudientes" + id,
+                url: "<?php echo base_url(); ?>/acudientes/buscarAcudiente/" + id,
                 dataType: "JSON",
                 success: function(ac) {
                     $('#tp').val(2);
                     $('#id').val(id);
                     $('#tipo_documentoAcu').val(ac[0]['tipo_documento']);
-                    $('#numero_documentoAcu').val(ac[0]['numero_documento']);
-                    $('#primer_nombreAcu').val(ac[0]['primer_nombre']);
-                    $('#segundo_nombreAcu').val(ac[0]['segundo_nombre']);
-                    $('#primer_apellidoAcu').val(ac[0]['primer_apellido']);
-                    $('#segundo_apellidoAcu').val(ac[0]['segundo_apellido']);
+                    $('#numero_documentoAcu').val(ac[0]['n_documento']);
+                    $('#primer_nombreAcu').val(ac[0]['nombre_p']);
+                    $('#segundo_nombreAcu').val(ac[0]['nombre_s']);
+                    $('#primer_apellidoAcu').val(ac[0]['apellido_p']);
+                    $('#segundo_apellidoAcu').val(ac[0]['apellido_s']);
                     $('#direccionAcu').val(ac[0]['direccion']);
                     $('#emailAcu').val(ac[0]['email']);
                     $('#telefonoAcu').val(ac[0]['telefono']);
-
+                    $('#id_acu').val(ac[0]['id_acudiente'])
                     $('#tituloModalAcu').text('Editar Acudiente');
                     $("#btnListo").text('Actualizar');
-                    $("#ModalAcudientes").modal("show");
 
-                    console.log()
+                    let str = ac[0]['direccion']
+                    str = str.replace('#', '');
+                    let partes = str.split(/[\s-]+/);
+                    if (partes.length > 4) {
+                        $('#direccion1').val(partes[0] + ' ' + partes[1]);
+                        $('#direccion2').val(partes[2]);
+                        $('#direccion3').val(partes[3]);
+                        $('#direccion4').val(partes[4]);
+                    } else {
+                        $('#direccion1').val(partes[0]);
+                        $('#direccion2').val(partes[1]);
+                        $('#direccion3').val(partes[2]);
+                        $('#direccion4').val(partes[3]);
+
+                    }
+                        let dato = $('#primer_nombreAcu').val()
+                        let dato2 = $('#primer_apellidoAcu').val()
+                        $('#acudientess').val(dato + ' ' + dato2)
                 }
             })
 
@@ -1607,7 +1623,7 @@
             url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
             data: {
                 tp: $('#tp').val(),
-                id: data,
+                id: $('#tp').val() == 2 ? $('#id_acu').val() : data,
                 tipo_documentoAcu: $('#tipo_documentoAcu').val(),
                 numero_documentoAcu: $('#numero_documentoAcu').val(),
                 primer_nombreAcu: $('#primer_nombreAcu').val(),

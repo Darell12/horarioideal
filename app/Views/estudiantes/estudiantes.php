@@ -149,6 +149,16 @@
                                         <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" readonly required><br>
                                     </div>
                                 </div>
+
+                                <div class="col" id="Divacudientes" >
+                                    <label for="nombre" class="col-form-label">Acudientes:</label>
+                                    <div class="input-group">
+                                        <button class="btn btn-success btn-sm" id="btnAcudientes" type="button" data-bs-toggle="modal" data-bs-target="#ModalAcudientes"><i class="bi bi-plus"></i></button>
+                                        <input class="form-control" type="text" id="acudientess" name="acudientess" placeholder="Agregar Acudientes" readonly required>
+                                    </div>
+                                </div>
+
+
                             </div>
                             <div class="row">
                                 <label id="direccion_usuario" for="direccion">Dirección:</label>
@@ -342,6 +352,114 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Acudientes -->
+<div id="ModalAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #427dbb; color:#FFF;">
+                <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="body">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label class="col-form-label">Tipo de Documento:</label>
+                            <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
+                                <option value="">Seleccione un Tipo</option>
+                                <option value="2">Cedula de Ciudadania</option>
+                                <option value="1">Tarjeta de Identidad</option>
+                                <option value="3">Cedula de Extranjeria</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Numéro de Documento:</label>
+                            <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Primer Nombre:</label>
+                            <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
+                            <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Primer Apellido:</label>
+                            <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Segundo Apellido:</label>
+                            <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Emails:</label>
+                            <div class="input-group d-flex">
+                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Telefonos:</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label id="direccion_usuario" for="direccion">Dirección:</label>
+                        <div class="col">
+                            <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
+                                <option value="">--Selecciona--</option>
+                                <option>Carrera</option>
+                                <option>Calle</option>
+                                <option>Avenida Calle</option>
+                                <option>Avenida Carrera</option>
+                                <option>Autopista</option>
+                                <option>Avenida</option>
+                                <option>Circunvalar</option>
+                                <option>Diagonal</option>
+                                <option>Transversal</option>
+                                <option>Kilometro</option>
+                                <option>Circular</option>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion2" name="direccion2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
+                        </div>
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion3" maxLength="4" name="direccion3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
+                        </div>
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion4" maxLength="4" name="direccion4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label id="direccion_usuario" for="direccion"></label>
+                        <input id="direccionAcu" name="direccionAcu" type="text" class="form-control" readonly class="form-control-plaintext">
+                    </div>
+
+                    <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+                    <input type="text" id="tp" name="tp" hidden>
+                    <input type="text" id="id_acu" name="id_acu" hidden>
+                    <input type="text" id="id" name="id" hidden>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" id="btnListo" data-bs-dismiss="modal">Listo</button>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
     <script>
@@ -929,6 +1047,46 @@
                         $("#UsuarioModal").modal("show");
                     }
                 })
+                $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>/acudientes/buscarAcudiente/" + id,
+                dataType: "JSON",
+                success: function(ac) {
+                    $('#tp').val(2);
+                    $('#id').val(id);
+                    $('#tipo_documentoAcu').val(ac[0]['tipo_documento']);
+                    $('#numero_documentoAcu').val(ac[0]['n_documento']);
+                    $('#primer_nombreAcu').val(ac[0]['nombre_p']);
+                    $('#segundo_nombreAcu').val(ac[0]['nombre_s']);
+                    $('#primer_apellidoAcu').val(ac[0]['apellido_p']);
+                    $('#segundo_apellidoAcu').val(ac[0]['apellido_s']);
+                    $('#direccionAcu').val(ac[0]['direccion']);
+                    $('#emailAcu').val(ac[0]['email']);
+                    $('#telefonoAcu').val(ac[0]['telefono']);
+                    $('#id_acu').val(ac[0]['id_acudiente'])
+                    $('#tituloModalAcu').text('Editar Acudiente');
+                    $("#btnListo").text('Actualizar');
+
+                    let str = ac[0]['direccion']
+                    str = str.replace('#', '');
+                    let partes = str.split(/[\s-]+/);
+                    if (partes.length > 4) {
+                        $('#direccion1').val(partes[0] + ' ' + partes[1]);
+                        $('#direccion2').val(partes[2]);
+                        $('#direccion3').val(partes[3]);
+                        $('#direccion4').val(partes[4]);
+                    } else {
+                        $('#direccion1').val(partes[0]);
+                        $('#direccion2').val(partes[1]);
+                        $('#direccion3').val(partes[2]);
+                        $('#direccion4').val(partes[3]);
+
+                    }
+                        let dato = $('#primer_nombreAcu').val()
+                        let dato2 = $('#primer_apellidoAcu').val()
+                        $('#acudientess').val(dato + ' ' + dato2)
+                }
+            })
                 tablaTemporal = []
                 $.ajax({
                     type: "POST",
@@ -1261,4 +1419,61 @@
 
             document.getElementById('direccionX').value = direccionReal;
         }
+
+        function ValidardireccionAcudiente() {
+        var dir1 = document.getElementById('direccion1');
+        var dir2 = document.getElementById('direccion2');
+        var dir3 = document.getElementById('direccion3');
+        var dir4 = document.getElementById('direccion4');
+
+        var direccionReal = dir1.value + ' ' + dir2.value + ' ' + '#' + dir3.value + ' ' + '-' + ' ' + dir4.value;
+
+        document.getElementById('direccionAcu').value = direccionReal;
+    }
+    function Acudientes(data) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
+            data: {
+                tp: $('#tp').val(),
+                id: $('#tp').val() == 2 ? $('#id_acu').val() : data,
+                tipo_documentoAcu: $('#tipo_documentoAcu').val(),
+                numero_documentoAcu: $('#numero_documentoAcu').val(),
+                primer_nombreAcu: $('#primer_nombreAcu').val(),
+                segundo_nombreAcu: $('#segundo_nombreAcu').val(),
+                primer_apellidoAcu: $('#primer_apellidoAcu').val(),
+                segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
+                direccionAcu: $('#direccionAcu').val(),
+                emailAcu: $('#emailAcu').val(),
+                telefonoAcu: $('#telefonoAcu').val(),
+            },
+            dataType: "json",
+        }).done(function(data) {
+            $('#ModalAcudientes').modal('hide');
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Acción realizada con exito!'
+            })
+            return
+        })
+    }
+
+    $('#btnListo').on('click', function(e) {
+        let dato = $('#primer_nombreAcu').val()
+        let dato2 = $('#primer_apellidoAcu').val()
+        $('#acudientess').val(dato + ' ' + dato2)
+    })
+
     </script>
