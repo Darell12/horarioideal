@@ -241,6 +241,18 @@
 </div>
 
 <script>
+    navigator.geolocation.getCurrentPosition(
+        (postion) => {
+            const {latitude,longitude} = postion.coords;
+
+            console.log('latitud: ', latitude);
+            console.log('Longitud: ', longitude);
+            (error) => {
+                console.log('Error: ', error.message)
+            }
+        })
+
+
     function visualizarHorario(id) {
         $(`#Lunes`).html('');
         $(`#Martes`).html('');
