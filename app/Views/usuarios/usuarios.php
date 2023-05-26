@@ -1163,7 +1163,6 @@
                     $("#UsuarioModal").modal("show");
                     if (rs[0]['id_rol'] == '3') {
                         $('#Divacudientes').removeAttr('hidden', '')
-                        console.log('bolas')
                     }
 
                 }
