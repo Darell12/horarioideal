@@ -406,7 +406,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header" style="background: #427dbb; color:#FFF;">
-                <h1 class="modal-title fs-5" id="tituloModal">Agregar Acudiente</h1>
+                <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="body">
@@ -450,15 +450,13 @@
                         <div class="col">
                             <label for="nombre" class="col-form-label">Emails:</label>
                             <div class="input-group d-flex">
-                                <button class="btn btn-success btn-sm" type="button" onclick="validarPrioridadEmailAcudientes()" data-bs-toggle="modal" data-bs-target="#ModalEmailAcudientes"><i class="bi bi-plus"></i></button>
-                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required readonly>
+                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
                             </div>
                         </div>
                         <div class="col">
                             <label for="nombre" class="col-form-label">Telefonos:</label>
                             <div class="input-group">
-                                <button class="btn btn-success btn-sm" onclick="validarPrioridadTelAcudientes()" id="btnTelefonoAcu" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonosAcudientes"><i class="bi bi-plus"></i></button>
-                                <input class="form-control" type="text" id="telUsuarioAcu" name="telUsuarioAcu" placeholder="Agregar telefonos" readonly required>
+                                <input class="form-control" type="text" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
                             </div>
                         </div>
                     </div>
@@ -503,134 +501,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-outline-primary" id="btnGuardarAcudiente">Guardar</button>
+                <button type="button" class="btn btn-outline-success" id="btnListo" data-bs-dismiss="modal">Listo</button>
             </div>
         </div>
     </div>
 
 </div>
-
-<!-- tabla emalis Acudientes -->
-<div id="ModalEmailAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
-    <div class="modal-dialog  modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #427dbb; color:#FFF;">
-                <h5 class="modal-title" id="titulo_email"> Agregar Email <a href="#" title="Los emails ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Email:</label>
-                        <input type="email" name="email_modalAcu" class="form-control" id="email_modalAcu" placeholder="Ej: JhonDoe@gmail.com">
-                        <div class="invalid-feedback" id="errorEmailAcu"></div>
-                    </div>
-
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Prioridad:</label>
-                        <div class="input-group">
-                            <select name="prioridadAcu" class="form-select form-select" id="prioridadAcu">
-                                <option value="">-Seleccione una opción-</option>
-                                <?php foreach ($prioridad as $valor) { ?>
-                                    <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre'] ?>E"><?php echo $valor['nombre']; ?></option>
-                                <?php } ?>
-                            </select>
-                            <button class="btn btn-outline-success" type="button" id="btn_insertarAcu" onclick="validarPrioridadEmailAcudientes()" title="Agregar Email"><i class="bi bi-plus"></i></button>
-                            <div class="invalid-feedback" id="errorPrioridadAcu"></div>
-                        </div>
-                        <input hidden type="text" id="id_emailAcu" name="id_emailAcu">
-                        <input hidden type="text" id="emailActuAcu" name="emailActuAcu">
-                        <input hidden type="text" id="tpExistAcu" name="tpExistAcu">
-                    </div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Prioridad</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_emailAcu">
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- tabla telefonos Acudientes -->
-<div id="ModalTelefonosAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #427dbb; color:#FFF;">
-
-                <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Número:</label>
-                        <input type="text" name="telefonoAcu" class="form-control" id="telefonoAcu">
-                        <div class="invalid-feedback" id="errorTel"></div>
-                    </div>
-
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Tipo:</label>
-                        <select name="tipoAcu" class="form-select form-select" id="tipoAcu">
-                            <option value="">-Seleccione una opción-</option>
-                            <?php foreach ($tipo as $valor) { ?>
-                                <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre']; ?>"><?php echo $valor['nombre']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <div class="invalid-feedback" id="errorTipoTelAcu"></div>
-                    </div>
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Prioridad:</label>
-                        <div class="input-group">
-                            <select name="prioridad_telAcu" class="form-select form-select" id="prioridad_telAcu">
-                                <option value="">-Seleccione una opción-</option>
-                                <?php foreach ($prioridad as $valor) { ?>
-                                    <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre'] ?>"><?php echo $valor['nombre']; ?></option>
-                                <?php } ?>
-                            </select>
-                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefonoAcu" onclick="validarPrioridadTelAcudientes()" title="Agregar numero"><i class="bi bi-plus"></i></button>
-                            <div class="invalid-feedback" id="errorPrioridadTelAcu"></div>
-                        </div>
-                        <input hidden type="text" id="id_telefonoAcu" name="id_telefonoAcu">
-                        <input hidden type="text" id="tpExistTelAcu" name="tpExistTelAcu">
-                        <input hidden type="text" id="telefonoActuAcu" name="telefonoActuAcu">
-                    </div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-sm table-hover" id="tableEmpleados" width="100%" cellspacing="0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th class="text-center">Telefono</th>
-                                <th class="text-center">Periodo</th>
-                                <th class="text-center">Tipo</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefonoAcu">
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 
 <script>
     function cargar_Excel(json) {
@@ -998,7 +874,8 @@
                 })
                 console.log('insertar');
                 insertarEmail(data);
-                insertarTelefono(data)
+                insertarTelefono(data);
+                Acudientes(data);
                 contador = 0
                 tablaUsuarios.ajax.reload(null, false)
                 tablaTemporal = [];
@@ -1257,6 +1134,7 @@
                     $('#direccionX').val(rs[0]['direccion']);
                     $('#email_modal').val('');
                     $('#prioridad').val('');
+
                     let str = rs[0]['direccion']
                     str = str.replace('#', '');
                     let partes = str.split(/[\s-]+/);
@@ -1282,6 +1160,36 @@
                     $('#Divacudientes').attr('hidden', '');
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
+                    if (rs[0]['id_rol'] == '3') {
+                        $('#Divacudientes').removeAttr('hidden', '')
+                        console.log('bolas')
+                    }
+
+                }
+            })
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>/acudientes/insertarAcudientes" + id,
+                dataType: "JSON",
+                success: function(ac) {
+                    $('#tp').val(2);
+                    $('#id').val(id);
+                    $('#tipo_documentoAcu').val(ac[0]['tipo_documento']);
+                    $('#numero_documentoAcu').val(ac[0]['numero_documento']);
+                    $('#primer_nombreAcu').val(ac[0]['primer_nombre']);
+                    $('#segundo_nombreAcu').val(ac[0]['segundo_nombre']);
+                    $('#primer_apellidoAcu').val(ac[0]['primer_apellido']);
+                    $('#segundo_apellidoAcu').val(ac[0]['segundo_apellido']);
+                    $('#direccionAcu').val(ac[0]['direccion']);
+                    $('#emailAcu').val(ac[0]['email']);
+                    $('#telefonoAcu').val(ac[0]['telefono']);
+
+                    $('#tituloModalAcu').text('Editar Acudiente');
+                    $("#btnListo").text('Actualizar');
+                    $("#ModalAcudientes").modal("show");
+
+                    console.log()
                 }
             })
 
@@ -1309,6 +1217,7 @@
                     }
                 }
             })
+
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
@@ -1692,588 +1601,49 @@
         }
     })
 
-
-    $('#btnGuardarAcudiente').on('click', function(e) {
-        e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
-                data: {
-                    tp: $('#tp').val(),
-                    id: $('#id').val(),
-                    tipo_documentoAcu: $('#tipo_documentoAcu').val(),
-                    numero_documentoAcu: $('#numero_documentoAcu').val(),
-                    primer_nombreAcu: $('#primer_nombreAcu').val(),
-                    segundo_nombreAcu: $('#segundo_nombreAcu').val(),
-                    primer_apellidoAcu: $('#primer_apellidoAcu').val(),
-                    segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
-                    direccionAcu: $('#direccionAcu').val(),
-                },
-                dataType: "json",
-            }).done(function(data) {
-                $('#ModalAcudientes').modal('hide');
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Acción realizada con exito!'
-                })
-                console.log('insertar');
-                insertarEmailAcudientes(data);
-                insertarTelefonoAcudientes(data)
-                contador = 0
-                tablaUsuarios.ajax.reload(null, false)
-                tablaTemporalAcudientes = [];
-                tablaTemporalTelefonosAcudientes = [];
-                return
+    function Acudientes(data) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
+            data: {
+                tp: $('#tp').val(),
+                id: data,
+                tipo_documentoAcu: $('#tipo_documentoAcu').val(),
+                numero_documentoAcu: $('#numero_documentoAcu').val(),
+                primer_nombreAcu: $('#primer_nombreAcu').val(),
+                segundo_nombreAcu: $('#segundo_nombreAcu').val(),
+                primer_apellidoAcu: $('#primer_apellidoAcu').val(),
+                segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
+                direccionAcu: $('#direccionAcu').val(),
+                emailAcu: $('#emailAcu').val(),
+                telefonoAcu: $('#telefonoAcu').val(),
+            },
+            dataType: "json",
+        }).done(function(data) {
+            $('#ModalAcudientes').modal('hide');
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
             })
-    })
 
-
-    // EMAILS Y TELEFONOS DE ACUDIENTES
-
-
-    function generarTablaEmailAcudientes(Emails) {
-
-        let contador = 0;
-        let prioridades = {
-            '6': 'Principal',
-            '7': 'Secundario'
-        }
-
-        let contenido = '';
-        Emails.forEach(email => {
-            contador++
-            contenido += `
-    <tr id="util${contador}">
-    <td class="text-center">${email.email}</td>
-    <td class="text-center">${prioridades[email.prioridad]}</td>
-    <td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
-    <td hidden class="text-center">${email.tp}</td>
-    <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
-                    <td class="text-center">
-                    <button class="btn btn-outline-primary" onclick="editarEmailAcudientes( ${contador});"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-outline-danger" onclick="eliminarEmailAcudientes(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
-                    </td>
-                    </tr>`
-        });
-        $('#tabla_emailAcu').html(contenido);
-    }
-
-    function validarPrioridadTelAcudientes() {
-        const existeValor = tablaTemporalTelefonosAcudientes.some(telefono => telefono.prioridad == 6);
-
-        if (existeValor) {
-            $('#prioridad_telAcu').val(7)
-            $('#Principal').attr('disabled', '');
-            $('#Secundario').removeAttr('disabled', '');
-        } else {
-            $('#prioridad_telAcu').val(6)
-            $('#Secundario').attr('disabled', '');
-            $('#Principal').removeAttr('disabled', '');
-        }
-    }
-
-    function validarPrioridadEmailAcudientes() {
-        const existeValor = tablaTemporalAcudientes.some(email => email.prioridad == 6);
-
-        if (existeValor) {
-            $('#prioridadAcu').val(7)
-            $('#PrincipalE').attr('disabled', '');
-            $('#SecundarioE').removeAttr('disabled', '');
-        } else {
-            $('#prioridadAcu').val(6)
-            $('#SecundarioE').attr('disabled', '');
-            $('#PrincipalE').removeAttr('disabled', '');
-        }
-    }
-
-    let tablaTemporalAcudientes = []
-    $('#btn_insertarAcu').click(function() {
-
-        //Expresion regular de formato email
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        let email = $('#email_modalAcu').val();
-        let prioridad = $('#prioridadAcu').val();
-        let id_email = $('#id_emailAcu').val();
-        let tp = $('#tpExistAcu').val();
-
-        if (!regex.test(email)) {
-            $('#email_modalAcu').addClass('is-invalid');
-            $('#errorEmailAcu').text('Este no es un formato valido de email');
-            setTimeout(() => {
-                $('#email_modalAcu').removeClass('is-invalid');
-                $('#errorEmailAcu').text('');
-            }, 2000);
-            return; // El email no es válido
-        }
-
-        filtroPrioridad = tablaTemporalAcudientes.filter(p => p.prioridad == 6);
-        filtroEmail = tablaTemporalAcudientes.filter(p => p.email == email);
-
-        datosValidar = {
-            valor: email,
-            campo: 'email',
-            nombreActu: tp == 2 ? email : '',
-            tp: tp
-        }
-
-        $.post('<?php echo base_url() ?>/email/validar', datosValidar, function(response) {
-            if (response == true) {
-                $('#email_modalAcu').addClass('is-invalid');
-                $('#errorEmailAcu').text('Este email ya se encuentra Registrado');
-                setTimeout(() => {
-                    $('#email_modalAcu').removeClass('is-invalid');
-                    $('#errorEmailAcu').text('');
-                }, 2000);
-            } else if ([email, prioridad].includes('')) {
-                $('#email_modalAcu').addClass('is-invalid');
-                $('#prioridadAcu').addClass('is-invalid');
-                $('#errorEmailAcu').text('Todos los campos son obligatorios');
-                setTimeout(() => {
-                    $('#email_modalAcu').removeClass('is-invalid');
-                    $('#prioridadAcu').removeClass('is-invalid');
-                    $('#errorEmailAcu').text('');
-                    $('#prioridadAcu').val('');
-                }, 2000)
-            } else if (filtroPrioridad.length > 0 && prioridad == 6) {
-                $('#prioridadAcu').addClass('is-invalid');
-                $('#errorPrioridadAcu').text('Ya hay un email Principal');
-                setTimeout(() => {
-                    $('#prioridadAcu').removeClass('is-invalid');
-                    $('#errorPrioridadAcu').text('');
-                }, 2000)
-            } else if (filtroEmail.length > 0) {
-                $('#email_modalAcu').addClass('is-invalid');
-                $('#errorEmailAcu').text('Este email ya esta registrado');
-                setTimeout(() => {
-                    $('#email_modalAcu').removeClass('is-invalid');
-                    $('#errorEmailAcu').text('');
-                }, 2000)
-            } else {
-                tablaTemporalAcudientes.push({
-                    tp: tp == '' ? 1 : tp,
-                    email: email,
-                    prioridad: prioridad,
-                    id_email: id_email
-
-                })
-                generarTablaEmailAcudientes(tablaTemporalAcudientes);
-                $('#tpExistAcu').val('');
-                $('#id_emailAcu').val('');
-                $('#emailActuAcu').val('');
-
-
-                let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-                $('#emailAcu').val(!principal ? '' : principal.email);
-
-
-                optionPrincipal = $('#prioridadAcu').find('option[value="6"]')
-                $('#prioridadAcu').val(7);
-                prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
-                $('#email_modalAcu').val('');
-            }
-        })
-        validarPrioridadEmailAcudientes()
-    });
-
-    function editarEmailAcudientes(id) {
-
-        const fila = $('#util' + id);
-        const emailEditar = fila.find('td').eq(0)
-        const prioridadEditar = fila.find('td').eq(1)
-        const idEmail = fila.find('td').eq(2)
-        const tpExist = fila.find('td').eq(3)
-        const emailActu = fila.find('td').eq(4)
-        optionPrincipal = $('#prioridadAcu').find('option[value="6"]')
-
-        if (prioridadEditar.text() === 'Principal') {
-            optionPrincipal.removeAttr('disabled', '')
-            $('#prioridadAcu').val(6);
-            $('#email_modalAcu').val(emailEditar.text());
-            $('#id_emailAcu').val(idEmail.text());
-            $('#tpExistAcu').val(tpExist.text());
-            $('#emailActuAcu').val(emailActu.text());
-        } else {
-            $('#prioridadAcu').val(7);
-            $('#email_modalAcu').val(emailEditar.text());
-            $('#id_emailAcu').val(idEmail.text());
-            $('#tpExistAcu').val(tpExist.text());
-            $('#emailActu').val(emailActu.text());
-        }
-        tablaTemporalAcudientes = tablaTemporalAcudientes.filter(p => p.email !== emailEditar.text());
-
-        let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-        $('#emailAcu').val(!principal ? '' : principal.email);
-        console.log(tablaTemporalAcudientes);
-        generarTablaEmail(tablaTemporalAcudientes);
-        validarPrioridadEmailAcudientes()
-    }
-
-    function insertarEmailAcudientes(id) {
-        console.log(tablaTemporalAcudientes);
-        tablaTemporal.forEach(registro => {
-            console.log('1');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/email/insertar'); ?>",
-                data: {
-                    tp: registro.tp,
-                    email: registro.email,
-                    prioridad: registro.prioridad,
-                    id_email: registro.id_email,
-                    id_usuario: id
-                },
-                dataType: "json",
-            }).done(function(data) {})
-        });
-        validarPrioridadEmailAcudientes()
-    }
-
-    tablaTemporalAcudientes = []
-    $.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>email/emailsUsuario/" + id,
-        dataType: "JSON",
-        success: function(rs) {
-            rs.forEach(element => {
-
-                tablaTemporalAcudientes.push({
-                    tp: 2,
-                    email: element.email,
-                    prioridad: element.prioridad,
-                    id_email: element.id_email,
-                })
-            });
-            generarTablaEmailAcudientes(tablaTemporalAcudientes);
-            let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-            if (rs.length == 0) {
-                $('#emailAcu').val('');
-            } else {
-                $('#emailAcu').val(!principal ? tablaTemporalAcudientes[0]?.email || '' : principal.email);
-            }
-        }
-    })
-    $.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
-        dataType: "JSON",
-        success: function(rs) {
-            rs.forEach(element => {
-
-                tablaTemporalTelefonosAcudientes.push({
-                    tp: 2,
-                    telefono: element.numero,
-                    prioridad: element.prioridad,
-                    tipo: element.tipo,
-                    id_telefono: element.id_telefono,
-                })
-            });
-            generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
-            let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
-            if (rs.length == 0) {
-                $('#telUsuarioAcu').val('');
-            } else {
-                $('#telUsuarioAcu').val(!principal ? tablaTemporalTelefonosAcudientes[0].telefono : principal.telefono);
-            }
-        }
-    })
-
-    function eliminarEmailAcudientes(id, tp) {
-
-        const fila = $('#util' + id);
-        const emailEditar = fila.find('td').eq(0)
-        const prioridadEditar = fila.find('td').eq(1)
-        const idEmail = fila.find('td').eq(2)
-        const tpExist = fila.find('td').eq(3)
-
-        if (tp == 1) {
-            console.log('tp1')
-            tablaTemporalAcudientes = tablaTemporalAcudientes.filter(p => p.email !== emailEditar.text());
-            generarTablaEmailAcudientes(tablaTemporalAcudientes);
-        } else {
-            console.log('Ya existe en la base de datos')
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/email/cambiarEstado/'); ?>" + idEmail.text() + "/" + 'E',
-                dataType: "json",
-            }).done(function(data) {
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Registro eliminado con exito!'
-                })
-                tablaTemporalAcudientes = tablaTemporalAcudientes.filter(p => p.id_email !== idEmail.text());
-
-                // console.log(tablaTemporal[0].id_email)
-                generarTablaEmailAcudientes(tablaTemporalAcudientes);
-                contador = 0
-                return
+            Toast.fire({
+                icon: 'success',
+                title: 'Acción realizada con exito!'
             })
-        }
-        let principal = tablaTemporalAcudientes.find(p => p.prioridad == 6)
-        $('#emailAcu').val(!principal ? '' : principal.email);
-        validarPrioridadEmail()
-    }
-
-    function eliminarTelefonoAcudientes(id, tp) {
-
-        const fila = $('#utilT' + id);
-        const telefonoEditar = fila.find('td').eq(0)
-        const prioridadTelEditar = fila.find('td').eq(1)
-        const tipoTel = fila.find('td').eq(2)
-        const idTelefono = fila.find('td').eq(3)
-        const tpExistTel = fila.find('td').eq(4)
-        const telefonoActu = fila.find('td').eq(5)
-        optionPrincipal = $('#prioridad_telAcu').find('option[value="6"]')
-
-        if (tp == 1) {
-            console.log('tp1')
-            tablaTemporalTelefonosAcudientes = tablaTemporalTelefonosAcudientes.filter(p => p.telefono !== telefonoEditar.text());
-            generarTablaTel(tablaTemporalTelefonosAcudientes);
-        } else {
-            console.log('Ya existe en la base de datos')
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/telefono/cambiarEstado/'); ?>" + idTelefono.text() + "/" + 'E',
-                dataType: "json",
-            }).done(function(data) {
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Registro eliminado con exito!'
-                })
-                console.log(tablaTemporalTelefonosAcudientes);
-                console.log(telefonoEditar.text());
-                tablaTemporalTelefonosAcudientes = tablaTemporalTelefonosAcudientes.filter(p => p.telefono !== telefonoEditar.text());
-                // console.log(tablaTemporalTelefonos[0].id_telefono)
-                generarTablaTel(tablaTemporalTelefonosAcudientes);
-                contador = 0
-                return
-            })
-        }
-        let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
-        $('#telUsuarioAcu').val(!principal ? '' : principal.telefono);
-        validarPrioridadTelAcudientes()
-    }
-
-    function generarTablaTelAcudientes(Telefonos) {
-
-        let contadortel = 0;
-        let parametros = {
-            '6': 'Principal',
-            "6": 'Principal',
-            '7': 'Secundario',
-            '22': 'Fijo',
-            '23': 'Celular'
-        }
-
-
-        let contenido = '';
-        Telefonos.forEach(telefono => {
-            contadortel++
-            contenido += `
-            <tr id="utilT${contadortel}">
-            <td class="text-center">${telefono.telefono}</td>
-            <td class="text-center">${parametros[telefono.tipo]}</td>
-            <td class="text-center">${parametros[telefono.prioridad]}</td>
-            <td hidden class="text-center">${telefono.id_telefono ? telefono.id_telefono : ''}</td>
-            <td hidden class="text-center">${telefono.tp}</td>
-            <td hidden class="text-center">${telefono.tp == 2 ? telefono.telefono : ''}</td>
-                            <td class="text-center">
-                            <button class="btn btn-outline-primary" onclick="editarTelefonoAcudientes( ${contadortel});"><i class="bi bi-pencil"></i></button>
-                            <button class="btn btn-outline-danger" onclick="eliminarTelefonoAcudientes(${contadortel}, ${telefono.tp});"><i class="bi bi-trash"></i></button>
-                            </td>
-                            </tr>`
-        });
-        $('#tabla_telefonoAcu').html(contenido);
-        validarPrioridadTelAcudientes()
-    }
-
-    let tablaTemporalTelefonosAcudientes = [];
-    $('#btn_insertarTelefonoAcu').click(function() {
-
-        // Expresión regular solo numeros
-        const regex = /^\d{1,11}$/;
-
-        let telefono = $('#telefonoAcu').val();
-        let prioridad = $('#prioridad_telAcu').val();
-        let tipo = $('#tipoAcu').val();
-        let id_telefono = $('#id_telefonoAcu').val();
-        let tp = $('#tpExistTelAcu').val();
-
-        if (!regex.test(parseInt(telefono))) {
-            $('#telefonoAcu').addClass('is-invalid');
-            $('#errorTelAcu').text('El telefono no puede contener caracteres diferentes a numeros');
-            setTimeout(() => {
-                $('#telefonoAcu').removeClass('is-invalid');
-                $('#errorTelAcu').text('');
-            }, 2000);
             return
-        }
-
-        filtroPrioridad = tablaTemporalTelefonosAcudientes.filter(p => p.prioridad == 6);
-        filtroTel = tablaTemporalTelefonosAcudientes.filter(p => p.telefono == telefono);
-
-        datosValidar = {
-            tp: tp,
-            valor: telefono,
-            campo: 'numero',
-            nombreActu: tp == 2 ? telefono : '',
-        }
-        console.log($('#telefonoAcu'))
-        $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
-            if (response == true) {
-                $('#telefonoAcu').addClass('is-invalid');
-                $('#errorTelAcu').text('Este telefono ya se encuentra Registrado');
-                setTimeout(() => {
-                    $('#telefonoAcu').removeClass('is-invalid');
-                    $('#errorTelAcu').text('');
-                }, 2000);
-            } else if ([telefono, prioridad, tipo].includes('')) {
-                $('#telefonoAcu').addClass('is-invalid');
-                $('#prioridad_telAcu').addClass('is-invalid');
-                $('#errorTelAcu').text('Todos los campos son obligatorios');
-                setTimeout(() => {
-                    $('#telefonoAcu').removeClass('is-invalid');
-                    $('#prioridad_telAcu').removeClass('is-invalid');
-                    $('#errorTelAcu').text('');
-                    $('#prioridadTelAcu').val('');
-                }, 2000)
-            } else if (filtroPrioridad.length > 0 && prioridad == 6) {
-                $('#prioridad_telAcu').addClass('is-invalid');
-                $('#errorPrioridadTelAcu').text('Ya hay un telefono Principal');
-                setTimeout(() => {
-                    $('#prioridad_telAcu').removeClass('is-invalid');
-                    $('#errorPrioridadTelAcu').text('');
-                }, 2000)
-            } else if (filtroTel.length > 0) {
-                $('#telefonoAcu').addClass('is-invalid');
-                $('#errorTelAcu').text('Este email ya esta registrado');
-                setTimeout(() => {
-                    $('#telefonoAcu').removeClass('is-invalid');
-                    $('#errorTelAcu').text('');
-                }, 2000)
-            } else {
-                tablaTemporalTelefonosAcudientes.push({
-                    tp: tp == 2 ? 2 : 1,
-                    telefono: telefono,
-                    tipo: tipo,
-                    id_telefono: id_telefono,
-                    prioridad: prioridad,
-
-                })
-                generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
-
-                let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
-                $('#telUsuarioAcu').val(!principal ? '' : principal.telefono);
-                optionPrincipal = $('#prioridadAcu').find('option[value="6"]')
-                $('#prioridad_telAcu').val(7);
-                prioridad == 6 ? optionPrincipal.attr('disabled', '') : '';
-                $('#tipoAcu').val('');
-                $('#telefonoAcu').val('');
-                $('#tpExistTelAcu').val('')
-            }
         })
-        validarPrioridadTelAcudientes()
-    });
-
-    function editarTelefonoAcudientes(id) {
-
-        const fila = $('#utilT' + id);
-        const telefonoEditar = fila.find('td').eq(0)
-        const tipoTel = fila.find('td').eq(1)
-        const prioridadTelEditar = fila.find('td').eq(2)
-        const idTelefono = fila.find('td').eq(3)
-        const tpExistTel = fila.find('td').eq(4)
-        const telefonoActu = fila.find('td').eq(5)
-        optionPrincipal = $('#prioridad_telAcu').find('option[value="6"]')
-
-        console.log(telefonoEditar.text())
-        if (prioridadTelEditar.text() === 'Principal') {
-            optionPrincipal.removeAttr('disabled', '')
-            $('#prioridad_telAcu').val(6);
-            $('#telefonoAcu').val(telefonoEditar.text());
-            $('#id_telefonoAcu').val(idTelefono.text());
-            $('#tipoAcu').val(tipoTel.text() == 22 ? 22 : 23);
-            $('#tpExistTelAcu').val(tpExistTel.text());
-            $('#telefonoActuAcu').val(telefonoActu.text());
-        } else {
-            $('#prioridad_telAcu').val(7);
-            $('#telefonoAcu').val(telefonoEditar.text());
-            $('#id_telefonoAcu').val(idTelefono.text());
-            $('#tipoAcu').val(tipoTel.text() == 22 ? 22 : 23);
-            $('#tpExistTelAcu').val(tpExistTel.text());
-            $('#telefonoActuAcu').val(telefonoActu.text());
-        }
-        tablaTemporalTelefonosAcudientes = tablaTemporalTelefonosAcudientes.filter(p => p.telefono !== telefonoEditar.text());
-
-        let principal = tablaTemporalTelefonosAcudientes.find(p => p.prioridad == 6)
-        // $('#email').val(!principal ? tablaTemporalTelefonos[0].email : principal.email);
-        console.log(tablaTemporalTelefonosAcudientes);
-        generarTablaTelAcudientes(tablaTemporalTelefonosAcudientes);
-        validarPrioridadTelAcudientes()
     }
 
-    function insertarTelefonoAcudientes(id) {
-        console.log(tablaTemporalTelefonosAcudientes);
-        tablaTemporalTelefonosAcudientes.forEach(registro => {
-            console.log(registro.tp);
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/telefono/insertar'); ?>",
-                data: {
-                    tp: registro.tp,
-                    numero: registro.telefono,
-                    prioridad: registro.prioridad,
-                    id_telefono: registro.id_telefono,
-                    tipo: registro.tipo,
-                    id_usuario: id
-                },
-                dataType: "json",
-            }).done(function(data) {})
-        });
-        validarPrioridadTelAcudientes()
-    }
-
-    $('.close').click(function() {
-        $("#modal-confirma").modal("hide");
-    });
-
-    $('.close').click(function() {
-        $("#Resetear").modal("hide");
-    });
+    $('#btnListo').on('click', function(e) {
+        let dato = $('#primer_nombreAcu').val()
+        let dato2 = $('#primer_apellidoAcu').val()
+        $('#acudientess').val(dato + ' ' + dato2)
+    })
 </script>

@@ -41,6 +41,7 @@ class Acudientes extends BaseController
         $tp = $this->request->getPost('tp');
         if ($tp == 1) {
             $this->acudientes->save([
+                'id_estudiante'=> $this->request->getPost('id'),
                 'tipo_documento' => $this->request->getPost('tipo_documentoAcu'),
                 'n_documento' => $this->request->getPost('numero_documentoAcu'),
                 'nombre_p' => $this->request->getPost('primer_nombreAcu'),
@@ -50,9 +51,12 @@ class Acudientes extends BaseController
                 'email' => $this->request->getPost('emailAcu'),
                 'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionAcu'),
+                'telefono' => $this->request->getPost('telefonoAcu'),
+                'email' => $this->request->getPost('emailAcu'),
             ]);
         } else {
             $this->acudientes->update($this->request->getPost('id'), [
+                'id_estudiante'=> $this->request->getPost('id'),
                 'tipo_documento' => $this->request->getPost('tipo_documentoAcu'),
                 'n_documento' => $this->request->getPost('numero_documentoAcu'),
                 'nombre_p' => $this->request->getPost('primer_nombreAcu'),
@@ -62,6 +66,8 @@ class Acudientes extends BaseController
                 'email' => $this->request->getPost('emailAcu'),
                 'usuario_crea' => session('id'),
                 'direccion' => $this->request->getPost('direccionAcu'),
+                'telefono' => $this->request->getPost('telefonoAcu'),
+                'email' => $this->request->getPost('emailAcu'),
             ]);
             return json_encode($this->request->getPost('id'));
         }

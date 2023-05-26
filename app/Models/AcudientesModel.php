@@ -13,7 +13,7 @@ class AcudientesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre_p','nombre_s','tipo_documento','n_documento','apellido_p','apellido_s','direccion','id_estudiante','estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre_p','nombre_s','tipo_documento','n_documento','telefono','email','apellido_p','apellido_s','direccion','id_estudiante','estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
