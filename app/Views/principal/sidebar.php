@@ -37,7 +37,7 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebaa.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sideba.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>
@@ -71,13 +71,13 @@
     </nav>
     <div id="content">
 
-        <nav class="navbar navbar-expand-lg d-flex justify-content-between" style="background: #29588abd  !important;">
-            <div class="d-flex justify-content-between">
+        <nav class="navbar navbar-expand-lg" style="background: #F6F5FF  !important;">
+            <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
                     <i class='bx bx-chevron-right toggle bx-sm'></i>
                 </button>
-                <div style="margin-top: 10px; color:#fff" class="border-0">
+                <div style="margin-top: 10px; color:#29588abd" class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
                 </div>
                 
