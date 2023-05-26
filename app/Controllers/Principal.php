@@ -48,6 +48,10 @@ class Principal extends BaseController
         }
         return $cargaSideBar;
     }
+    public function Modulos(){
+        $modulos = $this->modulos->obtenerModulos('A');
+        return $modulos;
+    }
     public function graficaUsuarios()
     {
         $returnData = array();

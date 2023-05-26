@@ -35,7 +35,7 @@ class ModulosModel extends Model
         $this->select('modulos.*');
         $this->where('id_modulo', $rol);
         $this->orderBy('orden_padre');
-        $this->orderBy('orden'); 
+        // $this->orderBy('orden'); 
         $datos = $this->findAll();
         return $datos;
     }
