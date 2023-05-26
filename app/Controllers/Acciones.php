@@ -43,17 +43,25 @@ class Acciones extends BaseController
 
             $this->accion->save([
                 'nombre' => $this->request->getPost('nombre_accion'),
+                'id_modulo' => $this->request->getPost('modulo'),
+                'id_padre' => $this->request->getPost('carpeta'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->accion->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_accion'),
+                'id_modulo' => $this->request->getPost('modulo'),
+                'id_padre' => $this->request->getPost('carpeta'),
                 'usuario_crea'=> session('id')
             ]);
         }
-        return redirect()->to(base_url('/acciones'));
+        return json_encode('todo good');
     }
 
+    public function Modulos(){
+        $modulos = $this->metodos->Modulos();
+        return json_encode($modulos);
+    }
     public function buscarAccion($id)
     {
         $returnData = array();
