@@ -20,4 +20,11 @@ class Inicio extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/inicio/inicio', $data);
     }
+    public function test()
+    {
+        $cargaSideBar = $this->metodos->getModulos();
+        $data = ['titulo' => 'Bienvenido!', 'Modulos' => $cargaSideBar];
+        echo view('/principal/sidebar', $data);
+        echo view('/inicio/test', $data);
+    }
 }

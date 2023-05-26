@@ -18,6 +18,7 @@
                 <tr>
                     <th class="text-center" scope="col">Id</th>
                     <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Modulo</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -41,6 +42,12 @@
                                 <div class="col">
                                     <label for="nombre" class="col-form-label">Nombre:</label>
                                     <input type="text" class="form-control" name="nombre_accion" id="nombre_accion" required>
+                                </div>
+                                <div class="col">
+                                    <label for="nombre" class="col-form-label">Modulo:</label>
+                                    <select type="text" class="form-control" name="nombre_accion" id="nombre_accion" required>
+                                        
+                                    </select>
                                 </div>
 
 
@@ -114,6 +121,7 @@
                 icon: 'success',
                 title: 'Registro eliminado con exito!'
             })
+            var contador = 0
             tablaAcciones.ajax.reload(null, false);
         })
     }
@@ -137,6 +145,9 @@
             },
             {
                 data: "nombre"
+            },
+            {
+                data: "modulo"
             },
             {
                 data: null,

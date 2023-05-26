@@ -25,8 +25,9 @@ class AccionesModel extends Model
 
     public function obtenerAcciones($estado)
     {
-        $this->select('acciones.*');
-        $this->where('estado', $estado);
+        $this->select('acciones.*, modulos.nombre as modulo');
+        $this->join('modulos', 'acciones.id_modulo = modulos.id_modulo');
+        $this->where('acciones.estado', $estado);
         $datos = $this->findAll();
         return $datos;
     }

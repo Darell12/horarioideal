@@ -378,6 +378,7 @@ ul {
 }
 
 @media (max-width: 767px) {
+
     .container-lecture .section-nav,
     .container-lecture .section-list {
         font-size: 15px;
@@ -385,6 +386,7 @@ ul {
 }
 
 @media (max-width: 767px) {
+
     .container-lecture .section-nav,
     .container-lecture .section-list {
         padding: 1.5rem 1rem;
@@ -510,6 +512,7 @@ ul {
         margin-bottom: 0;
         overflow-x: scroll;
     }
+
     .container-lecture .section-nav .list-lecture .card-lecture {
         margin-top: 0;
         margin-right: 0.5rem;
@@ -606,6 +609,7 @@ ul {
     .header-timetable-info {
         width: 90%;
     }
+
     .header-timetable-info h3 {
         margin-left: 0;
     }
@@ -626,11 +630,13 @@ ul {
         max-width: 87.5rem;
         margin: 2rem auto;
     }
+
     .table-schedule:after {
         clear: both;
         content: "";
         display: block;
     }
+
     .table-schedule .timeline {
         display: block;
         position: absolute;
@@ -640,13 +646,16 @@ ul {
         width: 100%;
         padding-top: 3.5rem;
     }
+
     .table-schedule .timeline ul {
         padding-top: 0.75rem;
     }
+
     .table-schedule .timeline ul li {
         position: relative;
         height: 3.5rem;
     }
+
     .table-schedule .timeline ul li:after {
         content: '';
         position: absolute;
@@ -656,6 +665,7 @@ ul {
         height: 1px;
         background: #D7E2EB;
     }
+
     .table-schedule .timeline ul li:last-child:after {
         border: none;
     }
@@ -669,9 +679,11 @@ ul {
         transform: translateY(-50%);
         color: #98A8B9;
     }
+
     .table-schedule .timeline li:after {
         left: 3.75rem;
     }
+
     .table-schedule .timeline li:nth-of-type(2n) span {
         display: none;
     }
@@ -795,6 +807,7 @@ ul {
     .table-schedule .table-schedule-subject .lecture-time {
         height: auto;
     }
+
     .table-schedule .table-schedule-subject .lecture-time:before {
         content: none;
     }
@@ -805,15 +818,18 @@ ul {
         float: left;
         width: 100%;
     }
+
     .table-schedule .table-schedule-subject .timeline-vertical {
         float: left;
         margin-bottom: 0;
         width: 20%;
         border-top: 0;
     }
+
     .table-schedule .table-schedule-subject .timeline-vertical:last-child {
         border-right-width: 0;
     }
+
     .table-schedule .table-schedule-subject .timeline-vertical:not(:first-of-type) {
         border-left-width: 0;
     }
@@ -824,6 +840,7 @@ ul {
         width: calc(100% - 3rem);
         margin-left: 3rem;
     }
+
     .table-schedule .table-schedule-subject .timeline-vertical ul {
         height: 91.1rem;
         display: block;
@@ -832,15 +849,19 @@ ul {
         border-right: 0.0625rem solid #D7E2EB;
         border-bottom: 0.0625rem solid #D7E2EB;
     }
+
     .table-schedule .table-schedule-subject .timeline-vertical ul:after {
         display: none;
     }
+
     .table-schedule .table-schedule-subject .timeline-vertical:first-child ul {
         border-left: 0;
     }
+
     .table-schedule .table-schedule-subject .timeline-vertical:last-child ul {
         border-right: 0;
     }
+
     .table-schedule .table-schedule-subject .lecture-time {
         position: absolute;
         z-index: 3;
@@ -850,102 +871,133 @@ ul {
         max-width: none;
         margin-right: 0;
     }
+
     .table-schedule .table-schedule-subject .lecture-time a {
         padding: 0.5rem 0.75rem;
         overflow-y: scroll;
         scrollbar-width: thin;
         scrollbar-color: gray;
     }
+
     .table-schedule .table-schedule-subject .lecture-time a .lecture-noti {
         display: flex;
         align-items: center;
     }
+
     .table-schedule .table-schedule-subject .lecture-time:last-of-type {
         margin-right: 0;
     }
+
     .table-schedule .table-schedule-subject .lecture-time .selected-event {
         visibility: hidden;
     }
+
     /* DURACION */
     .table-schedule .table-schedule-subject .two-hr {
         height: 14rem;
     }
+
     /* FRANJAS */
     .table-schedule .table-schedule-subject .hr-6 {
         top: 0;
     }
+
     .table-schedule .table-schedule-subject .hr-6-3 {
         top: 3.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-7 {
         top: 7rem;
     }
+
     .table-schedule .table-schedule-subject .hr-7-3 {
         top: 10.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-8 {
         top: 14rem;
     }
+
     .table-schedule .table-schedule-subject .hr-8-3 {
         top: 17.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-9 {
         top: 21rem;
     }
+
     .table-schedule .table-schedule-subject .hr-9-3 {
         top: 24.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-10 {
         top: 28rem;
     }
+
     .table-schedule .table-schedule-subject .hr-10-3 {
         top: 31.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-11 {
         top: 35rem;
     }
+
     .table-schedule .table-schedule-subject .hr-11-3 {
         top: 38.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-12 {
         top: 42rem;
     }
+
     .table-schedule .table-schedule-subject .hr-12-3 {
         top: 45.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-13 {
         top: 49rem;
     }
+
     .table-schedule .table-schedule-subject .hr-13-3 {
         top: 52.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-14 {
         top: 56rem;
     }
+
     .table-schedule .table-schedule-subject .hr-14-3 {
         top: 59.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-15 {
         top: 63rem;
     }
+
     .table-schedule .table-schedule-subject .hr-15-3 {
         top: 66.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-16 {
         top: 70rem;
     }
+
     .table-schedule .table-schedule-subject .hr-16-3 {
         top: 73.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-17 {
         top: 77rem;
     }
+
     .table-schedule .table-schedule-subject .hr-17-3 {
         top: 80.5rem;
     }
+
     .table-schedule .table-schedule-subject .hr-18 {
         top: 84rem;
     }
+
     .table-schedule .table-schedule-subject .hr-18-3 {
         top: 87.5rem;
     }
@@ -1343,3 +1395,172 @@ ul {
 #prueba {
     color: #7807ff;
 }
+
+/* TEST CARDS SOLO CONSULTA */
+:root {
+    --c-gray-900: #000;
+    --c-gray-800: #1f1f1f;
+    --c-gray-700: #2e2e2e;
+    --c-gray-600: #313131;
+    --c-gray-500: #969593;
+    --c-gray-400: #a6a6a6;
+    --c-gray-300: #bdbbb7;
+    --c-gray-200: #f1f1f1;
+    --c-gray-100: #fff;
+    --c-green-500: #45ffbc;
+    --c-olive-500: #e3ffa8;
+    --c-white: var(--c-gray-100);
+    --c-text-primary: var(--c-gray-100);
+    --c-text-secondary: var(--c-gray-200);
+    --c-text-tertiary: var(--c-gray-500);
+}
+
+.icon-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 0;
+    background-color: transparent;
+    border: 1px solid var(--c-gray-500);
+    color: var(--c-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.25s ease;
+    flex-shrink: 0;
+}
+
+.icon-button.large {
+    width: 42px;
+    height: 42px;
+    font-size: 1.25em;
+}
+
+.icon-button i {
+    transition: 0.25s ease;
+}
+
+.icon-button:hover,
+.icon-button:focus {
+    background-color: var(--c-gray-600);
+    box-shadow: 0 0 0 4px var(--c-gray-800), 0 0 0 5px var(--c-text-tertiary);
+}
+
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+@media (max-width: 700px) {
+    .tiles {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.tile {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--c-olive-500);
+    color: var(--c-gray-900);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: 0.25s ease;
+    background-color: var(--c-gray-100);
+    box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+
+}
+
+.tile:hover {
+    transform: translateY(-5px);
+}
+
+.tile:focus-within {
+    box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-olive-500);
+}
+
+.tile:nth-child(2) {
+    background-color: var(--c-green-500);
+}
+
+.tile:nth-child(2):focus-within {
+    box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-green-500);
+}
+
+.tile:nth-child(3) {
+    background-color: var(--c-gray-300);
+}
+
+.tile:nth-child(3):focus-within {
+    box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
+}
+
+.tile a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.tile a .icon-button {
+    color: inherit;
+    border-color: inherit;
+}
+
+.tile a .icon-button:hover,
+.tile a .icon-button:focus {
+    background-color: transparent;
+}
+
+.tile a .icon-button:hover i,
+.tile a .icon-button:focus i {
+    transform: none;
+}
+
+.tile a:focus {
+    box-shadow: none;
+}
+
+.tile a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.tile-header {
+    display: flex;
+    align-items: center;
+}
+
+.tile-header i {
+    font-size: 2.5em;
+}
+
+.tile-header h3 {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.375;
+    margin-left: 0.5rem;
+}
+
+.tile-header h3 span:first-child {
+    font-weight: 600;
+}
+
+.tile-header h3 span:last-child {
+    font-size: 0.825em;
+    font-weight: 200;
+}
+
+/*  */
