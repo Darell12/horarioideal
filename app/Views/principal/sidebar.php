@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
 
