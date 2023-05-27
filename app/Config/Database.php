@@ -28,18 +28,13 @@ class Database extends Config
         'DSN'      => '',
         
         // PARA TRABAJAR EN CASA
-        // 'hostname' => 'localhost',
-        // 'username' => 'root',
-        // 'password' => '',
-<<<<<<< HEAD
-        // PARA TRABAJAR EN EL SENA
-=======
-
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => '',
        // PARA TRABAJAR EN EL SENA
->>>>>>> 045ab0ae2e28be068a01a7887660c294547bec01
-        'hostname' => '10.230.2.27',
-        'username' => 'user_db',
-        'password' => '123456789',
+        // 'hostname' => '10.230.2.27',
+        // 'username' => 'user_db',
+        // 'password' => '123456789',
         'database' => 'horarios_db',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
