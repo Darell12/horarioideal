@@ -354,6 +354,7 @@
     </div>
 
     <!-- Modal Acudientes -->
+    <form id="formularioAcudiente">
     <div id="ModalAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -454,12 +455,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success" id="btnListo" data-bs-dismiss="modal">Listo</button>
+                    <button type="submit" class="btn btn-outline-success" id="btnListo">Listo</button>
                 </div>
             </div>
         </div>
-
     </div>
+    </form>
 
 
     <script>
@@ -1486,5 +1487,114 @@
             let dato = $('#primer_nombreAcu').val()
             let dato2 = $('#primer_apellidoAcu').val()
             $('#acudientess').val(dato + ' ' + dato2)
+            if ($('#formularioAcudiente').valid()) {
+            e.preventDefault(); 
+            console.log('sirve');
+            $('#ModalAcudientes').modal('hide');
+        }
         })
+
+        $("#formularioAcudiente").validate({
+        rules: {
+            tipo_documentoAcu: {
+                required: true,
+            },
+            numero_documentoAcu: {
+                required: true,
+                minlength: 4,
+                maxlength: 12,
+                digits: true,
+                remote: {
+                    url: '<?php echo base_url() ?>acudientes/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'n_documento';
+                        },
+                        valor: function() {
+                            return $("#numero_documentoAcu").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActuAcu: function() {
+                            return $("#numeroActuAcu").val();
+                        },
+                    },
+                }
+            },
+            primer_nombreAcu: {
+                required: true,
+            },
+            segundo_nombreAcu: {
+            },
+            primer_apellidoAcu: {
+                required: true,
+            },
+            segundo_apellidoAcu: {
+                required: true,
+            },
+            telefonoAcu: {
+                digits: true,
+                required: true,
+            },
+            emailAcu: {
+                email: true,
+                required: true,
+            },
+            direccion1: {
+                required: true,
+            },
+            direccion2: {
+                required: true,
+            },
+            direccion3: {
+                required: true,
+            },
+            direccion4: {
+                required: true,
+            },
+        },
+        messages: {
+            tipo_documentoAcu: {
+                required: "Por favor seleccione una opción",
+            },
+            numero_documentoAcu: {
+                required: "El número de documento es requerido",
+                digits: "Solo ingrese digitos por favor",
+                minlength: "El número de documento debe tener al menos 4 caracteres",
+                maxlength: "El número de documento no puede tener más de 12 caracteres",
+                remote: "Este número de documento ya esta registrado"
+            },
+            primer_nombreAcu: {
+                required: "Este campo es requerido",
+            },
+            primer_apellidoAcu: {
+                required: "Este campo es requerido",
+            },
+            segundo_apellidoAcu: {
+                required: "Este campo es requerido",
+            },
+            telefonoAcu: {
+                required: "Este campo es requerido",
+            },
+            emailAcu: {
+                required: "Este campo es requerido",
+                email: "Ingrese un email valido"
+            },
+            direccion1: {
+                required: "Este campo es requerido",
+            },
+            direccion2: {
+                required: "Este campo es requerido",
+            },
+            direccion3: {
+                required: "Este campo es requerido",
+            },
+            direccion4: {
+                required: "Este campo es requerido",
+            },
+        }
+    });
     </script>
