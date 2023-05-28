@@ -24,7 +24,7 @@
                     </div>
 
                     <?php if ($datos['rol'] == 'Estudiante') { ?>
-                    <div class="card mb-4">
+                    <div class="car d mb-4">
                         <div class="card-body text-center">
                             <i class="bi bi-emoji-smile"></i>
 
