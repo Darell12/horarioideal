@@ -79,4 +79,32 @@ class Acudientes extends BaseController
         echo json_encode($returnData);
     }
 
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombreActuAcu = $this->request->getPost('nombreActuAcu');
+        $numeroActuAcu = $this->request->getPost('numeroActuAcu');
+
+        $filtro = $this->acudientes->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $nombreActuAcu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if ($tp == 2 && $valor == $numeroActuAcu) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
+    }
+
 }

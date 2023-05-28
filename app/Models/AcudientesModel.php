@@ -32,4 +32,13 @@ class AcudientesModel extends Model
         return $datos;
     }
 
+    public function filtro($campo, $valor)
+    {
+        $this->select('usuarios.*');
+        $this->where($campo, $valor);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+
 }
