@@ -508,18 +508,14 @@
         });
 
         function dividirArray(array, horaInicio, horaFin) {
-            console.log('funcion arrata')
             let arrayRango = [];
             let array1 = [];
             let array2 = [];
-
-            // array = arrayRango.filter(franja => franja.id_parametro_det !== '50');
 
             //DEFINO INICIO Y FIN DE LA JORNDADA
             const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
             const fechaFin = new Date(`2000-01-01T${horaFin}`);
 
-            console.log(fechaFin.getHours());
 
             for (let i = 0; i < array.length; i++) {
                 const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
@@ -534,7 +530,6 @@
             for (let i = 0; i < arrayRango.length; i++) {
                 const idActual = parseInt(arrayRango[i].id_parametro_det);
                 const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
-                console.log(idSiguiente - idActual)
                 if (idSiguiente - idActual >= 2) {
                     array1.push(arrayRango[i]);
                 } else {
@@ -547,9 +542,7 @@
             array2 = array2.filter(franja => franja.id_parametro_det !== '53');
             arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '49');
             arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '53');
-            console.log(array1)
-            console.log(array2)
-            console.log(arrayRango)
+            console.log([array1, array2, arrayRango]);
             return [array1, array2, arrayRango];
         }
 
@@ -621,6 +614,7 @@
                 dataType: 'json',
                 success: function(res) {
                     franjasTotalesOcupadasAula = res
+                    console.log(franjasTotalesOcupadasAula);
                 }
             })
 
@@ -636,31 +630,32 @@
 
                     while (i < numeroRepeticiones) {
                         try {
-                            if (diasNoAsignados.length > 0) {
-                                let dia = diasNoAsignados[0];
-                                data.push({
-                                    "asignatura": asignatura,
-                                    "profesor": profesor,
-                                    "aula": $('#aula').val(),
-                                    "dia": dia,
-                                    "id_dia": id_dias[dia],
-                                    "inicio": franjasTotales[0].id_parametro_det,
-                                    "hora_inicio": franjasTotales[0].nombre,
-                                    "fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].id_parametro_det : franjasTotales[2].id_parametro_det,
-                                    "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].nombre : franjasTotales[2].nombre,
-                                    "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
-                                    "id_encabezado": <?php echo $id ?>
-                                });
-                                diasNoAsignados.shift();
-                                diasSiAsignados.push(dia);
-                                i++;
-                            } else {
+                            // if (diasNoAsignados.length > 0) {
+                                // let dia = diasNoAsignados[0];
+                                // data.push({
+                                //     "asignatura": asignatura,
+                                //     "profesor": profesor,
+                                //     "aula": $('#aula').val(),
+                                //     "dia": dia,
+                                //     "id_dia": id_dias[dia],
+                                //     "inicio": franjasTotales[0].id_parametro_det,
+                                //     "hora_inicio": franjasTotales[0].nombre,
+                                //     "fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].id_parametro_det : franjasTotales[2].id_parametro_det,
+                                //     "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales[1].nombre : franjasTotales[2].nombre,
+                                //     "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
+                                //     "id_encabezado": <?php echo $id ?>
+                                // });
+                                // diasNoAsignados.shift();
+                                // diasSiAsignados.push(dia);
+                                // i++;
+                            // } else {
                                 let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
                                 let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
                                 let dia = diasSemana[0];
                                 if (Libres2Horas.length > 0) {
                                     i++;
                                 }
+                                console.log(franjasTotales);
                                 if (diasSemana.length > 0) {
                                     diasSemana.shift();
                                     data.push({
@@ -671,12 +666,12 @@
                                         "id_dia": id_dias[dia],
                                         "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
                                         "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
-                                        "fin": (numeroRepeticiones - i < 0) ? LibreTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
-                                        "hora_fin": (numeroRepeticiones - i < 0) ? LibreTotal.find(objeto => objeto.id_parametro_det == +franja1Hora[0]?.id_parametro_det + 1)?.nombre || LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : LibreTotal.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
+                                        "fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+                                        "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.nombre || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
                                         "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
                                         "id_encabezado": <?php echo $id ?>
                                     });
-
+                                    console.log(franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1));
                                     // RETIRA HORA EN CASO DE EXCESO
                                     if (data[i - 1].fin == 54) {
                                         console.log('SE PASO');
@@ -719,7 +714,7 @@
                                         title: `No hay más franjas disponibles para el dia!`
                                     })
                                 }
-                            }
+                            // }
                         } catch (error) {
                             console.error("Ocurrió un error:", error);
                         }
@@ -799,7 +794,8 @@
             let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
             // console.log('segundoFiltro')
             // console.table(segundoFiltro);
-
+            console.log('Franjas Profesores');
+            console.log(franjasProfesor);
             let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
             // console.log('tercerFiltro')
             // console.table(tercerFiltro);
@@ -809,7 +805,8 @@
             // console.table(cuartoFiltro);
 
             // return [cuartoFiltro];
-
+            console.log('Franjas AUla');
+            console.log(franjasTotalesOcupadasAula);
             let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
             let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
             // console.log('sextoFiltro:');
@@ -817,14 +814,6 @@
 
             const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
 
-            // console.log("Array 1 (franjas con una hora faltante en su sucesión):");
-            // console.log(Libres1Hora);
-
-            // console.log("Array 2 (franjas que siguen su sucesión):");
-            // console.log(Libres2Horas);
-
-            // console.log("Array de franjas dentro del rango:");
-            // console.log(arrayRango);
 
             return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
         }

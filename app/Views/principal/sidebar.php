@@ -37,7 +37,7 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sideba.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebar.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>
@@ -54,7 +54,8 @@
         <ul class="list-unstyled" id="pruebanav">
             <div style="margin-top: 0.5em;">
                 <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
-                    <p><i class="bx bxs-user-circle icon bx-sm"></i>
+                    <p> <i class="bi bi-person-circle"></i>
+
                         <?php echo session('usuario') ?> </p>
                     <p class="rol">
                         <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
@@ -70,23 +71,26 @@
             </li>
     </nav>
     <div id="content">
-
-        <nav class="navbar navbar-expand-lg" style="background: #F6F5FF  !important;">
+        <nav class="navbar" style="background: #F6F5FF  !important;">
             <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
                     <i class='bx bx-chevron-right toggle bx-sm'></i>
                 </button>
+
                 <div style="margin-top: 10px; color:#29588abd" class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
                 </div>
-                
             </div>
-            <div>
-                <button class="profile-btn">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
-                    <span>Aybüke C.</span>
+            <div class="dropstart">
+                <button class="profile-btn" id="Profile" style="color:#29588abd" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i>
+                    <span class="mr-1" style="color:#29588abd; margin-left: 3px"> <?php echo session('usuario') ?></span>
                 </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">Perfil</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Logouth</a></li>
+                </ul>
             </div>
         </nav>
 
