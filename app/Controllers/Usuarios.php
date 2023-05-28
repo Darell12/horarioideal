@@ -62,13 +62,11 @@ class Usuarios extends BaseController
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
         $tipo = $this->tipotel->ObtenerParametro(3);
 
-        $estudiante = $this->usuario->buscarEstudiantes($id);
-
-
-        if ($estudiante == null) {
-            $acudientes = '';
+        // $estudiante = $this->usuario->buscarEstudiantes($id);
+        if ($usuario['id_rol'] == 3) {
+            $acudientes = $this->acudientes->ObtenerAcudientes('A', $id);
         } else {
-            $acudientes = $this->acudientes->ObtenerAcudientes('A', $estudiante['id_estudiante']);
+            $acudientes = '';
         }
 
         $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes,'Modulos' => $cargaSideBar];
