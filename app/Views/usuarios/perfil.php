@@ -39,12 +39,6 @@
                     </div>
                     <?php } ?>
 
-                    <div class="card">
-                        <div class="card-bodxcy p-0">
-                            <ul class="list-group list-group-flush rounded-3">
-                            </ul>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="card  p-4">
