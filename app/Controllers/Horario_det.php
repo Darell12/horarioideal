@@ -90,6 +90,11 @@ class Horario_det extends BaseController
         $horario_det = $this->horario_det->buscarDetalleAula($id);
         echo json_encode($horario_det);
     }
+    public function buscarDetalleAsignatura($id)
+    {
+        $horario_det = $this->horario_det->buscarDetalleAsignatura($id);
+        return $horario_det;
+    }
     public function buscarDetalleDia()
     {
         $horario_det = $this->horario_det->buscarDetalleAula(8);
