@@ -506,7 +506,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-outline-success" id="btnListo" data-bs-dismiss="modal">Listo</button>
+                <button type="submit" class="btn btn-outline-success" id="btnListo">Listo</button>
             </div>
         </div>
     </div>
@@ -937,17 +937,17 @@
         Emails.forEach(email => {
             contador++
             contenido += `
-<tr id="util${contador}">
-<td class="text-center">${email.email}</td>
-<td class="text-center">${prioridades[email.prioridad]}</td>
-<td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
-<td hidden class="text-center">${email.tp}</td>
-<td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
-    <td class="text-center">
-    <button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
-    <button class="btn btn-outline-danger" onclick="eliminarEmail(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
-    </td>
-    </tr>`
+            <tr id="util${contador}">
+            <td class="text-center">${email.email}</td>
+            <td class="text-center">${prioridades[email.prioridad]}</td>
+            <td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
+            <td hidden class="text-center">${email.tp}</td>
+            <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
+            <td class="text-center">
+            <button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-outline-danger" onclick="eliminarEmail(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
+            </td>
+            </tr>`
         });
         $('#tabla_email').html(contenido);
     }
@@ -1640,59 +1640,6 @@
         }
     })
 
-    function Acudientes(data) {
-        if ($('#formularioAcudiente').valid()) {
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
-            data: {
-                tp: $('#tp').val(),
-                id: $('#tp').val() == 2 ? $('#id_acu').val() : data,
-                tipo_documentoAcu: $('#tipo_documentoAcu').val(),
-                numero_documentoAcu: $('#numero_documentoAcu').val(),
-                primer_nombreAcu: $('#primer_nombreAcu').val(),
-                segundo_nombreAcu: $('#segundo_nombreAcu').val(),
-                primer_apellidoAcu: $('#primer_apellidoAcu').val(),
-                segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
-                direccionAcu: $('#direccionAcu').val(),
-                emailAcu: $('#emailAcu').val(),
-                telefonoAcu: $('#telefonoAcu').val(),
-            },
-            dataType: "json",
-        }).done(function(data) {
-            $('#ModalAcudientes').modal('hide');
-            let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'success',
-                title: 'Acción realizada con exito!'
-            })
-            return
-        })
-    }
-    }
-
-    $('#btnListo').on('click', function(e) {
-        let dato = $('#primer_nombreAcu').val()
-        let dato2 = $('#primer_apellidoAcu').val()
-        $('#acudientess').val(dato + ' ' + dato2)
-        if ($('#formularioAcudiente').valid()) {
-            e.preventDefault(); 
-            console.log('sirve esta vrga');
-        }
-
-    })
-
     $("#formularioAcudiente").validate({
         rules: {
             tipo_documentoAcu: {
@@ -1794,4 +1741,59 @@
             },
         }
     });
+
+    function Acudientes(data) {
+        if ($('#formularioAcudiente').valid()) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
+            data: {
+                tp: $('#tp').val(),
+                id: $('#tp').val() == 2 ? $('#id_acu').val() : data,
+                tipo_documentoAcu: $('#tipo_documentoAcu').val(),
+                numero_documentoAcu: $('#numero_documentoAcu').val(),
+                primer_nombreAcu: $('#primer_nombreAcu').val(),
+                segundo_nombreAcu: $('#segundo_nombreAcu').val(),
+                primer_apellidoAcu: $('#primer_apellidoAcu').val(),
+                segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
+                direccionAcu: $('#direccionAcu').val(),
+                emailAcu: $('#emailAcu').val(),
+                telefonoAcu: $('#telefonoAcu').val(),
+            },
+            dataType: "json",
+        }).done(function(data) {
+            $('#ModalAcudientes').modal('hide');
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Acción realizada con exito!'
+            })
+            return
+        })
+    }
+    }
+
+    $('#btnListo').on('click', function(e) {
+        let dato = $('#primer_nombreAcu').val()
+        let dato2 = $('#primer_apellidoAcu').val()
+        $('#acudientess').val(dato + ' ' + dato2)
+        if ($('#formularioAcudiente').valid()) {
+            e.preventDefault(); 
+            console.log('sirve esta vrga');
+        }
+
+    })
+
+
 </script>
