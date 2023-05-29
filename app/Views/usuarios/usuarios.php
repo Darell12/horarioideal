@@ -457,7 +457,7 @@
                         <div class="col">
                             <label for="nombre" class="col-form-label">Telefonos:</label>
                             <div class="input-group">
-                                <input class="form-control" type="text" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
+                                <input class="form-control" type="number" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
                             </div>
                         </div>
                     </div>
@@ -1686,6 +1686,7 @@
                 required: true,
             },
             emailAcu: {
+                email: true,
                 required: true,
             },
             direccion1: {
@@ -1726,6 +1727,7 @@
             },
             emailAcu: {
                 required: "Este campo es requerido",
+                email: "Ingrese un email valido"
             },
             direccion1: {
                 required: "Este campo es requerido",
@@ -1790,7 +1792,8 @@
         $('#acudientess').val(dato + ' ' + dato2)
         if ($('#formularioAcudiente').valid()) {
             e.preventDefault(); 
-            console.log('sirve esta vrga');
+            console.log('sirve');
+            $('#ModalAcudientes').modal('hide');
         }
 
     })
