@@ -48,6 +48,8 @@ class Usuarios extends BaseController
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
+        // echo view('/principal/footer', $data);
+
     }
     public function perfil($id)
     {

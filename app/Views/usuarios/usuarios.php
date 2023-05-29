@@ -403,117 +403,123 @@
 
 <!-- Modal Acudientes -->
 <form id="formularioAcudiente">
-<div id="ModalAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #427dbb; color:#FFF;">
-                <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="body">
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col">
-                            <label class="col-form-label">Tipo de Documento:</label>
-                            <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
-                                <option value="">Seleccione un Tipo</option>
-                                <option value="2">Cedula de Ciudadania</option>
-                                <option value="1">Tarjeta de Identidad</option>
-                                <option value="3">Cedula de Extranjeria</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                            <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="nombre" class="col-form-label">Primer Nombre:</label>
-                            <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
-                        </div>
-                        <div class="col">
-                            <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
-                            <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="nombre" class="col-form-label">Primer Apellido:</label>
-                            <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
-                        </div>
-                        <div class="col">
-                            <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                            <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
-                        </div>
-                    </div>
-                    <div class="row mb-1">
-                        <div class="col">
-                            <label for="nombre" class="col-form-label">Emails:</label>
-                            <div class="input-group d-flex">
-                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label for="nombre" class="col-form-label">Telefonos:</label>
-                            <div class="input-group">
-                                <input class="form-control" type="number" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label id="direccion_usuario" for="direccion">Dirección:</label>
-                        <div class="col">
-                            <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
-                                <option value="">--Selecciona--</option>
-                                <option>Carrera</option>
-                                <option>Calle</option>
-                                <option>Avenida Calle</option>
-                                <option>Avenida Carrera</option>
-                                <option>Autopista</option>
-                                <option>Avenida</option>
-                                <option>Circunvalar</option>
-                                <option>Diagonal</option>
-                                <option>Transversal</option>
-                                <option>Kilometro</option>
-                                <option>Circular</option>
-                            </select>
-                        </div>
-
-                        <div class="col">
-                            <input onchange="ValidardireccionAcudiente()" id="direccion2" name="direccion2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
-                        </div>
-                        <div class="col">
-                            <input onchange="ValidardireccionAcudiente()" id="direccion3" maxLength="4" name="direccion3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
-                        </div>
-                        <div class="col">
-                            <input onchange="ValidardireccionAcudiente()" id="direccion4" maxLength="4" name="direccion4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label id="direccion_usuario" for="direccion"></label>
-                        <input id="direccionAcu" name="direccionAcu" type="text" class="form-control" readonly class="form-control-plaintext">
-                    </div>
-
-                    <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
-                    <input type="text" id="tp" name="tp" hidden>
-                    <input type="text" id="id_acu" name="id_acu" hidden>
-                    <input type="text" id="id" name="id" hidden>
-                    <input type="text" id="nombreActuAcu" name="nombreActuAcu" hidden>
-                    <input type="text" id="numeroActuAcu" name="numeroActuAcu" hidden>
-
+    <div id="ModalAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #427dbb; color:#FFF;">
+                    <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-outline-success" id="btnListo">Listo</button>
+                <div class="modal-body" id="body">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label class="col-form-label">Tipo de Documento:</label>
+                                <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
+                                    <option value="">Seleccione un Tipo</option>
+                                    <option value="2">Cedula de Ciudadania</option>
+                                    <option value="1">Tarjeta de Identidad</option>
+                                    <option value="3">Cedula de Extranjeria</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="nombre" class="col-form-label">Numéro de Documento:</label>
+                                <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="nombre" class="col-form-label">Primer Nombre:</label>
+                                <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                            </div>
+                            <div class="col">
+                                <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
+                                <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="nombre" class="col-form-label">Primer Apellido:</label>
+                                <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                            </div>
+                            <div class="col">
+                                <label for="nombre" class="col-form-label">Segundo Apellido:</label>
+                                <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col">
+                                <label for="nombre" class="col-form-label">Emails:</label>
+                                <div class="input-group d-flex">
+                                    <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="nombre" class="col-form-label">Telefonos:</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="number" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label id="direccion_usuario" for="direccion">Dirección:</label>
+                            <div class="col">
+                                <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
+                                    <option value="">--Selecciona--</option>
+                                    <option>Carrera</option>
+                                    <option>Calle</option>
+                                    <option>Avenida Calle</option>
+                                    <option>Avenida Carrera</option>
+                                    <option>Autopista</option>
+                                    <option>Avenida</option>
+                                    <option>Circunvalar</option>
+                                    <option>Diagonal</option>
+                                    <option>Transversal</option>
+                                    <option>Kilometro</option>
+                                    <option>Circular</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <input onchange="ValidardireccionAcudiente()" id="direccion2" name="direccion2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
+                            </div>
+                            <div class="col">
+                                <input onchange="ValidardireccionAcudiente()" id="direccion3" maxLength="4" name="direccion3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
+                            </div>
+                            <div class="col">
+                                <input onchange="ValidardireccionAcudiente()" id="direccion4" maxLength="4" name="direccion4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label id="direccion_usuario" for="direccion"></label>
+                            <input id="direccionAcu" name="direccionAcu" type="text" class="form-control" readonly class="form-control-plaintext">
+                        </div>
+
+                        <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+                        <input type="text" id="tp" name="tp" hidden>
+                        <input type="text" id="id_acu" name="id_acu" hidden>
+                        <input type="text" id="id" name="id" hidden>
+                        <input type="text" id="nombreActuAcu" name="nombreActuAcu" hidden>
+                        <input type="text" id="numeroActuAcu" name="numeroActuAcu" hidden>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success" id="btnListo">Listo</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </form>
 
 <script>
+    $(window).resize(function() {
+        tablaUsuarios.ajax.reload(null, false)
+        // console.log('resize')
+        contador = 0
+    });
+
     function cargar_Excel(json) {
         json.forEach(usuario => {
             let _row = '';
@@ -864,7 +870,7 @@
                     contraseña: $('#contraseña').val(),
 
                 },
-                dataType: "json",   
+                dataType: "json",
             }).done(function(data) {
                 $('#UsuarioModal').modal('hide');
                 let Toast = Swal.mixin({
@@ -1674,8 +1680,7 @@
             primer_nombreAcu: {
                 required: true,
             },
-            segundo_nombreAcu: {
-            },
+            segundo_nombreAcu: {},
             primer_apellidoAcu: {
                 required: true,
             },
@@ -1747,44 +1752,44 @@
 
     function Acudientes(data) {
         if ($('#formularioAcudiente').valid()) {
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
-            data: {
-                tp: $('#tp').val(),
-                id: $('#tp').val() == 2 ? $('#id_acu').val() : data,
-                tipo_documentoAcu: $('#tipo_documentoAcu').val(),
-                numero_documentoAcu: $('#numero_documentoAcu').val(),
-                primer_nombreAcu: $('#primer_nombreAcu').val(),
-                segundo_nombreAcu: $('#segundo_nombreAcu').val(),
-                primer_apellidoAcu: $('#primer_apellidoAcu').val(),
-                segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
-                direccionAcu: $('#direccionAcu').val(),
-                emailAcu: $('#emailAcu').val(),
-                telefonoAcu: $('#telefonoAcu').val(),
-            },
-            dataType: "json",
-        }).done(function(data) {
-            $('#ModalAcudientes').modal('hide');
-            let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#tp').val() == 2 ? $('#id_acu').val() : data,
+                    tipo_documentoAcu: $('#tipo_documentoAcu').val(),
+                    numero_documentoAcu: $('#numero_documentoAcu').val(),
+                    primer_nombreAcu: $('#primer_nombreAcu').val(),
+                    segundo_nombreAcu: $('#segundo_nombreAcu').val(),
+                    primer_apellidoAcu: $('#primer_apellidoAcu').val(),
+                    segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
+                    direccionAcu: $('#direccionAcu').val(),
+                    emailAcu: $('#emailAcu').val(),
+                    telefonoAcu: $('#telefonoAcu').val(),
+                },
+                dataType: "json",
+            }).done(function(data) {
+                $('#ModalAcudientes').modal('hide');
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Acción realizada con exito!'
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Acción realizada con exito!'
+                })
+                return
             })
-            return
-        })
-    }
+        }
     }
 
     $('#btnListo').on('click', function(e) {
@@ -1792,14 +1797,10 @@
         let dato2 = $('#primer_apellidoAcu').val()
         $('#acudientess').val(dato + ' ' + dato2)
         if ($('#formularioAcudiente').valid()) {
-            e.preventDefault(); 
+            e.preventDefault();
             console.log('sirve');
             $('#ModalAcudientes').modal('hide');
         }
 
     })
-
-    
-
-
 </script>
