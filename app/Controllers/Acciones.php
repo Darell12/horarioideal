@@ -4,24 +4,27 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AccionesModel;
-
+use App\Controllers\Principal;
 
 class Acciones extends BaseController
 {
     protected $accion, $eliminados;
-
+    protected $metodos;
 
     public function __construct()
     {
         $this->accion = new AccionesModel();
         $this->eliminados = new AccionesModel();
+        $this->metodos = new Principal();
+
     }
 
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $accion = $this->accion->obtenerAcciones('E');
 
-        $data = ['titulo' => 'Administrar Acciones', 'datos' => $accion];
+        $data = ['titulo' => 'Administrar Acciones', 'datos' => $accion,'Modulos' => $cargaSideBar];
 
        echo view('/principal/sidebar', $data);
        echo view('/acciones/acciones', $data);
@@ -40,17 +43,25 @@ class Acciones extends BaseController
 
             $this->accion->save([
                 'nombre' => $this->request->getPost('nombre_accion'),
+                'id_modulo' => $this->request->getPost('modulo'),
+                'id_padre' => $this->request->getPost('carpeta'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->accion->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_accion'),
+                'id_modulo' => $this->request->getPost('modulo'),
+                'id_padre' => $this->request->getPost('carpeta'),
                 'usuario_crea'=> session('id')
             ]);
         }
-        return redirect()->to(base_url('/acciones'));
+        return json_encode('todo good');
     }
 
+    public function Modulos(){
+        $modulos = $this->metodos->Modulos();
+        return json_encode($modulos);
+    }
     public function buscarAccion($id)
     {
         $returnData = array();
@@ -69,19 +80,11 @@ class Acciones extends BaseController
 
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerAccionesEliminados();
-
-
+        $cargaSideBar = $this->metodos->getModulos();
         // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Acciones Eliminadas','datos' => 'vacio'];
+            $data = ['titulo' => 'Administrar Acciones Eliminadas','datos' => 'vacio','Modulos' => $cargaSideBar];
             echo view('/principal/sidebar', $data);
             echo view('/acciones/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Acciones Eliminadas', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/acciones/eliminados', $data);
-        }
     }
 
     public function validar()

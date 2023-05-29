@@ -9,6 +9,7 @@ use App\Models\GradosModel;
 use App\Models\Parametros_detModel;
 use App\Models\EmailsModel;
 use App\Models\TelefonosModel;
+use App\Controllers\Principal;
 
 class Profesores extends BaseController
 {
@@ -16,6 +17,7 @@ class Profesores extends BaseController
     protected $usuarios, $roles, $grados;
     protected $prioridad, $tipotel, $emails;
     protected $telefonos;
+    protected $metodos;
 
     public function __construct()
     {
@@ -27,24 +29,28 @@ class Profesores extends BaseController
         $this->tipotel = new Parametros_detModel();
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
+        $this->metodos = new Principal();
     }
 
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $roles = $this->roles->obtenerRoles('A');
         $grados = $this->grados->obtenerGrados('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
-        $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel];
+        $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/profesores/profesores', $data);
     }
-    public function eliminados() 
+    public function eliminados()
     {
-            $data = ['titulo' => 'Administrar Profesores Eliminados', ];
-            echo view('/principal/sidebar', $data);
-            echo view('/profesores/eliminados', $data);
+        $cargaSideBar = $this->metodos->getModulos();
+        
+        $data = ['titulo' => 'Administrar Profesores Eliminados', 'Modulos' => $cargaSideBar];
+        echo view('/principal/sidebar', $data);
+        echo view('/profesores/eliminados', $data);
     }
     public function obtenerProfesores()
     {
@@ -76,14 +82,13 @@ class Profesores extends BaseController
         $this->AsigProf->save([
             'id_usuario' => $this->request->getPost('id'),
             'id_grado_asignatura' => $this->request->getPost('id_grado_asignatura'),
-            'usuario_crea'=> session('id')
-        ]); 
+            'usuario_crea' => session('id')
+        ]);
         return json_encode('1');
     }
     public function retirarCarga()
     {
-        $this->AsigProf->update($this->request->getPost('id'), ['estado'=>'E']);
+        $this->AsigProf->update($this->request->getPost('id'), ['estado' => 'E']);
         return json_encode('1');
     }
-    
 }

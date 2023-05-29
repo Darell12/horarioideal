@@ -13,7 +13,7 @@ class AccionesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre','estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre', 'id_modulo', 'id_padre','estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -25,8 +25,16 @@ class AccionesModel extends Model
 
     public function obtenerAcciones($estado)
     {
-        $this->select('acciones.*');
-        $this->where('estado', $estado);
+        $this->select('acciones.*, modulos.nombre as carpeta');
+        $this->join('modulos', 'acciones.id_padre = modulos.id_modulo');
+        $this->where('acciones.estado', $estado);
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function obtenerAccionesRol($id)
+    {
+        $this->select('acciones.id_modulo');
+        $this->where('id_acciones', $id);
         $datos = $this->findAll();
         return $datos;
     }

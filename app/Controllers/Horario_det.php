@@ -11,7 +11,7 @@ use App\Models\Horario_encModel;
 use App\Models\HorarioModel;
 use App\Models\Grados_asignaturaModel;
 use App\Models\Parametros_detModel;
-
+use App\Controllers\Principal;
 
 class Horario_det extends BaseController
 {
@@ -19,6 +19,7 @@ class Horario_det extends BaseController
     protected $horario;
     protected $usuarios, $grados, $asignatura;
     protected $franja;
+    protected $metodos;
 
     public function __construct()
     {
@@ -29,17 +30,19 @@ class Horario_det extends BaseController
         $this->grados = new GradosModel();
         $this->asignatura = new AsignaturasModel();
         $this->franja = new Parametros_detModel();
+        $this->metodos = new Principal();
     }
 
     public function index($id)
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         $usuarios = $this->usuarios->obtenerUsuarios($estado = "A");
         $horario = $this->horario->traer_horario_enc($id);
         $grados = $this->grados->obtenerGrados('A');
         $asignatura = $this->asignatura->buscarAsignaturasxGrado($horario['id_grado']);
 
-        $data = ['titulo' => 'Administrar Horario', 'datos' => $horario, 'id' => $id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura, ];
+        $data = ['titulo' => 'Administrar Horario', 'datos' => $horario, 'id' => $id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_det/detalle', $data);
@@ -86,6 +89,11 @@ class Horario_det extends BaseController
     {
         $horario_det = $this->horario_det->buscarDetalleAula($id);
         echo json_encode($horario_det);
+    }
+    public function buscarDetalleAsignatura($id)
+    {
+        $horario_det = $this->horario_det->buscarDetalleAsignatura($id);
+        return $horario_det;
     }
     public function buscarDetalleDia()
     {

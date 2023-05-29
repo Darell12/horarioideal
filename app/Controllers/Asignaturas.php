@@ -1,32 +1,51 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Controllers\BaseController;
 use App\Models\AsignaturasModel;
 use App\Models\Parametros_detModel;
+use App\Controllers\Principal;
 
 class Asignaturas extends BaseController
 {
     protected $asignaturas, $eliminados;
     protected $paramAreas, $paramTipos;
-    
+    protected $metodos;
+
     public function __construct()
-    { 
+    {
         $this->asignaturas = new AsignaturasModel();
         $this->eliminados = new AsignaturasModel();
         $this->paramAreas = new Parametros_detModel();
         $this->paramTipos = new Parametros_detModel();
+        $this->metodos = new Principal();
     }
     public function index()
     {
-        $asignaturas = $this->asignaturas->obtenerAsignaturas('E');    
+        $cargaSideBar = $this->metodos->getModulos();
+        $asignaturas = $this->asignaturas->obtenerAsignaturas('E');
         $paramAreas = $this->paramAreas->ObtenerParametro(9);
         $paramTipos = $this->paramTipos->ObtenerParametro(14);
-        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'Area' => $paramAreas, 'datos' => $asignaturas, 'tipos' => $paramTipos];
+        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'Area' => $paramAreas, 'datos' => $asignaturas, 'tipos' => $paramTipos, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/asignaturas/asignaturas', $data);
     }
+    public function AsignaturasUnica()
+    {
+        $cargaSideBar = $this->metodos->getModulos();
+        $asignaturas = $this->asignaturas->obtenerAsignaturas('E');
+        $paramAreas = $this->paramAreas->ObtenerParametro(9);
+        $paramTipos = $this->paramTipos->ObtenerParametro(14);
+
+        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'Area' => $paramAreas, 'datos' => $asignaturas, 'tipos' => $paramTipos, 'Modulos' => $cargaSideBar];
+
+        echo view('/principal/sidebar', $data);
+        echo view('/asignaturas/consulta', $data);
+    }
+
+
     public function obtenerAsignaturas()
     {
         $estado = $this->request->getPost('estado');
@@ -43,14 +62,14 @@ class Asignaturas extends BaseController
                 'nombre' => $this->request->getPost('nombre_asignatura'),
                 'Codigo' => $this->request->getPost('codigo'),
                 'tipo_requerido' => $this->request->getPost('tipo'),
-                'usuario_crea'=> session('id')
+                'usuario_crea' => session('id')
             ]);
         } else {
             $this->asignaturas->update($this->request->getPost('id'), [
                 'nombre' => $this->request->getPost('nombre_asignatura'),
                 'Codigo' => $this->request->getPost('codigo'),
                 'tipo_requerido' => $this->request->getPost('tipo'),
-                'usuario_crea'=> session('id')
+                'usuario_crea' => session('id')
             ]);
         }
         return redirect()->to(base_url('/asignaturas'));
@@ -83,19 +102,11 @@ class Asignaturas extends BaseController
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
-        $eliminados = $this->eliminados->obtenerAsignaturasEliminados();
 
-
-        // Redireccionar a la URL anterior
-        if (!$eliminados) {
-            $data = ['titulo' => 'Administrar Asignaturas Eliminadas','datos' => 'vacio'];
-            echo view('/principal/sidebar', $data);
-            echo view('/asignaturas/eliminados', $data);
-        } else {
-            $data = ['titulo' => 'Administrar Asignaturas Eliminadas', 'datos' => $eliminados];
-            echo view('/principal/sidebar', $data);
-            echo view('/asignaturas/eliminados', $data);
-        }
+        $cargaSideBar = $this->metodos->getModulos();
+        $data = ['titulo' => 'Administrar Asignaturas Eliminadas', 'datos' => 'vacio', 'Modulos' => $cargaSideBar];
+        echo view('/principal/sidebar', $data);
+        echo view('/asignaturas/eliminados', $data);
     }
     public function validar()
     {

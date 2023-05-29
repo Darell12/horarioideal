@@ -6,13 +6,14 @@ use App\Models\UsuariosModel;
 
 class Auth extends BaseController
 {
-    protected $usuario, $eliminados;
+    protected $usuario, $eliminados, $controlador;
 
 
     public function __construct()
     {
         $this->usuario = new UsuariosModel();
         $this->eliminados = new UsuariosModel();
+
     }
     public function iniciarSesion()
     {
@@ -31,6 +32,7 @@ class Auth extends BaseController
                 "usuario" => $usuarioDatos[0]['nombre_p'] . " " . $usuarioDatos[0]['apellido_p'],
                 "id" => $usuarioDatos[0]['id_usuario'],
                 "rol" => $usuarioDatos[0]['rol'],
+                "id_rol" => $usuarioDatos[0]['id_rol'],
                 "accion" => $usuarioDatos[0]['accion_requerida'],
                 'logged_in' => true,
             ];

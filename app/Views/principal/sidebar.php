@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
-    
-   
+
+
     <script src="<?php echo base_url() ?>librerias/sweetalert2.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery-3.6.4.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery.validate.js"></script>
@@ -37,24 +37,21 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebaa.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebar.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>
 
-<div class="wrapper">
-    <!-- Sidebar  -->
+<div class="wrapper" >
     <nav id="sidebar">
         <div class="sidebar-header">
             <h3>Horario Ideal</h3>
         </div>
-        <!-- <button onclick="enviarwp()">
-            boton
-        </button> -->
-        <ul class="list-unstyled">
+        <ul class="list-unstyled" id="pruebanav">
             <div style="margin-top: 0.5em;">
                 <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
-                    <p><i class="bx bxs-user-circle icon bx-sm"></i>
+                    <p> <i class="bi bi-person-circle"></i>
+
                         <?php echo session('usuario') ?> </p>
                     <p class="rol">
                         <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
@@ -68,145 +65,109 @@
                     <span class="text nav-text">Inicio</span>
                 </a>
             </li>
-            <hr style="background: #fafafa" class="sidebar-divider">
-            </li>
-            <li>
-                <a href="<?php echo base_url('ver_roles') ?>" title="Roles">
-                    <i class='bx bx-wrench icon'></i>
-                    <span class="text fs-6 nav-text">Roles</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo base_url('ver_permisos') ?>" title="Permisos">
-                    <i class='bx bx-slider-alt icon'></i>
-                    <span class="text fs-6 nav-text">Permisos</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo base_url('ver_acciones') ?>" title="Acciones">
-                    <i class='bx bx-cog icon'></i>
-                    <span class="text fs-6 nav-text">Acciones</span>
-                </a>
-            </li>
-            <hr style="background: #fafafa" class="sidebar-divider">
-            <li>
-                <a href="<?php echo base_url('ver_usuarios') ?>" title="Usuarios">
-                    <i class='bx bx-user icon'></i>
-                    <span class="text fs-6 nav-text">Usuarios</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo base_url('ver_estudiantes') ?>" title="Estudiantes">
-                    <i class='bx bxs-graduation icon'></i>
-                    <span class="text nav-text">Estudiantes</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo base_url('ver_profesores') ?>" title="Profesores">
-                    <i class='bx bx-id-card icon'></i>
-                    <span class="text nav-text">Profesores</span>
-                </a>
-            </li>
-            <hr style="background: #fafafa" class="sidebar-divider">
-            <li>
-                <a href="<?php echo base_url('ver_aulas') ?>" title="Aulas">
-                    <i class='bx bx-chalkboard icon'></i>
-                    <span class="text nav-text">Aulas</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo base_url('ver_grados') ?>" title="Aulas">
-                    <i class='bx bx-hash'></i>
-                    <span class="text nav-text">grados</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo base_url('asignaturas') ?>" title="Asignaturas">
-                    <i class='bx bx-math'></i>
-                    <span class="text nav-text">Asignaturas</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo base_url('ver_horarios') ?>" title="Horarios">
-                    <i class='bx bx-calendar icon'></i>
-                    <span class="text nav-text">Horarios</span>
-                </a>
-            </li>
-        </ul>
-        <hr style="background: #fafafa" class="sidebar-divider">
-        <ul class="list-unstyled CTAs">
-            <li>
-                <a href="<?php echo base_url('auth/logout') ?>">
-                    <i class='bx bx-log-out icon'></i>
-                    <span class="text nav-text">Logout</span>
-                </a>
-            </li>
-        </ul>
-
     </nav>
-
-    <!-- Page Content  -->
     <div id="content">
-
-        <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <nav class="navbar" style="background: #F6F5FF  !important;">
             <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
                     <i class='bx bx-chevron-right toggle bx-sm'></i>
                 </button>
-                <div style="margin-top: 10px;" class="border-0">
+
+                <div style="margin-top: 10px; color:#29588abd" class="border-0">
                     <h3 class="mb-0"><?php echo $titulo ?></h3>
                 </div>
-                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Page</a>
-                        </li>
-                    </ul>
-                </div> -->
+            </div>
+            <div class="dropstart">
+                <button class="profile-btn" id="Profile" style="color:#29588abd" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i>
+                    <span class="mr-1" style="color:#29588abd; margin-left: 3px"> <?php echo session('usuario') ?></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">Perfil</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Logouth</a></li>
+                </ul>
             </div>
         </nav>
 
-
-        <!-- #48a4cd -->
-        <!-- #48a4cd -->
-
         <script>
-            // const body = document.querySelector('body'),
-            //     sidebar = body.querySelector('nav'),
-            //     toggle = body.querySelector(".toggle");
+            let varia = []
+            <?php foreach ($Modulos as $modulo) { ?>
+                varia.push({
+                    nombre: '<?php echo $modulo['nombre'] ?>',
+                    orden: '<?php echo $modulo['orden'] ?>',
+                    orden_padre: '<?php echo $modulo['orden_padre'] ?>',
+                    padre_id: '<?php echo $modulo['padre_id'] ?>',
+                    tipo: '<?php echo $modulo['tipo'] ?>',
+                    codigo: '<?php echo $modulo['codigo'] ?>',
+                    icono: '<?php echo $modulo['icono'] ?>',
+                })
+            <?php } ?>
 
+            function ordenarArray(arr) {
+                // Filtrar elementos de tipo "Carpeta"
+                const carpetas = arr.filter(item => item.tipo === "Carpeta");
 
-            // toggle.addEventListener("click", () => {
-            //     sidebar.classList.toggle("close");
-            // })
+                // Ordenar las carpetas por el valor de "orden_padre"
+                carpetas.sort((a, b) => a.orden_padre - b.orden_padre);
 
-            // $(document).ready(function() {
+                // Crear un nuevo array para almacenar el resultado ordenado
+                const resultado = [];
+
+                // Recorrer las carpetas y sus respectivos módulos
+                carpetas.forEach(carpeta => {
+                    resultado.push(carpeta);
+
+                    // Filtrar los módulos con el mismo "padre_id" de la carpeta actual
+                    const modulos = arr.filter(item => item.tipo === "Modulo" && item.padre_id === carpeta.padre_id);
+
+                    // Ordenar los módulos por el valor de "orden"
+                    modulos.sort((a, b) => a.orden - b.orden);
+
+                    // Agregar los módulos al resultado
+                    resultado.push(...modulos);
+                });
+
+                // Filtrar los módulos que no están dentro de ninguna carpeta
+                const modulosSinCarpeta = arr.filter(item => item.tipo === "Modulo" && !carpetas.some(carpeta => carpeta.padre_id === item.padre_id));
+                resultado.push(...modulosSinCarpeta);
+
+                return resultado;
+            }
+
+            const resultado = ordenarArray(varia);
+            console.log(resultado);
+
+            let _row = '';
+            resultado.forEach(element => {
+                let _row = '';
+                if (element.tipo == 'Carpeta') {
+                    _row += `<hr style="background: #fafafa" class="sidebar-divider">`;
+                } else {
+                    _row += `<li>
+                    <a href="<?php echo base_url() ?>${element.codigo}" title="${element.nombre}">
+                    <i class='bx ${element.icono} icon'></i>
+                    <span class="text nav-text">${element.nombre}</span>
+                    </a>
+                    </li>`;
+                }
+
+                $('#pruebanav').append(_row)
+            });
+            _row = `
+            <hr style="background: #fafafa" class="sidebar-divider">
+            <ul class="list-unstyled CTAs">
+            <li>
+            <a href="<?php echo base_url('auth/logout') ?>">
+            <i class='bx bx-log-out icon'></i>
+            <span class="text nav-text">Logout</span>
+            </a>
+            </li>
+            </ul>`;
+            $('#pruebanav').append(_row)
+
             $("#sidebarCollapse").on("click", function() {
                 $("#sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
-            // });
-
-            function enviarwp() {
-                const message = {
-                    phone_number: '3014566632', // Número de teléfono del destinatario
-                    text: 'Hola, este es un mensaje desde mi aplicación.',
-                };
-                try {
-                    $.post('https://api.whatsapp.com/send?phone=' + message.phone_number + '&text=' + encodeURIComponent(message.text))
-                    console.log('Mensaje enviado');
-                } catch (error) {
-                    console.error('Error al enviar el mensaje:', error);
-                }
-            }
         </script>

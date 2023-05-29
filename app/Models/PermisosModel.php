@@ -32,6 +32,16 @@ class PermisosModel extends Model
         $datos = $this->findAll(); 
         return $datos;
     }
+    public function obtenerPermisosRol($rol)
+    {
+        $this->select('permisos.*, r.nombre as rol, a.nombre as accion ');
+        $this->join('roles as r', 'permisos.id_rol = r.id_rol');
+        $this->join('acciones as a', 'permisos.id_accion = a.id_acciones');
+        $this->where('permisos.estado', 'A');
+        $this->where('permisos.id_rol', $rol);
+        $datos = $this->findAll(); 
+        return $datos;
+    }
 
     public function obtenerPermisosEliminados()
     {

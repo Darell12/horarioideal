@@ -3,7 +3,7 @@
         <div class="border-0">
         </div>
 
-        <div>
+        <div style="margin-top: 1em;">
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
             <a href="<?php echo base_url('/usuarios/masivo'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-files"></i>Ingreso Masivo</button></a>
             <button type="button" class="btn btn-outline-success" onclick="fnExcel()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
@@ -66,7 +66,7 @@
                     <h1 class="modal-title fs-5" id="tituloModal">Añadir Usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="body">
                     <div class="mb-3">
                         <div class="row">
                             <div class="">
@@ -127,6 +127,15 @@
                                     <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
                                 </div>
                             </div>
+
+                            <div class="col" id="Divacudientes" hidden>
+                                <label for="nombre" class="col-form-label">Acudientes:</label>
+                                <div class="input-group">
+                                    <button class="btn btn-success btn-sm" id="btnAcudientes" type="button" data-bs-toggle="modal" data-bs-target="#ModalAcudientes"><i class="bi bi-plus"></i></button>
+                                    <input class="form-control" type="text" id="acudientess" name="acudientess" placeholder="Agregar Acudientes" readonly required>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="row">
                             <label id="direccion_usuario" for="direccion">Dirección:</label>
@@ -179,11 +188,9 @@
                         <input type="text" id="id" name="id" hidden>
                         <input type="text" id="nombreActu" name="nombreActu" hidden>
                         <input type="text" id="numeroActu" name="numeroActu" hidden>
-
-
                     </div>
                 </div>
-                <div class="modal-footer" id="botones">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
                 </div>
@@ -231,7 +238,7 @@
     </div>
 </div>
 
-<!-- tabla emalis -->
+<!-- tabla emails -->
 <div id="ModalEmail" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog  modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -343,6 +350,7 @@
                         <tbody style="font-family:Arial;font-size:12px;" id="tabla_telefono">
 
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -393,50 +401,117 @@
     </div>
 </div>
 
+<!-- Modal Acudientes -->
+<form id="formularioAcudiente">
 <div id="ModalAcudientes" class="modal" tabindex="-1" style="background: rgb(0 0 0 / 43%);">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header" style="background: #0f9dba">
-
-                <h5 class="modal-title" id="titulo_email"> Agregar Telefono <a href="#" title="Los telefonos ingresados antes de guardar el usuario por primera vez son guardados temporalmente"><i class="bi bi-question"></i></a></h5>
+            <div class="modal-header" style="background: #427dbb; color:#FFF;">
+                <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Número:</label>
-                        <input type="text" name="telefono" class="form-control" id="telefono">
-                        <div class="invalid-feedback" id="errorTel"></div>
-                    </div>
-
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Tipo:</label>
-                        <select name="tipo" class="form-select form-select" id="tipo">
-                            <option value="">-Seleccione una opción-</option>
-                            <?php foreach ($tipo as $valor) { ?>
-                                <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre']; ?>"><?php echo $valor['nombre']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <div class="invalid-feedback" id="errorTipoTel"></div>
-                    </div>
-                    <div class="col">
-                        <label for="message-text" class="col-form-label">Prioridad:</label>
-                        <div class="input-group">
-                            <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
-                                <option value="">-Seleccione una opción-</option>
-                                <?php foreach ($prioridad as $valor) { ?>
-                                    <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre'] ?>"><?php echo $valor['nombre']; ?></option>
-                                <?php } ?>
+            <div class="modal-body" id="body">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label class="col-form-label">Tipo de Documento:</label>
+                            <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
+                                <option value="">Seleccione un Tipo</option>
+                                <option value="2">Cedula de Ciudadania</option>
+                                <option value="1">Tarjeta de Identidad</option>
+                                <option value="3">Cedula de Extranjeria</option>
                             </select>
-                            <button class="btn btn-outline-success" type="button" id="btn_insertarTelefono" onclick="validarPrioridadTel()" title="Agregar numero"><i class="bi bi-plus"></i></button>
-                            <div class="invalid-feedback" id="errorPrioridadTel"></div>
                         </div>
-                        <input hidden type="text" id="id_telefono" name="id_telefono">
-                        <input hidden type="text" id="tpExistTel" name="tpExistTel">
-                        <input hidden type="text" id="telefonoActu" name="telefonoActu">
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Numéro de Documento:</label>
+                            <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Primer Nombre:</label>
+                            <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
+                            <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Primer Apellido:</label>
+                            <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Segundo Apellido:</label>
+                            <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Emails:</label>
+                            <div class="input-group d-flex">
+                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="nombre" class="col-form-label">Telefonos:</label>
+                            <div class="input-group">
+                                <input class="form-control" type="number" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label id="direccion_usuario" for="direccion">Dirección:</label>
+                        <div class="col">
+                            <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
+                                <option value="">--Selecciona--</option>
+                                <option>Carrera</option>
+                                <option>Calle</option>
+                                <option>Avenida Calle</option>
+                                <option>Avenida Carrera</option>
+                                <option>Autopista</option>
+                                <option>Avenida</option>
+                                <option>Circunvalar</option>
+                                <option>Diagonal</option>
+                                <option>Transversal</option>
+                                <option>Kilometro</option>
+                                <option>Circular</option>
+                            </select>
+                        </div>
 
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion2" name="direccion2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
+                        </div>
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion3" maxLength="4" name="direccion3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
+                        </div>
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion4" maxLength="4" name="direccion4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label id="direccion_usuario" for="direccion"></label>
+                        <input id="direccionAcu" name="direccionAcu" type="text" class="form-control" readonly class="form-control-plaintext">
+                    </div>
+
+                    <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+                    <input type="text" id="tp" name="tp" hidden>
+                    <input type="text" id="id_acu" name="id_acu" hidden>
+                    <input type="text" id="id" name="id" hidden>
+                    <input type="text" id="nombreActuAcu" name="nombreActuAcu" hidden>
+                    <input type="text" id="numeroActuAcu" name="numeroActuAcu" hidden>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-success" id="btnListo">Listo</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
 
 <script>
     function cargar_Excel(json) {
@@ -683,6 +758,9 @@
             telUsuario: {
                 required: true,
             },
+            Acudientess: {
+                required: true,
+            },
             email: {
                 required: true,
             },
@@ -732,6 +810,9 @@
             telUsuario: {
                 required: "Este campo es requerido",
             },
+            acudientess: {
+                required: "Este campo es requerido",
+            },
             email: {
                 required: "Este campo es requerido",
             },
@@ -756,7 +837,6 @@
             },
         }
     });
-
 
     $('#formulario').on('submit', function(e) {
         console.log('activo');
@@ -784,7 +864,7 @@
                     contraseña: $('#contraseña').val(),
 
                 },
-                dataType: "json",
+                dataType: "json",   
             }).done(function(data) {
                 $('#UsuarioModal').modal('hide');
                 let Toast = Swal.mixin({
@@ -805,7 +885,8 @@
                 })
                 console.log('insertar');
                 insertarEmail(data);
-                insertarTelefono(data)
+                insertarTelefono(data);
+                Acudientes(data);
                 contador = 0
                 tablaUsuarios.ajax.reload(null, false)
                 tablaTemporal = [];
@@ -840,6 +921,33 @@
                             <button class="btn btn-outline-danger" onclick="eliminarEmail(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
+        });
+        $('#tabla_email').html(contenido);
+    }
+
+    function generarTablaEmail(Emails) {
+
+        let contador = 0;
+        let prioridades = {
+            '6': 'Principal',
+            '7': 'Secundario'
+        }
+
+        let contenido = '';
+        Emails.forEach(email => {
+            contador++
+            contenido += `
+            <tr id="util${contador}">
+            <td class="text-center">${email.email}</td>
+            <td class="text-center">${prioridades[email.prioridad]}</td>
+            <td hidden class="text-center">${email.id_email ? email.id_email : ''}</td>
+            <td hidden class="text-center">${email.tp}</td>
+            <td hidden class="text-center">${email.tp == 2 ? email.email : ''}</td>
+            <td class="text-center">
+            <button class="btn btn-outline-primary" onclick="editarEmail( ${contador});"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-outline-danger" onclick="eliminarEmail(${contador}, ${email.tp});"><i class="bi bi-trash"></i></button>
+            </td>
+            </tr>`
         });
         $('#tabla_email').html(contenido);
     }
@@ -1060,10 +1168,57 @@
                     $('#confirmar_contraseña').attr('hidden', '');
                     $('#password_label_c').attr('hidden', '');
                     $('#formulario').validate().resetForm();
+                    $('#Divacudientes').attr('hidden', '');
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
+                    if (rs[0]['id_rol'] == '3') {
+                        $('#Divacudientes').removeAttr('hidden', '')
+                    }
+
                 }
             })
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>/acudientes/buscarAcudiente/" + id,
+                dataType: "JSON",
+                success: function(ac) {
+                    $('#tp').val(2);
+                    $('#id').val(id);
+                    $('#tipo_documentoAcu').val(ac[0]['tipo_documento']);
+                    $('#numero_documentoAcu').val(ac[0]['n_documento']);
+                    $('#primer_nombreAcu').val(ac[0]['nombre_p']);
+                    $('#segundo_nombreAcu').val(ac[0]['nombre_s']);
+                    $('#primer_apellidoAcu').val(ac[0]['apellido_p']);
+                    $('#segundo_apellidoAcu').val(ac[0]['apellido_s']);
+                    $('#direccionAcu').val(ac[0]['direccion']);
+                    $('#emailAcu').val(ac[0]['email']);
+                    $('#telefonoAcu').val(ac[0]['telefono']);
+                    $('#id_acu').val(ac[0]['id_acudiente'])
+                    $('#tituloModalAcu').text('Editar Acudiente');
+                    $("#btnListo").text('Actualizar');
+
+                    let str = ac[0]['direccion']
+                    str = str.replace('#', '');
+                    let partes = str.split(/[\s-]+/);
+                    if (partes.length > 4) {
+                        $('#direccion1').val(partes[0] + ' ' + partes[1]);
+                        $('#direccion2').val(partes[2]);
+                        $('#direccion3').val(partes[3]);
+                        $('#direccion4').val(partes[4]);
+                    } else {
+                        $('#direccion1').val(partes[0]);
+                        $('#direccion2').val(partes[1]);
+                        $('#direccion3').val(partes[2]);
+                        $('#direccion4').val(partes[3]);
+
+                    }
+                    let dato = $('#primer_nombreAcu').val()
+                    let dato2 = $('#primer_apellidoAcu').val()
+                    $('#acudientess').val(dato + ' ' + dato2)
+                }
+            })
+
             tablaTemporal = []
             $.ajax({
                 type: "POST",
@@ -1088,6 +1243,7 @@
                     }
                 }
             })
+
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>telefono/telefonosUsuario/" + id,
@@ -1134,7 +1290,6 @@
             $('#dir3').val('');
             $('#dir4').val('');
             $('#confirmar_contraseña').val('');
-
             $('#contraseña').removeAttr('hidden', '');
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
@@ -1143,7 +1298,9 @@
             $('#tituloModal').text('Añadir Usuario');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
+            $('#Divacudientes').attr('hidden', '');
             $("#UsuarioModal").modal("show");
+
         }
     }
 
@@ -1449,13 +1606,197 @@
         document.getElementById('direccionX').value = direccionReal;
     }
 
+    function ValidardireccionAcudiente() {
+        var dir1 = document.getElementById('direccion1');
+        var dir2 = document.getElementById('direccion2');
+        var dir3 = document.getElementById('direccion3');
+        var dir4 = document.getElementById('direccion4');
 
-    $('#rol').on('change', function(e){
+        var direccionReal = dir1.value + ' ' + dir2.value + ' ' + '#' + dir3.value + ' ' + '-' + ' ' + dir4.value;
+
+        document.getElementById('direccionAcu').value = direccionReal;
+    }
+
+    $('#rol').on('change', function(e) {
         let rol = $('#rol').val();
-        if(rol == '3'){ 
-            $('#botones').append('<button type="submit" class="btn btn-outline-success">Acudientes</button>')
+        if (rol == '3') {
+            $('#Divacudientes').removeAttr('hidden', '')
+            $('#acudientess').val('');
+            $('#tipo_documentoAcu').val('');
+            $('#numero_documentoAcu').val('');
+            $('#primer_nombreAcu').val('');
+            $('#segundo_nombreAcu').val('');
+            $('#primer_apellidoAcu').val('');
+            $('#segundo_apellidoAcu').val('');
+            $('#direccionAcu').val('');
+            $('#emailAcu').val('');
+            $('#telefonoAcu').val('');
+            $('#direccion1').val('');
+            $('#direccion2').val('');
+            $('#direccion3').val('');
+            $('#direccion4').val('');
+        } else {
+            $('#Divacudientes').attr('hidden', '')
         }
     })
+
+    $("#formularioAcudiente").validate({
+        rules: {
+            tipo_documentoAcu: {
+                required: true,
+            },
+            numero_documentoAcu: {
+                required: true,
+                minlength: 4,
+                maxlength: 12,
+                digits: true,
+                remote: {
+                    url: '<?php echo base_url() ?>acudientes/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'n_documento';
+                        },
+                        valor: function() {
+                            return $("#numero_documentoAcu").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActuAcu: function() {
+                            return $("#numeroActuAcu").val();
+                        },
+                    },
+                }
+            },
+            primer_nombreAcu: {
+                required: true,
+            },
+            segundo_nombreAcu: {
+            },
+            primer_apellidoAcu: {
+                required: true,
+            },
+            segundo_apellidoAcu: {
+                required: true,
+            },
+            telefonoAcu: {
+                digits: true,
+                required: true,
+            },
+            emailAcu: {
+                email: true,
+                required: true,
+            },
+            direccion1: {
+                required: true,
+            },
+            direccion2: {
+                required: true,
+            },
+            direccion3: {
+                required: true,
+            },
+            direccion4: {
+                required: true,
+            },
+        },
+        messages: {
+            tipo_documentoAcu: {
+                required: "Por favor seleccione una opción",
+            },
+            numero_documentoAcu: {
+                required: "El número de documento es requerido",
+                digits: "Solo ingrese digitos por favor",
+                minlength: "El número de documento debe tener al menos 4 caracteres",
+                maxlength: "El número de documento no puede tener más de 12 caracteres",
+                remote: "Este número de documento ya esta registrado"
+            },
+            primer_nombreAcu: {
+                required: "Este campo es requerido",
+            },
+            primer_apellidoAcu: {
+                required: "Este campo es requerido",
+            },
+            segundo_apellidoAcu: {
+                required: "Este campo es requerido",
+            },
+            telefonoAcu: {
+                required: "Este campo es requerido",
+            },
+            emailAcu: {
+                required: "Este campo es requerido",
+                email: "Ingrese un email valido"
+            },
+            direccion1: {
+                required: "Este campo es requerido",
+            },
+            direccion2: {
+                required: "Este campo es requerido",
+            },
+            direccion3: {
+                required: "Este campo es requerido",
+            },
+            direccion4: {
+                required: "Este campo es requerido",
+            },
+        }
+    });
+
+    function Acudientes(data) {
+        if ($('#formularioAcudiente').valid()) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/acudientes/insertarAcudientes'); ?>",
+            data: {
+                tp: $('#tp').val(),
+                id: $('#tp').val() == 2 ? $('#id_acu').val() : data,
+                tipo_documentoAcu: $('#tipo_documentoAcu').val(),
+                numero_documentoAcu: $('#numero_documentoAcu').val(),
+                primer_nombreAcu: $('#primer_nombreAcu').val(),
+                segundo_nombreAcu: $('#segundo_nombreAcu').val(),
+                primer_apellidoAcu: $('#primer_apellidoAcu').val(),
+                segundo_apellidoAcu: $('#segundo_apellidoAcu').val(),
+                direccionAcu: $('#direccionAcu').val(),
+                emailAcu: $('#emailAcu').val(),
+                telefonoAcu: $('#telefonoAcu').val(),
+            },
+            dataType: "json",
+        }).done(function(data) {
+            $('#ModalAcudientes').modal('hide');
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Acción realizada con exito!'
+            })
+            return
+        })
+    }
+    }
+
+    $('#btnListo').on('click', function(e) {
+        let dato = $('#primer_nombreAcu').val()
+        let dato2 = $('#primer_apellidoAcu').val()
+        $('#acudientess').val(dato + ' ' + dato2)
+        if ($('#formularioAcudiente').valid()) {
+            e.preventDefault(); 
+            console.log('sirve');
+            $('#ModalAcudientes').modal('hide');
+        }
+
+    })
+
+
 </script>
-
-

@@ -10,14 +10,14 @@ use App\Models\GradosModel;
 use App\Models\Parametros_detModel;
 use App\Models\EmailsModel;
 use App\Models\TelefonosModel;
-
+use App\Controllers\Principal;
 
 class Estudiantes extends BaseController
 {
     protected $estudiantes, $eliminados;
     protected $roles, $usuarios, $grados;
     protected $prioridad, $tipotel, $emails, $telefonos;
-
+    protected $metodos;
 
     public function __construct()
     {
@@ -30,15 +30,17 @@ class Estudiantes extends BaseController
         $this->emails = new EmailsModel();
         $this->telefonos = new TelefonosModel();
         $this->prioridad = new Parametros_detModel();
+        $this->metodos = new Principal();
     }
     public function index()
     {
+        $cargaSideBar = $this->metodos->getModulos();
         $roles = $this->roles->obtenerRoles('A');
         $grados = $this->grados->obtenerGrados('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Estudiantes', 'roles' =>  $roles, 'grados' => $grados,  'prioridad' => $prioridad, 'tipo' => $tipotel];
+        $data = ['titulo' => 'Administrar Estudiantes', 'roles' =>  $roles, 'grados' => $grados,  'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/estudiantes/estudiantes', $data);
@@ -138,8 +140,9 @@ class Estudiantes extends BaseController
     }
     public function eliminados() //Mostrar vista de Paises Eliminados
     {
+        $cargaSideBar = $this->metodos->getModulos();
         // Redireccionar a la URL anterior
-        $data = ['titulo' => 'Administrar Estudiantes Eliminados'];
+        $data = ['titulo' => 'Administrar Estudiantes Eliminados', 'Modulos' => $cargaSideBar];
         echo view('/principal/sidebar', $data);
         echo view('/estudiantes/eliminados', $data);
     }
