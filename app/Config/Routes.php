@@ -50,6 +50,7 @@ $routes->get('/ver_estudiantes', 'Estudiantes::index');
 $routes->get('/ver_usuarios', 'Usuarios::index');
 $routes->get('/ver_profesores', 'Profesores::index');
 $routes->get('/ver_estudiantes', 'Estudiantes::index');
+$routes->get('/inicio_estudiante', 'Inicio::estudiantes');
 $routes->get('/ver_asignaturas_estudiante', 'Asignaturas::AsignaturasUnica');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS
@@ -63,28 +64,28 @@ $routes->get('/eliminados_aulas', 'Aulas::eliminados');
 $routes->get('/eliminados_franjas', 'Franjas_horarias::eliminados');
 $routes->get('/eliminados_grados', 'Grados::eliminados');
 $routes->get('/eliminados_permisos', 'Permisos::eliminados');
-$routes->get('/eliminados_horarios_enc', 'horario_enc::eliminados');
+$routes->get('/eliminados_horarios_enc', 'Horario_enc::eliminados');
 
 //! RUTAS PARA INSERTAR
-$routes->post('/roles_insertar', 'roles::insertar');
-$routes->post('/asignaturas_insertar', 'asignaturas::insertar');
-$routes->post('/acciones_insertar', 'acciones::insertar');
-$routes->post('/franjas_insertar', 'franjas_horarias::insertar');
-$routes->post('/aulas_insertar', 'aulas::insertar');
-$routes->post('/permisos_insertar', 'permisos::insertar');
-$routes->post('/grados_insertar', 'grados::insertar');
-$routes->post('/horario_enc_insertar', 'horario_enc::insertar');
+$routes->post('/roles_insertar', 'Roles::insertar');
+$routes->post('/asignaturas_insertar', 'Asignaturas::insertar');
+$routes->post('/acciones_insertar', 'Acciones::insertar');
+$routes->post('/franjas_insertar', 'Franjas_horarias::insertar');
+$routes->post('/aulas_insertar', 'Aulas::insertar');
+$routes->post('/permisos_insertar', 'Permisos::insertar');
+$routes->post('/grados_insertar', 'Grados::insertar');
+$routes->post('/horario_enc_insertar', 'Horario_enc::insertar');
 // $routes->get('/paises/cambiarEstado/(:num)', 'Paises::cambiarEstado/$1');
 
 // ! RUTAS PARA CAMBIAR ESTADOS
-$routes->get('/estado_roles/(:num)/(:alpha)', 'roles::cambiarEstado/$1/$2');
-$routes->get('/estado_asignaturas/(:num)/(:alpha)', 'asignaturas::cambiarEstado/$1/$2');
-$routes->get('/estado_acciones/(:num)/(:alpha)', 'acciones::cambiarEstado/$1/$2');
-$routes->get('/estado_aulas/(:num)/(:alpha)', 'aulas::cambiarEstado/$1/$2');
-$routes->get('/estado_franjas/(:num)/(:alpha)', 'franjas_horarias::cambiarEstado/$1/$2');
-$routes->get('/estado_grados/(:num)/(:alpha)', 'grados::cambiarEstado/$1/$2');
-$routes->get('/estado_permisos/(:num)/(:alpha)', 'permisos::cambiarEstado/$1/$2');
-$routes->get('/estado_horarios_enc/(:num)/(:alpha)', 'horario_enc::cambiarEstado/$1/$2');
+$routes->get('/estado_roles/(:num)/(:alpha)', 'roles::CambiarEstado/$1/$2');
+$routes->get('/estado_asignaturas/(:num)/(:alpha)', 'Asignaturas::cambiarEstado/$1/$2');
+$routes->get('/estado_acciones/(:num)/(:alpha)', 'Acciones::cambiarEstado/$1/$2');
+$routes->get('/estado_aulas/(:num)/(:alpha)', 'Aulas::cambiarEstado/$1/$2');
+$routes->get('/estado_franjas/(:num)/(:alpha)', 'Franjas_horarias::cambiarEstado/$1/$2');
+$routes->get('/estado_grados/(:num)/(:alpha)', 'Grados::cambiarEstado/$1/$2');
+$routes->get('/estado_permisos/(:num)/(:alpha)', 'Permisos::cambiarEstado/$1/$2');
+$routes->get('/estado_horarios_enc/(:num)/(:alpha)', 'Horario_enc::cambiarEstado/$1/$2');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
 
@@ -42,15 +42,11 @@
 
 </head>
 
-<div class="wrapper">
-    <!-- Sidebar  -->
+<div class="wrapper" >
     <nav id="sidebar">
         <div class="sidebar-header">
             <h3>Horario Ideal</h3>
         </div>
-        <!-- <button onclick="enviarwp()">
-            boton
-        </button> -->
         <ul class="list-unstyled" id="pruebanav">
             <div style="margin-top: 0.5em;">
                 <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">

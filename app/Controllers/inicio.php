@@ -58,4 +58,10 @@ class Inicio extends BaseController
         }
         return json_encode($returnData);
     }
+    public function estudiantes() {
+        $cargaSideBar = $this->metodos->getModulos();
+        $data = ['titulo' => 'Bienvenido!', 'Modulos' => $cargaSideBar];
+        echo view('/principal/sidebar', $data);
+        echo view('/inicio/estudiantesInicio', $data);  
+    }
 }

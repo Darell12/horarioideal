@@ -9,7 +9,7 @@
                 <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
             </div>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" style="max-height:80vh;">
             <table style="text-align: center;" id="tablaEstudiantes" class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
@@ -26,6 +26,7 @@
             </table>
         </div>
     </div>
+</div>
 
     <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
