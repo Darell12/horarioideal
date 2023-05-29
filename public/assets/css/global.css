@@ -26,9 +26,10 @@ label.error {
     color: #dc3545;
 }
 
-#content {
+/* #content {
     background: #eee !important;
-}
+    background-image: url('img/hue.png');
+} */
 
 td {
     text-justify: center;
@@ -1307,6 +1308,7 @@ ul {
     color: #263747;
     background-color: #D7E2EB;
     border-color: #D7E2EB;
+    
 }
 
 .modal-footer .btn-light-danger {

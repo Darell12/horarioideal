@@ -1,33 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    
+    
+    <!-- style="background-image: url('img/hue.png');" -->
+    
+    <!-- <div id="miDiv">
+     <img src="img/fondoaja.png" style="width: 1600px;"> 
+    </div> -->
+       
+</body>
+</html>
 
-<div class="container mt-3">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">Estudiantes</h5>
-        </div>
-      <div class="card-body">
-        <canvas id="ChartEstudiantes">
 
-        </canvas>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">Profesores</h5>
-        </div>
-      <div class="card-body">
-        <canvas id="ChartProfesores">
 
-        </canvas>
-      </div>
-    </div>
-  </div>
 
-</div>
-</div>
 
 
 <script>
