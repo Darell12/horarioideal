@@ -33,6 +33,7 @@ class Horario_encModel extends Model
         return $datos;
     }
 
+    
     public function obtenerEncabezados($estado)
     {
         $this->select('horarios_enc.*, g.alias as grado, p.nombre as jornada');
@@ -42,7 +43,14 @@ class Horario_encModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-
+    public function obtenerEncabezadosGrado($estado, $id)
+    {
+        $this->select('horarios_enc.*');
+        $this->where('horarios_enc.id_grado', $id);
+        $this->where('horarios_enc.estado', $estado);
+        $datos = $this->first();
+        return $datos;
+    }
     public function obtenerHorarios_encEliminados()
     {
         $this->select('horarios_enc.*');

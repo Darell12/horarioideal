@@ -138,7 +138,7 @@
         };
         $.post('<?php echo base_url('/auth/login') ?>', data, function(response) {
             if (response == 'success') {
-                window.location.replace('<?php echo base_url('/Principal'); ?>');
+                window.location.replace('<?php echo base_url('/inicio'); ?>');
             }
             if (response == 'error') {
                 $('#login-error').text('Número de documento o Contraseña incorrecta');

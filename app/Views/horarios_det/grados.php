@@ -13,19 +13,12 @@
                     <span class="status-number" id="totalAsignaturas"></span>
                     <span class="status-type">Total Asignaturas</span>
                 </div>
-                <!-- <div class="item-status">
-                    <span class="status-number">24</span>
-                    <span class="status-type">Horas Diarias</span>
-                </div> -->
                 <div class="item-status">
                     <span class="status-number" id="horas_semanales"></span>
                     <span class="status-type">Horas Semanales</span>
                 </div>
             </div>
             <div class="view-actions">
-                <button class="view-btn detalle" onclick="visualizarHorario()" title="List View">
-                    <i class="bi bi-eye"></i>
-                </button>
                 <button class="view-btn list-view" title="List View">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
                         <line x1="8" y1="6" x2="21" y2="6" />
@@ -249,7 +242,7 @@
             }
         });
 
-        dataURL = "<?php echo base_url('/horario_det/buscarDetalleProfe/') . session('id') ?>";
+        dataURL = "<?php echo base_url('/horario_det/buscarDetalleGrado/') ?>"+id;
         $.ajax({
             type: "POST",
             url: dataURL,
@@ -288,11 +281,6 @@
         })
     }
 
-
-    // Mostrar el nombre del día y del mes actual
-    console.log("Día: " + nombreDia);
-    console.log("Día: " + dia);
-    console.log("Mes: " + nombreMes);
     $('#fecha').text(nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1) + ', ' + dia)
 
 
@@ -348,21 +336,12 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
-        var detalle = document.querySelector('.detalle');
         var listView = document.querySelector('.list-view');
         var gridView = document.querySelector('.grid-view');
         var projectsList = document.querySelector('.project-boxes');
 
-        detalle.addEventListener('click', function() {
-            gridView.classList.remove('active');
-            listView.classList.remove('active');
-            detalle.classList.add('active');
-
-        });
-
         listView.addEventListener('click', function() {
             gridView.classList.remove('active');
-            detalle.classList.remove('active');
             listView.classList.add('active');
             projectsList.classList.remove('jsGridView');
             projectsList.classList.add('jsListView');
@@ -370,7 +349,6 @@
 
         gridView.addEventListener('click', function() {
             gridView.classList.add('active');
-            detalle.classList.remove('active');
             listView.classList.remove('active');
             projectsList.classList.remove('jsListView');
             projectsList.classList.add('jsGridView');
@@ -385,7 +363,7 @@
     let constante
     $(document).ready(function() {
 
-        dataURL = "<?php echo base_url('/inicio/ConsultaAsignaturas/'); ?><?php echo session('id') ?>";
+        dataURL = "<?php echo base_url('/inicio/ConsultaGrados/'); ?><?php echo session('id') ?>";
         $.ajax({
             type: "POST",
             url: dataURL,
@@ -404,34 +382,23 @@
             rs.forEach(asignatura => {
                 // CONSULTA DE LOS DETALLES DE CADA ASIGNATURA OBTENIDA
                 horas_semanales += +asignatura.horas_semanales
-                dataURL = `<?php echo base_url('/inicio/ConsultaDetalleAsignaturas/'); ?>${asignatura.id_grado_asignatura}`;
-                $.ajax({
-                    type: "POST",
-                    url: dataURL,
-                    dataType: "json",
-                }).done(function(response) {
-                    console.log(response);
 
+                contadorEstilos++
+                console.log(contadorEstilos);
+                if (contadorEstilos == 5) {
+                    contadorEstilos = 0
+                }
+                contador++
 
-                    contadorEstilos++
-                    console.log(contadorEstilos);
-                    if (contadorEstilos == 5) {
-                        contadorEstilos = 0
-                    }
-                    contador++
-
-                    // const diasFaltantes = diasHastaDiaDeLaSemana(response[0].diaN);
-                    // console.log(`Faltan ${diasFaltantes} días para el próximo ${response[0].diaN}.`);
-
-                    contenido = `
-                            <div class="project-box-wrapper" data-bs-toggle="modal" data-bs-target="#modal-${contador}">
-                                <div class="project-box" style="cursor: pointer; background:${COLORES[contadorEstilos].background}">
+                contenido = `
+                            <div class="project-box-wrapper">
+                                <div class="project-box" style=" background:${COLORES[contadorEstilos].background}">
                                     <div class="project-box-header">
                                         <span>December 10, 2020</span>
                                     </div>
                                     <div class="project-box-content-header">
-                                        <p class="box-content-header">${asignatura.nombre}</p>
-                                        <p class="box-content-subheader">${asignatura.grado}</p>
+                                        <p class="box-content-header">${asignatura.grado}</p>
+                                        
                                     </div>
                                     <div class="project-box-footer">
                                         <div class="participants">
@@ -439,63 +406,16 @@
                                                 <i class="bi bi-calculator"></i>
                                             </button>
                                         </div>
-                                        <button style="border: none; background:#f3f6fd00">
+                                        <button style="border: none; background:#f3f6fd00" onclick="visualizarHorario(${asignatura.id_grado})">
                                             <div class="days-left" style="color:${COLORES[contadorEstilos].detalles}">
                                                 Ver detalles
                                             </div>
                                         </button>
                                     </div>
                                 </div>`
-                    $(`#contenedorTarjetas`).append(contenido)
+                $(`#contenedorTarjetas`).append(contenido)
+            });
 
-                    contenido = `    <div class="modal fade" id="modal-${contador}" role="dialog" aria-hidden="true">
-                                 <div class="modal-dialog" role="document">
-                                     <div class="modal-content">
-                                         <div class="modal-header">
-                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                 <!-- <span aria-hidden="true">×</span> -->
-                                             </button>
-                                         </div>
-                                         <div class="modal-body">
-                                             <h3 class="lecture-title">${asignatura.nombre} ${asignatura.grado}</h3>
-                                             <ul class="lecture-info">
-                                                 <li class="lecture-code">
-                                                     <i class="material-icons ic-lecture-info">Area:</i>
-                                                     <span>${asignatura.area}</span>
-                                                 </li>
-                                                 <li class="lecture-code">
-                                                     <i class="material-icons ic-lecture-info" id="aula${contador}">Aula:</i>
-                                                 </li>
-                                             </ul>
-                                             <div class="lecture-description">
-                                                 <p class="txt-description" id="descripcion${contador}">
-                                                 </p>
-                                             </div>
-                                         </div>
-                                         <div class="modal-footer">
-                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>`
-                    $(`#contenedorModales`).append(contenido)
-
-                    response.forEach(element => {
-                        $(`#descripcion${contador}`).append(
-                            `
-                            <p> <span class="fw-bold">${element.diaN}:</span> ${element.inicio} ~ ${element.fin}</p><br>
-                            `
-                        )
-                    });
-                    $(`#aula${contador}`).append(
-                        `
-                            <span class="fw-bold">${response[0].aula}</span>
-                            `
-                    )
-
-                });
-
-            })
             $('#horas_semanales').text(horas_semanales)
         })
     })

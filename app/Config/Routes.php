@@ -51,6 +51,7 @@ $routes->get('/ver_usuarios', 'Usuarios::index');
 $routes->get('/ver_profesores', 'Profesores::index');
 $routes->get('/ver_estudiantes', 'Estudiantes::index');
 $routes->get('/inicio_estudiante', 'Inicio::estudiantes');
+$routes->get('/grados_asignados', 'Inicio::gradosAsignados');
 $routes->get('/ver_asignaturas_estudiante', 'Asignaturas::AsignaturasUnica');
 
 // ! RUTAS DE VISTAS TABLAS ELIMINADAS

@@ -75,6 +75,13 @@ class Horario_det extends BaseController
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         echo json_encode($horario_det);
     }
+    public function buscarDetalleGrado()
+    {
+        $id = $this->request->getPost('id');
+        $encabezado = $this->horario->obtenerEncabezadosGrado('A', $id);
+        $horario_det = $this->horario_det->obtenerDetalles($encabezado['id_horarios_enc']);
+        return json_encode($horario_det);
+    }
     public function buscarDetalles()
     {
         $horario_det = $this->horario_det->buscarDetalles();
@@ -91,6 +98,11 @@ class Horario_det extends BaseController
         echo json_encode($horario_det);
     }
     public function buscarDetalleAsignatura($id)
+    {
+        $horario_det = $this->horario_det->buscarDetalleAsignatura($id);
+        return $horario_det;
+    }
+    public function ObtenterGradosProfes($id)
     {
         $horario_det = $this->horario_det->buscarDetalleAsignatura($id);
         return $horario_det;

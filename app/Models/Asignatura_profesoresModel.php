@@ -46,6 +46,19 @@ class Asignatura_profesoresModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function ObtenterGradosProfes($id)
+    {
+        $this->select('asignatura_profesores.*, asignaturas.nombre as nombre, grados.alias, grados_asignatura.horas_semanales, grados.alias as grado, param.nombre as area, grados_asignatura.id_grado as id_grado');
+        $this->join('grados_asignatura', 'asignatura_profesores.id_grado_asignatura = grados_asignatura.id_grado_asignatura');
+        $this->join('asignaturas', 'grados_asignatura.id_asignatura = asignaturas.id_asignatura');
+        $this->join('grados', 'grados_asignatura.id_grado = grados.id_grado');
+        $this->join('parametro_det as param', 'asignaturas.Codigo = param.id_parametro_det');
+        $this->where('asignatura_profesores.estado', 'A');
+        $this->where('id_usuario', $id);
+        $this->groupBy('grado');
+        $datos = $this->findAll();
+        return $datos;
+    }
     public function asignaturaProfesor($id)
     {
         $this->select('asignatura_profesores.*, asignaturas.nombre as asignatura, grados.alias');
