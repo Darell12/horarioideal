@@ -81,7 +81,6 @@ class UsuariosModel extends Model
         $this->join('telefonos', 'usuarios.id_usuario = telefonos.id_usuario', 'left');
         $this->where('usuarios.id_usuario', $id);
         $this->where('usuarios.estado', 'A');
-        $this->where('emails.estado', 'A');
         $datos = $this->first();
         return $datos;
     }

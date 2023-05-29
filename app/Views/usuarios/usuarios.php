@@ -1295,6 +1295,7 @@
             $('#confirmar_contraseña').removeAttr('hidden', '');
             $('#password_label_c').removeAttr('hidden', '');
             $('#formulario').validate().resetForm();
+            $('#formularioAcudientes').validate().resetForm();
             $('#tituloModal').text('Añadir Usuario');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
@@ -1797,6 +1798,8 @@
         }
 
     })
+
+    
 
 
 </script>
