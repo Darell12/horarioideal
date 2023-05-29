@@ -48,6 +48,8 @@ class Usuarios extends BaseController
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
+        // echo view('/principal/footer', $data);
+
     }
     public function perfil($id)
     {
@@ -64,7 +66,7 @@ class Usuarios extends BaseController
 
         // $estudiante = $this->usuario->buscarEstudiantes($id);
         if ($usuario['id_rol'] == 3) {
-            $acudientes = $this->acudientes->ObtenerAcudientes('A', $id);
+            $acudientes = $this->acudientes->ObtenerAcudientes('A', session('id'));
         } else {
             $acudientes = '';
         }
