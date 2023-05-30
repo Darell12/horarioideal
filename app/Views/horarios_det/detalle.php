@@ -67,24 +67,24 @@
                             <div class="table-schedule">
                                 <div class="timeline">
                                     <ul>
-                                        <li><span>06:00</span></li>
-                                        <li><span>06:30</span></li>
-                                        <li><span>07:00</span></li>
-                                        <li><span>07:30</span></li>
-                                        <li><span>08:00</span></li>
-                                        <li><span>08:30</span></li>
-                                        <li><span>09:00</span></li>
-                                        <li><span>09:30</span></li>
-                                        <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                        <li class="mañana"><span>06:00</span></li>
+                                        <li class="mañana"><span>06:30</span></li>
+                                        <li class="mañana"><span>07:00</span></li>
+                                        <li class="mañana"><span>07:30</span></li>
+                                        <li class="mañana"><span>08:00</span></li>
+                                        <li class="mañana"><span>08:30</span></li>
+                                        <li class="mañana"><span>09:00</span></li>
+                                        <li class="mañana"><span>09:30</span></li>
+                                        <li class="mañana" style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
                                             <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
                                         </li>
-                                        <li><span>10:30</span></li>
-                                        <li><span>11:00</span></li>
-                                        <li><span>11:30</span></li>
-                                        <li><span>12:00</span></li>
-                                        <li><span>12:30</span></li>
-                                        <li><span>13:00</span></li>
-                                        <li><span>13:30</span></li>
+                                        <li class="mañana"><span>10:30</span></li>
+                                        <li class="mañana"><span>11:00</span></li>
+                                        <li class="mañana"><span>11:30</span></li>
+                                        <li class="mañana"><span>12:00</span></li>
+                                        <li class="mañana"><span>12:30</span></li>
+                                        <li class="mañana"><span>13:00</span></li>
+                                        <li class="mañana"><span>13:30</span></li>
                                         <li><span>14:00</span></li>
                                         <li><span>14:30</span></li>
                                         <li><span>15:00</span></li>
@@ -266,15 +266,29 @@
 
 
             let franjasTotales
-            $.ajax({
-                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-                dataType: "json",
-                success: function(data) {
-                    franjasTotales = data;
-                    console.log('franjasTotales');
-                    console.log(franjasTotales);
-                }
-            });
+            if (<?php echo $datos['duracion_hora'] ?> == 12) {
+                $.ajax({
+                    url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
+                    dataType: "json",
+                    success: function(data) {
+                        franjasTotales = data;
+                        console.log('franjasTotales');
+                        console.log(franjasTotales);
+                    }
+                });
+
+            } else {
+                $.ajax({
+                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                    dataType: "json",
+                    success: function(data) {
+                        franjasTotales = data;
+                        console.log('franjasTotales');
+                        console.log(franjasTotales);
+                    }
+                });
+
+            }
 
             dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
             $.ajax({
@@ -287,31 +301,25 @@
                 success: function(rs) {
                     console.log(rs);
                     contenido = ''
-                    $.ajax({
-                        url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-                        dataType: "json",
-                        success: function(data) {
-                            franjasTotales = data;
-                            rs.forEach(element => {
-                                let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
-
-                                contenido = `<li class="lecture-time ${franjasTotales
-                                                .find(objeto => objeto.id_parametro_det == element.hora_inicio)
-                                                ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
-                                                <a href="#">
-                                                    <div class="lecture-info">
-                                                        <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
-                                                        <h6 class="lecture-location">${element.aula}</h6>
-                                                        <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
-                                                    </div>
-                                                </a>
-                                            </li>`
-                                $(`#${element.dia}`).append(contenido)
-                            });
-                        }
+                    rs.forEach(element => {
+                        let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+                        console.log(franjasTotales.find(objeto => objeto.id_parametro_det == element.hora_inicio))
+                        contenido = `<li class="lecture-time ${franjasTotales
+                                                    .find(objeto => objeto.id_parametro_det == element.hora_inicio)
+                                                    ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
+                                                    <a href="#">
+                                                        <div class="lecture-info">
+                                                            <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
+                                                            <h6 class="lecture-location">${element.aula}</h6>
+                                                            <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
+                                                        </div>
+                                                    </a>
+                                                </li>`
+                        $(`#${element.dia}`).append(contenido)
                     });
                 }
-            })
+            });
+
         }
 
         let inicio = ''
@@ -470,26 +478,30 @@
             e.preventDefault();
         })
 
-        let duracionAsignaturas = [];
-        let franjasTotales = [];
-        let franjasTotalesOcupadas = [];
-        let franjasTotalesOcupadasLunes = [];
-        let franjasTotalesOcupadasAula = [];
-        let franjasProfesor = [];
-        let numeroRepeticiones = 0;
-
         $(document).ready(function() {
 
+            if (<?php echo $datos['duracion_hora'] ?> == 12) {
+                $.ajax({
+                    url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
+                    dataType: "json",
+                    success: function(data) {
+                        franjasTotales = data;
+                        console.log('franjasTotales');
+                        console.log(franjasTotales);
+                    }
+                });
 
-            $.ajax({
-                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-                dataType: "json",
-                success: function(data) {
-                    franjasTotales = data;
-                    console.log('franjasTotales');
-                    console.log(franjasTotales);
-                }
-            });
+            } else {
+                $.ajax({
+                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                    dataType: "json",
+                    success: function(data) {
+                        franjasTotales = data;
+                        console.log('franjasTotales');
+                        console.log(franjasTotales);
+                    }
+                });
+            }
 
             let id_grado
             $.ajax({
@@ -518,6 +530,14 @@
             }, 1000);
 
         });
+
+        let duracionAsignaturas = [];
+        let franjasTotales = [];
+        let franjasTotalesOcupadas = [];
+        let franjasTotalesOcupadasLunes = [];
+        let franjasTotalesOcupadasAula = [];
+        let franjasProfesor = [];
+        let numeroRepeticiones = 0;
 
         function dividirArray(array, horaInicio, horaFin) {
             let arrayRango = [];
@@ -655,7 +675,6 @@
                                 console.log('DIA:')
                                 const found = diasSemana.find(element => element > dia);
                                 const found2 = diasSemana.filter(element => !element == dia);
-                                console.log(found2)
                                 // diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
 
                                 // RETIRA HORA EN CASO DE EXCESO

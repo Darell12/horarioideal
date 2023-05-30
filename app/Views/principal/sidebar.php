@@ -13,17 +13,10 @@
 
     <title>Horario Ideal</title>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css"> -->
-    <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
-    <!-- <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
-    <!-- <link href="<?php echo base_url() ?>assets/css/pruebas.css" rel="stylesheet"> -->
     <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
@@ -39,16 +32,19 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebar.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebare.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>
 
-<div class="wrapper" >
+<div class="wrapper">
     <nav id="sidebar">
         <div class="sidebar-header">
             <h3>Horario Ideal</h3>
         </div>
+        <button type="button" id="sidebarCollapse1" class="btn">
+            <i class='bx bx-chevron-right toggle bx-sm'></i>
+        </button>
         <ul class="list-unstyled" id="pruebanav">
             <div style="margin-top: 0.5em;">
                 <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
@@ -169,6 +165,11 @@
             $('#pruebanav').append(_row)
 
             $("#sidebarCollapse").on("click", function() {
+                $("#sidebar").toggleClass("active");
+                $(this).toggleClass("active");
+            });
+
+            $("#sidebarCollapse1").on("click", function() {
                 $("#sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });

@@ -122,4 +122,9 @@ class Horario_det extends BaseController
         $franja = $this->franja->ObtenerParametro(13);
         echo json_encode($franja);
     }
+    public function obtenerFranjas45()
+    {
+        $franja = $this->franja->ObtenerParametro(12);
+        echo json_encode($franja);
+    }
 }

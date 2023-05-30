@@ -63,7 +63,7 @@
                                     <label class="col-form-label">Duración:</label>
                                     <select class="form-select form-select" name="duracion" id="duracion" required>
                                         <option value='' selected>Seleccione un parametro</option>
-                                        <option value="12" disabled>45 Minutos</option>
+                                        <option value="12" >45 Minutos</option>
                                         <option value="13">60 Minutos</option>
                                     </select>
                                 </div>
@@ -72,7 +72,7 @@
                                     <select class="form-select form-select" name="jornada" id="jornada" required>
                                         <option value="">Seleccione un Jornada</option>
                                         <option value="20">Mañana</option>
-                                        <option value="21" disabled>Tarde</option>
+                                        <option value="21" >Tarde</option>
                                     </select>
                                 </div>
                             </div>

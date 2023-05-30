@@ -33,7 +33,7 @@ class Inicio extends BaseController
                 $cargaSideBar = $this->metodos->getModulos();
                 $data = ['titulo' => 'Bienvenido!', 'Modulos' => $cargaSideBar];
                 echo view('/principal/sidebar', $data);
-                echo view('/inicio/test', $data);
+                echo view('/inicio/estudiantesInicio', $data);
                 break;
 
             default:
