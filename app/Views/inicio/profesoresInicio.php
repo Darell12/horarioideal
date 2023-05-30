@@ -1,6 +1,39 @@
-<!-- <div class="tiles m-4" id="contenedorTarjetas">
+<style>
+    .cardL {
+        width: 33.3%;
+        /* height: 150px; */
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+    }
 
-</div> -->
+    .card__skeletonL {
+        background-image: linear-gradient(90deg,
+                #ccc 0px,
+                rgb(229 229 229 / 90%) 40px,
+                #ccc 80px);
+        background-size: 300%;
+        background-position: 100% 0;
+        border-radius: inherit;
+        animation: shimmer 1.5s infinite;
+    }
+
+    .card__titleL {
+        height: 15px;
+        margin-bottom: 15px;
+    }
+
+    .card__descriptionL {
+        height: 100px;
+    }
+
+    @keyframes shimmer {
+        to {
+            background-position: -100% 0;
+        }
+    }
+</style>
+
 <div class="app-content m-3 ">
     <div class="projects-section">
         <div class="projects-section-header">
@@ -47,6 +80,10 @@
             </div>
         </div>
         <div class="project-boxes jsGridView" id="contenedorTarjetas">
+            <div class="cardL" id="loader" hidden>
+                <div class="card__skeletonL card__titleL"></div>
+                <div class="card__skeletonL card__descriptionL"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -207,7 +244,6 @@
         </div>
     </div>
 </div>
-
 
 
 <script>
@@ -385,6 +421,8 @@
     let constante
     $(document).ready(function() {
 
+        $('#loader').removeAttr('hidden', '');
+
         dataURL = "<?php echo base_url('/inicio/ConsultaAsignaturas/'); ?><?php echo session('id') ?>";
         $.ajax({
             type: "POST",
@@ -411,6 +449,7 @@
                     dataType: "json",
                 }).done(function(response) {
                     console.log(response);
+                    $('#loader').attr('hidden', '');
 
 
                     contadorEstilos++
