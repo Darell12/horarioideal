@@ -40,11 +40,11 @@
 <div class="wrapper">
     <nav id="sidebar" class="active">
         <div class="sidebar-header">
-            <h3>Horario Ideal</h3>
+            <h3 id="titulo">Horario Ideal</h3>
+            <button type="button" id="sidebarCollapse1" class="btn">
+                <i class='bx bx-chevron-right toggle bx-sm'></i>
+            </button>
         </div>
-        <button type="button" id="sidebarCollapse1" class="btn">
-            <i class='bx bx-chevron-right toggle bx-sm'></i>
-        </button>
         <ul class="list-unstyled" id="pruebanav">
             <div style="margin-top: 0.5em;">
                 <a href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">
@@ -52,7 +52,7 @@
 
                         <?php echo session('usuario') ?> </p>
                     <p class="rol">
-                        <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
+                        <span style="padding-left: 30px;"   class="text nav-text"><?php echo session('rol') ?></span>
                     </p>
                 </a>
             </div>
