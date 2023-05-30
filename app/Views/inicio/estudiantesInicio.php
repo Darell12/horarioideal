@@ -23,6 +23,9 @@
                 </div>
             </div>
             <div class="view-actions">
+                <button class="view-btn detalle" onclick="visualizarHorario()" title="List View">
+                    <i class="bi bi-eye"></i>
+                </button>
                 <button class="view-btn list-view" title="List View">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
                         <line x1="8" y1="6" x2="21" y2="6" />
@@ -44,176 +47,7 @@
             </div>
         </div>
         <div class="project-boxes jsGridView" id="contenedorTarjetas">
-            <!-- <div class="project-box-wrapper">
-                <div class="project-box" style="background-color: #e9e7fd;">
-                    <div class="project-box-header">
-                        <span>December 10, 2020</span>
-                        <div class="more-wrapper">
-                            <button class="project-btn-more">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                                    <circle cx="12" cy="12" r="1" />
-                                    <circle cx="12" cy="5" r="1" />
-                                    <circle cx="12" cy="19" r="1" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="project-box-content-header">
-                        <p class="box-content-header">Testing</p>
-                        <p class="box-content-subheader">Prototyping</p>
-                    </div>
-                    <div class="project-box-footer">
-                        <div class="participants">
-                            <img src="https://images.unsplash.com/photo-1596815064285-45ed8a9c0463?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1215&q=80" alt="participant">
-                            <img src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80" alt="participant">
-                            <button class="add-participant" style="color:   #4f3ff0;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                                    <path d="M12 5v14M5 12h14" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="days-left" style="color: #4f3ff0;">
-                            2 Days Left
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-box-wrapper">
-                <div class="project-box">
-                    <div class="project-box-header">
-                        <span>December 10, 2020</span>
-                        <div class="more-wrapper">
-                            <button class="project-btn-more">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                                    <circle cx="12" cy="12" r="1" />
-                                    <circle cx="12" cy="5" r="1" />
-                                    <circle cx="12" cy="19" r="1" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="project-box-content-header">
-                        <p class="box-content-header">Svg Animations</p>
-                        <p class="box-content-subheader">Prototyping</p>
-                    </div>
-                    <div class="project-box-footer">
-                        <div class="participants">
-                            <img src="https://images.unsplash.com/photo-1587628604439-3b9a0aa7a163?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjR8fHdvbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="participant">
-                            <img src="https://images.unsplash.com/photo-1596815064285-45ed8a9c0463?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1215&q=80" alt="participant">
-                            <button class="add-participant" style="color: #096c86;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                                    <path d="M12 5v14M5 12h14" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="days-left" style="color: #096c86;">
-                            2 Days Left
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-box-wrapper">
-                <div class="project-box" style="background-color: #ffd3e2;">
-                    <div class="project-box-header">
-                        <span>December 10, 2020</span>
-                        <div class="more-wrapper">
-                            <button class="project-btn-more">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                                    <circle cx="12" cy="12" r="1" />
-                                    <circle cx="12" cy="5" r="1" />
-                                    <circle cx="12" cy="19" r="1" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="project-box-content-header">
-                        <p class="box-content-header">UI Development</p>
-                        <p class="box-content-subheader">Prototyping</p>
-                    </div>
-                    <div class="project-box-footer">
-                        <div class="participants">
-                            <img src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="participant">
-                            <img src="https://images.unsplash.com/photo-1587628604439-3b9a0aa7a163?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjR8fHdvbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="participant">
-                            <button class="add-participant" style="color: #df3670;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                                    <path d="M12 5v14M5 12h14" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="days-left" style="color: #df3670;">
-                            2 Days Left
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-box-wrapper">
-                <div class="project-box" style="background-color: #c8f7dc;">
-                    <div class="project-box-header">
-                        <span>December 10, 2020</span>
-                        <div class="more-wrapper">
-                            <button class="project-btn-more">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                                    <circle cx="12" cy="12" r="1" />
-                                    <circle cx="12" cy="5" r="1" />
-                                    <circle cx="12" cy="19" r="1" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="project-box-content-header">
-                        <p class="box-content-header">Data Analysis</p>
-                        <p class="box-content-subheader">Prototyping</p>
-                    </div>
-                    <div class="project-box-footer">
-                        <div class="participants">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="participant">
-                            <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="participant">
-                            <button class="add-participant" style="color: #34c471;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                                    <path d="M12 5v14M5 12h14" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="days-left" style="color: #34c471;">
-                            2 Days Left
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-box-wrapper">
-                <div class="project-box" style="background-color: #d5deff;">
-                    <div class="project-box-header">
-                        <span>December 10, 2020</span>
-                        <div class="more-wrapper">
-                            <button class="project-btn-more">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-                                    <circle cx="12" cy="12" r="1" />
-                                    <circle cx="12" cy="5" r="1" />
-                                    <circle cx="12" cy="19" r="1" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="project-box-content-header">
-                        <p class="box-content-header">Web Designing</p>
-                        <p class="box-content-subheader">Prototyping</p>
-                    </div>
-                    <div class="project-box-footer">
-                        <div class="participants">
-                            <img src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="participant">
-                            <img src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80" alt="participant">
-                            <button class="add-participant" style="color: #4067f9;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                                    <path d="M12 5v14M5 12h14" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="days-left" style="color: #4067f9;">
-                            2 Days Left
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
         </div>
     </div>
 </div>
@@ -265,9 +99,178 @@
 
 </div>
 
+<div class="modal fade" id="ModalHorario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TituloModal">Horario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-lecture">
+
+                    <section class="section-list">
+                        <div class="container-xl">
+                            <div class="table-schedule">
+                                <div class="timeline">
+                                    <ul>
+                                        <li><span>06:00</span></li>
+                                        <li><span>06:30</span></li>
+                                        <li><span>07:00</span></li>
+                                        <li><span>07:30</span></li>
+                                        <li><span>08:00</span></li>
+                                        <li><span>08:30</span></li>
+                                        <li><span>09:00</span></li>
+                                        <li><span>09:30</span></li>
+                                        <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                            <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
+                                        </li>
+                                        <li><span>10:30</span></li>
+                                        <li><span>11:00</span></li>
+                                        <li><span>11:30</span></li>
+                                        <li><span>12:00</span></li>
+                                        <li><span>12:30</span></li>
+                                        <li><span>13:00</span></li>
+                                        <li><span>13:30</span></li>
+                                        <li><span>14:00</span></li>
+                                        <li><span>14:30</span></li>
+                                        <li><span>15:00</span></li>
+                                        <li><span>15:30</span></li>
+                                        <li><span>16:00</span></li>
+                                        <li><span>16:30</span></li>
+                                        <li><span>17:00</span></li>
+                                        <li><span>17:30</span></li>
+                                        <li><span>18:00</span></li>
+                                        <li><span>18:30</span></li>
+                                    </ul>
+                                </div>
+
+                                <div class="table-schedule-subject">
+                                    <tr>
+                                        <ul class="list-lecture-item">
+                                            <li class="timeline-vertical">
+                                                <div class="top-info">
+                                                    <h4 class="day">Lunes</h4>
+                                                </div>
+                                                <ul id="Lunes">
+
+                                                </ul>
+                                            </li>
+                                    </tr>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Martes</h4>
+                                        </div>
+                                        <ul id="Martes">
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Miercoles</h4>
+                                        </div>
+
+                                        <ul id="Miercoles">
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Jueves</h4>
+                                        </div>
+
+                                        <ul id="Jueves">
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="timeline-vertical">
+                                        <div class="top-info">
+                                            <h4 class="day">Viernes</h4>
+                                        </div>
+
+                                        <ul id="Viernes">
+
+                                        </ul>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    // Obtener la fecha actual
-    // Obtener la fecha actual
+    function visualizarHorario(id) {
+        $(`#Lunes`).html('');
+        $(`#Martes`).html('');
+        $(`#Miercoles`).html('');
+        $(`#Jueves`).html('');
+        $(`#Viernes`).html('');
+        $(`#Sabado`).html('');
+        $(`#ModalHorario`).modal('show');
+
+
+        let franjasTotales
+        $.ajax({
+            url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+            dataType: "json",
+            success: function(data) {
+                franjasTotales = data;
+                console.log('franjasTotales');
+                console.log(franjasTotales);
+            }
+        });
+
+        dataURL = "<?php echo base_url('/horario_det/buscarDetalleEstudiante/') . session('id') ?>";
+        $.ajax({
+            type: "POST",
+            url: dataURL,
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(rs) {
+                console.log(rs);
+                contenido = ''
+                $.ajax({
+                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                    dataType: "json",
+                    success: function(data) {
+                        franjasTotales = data;
+                        rs.forEach(element => {
+                            console.log('for')
+                            let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+                            contenido = `<li class="lecture-time ${franjasTotales
+                                                .find(objeto => objeto.id_parametro_det == element.hora_inicio)
+                                                ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
+                                                <a href="#">
+                                                    <div class="lecture-info">
+                                                        <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
+                                                        <h6 class="lecture-location">${element.aula}</h6>
+                                                        <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
+                                                    </div>
+                                                </a>
+                                            </li>`
+                            $(`#${element.diaN}`).append(contenido)
+                        });
+                    }
+                });
+            }
+        })
+    }
+
     var fechaActual = new Date();
 
     // Obtener el nombre del día actual
@@ -343,12 +346,21 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
+        var detalle = document.querySelector('.detalle');
         var listView = document.querySelector('.list-view');
         var gridView = document.querySelector('.grid-view');
         var projectsList = document.querySelector('.project-boxes');
 
+        detalle.addEventListener('click', function() {
+            gridView.classList.remove('active');
+            listView.classList.remove('active');
+            detalle.classList.add('active');
+
+        });
+
         listView.addEventListener('click', function() {
             gridView.classList.remove('active');
+            detalle.classList.remove('active');
             listView.classList.add('active');
             projectsList.classList.remove('jsGridView');
             projectsList.classList.add('jsListView');
@@ -356,6 +368,7 @@
 
         gridView.addEventListener('click', function() {
             gridView.classList.add('active');
+            detalle.classList.remove('active');
             listView.classList.remove('active');
             projectsList.classList.remove('jsListView');
             projectsList.classList.add('jsGridView');
@@ -370,7 +383,7 @@
     let constante
     $(document).ready(function() {
 
-        dataURL = "<?php echo base_url('/inicio/ConsultaAsignaturas/'); ?><?php echo session('id') ?>";
+        dataURL = "<?php echo base_url('/inicio/ConsultaAsignaturasPorGrado/'); ?><?php echo session('id') ?>";
         $.ajax({
             type: "POST",
             url: dataURL,
@@ -395,9 +408,9 @@
                 // </div>
                 // `
                 //     $(`#contenedorTarjetas`).append(contenido)
-                    $('#horas_semanales').text(horas_semanales)
+                $('#horas_semanales').text(horas_semanales)
 
-                return 
+                return
             }
 
             rs.forEach(asignatura => {
@@ -419,8 +432,6 @@
                     }
                     contador++
 
-                    const diasFaltantes = diasHastaDiaDeLaSemana(response[0].diaN);
-                    console.log(`Faltan ${diasFaltantes} días para el próximo ${response[0].diaN}.`);
 
                     contenido = `
                             <div class="project-box-wrapper" data-bs-toggle="modal" data-bs-target="#modal-${contador}">
@@ -430,7 +441,6 @@
                                     </div>
                                     <div class="project-box-content-header">
                                         <p class="box-content-header">${asignatura.nombre}</p>
-                                        <p class="box-content-subheader">${asignatura.grado}</p>
                                     </div>
                                     <div class="project-box-footer">
                                         <div class="participants">
@@ -456,7 +466,7 @@
                                              </button>
                                          </div>
                                          <div class="modal-body">
-                                             <h3 class="lecture-title">${asignatura.nombre} ${asignatura.grado}</h3>
+                                             <h3 class="lecture-title">${asignatura.nombre}</h3>
                                              <ul class="lecture-info">
                                                  <li class="lecture-code">
                                                      <i class="material-icons ic-lecture-info">Area:</i>
@@ -464,7 +474,7 @@
                                                  </li>
                                                  <li class="lecture-code">
                                                      <i class="material-icons ic-lecture-info">Aula:</i>
-                                                     <span>교과목 코드 : A0000001</span>
+                                                     <span>${response[0]?.aula || 'Sin información'}</span>
                                                  </li>
                                              </ul>
                                              <div class="lecture-description">
@@ -483,7 +493,7 @@
                     response.forEach(element => {
                         $(`#descripcion${contador}`).append(
                             `
-                            <p> <span class="fw-bold">${element.diaN}:</span> ${element.inicio} ~ ${element.fin}</p><br>
+                            <p> <span class="fw-bold">${element?.diaN || 'Sin franjas asignadas' }:</span> ${element.inicio} ~ ${element.fin}</p><br>
                             `
                         )
                     });

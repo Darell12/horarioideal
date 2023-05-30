@@ -12,6 +12,9 @@ use App\Models\HorarioModel;
 use App\Models\Grados_asignaturaModel;
 use App\Models\Parametros_detModel;
 use App\Controllers\Principal;
+use App\Models\EstudiantesModel;
+use App\Controllers\Grados;
+
 
 class Horario_det extends BaseController
 {
@@ -20,6 +23,8 @@ class Horario_det extends BaseController
     protected $usuarios, $grados, $asignatura;
     protected $franja;
     protected $metodos;
+    protected $InfoGrado, $estudiante;
+
 
     public function __construct()
     {
@@ -31,6 +36,9 @@ class Horario_det extends BaseController
         $this->asignatura = new AsignaturasModel();
         $this->franja = new Parametros_detModel();
         $this->metodos = new Principal();
+        $this->InfoGrado = new Grados();
+        $this->estudiante = new EstudiantesModel();
+
     }
 
     public function index($id)
@@ -82,6 +90,12 @@ class Horario_det extends BaseController
         $horario_det = $this->horario_det->obtenerDetalles($encabezado['id_horarios_enc']);
         return json_encode($horario_det);
     }
+    public function buscarDetalleGradoId($id)
+    {
+        $encabezado = $this->horario->obtenerEncabezadosGrado('A', $id);
+        $horario_det = $this->horario_det->obtenerDetalles($encabezado['id_horarios_enc']);
+        return json_encode($horario_det);
+    }
     public function buscarDetalles()
     {
         $horario_det = $this->horario_det->buscarDetalles();
@@ -91,6 +105,14 @@ class Horario_det extends BaseController
     {
         $horario_det = $this->horario_det->buscarDetalleProfe($id);
         echo json_encode($horario_det);
+    }
+    public function buscarDetalleEstudiante($id)
+    {
+        $estudiante = $this->estudiante->buscarEstudiantesPorId($id);
+        $grado = $estudiante['id_grado'];
+        $encabezado = $this->horario->obtenerEncabezadosGrado('A', $grado);
+        $horario_det = $this->horario_det->obtenerDetalle_horario($encabezado['id_horarios_enc']);
+        return json_encode($horario_det);
     }
     public function buscarDetalleAula($id)
     {

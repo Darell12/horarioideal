@@ -25,7 +25,7 @@ class Horario_detModel extends Model
 
     public function obtenerDetalle_horario($id)
     {
-        $this->select('horario_det.*, u.nombre_p as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as dia, param3.nombre as fin');
+        $this->select('horario_det.*, u.nombre_p as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as diaN, param3.nombre as fin');
         $this->join('usuarios as u', 'horario_det.profesor = u.id_usuario', 'left');
         $this->join('parametro_det as param', 'param.id_parametro_det = horario_det.hora_inicio', 'left');
         $this->join('vw_param_det2 as param3', 'param3.id_parametro_det = horario_det.hora_fin', 'left');
@@ -61,6 +61,21 @@ class Horario_detModel extends Model
         return $datos;
     }
     public function buscarDetalleProfe($id)
+    {
+        $this->select('horario_det.*,u.nombre_p as profesor, horario_det.dia as id_dia, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as diaN, param3.nombre as fin');
+        $this->join('usuarios as u', 'horario_det.profesor = u.id_usuario');
+        $this->join('parametro_det as param', 'param.id_parametro_det = horario_det.hora_inicio');
+        $this->join('vw_param_det2 as param3', 'param3.id_parametro_det = horario_det.hora_fin');
+        $this->join('vw_param_det as param2', 'param2.id_parametro_det = horario_det.dia');
+        $this->join('aulas', 'horario_det.id_aula = aulas.id_aula');
+        $this->join('grados_asignatura as a', 'a.id_grado_asignatura = horario_det.id_grado_asignatura');
+        $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura');
+        $this->where('horario_det.estado', 'A');
+        $this->where('horario_det.profesor', $id);
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function buscarDetalleEstudiante($id)
     {
         $this->select('horario_det.*,u.nombre_p as profesor, horario_det.dia as id_dia, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as diaN, param3.nombre as fin');
         $this->join('usuarios as u', 'horario_det.profesor = u.id_usuario');

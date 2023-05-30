@@ -79,7 +79,7 @@ class Grados extends BaseController
     public function obtenerAsignaturasS($id)
     {
         $grado_asignatura = $this->grado_asignatura->obtenerAsignaturasGrado($id);
-        echo json_encode($grado_asignatura);
+        return json_encode($grado_asignatura);
     }
 
     public function insertarCarg()
