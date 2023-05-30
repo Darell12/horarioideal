@@ -102,8 +102,17 @@ a:focus {
     background: #29588abd;
     border-radius: 15px;
 }
+#sidebarCollapse1 {
+    color: #fff;
+    background: #29588abd;
+    border-radius: 15px;
+}
 
 #sidebarCollapse:hover {
+    color: var(--primary-color);
+    background: #29588abd;
+}
+#sidebarCollapse1:hover {
     color: var(--primary-color);
     background: #29588abd;
 }
@@ -127,8 +136,11 @@ a:focus {
     padding: 20px;
     /* background: #387eaa; */
     background: var(--primary-color-light);
-
+    display: flex;
+    align-items: center;
 }
+
+
 
 #sidebar ul.components {
     padding: 20px 0;
@@ -225,6 +237,7 @@ a.article:hover {
     #sidebar.active {
         margin-left: 0;
         position: absolute;
+        height: 115vh;
     }
 
     #sidebarCollapse span {
