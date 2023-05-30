@@ -59,6 +59,7 @@ class Asignatura_profesoresModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    
     public function asignaturaProfesor($id)
     {
         $this->select('asignatura_profesores.*, asignaturas.nombre as asignatura, grados.alias');

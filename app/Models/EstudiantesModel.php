@@ -39,6 +39,15 @@ class EstudiantesModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function buscarEstudiantesPorId($id)
+    {
+        $this->select('estudiantes.*');
+        $this->where('id_usuario', $id);        
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
+
     public function buscarEstudiantes($id)
     {
         $this->select('estudiantes.*');
@@ -50,6 +59,15 @@ class EstudiantesModel extends Model
     public function cambiar_Estado($id, $estado)
     {
         $datos = $this->update($id, ['estado' => $estado]);
+        return $datos;
+    }
+
+    public function buscarAsigEstudiantes($id)
+    {
+        $this->select('estudiantes.*, estudiantes.id_grado');
+        $this->where('id_estudiante', $id);
+        $this->where('estado', 'A');
+        $datos = $this->first();
         return $datos;
     }
 
