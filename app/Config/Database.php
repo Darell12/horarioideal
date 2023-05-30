@@ -26,12 +26,6 @@ class Database extends Config
      */
     public array $default = [
         'DSN'      => '',
-        
-         //PARA TRABAJAR EN CASA
-        //  'hostname' => 'localhost',
-        //  'username' => 'root',
-        //  'password' => '',
-
         // PARA TRABAJAR EN CASA
         // 'hostname' => 'localhost',
         // 'username' => 'root',
