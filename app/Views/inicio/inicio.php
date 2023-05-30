@@ -7,15 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    
-    
-    
-    
-    <!-- style="background-image: url('img/hue.png');" -->
-    
-    <!-- <div id="miDiv">
-     <img src="img/fondoaja.png" style="width: 1600px;"> 
-    </div> -->
        
 </body>
 </html>
