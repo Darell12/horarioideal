@@ -32,13 +32,13 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebare.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebares.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>
 
 <div class="wrapper">
-    <nav id="sidebar">
+    <nav id="sidebar" class="active">
         <div class="sidebar-header">
             <h3>Horario Ideal</h3>
         </div>
@@ -64,6 +64,14 @@
                 </a>
             </li>
     </nav>
+    <div class="app-sidebar" id="icon-sidebar">
+        <a href="" class="app-sidebar-link active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        </a>
+    </div>
     <div id="content">
         <nav class="navbar" style="background: #F6F5FF  !important;">
             <div class="d-flex">
@@ -139,6 +147,7 @@
             let _row = '';
             resultado.forEach(element => {
                 let _row = '';
+                let _row_new = '';
                 if (element.tipo == 'Carpeta') {
                     _row += `<hr style="background: #fafafa" class="sidebar-divider">`;
                 } else {
@@ -148,29 +157,46 @@
                     <span class="text nav-text">${element.nombre}</span>
                     </a>
                     </li>`;
+
+                    _row_new += `
+                    
+                    <a href="<?php echo base_url() ?>${element.codigo}"  title="${element.nombre}"  class="app-sidebar-link">
+                        <i class='bx ${element.icono} icon bx-sm'  title="${element.nombre}"></i>
+                    </a>`;
                 }
 
                 $('#pruebanav').append(_row)
+                $('#icon-sidebar').append(_row_new)
+
+
             });
             _row = `
             <hr style="background: #fafafa" class="sidebar-divider">
             <ul class="list-unstyled CTAs">
             <li>
-            <a href="<?php echo base_url('auth/logout') ?>">
+            <a href="<?php echo base_url('auth/logout') ?>" title="Cerrar Sesión">
             <i class='bx bx-log-out icon'></i>
-            <span class="text nav-text">Logout</span>
+            <span class="text nav-text">Cerrar Sesión</span>
             </a>
             </li>
             </ul>`;
+            _row_new = `
+            <a href="<?php echo base_url('auth/logout') ?>"  title="Cerrar Sesión"  class="app-sidebar-link">
+            <i class='bx bx-log-out icon bx-sm'></i>
+            </a>`;
+
+            $('#icon-sidebar').append(_row_new)
             $('#pruebanav').append(_row)
 
             $("#sidebarCollapse").on("click", function() {
                 $("#sidebar").toggleClass("active");
+                $("#icon-sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
 
             $("#sidebarCollapse1").on("click", function() {
                 $("#sidebar").toggleClass("active");
+                $("#icon-sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
         </script>
