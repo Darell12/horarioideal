@@ -10,7 +10,7 @@
   </div>
   <br>
   <div class="table-responsive">
-    <table class="table align-items-center table-flush" id="tablaGrados" width="100%" cellspacing="0">
+    <table class="table align-items-center table-flush table-loader" id="tablaGrados" width="100%" cellspacing="0">
       <thead class="thead-light">
         <tr>
           <th class="text-center">Id</th>
@@ -46,6 +46,14 @@
 </div>
 
 <script>
+      $(document).ready(function() {
+        $('#tablaGrados').on('init.dt', function() {
+            $("#tablaGrados").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaGrados').DataTable();
+        }, 3000);
+    });
   $('#modal-confirma').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('onclick', 'Restaurar(' + $(e.relatedTarget).data('href') + ')');
   });

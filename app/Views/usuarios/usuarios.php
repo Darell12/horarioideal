@@ -18,7 +18,7 @@
         <b class="fs-6 text-black"> Ocultar Columnas:</b> <a class="toggle-vis btn" data-column="1">Tipo Documento</a> - <a class="toggle-vis btn" data-column="2">Documento</a> - <a class="toggle-vis btn" data-column="3">Nombres</a> - <a class="toggle-vis btn" data-column="4">Apellidos</a> - <a class="toggle-vis btn" data-column="5">Rol</a>
     </div> -->
     <div class="table-responsive">
-        <table id="tablaUsuarios" class="table align-items-center table-flush">
+        <table id="tablaUsuarios" class="table align-items-center table-flush table-loader">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center" style="width: 1% !important;" scope="col">#</th>
@@ -646,6 +646,16 @@
 
     $('#Resetear').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+
+    $(document).ready(function() {
+        $('#tablaUsuarios').on('init.dt', function() {
+            $("#tablaUsuarios").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaUsuarios').DataTable();
+        }, 3000);
+
     });
 
     var contador = 0
