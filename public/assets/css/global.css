@@ -24,6 +24,7 @@
 
 label.error {
     color: #dc3545;
+    font-size: small;
 }
 
 /* LOADER  */
