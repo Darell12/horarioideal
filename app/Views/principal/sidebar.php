@@ -56,7 +56,7 @@
                     </p>
                 </a>
             </div>
-            <hr style="background: #fafafa" class="sidebar-divider">
+            <hr style="background: #336d91;" class="sidebar-divider">
             <li>
                 <a href="<?php echo base_url('inicio') ?>" title="Inicio">
                     <i class='bx bx-home-alt icon'> </i>
