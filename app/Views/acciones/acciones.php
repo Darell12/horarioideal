@@ -13,7 +13,7 @@
     </div>
     <br>
     <div class="table-responsive">
-        <table style="text-align: center;" id="tablaAcciones" class="table align-items-center table-flush">
+        <table style="text-align: center;" id="tablaAcciones" class="table align-items-center table-flush table-loader">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center" scope="col">Id</th>
@@ -100,6 +100,15 @@
 </div>
 
 <script>
+        $(document).ready(function() {
+        $('#tablaAcciones').on('init.dt', function() {
+            $("#tablaAcciones").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaAcciones').DataTable();
+        }, 3000);
+
+    });
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });

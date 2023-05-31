@@ -13,7 +13,7 @@
 
      <br>
      <div class="table-responsive" style="overflow:scroll-vertical;overflow-y: scroll !important;">
-          <table id="tablaUsuarios" class="table align-items-center table-flush">
+          <table id="tablaUsuarios" class="table align-items-center table-flush table-loader">
                <thead class="thead-light">
                     <tr>
                          <th class="text-center">Id</th>
@@ -110,6 +110,15 @@
           $(this).find('.btn-ok').attr('onclick', 'Restaurar(' + $(e.relatedTarget).data('href') + ')');
      });
 
+     $(document).ready(function() {
+          $('#tablaUsuarios').on('init.dt', function() {
+               $("#tablaUsuarios").removeClass('table-loader').show();
+          });
+          setTimeout(function() {
+               $('#tablaUsuarios').DataTable();
+          }, 3000);
+
+     });
 
      function Restaurar(id) {
 

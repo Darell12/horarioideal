@@ -12,7 +12,7 @@
     </div>
 
     <div class="table-responsive">
-        <table style="text-align: center;" class="table align-items-center table-flush" id="tablaPermisos">
+        <table style="text-align: center;" class="table align-items-center table-flush table-loader" id="tablaPermisos">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>
@@ -101,8 +101,16 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#tablaPermisos').on('init.dt', function() {
+            $("#tablaPermisos").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaPermisos').DataTable();
+        }, 3000);
+    });
 
-    $('#rol').on('change', function(event){
+    $('#rol').on('change', function(event) {
         console.log('dd')
     })
 
@@ -210,7 +218,7 @@
                         nombreActu: function() {
                             return $("#numeroActu").val();
                         },
-                    },  
+                    },
                 }
             },
         },
