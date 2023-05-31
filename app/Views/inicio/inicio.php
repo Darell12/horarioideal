@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+<<<<<<< HEAD
     
     
     
@@ -92,6 +93,8 @@
     <!-- <div id="miDiv">
      <img src="img/fondoaja.png" style="width: 1600px;"> 
     </div> -->
+=======
+>>>>>>> 98638c0a74c43f2455a1c76d283346c5adb34a69
        
 </body>
 </html>

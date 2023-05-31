@@ -25,7 +25,8 @@ class AcudientesModel extends Model
 
     public function obtenerAcudientes($estado, $id)
     {
-        $this->select('acudientes.*');
+        $this->select('acudientes.*, p.resumen as t_documento');
+        $this->join('parametro_det as p', 'acudientes.tipo_documento = p.id_parametro_det');
         $this->where('acudientes.estado', $estado);
         $this->where('id_estudiante', $id);
         $datos = $this->findAll();

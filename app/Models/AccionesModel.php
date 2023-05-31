@@ -13,7 +13,7 @@ class AccionesModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre', 'id_modulo', 'id_padre','estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre', 'id_modulo', 'id_padre    ','estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
