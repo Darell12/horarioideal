@@ -99,6 +99,20 @@
 </div>
 
 <script>
+    $('#rol').on('change', function() {
+        console.log('sirve');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/permisos/buscarPermiso/'); ?>"+$('#rol').val(),
+            dataType: "json",
+            success: function(rs) {
+                console.log(rs)
+
+            }
+        })
+    
+
+    })
 
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
@@ -106,7 +120,7 @@
 
     function seleccionaPermisos(id, tp) {
         if (tp == 2) {
-            dataURL = "<?php echo base_url('/permisos/buscarPermiso'); ?>" + "/" + id;
+            dataURL = "<?php echo base_url('/permisos/buscarPermisoA'); ?>" + "/" + id;
             $.ajax({
                 type: "POST",
                 url: dataURL,
@@ -245,9 +259,6 @@
             console.log('Formulario Invalido');
         }
     })
-
-
-
 
     function EliminarRegistro(id) {
 

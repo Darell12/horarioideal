@@ -74,6 +74,15 @@ class Permisos extends BaseController
         }
         echo json_encode($returnData);
     }
+    public function buscarPermisoA($id)
+    {
+        $returnData = array();
+        $permiso = $this->permiso->buscarPermisoA($id);
+        if (!empty($permiso)) {
+            array_push($returnData, $permiso);
+        }
+        echo json_encode($returnData);
+    }
 
     public function cambiarEstado($id, $estado)
     {
