@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="global.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,82 @@
     
     
     
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .circle {
+      position: absolute;
+      background-color: #D6E4F4;
+      border-radius: 50%;
+    }
+    .img {
+        
+      width: 100%;
+      height: auto;
+    }
+    /* circulos con borde */
+    /* .circle0 {
+      position: absolute;
+      border: 2px solid #29588A;
+      border-radius: 50%;
+    } */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <?php
+      // Generar círculos con diferentes tamaños
+      $circles = array(
+        array('size' => '50px', 'top' => '20%', 'left' => '30%'),
+        array('size' => '100px', 'top' => '50%', 'left' => '60%'),
+        array('size' => '150px', 'top' => '80%', 'left' => '40%'),
+        // array('size' => '1000px', 'top' => '10%', 'left' => '80%')
+      );
+
+      foreach ($circles as $circle) {
+        echo '<div class="circle" style="width: ' . $circle['size'] . '; height: ' . $circle['size'] . '; top: ' . $circle['top'] . '; left: ' . $circle['left'] . ';"></div>';
+      }
+    ?>
+  </div>
+
+  <div class="img">
+<!-- imagen de las personas -->
+<?php
+    // Ruta de la imagen
+    $rutaImagen = "img/personas.png";
     
+    // Dimensiones de la imagen
+    $anchura = 500; // Anchura en píxeles
+    $altura = 500; // Altura en píxeles
+    
+    // Posición de la imagen
+    $posicionTop = 80; // Posición superior en píxeles
+    $posicionLeft = 250; // Posición izquierda en píxeles
+    
+    // Imprimir la etiqueta <img> con la ruta, dimensiones y posición de la imagen
+    echo '<img src="' . $rutaImagen . '" alt="Descripción de la imagen" width="' . $anchura . '" height="' . $altura . '" style="position: absolute; top: ' . $posicionTop . 'px; left: ' . $posicionLeft . 'px;">';
+  ?>
+</div>
+
+
+  <!-- circulos con bordes -->
+ 
+    <!-- <div class="circle0" style="width: 150px; height: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+    <div class="circle0" style="width: 100px; height: 100px; top: 30%; left: 20%; transform: translate(-50%, -50%);"></div>
+</body>
+</html> -->
+
+
+
+
     <!-- style="background-image: url('img/hue.png');" -->
     
     <!-- <div id="miDiv">
@@ -19,6 +95,8 @@
        
 </body>
 </html>
+
+
 
 
 
