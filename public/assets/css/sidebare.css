@@ -127,6 +127,8 @@ a:focus {
     padding: 20px;
     /* background: #387eaa; */
     background: var(--primary-color-light);
+    display: flex;
+    align-items: center;
 
 }
 
@@ -217,8 +219,9 @@ a.article:hover {
     display: none;
 }
 
+
 #icon-sidebar.active {
-        background: #F6F5FF;
+    background: #F6F5FF;
     transition: all 1s;
     margin-left: -60px;
 }
@@ -238,6 +241,7 @@ a.article:hover {
     #sidebar.active {
         margin-left: 0;
         position: absolute;
+        height: 115vh;
     }
 
     #sidebarCollapse span {

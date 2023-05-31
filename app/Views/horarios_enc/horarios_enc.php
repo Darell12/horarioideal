@@ -19,7 +19,7 @@
                     <th class="text-center">Grado</th>
                     <th class="text-center">Año</th>
                     <th class="text-center">Jornada</th>
-                    <th class="text-center" colspan="3">Acciones</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -63,7 +63,7 @@
                                     <label class="col-form-label">Duración:</label>
                                     <select class="form-select form-select" name="duracion" id="duracion" required>
                                         <option value='' selected>Seleccione un parametro</option>
-                                        <option value="12" >45 Minutos</option>
+                                        <option value="12">45 Minutos</option>
                                         <option value="13">60 Minutos</option>
                                     </select>
                                 </div>
@@ -72,7 +72,7 @@
                                     <select class="form-select form-select" name="jornada" id="jornada" required>
                                         <option value="">Seleccione un Jornada</option>
                                         <option value="20">Mañana</option>
-                                        <option value="21" >Tarde</option>
+                                        <option value="21">Tarde</option>
                                     </select>
                                 </div>
                             </div>
@@ -243,7 +243,10 @@
 <script>
     navigator.geolocation.getCurrentPosition(
         (postion) => {
-            const {latitude,longitude} = postion.coords;
+            const {
+                latitude,
+                longitude
+            } = postion.coords;
 
             console.log('latitud: ', latitude);
             console.log('Longitud: ', longitude);
@@ -251,6 +254,26 @@
                 console.log('Error: ', error.message)
             }
         })
+
+    let franjasTotales = []
+    $.ajax({
+        url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
+        dataType: "json",
+        success: function(data) {
+            franjasTotales = data;
+            console.log('franjasTotales');
+            console.log(franjasTotales);
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    franjasTotales = [...franjasTotales, ...data];
+                    console.log('franjasTotales');
+                    console.log(franjasTotales);
+                }
+            });
+        }
+    });
 
 
     function visualizarHorario(id) {
@@ -261,14 +284,7 @@
         $(`#Viernes`).html('');
         $(`#Sabado`).html('');
 
-        let franjasTotales
-        $.ajax({
-            url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-            dataType: "json",
-            success: function(data) {
-                franjasTotales = data;
-            }
-        });
+
 
         dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
         $.ajax({
@@ -279,16 +295,13 @@
             },
             dataType: "json",
             success: function(rs) {
+                console.log(franjasTotales)
                 contenido = ''
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-                    dataType: "json",
-                    success: function(data) {
-                        franjasTotales = data;
-                        rs.forEach(element => {
-                            let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+                $
+                rs.forEach(element => {
+                    let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
 
-                            contenido = `<li class="lecture-time ${franjasTotales
+                    contenido = `<li class="lecture-time ${franjasTotales
                                                 .find(objeto => objeto.id_parametro_det == element.hora_inicio)
                                                 ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
                                                 <a href="#">
@@ -299,13 +312,12 @@
                                                     </div>
                                                 </a>
                                             </li>`
-                            $(`#${element.dia}`).append(contenido)
-                        });
-                    }
+                    $(`#${element.diaN}`).append(contenido)
                 });
             }
-        })
+        });
     }
+
 
     $('#duracion').val('');
 
@@ -418,7 +430,7 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return `<div class="btn-group">
+                    return `<div class="btn-group gap-2">
                                 <a class="nav-link">
                                     <button onclick="visualizarHorario(${data.id_horarios_enc})" class="btn btn-brand-primary" id="prueba" title="Visualizar" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="bi bi-eye"></i>
@@ -429,7 +441,7 @@
                                         <i class="bi bi-gear-wide"></i>
                                     </button>
                                 </a>
-                                <a>
+                                <a class="nav-link">
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>

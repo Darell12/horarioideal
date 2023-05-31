@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/globale.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
 
@@ -32,7 +32,7 @@
 
     <!-- // *TODO DESCARGAR BOXICON -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebares.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebare.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
 </head>
@@ -42,7 +42,7 @@
         <div class="sidebar-header">
             <h3 id="titulo">Horario Ideal</h3>
             <button type="button" id="sidebarCollapse1" class="btn">
-                <i class='bx bx-chevron-right toggle bx-sm'></i>
+                <i class="bi bi-x-lg"></i>
             </button>
         </div>
         <ul class="list-unstyled" id="pruebanav">
@@ -52,7 +52,7 @@
 
                         <?php echo session('usuario') ?> </p>
                     <p class="rol">
-                        <span style="padding-left: 30px;"   class="text nav-text"><?php echo session('rol') ?></span>
+                        <span style="padding-left: 30px;" class="text nav-text"><?php echo session('rol') ?></span>
                     </p>
                 </a>
             </div>
@@ -77,7 +77,7 @@
             <div class="d-flex">
 
                 <button type="button" id="sidebarCollapse" class="btn">
-                    <i class='bx bx-chevron-right toggle bx-sm'></i>
+                    <i class="bi bi-list"></i>
                 </button>
 
                 <div style="margin-top: 10px; color:#29588abd" class="border-0">
