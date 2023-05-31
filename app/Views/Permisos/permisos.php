@@ -59,8 +59,6 @@
 
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
-                                <input type="text" id="nombreActu" name="nombreActu" hidden>
-                                <input type="text" id="numeroActu" name="numeroActu" hidden>
                                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
 
 
@@ -101,6 +99,7 @@
 </div>
 
 <script>
+
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
@@ -188,25 +187,6 @@
             },
             accion: {
                 required: true,
-                remote: {
-                    url: '<?php echo base_url() ?>permisos/validarP',
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        campo: function() {
-                            return 'id_accion';
-                        },
-                        valor: function() {
-                            return $("#accion").val();
-                        },
-                        tp: function() {
-                            return $("#tp").val();
-                        },
-                        nombreActu: function() {
-                            return $("#numeroActu").val();
-                        },
-                    },  
-                }
             },
         },
         messages: {
@@ -215,10 +195,14 @@
             },
             accion: {
                 required: "Por favor seleccione una opción",
-                remote: "El usuario ya tiene esta accion asignada"
             },
         }
     });
+
+    $('#formulario').on('submit', function(e) {
+        console.log('activo');
+        e.preventDefault();
+    })
 
     $('#btn_Guardar').on('click', function(e) {
         e.preventDefault();
@@ -253,6 +237,7 @@
                 })
                 console.log('insertar');
                 contador = 0
+                tablaPermisos = [];
                 tablaPermisos.ajax.reload(null, false)
                 return
             })
@@ -260,10 +245,9 @@
             console.log('Formulario Invalido');
         }
     })
-    $('#formulario').on('submit', function(e) {
-        console.log('activo');
-        e.preventDefault();
-    })
+
+
+
 
     function EliminarRegistro(id) {
 

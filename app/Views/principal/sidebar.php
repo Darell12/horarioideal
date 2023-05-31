@@ -91,7 +91,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">Perfil</a></li>
-                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Logouth</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Logout</a></li>
                 </ul>
             </div>
         </nav>
