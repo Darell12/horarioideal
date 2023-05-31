@@ -101,6 +101,11 @@
 </div>
 
 <script>
+
+    $('#rol').on('change', function(event){
+        console.log('dd')
+    })
+
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });

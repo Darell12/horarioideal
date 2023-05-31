@@ -255,6 +255,30 @@
             $("#modal-confirma").modal("hide");
         });
 
+        let franjasVizualizar
+        if (<?php echo $datos['duracion_hora'] ?> == 12) {
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    franjasVizualizar = data;
+                    console.log('franjasVizualizar');
+                    console.log(franjasVizualizar);
+                }
+            });
+
+        } else {
+            $.ajax({
+                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    franjasVizualizar = data;
+                    console.log('franjasVizualizar');
+                    console.log(franjasVizualizar);
+                }
+            });
+        }
+
         function visualizarHorario(id) {
             $(`#Lunes`).html('');
             $(`#Martes`).html('');
@@ -263,32 +287,6 @@
             $(`#Viernes`).html('');
             $(`#Sabado`).html('');
             $(`#ModalHorario`).modal('show');
-
-
-            let franjasTotales
-            if (<?php echo $datos['duracion_hora'] ?> == 12) {
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
-                    dataType: "json",
-                    success: function(data) {
-                        franjasTotales = data;
-                        console.log('franjasTotales');
-                        console.log(franjasTotales);
-                    }
-                });
-
-            } else {
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-                    dataType: "json",
-                    success: function(data) {
-                        franjasTotales = data;
-                        console.log('franjasTotales');
-                        console.log(franjasTotales);
-                    }
-                });
-
-            }
 
             dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
             $.ajax({
@@ -302,9 +300,9 @@
                     console.log(rs);
                     contenido = ''
                     rs.forEach(element => {
+                        console.log('ciclo')
                         let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
-                        console.log(franjasTotales.find(objeto => objeto.id_parametro_det == element.hora_inicio))
-                        contenido = `<li class="lecture-time ${franjasTotales
+                        contenido = `<li class="lecture-time ${franjasVizualizar
                                                     .find(objeto => objeto.id_parametro_det == element.hora_inicio)
                                                     ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
                                                     <a href="#">
@@ -315,11 +313,11 @@
                                                         </div>
                                                     </a>
                                                 </li>`
-                        $(`#${element.dia}`).append(contenido)
+                        $(`#${element.diaN}`).append(contenido)
+                        console.log(`#${element.diaN}`)
                     });
                 }
             });
-
         }
 
         let inicio = ''

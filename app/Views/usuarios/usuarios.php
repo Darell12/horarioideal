@@ -109,7 +109,7 @@
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
+                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido">
                             </div>
                         </div>
                         <div class="row mb-1">
@@ -424,7 +424,7 @@
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                                <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
+                                <input type="text" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
                             </div>
                         </div>
                         <div class="row">
@@ -516,7 +516,6 @@
 <script>
     $(window).resize(function() {
         tablaUsuarios.ajax.reload(null, false)
-        // console.log('resize')
         contador = 0
     });
 
@@ -647,7 +646,6 @@
 
     $('#Resetear').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-        console.log('Hola')
     });
 
     var contador = 0
@@ -713,7 +711,44 @@
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
 
+    $('#n_documento').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+    $('#numero_documentoAcu').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            if (element[0].id == 'telUsuario') {
+                return true;
+            } else if (element[0].id == 'email') {
+                return true;
+            }
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             id_rol: {
                 required: true,
@@ -748,18 +783,14 @@
             },
             primer_nombre: {
                 required: true,
-                soloLetras: true,
+                // soloLetras: true,
             },
             segundo_nombre: {
-                soloLetras: true,
+                // soloLetras: true,
             },
             primer_apellido: {
                 required: true,
-                soloLetras: true,
-            },
-            segundo_apellido: {
-                required: true,
-                soloLetras: true,
+                // soloLetras: true,
             },
             telUsuario: {
                 required: true,
@@ -810,9 +841,6 @@
             primer_apellido: {
                 required: "Este campo es requerido",
             },
-            segundo_apellido: {
-                required: "Este campo es requerido",
-            },
             telUsuario: {
                 required: "Este campo es requerido",
             },
@@ -845,7 +873,6 @@
     });
 
     $('#formulario').on('submit', function(e) {
-        console.log('activo');
         e.preventDefault();
     })
 
@@ -889,7 +916,6 @@
                     icon: 'success',
                     title: 'Acción realizada con exito!'
                 })
-                console.log('insertar');
                 insertarEmail(data);
                 insertarTelefono(data);
                 Acudientes(data);
@@ -900,7 +926,9 @@
                 return
             })
         } else {
-            console.log('Formulario Invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
         }
     })
 
@@ -1104,15 +1132,12 @@
 
         let principal = tablaTemporal.find(p => p.prioridad == 6)
         $('#email').val(!principal ? '' : principal.email);
-        console.log(tablaTemporal);
         generarTablaEmail(tablaTemporal);
         validarPrioridadEmail()
     }
 
     function insertarEmail(id) {
-        console.log(tablaTemporal);
         tablaTemporal.forEach(registro => {
-            console.log('1');
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/email/insertar'); ?>",
@@ -1131,7 +1156,6 @@
 
     function seleccionaUsuario(id, tp) {
         if (tp == 2) {
-            console.log('Actualizar function');
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
             $.ajax({
                 type: "POST",
@@ -1173,7 +1197,7 @@
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
                     $('#password_label_c').attr('hidden', '');
-                    $('#formulario').validate().resetForm();
+                    // $('#formulario').validate().resetForm();
                     $('#Divacudientes').attr('hidden', '');
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
@@ -1300,8 +1324,8 @@
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
             $('#password_label_c').removeAttr('hidden', '');
-            $('#formulario').validate().resetForm();
-            $('#formularioAcudientes').validate().resetForm();
+            // $('#formulario').validate().resetForm();
+            // $('#formularioAcudientes').validate().resetForm();
             $('#tituloModal').text('Añadir Usuario');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
@@ -1321,11 +1345,9 @@
 
 
         if (tp == 1) {
-            console.log('tp1')
             tablaTemporal = tablaTemporal.filter(p => p.email !== emailEditar.text());
             generarTablaEmail(tablaTemporal);
         } else {
-            console.log('Ya existe en la base de datos')
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/email/cambiarEstado/'); ?>" + idEmail.text() + "/" + 'E',
@@ -1349,7 +1371,6 @@
                 })
                 tablaTemporal = tablaTemporal.filter(p => p.id_email !== idEmail.text());
 
-                // console.log(tablaTemporal[0].id_email)
                 generarTablaEmail(tablaTemporal);
                 contador = 0
                 return
@@ -1373,11 +1394,9 @@
 
 
         if (tp == 1) {
-            console.log('tp1')
             tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefono !== telefonoEditar.text());
             generarTablaTel(tablaTemporalTelefonos);
         } else {
-            console.log('Ya existe en la base de datos')
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/telefono/cambiarEstado/'); ?>" + idTelefono.text() + "/" + 'E',
@@ -1399,10 +1418,7 @@
                     icon: 'success',
                     title: 'Registro eliminado con exito!'
                 })
-                console.log(tablaTemporal);
-                console.log(telefonoEditar.text());
                 tablaTemporalTelefonos = tablaTemporalTelefonos.filter(p => p.telefono !== telefonoEditar.text());
-                // console.log(tablaTemporalTelefonos[0].id_telefono)
                 generarTablaTel(tablaTemporalTelefonos);
                 contador = 0
                 return
@@ -1452,7 +1468,7 @@
     $('#btn_insertarTelefono').click(function() {
 
         // Expresión regular solo numeros
-        const regex = /^\d{1,11}$/;
+        const regex = /^\d{10,10}$/;
 
         let telefono = $('#telefono').val();
         let prioridad = $('#prioridad_tel').val();
@@ -1460,9 +1476,10 @@
         let id_telefono = $('#id_telefono').val();
         let tp = $('#tpExistTel').val();
 
+
         if (!regex.test(parseInt(telefono))) {
             $('#telefono').addClass('is-invalid');
-            $('#errorTel').text('El telefono no puede contener caracteres diferentes a numeros');
+            $('#errorTel').text('El telefono debe contener 10 digitos');
             setTimeout(() => {
                 $('#telefono').removeClass('is-invalid');
                 $('#errorTel').text('');
@@ -1479,7 +1496,6 @@
             campo: 'numero',
             nombreActu: tp == 2 ? telefono : '',
         }
-        console.log($('#telefono'))
         $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
             if (response == true) {
                 $('#telefono').addClass('is-invalid');
@@ -1547,7 +1563,6 @@
         const telefonoActu = fila.find('td').eq(5)
         optionPrincipal = $('#prioridad_tel').find('option[value="6"]')
 
-        console.log(telefonoEditar.text())
         if (prioridadTelEditar.text() === 'Principal') {
             optionPrincipal.removeAttr('disabled', '')
             $('#prioridad_tel').val(6);
@@ -1568,15 +1583,12 @@
 
         let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
         // $('#email').val(!principal ? tablaTemporalTelefonos[0].email : principal.email);
-        console.log(tablaTemporalTelefonos);
         generarTablaTel(tablaTemporalTelefonos);
         validarPrioridadTel()
     }
 
     function insertarTelefono(id) {
-        console.log(tablaTemporalTelefonos);
         tablaTemporalTelefonos.forEach(registro => {
-            console.log(registro.tp);
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url('/telefono/insertar'); ?>",
@@ -1648,6 +1660,31 @@
     })
 
     $("#formularioAcudiente").validate({
+        errorPlacement: function(error, element) {
+            if (element[0].id == 'telUsuarioAcu') {
+                return true;
+            } else if (element[0].id == 'emailAcu') {
+                return true;
+            }
+            error.insertAfter(element);
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            alert('El formulario enviado');
+            return false;
+        },
         rules: {
             tipo_documentoAcu: {
                 required: true,
@@ -1798,8 +1835,11 @@
         $('#acudientess').val(dato + ' ' + dato2)
         if ($('#formularioAcudiente').valid()) {
             e.preventDefault();
-            console.log('sirve');
             $('#ModalAcudientes').modal('hide');
+        } else {
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
         }
 
     })
