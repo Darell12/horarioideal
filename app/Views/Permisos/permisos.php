@@ -132,7 +132,7 @@
 
     function seleccionaPermisos(id, tp) {
         if (tp == 2) {
-            dataURL = "<?php echo base_url('/permisos/buscarPermiso'); ?>" + "/" + id;
+            dataURL = "<?php echo base_url('/permisos/buscarPermisoA'); ?>" + "/" + id;
             $.ajax({
                 type: "POST",
                 url: dataURL,
@@ -222,6 +222,11 @@
         }
     });
 
+    $('#formulario').on('submit', function(e) {
+        console.log('activo');
+        e.preventDefault();
+    })
+
     $('#btn_Guardar').on('click', function(e) {
         e.preventDefault();
         if ($('#formulario').valid()) {
@@ -255,16 +260,13 @@
                 })
                 console.log('insertar');
                 contador = 0
+                tablaPermisos = [];
                 tablaPermisos.ajax.reload(null, false)
                 return
             })
         } else {
             console.log('Formulario Invalido');
         }
-    })
-    $('#formulario').on('submit', function(e) {
-        console.log('activo');
-        e.preventDefault();
     })
 
     function EliminarRegistro(id) {

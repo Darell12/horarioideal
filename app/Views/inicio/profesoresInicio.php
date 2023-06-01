@@ -344,6 +344,20 @@
         }
     ]
 
+    const ICONOS = [{
+        '35': "bi bi-tree",
+        '36': "bi bi-globe-americas",
+        '37': "bi bi-brush",
+        '38': "bi bi-calculator",
+        '39': "bi bi-people",
+        '40': "bx bx-run",
+        '41': "bx bx-church",
+        '42': "bx bxs-book-content",
+        '43': "bx bx-code-alt",
+        '44': "bx bxs-business",
+        '45': "bx bx-money-withdraw",
+    }, ]
+
     document.addEventListener('DOMContentLoaded', function() {
 
         var detalle = document.querySelector('.detalle');
@@ -437,7 +451,7 @@
                                     <div class="project-box-footer">
                                         <div class="participants">
                                             <button class="add-participant" style="color:${COLORES[contadorEstilos].detalles}">
-                                                <i class="bi bi-calculator"></i>
+                                            <i class="${ICONOS[0][asignatura.codigo]}"></i>
                                             </button>
                                         </div>
                                         <button style="border: none; background:#f3f6fd00">
