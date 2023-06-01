@@ -22,6 +22,11 @@
     color: #FFF;
 }
 
+
+.iconoss{
+    color: #418ab7 ;
+}
+
 label.error {
     color: #dc3545;
     font-size: small;
@@ -1787,7 +1792,7 @@ ul {
 	 color: var(--link-color-active);
 }
  .app-sidebar-link.active {
-	 background-color: var(--link-color-active-bg);
+	 background-color: var(--primary-color);
 	 color: var(--link-color-active);
 }
  .projects-section {

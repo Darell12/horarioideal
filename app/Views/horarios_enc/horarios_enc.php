@@ -164,7 +164,9 @@
                                         <li><span>14:00</span></li>
                                         <li><span>14:30</span></li>
                                         <li><span>15:00</span></li>
-                                        <li><span>15:30</span></li>
+                                        <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                            <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
+                                        </li>
                                         <li><span>16:00</span></li>
                                         <li><span>16:30</span></li>
                                         <li><span>17:00</span></li>
