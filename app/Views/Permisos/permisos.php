@@ -12,7 +12,7 @@
     </div>
 
     <div class="table-responsive">
-        <table style="text-align: center;" class="table align-items-center table-flush" id="tablaPermisos">
+        <table style="text-align: center;" class="table align-items-center table-flush table-loader" id="tablaPermisos">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>
@@ -201,6 +201,25 @@
             },
             accion: {
                 required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>permisos/validarP',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'id_accion';
+                        },
+                        valor: function() {
+                            return $("#accion").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                        nombreActu: function() {
+                            return $("#numeroActu").val();
+                        },
+                    },  
+                }
             },
         },
         messages: {

@@ -46,10 +46,6 @@
                     <span class="status-number" id="totalAsignaturas"></span>
                     <span class="status-type">Total Asignaturas</span>
                 </div>
-                <!-- <div class="item-status">
-                    <span class="status-number">24</span>
-                    <span class="status-type">Horas Diarias</span>
-                </div> -->
                 <div class="item-status">
                     <span class="status-number" id="horas_semanales"></span>
                     <span class="status-type">Horas Semanales</span>
@@ -247,22 +243,20 @@
 
 
 <script>
-    // Obtener la fecha actual
-    // Obtener la fecha actual
-    var fechaActual = new Date();
+    let fechaActual = new Date();
 
     // Obtener el nombre del día actual
-    var opcionesDia = {
+    let opcionesDia = {
         weekday: 'long'
     };
-    var nombreDia = fechaActual.toLocaleDateString('es-ES', opcionesDia);
-    var dia = fechaActual.getDate()
+    let nombreDia = fechaActual.toLocaleDateString('es-ES', opcionesDia);
+    let dia = fechaActual.getDate()
 
     // Obtener el nombre del mes actual
-    var opcionesMes = {
+    let opcionesMes = {
         month: 'long'
     };
-    var nombreMes = fechaActual.toLocaleDateString('es-ES', opcionesMes);
+    let nombreMes = fechaActual.toLocaleDateString('es-ES', opcionesMes);
 
     function visualizarHorario(id) {
         $(`#Lunes`).html('');
@@ -323,38 +317,6 @@
             }
         })
     }
-
-
-    // Mostrar el nombre del día y del mes actual
-    console.log("Día: " + nombreDia);
-    console.log("Día: " + dia);
-    console.log("Mes: " + nombreMes);
-    $('#fecha').text(nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1) + ', ' + dia)
-
-
-    function diasHastaDiaDeLaSemana(diaSemana) {
-        const hoy = new Date();
-        const diaActual = hoy.getDay();
-        const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-
-        // Obtener el índice del día de la semana especificado
-        const indiceDiaSemana = diasSemana.indexOf(diaSemana.toLowerCase());
-
-        // Si el día de la semana especificado es hoy, devolver 7 días (una semana)
-        if (indiceDiaSemana === diaActual) {
-            return 7;
-        }
-
-        // Calcular la cantidad de días hasta el próximo día de la semana especificado
-        let diasHastaDia = indiceDiaSemana - diaActual;
-        if (diasHastaDia < 0) {
-            diasHastaDia += 7; // Sumar 7 días si ya pasó en esta semana
-        }
-
-        return diasHastaDia;
-    }
-
-    // Ejemplo de uso
 
     const COLORES = [{
             background: '#e9e7fd;',

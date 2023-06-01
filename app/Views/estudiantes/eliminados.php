@@ -10,7 +10,7 @@
 
     <br>
     <div class="table-responsive">
-        <table id="tablaEstudiantes" class="table align-items-center table-flush">
+        <table id="tablaEstudiantes" class="table align-items-center table-flush table-loader">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>
@@ -48,6 +48,14 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#tablaEstudiantes').on('init.dt', function() {
+            $("#tablaEstudiantes").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaEstudiantes').DataTable();
+        }, 3000);
+    });
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'RestaurarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });

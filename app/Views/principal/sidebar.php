@@ -56,7 +56,7 @@
                     </p>
                 </a>
             </div>
-            <hr style="background: #fafafa" class="sidebar-divider">
+            <hr style="background: #336d91;" class="sidebar-divider">
             <li>
                 <a href="<?php echo base_url('inicio') ?>" title="Inicio">
                     <i class='bx bx-home-alt icon'> </i>
@@ -65,7 +65,7 @@
             </li>
     </nav>
     <div class="app-sidebar" id="icon-sidebar">
-        <a href="" class="app-sidebar-link active">
+        <a href="<?php echo base_url('inicio')?>" class="app-sidebar-link active">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
@@ -91,7 +91,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="<?php echo base_url('usuarios/perfil/' . session('id')) ?>">Perfil</a></li>
-                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">Cerrar Sessión</a></li>
                 </ul>
             </div>
         </nav>

@@ -10,7 +10,7 @@
 
     <br>
     <div class="table-responsive">
-        <table id="tablaUsuarios" class="table align-items-center table-flush" id="tablePaises">
+        <table id="tablaUsuarios" class="table align-items-center table-flush table-loader" id="tablePaises">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center" style="width: 8% !important;">#</th>
@@ -25,6 +25,15 @@
     </div>
 
     <script>
+        $(document).ready(function() {
+            $('#tablaUsuarios').on('init.dt', function() {
+                $("#tablaUsuarios").removeClass('table-loader').show();
+            });
+            setTimeout(function() {
+                $('#tablaUsuarios').DataTable();
+            }, 3000);
+
+        });
         $('#modal-confirma').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('onclick', 'Restaurar(' + $(e.relatedTarget).data('href') + ')');
         });
@@ -101,8 +110,8 @@
             }
         })
 
-        
-     $('.close').click(function() {
-          $("#modal-confirma").modal("hide");
-     });
+
+        $('.close').click(function() {
+            $("#modal-confirma").modal("hide");
+        });
     </script>

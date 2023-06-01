@@ -14,12 +14,12 @@
 
     <br>
     <div class="table-responsive">
-        <table id="tablaGrados" style="text-align: center;" class="table align-items-center table-flush">
+        <table id="tablaGrados" style="text-align: center;" class="table align-items-center table-flush table-loader">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">Grado</th>
-                    <th class="text-center" colspan="3">Acciones</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -84,8 +84,8 @@
                 </div>
 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button class="btn btn-success" id="btn_agregar">Agregar</button> 
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-success" id="btn_agregar">Agregar</button>
                 </div>
             </div>
         </div>
@@ -173,6 +173,15 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#tablaGrados').on('init.dt', function() {
+            console.log('loader')
+            $("#tablaGrados").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaGrados').DataTable();
+        }, 3000);
+    });
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });

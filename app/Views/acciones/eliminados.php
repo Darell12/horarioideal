@@ -12,7 +12,7 @@
 
   </div>
   <div class="table-responsive">
-    <table style="text-align: center;" class="table table-bordered table-sm table-hover" id="tablaAcciones" width="100%" cellspacing="0">
+    <table style="text-align: center;" class="table table-bordered table-sm table-hover table-loader" id="tablaAcciones" width="100%" cellspacing="0">
       <thead class="thead-light">
         <tr>
           <th class="text-center">Id</th>
@@ -48,6 +48,15 @@
 </div>
 
 <script>
+      $(document).ready(function() {
+        $('#tablaAcciones').on('init.dt', function() {
+            $("#tablaAcciones").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaAcciones').DataTable();
+        }, 3000);
+
+    });
   $('#modal-confirma').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('onclick', 'Restaurar(' + $(e.relatedTarget).data('href') + ')');
   });

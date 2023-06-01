@@ -13,7 +13,7 @@
 
     <br>
     <div class="table-responsive">
-        <table style="text-align: center;" id="tablaAulas" class="table align-items-center table-flush">
+        <table style="text-align: center;" id="tablaAulas" class="table align-items-center table-flush table-loader">
             <thead class="thead-light">
                 <tr>
                     <th class="text-center">Id</th>
@@ -103,6 +103,14 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#tablaAulas').on('init.dt', function() {
+            $("#tablaAulas").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaAulas').DataTable();
+        }, 3000);
+    });
     $('#modal-confirma').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
@@ -235,7 +243,7 @@
         }
     }
 
-    
+
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
