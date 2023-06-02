@@ -570,6 +570,32 @@
     }, "Por favor ingrese solamente letras.");
 
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            if (element[0].id == 'telUsuario') {
+                return true;
+            } else if (element[0].id == 'email') {
+                return true;
+            } else if (element[0].id == 'acudientess') {
+                return true;
+            }
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             id_rol: {
                 required: true,
@@ -749,6 +775,9 @@
                 return
             })
         } else {
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
             console.log('Formulario Invalido');
         }
     })
@@ -1087,7 +1116,7 @@
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
                     $('#password_label_c').attr('hidden', '');
-                    $('#formulario').validate().resetForm();
+                    // $('#formulario').validate().resetForm();
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
                 }
@@ -1167,7 +1196,7 @@
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
             $('#password_label_c').removeAttr('hidden', '');
-            $('#formulario').validate().resetForm();
+            // $('#formulario').validate().resetForm();
             $('#tituloModal').text('Añadir Usuario');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
@@ -1519,6 +1548,7 @@
         contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarga(${id})`)
+
         $.ajax({
             url: "<?php echo base_url('profesores/obtenerCarga/'); ?>" + id,
             type: 'POST',
@@ -1562,6 +1592,13 @@
                 icon: 'error',
                 title: 'Dale un descanso',
                 text: 'Este Profesor esta en su limite!',
+            })
+        }
+        if ($('#asignatura').val() == '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Invalido!',
+                text: 'Todos los campos deben estar seleccionados',
             })
         }
         $.ajax({

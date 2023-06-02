@@ -35,7 +35,7 @@ class Usuarios extends BaseController
         $this->acudientes = new AcudientesModel();
         $this->metodos = new Principal();
     }
-    
+
     public function index()
     {
         $cargaSideBar = $this->metodos->getModulos();
@@ -71,7 +71,7 @@ class Usuarios extends BaseController
             $acudientes = '';
         }
 
-        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes,'Modulos' => $cargaSideBar];
+        $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes, 'Modulos' => $cargaSideBar];
 
         // return json_encode($data);
         echo view('/principal/sidebar', $data);
@@ -133,7 +133,9 @@ class Usuarios extends BaseController
     }
     public function masivo()
     {
-        $data = ['titulo' => 'Ingreso Masivo de Usuarios',];
+        $cargaSideBar = $this->metodos->getModulos();
+
+        $data = ['titulo' => 'Ingreso Masivo de Usuarios', 'Modulos' => $cargaSideBar];
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/masivo', $data);
     }
@@ -237,5 +239,4 @@ class Usuarios extends BaseController
         }
         return $this->response->setJSON($respuesta);
     }
-
 }
