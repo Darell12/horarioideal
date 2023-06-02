@@ -43,7 +43,7 @@
                                     <label for="nombre_asignatura" class="col-form-label">Nombre:</label>
                                     <input type="text" class="form-control" name="nombre_asignatura" id="nombre_asignatura" required>
                                 </div>
-
+    
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <div class="col">
@@ -283,9 +283,9 @@
                 data: {
                     tp: $('#tp').val(),
                     id: $('#id').val(),
-                    nombre_asignatura: $('#nombre_asignatura').val(),
+                    nombre: $('#nombre_asignatura').val(),
                     codigo:$('#codigo'),
-                    tipo:$('#tipo')
+                    tipo_requerido:$('#tipo')
 
                 },
                 dataType: "json",

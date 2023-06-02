@@ -211,6 +211,22 @@
         rules: {
             nombre_aula: {
                 required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>aulas/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'nombre';
+                        },
+                        valor: function() {
+                            return $("#nombre_aula").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                    },
+                }
             },
             descripcion: {
                 required: true,
@@ -223,6 +239,7 @@
         messages: {
             nombre_aula: {
                 required: "Este campo es requerido",
+                remote: "El aula que desea agregar ya existe"
             },
             descripcion: {
                 required: "Este campo es requerido",

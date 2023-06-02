@@ -62,5 +62,12 @@ class AulaModel extends Model
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
         return $datos;
     }
+    public function filtro($campo ,$valor)
+    {
+        $this->select('aulas.*');
+        $this->where($campo, $valor);
+        $datos = $this->first();
+        return $datos;
+    }
 
 }

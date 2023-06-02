@@ -88,4 +88,29 @@ class Aulas extends BaseController
         echo view('/principal/sidebar', $data);
         echo view('/aulas/eliminados', $data);
     }
+    public function validar()
+    {
+        $valor = $this->request->getPost('valor');
+        $campo = $this->request->getPost('campo');
+        $tp = $this->request->getPost('tp');
+        $nombre_asignatura = $this->request->getPost('nombre_asignatura');
+        $codigo = $this->request->getPost('codigo');
+
+        $filtro = $this->aula->filtro($campo, $valor);
+        if ($tp == 2 && $valor == $nombre_asignatura) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        if ($tp == 2 && $valor == $codigo) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        }
+        if (empty($filtro)) {
+            $respuesta = true;
+            return $this->response->setJSON($respuesta);
+        } else {
+            $respuesta = false;
+        }
+        return $this->response->setJSON($respuesta);
+    }
 }
