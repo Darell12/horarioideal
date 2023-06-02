@@ -14,10 +14,10 @@ class PermisosModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $allowedFields = ['id_rol', 'id_accion', 'estado', 'usuario_crea'];
-    protected $useTimestamps = true; 
-    protected $createdField  = 'fecha_crea'; 
+    protected $useTimestamps = true;
+    protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';
-    protected $deletedField  = ''; 
+    protected $deletedField  = '';
 
     protected $validationRules    = [];
     protected $validationMessages = [];
@@ -29,7 +29,7 @@ class PermisosModel extends Model
         $this->join('roles as r', 'permisos.id_rol = r.id_rol');
         $this->join('acciones as a', 'permisos.id_accion = a.id_acciones');
         $this->where('permisos.estado', $estado);
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
     public function obtenerPermisosRol($rol)
@@ -39,7 +39,7 @@ class PermisosModel extends Model
         $this->join('acciones as a', 'permisos.id_accion = a.id_acciones');
         $this->where('permisos.estado', 'A');
         $this->where('permisos.id_rol', $rol);
-        $datos = $this->findAll(); 
+        $datos = $this->findAll();
         return $datos;
     }
 
@@ -61,11 +61,8 @@ class PermisosModel extends Model
     }
     public function buscarPermisoA($id)
     {
-<<<<<<< HEAD
         $this->select('permisos.id_accion');
-=======
-        $this->select('permisos.*');
->>>>>>> 0a0ca0b9cdc2a947979babc253f02c0e6dfda569
+        // $this->select('permisos.*');
         $this->where('id_rol', $id);
         $this->where('estado', 'A');
         $datos = $this->findAll();
@@ -85,7 +82,7 @@ class PermisosModel extends Model
         return $datos;
     }
 
-    public function filtro($campo ,$valor)
+    public function filtro($campo, $valor)
     {
         $this->select('permisos.*');
         $this->where($campo, $valor);
@@ -93,5 +90,4 @@ class PermisosModel extends Model
         $datos = $this->first();
         return $datos;
     }
-
 }

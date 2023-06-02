@@ -28,21 +28,21 @@
     </div>
 
     <table id="tablaUsuariosExport" class="table align-items-center table-flush" hidden>
-    <thead class="thead-light">
-        <tr>
-            <th class="text-center" style="width: 1% !important;" scope="col">#</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Tipo Documento</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Documento</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Primer Nombre</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Segundo Nombre</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Primer Apellido</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Segundo Apellido</th>
-        </tr>
-    </thead>
-    <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider" id="cuerpoExcel">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center" style="width: 1% !important;" scope="col">#</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Tipo Documento</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Documento</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Primer Nombre</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Segundo Nombre</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Primer Apellido</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Segundo Apellido</th>
+            </tr>
+        </thead>
+        <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider" id="cuerpoExcel">
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
     <div class="modal" id="modalAsignaturas" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -520,8 +520,7 @@
 </div>
 
 <script>
-
-$(document).ready(function() {
+    $(document).ready(function() {
         $('#tablaUsuarios').on('init.dt', function() {
             $("#tablaUsuarios").removeClass('table-loader').show();
         });
@@ -530,19 +529,19 @@ $(document).ready(function() {
         }, 3000);
     });
 
-function fnExcelProfesores() {
+    function fnExcelProfesores() {
 
-$.ajax({
-    url: '<?= base_url('usuarios/obtenerProfesores') ?>',
-    type: "POST",
-    data: {
-        estado: 'A'
-    },
-    dataType: "json",
-}).done(function(data) {
-    data.forEach(usuario => {
-        let _row = '';
-        _row += `
+        $.ajax({
+            url: '<?= base_url('usuarios/obtenerProfesores') ?>',
+            type: "POST",
+            data: {
+                estado: 'A'
+            },
+            dataType: "json",
+        }).done(function(data) {
+            data.forEach(usuario => {
+                let _row = '';
+                _row += `
                 <tr style="background-color:yellow;color:#070606;font-weight:300;text-align:center;font-family:Arial;font-size:12px;">
                 <td style="width:50px;">${usuario.id_usuario}</td>
                 <td style="width:50px;">${usuario.t_documento}</td>
@@ -553,16 +552,16 @@ $.ajax({
                 <td style="width:50px;">${usuario.apellido_s}</td>
                 
                 </tr>`;
-        $('#tablaUsuariosExport').append(_row)
-    });
-}).then(() => {
-    // /* Create worksheet from HTML DOM TABLE */
-    var wb = XLSX.utils.table_to_book(document.getElementById("tablaUsuariosExport"));
-    /* Export to file (start a download) */
-    XLSX.writeFile(wb, "ReporteUsuarios.xlsx");
-});
+                $('#tablaUsuariosExport').append(_row)
+            });
+        }).then(() => {
+            // /* Create worksheet from HTML DOM TABLE */
+            var wb = XLSX.utils.table_to_book(document.getElementById("tablaUsuariosExport"));
+            /* Export to file (start a download) */
+            XLSX.writeFile(wb, "ReporteUsuarios.xlsx");
+        });
 
-}
+    }
 
 
 
@@ -1500,8 +1499,11 @@ $.ajax({
                     cadena = `<select name="asignatura" id="asignatura" class="form-select">
                                    <option selected value="">Seleccione una opcion</option>`
                     res[0].forEach(element => {
-                        console.log(element);
-                        cadena += `<option value='${element.id_grado_asignatura}'>${element.nombre}</option>`
+                        if (+element.horas_semanales + contadorHoras > 30) {
+                            cadena += `<option value='${element.id_grado_asignatura}' disabled>${element.nombre + ' - ' +element.horas_semanales+'hrs'}</option>`
+                        } else {
+                            cadena += `<option value='${element.id_grado_asignatura}'>${element.nombre + ' - ' +element.horas_semanales+'hrs'}</option>`
+                        }
                     });
                     cadena += `</select>`
                 }
@@ -1510,9 +1512,11 @@ $.ajax({
         })
     })
 
+    let contadorHoras = 0;
+
     function generarTablaAsignatura(id) {
         let contador = 0;
-        let contadorHoras = 0;
+        contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarga(${id})`)
         $.ajax({
@@ -1553,6 +1557,13 @@ $.ajax({
     }
 
     function insertarCarga(id) {
+        if (contadorHoras >= 30) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Dale un descanso',
+                text: 'Este Profesor esta en su limite!',
+            })
+        }
         $.ajax({
             type: "POST",
             url: "<?php echo base_url('/profesores/insertarCarga'); ?>",

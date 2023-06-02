@@ -106,8 +106,4 @@ class Permisos extends BaseController
             echo view('/permisos/eliminados', $data);
         }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a0ca0b9cdc2a947979babc253f02c0e6dfda569
 }

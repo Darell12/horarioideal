@@ -153,9 +153,7 @@
                 } else {
                     _row += `<li>
                     <a href="<?php echo base_url() ?>${element.codigo}" title="${element.nombre}">
-                    <div class="iconoss">
                     <i class='bx ${element.icono} icon'></i>
-                    </div>
                     <span class="text nav-text">${element.nombre}</span>
                     </a>
                     </li>`;
