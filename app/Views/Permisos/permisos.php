@@ -52,7 +52,7 @@
                                     <select class="form-select form-select" name="accion" id="accion" required>
                                         <option value="">Seleccione una acción</option>
                                         <?php foreach ($acciones as $accion) { ?>
-                                            <option value="<?php echo $accion['id_acciones']; ?>"><?php echo $accion['nombre']; ?></option>
+                                            <option class="options" value="<?php echo $accion['id_acciones']; ?>" id="<?php echo $accion['id_acciones']; ?>"><?php echo $accion['nombre']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -115,11 +115,16 @@
             url: "<?php echo base_url('permisos/buscarPermisoA/'); ?>"+$('#rol').val(), 
             dataType: "json",
             success: function(rs) {
-                id_rol = rs.id_rol; 
-                console.log(rs);
-                if($('#accion').val() == id_rol){
-                    console.log('dsf')
+                 $('.options').removeAttr('disabled', '')
+                if (rs.length == 0) {
+                    return console.info('Sin datos')
                 }
+                console.log(rs);
+                rs[0].forEach(element => {
+                    console.log(element.id_accion);
+                    $(`#${element.id_accion}`).attr('disabled', '');
+                });
+
             }   
         })
         
