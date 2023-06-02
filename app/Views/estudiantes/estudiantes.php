@@ -1526,9 +1526,10 @@
             e.preventDefault();
             console.log('sirve');
             $('#ModalAcudientes').modal('hide');
+            $('#acudientess').removeClass('is-invalid');
         }else{
-            $('#acudientess').val('')
-            $('#acudientess').addClass('is-invalid')
+            $('#acudientess').val('');
+            $('#acudientess').addClass('is-invalid');
         }
     })
 
