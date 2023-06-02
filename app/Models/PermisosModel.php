@@ -59,6 +59,18 @@ class PermisosModel extends Model
         $datos = $this->first();
         return $datos;
     }
+    public function buscarPermisoA($id)
+    {
+<<<<<<< HEAD
+        $this->select('permisos.id_accion');
+=======
+        $this->select('permisos.*');
+>>>>>>> 0a0ca0b9cdc2a947979babc253f02c0e6dfda569
+        $this->where('id_rol', $id);
+        $this->where('estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
     public function cambiarEstado($id, $estado)
     {
         $datos = $this->update($id, ['estado' => $estado]);

@@ -8,7 +8,7 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <i class='bx bxs-user-circle  bx-lg'></i>
+                            <i class='bx bxs-user-circle  bx-lg'></i>                                                                                                           
                             <h5 class="my-2"><?php echo $datos['nombre_p'] . ' ' . $datos['apellido_p'] ?></h5>
                             <p class="text-muted mb-1"><?php echo $datos['rol'] ?></p>
                             <p class="text-muted mb-1"><?php echo $datos['direccion'] ?></p>
