@@ -62,7 +62,7 @@ class PermisosModel extends Model
     public function buscarPermisoA($id)
     {
         $this->select('permisos.id_accion');
-        // $this->select('permisos.*');
+        $this->select('permisos.*');
         $this->where('id_rol', $id);
         $this->where('estado', 'A');
         $datos = $this->findAll();
