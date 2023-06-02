@@ -361,7 +361,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="background: #427dbb; color:#FFF;">
                     <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="cerrarAcu" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="body">
                     <div class="mb-3">
@@ -572,8 +572,34 @@
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
-
+    
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            if (element[0].id == 'telUsuario') {
+                return true;
+            } else if (element[0].id == 'email') {
+                return true;
+            }else if (element[0].id == 'acudientess') {
+                 return true;
+            }
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             id_rol: {
                 required: true,
@@ -608,20 +634,19 @@
             },
             primer_nombre: {
                 required: true,
-                soloLetras: true,
+                // soloLetras: true,
             },
             segundo_nombre: {
-                soloLetras: true,
+                // soloLetras: true,
             },
             primer_apellido: {
                 required: true,
-                soloLetras: true,
-            },
-            segundo_apellido: {
-                required: true,
-                soloLetras: true,
+                // soloLetras: true,
             },
             telUsuario: {
+                required: true,
+            },
+            Acudientess: {
                 required: true,
             },
             email: {
@@ -667,10 +692,10 @@
             primer_apellido: {
                 required: "Este campo es requerido",
             },
-            segundo_apellido: {
+            telUsuario: {
                 required: "Este campo es requerido",
             },
-            telUsuario: {
+            acudientess: {
                 required: "Este campo es requerido",
             },
             email: {
@@ -1172,6 +1197,7 @@
             $("#UsuarioModal").modal("show");
 
             $('#acudientess').val('');
+            $('#acudientess').removeClass('is-invalid');
             $('#tipo_documentoAcu').val('');
             $('#numero_documentoAcu').val('');
             $('#primer_nombreAcu').val('');
@@ -1500,10 +1526,55 @@
             e.preventDefault();
             console.log('sirve');
             $('#ModalAcudientes').modal('hide');
+        }else{
+            $('#acudientess').val('')
+            $('#acudientess').addClass('is-invalid')
         }
     })
 
+    $('#cerrarAcu').on('click', function(e) {
+        $('#acudientess').val('');
+            $('#tipo_documentoAcu').val('');
+            $('#numero_documentoAcu').val('');
+            $('#primer_nombreAcu').val('');
+            $('#segundo_nombreAcu').val('');
+            $('#primer_apellidoAcu').val('');
+            $('#segundo_apellidoAcu').val('');
+            $('#direccionAcu').val('');
+            $('#emailAcu').val('');
+            $('#telefonoAcu').val('');
+            $('#direccion1').val('');
+            $('#direccion2').val('');
+            $('#direccion3').val('');
+            $('#direccion4').val('');
+    })
+
     $("#formularioAcudiente").validate({
+        errorPlacement: function(error, element) {
+            if (element[0].id == 'telUsuarioAcu') {
+                return true;
+            } else if (element[0].id == 'emailAcu') {
+                return true;
+            }
+            error.insertAfter(element);
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            alert('El formulario enviado');
+            return false;
+        },
         rules: {
             tipo_documentoAcu: {
                 required: true,

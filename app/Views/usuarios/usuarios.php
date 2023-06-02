@@ -408,7 +408,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="background: #427dbb; color:#FFF;">
                     <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="cerrarAcu" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="body">
                     <div class="mb-3">
@@ -739,6 +739,8 @@
             if (element[0].id == 'telUsuario') {
                 return true;
             } else if (element[0].id == 'email') {
+                return true;
+            }else if (element[0].id == 'acudientess') {
                 return true;
             }
             error.insertAfter(element);
@@ -1334,13 +1336,27 @@
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
             $('#password_label_c').removeAttr('hidden', '');
-            // $('#formulario').validate().resetForm();
-            // $('#formularioAcudientes').validate().resetForm();
             $('#tituloModal').text('Añadir Usuario');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
             $('#Divacudientes').attr('hidden', '');
             $("#UsuarioModal").modal("show");
+
+            $('#acudientess').val('');
+            $('#acudientess').removeClass('is-invalid');
+            $('#tipo_documentoAcu').val('');
+            $('#numero_documentoAcu').val('');
+            $('#primer_nombreAcu').val('');
+            $('#segundo_nombreAcu').val('');
+            $('#primer_apellidoAcu').val('');
+            $('#segundo_apellidoAcu').val('');
+            $('#direccionAcu').val('');
+            $('#emailAcu').val('');
+            $('#telefonoAcu').val('');
+            $('#direccion1').val('');
+            $('#direccion2').val('');
+            $('#direccion3').val('');
+            $('#direccion4').val('');
 
         }
     }
@@ -1845,12 +1861,29 @@
         $('#acudientess').val(dato + ' ' + dato2)
         if ($('#formularioAcudiente').valid()) {
             e.preventDefault();
+            console.log('sirve');
             $('#ModalAcudientes').modal('hide');
-        } else {
-            setTimeout(() => {
-                $('.error').fadeOut('slow');
-            }, 1500);
+        }else{
+            $('#acudientess').val('')
+            $('#acudientess').addClass('is-invalid')
         }
-
     })
+
+    $('#cerrarAcu').on('click', function(e) {
+        $('#acudientess').val('');
+            $('#tipo_documentoAcu').val('');
+            $('#numero_documentoAcu').val('');
+            $('#primer_nombreAcu').val('');
+            $('#segundo_nombreAcu').val('');
+            $('#primer_apellidoAcu').val('');
+            $('#segundo_apellidoAcu').val('');
+            $('#direccionAcu').val('');
+            $('#emailAcu').val('');
+            $('#telefonoAcu').val('');
+            $('#direccion1').val('');
+            $('#direccion2').val('');
+            $('#direccion3').val('');
+            $('#direccion4').val('');
+    })
+
 </script>
