@@ -1292,7 +1292,6 @@
                 dataType: "JSON",
                 success: function(rs) {
                     rs.forEach(element => {
-
                         tablaTemporalTelefonos.push({
                             tp: 2,
                             telefono: element.numero,
