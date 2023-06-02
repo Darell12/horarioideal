@@ -144,7 +144,7 @@
                     
                     <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_rol}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
                     </div>`
-                },  
+                },
             }
         ],
         "language": {
@@ -156,6 +156,25 @@
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             nombre_rol: {
                 required: true,
@@ -248,12 +267,15 @@
                     title: 'Acción realizada con exito!'
                 })
                 console.log('insertar');
-                contador = 0|
-                tablaRoles.ajax.reload(null, false)
+                contador = 0 |
+                    tablaRoles.ajax.reload(null, false)
                 return
             })
         } else {
             console.log('Formulario Invalido');
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
         }
     })
 

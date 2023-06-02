@@ -100,7 +100,7 @@
 </div>
 
 <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
         $('#tablaAcciones').on('init.dt', function() {
             $("#tablaAcciones").removeClass('table-loader').show();
         });
@@ -181,6 +181,9 @@
             })
         } else {
             console.log('Formulario Invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
         }
     })
 
@@ -261,6 +264,25 @@
     }, "Por favor ingrese solamente letras.");
 
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             nombre_accion: {
                 required: true,
@@ -285,11 +307,23 @@
                     },
                 }
             },
+            modulo: {
+                required: true,
+            },
+            carpeta: {
+                required: true,
+            }
         },
         messages: {
             nombre_accion: {
                 required: "Este campo es requerido",
                 remote: "Esta accion ya esta registrada"
+            },
+            modulo: {
+                required: "Este campo es requerido",
+            },
+            carpeta: {
+                required: "Este campo es requerido",
             },
         }
     });
