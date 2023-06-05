@@ -56,6 +56,7 @@ class AsignaturasModel extends Model
         $this->join('grados_asignatura as g', 'asignaturas.id_asignatura = g.id_asignatura');
         $this->where('g.id_grado', $id_grado);
         $this->where('asignaturas.estado', 'A');
+        $this->where('g.estado', 'A');
         $datos = $this->findAll();
         return $datos;
     }

@@ -271,9 +271,9 @@
             }
         }
 
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '50');
-        // arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '81');
-        //DIVIDO EN 2 ARRAYS 
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
+
         for (let i = 0; i < arrayRango.length; i++) {
             const idActual = parseInt(arrayRango[i].id_parametro_det);
             const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
@@ -283,20 +283,27 @@
                 array2.push(arrayRango[i]);
             }
         }
-        array1 = array1.filter(franja => franja.id_parametro_det !== '84');
-        array1 = array1.filter(franja => franja.id_parametro_det !== '88');
-        array1 = array1.filter(franja => franja.id_parametro_det !== '92');
-        array2 = array2.filter(franja => franja.id_parametro_det !== '84');
-        array2 = array2.filter(franja => franja.id_parametro_det !== '88');
-        array2 = array2.filter(franja => franja.id_parametro_det !== '92');
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '84');
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '92');
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '88');
+
+        const parametros = ['84','88','90','95']
+        array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        // array1 = array1.filter(franja => franja.id_parametro_det !== '84'); // ! 9:30AM
+        // array1 = array1.filter(franja => franja.id_parametro_det !== '88'); // ! 12:30
+        // array1 = array1.filter(franja => franja.id_parametro_det !== '90'); // ! 02:30
+        // array1 = array1.filter(franja => franja.id_parametro_det !== '95'); // ! 18:00
+        // array2 = array2.filter(franja => franja.id_parametro_det !== '84'); // ! 9:30AM
+        // array2 = array2.filter(franja => franja.id_parametro_det !== '88'); // ! 12:30
+        // array2 = array2.filter(franja => franja.id_parametro_det !== '90'); // ! 02:30
+        // array2 = array2.filter(franja => franja.id_parametro_det !== '95'); // ! 18:00
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '84'); // ! 9:30AM
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '90'); // ! 2:30
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '88'); // ! 12:30
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '95'); // ! 18:00
         console.log([array1, array2, arrayRango]);
         return [array1, array2, arrayRango];
     }
 
-    
+
     function EliminarRegistro(id) {
 
         $.ajax({
@@ -369,16 +376,16 @@
                 rs.forEach(element => {
                     let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
                     contenido = `<li class="lecture-time ${franjasVisualizar
-                                                    .find(objeto => objeto.id_parametro_det == element.hora_inicio)
-                                                    ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
-                                                    <a href="">
-                                                        <div class="lecture-info">
-                                                            <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
-                                                            <h6 class="lecture-location">${element.aula}</h6>
-                                                            <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
-                                                        </div>
-                                                    </a>
-                                                </li>`
+                                   .find(objeto => objeto.id_parametro_det == element.hora_inicio)
+                                   ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
+                                   <a href="">
+                                       <div class="lecture-info">
+                                           <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
+                                           <h6 class="lecture-location">${element.aula}</h6>
+                                           <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
+                                       </div>
+                                   </a>
+                               </li>`
                     $(`#${element.diaN}`).append(contenido)
                 });
             }
@@ -573,7 +580,6 @@
 
 
         setTimeout(() => {
-
             $.ajax({
                 url: "<?php echo base_url('grados/obtenerAsignaturasS/') ?>" + id_grado,
                 dataType: "json",
@@ -581,7 +587,6 @@
                     duracionAsignaturas = data;
                 }
             });
-
         }, 1000);
 
     });
@@ -709,6 +714,7 @@
                             if (data[i - 1].fin == 84) {
                                 console.log('Acabo a las 9:30')
                                 data[i - 1].fin = 85
+                                data[i - 1].duracion = 2
                                 data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 85).nombre
                             }
 
@@ -717,11 +723,11 @@
                             hora_retirada = (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det
 
                             // * RETIRA HORA EN CASO DE EXCESO
-                            if (data[i - 1].fin == 54) {
+                            if (data[i - 1].fin == 89) {
 
                                 data[i - 1].duracion = 1
-                                data[i - 1].fin = 53
-                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 53).nombre
+                                data[i - 1].fin = 88
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 88).nombre
 
                                 let Toast = Swal.mixin({
                                     toast: true,
@@ -768,14 +774,15 @@
                 data.forEach(element => {
                     let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
                     rellenoAlerta += `<li class="lecture-time ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}" style="text-decoration: none !important; list-style-type: none;">
-                                                <a>
-                                                    <div class="lecture-info">
-                                                        <h6 class="lecture-title">${element.dia}</h6>
-                                                        <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
-                                                    </div>
-                                                </a>
-                                            </li>`
+                        <a>
+                            <div class="lecture-info">
+                                <h6 class="lecture-title">${element.dia}</h6>
+                                <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
+                            </div>
+                        </a>
+                    </li>`
                 })
+
                 setTimeout(() => {
                     Swal.fire({
                         title: '<h3 class="h3"> Franjas Generadas </h3>',
@@ -790,6 +797,7 @@
                         confirmButtonAriaLabel: 'Thumbs up, great!',
                     })
                 }, 1500);
+
                 $('#btn_enviar').removeAttr('disabled', '');
                 console.table(data)
             }
