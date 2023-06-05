@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
     <title>Document</title>
 </head>
 
@@ -18,20 +19,20 @@
 
     <head>
         <style>
-            
-
             .image-container {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%; /* Proporción 16:9 */
-    }
-    .image-container img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-bottom: 56.25%;
+                /* Proporción 16:9 */
+            }
+
+            .image-container img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
 
             /* circulos con borde */
             /* .circle0 {
@@ -43,20 +44,25 @@
     </head>
 
     <body>
-        <div class="image-container">
-    
-        <?php
-      // Ruta de la imagen
-      $rutaImagen = "img/personas.png";
-    
-      // Imprimir la etiqueta <img> con la ruta de la imagen y estilos en línea
-      echo '<img src="' . $rutaImagen . '" alt="Descripción de la imagen" style="width: 50%; height: 80%; top: 5%; left: 20%;">';
-    ?>
-    
-        
-            
-        </div>
+        <div class="contenedor">
+            <div class="image-container">
 
+                <?php
+                // Ruta de la imagen
+                $rutaImagen = "img/personas.png";
+
+                // Imprimir la etiqueta <img> con la ruta de la imagen y estilos en línea
+                echo '<img src="' . $rutaImagen . '" alt="Descripción de la imagen" style="width: 50%; height: 80%; top: 5%; left: 20%;">';
+                ?>
+
+
+
+                <div class="boton-container">
+                    <a href="#" class="btn btn-5" style="color: white;">¡Vamos allá!</a>
+
+                </div>
+            </div>
+        </div>
         <!-- circulos con bordes -->
 
         <!-- <div class="circle0" style="width: 150px; height: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>

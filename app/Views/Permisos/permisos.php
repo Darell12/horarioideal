@@ -112,10 +112,10 @@
         console.log('sirve');
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('permisos/buscarPermisoA/'); ?>"+$('#rol').val(), 
+            url: "<?php echo base_url('permisos/buscarPermisoA/'); ?>" + $('#rol').val(),
             dataType: "json",
             success: function(rs) {
-                 $('.options').removeAttr('disabled', '')
+                $('.options').removeAttr('disabled', '')
                 if (rs.length == 0) {
                     return console.info('Sin datos')
                 }
@@ -125,9 +125,9 @@
                     $(`#${element.id_accion}`).attr('disabled', '');
                 });
 
-            }   
+            }
         })
-        
+
 
     })
 
@@ -212,6 +212,25 @@
     })
 
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             rol: {
                 required: true,
@@ -271,6 +290,9 @@
             })
         } else {
             console.log('Formulario Invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
         }
     })
 

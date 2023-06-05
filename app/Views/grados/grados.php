@@ -408,6 +408,25 @@
     });
 
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             nombre_grado: {
                 required: true,
@@ -479,6 +498,9 @@
             })
         } else {
             console.log('Formulario Invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
         }
     })
     $('#formulario').on('submit', function(e) {

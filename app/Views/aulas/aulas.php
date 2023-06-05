@@ -11,6 +11,7 @@
         </div>
     </div>
 
+
     <br>
     <div class="table-responsive">
         <table style="text-align: center;" id="tablaAulas" class="table align-items-center table-flush table-loader">
@@ -188,9 +189,44 @@
 
 
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             nombre_aula: {
                 required: true,
+                remote: {
+                    url: '<?php echo base_url() ?>aulas/validar',
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        campo: function() {
+                            return 'nombre';
+                        },
+                        valor: function() {
+                            return $("#nombre_aula").val();
+                        },
+                        tp: function() {
+                            return $("#tp").val();
+                        },
+                    },
+                }
             },
             descripcion: {
                 required: true,
@@ -203,6 +239,7 @@
         messages: {
             nombre_aula: {
                 required: "Este campo es requerido",
+                remote: "El aula que desea agregar ya existe"
             },
             descripcion: {
                 required: "Este campo es requerido",
@@ -288,6 +325,9 @@
             })
         } else {
             console.log('Formulario Invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
         }
     })
     $('#formulario').on('submit', function(e) {

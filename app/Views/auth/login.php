@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>/bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/prueba.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/globales.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/login.css" rel="stylesheet">
 
     <script src="<?php echo base_url() ?>/librerias/sweetalert2.js"></script>
@@ -88,7 +87,8 @@
                     <form action="<?php echo base_url('/auth/login'); ?>" id="login">
                         <div class="form-group">
                             <label for="text">Numero de documento</label>
-                            <input type="text" name="n_documento" id="n_documento" class="form-control" placeholder="Ingrese su numero de documento" />                       </div>
+                            <input type="text" name="n_documento" id="n_documento" class="form-control" placeholder="Ingrese su numero de documento" />
+                        </div>
                         <div class="form-group">
                             <label for="passwd">Contraseña</label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" />
@@ -122,10 +122,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 <script>
-
     $('#n_documento').on('keypress', function(e) {
         let charcode = e.which ? e.which : e.keyCode;
-        if (charcode > 31 && (charcode < 48 || charcode >57)){
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
             e.preventDefault();
         }
     })

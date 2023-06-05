@@ -36,9 +36,11 @@ class Horario_encModel extends Model
     
     public function obtenerEncabezados($estado)
     {
-        $this->select('horarios_enc.*, g.alias as grado, p.nombre as jornada');
+        $this->select('horarios_enc.*, g.alias as grado, p.nombre as jornada, param.nombre as duracion_hora');
         $this->join('grados as g', 'horarios_enc.id_grado = g.id_grado');
         $this->join('parametro_det as p', 'horarios_enc.jornada = p.id_parametro_det');
+        $this->join('parametro_enc as param', 'horarios_enc.duracion_hora = param.id_enc');
+        // $this->join('vw_param_det2 as param3', 'horarios_enc.duracion_hora = p.id_parametro_det');
         $this->where('horarios_enc.estado', $estado);
         $datos = $this->findAll();
         return $datos;

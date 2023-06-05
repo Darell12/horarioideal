@@ -28,21 +28,21 @@
     </div>
 
     <table id="tablaUsuariosExport" class="table align-items-center table-flush" hidden>
-    <thead class="thead-light">
-        <tr>
-            <th class="text-center" style="width: 1% !important;" scope="col">#</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Tipo Documento</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Documento</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Primer Nombre</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Segundo Nombre</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Primer Apellido</th>
-            <th class="text-center" style="width: 1% !important;" scope="col">Segundo Apellido</th>
-        </tr>
-    </thead>
-    <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider" id="cuerpoExcel">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center" style="width: 1% !important;" scope="col">#</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Tipo Documento</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Documento</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Primer Nombre</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Segundo Nombre</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Primer Apellido</th>
+                <th class="text-center" style="width: 1% !important;" scope="col">Segundo Apellido</th>
+            </tr>
+        </thead>
+        <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider" id="cuerpoExcel">
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
     <div class="modal" id="modalAsignaturas" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -520,8 +520,7 @@
 </div>
 
 <script>
-
-$(document).ready(function() {
+    $(document).ready(function() {
         $('#tablaUsuarios').on('init.dt', function() {
             $("#tablaUsuarios").removeClass('table-loader').show();
         });
@@ -530,19 +529,19 @@ $(document).ready(function() {
         }, 3000);
     });
 
-function fnExcelProfesores() {
+    function fnExcelProfesores() {
 
-$.ajax({
-    url: '<?= base_url('usuarios/obtenerProfesores') ?>',
-    type: "POST",
-    data: {
-        estado: 'A'
-    },
-    dataType: "json",
-}).done(function(data) {
-    data.forEach(usuario => {
-        let _row = '';
-        _row += `
+        $.ajax({
+            url: '<?= base_url('usuarios/obtenerProfesores') ?>',
+            type: "POST",
+            data: {
+                estado: 'A'
+            },
+            dataType: "json",
+        }).done(function(data) {
+            data.forEach(usuario => {
+                let _row = '';
+                _row += `
                 <tr style="background-color:yellow;color:#070606;font-weight:300;text-align:center;font-family:Arial;font-size:12px;">
                 <td style="width:50px;">${usuario.id_usuario}</td>
                 <td style="width:50px;">${usuario.t_documento}</td>
@@ -553,16 +552,16 @@ $.ajax({
                 <td style="width:50px;">${usuario.apellido_s}</td>
                 
                 </tr>`;
-        $('#tablaUsuariosExport').append(_row)
-    });
-}).then(() => {
-    // /* Create worksheet from HTML DOM TABLE */
-    var wb = XLSX.utils.table_to_book(document.getElementById("tablaUsuariosExport"));
-    /* Export to file (start a download) */
-    XLSX.writeFile(wb, "ReporteUsuarios.xlsx");
-});
+                $('#tablaUsuariosExport').append(_row)
+            });
+        }).then(() => {
+            // /* Create worksheet from HTML DOM TABLE */
+            var wb = XLSX.utils.table_to_book(document.getElementById("tablaUsuariosExport"));
+            /* Export to file (start a download) */
+            XLSX.writeFile(wb, "ReporteUsuarios.xlsx");
+        });
 
-}
+    }
 
 
 
@@ -571,6 +570,32 @@ $.ajax({
     }, "Por favor ingrese solamente letras.");
 
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            if (element[0].id == 'telUsuario') {
+                return true;
+            } else if (element[0].id == 'email') {
+                return true;
+            } else if (element[0].id == 'acudientess') {
+                return true;
+            }
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             id_rol: {
                 required: true,
@@ -750,6 +775,9 @@ $.ajax({
                 return
             })
         } else {
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
             console.log('Formulario Invalido');
         }
     })
@@ -1088,7 +1116,7 @@ $.ajax({
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
                     $('#password_label_c').attr('hidden', '');
-                    $('#formulario').validate().resetForm();
+                    // $('#formulario').validate().resetForm();
                     $("#btn_Guardar").text('Actualizar');
                     $("#UsuarioModal").modal("show");
                 }
@@ -1168,7 +1196,7 @@ $.ajax({
             $('#password_label').removeAttr('hidden', '');
             $('#confirmar_contraseña').removeAttr('hidden', '');
             $('#password_label_c').removeAttr('hidden', '');
-            $('#formulario').validate().resetForm();
+            // $('#formulario').validate().resetForm();
             $('#tituloModal').text('Añadir Usuario');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
@@ -1500,8 +1528,11 @@ $.ajax({
                     cadena = `<select name="asignatura" id="asignatura" class="form-select">
                                    <option selected value="">Seleccione una opcion</option>`
                     res[0].forEach(element => {
-                        console.log(element);
-                        cadena += `<option value='${element.id_grado_asignatura}'>${element.nombre}</option>`
+                        if (+element.horas_semanales + contadorHoras > 30) {
+                            cadena += `<option value='${element.id_grado_asignatura}' disabled>${element.nombre + ' - ' +element.horas_semanales+'hrs'}</option>`
+                        } else {
+                            cadena += `<option value='${element.id_grado_asignatura}'>${element.nombre + ' - ' +element.horas_semanales+'hrs'}</option>`
+                        }
                     });
                     cadena += `</select>`
                 }
@@ -1510,11 +1541,14 @@ $.ajax({
         })
     })
 
+    let contadorHoras = 0;
+
     function generarTablaAsignatura(id) {
         let contador = 0;
-        let contadorHoras = 0;
+        contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarga(${id})`)
+
         $.ajax({
             url: "<?php echo base_url('profesores/obtenerCarga/'); ?>" + id,
             type: 'POST',
@@ -1553,6 +1587,20 @@ $.ajax({
     }
 
     function insertarCarga(id) {
+        if (contadorHoras >= 30) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Dale un descanso',
+                text: 'Este Profesor esta en su limite!',
+            })
+        }
+        if ($('#asignatura').val() == '') {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Invalido!',
+                text: 'Todos los campos deben estar seleccionados',
+            })
+        }
         $.ajax({
             type: "POST",
             url: "<?php echo base_url('/profesores/insertarCarga'); ?>",

@@ -19,6 +19,7 @@
                     <th class="text-center">Grado</th>
                     <th class="text-center">Año</th>
                     <th class="text-center">Jornada</th>
+                    <th class="text-center">Duración</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -63,7 +64,7 @@
                                     <label class="col-form-label">Duración:</label>
                                     <select class="form-select form-select" name="duracion" id="duracion" required>
                                         <option value='' selected>Seleccione un parametro</option>
-                                        <option value="12">45 Minutos</option>
+                                        <!-- <option value="12">45 Minutos</option> -->
                                         <option value="13">60 Minutos</option>
                                     </select>
                                 </div>
@@ -337,25 +338,25 @@
             },
             periodo_año: {
                 required: true,
-                remote: {
-                    url: '<?php echo base_url() ?>Horario_enc/validar',
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        campo: function() {
-                            return 'periodo_año';
-                        },
-                        valor: function() {
-                            return $("#periodo_año").val();
-                        },
-                        tp: function() {
-                            return $("#tp").val();
-                        },
-                        id_grado: function() {
-                            return $("#id_grado").val();
-                        },
-                    },
-                }
+                // remote: {
+                //     url: '<?php echo base_url() ?>Horario_enc/validar',
+                //     type: "post",
+                //     dataType: "json",
+                //     data: {
+                //         campo: function() {
+                //             return 'periodo_año';
+                //         },
+                //         valor: function() {
+                //             return $("#periodo_año").val();
+                //         },
+                //         tp: function() {
+                //             return $("#tp").val();
+                //         },
+                //         id_grado: function() {
+                //             return $("#id_grado").val();
+                //         },
+                //     },
+                // }
             },
             messages: {
                 id_grado: {
@@ -428,6 +429,12 @@
             },
             {
                 data: "jornada"
+            },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    return data.duracion_hora == 'Franja_60_Min' ? '60 Minutos' : '45 Minutos';
+                },
             },
             {
                 data: null,

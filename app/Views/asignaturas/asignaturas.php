@@ -43,12 +43,11 @@
                                     <label for="nombre_asignatura" class="col-form-label">Nombre:</label>
                                     <input type="text" class="form-control" name="nombre_asignatura" id="nombre_asignatura" required>
                                 </div>
-
+    
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <div class="col">
                                     <label for="codigo" class="col-form-label">Codigo:</label>
-                                    <!-- <input type="number" class="form-control" name="codigo" id="codigo" required> -->
                                     <select name="codigo" class="form-select form-select" id="codigo">
                                         <option value="">-Seleccione una opción-</option>
                                         <?php foreach ($Area as $valor) { ?>
@@ -59,7 +58,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="codigo" class="col-form-label">Tipo:</label>
-                                    <!-- <input type="number" class="form-control" name="codigo" id="codigo" required> -->
+
                                     <select name="tipo" class="form-select form-select" id="tipo">
                                         <option value="">-Seleccione una opción-</option>
                                         <?php foreach ($tipos as $valor) { ?>
@@ -179,9 +178,26 @@
         }
     })
 
-
-
     $("#formulario").validate({
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+            setTimeout(() => {
+                error.fadeOut('slow');
+            }, 1500);
+            return true;
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid')
+            setTimeout(() => {
+                $(element).removeClass('is-invalid')
+            }, 1500);
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid')
+        },
+        submitHandler: function() {
+            return false;
+        },
         rules: {
             nombre_asignatura: {
                 required: true,
@@ -203,12 +219,24 @@
                     },
                 }
             },
+            codigo:{
+                required: true,
+            },
+            tipo:{
+                required: true,
+            },
             
         },
         messages: {
             nombre_asignatura: {
                 required: "Este campo es requerido",
                 remote: "Esta asignatura ya está registrada"
+            },
+            codigo:{
+                required: "Este campo es requerido"
+            },
+            tipo:{
+                required: "Este campo es requerido"
             },
         
         }
@@ -245,4 +273,51 @@
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
     });
+
+    $('#btn_Guardar').on('click', function(e) {
+        e.preventDefault();
+        if ($('#formulario').valid()) {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/asignaturas/insertar'); ?>",
+                data: {
+                    tp: $('#tp').val(),
+                    id: $('#id').val(),
+                    nombre: $('#nombre_asignatura').val(),
+                    codigo:$('#codigo'),
+                    tipo_requerido:$('#tipo')
+
+                },
+                dataType: "json",
+            }).done(function(data) {
+                $('#GradoModal').modal('hide');
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Acción realizada con exito!'
+                })
+                console.log('insertar');
+                contador = 0
+                tableAsignaturas.ajax.reload(null, false)
+                return
+            })
+        } else {
+            console.log('Formulario Invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
+        }
+    })
+
 </script>
