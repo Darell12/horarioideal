@@ -28,7 +28,6 @@ class Grados_asignaturaModel extends Model
         $this->select('grados_asignatura.*, asignaturas.nombre as asignatura, asignaturas.nombre as nombre, asignaturas.codigo as codigo, param.nombre as area');
         $this->join('asignaturas', 'grados_asignatura.id_asignatura = asignaturas.id_asignatura');
         $this->join('parametro_det as param', 'asignaturas.Codigo = param.id_parametro_det');
-
         $this->where('grados_asignatura.id_grado', $id);
         $this->where('grados_asignatura.estado', 'A');
         $datos = $this->findAll();

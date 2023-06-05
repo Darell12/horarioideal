@@ -1588,6 +1588,7 @@
 
     function insertarCarga(id) {
         if (contadorHoras >= 30) {
+            console.log('sirve')
             return Swal.fire({
                 icon: 'error',
                 title: 'Dale un descanso',

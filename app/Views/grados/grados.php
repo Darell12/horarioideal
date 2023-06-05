@@ -48,7 +48,8 @@
                     </div>
                     <div class="col">
                         <label class="col-form-label">Horas Semanales:</label>
-                        <input type="text" class="form-control" name="horas" id="horas" required>
+                        <input type="number" class="form-control " name="horas" id="horas" required>
+                        <label id="horasError" class="text-danger"></label>
                     </div>
 
 
@@ -230,11 +231,14 @@
         }
     })
 
+    let contadorHoras = 0;
+
     function generarTablaAsignatura(id) {
         let contador = 0;
-        let contadorHoras = 0;
+        contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarg(${id})`)
+
         $.ajax({
             url: "<?php echo base_url('grados/obtenerAsignaturasS/'); ?>" + id,
             type: 'POST',
@@ -262,52 +266,94 @@
                 } else if (contadorHoras >= 20 && contadorHoras < 30) {
                     color = 'text-warning';
                 }
+
                 contenidoHead = `<h4>Horas <span class="${color}">${contadorHoras}<span class="text-dark">/</span><span class="text-success">30</span></span></h4>`
                 console.log(contenidoHead);
                 $('#horasAsig').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
-                $('#tituloAsig').text(titulo);
+                $('#tituloAsig').text('xd');
             }
         })
     }
 
+    $('#horas').on('input', function(e) {
+        i = $('#horas').val();
+        console.log(+contadorHoras + +i);
+        if (parseInt(contadorHoras) + parseInt(i) > 30) {
+            $('#horas').addClass("is-invalid")
+            $('#horasError').text("La cantidad de horas supera el limite semanal")
+            return false;
+        } else {
+            $('#horas').removeClass("is-invalid")
+            $('#horasError').text('')
+            return ('')
+        }
+    })
+
     function insertarCarg(id) {
-
-        if ($('#asignatura').val() == "" || $('#horas').val() == "") {
-            $('#asig-error').text('Los campos no deben estar vacios');
-            $('#asignatura').addClass('is-invalid');
-            $('#horas').addClass('is-invalid');
-
+        i = $('#horas').val();
+        if (parseInt(contadorHoras) + parseInt(i) > 30) {
+            $('#horas').on('input', function(e) {
+                console.log(+contadorHoras + +i);
+                if (parseInt(contadorHoras) + parseInt(i) > 30) {
+                    $('#horas').addClass("is-invalid")
+                    $('#horasError').text("La cantidad de horas supera el limite semanal")
+                    return false;
+                } else {
+                    $('#horas').removeClass("is-invalid")
+                    $('#horasError').text('')
+                    return ('')
+                }
+            })
+        }
+        if ($('#asignatura').val() == '') {
+            $('#horas').addClass('is-invalid')
+            $('#asignatura').addClass('is-invalid')
             setTimeout(() => {
-                $('#asig-error').text('')
-                $('#asignatura').removeClass('is-invalid');
-                $('#horas').removeClass('is-invalid');
-
-            }, 2000);
-
-            $('#asignatura').val("")
-            $('#horas').val("")
-
-            return
+                $('#horas').removeClass('is-invalid')
+                $('#asignatura').removeClass('is-invalid')
+            }, 1500);
         }
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('/grados/insertarCarg'); ?>",
-            data: {
-                id_grado: id,
-                id_asignatura: $('#asignatura').val(),
-                horas_semanales: $('#horas').val(),
-            },
-            dataType: "json",
-        }).done(function(data) {
-            generarTablaAsignatura(id)
-            $('#asignatura').val("")
-            $('#horas').val("")
-        })
     }
 
-
+    // $("#asignaturass").validate({
+    //     errorPlacement: function(error, element) {
+    //         error.insertAfter(element);
+    //         setTimeout(() => {
+    //             error.fadeOut('slow');
+    //         }, 1500);
+    //         return true;
+    //     },
+    //     highlight: function(element) {
+    //         $(element).addClass('is-invalid')
+    //         setTimeout(() => {
+    //             $(element).removeClass('is-invalid')
+    //         }, 1500);
+    //     },
+    //     unhighlight: function(element) {
+    //         $(element).removeClass('is-invalid')
+    //     },
+    //     submitHandler: function() {
+    //         return false;
+    //     },
+    //     rules: {
+    //         horas: {
+    //             required: true,
+    //         },
+    //         asignatura: {
+    //             required: true,
+    //         },
+    //     },
+    //     messages: {
+    //         horas: {
+    //         required: "Este campo es obligatorio",
+    //         },
+    //         asignatura: {
+    //         required: "Este campo es obligatorio",
+    //         },
+    //     }
+    // });
 
     function retirarCarga(id, id_grado_asignatura) {
 
@@ -367,7 +413,7 @@
             tablaGrados.ajax.reload(null, false);
         })
     }
-
+    0
     $('#modalEliminaAsig').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
     });
