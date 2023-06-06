@@ -36,7 +36,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="h5">Asignaturas:</h5>
                     <div class="col">
                         <label class="col-form-label">Asignatura:</label>
                         <select class="form-select form-select" name="asignatura" id="asignatura" required>
@@ -174,6 +173,7 @@
 </div>
 
 <script>
+
     $(document).ready(function() {
         $('#tablaGrados').on('init.dt', function() {
             console.log('loader')
@@ -232,13 +232,13 @@
     })
 
     let contadorHoras = 0;
-
+    
     function generarTablaAsignatura(id) {
         let contador = 0;
         contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarg(${id})`)
-
+        
         $.ajax({
             url: "<?php echo base_url('grados/obtenerAsignaturasS/'); ?>" + id,
             type: 'POST',
@@ -257,6 +257,7 @@
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminaAsig" data-href="${id + ',' + asignatura.id_grado_asignatura},${id}"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
+                            $('#tituloAsig').text(`Carga Asignaturas ${asignatura.grado}`);
                 });
                 let color
                 if (contadorHoras < 10) {
@@ -268,10 +269,10 @@
                 }
 
                 contenidoHead = `<h4>Horas <span class="${color}">${contadorHoras}<span class="text-dark">/</span><span class="text-success">30</span></span></h4>`
+
                 console.log(contenidoHead);
                 $('#horasAsig').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
-                $('#tituloAsig').text('xd');
             }
         })
     }
@@ -316,44 +317,6 @@
         }
 
     }
-
-    // $("#asignaturass").validate({
-    //     errorPlacement: function(error, element) {
-    //         error.insertAfter(element);
-    //         setTimeout(() => {
-    //             error.fadeOut('slow');
-    //         }, 1500);
-    //         return true;
-    //     },
-    //     highlight: function(element) {
-    //         $(element).addClass('is-invalid')
-    //         setTimeout(() => {
-    //             $(element).removeClass('is-invalid')
-    //         }, 1500);
-    //     },
-    //     unhighlight: function(element) {
-    //         $(element).removeClass('is-invalid')
-    //     },
-    //     submitHandler: function() {
-    //         return false;
-    //     },
-    //     rules: {
-    //         horas: {
-    //             required: true,
-    //         },
-    //         asignatura: {
-    //             required: true,
-    //         },
-    //     },
-    //     messages: {
-    //         horas: {
-    //         required: "Este campo es obligatorio",
-    //         },
-    //         asignatura: {
-    //         required: "Este campo es obligatorio",
-    //         },
-    //     }
-    // });
 
     function retirarCarga(id, id_grado_asignatura) {
 

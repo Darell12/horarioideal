@@ -25,8 +25,9 @@ class Grados_asignaturaModel extends Model
 
     public function obtenerAsignaturasGrado($id)
     {
-        $this->select('grados_asignatura.*, asignaturas.nombre as asignatura, asignaturas.nombre as nombre, asignaturas.codigo as codigo, param.nombre as area');
+        $this->select('grados_asignatura.*, grados.alias as grado, asignaturas.nombre as asignatura, asignaturas.nombre as nombre, asignaturas.codigo as codigo, param.nombre as area');
         $this->join('asignaturas', 'grados_asignatura.id_asignatura = asignaturas.id_asignatura');
+        $this->join('grados', 'grados_asignatura.id_grado = grados.id_grado');
         $this->join('parametro_det as param', 'asignaturas.Codigo = param.id_parametro_det');
         $this->where('grados_asignatura.id_grado', $id);
         $this->where('grados_asignatura.estado', 'A');
