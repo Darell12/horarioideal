@@ -4,7 +4,13 @@
             <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
         </h1>
         <div style="margin-top: 2em;">
-            <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+            <?php foreach ($Modulos as $Modulo) { ?>
+                <?php if ($Modulo['tipo'] == 'Funcion' && $Modulo['id_modulo'] == 16) { ?>
+                    <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+                <? } else { ?>
+                    <button hidden disabled type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+                <?php } ?>
+            <?php  } ?>
             <a href="<?php echo base_url('/roles/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
@@ -267,8 +273,8 @@
                     title: 'Acción realizada con exito!'
                 })
                 console.log('insertar');
-                contador = 0 
-                    tablaRoles.ajax.reload(null, false)
+                contador = 0
+                tablaRoles.ajax.reload(null, false)
                 return
             })
         } else {

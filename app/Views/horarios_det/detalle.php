@@ -186,7 +186,7 @@
                         <div class="col">
                             <label class="col-form-label">Profesor:</label>
                             <select class="form-select form-select" name="profesor" id="profesor" required>
-                                <option value="">Seleccione un Jornada</option>
+                                <option value="">Seleccione un Profesor</option>
                             </select>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
             }
         }
 
-        const parametros = ['84','88','90','95']
+        const parametros = ['84', '88', '90', '95']
         array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
         array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
         // array1 = array1.filter(franja => franja.id_parametro_det !== '84'); // ! 9:30AM
@@ -332,6 +332,31 @@
             tablaDetalle.ajax.reload(null, false);
         })
     }
+
+    // ! Limitación de profesores segun horas de trabajo
+    let horas_profe = 0;
+
+    $('#profesor').on('input', function(e) {
+        let id_profesor = e.target.value
+        dataURL = "<?php echo base_url('/horario_det/buscarDetalleProfe/'); ?>" + id_profesor;
+        $.ajax({
+            type: "POST",
+            url: dataURL,
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                response.forEach(franja => {
+                    horas_profe += +franja.duracion
+                    console.log(horas_profe)
+                });
+                if (horas_profe >= 30) {
+
+                }
+                console.log(horas_profe)
+            }
+        })
+    })
+
 
     let franjasVisualizar = []
     $.ajax({
@@ -500,12 +525,36 @@
                 if (!res.length > 0) {
                     cadena = `<option selected value="" readonly>No hay un profesor asignado</option>`
                 } else {
-                    cadena = `<option selected value="">Seleccione una opcion</option>`
+                    // cadena = `<option selected value="">Seleccione una opcion</option>`
                     res.forEach(element => {
-                        cadena += `<option value='${element.id_usuario}'>${element.profesor}</option>`
+                        let id_profesor = element.id_usuario
+                        dataURL = "<?php echo base_url('/horario_det/buscarDetalleProfe/'); ?>" + id_profesor;
+                        $.ajax({
+                            type: "POST",
+                            url: dataURL,
+                            dataType: "json",
+                            success: function(response) {
+                                console.log(response);
+                                response.forEach(franja => {
+                                    horas_profe += +franja.duracion
+                                    console.log(horas_profe)
+                                });
+                                if (horas_profe >= 30) {
+                                    cadena = `<option class="text-danger" disabled value='${element.id_usuario}'>${element.profesor}</option>`
+                                } else {
+                                    cadena = `<option class=${30 - horas_profe <= 4 ? '"text-warning"' : '"text-success"'} value='${element.id_usuario}'>${element.profesor + ' disponibilidad: ' + (30 - horas_profe)+'hrs' }</option>`
+                                }
+                                horas_profe = 0;
+                                console.log(cadena);
+                                $('#profesor').append(cadena)
+                            }
+                        })
+
+
                     });
                 }
-                $('#profesor').html(cadena)
+                $('#profesor').append(cadena)
+
             }
         })
         $('#aula').on('change', function(e) {
@@ -772,30 +821,42 @@
                 }
                 let rellenoAlerta = ''
                 data.forEach(element => {
-                    let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
-                    rellenoAlerta += `<li class="lecture-time ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}" style="text-decoration: none !important; list-style-type: none;">
-                        <a>
+                    rellenoAlerta += `<li class="lecture-time" style="text-decoration: none !important; list-style-type: none;">
                             <div class="lecture-info">
                                 <h6 class="lecture-title">${element.dia}</h6>
                                 <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
                             </div>
-                        </a>
                     </li>`
                 })
 
                 setTimeout(() => {
-                    Swal.fire({
-                        title: '<h3 class="h3"> Franjas Generadas </h3>',
-                        icon: 'info',
-                        html: `Frajas Generadas ${rellenoAlerta}
-                                    <br>
-                                    Recuerde Confirmar
-                                    `,
-                        showCloseButton: true,
-                        focusConfirm: false,
-                        confirmButtonText: 'Continuar!',
-                        confirmButtonAriaLabel: 'Thumbs up, great!',
-                    })
+                    console.log(rellenoAlerta.length)
+                    if (rellenoAlerta.length == 0) {
+
+                        Swal.fire({
+                            title: '<h3 class="h3"> Franjas Generadas </h3>',
+                            icon: 'info',
+                            html: `No se hallaron franjas disponibles segun tus selecciones`,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Intentar de nuevo!',
+                        })
+
+
+                    } else {
+                        Swal.fire({
+                            title: '<h3 class="h3"> Franjas Generadas </h3>',
+                            icon: 'info',
+                            html: `Frajas Generadas ${rellenoAlerta}
+                                        <br>
+                                        Recuerde Confirmar
+                                        `,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Continuar!',
+                            confirmButtonAriaLabel: 'Thumbs up, great!',
+                        })
+                    }
                 }, 1500);
 
                 $('#btn_enviar').removeAttr('disabled', '');

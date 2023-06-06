@@ -451,6 +451,11 @@
                                     </button>
                                 </a>
                                 <a class="nav-link">
+                                <button class="btn btn-outline-info" title="Generar Horario Automaticamente">
+                                <i class="bi bi-trash3"></i>
+                                </button>
+                                </a>
+                                <a class="nav-link">
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
