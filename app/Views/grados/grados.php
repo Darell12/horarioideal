@@ -69,6 +69,7 @@
                 <input type="text" id="id" name="id" hidden>
                 <input type="text" id="nombreActu" name="nombreActu" hidden>
                 <input type="text" id="numeroActu" name="numeroActu" hidden>
+                <input type="text" id="valido" name="valido" hidden>
                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
 
                 <div class="table-responsive" style="padding: 2rem 2rem;">
@@ -277,14 +278,26 @@
         })
     }
 
+    $('#horas').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
     $('#horas').on('input', function(e) {
         i = $('#horas').val();
         console.log(+contadorHoras + +i);
         if (parseInt(contadorHoras) + parseInt(i) > 30) {
             $('#horas').addClass("is-invalid")
             $('#horasError').text("La cantidad de horas supera el limite semanal")
+            $('#valido').val(1);
             return false;
-        } else {
+        }else if( parseInt(i) == 0){
+            $('#horas').addClass("is-invalid")
+            $('#horasError').text("La hora no puede ser cero")
+        } 
+        else{
             $('#horas').removeClass("is-invalid")
             $('#horasError').text('')
             return ('')
@@ -293,20 +306,6 @@
 
     function insertarCarg(id) {
         i = $('#horas').val();
-        if (parseInt(contadorHoras) + parseInt(i) > 30) {
-            $('#horas').on('input', function(e) {
-                console.log(+contadorHoras + +i);
-                if (parseInt(contadorHoras) + parseInt(i) > 30) {
-                    $('#horas').addClass("is-invalid")
-                    $('#horasError').text("La cantidad de horas supera el limite semanal")
-                    return false;
-                } else {
-                    $('#horas').removeClass("is-invalid")
-                    $('#horasError').text('')
-                    return ('')
-                }
-            })
-        }
         if ($('#asignatura').val() == '') {
             $('#horas').addClass('is-invalid')
             $('#asignatura').addClass('is-invalid')
@@ -314,6 +313,9 @@
                 $('#horas').removeClass('is-invalid')
                 $('#asignatura').removeClass('is-invalid')
             }, 1500);
+        }
+        if($('#valido').val()==1){
+            return 
         }
         $.ajax({
             type: "POST",
@@ -330,6 +332,7 @@
             $('#horas').val("")
         })
     }
+
 
     function retirarCarga(id, id_grado_asignatura) {
 
@@ -529,5 +532,4 @@
         console.log('activo');
         e.preventDefault();
     })
-
 </script>
