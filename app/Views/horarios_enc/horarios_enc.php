@@ -128,6 +128,23 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal-confirma-auto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header text-center">
+                <h5 style="color:#29588a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Generación de Horario Automatica</h5>
+
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea generar el horario para este grado de forma automatica?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-success btn-ok">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -278,7 +295,6 @@
         }
     });
 
-
     function visualizarHorario(id) {
         $(`#Lunes`).html('');
         $(`#Martes`).html('');
@@ -320,7 +336,6 @@
             }
         });
     }
-
 
     $('#duracion').val('');
 
@@ -451,7 +466,7 @@
                                     </button>
                                 </a>
                                 <a class="nav-link">
-                                <button class="btn btn-outline-info" title="Generar Horario Automaticamente">
+                                <button class="btn btn-outline-info" title="Generar Horario Automaticamente" data-bs-toggle="modal" data-bs-target="#modal-confirma-auto" data-href="${data.id_horarios_enc}">
                                 <i class="bi bi-trash3"></i>
                                 </button>
                                 </a>
@@ -544,6 +559,10 @@
 
     $('.close').click(function() {
         $("#modal-confirma").modal("hide");
+    });
+
+    $('.close').click(function() {
+        $("#modal-confirma-auto ").modal("hide");
     });
 
     $('#duracion').on('change', function(e) {
