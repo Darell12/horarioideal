@@ -30,9 +30,9 @@ class Database extends Config
         // 'hostname' => 'localhost',
         // 'username' => 'root',
         // 'password' => '',
-       // PARA TRABAJAR EN EL SENA
-       'hostname' => '10.230.16.135',
-         'hostname' => '10.230.16.135',
+        // PARA TRABAJAR EN EL SENA
+        'hostname' => '10.230.16.135',
+        'hostname' => '10.230.16.135',
         'username' => 'user_db',
         'password' => '123456789',
         'database' => 'horarios_db',

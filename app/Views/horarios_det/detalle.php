@@ -284,26 +284,19 @@
             }
         }
 
-        const parametros = ['84', '88', '90', '95']
+        const parametros = ['84', '88', '91', '94' ,'95']
         array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
         array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
-        // array1 = array1.filter(franja => franja.id_parametro_det !== '84'); // ! 9:30AM
-        // array1 = array1.filter(franja => franja.id_parametro_det !== '88'); // ! 12:30
-        // array1 = array1.filter(franja => franja.id_parametro_det !== '90'); // ! 02:30
-        // array1 = array1.filter(franja => franja.id_parametro_det !== '95'); // ! 18:00
-        // array2 = array2.filter(franja => franja.id_parametro_det !== '84'); // ! 9:30AM
-        // array2 = array2.filter(franja => franja.id_parametro_det !== '88'); // ! 12:30
-        // array2 = array2.filter(franja => franja.id_parametro_det !== '90'); // ! 02:30
-        // array2 = array2.filter(franja => franja.id_parametro_det !== '95'); // ! 18:00
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '84'); // ! 9:30AM
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '90'); // ! 2:30
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '88'); // ! 12:30
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '95'); // ! 18:00
+        arrayRango = arrayRango.filter(franja =>!parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+
         console.log([array1, array2, arrayRango]);
         return [array1, array2, arrayRango];
     }
 
-
+   /**
+    * @param {*} id: string numero entero
+    * @returns numero
+    */
     function EliminarRegistro(id) {
 
         $.ajax({
@@ -765,6 +758,13 @@
                                 data[i - 1].fin = 85
                                 data[i - 1].duracion = 2
                                 data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 85).nombre
+                            }
+
+                            if (data[i - 1].fin == undefined) {
+                                console.log('undefined')
+                                data[i - 1].fin = +data[i - 1].inicio + 1
+                                data[i - 1].duracion = 1
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == +data[i - 1].inicio + 1).nombre
                             }
 
                             dia_anterior = dia
