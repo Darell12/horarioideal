@@ -296,6 +296,8 @@
         }else if( parseInt(i) == 0){
             $('#horas').addClass("is-invalid")
             $('#horasError').text("La hora no puede ser cero")
+            $('#valido').val(1);
+            return
         } 
         else{
             $('#horas').removeClass("is-invalid")
