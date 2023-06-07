@@ -47,7 +47,7 @@
                     </div>
                     <div class="col">
                         <label class="col-form-label">Horas Semanales:</label>
-                        <input type="number" class="form-control " name="horas" id="horas" required>
+                        <input type="text" class="form-control " name="horas" id="horas" required>
                         <label id="horasError" class="text-danger"></label>
                     </div>
 
@@ -315,7 +315,20 @@
                 $('#asignatura').removeClass('is-invalid')
             }, 1500);
         }
-
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/grados/insertarCarg'); ?>",
+            data: {
+                id_grado: id,
+                id_asignatura: $('#asignatura').val(),
+                horas_semanales: $('#horas').val(),
+            },
+            dataType: "json",
+        }).done(function(data) {
+            generarTablaAsignatura(id)
+            $('#asignatura').val("")
+            $('#horas').val("")
+        })
     }
 
     function retirarCarga(id, id_grado_asignatura) {
@@ -516,4 +529,5 @@
         console.log('activo');
         e.preventDefault();
     })
+
 </script>
