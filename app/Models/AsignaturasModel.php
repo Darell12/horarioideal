@@ -53,9 +53,10 @@ class AsignaturasModel extends Model
     public function buscarAsignaturasxGrado($id_grado)
     {
         $this->select('asignaturas.id_asignatura, asignaturas.nombre, g.id_grado_asignatura, g.horas_semanales');
-        $this->join('grados_asignatura as g', 'asignaturas.id_asignatura = g.id_asignatura');
+        $this->join('grados_asignatura as g', 'asignaturas.id_asignatura  = g.id_asignatura');
         $this->where('g.id_grado', $id_grado);
         $this->where('asignaturas.estado', 'A');
+        $this->where('g.estado', 'A');
         $datos = $this->findAll();
         return $datos;
     }

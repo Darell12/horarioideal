@@ -107,7 +107,6 @@
             $('#tablaPermisos').DataTable();
         }, 3000);
     });
-
     $('#rol').on('change', function() {
         console.log('sirve');
         $.ajax({
@@ -124,11 +123,8 @@
                     console.log(element.id_accion);
                     $(`#${element.id_accion}`).attr('disabled', '');
                 });
-
             }
         })
-
-
     })
 
     $('#modal-confirma').on('show.bs.modal', function(e) {
@@ -137,7 +133,7 @@
 
     function seleccionaPermisos(id, tp) {
         if (tp == 2) {
-            dataURL = "<?php echo base_url('/permisos/buscarPermisoA'); ?>" + "/" + id;
+            dataURL = "<?php echo base_url('/permisos/buscarPermiso'); ?>" + "/" + id;
             $.ajax({
                 type: "POST",
                 url: dataURL,
@@ -195,7 +191,7 @@
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group">
-                                <button class="btn btn-outline-primary" onclick="seleccionaPermisos(${data.id_permiso}, 2);" data-bs-toggle="modal" data-bs-target="#UsuarioModal" title="Editar Registro">
+                                <button class="btn btn-outline-primary" onclick="seleccionaPermisos(${data.id_permiso}, 2);"title="Editar Registro">
                                     <i class="bi bi-pencil"></i>
                                 </button>
 

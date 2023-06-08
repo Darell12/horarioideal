@@ -128,6 +128,23 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal-confirma-auto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div style="text-align:center;" class="modal-header text-center">
+                <h5 style="color:#29588a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Generación de Horario Automatica</h5>
+
+            </div>
+            <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <p>Seguro Desea generar el horario para este grado de forma automatica?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-outline-success btn-ok">Confirmar</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -278,7 +295,6 @@
         }
     });
 
-
     function visualizarHorario(id) {
         $(`#Lunes`).html('');
         $(`#Martes`).html('');
@@ -320,7 +336,6 @@
             }
         });
     }
-
 
     $('#duracion').val('');
 
@@ -451,6 +466,11 @@
                                     </button>
                                 </a>
                                 <a class="nav-link">
+                                <button class="btn btn-outline-info" onclick="AutoHorario(${data.id_horarios_enc}, ${data.id_grado})" title="Generar Horario Automaticamente" data-bs-toggle="modal" data-bs-target="#modal-confirma-auto" data-href="${data.id_horarios_enc}">
+                                <i class="bi bi-trash3"></i>
+                                </button>
+                                </a>
+                                <a class="nav-link">
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
@@ -541,6 +561,10 @@
         $("#modal-confirma").modal("hide");
     });
 
+    $('.close').click(function() {
+        $("#modal-confirma-auto ").modal("hide");
+    });
+
     $('#duracion').on('change', function(e) {
         let duracion = $('#duracion').val();
         let pertenece = '';
@@ -605,4 +629,308 @@
 
         }
     });
+
+    // ! Filtra y retorna solo las franjas disponibles en el dia recibido
+    function filtroPorDia(dia, res, inicio, fin, aula) {
+
+        let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('primerFiltro')
+        // console.table(primerFiltro);
+        let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('segundoFiltro')
+        // console.table(segundoFiltro);
+        // console.log('Franjas Profesores');
+        // console.log(franjasProfesor);
+        let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('tercerFiltro')
+        // console.table(tercerFiltro);
+
+        let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('cuartoFiltro')
+        // console.table(cuartoFiltro);
+
+        let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+        let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+
+        const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
+
+        return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
+    }
+    // ! Separa el las franjas disponibles en espacios de 1hora, 2horas y un array general
+    function dividirArray(array, horaInicio, horaFin) {
+        let arrayRango = [];
+        let array1 = [];
+        let array2 = [];
+
+        //DEFINO INICIO Y FIN DE LA JORNDADA
+        const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
+        const fechaFin = new Date(`2000-01-01T${horaFin}`);
+
+
+        for (let i = 0; i < array.length; i++) {
+            const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
+
+            if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
+                arrayRango.push(array[i]);
+            }
+        }
+
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
+
+        for (let i = 0; i < arrayRango.length; i++) {
+            const idActual = parseInt(arrayRango[i].id_parametro_det);
+            const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
+            if (idSiguiente - idActual >= 2) {
+                array1.push(arrayRango[i]);
+            } else {
+                array2.push(arrayRango[i]);
+            }
+        }
+
+        const parametros = ['84', '88', '91', '94', '95']
+        array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        arrayRango = arrayRango.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+
+        console.log([array1, array2, arrayRango]);
+        return [array1, array2, arrayRango];
+    }
+
+    /**
+     * @param {id} id = id del grado
+     * return array con las asignaturas asignadas al grado
+     */
+    function ObtenerAsignaturas(id) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "<?php echo base_url('asignaturas/buscarAsignaturasxGrado/') ?>" + id,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    resolve(response);
+                },
+                error: function(error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+
+
+    async function AutoHorario(id, idGrado) {
+
+        let asignaturasGrado = await ObtenerAsignaturas(idGrado);
+        console.log(asignaturasGrado)
+
+        $.ajax({
+            url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                franjasProfesor = res
+            }
+        })
+
+        data = [];
+        let i = 0;
+
+        let diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+
+        let asignatura = $('#asignatura').val();
+        let profesor = $('#profesor').val();
+
+        if (asignatura == '' || profesor == '' || $('#aula').val() == '') {
+            return Swal.fire({
+                title: 'Todos los campos deben estar llenos',
+                icon: 'error',
+            })
+        }
+
+        duracionAsignaturas.forEach(element => {
+            if (element.id_grado_asignatura == asignatura) {
+                numeroRepeticiones = element.horas_semanales / 2;
+            }
+        });
+
+        $.ajax({
+            url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                franjasProfesor = res
+            }
+        })
+
+        $.ajax({
+            url: "<?php echo base_url('horario_det/buscarDetalles/') ?>",
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                franjasTotalesOcupadas = res
+            }
+        })
+
+        $.ajax({
+            url: "<?php echo base_url('horario_det/obtenerDetalles/') ?>" + id,
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+
+                const diasSiAsignados = [...new Set(res.map(element => element.dia))];
+                let hora_retirada;
+                let dia_anterior;
+                let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+
+                while (i < numeroRepeticiones) {
+
+                    try {
+                        let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
+
+                        let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
+
+                        let dia = diasSemana[0];
+
+                        if (Libres2Horas.length > 0) {
+                            i++;
+                        }
+
+                        if (diasSemana.length > 0) {
+
+                            // * Verifica si el dia se verifico 2 veces
+                            if (dia_anterior == dia) {
+                                console.log('repitio dia')
+                                diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+                                dia = diasSemana[1];
+                            }
+                            // * Eliminamos el dia verificado del array
+                            diasSemana.shift();
+
+
+                            data.push({
+                                "asignatura": asignatura,
+                                "profesor": profesor,
+                                "aula": $('#aula').val(),
+                                "dia": dia,
+                                "id_dia": id_dias[dia],
+                                "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
+                                "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
+                                "fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+                                "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.nombre || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
+                                "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
+                                "id_encabezado": id
+                            });
+
+                            // * Valida la hora de fin y la ajusta para evitar espacios de 30 min
+                            if (data[i - 1].fin == 84) {
+                                console.log('Acabo a las 9:30')
+                                data[i - 1].fin = 85
+                                data[i - 1].duracion = 2
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 85).nombre
+                            }
+
+                            if (data[i - 1].fin == undefined) {
+                                console.log('undefined')
+                                data[i - 1].fin = +data[i - 1].inicio + 1
+                                data[i - 1].duracion = 1
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == +data[i - 1].inicio + 1).nombre
+                            }
+
+                            dia_anterior = dia
+
+                            hora_retirada = (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det
+
+                            // * RETIRA HORA EN CASO DE EXCESO
+                            if (data[i - 1].fin == 89) {
+
+                                data[i - 1].duracion = 1
+                                data[i - 1].fin = 88
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 88).nombre
+
+                                let Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                    icon: 'info',
+                                    title: `Para la franja del dia ${data[i-1].dia} se le ha retirado una hora por exceder el limite!`
+                                })
+
+                            }
+                        } else {
+                            // * ERROR DIA SIN ESPACIO
+                            let Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            Toast.fire({
+                                icon: 'error',
+                                title: `No hay más franjas disponibles para el dia!`
+                            })
+                            diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+
+                        }
+                    } catch (error) {}
+
+                }
+                let rellenoAlerta = ''
+                data.forEach(element => {
+                    rellenoAlerta += `<li class="lecture-time" style="text-decoration: none !important; list-style-type: none;">
+                            <div class="lecture-info">
+                                <h6 class="lecture-title">${element.dia}</h6>
+                                <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
+                            </div>
+                    </li>`
+                })
+
+                setTimeout(() => {
+                    console.log(rellenoAlerta.length)
+                    if (rellenoAlerta.length == 0) {
+
+                        Swal.fire({
+                            title: '<h3 class="h3"> Franjas Generadas </h3>',
+                            icon: 'info',
+                            html: `No se hallaron franjas disponibles segun tus selecciones`,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Intentar de nuevo!',
+                        })
+
+
+                    } else {
+                        Swal.fire({
+                            title: '<h3 class="h3"> Franjas Generadas </h3>',
+                            icon: 'info',
+                            html: `Frajas Generadas ${rellenoAlerta}
+                                        <br>
+                                        Recuerde Confirmar
+                                        `,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Continuar!',
+                            confirmButtonAriaLabel: 'Thumbs up, great!',
+                        })
+                    }
+                }, 1500);
+
+                $('#btn_enviar').removeAttr('disabled', '');
+                console.table(data)
+            }
+        })
+    }
 </script>

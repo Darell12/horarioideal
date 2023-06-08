@@ -39,15 +39,23 @@ class Profesores extends BaseController
         $grados = $this->grados->obtenerGrados('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
-        $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+        $session = session();
+        if (session('id_rol') == 4) {
+            $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+            echo view('/principal/sidebar', $data);
+            echo view('/profesores/consulta', $data);
+        } else {
 
-        echo view('/principal/sidebar', $data);
-        echo view('/profesores/profesores', $data);
+            $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+
+            echo view('/principal/sidebar', $data);
+            echo view('/profesores/profesores', $data);
+        }
     }
     public function eliminados()
     {
         $cargaSideBar = $this->metodos->getModulos();
-        
+
         $data = ['titulo' => 'Administrar Profesores Eliminados', 'Modulos' => $cargaSideBar];
         echo view('/principal/sidebar', $data);
         echo view('/profesores/eliminados', $data);

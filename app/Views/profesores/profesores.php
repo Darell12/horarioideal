@@ -847,7 +847,7 @@
                                     <i class="bi bi-pencil"></i>
                                 </button>
 
-                                <button class="btn btn-outline-warning" onclick="generarTablaAsignatura(${data.id_usuario});" data-bs-toggle="modal" data-bs-target="#modalAsignaturas" title="Asignar carga Académica">
+                                <button class="btn btn-outline-warning" onclick="generarTablaAsignatura(${data.id_usuario}, '${data.nombre_p + ' ' + data.apellido_p}');" data-bs-toggle="modal" data-bs-target="#modalAsignaturas" title="Asignar carga Académica">
                                     <i class="bi bi-journal-bookmark"></i>
                                 </button>
 
@@ -1537,13 +1537,14 @@
                     cadena += `</select>`
                 }
                 $('#asignatura').html(cadena)
+                $('#asignatura').TEXT(cadena)
             }
         })
     })
 
     let contadorHoras = 0;
 
-    function generarTablaAsignatura(id) {
+    function generarTablaAsignatura(id, nombre) {
         let contador = 0;
         contadorHoras = 0;
         let contenido = '';
@@ -1582,12 +1583,14 @@
                 console.log(contenidoHead);
                 $('#horasProfe').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
+                $('#tituloAsig').html(`Carga Académica del profesor` +' '+ nombre);
             }
         })
     }
 
     function insertarCarga(id) {
         if (contadorHoras >= 30) {
+            console.log('sirve')
             return Swal.fire({
                 icon: 'error',
                 title: 'Dale un descanso',

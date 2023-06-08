@@ -1,7 +1,7 @@
 <input hidden id="accion" value="<?php echo session('accion') ?>"></input>
 
-<div class=" bg-white">
-    <section style="background-color: #eee;">
+<div class="">
+    <section style="background-color: #fafafa;;">
         <div class="container py-5">
 
             <div class="row">

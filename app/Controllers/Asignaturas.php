@@ -27,7 +27,7 @@ class Asignaturas extends BaseController
         $asignaturas = $this->asignaturas->obtenerAsignaturas('E');
         $paramAreas = $this->paramAreas->ObtenerParametro(9);
         $paramTipos = $this->paramTipos->ObtenerParametro(14);
-        $data = ['titulo' => 'Administrar Asignaturas', 'nombre' => 'Camilo', 'Area' => $paramAreas, 'datos' => $asignaturas, 'tipos' => $paramTipos, 'Modulos' => $cargaSideBar];
+        $data = ['titulo' => 'Administrar Asignaturas', 'Area' => $paramAreas, 'datos' => $asignaturas, 'tipos' => $paramTipos, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/asignaturas/asignaturas', $data);

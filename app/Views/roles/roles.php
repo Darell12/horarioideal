@@ -4,8 +4,14 @@
             <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
         </h1>
         <div style="margin-top: 2em;">
-            <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-            <a href="<?php echo base_url('/roles/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+            <?php foreach ($Modulos as $Modulo) { ?>
+                <?php if ($Modulo['tipo'] == 'Funcion' && $Modulo['id_modulo'] == 16) { ?>
+                    <button type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+                <? } else { ?>
+                    <button hidden disabled type="button" onclick="seleccionaRol(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#RolModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+                    <a href="<?php echo base_url('/roles/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+                <?php } ?>
+            <?php  } ?>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
     </div>
@@ -139,11 +145,11 @@
                 data: null,
                 render: function(data, type, row) {
                     return `<div class="btn-group">
-
                     <button class="btn btn-outline-primary" onclick="seleccionaRol(${data.id_rol} , 2);" data-bs-toggle="modal" data-bs-target="#RolModal" title="Editar Rol"><i class="bi bi-pencil"></i></button>
                     
                     <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_rol}" title="Eliminar Rol"><i class="bi bi-trash3"></i></button>
-                    </div>`
+                    </div>                    
+                   `
                 },
             }
         ],
@@ -267,8 +273,8 @@
                     title: 'Acción realizada con exito!'
                 })
                 console.log('insertar');
-                contador = 0 
-                    tablaRoles.ajax.reload(null, false)
+                contador = 0
+                tablaRoles.ajax.reload(null, false)
                 return
             })
         } else {

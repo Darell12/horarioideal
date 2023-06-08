@@ -36,7 +36,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="h5">Asignaturas:</h5>
                     <div class="col">
                         <label class="col-form-label">Asignatura:</label>
                         <select class="form-select form-select" name="asignatura" id="asignatura" required>
@@ -48,7 +47,8 @@
                     </div>
                     <div class="col">
                         <label class="col-form-label">Horas Semanales:</label>
-                        <input type="text" class="form-control" name="horas" id="horas" required>
+                        <input type="text" class="form-control " name="horas" id="horas" required>
+                        <label id="horasError" class="text-danger"></label>
                     </div>
 
 
@@ -69,6 +69,7 @@
                 <input type="text" id="id" name="id" hidden>
                 <input type="text" id="nombreActu" name="nombreActu" hidden>
                 <input type="text" id="numeroActu" name="numeroActu" hidden>
+                <input type="text" id="valido" name="valido" hidden>
                 <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
 
                 <div class="table-responsive" style="padding: 2rem 2rem;">
@@ -173,6 +174,7 @@
 </div>
 
 <script>
+
     $(document).ready(function() {
         $('#tablaGrados').on('init.dt', function() {
             console.log('loader')
@@ -230,11 +232,14 @@
         }
     })
 
+    let contadorHoras = 0;
+    
     function generarTablaAsignatura(id) {
         let contador = 0;
-        let contadorHoras = 0;
+        contadorHoras = 0;
         let contenido = '';
         $('#btn_agregar').attr('onclick', `insertarCarg(${id})`)
+        
         $.ajax({
             url: "<?php echo base_url('grados/obtenerAsignaturasS/'); ?>" + id,
             type: 'POST',
@@ -253,6 +258,7 @@
                             <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminaAsig" data-href="${id + ',' + asignatura.id_grado_asignatura},${id}"><i class="bi bi-trash"></i></button>
                             </td>
                             </tr>`
+                            $('#tituloAsig').text(`Carga Asignaturas ${asignatura.grado}`);
                 });
                 let color
                 if (contadorHoras < 10) {
@@ -262,35 +268,57 @@
                 } else if (contadorHoras >= 20 && contadorHoras < 30) {
                     color = 'text-warning';
                 }
+
                 contenidoHead = `<h4>Horas <span class="${color}">${contadorHoras}<span class="text-dark">/</span><span class="text-success">30</span></span></h4>`
+
                 console.log(contenidoHead);
                 $('#horasAsig').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
-                $('#tituloAsig').text(titulo);
             }
         })
     }
 
-    function insertarCarg(id) {
-
-        if ($('#asignatura').val() == "" || $('#horas').val() == "") {
-            $('#asig-error').text('Los campos no deben estar vacios');
-            $('#asignatura').addClass('is-invalid');
-            $('#horas').addClass('is-invalid');
-
-            setTimeout(() => {
-                $('#asig-error').text('')
-                $('#asignatura').removeClass('is-invalid');
-                $('#horas').removeClass('is-invalid');
-
-            }, 2000);
-
-            $('#asignatura').val("")
-            $('#horas').val("")
-
-            return
+    $('#horas').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
         }
+    })
 
+    $('#horas').on('input', function(e) {
+        i = $('#horas').val();
+        console.log(+contadorHoras + +i);
+        if (parseInt(contadorHoras) + parseInt(i) > 30) {
+            $('#horas').addClass("is-invalid")
+            $('#horasError').text("La cantidad de horas supera el limite semanal")
+            $('#valido').val(1);
+            return false;
+        }else if( parseInt(i) == 0){
+            $('#horas').addClass("is-invalid")
+            $('#horasError').text("La hora no puede ser cero")
+            $('#valido').val(1);
+            return
+        } 
+        else{
+            $('#horas').removeClass("is-invalid")
+            $('#horasError').text('')
+            return ('')
+        }
+    })
+
+    function insertarCarg(id) {
+        i = $('#horas').val();
+        if ($('#asignatura').val() == '') {
+            $('#horas').addClass('is-invalid')
+            $('#asignatura').addClass('is-invalid')
+            setTimeout(() => {
+                $('#horas').removeClass('is-invalid')
+                $('#asignatura').removeClass('is-invalid')
+            }, 1500);
+        }
+        if($('#valido').val()==1){
+            return 
+        }
         $.ajax({
             type: "POST",
             url: "<?php echo base_url('/grados/insertarCarg'); ?>",
@@ -306,7 +334,6 @@
             $('#horas').val("")
         })
     }
-
 
 
     function retirarCarga(id, id_grado_asignatura) {
@@ -367,7 +394,7 @@
             tablaGrados.ajax.reload(null, false);
         })
     }
-
+    0
     $('#modalEliminaAsig').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
     });

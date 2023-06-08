@@ -56,6 +56,7 @@ class PermisosModel extends Model
         $this->select('permisos.*');
         $this->where('id_permiso', $id);
         $this->where('estado', 'A');
+        // $this->where('id_rol', $id);
         $datos = $this->first();
         return $datos;
     }

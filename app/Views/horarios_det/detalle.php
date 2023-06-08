@@ -186,7 +186,7 @@
                         <div class="col">
                             <label class="col-form-label">Profesor:</label>
                             <select class="form-select form-select" name="profesor" id="profesor" required>
-                                <option value="">Seleccione un Jornada</option>
+                                <option value="">Seleccione un Profesor</option>
                             </select>
                         </div>
                     </div>
@@ -222,6 +222,81 @@
         $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
     });
 
+    $('.close').click(function() {
+        $("#modal-confirma").modal("hide");
+    });
+
+    // ! Filtra y retorna solo las franjas disponibles en el dia recibido
+    function filtroPorDia(dia, res, inicio, fin, aula) {
+
+        let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('primerFiltro')
+        // console.table(primerFiltro);
+        let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('segundoFiltro')
+        // console.table(segundoFiltro);
+        // console.log('Franjas Profesores');
+        // console.log(franjasProfesor);
+        let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('tercerFiltro')
+        // console.table(tercerFiltro);
+
+        let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+        // console.log('cuartoFiltro')
+        // console.table(cuartoFiltro);
+
+        let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+        let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+
+        const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
+
+        return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
+    }
+    // ! Separa el las franjas disponibles en espacios de 1hora, 2horas y un array general
+    function dividirArray(array, horaInicio, horaFin) {
+        let arrayRango = [];
+        let array1 = [];
+        let array2 = [];
+
+        //DEFINO INICIO Y FIN DE LA JORNDADA
+        const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
+        const fechaFin = new Date(`2000-01-01T${horaFin}`);
+
+
+        for (let i = 0; i < array.length; i++) {
+            const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
+
+            if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
+                arrayRango.push(array[i]);
+            }
+        }
+
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
+        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
+
+        for (let i = 0; i < arrayRango.length; i++) {
+            const idActual = parseInt(arrayRango[i].id_parametro_det);
+            const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
+            if (idSiguiente - idActual >= 2) {
+                array1.push(arrayRango[i]);
+            } else {
+                array2.push(arrayRango[i]);
+            }
+        }
+
+        const parametros = ['84', '88', '91', '94' ,'95']
+        array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        arrayRango = arrayRango.filter(franja =>!parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+
+        console.log([array1, array2, arrayRango]);
+        return [array1, array2, arrayRango];
+    }
+
+   /**
+    * @param {*} id: string numero entero
+    * @returns numero
+    */
     function EliminarRegistro(id) {
 
         $.ajax({
@@ -251,9 +326,30 @@
         })
     }
 
-    $('.close').click(function() {
-        $("#modal-confirma").modal("hide");
-    });
+    // ! Limitación de profesores segun horas de trabajo
+    let horas_profe = 0;
+
+    $('#profesor').on('input', function(e) {
+        let id_profesor = e.target.value
+        dataURL = "<?php echo base_url('/horario_det/buscarDetalleProfe/'); ?>" + id_profesor;
+        $.ajax({
+            type: "POST",
+            url: dataURL,
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                response.forEach(franja => {
+                    horas_profe += +franja.duracion
+                    console.log(horas_profe)
+                });
+                if (horas_profe >= 30) {
+
+                }
+                console.log(horas_profe)
+            }
+        })
+    })
+
 
     let franjasVisualizar = []
     $.ajax({
@@ -275,7 +371,7 @@
         }
     });
 
-
+    // ! Recolecta y genera los horarios para previsualizar
     function visualizarHorario(id) {
         $(`#Lunes`).html('');
         $(`#Martes`).html('');
@@ -298,16 +394,16 @@
                 rs.forEach(element => {
                     let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
                     contenido = `<li class="lecture-time ${franjasVisualizar
-                                                    .find(objeto => objeto.id_parametro_det == element.hora_inicio)
-                                                    ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
-                                                    <a href="">
-                                                        <div class="lecture-info">
-                                                            <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
-                                                            <h6 class="lecture-location">${element.aula}</h6>
-                                                            <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
-                                                        </div>
-                                                    </a>
-                                                </li>`
+                                   .find(objeto => objeto.id_parametro_det == element.hora_inicio)
+                                   ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
+                                   <a href="">
+                                       <div class="lecture-info">
+                                           <h6 class="lecture-title">${element.asignatura} <br> ${element.profesor}</h6>
+                                           <h6 class="lecture-location">${element.aula}</h6>
+                                           <h6 class="lecture-location">${element.inicio} ~ ${element.fin}</h6>
+                                       </div>
+                                   </a>
+                               </li>`
                     $(`#${element.diaN}`).append(contenido)
                 });
             }
@@ -318,6 +414,7 @@
     let fin = ''
 
     var contador = 0
+    // ! Convierte la tabla a una DataTable
     var tablaDetalle = $('#tablaDetalle').DataTable({
         ajax: {
             url: '<?= base_url('horario_det/buscarDetalle') ?>',
@@ -406,6 +503,7 @@
         }
     }
 
+    // ! Captura el valor del select de asignatura y genera profesor y aula
     $('#asignatura').on('change', function(e) {
         let asignatura = $('#asignatura').val();
         let pertenece = '';
@@ -420,12 +518,36 @@
                 if (!res.length > 0) {
                     cadena = `<option selected value="" readonly>No hay un profesor asignado</option>`
                 } else {
-                    cadena = `<option selected value="">Seleccione una opcion</option>`
+                    // cadena = `<option selected value="">Seleccione una opcion</option>`
                     res.forEach(element => {
-                        cadena += `<option value='${element.id_usuario}'>${element.profesor}</option>`
+                        let id_profesor = element.id_usuario
+                        dataURL = "<?php echo base_url('/horario_det/buscarDetalleProfe/'); ?>" + id_profesor;
+                        $.ajax({
+                            type: "POST",
+                            url: dataURL,
+                            dataType: "json",
+                            success: function(response) {
+                                console.log(response);
+                                response.forEach(franja => {
+                                    horas_profe += +franja.duracion
+                                    console.log(horas_profe)
+                                });
+                                if (horas_profe >= 30) {
+                                    cadena = `<option class="text-danger" disabled value='${element.id_usuario}'>${element.profesor}</option>`
+                                } else {
+                                    cadena = `<option class=${30 - horas_profe <= 4 ? '"text-warning"' : '"text-success"'} value='${element.id_usuario}'>${element.profesor + ' disponibilidad: ' + (30 - horas_profe)+'hrs' }</option>`
+                                }
+                                horas_profe = 0;
+                                console.log(cadena);
+                                $('#profesor').append(cadena)
+                            }
+                        })
+
+
                     });
                 }
-                $('#profesor').html(cadena)
+                $('#profesor').append(cadena)
+
             }
         })
         $('#aula').on('change', function(e) {
@@ -464,6 +586,7 @@
         e.preventDefault();
     })
 
+    // ! Obtención de datos al cargar el documento
     $(document).ready(function() {
 
         if (<?php echo $datos['duracion_hora'] ?> == 12) {
@@ -499,7 +622,6 @@
 
 
         setTimeout(() => {
-
             $.ajax({
                 url: "<?php echo base_url('grados/obtenerAsignaturasS/') ?>" + id_grado,
                 dataType: "json",
@@ -507,7 +629,6 @@
                     duracionAsignaturas = data;
                 }
             });
-
         }, 1000);
 
     });
@@ -520,51 +641,6 @@
     let franjasProfesor = [];
     let numeroRepeticiones = 0;
 
-    function dividirArray(array, horaInicio, horaFin) {
-        let arrayRango = [];
-        let array1 = [];
-        let array2 = [];
-
-        //DEFINO INICIO Y FIN DE LA JORNDADA
-        const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
-        const fechaFin = new Date(`2000-01-01T${horaFin}`);
-
-
-        for (let i = 0; i < array.length; i++) {
-            const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
-
-            if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
-                arrayRango.push(array[i]);
-            }
-        }
-
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '50');
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '81');
-        //DIVIDO EN 2 ARRAYS 
-        for (let i = 0; i < arrayRango.length; i++) {
-            const idActual = parseInt(arrayRango[i].id_parametro_det);
-            const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
-            if (idSiguiente - idActual >= 2) {
-                array1.push(arrayRango[i]);
-            } else {
-                array2.push(arrayRango[i]);
-            }
-        }
-        array1 = array1.filter(franja => franja.id_parametro_det !== '49');
-        array1 = array1.filter(franja => franja.id_parametro_det !== '53');
-        array1 = array1.filter(franja => franja.id_parametro_det !== '56');
-        array2 = array2.filter(franja => franja.id_parametro_det !== '49');
-        array2 = array2.filter(franja => franja.id_parametro_det !== '53');
-        array2 = array2.filter(franja => franja.id_parametro_det !== '56');
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '49');
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '56');
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '53');
-        console.log([array1, array2, arrayRango]);
-        return [array1, array2, arrayRango];
-    }
-
-
-
     const dias = {
         "8": 'Lunes',
         "9": 'Martes',
@@ -572,6 +648,7 @@
         "11": 'Jueves',
         "12": 'Viernes',
     }
+
     const id_dias = {
         'Lunes': '8',
         'Martes': '9',
@@ -579,8 +656,10 @@
         'Jueves': '11',
         'Viernes': '12'
     }
+
     let data = [];
     let duracion = ''
+
     $('#btn_Guardar').on('click', function() {
 
 
@@ -638,23 +717,27 @@
 
                     try {
                         let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
+
                         let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
+
                         let dia = diasSemana[0];
+
                         if (Libres2Horas.length > 0) {
                             i++;
                         }
+
                         if (diasSemana.length > 0) {
+
+                            // * Verifica si el dia se verifico 2 veces
                             if (dia_anterior == dia) {
                                 console.log('repitio dia')
                                 diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
                                 dia = diasSemana[1];
-                                // Libres1Hora = Libres1Hora.filter(franja => franja.id_parametro_det !== hora_retirada)
-                                // Libres2Horas = Libres2Horas.filter(franja => franja.id_parametro_det !== hora_retirada)
-                                // console.log(hora_retirada)
-                                // console.log(Libres1Hora.filter(franja => franja.id_parametro_det !== hora_retirada))
-                                // console.log(Libres2Horas.filter(franja => franja.id_parametro_det !== hora_retirada))
                             }
+                            // * Eliminamos el dia verificado del array
                             diasSemana.shift();
+
+
                             data.push({
                                 "asignatura": asignatura,
                                 "profesor": profesor,
@@ -668,14 +751,33 @@
                                 "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
                                 "id_encabezado": <?php echo $id ?>
                             });
+
+                            // * Valida la hora de fin y la ajusta para evitar espacios de 30 min
+                            if (data[i - 1].fin == 84) {
+                                console.log('Acabo a las 9:30')
+                                data[i - 1].fin = 85
+                                data[i - 1].duracion = 2
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 85).nombre
+                            }
+
+                            if (data[i - 1].fin == undefined) {
+                                console.log('undefined')
+                                data[i - 1].fin = +data[i - 1].inicio + 1
+                                data[i - 1].duracion = 1
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == +data[i - 1].inicio + 1).nombre
+                            }
+
                             dia_anterior = dia
+
                             hora_retirada = (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det
 
-                            // RETIRA HORA EN CASO DE EXCESO
-                            if (data[i - 1].fin == 54) {
+                            // * RETIRA HORA EN CASO DE EXCESO
+                            if (data[i - 1].fin == 89) {
+
                                 data[i - 1].duracion = 1
-                                data[i - 1].fin = 53
-                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 53).nombre
+                                data[i - 1].fin = 88
+                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 88).nombre
+
                                 let Toast = Swal.mixin({
                                     toast: true,
                                     position: 'top-end',
@@ -687,13 +789,15 @@
                                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                                     }
                                 })
+
                                 Toast.fire({
                                     icon: 'info',
                                     title: `Para la franja del dia ${data[i-1].dia} se le ha retirado una hora por exceder el limite!`
                                 })
+
                             }
                         } else {
-                            // ERROR DIA SIN ESPACIO
+                            // * ERROR DIA SIN ESPACIO
                             let Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -712,36 +816,49 @@
                             diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
 
                         }
-                        // }
                     } catch (error) {}
 
                 }
                 let rellenoAlerta = ''
                 data.forEach(element => {
-                    let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
-                    rellenoAlerta += `<li class="lecture-time ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}" style="text-decoration: none !important; list-style-type: none;">
-                                                <a>
-                                                    <div class="lecture-info">
-                                                        <h6 class="lecture-title">${element.dia}</h6>
-                                                        <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
-                                                    </div>
-                                                </a>
-                                            </li>`
+                    rellenoAlerta += `<li class="lecture-time" style="text-decoration: none !important; list-style-type: none;">
+                            <div class="lecture-info">
+                                <h6 class="lecture-title">${element.dia}</h6>
+                                <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
+                            </div>
+                    </li>`
                 })
+
                 setTimeout(() => {
-                    Swal.fire({
-                        title: '<h3 class="h3"> Franjas Generadas </h3>',
-                        icon: 'info',
-                        html: `Frajas Generadas ${rellenoAlerta}
-                                    <br>
-                                    Recuerde Confirmar
-                                    `,
-                        showCloseButton: true,
-                        focusConfirm: false,
-                        confirmButtonText: 'Continuar!',
-                        confirmButtonAriaLabel: 'Thumbs up, great!',
-                    })
+                    console.log(rellenoAlerta.length)
+                    if (rellenoAlerta.length == 0) {
+
+                        Swal.fire({
+                            title: '<h3 class="h3"> Franjas Generadas </h3>',
+                            icon: 'info',
+                            html: `No se hallaron franjas disponibles segun tus selecciones`,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Intentar de nuevo!',
+                        })
+
+
+                    } else {
+                        Swal.fire({
+                            title: '<h3 class="h3"> Franjas Generadas </h3>',
+                            icon: 'info',
+                            html: `Frajas Generadas ${rellenoAlerta}
+                                        <br>
+                                        Recuerde Confirmar
+                                        `,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Continuar!',
+                            confirmButtonAriaLabel: 'Thumbs up, great!',
+                        })
+                    }
                 }, 1500);
+
                 $('#btn_enviar').removeAttr('disabled', '');
                 console.table(data)
             }
@@ -779,37 +896,4 @@
 
         })
     });
-
-
-    function filtroPorDia(dia, res, inicio, fin, aula) {
-        // console.log(res)
-        let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('primerFiltro')
-        // console.table(primerFiltro);
-        let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('segundoFiltro')
-        // console.table(segundoFiltro);
-        // console.log('Franjas Profesores');
-        // console.log(franjasProfesor);
-        let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('tercerFiltro')
-        // console.table(tercerFiltro);
-
-        let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('cuartoFiltro')
-        // console.table(cuartoFiltro);
-
-        // return [cuartoFiltro];
-        let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-        let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('Franjas AUla');
-        // console.log(franjasTotalesOcupadasAula);
-        // console.log('sextoFiltro:');
-        // console.log(sextoFiltro);
-        const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
-
-
-
-        return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
-    }
 </script>

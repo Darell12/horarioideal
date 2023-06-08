@@ -56,6 +56,7 @@ class Usuarios extends BaseController
         if (!session('logged_in') == 'true') {
             return redirect()->to(base_url('iniciarSesion'));
         }
+        
         $cargaSideBar = $this->metodos->getModulos();
         $usuario = $this->usuario->buscarUsuarioPerfil($id);
         $roles = $this->roles->obtenerRoles('A');
@@ -64,7 +65,6 @@ class Usuarios extends BaseController
         $telefonos = $this->telefonos->ObtenerTelefonoUsuario($id, 'A');
         $tipo = $this->tipotel->ObtenerParametro(3);
 
-        // $estudiante = $this->usuario->buscarEstudiantes($id);
         if ($usuario['id_rol'] == 3) {
             $acudientes = $this->acudientes->ObtenerAcudientes('A', session('id'));
         } else {
@@ -73,10 +73,8 @@ class Usuarios extends BaseController
 
         $data = ['titulo' => 'Perfil', 'datos' => $usuario, 'roles' => $roles, 'prioridad' => $prioridad, 'emails' => $emails, 'telefonos' => $telefonos, 'tipo' => $tipo, 'acudiente' => $acudientes, 'Modulos' => $cargaSideBar];
 
-        // return json_encode($data);
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/perfil', $data);
-        echo view('/principal/footer', $data);
     }
 
     public function test($id)
