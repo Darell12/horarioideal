@@ -353,25 +353,6 @@
             },
             periodo_año: {
                 required: true,
-                // remote: {
-                //     url: '<?php echo base_url() ?>Horario_enc/validar',
-                //     type: "post",
-                //     dataType: "json",
-                //     data: {
-                //         campo: function() {
-                //             return 'periodo_año';
-                //         },
-                //         valor: function() {
-                //             return $("#periodo_año").val();
-                //         },
-                //         tp: function() {
-                //             return $("#tp").val();
-                //         },
-                //         id_grado: function() {
-                //             return $("#id_grado").val();
-                //         },
-                //     },
-                // }
             },
             messages: {
                 id_grado: {
@@ -717,11 +698,40 @@
         });
     }
 
+    function ObtenerProfeXAsignatura(id) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "<?php echo base_url('profesores/obtenerProfesoresAsignatura/') ?>" + id,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    resolve(response);
+                },
+                error: function(error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+
 
     async function AutoHorario(id, idGrado) {
 
         let asignaturasGrado = await ObtenerAsignaturas(idGrado);
         console.log(asignaturasGrado)
+
+        asignaturasGrado[0].map(async (asignatura) => {
+            let {
+                id_grado_asignatura
+            } = asignatura;
+            try {
+                let profesores = await ObtenerProfeXAsignatura(id_grado_asignatura)
+            } catch (error) {
+                console.log(`Error al obtener los datos:`, error);
+            }
+        })
+        
+        console.log(profesores)
 
         $.ajax({
             url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
