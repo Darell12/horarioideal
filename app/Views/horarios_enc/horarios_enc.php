@@ -698,14 +698,66 @@
         });
     }
 
-    function ObtenerProfeXAsignatura(id) {
+    function ObtenerProfeXAsignatura(id, horas) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: "<?php echo base_url('profesores/obtenerProfesoresAsignatura/') ?>" + id,
                 type: 'POST',
                 dataType: 'json',
                 success: function(response) {
-                    resolve(response);
+                    let profesores = [];
+                    response.map(async (registro) => {
+                        let {
+                            id_usuario,
+                            profesor
+                        } = registro;
+
+                        try {
+                            let resultado = await ObtenerDisponibilidadProfe(id_usuario, horas)
+                            profesores.push({
+                                id_usuario: id_usuario,
+                                profesor: profesor,
+                                horas_libres: resultado.disponible ? resultado.disponible : 30,
+                                elegible: resultado.elegible ? resultado.elegible : true,
+                            });
+                        } catch (error) {
+                            console.log(`Error al obtener los datos:`, error);
+                        }
+                    });
+                    resolve(profesores);
+                },
+                error: function(error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+
+    function ObtenerDisponibilidadProfe(id, necesarias) {
+        let horas = 0;
+        let disponible;
+        let elegible;
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + id,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    response.map(async (registro) => {
+                        
+                        let {
+                            duracion,
+                        } = registro;
+
+                        try {
+                            horas += +duracion;
+                            disponible = 30 - +horas;
+                            elegible = disponible >= necesarias;
+                        } catch (error) {
+                            console.log(`Error al obtener los datos:`, error);
+                        }
+                    });
+                    resolve({disponible, elegible});
                 },
                 error: function(error) {
                     reject(error);
@@ -716,31 +768,54 @@
 
 
     async function AutoHorario(id, idGrado) {
-
+        let profesores = [];
         let asignaturasGrado = await ObtenerAsignaturas(idGrado);
         console.log(asignaturasGrado)
 
-        asignaturasGrado[0].map(async (asignatura) => {
-            let {
-                id_grado_asignatura
-            } = asignatura;
-            try {
-                let profesores = await ObtenerProfeXAsignatura(id_grado_asignatura)
-            } catch (error) {
-                console.log(`Error al obtener los datos:`, error);
-            }
-        })
-        
-        console.log(profesores)
+        await Promise.all(
+            asignaturasGrado[0].map(async (asignatura) => {
+                let {
+                    id_grado_asignatura,
+                    nombre,
+                    horas_semanales
+                } = asignatura;
 
-        $.ajax({
-            url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
-            type: 'POST',
-            dataType: 'json',
-            success: function(res) {
-                franjasProfesor = res
-            }
-        })
+                try {
+                    profesores.push({
+                        horas_semanales: horas_semanales,
+                        asignatura: nombre,
+                        profesores: await ObtenerProfeXAsignatura(id_grado_asignatura, horas_semanales),
+                    });
+                } catch (error) {
+                    console.log(`Error al obtener los datos:`, error);
+                }
+            })
+        );
+
+        console.log(profesores);
+
+        // await Promise.all(
+        //     profesores.map(async (profesor) => {
+        //         let {
+        //             asignatura,
+        //             profesores
+        //         } = profesor
+
+        //         try {
+        //             let disponibilidadProfesores = await Promise.all(
+        //                 profesores.map(async (profesor) => {
+        //                     let disponibilidadProfesor = await ObtenerDisponibilidadProfe(profesor.id_usuario);
+        //                     return disponibilidadProfesor;
+        //                 })
+        //             );
+        //             disponibilidad.push(disponibilidadProfesores);
+        //         } catch (error) {
+        //             console.log(`Error al obtener los datos:`, error);
+        //         }
+        //     })
+        // );
+
+        // console.log(disponibilidad)
 
         data = [];
         let i = 0;
