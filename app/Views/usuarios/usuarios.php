@@ -897,7 +897,7 @@
                 data: {
                     tp: $('#tp').val(),
                     id: $('#id').val(),
-                    numeroActu: $('#numeroActu').val(),
+                    numeroActu: $('#numeroActu')                .val(),
                     id_rol: $('#rol').val(),
                     tipo_documento: $('#tipo_documento').val(),
                     n_documento: $('#n_documento').val(),
