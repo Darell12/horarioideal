@@ -8,16 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="global.css">
     <title>Document</title>
-</head>
-
-<body>
-
-
-
-    <!DOCTYPE html>
-    <html>
-
-    <head>
         <style>
             .image-container {
                 position: relative;
@@ -33,7 +23,30 @@
                 height: 100%;
                 object-fit: cover;
             }
+            .boton-container {
+            max-width: 100%;
+            height: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Ajusta la alineación vertical y horizontal del contenido al centro */
+        }
 
+        /* Estilos para el botón */
+        #miBoton {
+            padding: 50px 100px; /* Ajusta el padding para hacer el botón más grande */
+            background-color: transparent;
+            color: blue;
+            border: none;
+            font-size: 40px; /* Ajusta el tamaño de fuente para hacer el botón más grande */
+        }
+
+        /* Media query para ajustar los estilos en pantallas pequeñas */
+        @media (max-width: 600px) {
+            #miBoton {
+                display: none; /* Oculta el botón en pantallas pequeñas */
+            }
+        }
+        
             /* circulos con borde */
             /* .circle0 {
       position: absolute;
@@ -41,9 +54,14 @@
       border-radius: 50%;
     } */
         </style>
-    </head>
+</head>
+
+
 
     <body>
+    
+
+        
         <div class="contenedor">
             <div class="image-container">
 
@@ -55,13 +73,13 @@
                 echo '<img src="' . $rutaImagen . '" alt="Descripción de la imagen" style="width: 50%; height: 80%; top: 5%; left: 20%;">';
                 ?>
 
+<div class="boton-container">
+<div class="miBoton">
+    <a href="<?php echo base_url('/ver_horarios'); ?>" class="btn btn-5" style="color: white;">¡Vamos allá!</a>
 
-
-                <div class="boton-container">
-                    <a href="#" class="btn btn-5" style="color: white;">¡Vamos allá!</a>
-
-                </div>
-            </div>
+</div>
+</div>
+</div>
         </div>
         <!-- circulos con bordes -->
 
@@ -81,6 +99,7 @@
 
 
 
+    
     </body>
 
     </html>
@@ -93,6 +112,7 @@
 
 
     <script>
+        
         posibles_estados = {
             'E': 'Incactivos',
             'A': 'Activos',
@@ -256,3 +276,6 @@
             }
         });
     </script>
+
+    
+

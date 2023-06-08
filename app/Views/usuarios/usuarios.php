@@ -1864,7 +1864,7 @@
             $('#ModalAcudientes').modal('hide');
             $('#acudientess').removeClass('is-invalid');
         }else{
-            $('#acudientess').val('');
+            $('#acudientess').val(''); 
             $('#acudientess').addClass('is-invalid');
         }
     })
