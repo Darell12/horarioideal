@@ -1,326 +1,329 @@
-<div class="container bg-white shadow rounded-4">
-    <div class="d-flex justify-content-between flex-wrap">
-        <div class="border-0">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/loader.css">
+
+    <div class="container bg-white shadow rounded-4">
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="border-0">
+            </div>
+
+            <div style="margin-top: 2em;">
+                <button type="button" onclick="seleccionaHorarios_enc(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
+                <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
+                <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+            </div>
         </div>
 
-        <div style="margin-top: 2em;">
-            <button type="button" onclick="seleccionaHorarios_enc(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-            <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
-            <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+        <br>
+        <div class="table-responsive">
+            <table style="text-align: center;" id="TablaHorario" class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Grado</th>
+                        <th class="text-center">Año</th>
+                        <th class="text-center">Jornada</th>
+                        <th class="text-center">Duración</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
+                </tbody>
+            </table>
         </div>
-    </div>
 
-    <br>
-    <div class="table-responsive">
-        <table style="text-align: center;" id="TablaHorario" class="table align-items-center table-flush">
-            <thead class="thead-light">
-                <tr>
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Grado</th>
-                    <th class="text-center">Año</th>
-                    <th class="text-center">Jornada</th>
-                    <th class="text-center">Duración</th>
-                    <th class="text-center">Acciones</th>
-                </tr>
-            </thead>
-            <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
-            </tbody>
-        </table>
-    </div>
-
-    <form id="formulario">
-        <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header" style="background: #0f9dba; color:#FFF;">
-                        <h1 class="modal-title fs-5" id="tituloModal">Añadir Horario</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <label class="col-form-label">Grado:</label>
-                                    <select class="form-select form-select" name="id_grado" id="id_grado" required>
-                                        <option value="">Seleccione un Grado</option>
-                                        <?php foreach ($grados as $grado) { ?>
-                                            <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label class="col-form-label">Año:</label>
-                                    <select type="text" class="form-select" class="form-control" name="periodo_año" id="periodo_año" required>
-                                        <option value=""> Seleccione un año </option>
-                                        <?php $years = range(strftime("%Y", time()), 2000); ?>
-                                        <?php foreach ($years as $year) : ?>
-                                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label class="col-form-label">Duración:</label>
-                                    <select class="form-select form-select" name="duracion" id="duracion" required>
-                                        <option value='' selected>Seleccione un parametro</option>
-                                        <!-- <option value="12">45 Minutos</option> -->
-                                        <option value="13">60 Minutos</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label class="col-form-label">Jornada:</label>
-                                    <select class="form-select form-select" name="jornada" id="jornada" required>
-                                        <option value="">Seleccione un Jornada</option>
-                                        <option value="20">Mañana</option>
-                                        <option value="21">Tarde</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label class="col-form-label">Inicio:</label>
-                                    <select class="form-select form-select" name="inicio" id="inicio" required>
-                                        <option value="">Seleccione un hora</option>
-
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label class="col-form-label">Fin:</label>
-                                    <select class="form-select form-select" name="fin" id="fin" required>
-                                        <option value="">Seleccione un hora</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <input type="text" id="tp" name="tp" hidden>
-                                <input type="text" id="id" name="id" hidden>
-                            </div>
+        <form id="formulario">
+            <div class="modal fade" id="Horarios_encModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: #0f9dba; color:#FFF;">
+                            <h1 class="modal-title fs-5" id="tituloModal">Añadir Horario</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="col-form-label">Grado:</label>
+                                        <select class="form-select form-select" name="id_grado" id="id_grado" required>
+                                            <option value="">Seleccione un Grado</option>
+                                            <?php foreach ($grados as $grado) { ?>
+                                                <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="col-form-label">Año:</label>
+                                        <select type="text" class="form-select" class="form-control" name="periodo_año" id="periodo_año" required>
+                                            <option value=""> Seleccione un año </option>
+                                            <?php $years = range(strftime("%Y", time()), 2000); ?>
+                                            <?php foreach ($years as $year) : ?>
+                                                <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="col-form-label">Duración:</label>
+                                        <select class="form-select form-select" name="duracion" id="duracion" required>
+                                            <option value='' selected>Seleccione un parametro</option>
+                                            <!-- <option value="12">45 Minutos</option> -->
+                                            <option value="13">60 Minutos</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="col-form-label">Jornada:</label>
+                                        <select class="form-select form-select" name="jornada" id="jornada" required>
+                                            <option value="">Seleccione un Jornada</option>
+                                            <option value="20">Mañana</option>
+                                            <option value="21">Tarde</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="col-form-label">Inicio:</label>
+                                        <select class="form-select form-select" name="inicio" id="inicio" required>
+                                            <option value="">Seleccione un hora</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="col-form-label">Fin:</label>
+                                        <select class="form-select form-select" name="fin" id="fin" required>
+                                            <option value="">Seleccione un hora</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="tp" name="tp" hidden>
+                                    <input type="text" id="id" name="id" hidden>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-    </form>
+        </form>
 
 
-</div>
+    </div>
 
-<div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div style="text-align:center;" class="modal-header">
-                <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
+    <div class="modal fade" id="modal-confirma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div style="text-align:center;" class="modal-header">
+                    <h5 style="color:#98040a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Eliminación de Registro</h5>
 
-            </div>
-            <div style="text-align:center;font-weight:bold;" class="modal-body">
-                <p>Seguro Desea Eliminar éste Registro?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-outline-danger btn-ok">Confirmar</a>
+                </div>
+                <div style="text-align:center;font-weight:bold;" class="modal-body">
+                    <p>Seguro Desea Eliminar éste Registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-outline-danger btn-ok">Confirmar</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="modal-confirma-auto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div style="text-align:center;" class="modal-header text-center">
-                <h5 style="color:#29588a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Generación de Horario Automatica</h5>
+    <div class="modal fade" id="modal-confirma-auto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div style="text-align:center;" class="modal-header text-center">
+                    <h5 style="color:#29588a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Generación de Horario Automatica</h5>
 
-            </div>
-            <div style="text-align:center;font-weight:bold;" class="modal-body">
-                <p>Seguro Desea generar el horario para este grado de forma automatica?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-outline-success btn-ok">Confirmar</a>
+                </div>
+                <div style="text-align:center;font-weight:bold;" class="modal-body">
+                    <div class="loader" id="loader"></div>
+                    <p id="contenidoModal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary close" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-outline-success btn-ok">Confirmar</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="TituloModal">Horario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container-lecture">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModal">Horario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-lecture">
 
-                    <section class="section-list">
-                        <div class="container-xl">
-                            <div class="table-schedule">
-                                <div class="timeline">
-                                    <ul>
-                                        <li><span>06:00</span></li>
-                                        <li><span>06:30</span></li>
-                                        <li><span>07:00</span></li>
-                                        <li><span>07:30</span></li>
-                                        <li><span>08:00</span></li>
-                                        <li><span>08:30</span></li>
-                                        <li><span>09:00</span></li>
-                                        <li><span>09:30</span></li>
-                                        <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
-                                            <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
-                                        </li>
-                                        <li><span>10:30</span></li>
-                                        <li><span>11:00</span></li>
-                                        <li><span>11:30</span></li>
-                                        <li><span>12:00</span></li>
-                                        <li><span>12:30</span></li>
-                                        <li><span>13:00</span></li>
-                                        <li><span>13:30</span></li>
-                                        <li><span>14:00</span></li>
-                                        <li><span>14:30</span></li>
-                                        <li><span>15:00</span></li>
-                                        <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
-                                            <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
-                                        </li>
-                                        <li><span>16:00</span></li>
-                                        <li><span>16:30</span></li>
-                                        <li><span>17:00</span></li>
-                                        <li><span>17:30</span></li>
-                                        <li><span>18:00</span></li>
-                                        <li><span>18:30</span></li>
-                                    </ul>
-                                </div>
-
-                                <div class="table-schedule-subject">
-                                    <tr>
-                                        <ul class="list-lecture-item">
-                                            <li class="timeline-vertical">
-                                                <div class="top-info">
-                                                    <h4 class="day">Lunes</h4>
-                                                </div>
-                                                <ul id="Lunes">
-
-                                                </ul>
+                        <section class="section-list">
+                            <div class="container-xl">
+                                <div class="table-schedule">
+                                    <div class="timeline">
+                                        <ul>
+                                            <li><span>06:00</span></li>
+                                            <li><span>06:30</span></li>
+                                            <li><span>07:00</span></li>
+                                            <li><span>07:30</span></li>
+                                            <li><span>08:00</span></li>
+                                            <li><span>08:30</span></li>
+                                            <li><span>09:00</span></li>
+                                            <li><span>09:30</span></li>
+                                            <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                                <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
                                             </li>
-                                    </tr>
+                                            <li><span>10:30</span></li>
+                                            <li><span>11:00</span></li>
+                                            <li><span>11:30</span></li>
+                                            <li><span>12:00</span></li>
+                                            <li><span>12:30</span></li>
+                                            <li><span>13:00</span></li>
+                                            <li><span>13:30</span></li>
+                                            <li><span>14:00</span></li>
+                                            <li><span>14:30</span></li>
+                                            <li><span>15:00</span></li>
+                                            <li style="z-index: 999;background-color: white; color:rgb(152, 168, 185);align-items: center;"><span>10:00</span>
+                                                <h3 style="text-align: center; margin-top: -15px;"> D E S C A N S O</h3>
+                                            </li>
+                                            <li><span>16:00</span></li>
+                                            <li><span>16:30</span></li>
+                                            <li><span>17:00</span></li>
+                                            <li><span>17:30</span></li>
+                                            <li><span>18:00</span></li>
+                                            <li><span>18:30</span></li>
+                                        </ul>
+                                    </div>
 
-                                    <li class="timeline-vertical">
-                                        <div class="top-info">
-                                            <h4 class="day">Martes</h4>
-                                        </div>
-                                        <ul id="Martes">
+                                    <div class="table-schedule-subject">
+                                        <tr>
+                                            <ul class="list-lecture-item">
+                                                <li class="timeline-vertical">
+                                                    <div class="top-info">
+                                                        <h4 class="day">Lunes</h4>
+                                                    </div>
+                                                    <ul id="Lunes">
+
+                                                    </ul>
+                                                </li>
+                                        </tr>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Martes</h4>
+                                            </div>
+                                            <ul id="Martes">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Miercoles</h4>
+                                            </div>
+
+                                            <ul id="Miercoles">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Jueves</h4>
+                                            </div>
+
+                                            <ul id="Jueves">
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="timeline-vertical">
+                                            <div class="top-info">
+                                                <h4 class="day">Viernes</h4>
+                                            </div>
+
+                                            <ul id="Viernes">
+
+                                            </ul>
+                                        </li>
 
                                         </ul>
-                                    </li>
-
-                                    <li class="timeline-vertical">
-                                        <div class="top-info">
-                                            <h4 class="day">Miercoles</h4>
-                                        </div>
-
-                                        <ul id="Miercoles">
-
-                                        </ul>
-                                    </li>
-
-                                    <li class="timeline-vertical">
-                                        <div class="top-info">
-                                            <h4 class="day">Jueves</h4>
-                                        </div>
-
-                                        <ul id="Jueves">
-
-                                        </ul>
-                                    </li>
-
-                                    <li class="timeline-vertical">
-                                        <div class="top-info">
-                                            <h4 class="day">Viernes</h4>
-                                        </div>
-
-                                        <ul id="Viernes">
-
-                                        </ul>
-                                    </li>
-
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    navigator.geolocation.getCurrentPosition(
-        (postion) => {
-            const {
-                latitude,
-                longitude
-            } = postion.coords;
+    <script>
+        navigator.geolocation.getCurrentPosition(
+            (postion) => {
+                const {
+                    latitude,
+                    longitude
+                } = postion.coords;
 
-            console.log('latitud: ', latitude);
-            console.log('Longitud: ', longitude);
-            (error) => {
-                console.log('Error: ', error.message)
-            }
-        })
-
-    let franjasTotales = []
-    $.ajax({
-        url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
-        dataType: "json",
-        success: function(data) {
-            franjasTotales = data;
-            console.log('franjasTotales');
-            console.log(franjasTotales);
-            $.ajax({
-                url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-                dataType: "json",
-                success: function(data) {
-                    franjasTotales = [...franjasTotales, ...data];
-                    console.log('franjasTotales');
-                    console.log(franjasTotales);
+                console.log('latitud: ', latitude);
+                console.log('Longitud: ', longitude);
+                (error) => {
+                    console.log('Error: ', error.message)
                 }
-            });
-        }
-    });
+            })
 
-    function visualizarHorario(id) {
-        $(`#Lunes`).html('');
-        $(`#Martes`).html('');
-        $(`#Miercoles`).html('');
-        $(`#Jueves`).html('');
-        $(`#Viernes`).html('');
-        $(`#Sabado`).html('');
-
-
-
-        dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
+        let franjasTotales = []
         $.ajax({
-            type: "POST",
-            url: dataURL,
-            data: {
-                id: id
-            },
+            url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
             dataType: "json",
-            success: function(rs) {
-                console.log(franjasTotales)
-                contenido = ''
-                $
-                rs.forEach(element => {
-                    let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+            success: function(data) {
+                franjasTotales = data;
+                console.log('franjasTotales');
+                console.log(franjasTotales);
+                $.ajax({
+                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+                    dataType: "json",
+                    success: function(data) {
+                        franjasTotales = [...franjasTotales, ...data];
+                        console.log('franjasTotales');
+                        console.log(franjasTotales);
+                    }
+                });
+            }
+        });
 
-                    contenido = `<li class="lecture-time ${franjasTotales
+        function visualizarHorario(id) {
+            $(`#Lunes`).html('');
+            $(`#Martes`).html('');
+            $(`#Miercoles`).html('');
+            $(`#Jueves`).html('');
+            $(`#Viernes`).html('');
+            $(`#Sabado`).html('');
+
+
+
+            dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
+            $.ajax({
+                type: "POST",
+                url: dataURL,
+                data: {
+                    id: id
+                },
+                dataType: "json",
+                success: function(rs) {
+                    console.log(franjasTotales)
+                    contenido = ''
+                    $
+                    rs.forEach(element => {
+                        let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+                        contenido = `<li class="lecture-time ${franjasTotales
                                                 .find(objeto => objeto.id_parametro_det == element.hora_inicio)
                                                 ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
                                                 <a href="#">
@@ -331,111 +334,111 @@
                                                     </div>
                                                 </a>
                                             </li>`
-                    $(`#${element.diaN}`).append(contenido)
-                });
-            }
+                        $(`#${element.diaN}`).append(contenido)
+                    });
+                }
+            });
+        }
+
+        $('#duracion').val('');
+
+        $('#modal-confirma').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
         });
-    }
 
-    $('#duracion').val('');
-
-    $('#modal-confirma').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
-    });
-
-    $("#formulario").validate({
-        rules: {
-            id_grado: {
-                required: true,
-            },
-            jornada: {
-                required: true,
-            },
-            periodo_año: {
-                required: true,
-            },
-            messages: {
+        $("#formulario").validate({
+            rules: {
                 id_grado: {
-                    required: "Por favor seleccione una opción",
+                    required: true,
                 },
                 jornada: {
-                    required: "Por favor seleccione una opción",
+                    required: true,
                 },
                 periodo_año: {
-                    required: "Debe ingresar un año",
+                    required: true,
+                },
+                messages: {
+                    id_grado: {
+                        required: "Por favor seleccione una opción",
+                    },
+                    jornada: {
+                        required: "Por favor seleccione una opción",
+                    },
+                    periodo_año: {
+                        required: "Debe ingresar un año",
+                    }
                 }
             }
-        }
-    });
+        });
 
-    $('#formulario').on('submit', function(e) {
-        e.preventDefault();
-    })
-
-    function EliminarRegistro(id) {
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('/horario_enc/cambiarEstado/'); ?>" + id + '/' + 'E',
-            dataType: "json",
-        }).done(function(data) {
-            $("#modal-confirma").modal("hide");
-            let Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'success',
-                title: 'Registro eliminado con exito!'
-            })
-            contador = 0;
-            tablaHorario.ajax.reload(null, false);
+        $('#formulario').on('submit', function(e) {
+            e.preventDefault();
         })
-    }
 
-    var contador = 0
-    var tablaHorario = $('#TablaHorario').DataTable({
-        ajax: {
-            url: '<?= base_url('Horario_enc/obtenerEncabezados') ?>',
-            method: "POST",
-            data: {
-                estado: 'A'
-            },
-            dataSrc: "",
-        },
-        columns: [{
-                data: null,
-                render: function(data, type, row) {
-                    contador = contador + 1
-                    return "<b>" + contador + "</b>";
+        function EliminarRegistro(id) {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('/horario_enc/cambiarEstado/'); ?>" + id + '/' + 'E',
+                dataType: "json",
+            }).done(function(data) {
+                $("#modal-confirma").modal("hide");
+                let Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro eliminado con exito!'
+                })
+                contador = 0;
+                tablaHorario.ajax.reload(null, false);
+            })
+        }
+
+        var contador = 0
+        var tablaHorario = $('#TablaHorario').DataTable({
+            ajax: {
+                url: '<?= base_url('Horario_enc/obtenerEncabezados') ?>',
+                method: "POST",
+                data: {
+                    estado: 'A'
                 },
+                dataSrc: "",
             },
-            {
-                data: "grado"
-            },
-            {
-                data: "periodo_año"
-            },
-            {
-                data: "jornada"
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return data.duracion_hora == 'Franja_60_Min' ? '60 Minutos' : '45 Minutos';
+            columns: [{
+                    data: null,
+                    render: function(data, type, row) {
+                        contador = contador + 1
+                        return "<b>" + contador + "</b>";
+                    },
                 },
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return `<div class="btn-group gap-2">
+                {
+                    data: "grado"
+                },
+                {
+                    data: "periodo_año"
+                },
+                {
+                    data: "jornada"
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return data.duracion_hora == 'Franja_60_Min' ? '60 Minutos' : '45 Minutos';
+                    },
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return `<div class="btn-group gap-2">
                                 <a class="nav-link">
                                     <button onclick="visualizarHorario(${data.id_horarios_enc})" class="btn btn-brand-primary" id="prueba" title="Visualizar" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="bi bi-eye"></i>
@@ -457,608 +460,612 @@
                                 </button>
                                 </a>
                             </div>`
-                },
-            }
-        ],
-        // "language": {
-        //     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        // }
-    })
-
-    $('#btnGuardar').on('click', function(e) {
-        e.preventDefault();
-        if ($('#formulario').valid()) {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/horario_enc_insertar'); ?>",
-                data: {
-                    tp: $('#tp').val(),
-                    id: $('#id').val(),
-                    id_grado: $('#id_grado').val(),
-                    periodo_año: $('#periodo_año').val(),
-                    jornada: $('#jornada').val(),
-                    inicio: $('#inicio').val(),
-                    fin: $('#fin').val(),
-                    duracion: $('#duracion').val(),
-
-                },
-                dataType: "json",
-            }).done(function(data) {
-                $('#Horarios_encModal').modal('hide');
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Acción realizada con exito!'
-                })
-                contador = 0
-                tablaHorario.ajax.reload(null, false)
-                return
-            })
-        } else {
-            console.log('Formulario Invalido');
-        }
-    })
-
-    function seleccionaHorarios_enc(id, tp) {
-        if (tp == 2) {
-            dataURL = "<?php echo base_url('/horario_enc/buscarhorario_enc'); ?>" + "/" + id;
-            $.ajax({
-                type: "POST",
-                url: dataURL,
-                dataType: "json",
-                success: function(rs) {
-                    $("#tp").val(2);
-                    $("#id").val(id)
-                    $('#id_grado').val(rs[0]['id_grado']);
-                    $('#periodo_año').val(rs[0]['periodo_año']);
-                    $('#jornada').val(rs[0]['jornada']);
-                    $('#inicio').val(rs[0]['inicio']);
-                    $('#fin').val(rs[0]['fin']);
-                    $('#duracion_hora').val(rs[0]['duracion_hora']);
-                    $("#btn_Guardar").text('Actualizar');
-                    $("#Horarios_encModal").modal("show");
+                    },
                 }
-            })
-        } else {
-            $("#tp").val(1);
-            $('#nombre_accion').val('');
-            $("#btn_Guardar").text('Guardar');
-            $("#Horarios_encModal").modal("show");
-        }
-    }
+            ],
+            // "language": {
+            //     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            // }
+        })
 
-    $('.close').click(function() {
-        $("#modal-confirma").modal("hide");
-    });
+        $('#btnGuardar').on('click', function(e) {
+            e.preventDefault();
+            if ($('#formulario').valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('/horario_enc_insertar'); ?>",
+                    data: {
+                        tp: $('#tp').val(),
+                        id: $('#id').val(),
+                        id_grado: $('#id_grado').val(),
+                        periodo_año: $('#periodo_año').val(),
+                        jornada: $('#jornada').val(),
+                        inicio: $('#inicio').val(),
+                        fin: $('#fin').val(),
+                        duracion: $('#duracion').val(),
 
-    $('.close').click(function() {
-        $("#modal-confirma-auto ").modal("hide");
-    });
-
-    $('#duracion').on('change', function(e) {
-        let duracion = $('#duracion').val();
-        let pertenece = '';
-        $.ajax({
-            url: "<?php echo base_url('horario_enc/obtenerfranjas/'); ?>" + duracion,
-            type: 'POST',
-            dataType: 'json',
-            success: function(res) {
-                $('#inicio').empty();
-                $('#fin').empty();
-
-                var cadena
-                if (!res.length > 0) {
-                    cadena = `<option selected value="" readonly>No tiene franjas activas</option>`
-                } else {
-                    cadena = `<option selected value="">Seleccione una opcion</option>`
-                    res.forEach(element => {
-
-                        const [horas, minutos, segundos] = element.nombre.split(':');
-
-                        let tiempo = new Date();
-                        tiempo.setHours(parseInt(horas));
-                        tiempo.setMinutes(parseInt(minutos));
-                        tiempo.setSeconds(parseInt(segundos));
-
-
-                        tiempo = tiempo.getHours();
-                        if (tiempo >= 6 && tiempo <= 12) {
-                            pertenece = 'AM'
-                        } else if (tiempo > 12 && tiempo < 18.5) {
-                            pertenece = 'PM'
-                        } else {
-                            console.log('No está en el rango de mañana o tarde');
+                    },
+                    dataType: "json",
+                }).done(function(data) {
+                    $('#Horarios_encModal').modal('hide');
+                    let Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
                         }
+                    })
 
-                        cadena += `<option class="${pertenece}" value='${element.id_parametro_det}'>${element.nombre}</option>`
-                    });
-                }
-                $('#inicio').html(cadena)
-                $('#fin').html(cadena)
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Acción realizada con exito!'
+                    })
+                    contador = 0
+                    tablaHorario.ajax.reload(null, false)
+                    return
+                })
+            } else {
+                console.log('Formulario Invalido');
             }
         })
-    })
 
-    $('#jornada').on('change', function(e) {
-        let jornada = $('#jornada').val();
-
-        switch (jornada) {
-            case '':
-                $('.AM').removeAttr('hidden', '')
-                $('.PM').removeAttr('hidden', '')
-                break;
-            case '20':
-                $('.PM').attr('hidden', '')
-                $('.AM').removeAttr('hidden', '')
-                break;
-            case '21':
-                $('.AM').attr('hidden', '')
-                $('.PM').removeAttr('hidden', '')
-
-                break;
-
-        }
-    });
-
-    // ! Filtra y retorna solo las franjas disponibles en el dia recibido
-    function filtroPorDia(dia, res, inicio, fin, aula) {
-
-        let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('primerFiltro')
-        // console.table(primerFiltro);
-        let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('segundoFiltro')
-        // console.table(segundoFiltro);
-        // console.log('Franjas Profesores');
-        // console.log(franjasProfesor);
-        let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('tercerFiltro')
-        // console.table(tercerFiltro);
-
-        let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('cuartoFiltro')
-        // console.table(cuartoFiltro);
-
-        let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-        let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-
-        const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
-
-        return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
-    }
-    // ! Separa el las franjas disponibles en espacios de 1hora, 2horas y un array general
-    function dividirArray(array, horaInicio, horaFin) {
-        let arrayRango = [];
-        let array1 = [];
-        let array2 = [];
-
-        //DEFINO INICIO Y FIN DE LA JORNDADA
-        const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
-        const fechaFin = new Date(`2000-01-01T${horaFin}`);
-
-
-        for (let i = 0; i < array.length; i++) {
-            const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
-
-            if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
-                arrayRango.push(array[i]);
-            }
-        }
-
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
-        arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
-
-        for (let i = 0; i < arrayRango.length; i++) {
-            const idActual = parseInt(arrayRango[i].id_parametro_det);
-            const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
-            if (idSiguiente - idActual >= 2) {
-                array1.push(arrayRango[i]);
+        function seleccionaHorarios_enc(id, tp) {
+            if (tp == 2) {
+                dataURL = "<?php echo base_url('/horario_enc/buscarhorario_enc'); ?>" + "/" + id;
+                $.ajax({
+                    type: "POST",
+                    url: dataURL,
+                    dataType: "json",
+                    success: function(rs) {
+                        $("#tp").val(2);
+                        $("#id").val(id)
+                        $('#id_grado').val(rs[0]['id_grado']);
+                        $('#periodo_año').val(rs[0]['periodo_año']);
+                        $('#jornada').val(rs[0]['jornada']);
+                        $('#inicio').val(rs[0]['inicio']);
+                        $('#fin').val(rs[0]['fin']);
+                        $('#duracion_hora').val(rs[0]['duracion_hora']);
+                        $("#btn_Guardar").text('Actualizar');
+                        $("#Horarios_encModal").modal("show");
+                    }
+                })
             } else {
-                array2.push(arrayRango[i]);
+                $("#tp").val(1);
+                $('#nombre_accion').val('');
+                $("#btn_Guardar").text('Guardar');
+                $("#Horarios_encModal").modal("show");
             }
         }
 
-        const parametros = ['84', '88', '91', '94', '95']
-        array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
-        array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
-        arrayRango = arrayRango.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        $('.close').click(function() {
+            $("#modal-confirma").modal("hide");
+        });
 
-        console.log([array1, array2, arrayRango]);
-        return [array1, array2, arrayRango];
-    }
+        $('.close').click(function() {
+            $("#modal-confirma-auto ").modal("hide");
+        });
 
-
-    // function obtenerProfesoresElegibles(asignaturas) {
-    //     console.log(asignaturas);
-    //     let resultados = [];
-    //     return new Promise(async (resolve, reject) => {
-    //             asignaturas.map(async (asignatura) => {
-    //                 try {
-    //                     let {profesores} = asignatura
-    //                     console.table(profesores)
-    //                     console.log(profesores.find(profesor => profesor.elegible == true))
-    //                     let seleccionado = profesores.find(profesor => profesor.elegible == true)
-    //                     resultados.push({
-    //                             asignatura: asignatura.asignatura,
-    //                             profesor: seleccionado ? seleccionado.profesor : null
-    //                         });
-    //                 } catch (error) {
-    //                     console.log(`Error al obtener los datos:`, error);
-    //                 }
-    //             })
-    //         resolve(resultados);
-    //     });
-    // }
-
-    /**
-     * @param {id} id = id del grado
-     * return array con las asignaturas asignadas al grado
-     */
-    function ObtenerAsignaturas(id) {
-        return new Promise((resolve, reject) => {
+        $('#duracion').on('change', function(e) {
+            let duracion = $('#duracion').val();
+            let pertenece = '';
             $.ajax({
-                url: "<?php echo base_url('asignaturas/buscarAsignaturasxGrado/') ?>" + id,
+                url: "<?php echo base_url('horario_enc/obtenerfranjas/'); ?>" + duracion,
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    resolve(response);
-                },
-                error: function(error) {
+                success: function(res) {
+                    $('#inicio').empty();
+                    $('#fin').empty();
+
+                    var cadena
+                    if (!res.length > 0) {
+                        cadena = `<option selected value="" readonly>No tiene franjas activas</option>`
+                    } else {
+                        cadena = `<option selected value="">Seleccione una opcion</option>`
+                        res.forEach(element => {
+
+                            const [horas, minutos, segundos] = element.nombre.split(':');
+
+                            let tiempo = new Date();
+                            tiempo.setHours(parseInt(horas));
+                            tiempo.setMinutes(parseInt(minutos));
+                            tiempo.setSeconds(parseInt(segundos));
+
+
+                            tiempo = tiempo.getHours();
+                            if (tiempo >= 6 && tiempo <= 12) {
+                                pertenece = 'AM'
+                            } else if (tiempo > 12 && tiempo < 18.5) {
+                                pertenece = 'PM'
+                            } else {
+                                console.log('No está en el rango de mañana o tarde');
+                            }
+
+                            cadena += `<option class="${pertenece}" value='${element.id_parametro_det}'>${element.nombre}</option>`
+                        });
+                    }
+                    $('#inicio').html(cadena)
+                    $('#fin').html(cadena)
+                }
+            })
+        })
+
+        $('#jornada').on('change', function(e) {
+            let jornada = $('#jornada').val();
+
+            switch (jornada) {
+                case '':
+                    $('.AM').removeAttr('hidden', '')
+                    $('.PM').removeAttr('hidden', '')
+                    break;
+                case '20':
+                    $('.PM').attr('hidden', '')
+                    $('.AM').removeAttr('hidden', '')
+                    break;
+                case '21':
+                    $('.AM').attr('hidden', '')
+                    $('.PM').removeAttr('hidden', '')
+
+                    break;
+
+            }
+        });
+
+        // ! Filtra y retorna solo las franjas disponibles en el dia recibido
+        function filtroPorDia(dia, res, inicio, fin, aula) {
+
+            let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('primerFiltro')
+            // console.table(primerFiltro);
+            let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('segundoFiltro')
+            // console.table(segundoFiltro);
+            // console.log('Franjas Profesores');
+            // console.log(franjasProfesor);
+            let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('tercerFiltro')
+            // console.table(tercerFiltro);
+
+            let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('cuartoFiltro')
+            // console.table(cuartoFiltro);
+
+            let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+
+            const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
+
+            return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
+        }
+        // ! Separa el las franjas disponibles en espacios de 1hora, 2horas y un array general
+        function dividirArray(array, horaInicio, horaFin) {
+            let arrayRango = [];
+            let array1 = [];
+            let array2 = [];
+
+            //DEFINO INICIO Y FIN DE LA JORNDADA
+            const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
+            const fechaFin = new Date(`2000-01-01T${horaFin}`);
+
+
+            for (let i = 0; i < array.length; i++) {
+                const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
+
+                if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
+                    arrayRango.push(array[i]);
+                }
+            }
+
+            arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
+            arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
+
+            for (let i = 0; i < arrayRango.length; i++) {
+                const idActual = parseInt(arrayRango[i].id_parametro_det);
+                const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
+                if (idSiguiente - idActual >= 2) {
+                    array1.push(arrayRango[i]);
+                } else {
+                    array2.push(arrayRango[i]);
+                }
+            }
+
+            const parametros = ['84', '88', '91', '94', '95']
+            array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+            array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+            arrayRango = arrayRango.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+
+            console.log([array1, array2, arrayRango]);
+            return [array1, array2, arrayRango];
+        }
+
+        /**
+         * @param {id} id = id del grado
+         * return array con las asignaturas asignadas al grado
+         */
+        function ObtenerAsignaturas(id) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "<?php echo base_url('asignaturas/buscarAsignaturasxGrado/') ?>" + id,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response) {
+                        resolve(response);
+                    },
+                    error: function(error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        async function ObtenerProfeXAsignatura(id, horas) {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    const response = await $.ajax({
+                        url: "<?php echo base_url('profesores/obtenerProfesoresAsignatura/') ?>" + id,
+                        type: 'POST',
+                        dataType: 'json',
+                    });
+
+                    let profesores = [];
+
+                    for (const registro of response) {
+                        let {
+                            id_usuario,
+                            profesor
+                        } = registro;
+
+                        let resultado = await ObtenerDisponibilidadProfe(id_usuario, horas);
+                        profesores.push({
+                            id_usuario: id_usuario,
+                            profesor: profesor,
+                            horas_libres: resultado.disponible ? resultado.disponible : 30,
+                            elegible: resultado.disponible >= horas,
+                        });
+                    }
+
+                    resolve(profesores);
+                } catch (error) {
+                    console.log(`Error al obtener los datos:`, error);
                     reject(error);
                 }
             });
-        });
-    }
-
-    async function ObtenerProfeXAsignatura(id, horas) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const response = await $.ajax({
-                    url: "<?php echo base_url('profesores/obtenerProfesoresAsignatura/') ?>" + id,
-                    type: 'POST',
-                    dataType: 'json',
-                });
-
-                let profesores = [];
-
-                for (const registro of response) {
-                    let {
-                        id_usuario,
-                        profesor
-                    } = registro;
-
-                    let resultado = await ObtenerDisponibilidadProfe(id_usuario, horas);
-                    profesores.push({
-                        id_usuario: id_usuario,
-                        profesor: profesor,
-                        horas_libres: resultado.disponible ? resultado.disponible : 30,
-                        elegible: resultado.disponible >= horas,
-                    });
-                }
-
-                resolve(profesores);
-            } catch (error) {
-                console.log(`Error al obtener los datos:`, error);
-                reject(error);
-            }
-        });
-    }
-
-    async function ObtenerDisponibilidadProfe(id, necesarias) {
-        let horas = 0;
-        let disponible;
-        let elegible;
-        return new Promise(async (resolve, reject) => {
-            try {
-                const response = await $.ajax({
-                    url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + id,
-                    type: 'POST',
-                    dataType: 'json',
-                });
-
-                for (const registro of response) {
-                    let {
-                        duracion,
-                    } = registro;
-
-                    horas += +duracion;
-                    disponible = 30 - +horas;
-                    elegible = disponible >= necesarias;
-                }
-
-                resolve({
-                    disponible,
-                    elegible
-                });
-            } catch (error) {
-                console.log(`Error al obtener los datos:`, error);
-                reject(error);
-            }
-        });
-    }
-
-    async function obtenerProfesoresElegibles(asignaturas) {
-        try {
-            let resultados = await Promise.all(asignaturas.map(async (asignatura) => {
-                let {
-                    profesores,
-                    horas_semanales,
-                    id_grado_asignatura
-                } = asignatura;
-                console.table(profesores);
-
-                let profesorElegible = null;
-                for (const profesor of profesores) {
-                    if (profesor.elegible && profesor.horas_libres >= horas_semanales) {
-                        profesor.horas_libres -= horas_semanales;
-                        profesorElegible = profesor.profesor;
-                        profesorElegibleId = profesor.id_usuario;
-                        break;
-                    }
-                }
-
-                return {
-                    id: asignatura.id_grado_asignatura,
-                    asignatura: asignatura.asignatura,
-                    profesor: profesorElegible,
-                    id_profesor: profesorElegibleId
-                };
-            }));
-            return resultados;
-        } catch (error) {
-            console.log("Error al obtener los datos:", error);
-            throw error;
         }
-    }
 
-    // TODO: Eliminar todos los detalles anteriores
-    // TODO: Encontrar Aula disponible
-    // TODO: :(
-    
-
-    async function AutoHorario(id, idGrado) {
-        let profesores = [];
-        let asignaturasGrado = await ObtenerAsignaturas(idGrado);
-        console.log(asignaturasGrado)
-
-        await Promise.all(
-            asignaturasGrado[0].map(async (asignatura) => {
-                let {
-                    id_grado_asignatura,
-                    nombre,
-                    horas_semanales,
-                } = asignatura;
-
+        async function ObtenerDisponibilidadProfe(id, necesarias) {
+            let horas = 0;
+            let disponible;
+            let elegible;
+            return new Promise(async (resolve, reject) => {
                 try {
-                    profesores.push({
-                        id_grado_asignatura: id_grado_asignatura,
-                        asignatura: nombre,
-                        horas_semanales: horas_semanales,
-                        profesores: await ObtenerProfeXAsignatura(id_grado_asignatura, horas_semanales),
+                    const response = await $.ajax({
+                        url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + id,
+                        type: 'POST',
+                        dataType: 'json',
+                    });
+
+                    for (const registro of response) {
+                        let {
+                            duracion,
+                        } = registro;
+
+                        horas += +duracion;
+                        disponible = 30 - +horas;
+                        elegible = disponible >= necesarias;
+                    }
+
+                    resolve({
+                        disponible,
+                        elegible
                     });
                 } catch (error) {
                     console.log(`Error al obtener los datos:`, error);
+                    reject(error);
                 }
-            })
-        );
-
-        console.log('var a ultima fase')
-        console.log(profesores);
-
-        const profesoresElegibles = await obtenerProfesoresElegibles(profesores);
-        console.log(profesoresElegibles);
-
-
-        data = [];
-        let i = 0;
-
-        let diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
-
-        let asignatura = $('#asignatura').val();
-        let profesor = $('#profesor').val();
-
-        if (asignatura == '' || profesor == '' || $('#aula').val() == '') {
-            return Swal.fire({
-                title: 'Todos los campos deben estar llenos',
-                icon: 'error',
-            })
+            });
         }
 
-        duracionAsignaturas.forEach(element => {
-            if (element.id_grado_asignatura == asignatura) {
-                numeroRepeticiones = element.horas_semanales / 2;
-            }
-        });
+        async function obtenerProfesoresElegibles(asignaturas) {
+            try {
+                let resultados = await Promise.all(asignaturas.map(async (asignatura) => {
+                    let {
+                        profesores,
+                        horas_semanales,
+                        id_grado_asignatura
+                    } = asignatura;
+                    console.table(profesores);
 
-        $.ajax({
-            url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
-            type: 'POST',
-            dataType: 'json',
-            success: function(res) {
-                franjasProfesor = res
-            }
-        })
-
-        $.ajax({
-            url: "<?php echo base_url('horario_det/buscarDetalles/') ?>",
-            type: 'POST',
-            dataType: 'json',
-            success: function(res) {
-                franjasTotalesOcupadas = res
-            }
-        })
-
-        $.ajax({
-            url: "<?php echo base_url('horario_det/obtenerDetalles/') ?>" + id,
-            type: 'POST',
-            dataType: 'json',
-            success: function(res) {
-
-                const diasSiAsignados = [...new Set(res.map(element => element.dia))];
-                let hora_retirada;
-                let dia_anterior;
-                let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
-
-                while (i < numeroRepeticiones) {
-
-                    try {
-                        let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
-
-                        let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
-
-                        let dia = diasSemana[0];
-
-                        if (Libres2Horas.length > 0) {
-                            i++;
+                    let profesorElegible = null;
+                    for (const profesor of profesores) {
+                        if (profesor.elegible && profesor.horas_libres >= horas_semanales) {
+                            profesor.horas_libres -= horas_semanales;
+                            profesorElegible = profesor;
+                            break;
                         }
-
-                        if (diasSemana.length > 0) {
-
-                            // * Verifica si el dia se verifico 2 veces
-                            if (dia_anterior == dia) {
-                                console.log('repitio dia')
-                                diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
-                                dia = diasSemana[1];
-                            }
-                            // * Eliminamos el dia verificado del array
-                            diasSemana.shift();
-
-
-                            data.push({
-                                "asignatura": asignatura,
-                                "profesor": profesor,
-                                "aula": $('#aula').val(),
-                                "dia": dia,
-                                "id_dia": id_dias[dia],
-                                "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
-                                "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
-                                "fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
-                                "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.nombre || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
-                                "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
-                                "id_encabezado": id
-                            });
-
-                            // * Valida la hora de fin y la ajusta para evitar espacios de 30 min
-                            if (data[i - 1].fin == 84) {
-                                console.log('Acabo a las 9:30')
-                                data[i - 1].fin = 85
-                                data[i - 1].duracion = 2
-                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 85).nombre
-                            }
-
-                            if (data[i - 1].fin == undefined) {
-                                console.log('undefined')
-                                data[i - 1].fin = +data[i - 1].inicio + 1
-                                data[i - 1].duracion = 1
-                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == +data[i - 1].inicio + 1).nombre
-                            }
-
-                            dia_anterior = dia
-
-                            hora_retirada = (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det
-
-                            // * RETIRA HORA EN CASO DE EXCESO
-                            if (data[i - 1].fin == 89) {
-
-                                data[i - 1].duracion = 1
-                                data[i - 1].fin = 88
-                                data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 88).nombre
-
-                                let Toast = Swal.mixin({
-                                    toast: true,
-                                    position: 'top-end',
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                    }
-                                })
-
-                                Toast.fire({
-                                    icon: 'info',
-                                    title: `Para la franja del dia ${data[i-1].dia} se le ha retirado una hora por exceder el limite!`
-                                })
-
-                            }
-                        } else {
-                            // * ERROR DIA SIN ESPACIO
-                            let Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
-                            })
-                            Toast.fire({
-                                icon: 'error',
-                                title: `No hay más franjas disponibles para el dia!`
-                            })
-                            diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
-
-                        }
-                    } catch (error) {}
-
-                }
-                let rellenoAlerta = ''
-                data.forEach(element => {
-                    rellenoAlerta += `<li class="lecture-time" style="text-decoration: none !important; list-style-type: none;">
-                            <div class="lecture-info">
-                                <h6 class="lecture-title">${element.dia}</h6>
-                                <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
-                            </div>
-                    </li>`
-                })
-
-                setTimeout(() => {
-                    console.log(rellenoAlerta.length)
-                    if (rellenoAlerta.length == 0) {
-
-                        Swal.fire({
-                            title: '<h3 class="h3"> Franjas Generadas </h3>',
-                            icon: 'info',
-                            html: `No se hallaron franjas disponibles segun tus selecciones`,
-                            showCloseButton: true,
-                            focusConfirm: false,
-                            confirmButtonText: 'Intentar de nuevo!',
-                        })
-
-
-                    } else {
-                        Swal.fire({
-                            title: '<h3 class="h3"> Franjas Generadas </h3>',
-                            icon: 'info',
-                            html: `Frajas Generadas ${rellenoAlerta}
-                                        <br>
-                                        Recuerde Confirmar
-                                        `,
-                            showCloseButton: true,
-                            focusConfirm: false,
-                            confirmButtonText: 'Continuar!',
-                            confirmButtonAriaLabel: 'Thumbs up, great!',
-                        })
                     }
-                }, 1500);
 
-                $('#btn_enviar').removeAttr('disabled', '');
-                console.table(data)
+                    return {
+                        id: asignatura.id_grado_asignatura,
+                        asignatura: asignatura.asignatura,
+                        profesor: profesorElegible?.profesor || null,
+                        id_profesor: profesorElegible?.id_usuario || null
+                    };
+                }));
+                return resultados;
+            } catch (error) {
+                console.log("Error al obtener los datos:", error);
+                throw error;
             }
-        })
-    }
-</script>
+        }
+
+        // TODO: Eliminar todos los detalles anteriores
+        // TODO: Encontrar Aula disponible
+        // TODO: :(
+
+        async function DefinirProfesores(id, idGrado) {
+            let profesores = [];
+            let asignaturasGrado = await ObtenerAsignaturas(idGrado);
+            console.log(asignaturasGrado);
+
+            showLoader(); // Mostrar el loader antes de ejecutar las promesas
+            $('#contenidoModal').text('Obteniendo Profesores');
+
+            try {
+                await Promise.all(
+                    asignaturasGrado[0].map(async (asignatura) => {
+                        let {
+                            id_grado_asignatura,
+                            nombre,
+                            horas_semanales,
+                        } = asignatura;
+
+                        try {
+                            profesores.push({
+                                id_grado_asignatura: id_grado_asignatura,
+                                asignatura: nombre,
+                                horas_semanales: horas_semanales,
+                                profesores: await ObtenerProfeXAsignatura(id_grado_asignatura, horas_semanales),
+                            });
+                        } catch (error) {
+                            console.log(`Error al obtener los datos:`, error);
+                        }
+                    })
+                );
+
+                console.log('var a ultima fase')
+                console.log(profesores);
+
+                const profesoresElegibles = await obtenerProfesoresElegibles(profesores);
+                console.log(profesoresElegibles);
+            } catch (error) {
+                console.log(`Error en la función AutoHorario:`, error);
+            } finally {
+                hideLoader(); // Ocultar el loader después de que todas las promesas se hayan resuelto o ocurra un error
+
+                return profesores;
+            }
+
+        }
+
+
+        async function AutoHorario(id, idGrado) {
+
+            let resultados = await DefinirProfesores(id, idGrado)
+            console.log(resultados);
+
+            // data = [];
+            // let i = 0;
+
+            // let diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+
+            // let asignatura = $('#asignatura').val();
+            // let profesor = $('#profesor').val();
+
+            // if (asignatura == '' || profesor == '' || $('#aula').val() == '') {
+            //     return Swal.fire({
+            //         title: 'Todos los campos deben estar llenos',
+            //         icon: 'error',
+            //     })
+            // }
+
+            // duracionAsignaturas.forEach(element => {
+            //     if (element.id_grado_asignatura == asignatura) {
+            //         numeroRepeticiones = element.horas_semanales / 2;
+            //     }
+            // });
+
+            // $.ajax({
+            //     url: "<?php echo base_url('horario_det/buscarDetalleProfe/') ?>" + profesor,
+            //     type: 'POST',
+            //     dataType: 'json',
+            //     success: function(res) {
+            //         franjasProfesor = res
+            //     }
+            // })
+
+            // $.ajax({
+            //     url: "<?php echo base_url('horario_det/buscarDetalles/') ?>",
+            //     type: 'POST',
+            //     dataType: 'json',
+            //     success: function(res) {
+            //         franjasTotalesOcupadas = res
+            //     }
+            // })
+
+            // $.ajax({
+            //     url: "<?php echo base_url('horario_det/obtenerDetalles/') ?>" + id,
+            //     type: 'POST',
+            //     dataType: 'json',
+            //     success: function(res) {
+
+            //         const diasSiAsignados = [...new Set(res.map(element => element.dia))];
+            //         let hora_retirada;
+            //         let dia_anterior;
+            //         let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
+
+            //         while (i < numeroRepeticiones) {
+
+            //             try {
+            //                 let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, $('#aula').val());
+
+            //                 let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
+
+            //                 let dia = diasSemana[0];
+
+            //                 if (Libres2Horas.length > 0) {
+            //                     i++;
+            //                 }
+
+            //                 if (diasSemana.length > 0) {
+
+            //                     // * Verifica si el dia se verifico 2 veces
+            //                     if (dia_anterior == dia) {
+            //                         console.log('repitio dia')
+            //                         diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+            //                         dia = diasSemana[1];
+            //                     }
+            //                     // * Eliminamos el dia verificado del array
+            //                     diasSemana.shift();
+
+
+            //                     data.push({
+            //                         "asignatura": asignatura,
+            //                         "profesor": profesor,
+            //                         "aula": $('#aula').val(),
+            //                         "dia": dia,
+            //                         "id_dia": id_dias[dia],
+            //                         "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
+            //                         "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
+            //                         "fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+            //                         "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.nombre || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
+            //                         "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
+            //                         "id_encabezado": id
+            //                     });
+
+            //                     // * Valida la hora de fin y la ajusta para evitar espacios de 30 min
+            //                     if (data[i - 1].fin == 84) {
+            //                         console.log('Acabo a las 9:30')
+            //                         data[i - 1].fin = 85
+            //                         data[i - 1].duracion = 2
+            //                         data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 85).nombre
+            //                     }
+
+            //                     if (data[i - 1].fin == undefined) {
+            //                         console.log('undefined')
+            //                         data[i - 1].fin = +data[i - 1].inicio + 1
+            //                         data[i - 1].duracion = 1
+            //                         data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == +data[i - 1].inicio + 1).nombre
+            //                     }
+
+            //                     dia_anterior = dia
+
+            //                     hora_retirada = (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det
+
+            //                     // * RETIRA HORA EN CASO DE EXCESO
+            //                     if (data[i - 1].fin == 89) {
+
+            //                         data[i - 1].duracion = 1
+            //                         data[i - 1].fin = 88
+            //                         data[i - 1].hora_fin = LibreTotal.find(objeto => objeto.id_parametro_det == 88).nombre
+
+            //                         let Toast = Swal.mixin({
+            //                             toast: true,
+            //                             position: 'top-end',
+            //                             showConfirmButton: false,
+            //                             timer: 3000,
+            //                             timerProgressBar: true,
+            //                             didOpen: (toast) => {
+            //                                 toast.addEventListener('mouseenter', Swal.stopTimer)
+            //                                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+            //                             }
+            //                         })
+
+            //                         Toast.fire({
+            //                             icon: 'info',
+            //                             title: `Para la franja del dia ${data[i-1].dia} se le ha retirado una hora por exceder el limite!`
+            //                         })
+
+            //                     }
+            //                 } else {
+            //                     // * ERROR DIA SIN ESPACIO
+            //                     let Toast = Swal.mixin({
+            //                         toast: true,
+            //                         position: 'top-end',
+            //                         showConfirmButton: false,
+            //                         timer: 1000,
+            //                         timerProgressBar: true,
+            //                         didOpen: (toast) => {
+            //                             toast.addEventListener('mouseenter', Swal.stopTimer)
+            //                             toast.addEventListener('mouseleave', Swal.resumeTimer)
+            //                         }
+            //                     })
+            //                     Toast.fire({
+            //                         icon: 'error',
+            //                         title: `No hay más franjas disponibles para el dia!`
+            //                     })
+            //                     diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
+
+            //                 }
+            //             } catch (error) {}
+
+            //         }
+            //         let rellenoAlerta = ''
+            //         data.forEach(element => {
+            //             rellenoAlerta += `<li class="lecture-time" style="text-decoration: none !important; list-style-type: none;">
+            //                 <div class="lecture-info">
+            //                     <h6 class="lecture-title">${element.dia}</h6>
+            //                     <h6 class="lecture-location">${element.hora_inicio} ~ ${element.hora_fin}</h6>
+            //                 </div>
+            //         </li>`
+            //         })
+
+            //         setTimeout(() => {
+            //             console.log(rellenoAlerta.length)
+            //             if (rellenoAlerta.length == 0) {
+
+            //                 Swal.fire({
+            //                     title: '<h3 class="h3"> Franjas Generadas </h3>',
+            //                     icon: 'info',
+            //                     html: `No se hallaron franjas disponibles segun tus selecciones`,
+            //                     showCloseButton: true,
+            //                     focusConfirm: false,
+            //                     confirmButtonText: 'Intentar de nuevo!',
+            //                 })
+
+
+            //             } else {
+            //                 Swal.fire({
+            //                     title: '<h3 class="h3"> Franjas Generadas </h3>',
+            //                     icon: 'info',
+            //                     html: `Frajas Generadas ${rellenoAlerta}
+            //                             <br>
+            //                             Recuerde Confirmar
+            //                             `,
+            //                     showCloseButton: true,
+            //                     focusConfirm: false,
+            //                     confirmButtonText: 'Continuar!',
+            //                     confirmButtonAriaLabel: 'Thumbs up, great!',
+            //                 })
+            //             }
+            //         }, 1500);
+
+            //         $('#btn_enviar').removeAttr('disabled', '');
+            //         console.table(data)
+            //     }
+            // })
+        }
+
+        function showLoader() {
+
+            const loader = $('#loader');
+            loader.removeAttr('hidden', '');
+        }
+
+        function hideLoader() {
+            const loader = $('#loader');
+            loader.attr('hidden', '');
+        }
+    </script>
