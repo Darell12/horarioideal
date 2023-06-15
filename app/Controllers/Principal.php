@@ -24,6 +24,29 @@ class Principal extends BaseController
         $this->acciones = new AccionesModel();
         $this->historial = new HistorialModel();
     }
+    public function ejecutar_script($dato1, $dato2)
+    {
+        $output = array();
+        $return = 0;
+        $ruta = FCPATH . 'scripts/my_script.py';
+
+        // Datos a enviar al script de Python
+        $parametro1 = $dato1;
+        $parametro2 = $dato2;
+
+        // Construir el comando con los argumentos de línea de comandos
+        $comando = "python $ruta \"$parametro1\" \"$parametro2\"";
+        exec($comando, $output, $return);
+
+        if ($return == 0) {
+            $resultado = $output[0];
+            echo 'El resultado es: ' . $resultado;
+        } else {
+            echo 'Error al ejecutar el script de Python';
+        }
+    }
+
+
     public function index()
     {
         // $modulos = $this->modulos->obtenerModulos('A');
@@ -52,7 +75,8 @@ class Principal extends BaseController
         }
         return $cargaSideBar;
     }
-    public function Modulos(){
+    public function Modulos()
+    {
         $modulos = $this->modulos->obtenerModulos('A');
         return $modulos;
     }
