@@ -7,10 +7,11 @@ use App\Models\RolesModel;
 use App\Models\ModulosModel;
 use App\Models\PermisosModel;
 use App\Models\AccionesModel;
+use App\Models\HistorialModel;
 
 class Principal extends BaseController
 {
-    protected $usuario, $eliminados;
+    protected $usuario, $eliminados, $historial;
     protected $roles, $modulos, $permisos, $acciones;
 
     public function __construct()
@@ -21,6 +22,7 @@ class Principal extends BaseController
         $this->modulos = new ModulosModel();
         $this->permisos = new PermisosModel();
         $this->acciones = new AccionesModel();
+        $this->historial = new HistorialModel();
     }
     public function ejecutar_script($dato1, $dato2)
     {
@@ -48,11 +50,13 @@ class Principal extends BaseController
     public function index()
     {
         // $modulos = $this->modulos->obtenerModulos('A');
+        $historial = $this->historial->obtenerHistorial();
         $cargaSideBar = $this->getModulos();
-        $data = ['titulo' => 'Bienvenido!', 'Modulos' => $cargaSideBar];
+        $data = ['titulo' => 'Bienvenido!', 'Modulos' => $cargaSideBar,'historial'=>$historial];
 
-        echo view('/principal/sidebar', $data);
-        echo view('/inicio/inicio', $data);
+        // echo view('/principal/sidebar', $data);
+        // echo view('/inicio/inicio', $data);
+        echo view('/principal/historial', $data);
     }
     public function getModulos()
     {
