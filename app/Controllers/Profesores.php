@@ -39,18 +39,51 @@ class Profesores extends BaseController
         $grados = $this->grados->obtenerGrados('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
         $tipotel = $this->tipotel->ObtenerParametro(3);
-        $session = session();
-        if (session('id_rol') == 4) {
-            $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
-            echo view('/principal/sidebar', $data);
-            echo view('/profesores/consulta', $data);
-        } else {
+        $id = session('id_rol');
+        switch ($id) {
+            case '4':
+                $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+                echo view('/principal/sidebar', $data);
+                echo view('/profesores/consulta', $data);
+                break;
+            case '3':
+                $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+                echo view('/principal/sidebar', $data);
+                echo view('/profesores/consulta', $data);
+                break;
+            case '2':
+                $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
 
-            $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+                echo view('/principal/sidebar', $data);
+                echo view('/profesores/profesores', $data);
+                break;
+            case '1':
+                $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
 
-            echo view('/principal/sidebar', $data);
-            echo view('/profesores/profesores', $data);
+                echo view('/principal/sidebar', $data);
+                echo view('/profesores/profesores', $data);
+                break;
+
+            default:
+                $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+
+                echo view('/principal/sidebar', $data);
+                echo view('/profesores/profesores', $data);
+                break;
         }
+        
+        // $session = session();
+        // if (session('id_rol') == 4) {
+        //     $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+        //     echo view('/principal/sidebar', $data);
+        //     echo view('/profesores/consulta', $data);
+        // } else {
+
+        //     $data = ['titulo' => 'Administrar Profesores', 'roles' =>  $roles, 'grados' => $grados, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+
+        //     echo view('/principal/sidebar', $data);
+        //     echo view('/profesores/profesores', $data);
+        // }
     }
     public function eliminados()
     {
