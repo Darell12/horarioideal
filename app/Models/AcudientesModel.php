@@ -35,7 +35,7 @@ class AcudientesModel extends Model
 
     public function filtro($campo, $valor)
     {
-        $this->select('usuarios.*');
+        $this->select('acudientes.*');
         $this->where($campo, $valor);
         $this->where('estado', 'A');
         $datos = $this->first();

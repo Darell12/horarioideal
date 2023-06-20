@@ -54,9 +54,8 @@ class Principal extends BaseController
         $cargaSideBar = $this->getModulos();
         $data = ['titulo' => 'Bienvenido!', 'Modulos' => $cargaSideBar,'historial'=>$historial];
 
-        // echo view('/principal/sidebar', $data);
-        // echo view('/inicio/inicio', $data);
-        echo view('/principal/historial', $data);
+        echo view('/principal/sidebar', $data);
+        echo view('/inicio/inicio', $data);
     }
     public function getModulos()
     {

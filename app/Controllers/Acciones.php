@@ -16,14 +16,12 @@ class Acciones extends BaseController
         $this->accion = new AccionesModel();
         $this->eliminados = new AccionesModel();
         $this->metodos = new Principal();
-
     }
-
+    
     public function index()
     {
         $cargaSideBar = $this->metodos->getModulos();
         $accion = $this->accion->obtenerAcciones('E');
-
         $data = ['titulo' => 'Administrar Acciones', 'datos' => $accion,'Modulos' => $cargaSideBar];
 
        echo view('/principal/sidebar', $data);

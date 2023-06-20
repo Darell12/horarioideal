@@ -38,6 +38,7 @@ $routes->get('/perfil/(:num)', 'Usuarios::perfil/$1');
 
 // ! RUTAS DE VISTAS TABLAS
 $routes->get('/ver_roles', 'Roles::index');
+$routes->get('/ver_historial', 'Historial::index');
 $routes->get('/ver_asignaturas', 'Asignaturas::index');
 $routes->get('/ver_acciones', 'Acciones::index');
 $routes->get('/ver_aulas', 'Aulas::index');
