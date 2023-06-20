@@ -10,13 +10,13 @@
     </div>
 
     <div class="table-responsive">
-        <table id="tablaHistorial" class="table align-items-center table-flush table-loader">
+        <table style="text-align: center;" id="tablaHistorial" class="table align-items-center table-flush table-loader">
             <thead class="thead-light">
                 <tr>
-                    <th class="text-center" style="width: 1% !important;" scope="col">#</th>
-                    <th class="text-center" style="width: 1% !important;" scope="col">Descripcion</th>
-                    <th class="text-center" style="width: 1% !important;" scope="col">Tipo</th>
-                    <th class="text-center" style="width: 1% !important;" scope="col">Responsable</th>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Descripcion</th>
+                    <th class="text-center" scope="col">Tipo</th>
+                    <th class="text-center" scope="col">Responsable </th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -24,20 +24,31 @@
         </table>
     </div>
 </div>
-
-    <!-- Modal Permisos  -->
     
 <script>
+     $(document).ready(function() {
+        $('#tablaHistorial').on('init.dt', function() {
+            $("#tablaHistorial").removeClass('table-loader').show();
+        });
+        setTimeout(function() {
+            $('#tablaHistorial').DataTable();
+        }, 3000);
+    });
 
-var contador = 0
+    var contador = 0
     var tablaHistorial = $('#tablaHistorial').DataTable({
         ajax: {
             url: '<?= base_url('historial/obtenerHistorial') ?>',
             method: "POST",
+            data: {
+                // estado: 'A'
+            },
             dataSrc: "",
         },
         columns: [{
-                render: function(data, type, row) {
+                data: null,
+                render: function (data,type, row) {
+                    console.log(row);
                     contador = contador + 1
                     return "<b>" + contador + "</b>";
                 },
@@ -46,10 +57,16 @@ var contador = 0
                 data: "descripcion"
             },
             {
-                data: "tipo"
+                data: null,
+                render: function(data, type, row) {
+                    return data.nombre
+                },
             },
             {
-                data: "responsable"
+                data: null,
+                render: function(data, type, row) {
+                    return data.nombre_p + " " + data.apellido_p
+                },
             },
         ],
         "language": {
@@ -57,5 +74,4 @@ var contador = 0
         }
     })
 
-    
 </script>

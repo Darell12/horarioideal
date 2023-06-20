@@ -13,7 +13,7 @@ class HistorialModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['descripcion', 'tipo','responsable','tabla', 'usuario_crea'];
+    protected $allowedFields = ['descripcion', 'tipo','responsable','tabla'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -25,9 +25,12 @@ class HistorialModel extends Model
 
     public function obtenerHistorial()
     {
-        $this->select('historial.*');
+        $this->select('historial.*, usuario.nombre_p, usuario.apellido_p, det.nombre');
+        $this->join('usuarios as usuario', 'historial.responsable = usuario.id_usuario');
+        $this->join('parametro_det as det', 'historial.tipo = det.id_parametro_det');
         $datos = $this->findAll();
         return $datos;
     }
+
 
 }

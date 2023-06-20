@@ -20,7 +20,7 @@ class Historial extends BaseController
     public function index()
     {
         $cargaSideBar = $this->metodos->getModulos();
-        $historial = $this->historial->obtenerHistorial();
+        $historial = $this->historial->obtenerHistorial('A');
         $data = ['titulo' => 'Historial de acciones','historial'=>$historial, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
