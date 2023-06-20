@@ -38,6 +38,7 @@ class AulaModel extends Model
         $this->join('asignaturas as a', 'aulas.tipo = a.tipo_requerido');
         $this->join('grados_asignatura as g', 'a.id_asignatura = g.id_asignatura');
         $this->where('g.id_grado_asignatura', $tipo);
+        $this->where('aulas.estado', 'A');
         $datos = $this->findAll();
         return $datos;
     }

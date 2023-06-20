@@ -33,7 +33,7 @@ class AsignaturasModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-
+    
     public function obtenerAsignaturasEliminados()
     {
         $this->select('asignaturas.*');
@@ -52,8 +52,9 @@ class AsignaturasModel extends Model
     }
     public function buscarAsignaturasxGrado($id_grado)
     {
-        $this->select('asignaturas.id_asignatura, asignaturas.nombre, g.id_grado_asignatura, g.horas_semanales');
+        $this->select('asignaturas.id_asignatura, asignaturas.nombre, g.id_grado_asignatura, g.horas_semanales, asignaturas.tipo_requerido as id_tipo,  param.nombre as aula_requerida');
         $this->join('grados_asignatura as g', 'asignaturas.id_asignatura  = g.id_asignatura');
+        $this->join('parametro_det as param', 'asignaturas.tipo_requerido = param.id_parametro_det');
         $this->where('g.id_grado', $id_grado);
         $this->where('asignaturas.estado', 'A');
         $this->where('g.estado', 'A');

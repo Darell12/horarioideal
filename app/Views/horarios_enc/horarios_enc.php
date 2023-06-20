@@ -137,7 +137,7 @@
                     <h5 style="color:#29588a;font-size:20px;font-weight:bold;" class="modal-title" id="exampleModalLabel">Generación de Horario Automatica</h5>
 
                 </div>
-                <div style="text-align:center;font-weight:bold;" class="modal-body">
+                <div style="text-align:center;font-weight:bold; display: flex; flex-direction: column; align-items: center;" class="modal-body">
                     <div class="loader" id="loader"></div>
                     <p id="contenidoModal"></p>
                 </div>
@@ -618,20 +618,12 @@
         function filtroPorDia(dia, res, inicio, fin, aula) {
 
             let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('primerFiltro')
-            // console.table(primerFiltro);
+
             let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('segundoFiltro')
-            // console.table(segundoFiltro);
-            // console.log('Franjas Profesores');
-            // console.log(franjasProfesor);
+
             let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('tercerFiltro')
-            // console.table(tercerFiltro);
 
             let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('cuartoFiltro')
-            // console.table(cuartoFiltro);
 
             let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
             let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
@@ -640,6 +632,7 @@
 
             return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
         }
+
         // ! Separa el las franjas disponibles en espacios de 1hora, 2horas y un array general
         function dividirArray(array, horaInicio, horaFin) {
             let arrayRango = [];
@@ -681,10 +674,7 @@
             return [array1, array2, arrayRango];
         }
 
-        /**
-         * @param {id} id = id del grado
-         * return array con las asignaturas asignadas al grado
-         */
+
         function ObtenerAsignaturas(id) {
             return new Promise((resolve, reject) => {
                 $.ajax({
@@ -715,7 +705,7 @@
                     for (const registro of response) {
                         let {
                             id_usuario,
-                            profesor
+                            profesor,
                         } = registro;
 
                         let resultado = await ObtenerDisponibilidadProfe(id_usuario, horas);
@@ -768,13 +758,48 @@
             });
         }
 
+        async function ObtenerDisponibilidadAula(registro, id, necesarias) {
+            let horas = 0;
+            let disponible;
+            let elegible;
+            return new Promise(async (resolve, reject) => {
+                try {
+                    const response = await $.ajax({
+                        url: "<?php echo base_url('horario_det/buscarDetalleAula/') ?>" + id,
+                        type: 'POST',
+                        dataType: 'json',
+                    });
+
+                    for (const registro of response) {
+                        let {
+                            duracion,
+                        } = registro;
+
+                        horas += +duracion;
+                        disponible = 30 - +horas;
+                        elegible = disponible >= necesarias;
+                    }
+                    console.log(disponible)
+                    resolve({
+                        disponible,
+                        elegible
+                    });
+                } catch (error) {
+                    console.log(`Error al obtener los datos:`, error);
+                    reject(error);
+                }
+            });
+        }
+
         async function obtenerProfesoresElegibles(asignaturas) {
             try {
                 let resultados = await Promise.all(asignaturas.map(async (asignatura) => {
                     let {
                         profesores,
                         horas_semanales,
-                        id_grado_asignatura
+                        id_grado_asignatura,
+                        aula_requerida,
+                        id_tipo
                     } = asignatura;
                     console.table(profesores);
 
@@ -790,8 +815,49 @@
                     return {
                         id: asignatura.id_grado_asignatura,
                         asignatura: asignatura.asignatura,
+                        id_tipo: id_tipo,
+                        aula_requerida: aula_requerida,
+                        horas_semanales: horas_semanales,
                         profesor: profesorElegible?.profesor || null,
                         id_profesor: profesorElegible?.id_usuario || null
+                    };
+                }));
+                return resultados;
+            } catch (error) {
+                console.log("Error al obtener los datos:", error);
+                throw error;
+            }
+        }
+        async function obtenerAulasElegibles(asignaturas) {
+            try {
+                let resultados = await Promise.all(asignaturas.map(async (asignatura) => {
+                    let {
+                        profesores,
+                        horas_semanales,
+                        id_grado_asignatura,
+                        aula_requerida,
+                        id_tipo,
+                        aulas
+                    } = asignatura;
+                    console.table(aulas);
+
+                    let AulaElegible = null;
+                    for (const aula of aulas) {
+                        if (aula.elegible && aula.horas_libres >= horas_semanales) {
+                            aula.horas_libres -= horas_semanales;
+                            AulaElegible = aula;
+                            break;
+                        }
+                    }
+
+                    return {
+                        id: asignatura.id_grado_asignatura,
+                        asignatura: asignatura.asignatura,
+                        id_tipo: id_tipo,
+                        aula_requerida: aula_requerida,
+                        horas_semanales: horas_semanales,
+                        profesor: AulaElegible?.profesor || null,
+                        id_profesor: AulaElegible?.id_usuario || null
                     };
                 }));
                 return resultados;
@@ -820,6 +886,8 @@
                             id_grado_asignatura,
                             nombre,
                             horas_semanales,
+                            id_tipo,
+                            aula_requerida
                         } = asignatura;
 
                         try {
@@ -827,6 +895,8 @@
                                 id_grado_asignatura: id_grado_asignatura,
                                 asignatura: nombre,
                                 horas_semanales: horas_semanales,
+                                id_tipo: id_tipo,
+                                aula_requerida: aula_requerida,
                                 profesores: await ObtenerProfeXAsignatura(id_grado_asignatura, horas_semanales),
                             });
                         } catch (error) {
@@ -839,6 +909,8 @@
                 console.log(profesores);
 
                 const profesoresElegibles = await obtenerProfesoresElegibles(profesores);
+
+                profesores = profesoresElegibles;
                 console.log(profesoresElegibles);
             } catch (error) {
                 console.log(`Error en la función AutoHorario:`, error);
@@ -850,26 +922,112 @@
 
         }
 
+        async function ObtenerAulasXAsig(id, horas) {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    const response = await $.ajax({
+                        url: "<?php echo base_url('aulas/obtenerAulasxTipo/') ?>" + id,
+                        type: 'POST',
+                        dataType: 'json',
+                    });
+
+                    let returnData = [];
+
+                    for (const registro of response) {
+                        let {
+                            id_aula,
+                            nombre,
+                        } = registro;
+
+                        let resultado = await ObtenerDisponibilidadAula(id_aula, horas);
+                        returnData.push({
+                            id_aula: id_aula,
+                            nombre: nombre,
+                            horas_libres: resultado.disponible ? resultado.disponible : 30,
+                            elegible: resultado.disponible >= horas,
+                        });
+                    }
+
+                    resolve(returnData);
+                } catch (error) {
+                    console.log(`Error al obtener los datos:`, error);
+                    reject(error);
+                }
+            });
+        }
 
         async function AutoHorario(id, idGrado) {
 
             let resultados = await DefinirProfesores(id, idGrado)
             console.log(resultados);
 
+            let registrosNulos = [];
+
+            resultados.forEach(registro => {
+                if (registro.profesor == null || registro.id_profesor == null) {
+                    registrosNulos.push(registro);
+                }
+            });
+
+            // Mostrar los registros nulos en una alerta
+            if (registrosNulos.length > 0) {
+                var mensaje = "Las siguientes asignaturas no tienen profesores disponibles:\n\n <br/>";
+                for (var j = 0; j < registrosNulos.length; j++) {
+                    mensaje += `${j + 1}. ` + registrosNulos[j].asignatura + "\n\n";
+                    mensaje += "<br/>";
+                }
+                $('#modal-confirma-auto').modal('hide');
+
+                return Swal.fire({
+                    title: "No podemos continuar",
+                    html: mensaje,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Ver Profesores",
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonText: "Terminar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= base_url('ver_profesores') ?>'; // Cambia la URL a la que quieres redireccionar
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        console.log('Pues ni modo')
+                    }
+                });
+            }
+            // TODO: Incono de Check
+            $('#contenidoModal').text('Profesores Listos');
+
+            // * desde aqui empieza el proceso de obtener aulas
+            let withAulas = await ObtenerAulasXAsig(resultados)
+            $('#contenidoModal').text('Eligiendo buenas aulas');
+            withAulas.sort();
+            let nuevoResultado = []; // Inicializar como un array vacío
+            for (const registro of withAulas) {
+                let {
+                    asignatura,
+                    id,
+                    horas_semanales,
+                    id_profesor,
+                    profesor,
+                    aulas,
+                    repeticiones
+                } = registro
+                console.log(registro);
+                // let {
+                // } = registro;
+                let resultado = await ObtenerDisponibilidadAula(registro, aula.id_aula, registro.horas_semanales);
+            }
+            console.log(nuevoResultado);
+            // console.table(await ObtenerDisponibilidadAula(withAulas))
+
+
+
+
             // data = [];
             // let i = 0;
 
             // let diasSemana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"]
 
-            // let asignatura = $('#asignatura').val();
-            // let profesor = $('#profesor').val();
-
-            // if (asignatura == '' || profesor == '' || $('#aula').val() == '') {
-            //     return Swal.fire({
-            //         title: 'Todos los campos deben estar llenos',
-            //         icon: 'error',
-            //     })
-            // }
 
             // duracionAsignaturas.forEach(element => {
             //     if (element.id_grado_asignatura == asignatura) {
