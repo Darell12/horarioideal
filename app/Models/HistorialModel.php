@@ -31,6 +31,4 @@ class HistorialModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-
-
 }

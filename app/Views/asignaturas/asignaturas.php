@@ -285,7 +285,7 @@
                     id: $('#id').val(),
                     nombre: $('#nombre_asignatura').val(),
                     codigo:$('#codigo'),
-                    tipo_requerido:$('#tipo')
+                    tipo_requerido:$('#tipo')   
 
                 },
                 dataType: "json",

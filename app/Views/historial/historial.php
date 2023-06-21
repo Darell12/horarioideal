@@ -65,6 +65,7 @@
             {
                 data: null,
                 render: function(data, type, row) {
+                    console.log(data);
                     return data.nombre_p + " " + data.apellido_p
                 },
             },
