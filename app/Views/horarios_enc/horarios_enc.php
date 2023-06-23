@@ -691,6 +691,22 @@
             });
         }
 
+        function ObtenerAulas(id) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "<?php echo base_url('aulas/obtenerAulasxTipo/') ?>" + id,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response) {
+                        resolve(response);
+                    },
+                    error: function(error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
         async function ObtenerProfeXAsignatura(id, horas) {
             return new Promise(async (resolve, reject) => {
                 try {
@@ -922,38 +938,70 @@
 
         }
 
-        async function ObtenerAulasXAsig(id, horas) {
-            return new Promise(async (resolve, reject) => {
-                try {
-                    const response = await $.ajax({
-                        url: "<?php echo base_url('aulas/obtenerAulasxTipo/') ?>" + id,
-                        type: 'POST',
-                        dataType: 'json',
-                    });
+        async function ObtenerAulasXAsig(registros) {
 
-                    let returnData = [];
+            
+            let asignaturasGrado = await ObtenerAulas(registros);
+            console.log(asignaturasGrado);
+            
+            showLoader(); // Mostrar el loader antes de ejecutar las promesas
+            $('#contenidoModal').text('Obteniendo Profesores');
+            
+            for (const registro of response) {
+                let {
+                    id_usuario,
+                    profesor,
+                } = registro;
 
-                    for (const registro of response) {
+                let resultado = await ObtenerDisponibilidadProfe(id_usuario, horas);
+                profesores.push({
+                    id_usuario: id_usuario,
+                    profesor: profesor,
+                    horas_libres: resultado.disponible ? resultado.disponible : 30,
+                    elegible: resultado.disponible >= horas,
+                });
+            }
+            try {
+                await Promise.all(
+                    asignaturasGrado[0].map(async (asignatura) => {
                         let {
-                            id_aula,
+                            id_grado_asignatura,
                             nombre,
-                        } = registro;
+                            horas_semanales,
+                            id_tipo,
+                            aula_requerida
+                        } = asignatura;
 
-                        let resultado = await ObtenerDisponibilidadAula(id_aula, horas);
-                        returnData.push({
-                            id_aula: id_aula,
-                            nombre: nombre,
-                            horas_libres: resultado.disponible ? resultado.disponible : 30,
-                            elegible: resultado.disponible >= horas,
-                        });
-                    }
+                        try {
+                            profesores.push({
+                                id_grado_asignatura: id_grado_asignatura,
+                                asignatura: nombre,
+                                horas_semanales: horas_semanales,
+                                id_tipo: id_tipo,
+                                aula_requerida: aula_requerida,
+                                profesores: await ObtenerProfeXAsignatura(id_grado_asignatura, horas_semanales),
+                            });
+                        } catch (error) {
+                            console.log(`Error al obtener los datos:`, error);
+                        }
+                    })
+                );
 
-                    resolve(returnData);
-                } catch (error) {
-                    console.log(`Error al obtener los datos:`, error);
-                    reject(error);
-                }
-            });
+                console.log('var a ultima fase')
+                console.log(profesores);
+
+                const profesoresElegibles = await obtenerProfesoresElegibles(profesores);
+
+                profesores = profesoresElegibles;
+                console.log(profesoresElegibles);
+            } catch (error) {
+                console.log(`Error en la función AutoHorario:`, error);
+            } finally {
+                hideLoader(); // Ocultar el loader después de que todas las promesas se hayan resuelto o ocurra un error
+
+                return profesores;
+            }
+
         }
 
         async function AutoHorario(id, idGrado) {
@@ -1001,23 +1049,8 @@
             let withAulas = await ObtenerAulasXAsig(resultados)
             $('#contenidoModal').text('Eligiendo buenas aulas');
             withAulas.sort();
-            let nuevoResultado = []; // Inicializar como un array vacío
-            for (const registro of withAulas) {
-                let {
-                    asignatura,
-                    id,
-                    horas_semanales,
-                    id_profesor,
-                    profesor,
-                    aulas,
-                    repeticiones
-                } = registro
-                console.log(registro);
-                // let {
-                // } = registro;
-                let resultado = await ObtenerDisponibilidadAula(registro, aula.id_aula, registro.horas_semanales);
-            }
-            console.log(nuevoResultado);
+            console.log(withAulas);
+
             // console.table(await ObtenerDisponibilidadAula(withAulas))
 
 

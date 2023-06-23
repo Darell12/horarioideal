@@ -39,6 +39,7 @@ class Email extends BaseController
             $this->email->update($this->request->getPost('id_email'), [
                 'email' => $this->request->getPost('email'),
                 'prioridad' => $this->request->getPost('prioridad'),
+                'usuario_crea' => session('id'),
             ]);
             return 'Se Actualizo el email y su id es: ' . $this->request->getPost('id_email');
         }

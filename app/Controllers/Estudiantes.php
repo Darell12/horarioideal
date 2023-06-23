@@ -82,7 +82,7 @@ class Estudiantes extends BaseController
                 'id_usuario' => $idIngreso,
                 'id_grado' => $this->request->getPost('id_grado'),
                 'usuario_crea' => session('id')
-            ]);
+            ]); 
 
             return json_encode($idIngreso);
         } else {

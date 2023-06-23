@@ -14,9 +14,11 @@
             <thead class="thead-light">
                 <tr>
                     <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Tabla Afectada </th>
                     <th class="text-center" scope="col">Descripcion</th>
                     <th class="text-center" scope="col">Tipo</th>
                     <th class="text-center" scope="col">Responsable </th>
+                    <th class="text-center" scope="col">Fecha </th>
                 </tr>
             </thead>
             <tbody style="font-family:Arial;font-size:12px;" class="table-group-divider">
@@ -54,6 +56,9 @@
                 },
             },
             {
+                data: "tabla"
+            },
+            {
                 data: "descripcion"
             },
             {
@@ -68,6 +73,9 @@
                     console.log(data);
                     return data.nombre_p + " " + data.apellido_p
                 },
+            },
+            {
+                data: "fecha_crea"
             },
         ],
         "language": {

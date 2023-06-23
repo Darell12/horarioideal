@@ -40,6 +40,7 @@ class Telefono extends BaseController
                 'numero' => $this->request->getPost('numero'),
                 'tipo' => $this->request->getPost('tipo'),
                 'prioridad' => $this->request->getPost('prioridad'),
+                'usuario_crea' => session('id'),
             ]);
             return 'Actualizado';
         }
