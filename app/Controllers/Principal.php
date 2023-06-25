@@ -65,7 +65,7 @@ class Principal extends BaseController
         $acciones = [];
         $cargaSideBar = [];
         foreach ($permisos as $permiso) {
-            $accion = $this->acciones->obtenerAccionesRol($permiso['id_accion']);
+            $accion = $this->acciones->obtenerAccionesRol($permiso['id_acciones']);
             array_push($acciones, $accion[0]);
         }
         foreach ($acciones as $acc) {
