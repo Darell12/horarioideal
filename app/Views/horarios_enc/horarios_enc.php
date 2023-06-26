@@ -450,11 +450,6 @@
                                     </button>
                                 </a>
                                 <a class="nav-link">
-                                <button class="btn btn-outline-info" onclick="AutoHorario(${data.id_horarios_enc}, ${data.id_grado})" title="Generar Horario Automaticamente" data-bs-toggle="modal" data-bs-target="#modal-confirma-auto" data-href="${data.id_horarios_enc}">
-                                <i class="bi bi-trash3"></i>
-                                </button>
-                                </a>
-                                <a class="nav-link">
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_horarios_enc}" title="Eliminar Registro">
                                 <i class="bi bi-trash3"></i>
                                 </button>
@@ -844,44 +839,7 @@
                 throw error;
             }
         }
-        async function obtenerAulasElegibles(asignaturas) {
-            try {
-                let resultados = await Promise.all(asignaturas.map(async (asignatura) => {
-                    let {
-                        profesores,
-                        horas_semanales,
-                        id_grado_asignatura,
-                        aula_requerida,
-                        id_tipo,
-                        aulas
-                    } = asignatura;
-                    console.table(aulas);
 
-                    let AulaElegible = null;
-                    for (const aula of aulas) {
-                        if (aula.elegible && aula.horas_libres >= horas_semanales) {
-                            aula.horas_libres -= horas_semanales;
-                            AulaElegible = aula;
-                            break;
-                        }
-                    }
-
-                    return {
-                        id: asignatura.id_grado_asignatura,
-                        asignatura: asignatura.asignatura,
-                        id_tipo: id_tipo,
-                        aula_requerida: aula_requerida,
-                        horas_semanales: horas_semanales,
-                        profesor: AulaElegible?.profesor || null,
-                        id_profesor: AulaElegible?.id_usuario || null
-                    };
-                }));
-                return resultados;
-            } catch (error) {
-                console.log("Error al obtener los datos:", error);
-                throw error;
-            }
-        }
 
         // TODO: Eliminar todos los detalles anteriores
         // TODO: Encontrar Aula disponible
@@ -890,7 +848,7 @@
 
         async function DefinirProfesores(id, idGrado) {
             let profesores = [];
-            let asignaturasGrado = await ObtenerAsignaturas(idGrado);
+            let asignaturasGrado = await ObtenerAsignaturas(idGrado); //
             console.log(asignaturasGrado);
 
             showLoader(); // Mostrar el loader antes de ejecutar las promesas
@@ -937,6 +895,52 @@
                 return profesores;
             }
 
+        }
+
+        async function ElegirAulas(datos) {
+            try {
+                await Promise.all(
+                    datos.map(async (registro) => {
+                        let {
+                            id,
+                            asignatura,
+                            id_tipo,
+                            aula_requerida,
+                            horas_semanales,
+                            profesor,
+                            id_profesor,
+                            aulas
+                        } = registro;
+
+                        try {
+                            // profesores.push({
+                            //     id_grado_asignatura: id_grado_asignatura,
+                            //     asignatura: nombre,
+                            //     horas_semanales: horas_semanales,
+                            //     id_tipo: id_tipo,
+                            //     aula_requerida: aula_requerida,
+                            //     profesores: await ObtenerProfeXAsignatura(id_grado_asignatura, horas_semanales),
+                            // });
+                        } catch (error) {
+                            console.log(`Error al obtener los datos:`, error);
+                        }
+                    })
+                );
+
+                console.log('var a ultima fase')
+                console.log(profesores);
+
+                const profesoresElegibles = await obtenerProfesoresElegibles(profesores);
+
+                profesores = profesoresElegibles;
+                console.log(profesoresElegibles);
+            } catch (error) {
+                console.log(`Error en la función AutoHorario:`, error);
+            } finally {
+                hideLoader(); // Ocultar el loader después de que todas las promesas se hayan resuelto o ocurra un error
+
+                return profesores;
+            }
         }
 
         async function AutoHorario(id, idGrado) {
@@ -999,13 +1003,14 @@
                 registro.aulas = aulasObtenidas;
                 aulas.push(registro);
 
-                console.log(registro);
             }
-            
+
+            let aulaElegida = await ElegirAulas(aulas);
+
             $('#contenidoModal').text('Eligiendo buenas aulas');
             aulas.sort();
             console.log(aulas);
-            
+
 
 
 

@@ -6,8 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, heigth=device-heigth"> -->
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -18,6 +16,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
     <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>boxicons/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
 
@@ -31,7 +30,6 @@
     <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
 
     <!-- // *TODO DESCARGAR BOXICON -->
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebare.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
 
