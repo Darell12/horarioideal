@@ -45,13 +45,13 @@ class Permisos extends BaseController
 
             $this->permiso->save([
                 'id_rol' => $this->request->getPost('id_rol'),
-                'id_accion' => $this->request->getPost('id_accion'),
+                'id_acciones' => $this->request->getPost('id_acciones'),
                 'usuario_crea'=> session('id')
             ]);
         } else {
             $this->permiso->update($this->request->getPost('id'), [
                 'id_rol' => $this->request->getPost('id_rol'),
-                'id_accion' => $this->request->getPost('id_accion'),
+                'id_acciones' => $this->request->getPost('id_acciones'),
                 'usuario_crea'=> session('id')
             ]);
         }

@@ -13,7 +13,7 @@ class PermisosModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_rol', 'id_accion', 'estado', 'usuario_crea'];
+    protected $allowedFields = ['id_rol', 'id_acciones', 'estado', 'usuario_crea'];
     protected $useTimestamps = true;
     protected $createdField  = 'fecha_crea';
     protected $updatedField  = '';
@@ -27,7 +27,7 @@ class PermisosModel extends Model
     {
         $this->select('permisos.*, r.nombre as rol, a.nombre as accion ');
         $this->join('roles as r', 'permisos.id_rol = r.id_rol');
-        $this->join('acciones as a', 'permisos.id_accion = a.id_acciones');
+        $this->join('acciones as a', 'permisos.id_acciones = a.id_acciones');
         $this->where('permisos.estado', $estado);
         $datos = $this->findAll();
         return $datos;
@@ -36,7 +36,7 @@ class PermisosModel extends Model
     {
         $this->select('permisos.*, r.nombre as rol, a.nombre as accion ');
         $this->join('roles as r', 'permisos.id_rol = r.id_rol');
-        $this->join('acciones as a', 'permisos.id_accion = a.id_acciones');
+        $this->join('acciones as a', 'permisos.id_acciones = a.id_acciones');
         $this->where('permisos.estado', 'A');
         $this->where('permisos.id_rol', $rol);
         $datos = $this->findAll();
@@ -62,7 +62,7 @@ class PermisosModel extends Model
     }
     public function buscarPermisoA($id)
     {
-        $this->select('permisos.id_accion');
+        $this->select('permisos.id_acciones');
         $this->select('permisos.*');
         $this->where('id_rol', $id);
         $this->where('estado', 'A');

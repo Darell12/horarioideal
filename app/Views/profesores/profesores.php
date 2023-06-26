@@ -1537,7 +1537,7 @@
                     cadena += `</select>`
                 }
                 $('#asignatura').html(cadena)
-                $('#asignatura').TEXT(cadena)
+                $('#asignatura').html(cadena)
             }
         })
     })

@@ -120,8 +120,8 @@
                 }
                 console.log(rs);
                 rs[0].forEach(element => {
-                    console.log(element.id_accion);
-                    $(`#${element.id_accion}`).attr('disabled', '');
+                    console.log(element.id_acciones);
+                    $(`#${element.id_acciones}`).attr('disabled', '');
                 });
             }
         })
@@ -143,8 +143,8 @@
                     $("#tp").val(2);
                     $("#id").val(id)
                     $('#rol').val(rs[0]['id_rol']);
-                    $('#accion').val(rs[0]['id_accion']);
-                    $('#numeroActu').val(rs[0]['id_accion']);
+                    $('#accion').val(rs[0]['id_acciones']);
+                    $('#numeroActu').val(rs[0]['id_acciones']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#PermisosModal").modal("show");
                     $('#formulario').validate().resetForm();
@@ -257,7 +257,7 @@
                     tp: $('#tp').val(),
                     id: $('#id').val(),
                     id_rol: $('#rol').val(),
-                    id_accion: $('#accion').val(),
+                    id_acciones: $('#accion').val(),
                 },
                 dataType: "json",
             }).done(function(data) {
