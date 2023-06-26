@@ -694,7 +694,7 @@
         function ObtenerAulas(id) {
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: "<?php echo base_url('aulas/obtenerAulasxTipo/') ?>" + id,
+                    url: "<?php echo base_url('aulas/obtenerAulasxTipoNew/') ?>" + id,
                     type: 'POST',
                     dataType: 'json',
                     success: function(response) {
@@ -774,7 +774,7 @@
             });
         }
 
-        async function ObtenerDisponibilidadAula(registro, id, necesarias) {
+        async function ObtenerDisponibilidadAula(id, necesarias) {
             let horas = 0;
             let disponible;
             let elegible;
@@ -887,6 +887,7 @@
         // TODO: Encontrar Aula disponible
         // TODO: :(
 
+
         async function DefinirProfesores(id, idGrado) {
             let profesores = [];
             let asignaturasGrado = await ObtenerAsignaturas(idGrado);
@@ -895,72 +896,6 @@
             showLoader(); // Mostrar el loader antes de ejecutar las promesas
             $('#contenidoModal').text('Obteniendo Profesores');
 
-            try {
-                await Promise.all(
-                    asignaturasGrado[0].map(async (asignatura) => {
-                        let {
-                            id_grado_asignatura,
-                            nombre,
-                            horas_semanales,
-                            id_tipo,
-                            aula_requerida
-                        } = asignatura;
-
-                        try {
-                            profesores.push({
-                                id_grado_asignatura: id_grado_asignatura,
-                                asignatura: nombre,
-                                horas_semanales: horas_semanales,
-                                id_tipo: id_tipo,
-                                aula_requerida: aula_requerida,
-                                profesores: await ObtenerProfeXAsignatura(id_grado_asignatura, horas_semanales),
-                            });
-                        } catch (error) {
-                            console.log(`Error al obtener los datos:`, error);
-                        }
-                    })
-                );
-
-                console.log('var a ultima fase')
-                console.log(profesores);
-
-                const profesoresElegibles = await obtenerProfesoresElegibles(profesores);
-
-                profesores = profesoresElegibles;
-                console.log(profesoresElegibles);
-            } catch (error) {
-                console.log(`Error en la función AutoHorario:`, error);
-            } finally {
-                hideLoader(); // Ocultar el loader después de que todas las promesas se hayan resuelto o ocurra un error
-
-                return profesores;
-            }
-
-        }
-
-        async function ObtenerAulasXAsig(registros) {
-
-            
-            let asignaturasGrado = await ObtenerAulas(registros);
-            console.log(asignaturasGrado);
-            
-            showLoader(); // Mostrar el loader antes de ejecutar las promesas
-            $('#contenidoModal').text('Obteniendo Profesores');
-            
-            for (const registro of response) {
-                let {
-                    id_usuario,
-                    profesor,
-                } = registro;
-
-                let resultado = await ObtenerDisponibilidadProfe(id_usuario, horas);
-                profesores.push({
-                    id_usuario: id_usuario,
-                    profesor: profesor,
-                    horas_libres: resultado.disponible ? resultado.disponible : 30,
-                    elegible: resultado.disponible >= horas,
-                });
-            }
             try {
                 await Promise.all(
                     asignaturasGrado[0].map(async (asignatura) => {
@@ -1046,10 +981,34 @@
             $('#contenidoModal').text('Profesores Listos');
 
             // * desde aqui empieza el proceso de obtener aulas
-            let withAulas = await ObtenerAulasXAsig(resultados)
+
+            let aulas = [];
+
+            for (const registro of resultados) {
+                let {
+                    id,
+                    asignatura,
+                    id_tipo,
+                    aula_requerida,
+                    horas_semanales,
+                    profesor,
+                    id_profesor
+                } = registro;
+
+                let aulasObtenidas = await ObtenerAulas(id_tipo);
+                registro.aulas = aulasObtenidas;
+                aulas.push(registro);
+
+                console.log(registro);
+            }
+            
             $('#contenidoModal').text('Eligiendo buenas aulas');
-            withAulas.sort();
-            console.log(withAulas);
+            aulas.sort();
+            console.log(aulas);
+            
+
+
+
 
             // console.table(await ObtenerDisponibilidadAula(withAulas))
 

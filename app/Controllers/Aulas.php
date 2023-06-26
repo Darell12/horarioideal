@@ -40,7 +40,12 @@ class Aulas extends BaseController
     public function obtenerAulasxTipo($id)
     {
         $aula = $this->aula->obtenerAulasxTipo($id);
-        echo json_encode($aula);
+        return json_encode($aula);
+    }
+    public function obtenerAulasxTipoNew($id)
+    {
+        $aula = $this->aula->obtenerAulasxTipoNew($id);
+        return json_encode($aula);
     }
 
     public function insertar()

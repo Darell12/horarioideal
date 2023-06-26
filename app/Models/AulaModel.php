@@ -13,7 +13,7 @@ class AulaModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['nombre', 'descripcion', 'tipo', 'tipo' ,'estado', 'usuario_crea'];
+    protected $allowedFields = ['nombre', 'descripcion', 'tipo' ,'estado', 'usuario_crea'];
     protected $useTimestamps = true; 
     protected $createdField  = 'fecha_crea'; 
     protected $updatedField  = '';
@@ -38,6 +38,14 @@ class AulaModel extends Model
         $this->join('asignaturas as a', 'aulas.tipo = a.tipo_requerido');
         $this->join('grados_asignatura as g', 'a.id_asignatura = g.id_asignatura');
         $this->where('g.id_grado_asignatura', $tipo);
+        $this->where('aulas.estado', 'A');
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function obtenerAulasxTipoNew($tipo)
+    {
+        $this->select('aulas.*');
+        $this->where('aulas.tipo', $tipo);
         $this->where('aulas.estado', 'A');
         $datos = $this->findAll();
         return $datos;
