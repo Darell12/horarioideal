@@ -84,6 +84,7 @@
         icon: 'success',
         title: 'Registro restaurado con exito!'
       })
+      contador = 0
       tablaPermisos.ajax.reload(null, false);
     })
   }

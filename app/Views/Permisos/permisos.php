@@ -1,7 +1,6 @@
-<div class="container bg-white shadow rounded-4">
+<div class="container bg-white rounded-4">
     <div class="d-flex justify-content-between flex-wrap">
         <div class="border-0">
-            <!-- <h1 class="titulo_Vista text-center"><?php echo $titulo ?></h1> -->
         </div>
 
         <div style="margin-top: 2em;">
@@ -203,7 +202,28 @@
             }
         ],
         "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
         }
     })
 
@@ -316,6 +336,7 @@
                 icon: 'success',
                 title: 'Registro eliminado con exito!'
             })
+            contador = 0
             tablaPermisos.ajax.reload(null, false);
         })
     }

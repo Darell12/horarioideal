@@ -5,7 +5,7 @@
                </h1>
           </div>
           <!-- <div style="height: 30px;"></div> -->
-          <div>
+          <div style="margin-top: 1em;">
                <a href="<?php echo base_url('/usuarios'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
           </div>
      </div>
@@ -144,6 +144,7 @@
                     icon: 'success',
                     title: 'Registro restaurar con exito!'
                })
+               contador = 0
                tablaUsuarios.ajax.reload(null, false);
           })
      }

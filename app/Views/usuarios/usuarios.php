@@ -14,9 +14,6 @@
 
     </div>
     <br>
-    <!-- <div class="d-flex align-items-center flex-wrap ocultar">
-        <b class="fs-6 text-black"> Ocultar Columnas:</b> <a class="toggle-vis btn" data-column="1">Tipo Documento</a> - <a class="toggle-vis btn" data-column="2">Documento</a> - <a class="toggle-vis btn" data-column="3">Nombres</a> - <a class="toggle-vis btn" data-column="4">Apellidos</a> - <a class="toggle-vis btn" data-column="5">Rol</a>
-    </div> -->
     <div class="table-responsive">
         <table id="tablaUsuarios" class="table align-items-center table-flush table-loader">
             <thead class="thead-light">
@@ -82,14 +79,14 @@
                                 <label class="col-form-label">Tipo de Documento:</label>
                                 <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
                                     <option value="">Seleccione un Tipo</option>
-                                    <option value="2">Cedula de Ciudadania</option>
-                                    <option value="1">Tarjeta de Identidad</option>
-                                    <option value="3">Cedula de Extranjeria</option>
+                                    <?php foreach ($Tdocumento as $tipo) { ?>
+                                        <option value="<?php echo $tipo['id_parametro_det'] ?>"><?php echo $tipo['nombre'] ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                                <input type="number" class="form-control" name="n_documento" id="n_documento" required>
+                                <input type="text" class="form-control" name="n_documento" id="n_documento" required>
                             </div>
                         </div>
                         <div class="row">
@@ -108,7 +105,7 @@
                                 <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Segundo Apellido:</label>
+                                <label for="nombre" class="col-form-label">Segundo Apellido (Opcional):</label>
                                 <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido">
                             </div>
                         </div>
@@ -288,7 +285,9 @@
                 </div>
 
             </div>
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -313,8 +312,8 @@
                         <label for="message-text" class="col-form-label">Tipo:</label>
                         <select name="tipo" class="form-select form-select" id="tipo">
                             <option value="">-Seleccione una opción-</option>
-                            <?php foreach ($tipo as $valor) { ?>
-                                <option value="<?php echo $valor['id_parametro_det']; ?>" id="<?php echo $valor['nombre']; ?>"><?php echo $valor['nombre']; ?></option>
+                            <?php foreach ($tipos as $dato) { ?>
+                                <option value="<?php echo $dato['id_parametro_det']; ?>" id="<?php echo $dato['nombre']; ?>"><?php echo $dato['nombre']; ?></option>
                             <?php } ?>
                         </select>
                         <div class="invalid-feedback" id="errorTipoTel"></div>
@@ -354,7 +353,9 @@
                     </table>
                 </div>
             </div>
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -417,9 +418,13 @@
                                 <label class="col-form-label">Tipo de Documento:</label>
                                 <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
                                     <option value="">Seleccione un Tipo</option>
-                                    <option value="2">Cedula de Ciudadania</option>
-                                    <option value="1">Tarjeta de Identidad</option>
-                                    <option value="3">Cedula de Extranjeria</option>
+                                    <?php foreach ($Tdocumento as $tipo) { ?>
+                                        <?php if ($tipo['nombre'] == 'Tarjeta de Identidad' && $tipo['id_parametro_det'] == '1') { ?>
+                                            <option hidden value="<?php echo $tipo['id_parametro_det'] ?>"><?php echo $tipo['nombre'] ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $tipo['id_parametro_det'] ?>"><?php echo $tipo['nombre'] ?></option>
+                                        <?php } ?>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="col">
@@ -443,22 +448,20 @@
                                 <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
+                                <label for="nombre" class="col-form-label">Segundo Apellido (Opcional):</label>
+                                <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu">
                             </div>
                         </div>
                         <div class="row mb-1">
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Emails:</label>
-                                <div class="input-group d-flex">
-                                    <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
-                                </div>
+                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Telefonos:</label>
-                                <div class="input-group">
-                                    <input class="form-control" type="number" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
-                                </div>
+                                <input class="form-control" type="text" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
+                                <div class="invalid-feedback" id="errorTelAcu"></div>
+
                             </div>
                         </div>
                         <div class="row">
@@ -514,10 +517,34 @@
 </form>
 
 <script>
-    $(window).resize(function() {
-        tablaUsuarios.ajax.reload(null, false)
-        contador = 0
-    });
+    // Limitacion de inputs
+    $('#n_documento').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#numero_documentoAcu').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#telefono').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#telefonoAcu').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
 
     function cargar_Excel(json) {
         json.forEach(usuario => {
@@ -529,7 +556,6 @@
                         <td style="width:50px;">${usuario['Documento']}</td>
                         <td style="width:50px;">${usuario['Primer Nombre']}</td>
                         <td style="width:50px;">${usuario['Segundo Nombre']}</td>
-                        
                         <td style="width:50px;">${usuario['Primer Apellido']}</td>
                         <td style="width:50px;">${usuario['Segundo Apellido']}</td>
                         <td style="width:50px;">${usuario['Direccion']}</td>
@@ -640,6 +666,7 @@
                 icon: 'success',
                 title: 'Registro eliminado con exito!'
             })
+            contador = 0
             tablaUsuarios.ajax.reload(null, false);
         })
     }
@@ -713,7 +740,28 @@
             }
         ],
         "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
         }
     })
 
@@ -740,7 +788,7 @@
                 return true;
             } else if (element[0].id == 'email') {
                 return true;
-            }else if (element[0].id == 'acudientess') {
+            } else if (element[0].id == 'acudientess') {
                 return true;
             }
             error.insertAfter(element);
@@ -897,7 +945,7 @@
                 data: {
                     tp: $('#tp').val(),
                     id: $('#id').val(),
-                    numeroActu: $('#numeroActu')                .val(),
+                    numeroActu: $('#numeroActu').val(),
                     id_rol: $('#rol').val(),
                     tipo_documento: $('#tipo_documento').val(),
                     n_documento: $('#n_documento').val(),
@@ -1493,7 +1541,9 @@
     $('#btn_insertarTelefono').click(function() {
 
         // Expresión regular solo numeros
-        const regex = /^\d{10,10}$/;
+        const regex = /^0?\d{10}$/;
+        // const regex = /^(0\d{9}|[1-9]\d{9})$/;
+
 
         let telefono = $('#telefono').val();
         let prioridad = $('#prioridad_tel').val();
@@ -1686,7 +1736,7 @@
 
     $("#formularioAcudiente").validate({
         errorPlacement: function(error, element) {
-            if (element[0].id == 'telUsuarioAcu') {
+            if (element[0].id == 'telefonoAcu') {
                 return true;
             } else if (element[0].id == 'emailAcu') {
                 return true;
@@ -1746,9 +1796,6 @@
             primer_apellidoAcu: {
                 required: true,
             },
-            segundo_apellidoAcu: {
-                required: true,
-            },
             telefonoAcu: {
                 digits: true,
                 required: true,
@@ -1787,9 +1834,7 @@
             primer_apellidoAcu: {
                 required: "Este campo es requerido",
             },
-            segundo_apellidoAcu: {
-                required: "Este campo es requerido",
-            },
+            segundo_apellidoAcu: {},
             telefonoAcu: {
                 required: "Este campo es requerido",
             },
@@ -1857,33 +1902,52 @@
     $('#btnListo').on('click', function(e) {
         let dato = $('#primer_nombreAcu').val()
         let dato2 = $('#primer_apellidoAcu').val()
+        console.log('list');
+        // VUELVE
+        const regex = /^0?\d{10}$/;
+
+        let telefono = $('#telefonoAcu').val();
+        if ($('#formularioAcudiente').valid() == false) {
+            $('#acudientess').val('');
+            $('#acudientess').addClass('is-invalid');
+            console.log('invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
+        }
+
+        if (!regex.test(parseInt(telefono))) {
+            $('#telefonoAcu').addClass('is-invalid');
+            $('#errorTelAcu').text('El telefono debe contener 10 digitos');
+            setTimeout(() => {
+                $('#telefonoAcu').removeClass('is-invalid');
+                $('#errorTelAcu').text('');
+            }, 2000);
+            return
+        }
         $('#acudientess').val(dato + ' ' + dato2)
         if ($('#formularioAcudiente').valid()) {
             e.preventDefault();
             console.log('sirve');
             $('#ModalAcudientes').modal('hide');
             $('#acudientess').removeClass('is-invalid');
-        }else{
-            $('#acudientess').val(''); 
-            $('#acudientess').addClass('is-invalid');
         }
     })
 
     $('#cerrarAcu').on('click', function(e) {
         $('#acudientess').val('');
-            $('#tipo_documentoAcu').val('');
-            $('#numero_documentoAcu').val('');
-            $('#primer_nombreAcu').val('');
-            $('#segundo_nombreAcu').val('');
-            $('#primer_apellidoAcu').val('');
-            $('#segundo_apellidoAcu').val('');
-            $('#direccionAcu').val('');
-            $('#emailAcu').val('');
-            $('#telefonoAcu').val('');
-            $('#direccion1').val('');
-            $('#direccion2').val('');
-            $('#direccion3').val('');
-            $('#direccion4').val('');
+        $('#tipo_documentoAcu').val('');
+        $('#numero_documentoAcu').val('');
+        $('#primer_nombreAcu').val('');
+        $('#segundo_nombreAcu').val('');
+        $('#primer_apellidoAcu').val('');
+        $('#segundo_apellidoAcu').val('');
+        $('#direccionAcu').val('');
+        $('#emailAcu').val('');
+        $('#telefonoAcu').val('');
+        $('#direccion1').val('');
+        $('#direccion2').val('');
+        $('#direccion3').val('');
+        $('#direccion4').val('');
     })
-
 </script>
