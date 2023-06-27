@@ -59,20 +59,20 @@ class Asignaturas extends BaseController
         if ($tp == 1) {
 
             $this->asignaturas->save([
-                'nombre' => $this->request->getPost('nombre_asignatura'),
+                'nombre' => $this->request->getPost('nombre'),
                 'Codigo' => $this->request->getPost('codigo'),
-                'tipo_requerido' => $this->request->getPost('tipo'),
+                'tipo_requerido' => $this->request->getPost('tipo_requerido'),
                 'usuario_crea' => session('id')
             ]);
         } else {
             $this->asignaturas->update($this->request->getPost('id'), [
-                'nombre' => $this->request->getPost('nombre_asignatura'),
+                'nombre' => $this->request->getPost('nombre'),
                 'Codigo' => $this->request->getPost('codigo'),
-                'tipo_requerido' => $this->request->getPost('tipo'),
+                'tipo_requerido' => $this->request->getPost('tipo_requerido'),
                 'usuario_crea' => session('id')
             ]);
         }
-        return redirect()->to(base_url('/asignaturas'));
+        return json_encode('1');
     }
 
     public function buscarAsignaturas($id)
