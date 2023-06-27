@@ -268,8 +268,6 @@
             tipo: {
                 required: "Este campo es requerido",
             },
-
-
         }
     });
 
@@ -289,6 +287,7 @@
                     $('#tipo').val(rs[0]['tipo']);
                     $("#btn_Guardar").text('Actualizar');
                     $("#AulaModal").modal("show");
+                    $('#formulario').validate().resetForm();
                 }
             })
         } else {
@@ -298,6 +297,7 @@
             $('#tipo').val('');
             $("#btn_Guardar").text('Guardar');
             $("#AulaModal").modal("show");
+            $('#formulario').validate().resetForm();
         }
     }
 

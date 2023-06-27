@@ -510,6 +510,7 @@
 
     $('#btn_Guardar').on('click', function(e) {
         e.preventDefault();
+        setTimeout(() => {
         if ($('#formulario').valid()) {
             $.ajax({
                 type: "POST",
@@ -550,6 +551,8 @@
                 $('.error').fadeOut('slow');
             }, 1500);
         }
+    }, 500)
+        
     })
     $('#formulario').on('submit', function(e) {
         console.log('activo');
