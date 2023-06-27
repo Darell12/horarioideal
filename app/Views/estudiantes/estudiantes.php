@@ -112,7 +112,7 @@
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                                <input type="number" class="form-control" name="n_documento" id="n_documento" required>
+                                <input type="text" class="form-control" name="n_documento" id="n_documento" required>
                             </div>
                         </div>
                         <div class="row">
@@ -131,8 +131,8 @@
                                 <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
+                                <label for="nombre" class="col-form-label">Segundo Apellido  (Opcional):</label>
+                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" >
                             </div>
                         </div>
                         <div class="row mb-1">
@@ -593,6 +593,13 @@
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);
     }, "Por favor ingrese solamente letras.");
+
+    $('#n_documento').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
     
     $("#formulario").validate({
         errorPlacement: function(error, element) {
@@ -655,9 +662,6 @@
             },
             primer_nombre: {
                 required: true,
-                // soloLetras: true,
-            },
-            segundo_nombre: {
                 // soloLetras: true,
             },
             primer_apellido: {
@@ -1082,7 +1086,7 @@
                     let partes = str.split(/[\s-]+/);
                     if (partes.length > 4) {
                         $('#dir').val(partes[0] + ' ' + partes[1]);
-                        $('#dir2').val(partes[2]);
+                        $('#dir2').val(partes[2]);  
                         $('#dir3').val(partes[3]);
                         $('#dir4').val(partes[4]);
                     } else {
@@ -1092,7 +1096,7 @@
                         $('#dir4').val(partes[3]);
                     }
 
-                    $('#tituloModal').text('Editar Usuario');
+                    $('#tituloModal').text('Editar Estudiante');
                     $('#contraseña').attr('hidden', '');
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
