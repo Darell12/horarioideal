@@ -117,6 +117,7 @@
                 icon: 'success',
                 title: 'Registro eliminado con exito!'
             })
+            contador = 0
             tablaRoles.ajax.reload(null, false);
         })
     }
@@ -154,7 +155,28 @@
             }
         ],
         "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
         }
     })
 
@@ -243,46 +265,49 @@
 
     $('#btn_Guardar').on('click', function(e) {
         e.preventDefault();
-        if ($('#formulario').valid()) {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/roles/insertar'); ?>",
-                data: {
-                    tp: $('#tp').val(),
-                    id: $('#id').val(),
-                    nombre_rol: $('#nombre_rol').val(),
+        console.log($('#formulario').valid());
+        setTimeout(() => {
+            if ($('#formulario').valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('/roles/insertar'); ?>",
+                    data: {
+                        tp: $('#tp').val(),
+                        id: $('#id').val(),
+                        nombre_rol: $('#nombre_rol').val(),
 
-                },
-                dataType: "json",
-            }).done(function(data) {
-                $('#RolModal').modal('hide');
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+                    },
+                    dataType: "json",
+                }).done(function(data) {
+                    $('#RolModal').modal('hide');
+                    let Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Acción realizada con exito!'
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Acción realizada con exito!'
+                    })
+                    console.log('insertar');
+                    contador = 0
+                    tablaRoles.ajax.reload(null, false)
+                    return
                 })
-                console.log('insertar');
-                contador = 0
-                tablaRoles.ajax.reload(null, false)
-                return
-            })
-        } else {
-            console.log('Formulario Invalido');
-            setTimeout(() => {
-                error.fadeOut('slow');
-            }, 1500);
-        }
+            } else {
+                console.log('Formulario Invalido');
+                setTimeout(() => {
+                    error.fadeOut('slow');
+                }, 1500);
+            }
+        }, 500);
     })
 
     $('#formulario').on('submit', function(e) {

@@ -87,7 +87,7 @@ class Permisos extends BaseController
     public function cambiarEstado($id, $estado)
     {
         $permiso = $this->permiso->cambiarEstado($id, $estado);
-        return json_encode('sdf');
+        return json_encode('1');
     }
     public function eliminados() //Mostrar vista de Permisos Eliminados
     {

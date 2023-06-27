@@ -7,19 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="ADSO-1 Grupo-3">
 
     <title>Horario Ideal</title>
 
-    <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>bootstrap/bootstrap.min.css">
-    <link href="<?php echo base_url() ?>DataTable/datatables.min.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/global.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
-
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebare.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" /> -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>DataTable/datatables.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/global.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>boxicons/css/boxicons.min.css" >
 
     <script src="<?php echo base_url() ?>librerias/sweetalert2.js"></script>
     <script src="<?php echo base_url() ?>librerias/jquery-3.6.4.js"></script>
@@ -27,12 +26,7 @@
     <script src="<?php echo base_url() ?>librerias/chart.js"></script>
     <script src="<?php echo base_url() ?>bootstrap/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url() ?>DataTable/datatables.min.js"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
-
-    <!-- // *TODO DESCARGAR BOXICON -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/sidebare.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/table.css">
-
+    <script src="<?php echo base_url() ?>sheetjs/xlsx.full.min.js"></script>
 </head>
 
 <div class="wrapper">
@@ -63,7 +57,7 @@
             </li>
     </nav>
     <div class="app-sidebar" id="icon-sidebar">
-        <a href="<?php echo base_url('inicio')?>" class="app-sidebar-link active">
+        <a href="<?php echo base_url('inicio') ?>" class="app-sidebar-link active">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
@@ -140,7 +134,7 @@
             }
 
             const resultado = ordenarArray(varia);
-            console.log(resultado);
+            // console.log(resultado);
 
             let _row = '';
             resultado.forEach(element => {

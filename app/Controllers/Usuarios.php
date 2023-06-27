@@ -42,9 +42,10 @@ class Usuarios extends BaseController
 
         $roles = $this->roles->obtenerRoles('A');
         $prioridad = $this->prioridad->ObtenerParametro(2);
+        $documento = $this->prioridad->ObtenerParametro(1);
         $tipotel = $this->tipotel->ObtenerParametro(3);
 
-        $data = ['titulo' => 'Administrar Usuarios', 'roles' => $roles, 'prioridad' => $prioridad, 'tipo' => $tipotel, 'Modulos' => $cargaSideBar];
+        $data = ['titulo' => 'Administrar Usuarios','Tdocumento' => $documento, 'roles' => $roles, 'prioridad' => $prioridad, 'tipos' => $tipotel, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/usuarios/usuarios', $data);
