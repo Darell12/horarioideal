@@ -412,10 +412,11 @@
                 icon: 'success',
                 title: 'Registro eliminado con exito!'
             })
+            contador = 0
             tablaGrados.ajax.reload(null, false);
         })
     }
-    0
+    
     $('#modalEliminaAsig').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
     });
@@ -510,46 +511,48 @@
 
     $('#btn_Guardar').on('click', function(e) {
         e.preventDefault();
-        if ($('#formulario').valid()) {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('/grados/insertar'); ?>",
-                data: {
-                    tp: $('#tp').val(),
-                    id: $('#id').val(),
-                    alias: $('#nombre_grado').val(),
-
-                },
-                dataType: "json",
-            }).done(function(data) {
-                $('#GradoModal').modal('hide');
-                let Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
+        setTimeout(() => {
+            if ($('#formulario').valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('/grados/insertar'); ?>",
+                    data: {
+                        tp: $('#tp').val(),
+                        id: $('#id').val(),
+                        alias: $('#nombre_grado').val(),
+    
+                    },
+                    dataType: "json",
+                }).done(function(data) {
+                    $('#GradoModal').modal('hide');
+                    let Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+    
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Acción realizada con exito!'
+                    })
+                    console.log('insertar');
+                    contador = 0
+                    tablaGrados.ajax.reload(null, false)
+                    return
                 })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Acción realizada con exito!'
-                })
-                console.log('insertar');
-                contador = 0
-                tablaGrados.ajax.reload(null, false)
-                return
-            })
-        } else {
-            console.log('Formulario Invalido');
-            setTimeout(() => {
-                $('.error').fadeOut('slow');
-            }, 1500);
-        }
+            } else {
+                console.log('Formulario Invalido');
+                setTimeout(() => {
+                    $('.error').fadeOut('slow');
+                }, 1500);
+            }
+        }, 500);
     })
     $('#formulario').on('submit', function(e) {
         console.log('activo');

@@ -5,7 +5,7 @@
 
         <div style="margin-top: 1em;">
             <button type="button" onclick="seleccionaUsuario(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#UsuarioModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
-            <button type="button" class="btn btn-outline-success" onclick="fnExcelProfesores()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button>
+            <!-- <button type="button" class="btn btn-outline-success" onclick="fnExcelProfesores()"><i class="bi bi-filetype-xls"></i> Reporte Excel</button> -->
             <a href="<?php echo base_url('/profesores/eliminados'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
             <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
         </div>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                                <input type="number" class="form-control" name="n_documento" id="n_documento" required>
+                                <input type="text" class="form-control" name="n_documento" id="n_documento" required>
                             </div>
                         </div>
                         <div class="row">
@@ -520,6 +520,28 @@
 </div>
 
 <script>
+    // Limitacion de inputs
+    $('#n_documento').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#numero_documentoAcu').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#telefono').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
     $(document).ready(function() {
         $('#tablaUsuarios').on('init.dt', function() {
             $("#tablaUsuarios").removeClass('table-loader').show();
@@ -1366,7 +1388,7 @@
     $('#btn_insertarTelefono').click(function() {
 
         // Expresión regular solo numeros
-        const regex = /^\d{1,11}$/;
+        const regex = /^0?\d{10}$/;
 
         let telefono = $('#telefono').val();
         let prioridad = $('#prioridad_tel').val();
@@ -1376,7 +1398,7 @@
 
         if (!regex.test(parseInt(telefono))) {
             $('#telefono').addClass('is-invalid');
-            $('#errorTel').text('El telefono no puede contener caracteres diferentes a numeros');
+            $('#errorTel').text('El telefono debe contener 10 digitos');
             setTimeout(() => {
                 $('#telefono').removeClass('is-invalid');
                 $('#errorTel').text('');
@@ -1604,7 +1626,7 @@
                 console.log(contenidoHead);
                 $('#horasProfe').html(contenidoHead);
                 $('#tablaAsignaturas').html(contenido);
-                $('#tituloAsig').html(`Carga Académica del profesor` +' '+ nombre);
+                $('#tituloAsig').html(`Carga Académica del profesor` + ' ' + nombre);
             }
         })
     }
