@@ -1542,7 +1542,7 @@
 
         // Expresión regular solo numeros
         const regex = /^0?\d{10}$/;
-        // const regex = /^(0\d{9}|[1-9]\d{9})$/;
+       
 
 
         let telefono = $('#telefono').val();

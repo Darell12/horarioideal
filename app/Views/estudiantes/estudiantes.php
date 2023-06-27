@@ -113,6 +113,7 @@
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Numéro de Documento:</label>
                                 <input type="text" class="form-control" name="n_documento" id="n_documento" required>
+                                <input type="text" class="form-control" name="n_documento" id="n_documento" required>
                             </div>
                         </div>
                         <div class="row">
@@ -377,7 +378,7 @@
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Numéro de Documento:</label>
-                                <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
+                                <input type="text" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
                             </div>
                         </div>
                         <div class="row">
@@ -397,7 +398,7 @@
                             </div>
                             <div class="col">
                                 <label for="nombre" class="col-form-label">Segundo Apellido:</label>
-                                <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
+                                <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu">
                             </div>
                         </div>
                         <div class="row mb-1">
@@ -465,6 +466,35 @@
 
 
 <script>
+     // Limitacion de inputs
+     $('#n_documento').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#numero_documentoAcu').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#telefono').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
+    $('#telefonoAcu').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
+
     $(document).ready(function() {
         $('#tablaEstudiantes').on('init.dt', function() {
             $("#tablaEstudiantes").removeClass('table-loader').show();
@@ -807,6 +837,9 @@
             })
         } else {
             console.log('Formulario Invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
         }
     })
 
@@ -1276,7 +1309,7 @@
     $('#btn_insertarTelefono').click(function() {
 
         // Expresión regular solo numeros
-        const regex = /^\d{1,11}$/;
+        const regex = /^0?\d{10}$/;
 
         let telefono = $('#telefono').val();
         let prioridad = $('#prioridad_tel').val();
@@ -1286,7 +1319,7 @@
 
         if (!regex.test(parseInt(telefono))) {
             $('#telefono').addClass('is-invalid');
-            $('#errorTel').text('El telefono no puede contener caracteres diferentes a numeros');
+            $('#errorTel').text('El telefono debe contener 10 digitos');
             setTimeout(() => {
                 $('#telefono').removeClass('is-invalid');
                 $('#errorTel').text('');
@@ -1546,15 +1579,35 @@
     $('#btnListo').on('click', function(e) {
         let dato = $('#primer_nombreAcu').val()
         let dato2 = $('#primer_apellidoAcu').val()
+        console.log('list');
+        // VUELVE
+        const regex = /^0?\d{10}$/;
+
+        let telefono = $('#telefonoAcu').val();
+        if ($('#formularioAcudiente').valid() == false) {
+            $('#acudientess').val('');
+            $('#acudientess').addClass('is-invalid');
+            console.log('invalido');
+            setTimeout(() => {
+                $('.error').fadeOut('slow');
+            }, 1500);
+        }
+
+        if (!regex.test(parseInt(telefono))) {
+            $('#telefonoAcu').addClass('is-invalid');
+            $('#errorTelAcu').text('El telefono debe contener 10 digitos');
+            setTimeout(() => {
+                $('#telefonoAcu').removeClass('is-invalid');
+                $('#errorTelAcu').text('');
+            }, 2000);
+            return
+        }
         $('#acudientess').val(dato + ' ' + dato2)
         if ($('#formularioAcudiente').valid()) {
             e.preventDefault();
             console.log('sirve');
             $('#ModalAcudientes').modal('hide');
             $('#acudientess').removeClass('is-invalid');
-        }else{
-            $('#acudientess').val('');
-            $('#acudientess').addClass('is-invalid');
         }
     })
 
