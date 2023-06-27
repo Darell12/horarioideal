@@ -305,8 +305,8 @@
                     tp: $('#tp').val(),
                     id: $('#id').val(),
                     nombre: $('#nombre_asignatura').val(),
-                    codigo:$('#codigo'),
-                    tipo_requerido:$('#tipo')   
+                    codigo: $('#codigo').val(),
+                    tipo_requerido:$('#tipo').val()   
 
                 },
                 dataType: "json",
