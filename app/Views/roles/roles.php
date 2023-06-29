@@ -250,6 +250,7 @@
                     $('#nombre_rol').val(rs[0]['nombre']);
                     $('#numeroActu').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
+                    $('#tituloModal').text('Actualizar Rol');
                     $("#RolModal").modal("show");
                     $('#formulario').validate().resetForm();
                 }
@@ -257,6 +258,7 @@
         } else {
             $("#tp").val(1);
             $('#nombre_rol').val('');
+            $('#tituloModal').text('Añadir Rol');
             $("#btn_Guardar").text('Guardar');
             $("#RolModal").modal("show");
             $('#formulario').validate().resetForm();

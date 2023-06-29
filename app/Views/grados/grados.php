@@ -440,6 +440,7 @@
                     $('#nombre_grado').val(rs[0]['alias']);
                     $('#numeroActu').val(rs[0]['alias']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Grado');
                     $("#GradoModal").modal("show");
                     $('#formulario').validate().resetForm();
                 }
@@ -448,6 +449,7 @@
             $("#tp").val(1);
             $('#nombre_grado').val('');
             $("#GradoModal").modal("show");
+            $("#tituloModal").text('Añadir Grado');
             $("#btn_Guardar").text('Guardar');
             $('#formulario').validate().resetForm();
         }

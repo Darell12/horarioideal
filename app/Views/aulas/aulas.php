@@ -288,6 +288,7 @@
                     $('#descripcion').val(rs[0]['descripcion']);
                     $('#tipo').val(rs[0]['tipo']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Aula');
                     $("#AulaModal").modal("show");
                 }
             })
@@ -296,6 +297,7 @@
             $('#nombre_aula').val('');
             $('#descripcion').val('');
             $('#tipo').val('');
+            $("#tituloModal").text('Añadir Aula');
             $("#btn_Guardar").text('Guardar');
             $("#AulaModal").modal("show");
         }

@@ -257,7 +257,7 @@
         month: 'long'
     };
     let nombreMes = fechaActual.toLocaleDateString('es-ES', opcionesMes);
-
+    $('#fecha').text(nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1) + ', ' + dia)
     function visualizarHorario(id) {
         $(`#Lunes`).html('');
         $(`#Martes`).html('');

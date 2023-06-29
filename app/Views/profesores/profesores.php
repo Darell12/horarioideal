@@ -1154,7 +1154,7 @@
 
                     }
 
-                    $('#tituloModal').text('Editar Usuario');
+                    $('#tituloModal').text('Editar Profesor');
                     $('#contraseña').attr('hidden', '');
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
@@ -1240,7 +1240,7 @@
             $('#confirmar_contraseña').removeAttr('hidden', '');
             $('#password_label_c').removeAttr('hidden', '');
             // $('#formulario').validate().resetForm();
-            $('#tituloModal').text('Añadir Usuario');
+            $('#tituloModal').text('Añadir Profesor');
             $('#direccionX').val('');
             $("#btn_Guardar").text('Guardar');
             $("#UsuarioModal").modal("show");

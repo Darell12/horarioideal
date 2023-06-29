@@ -145,6 +145,7 @@
                     $('#accion').val(rs[0]['id_acciones']);
                     $('#numeroActu').val(rs[0]['id_acciones']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Permiso');
                     $("#PermisosModal").modal("show");
                     $('#formulario').validate().resetForm();
                 }
@@ -153,6 +154,7 @@
             $("#tp").val(1);
             $('#rol').val('');
             $('#accion').val('');
+            $("#tituloModal").text('Añadir Permiso');
             $("#btn_Guardar").text('Guardar');
             $("#PermisosModal").modal("show");
             $('#formulario').validate().resetForm();

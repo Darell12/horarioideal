@@ -278,6 +278,7 @@
                     $('#codigo').val(rs[0]['Codigo']);
                     $('#tipo').val(rs[0]['tipo_requerido']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Asignatura');
                     $("#AsignaturaModal").modal("show");
                 }
             })
@@ -286,6 +287,7 @@
             $('#nombre_asignatura').val('');
             $('#codigo').val('');
             $('#tipo').val('');
+            $("#tituloModal").text('Añadir Asignatura');
             $("#btn_Guardar").text('Guardar');
             $("#AsignaturaModal").modal("show");
         }

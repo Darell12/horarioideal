@@ -367,6 +367,7 @@
                     $('#carpeta').val(rs[0]['id_padre']);
                     $('#numeroActu').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Acción');
                     $('#formulario').validate().resetForm();
                     $("#AccionModal").modal("show");
                 }
@@ -375,6 +376,7 @@
             $("#tp").val(1);
             $('#nombre_accion').val('');
             $('#formulario').validate().resetForm();
+            $("#tituloModal").text('Añadir Acción');
             $("#btn_Guardar").text('Guardar');
             $("#AccionModal").modal("show");
         }

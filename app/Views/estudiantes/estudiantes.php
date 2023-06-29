@@ -1124,7 +1124,7 @@
                         $('#dir4').val(partes[3]);
                     }
 
-                    $('#tituloModal').text('Editar Usuario');
+                    $('#tituloModal').text('Editar Estudiante');
                     $('#contraseña').attr('hidden', '');
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
