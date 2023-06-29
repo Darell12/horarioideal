@@ -42,15 +42,6 @@
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col">
-                                        <label class="col-form-label">Grado:</label>
-                                        <select class="form-select form-select" name="id_grado" id="id_grado" required>
-                                            <option value="">Seleccione un Grado</option>
-                                            <?php foreach ($grados as $grado) { ?>
-                                                <option value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col">
                                         <label class="col-form-label">Año:</label>
                                         <select type="text" class="form-select" class="form-control" name="periodo_año" id="periodo_año" required>
                                             <option value=""> Seleccione un año </option>
@@ -58,6 +49,15 @@
                                             <?php foreach ($years as $year) : ?>
                                                 <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
                                             <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="col-form-label">Grado:</label>
+                                        <select class="form-select form-select" name="id_grado" id="id_grado" required>
+                                            <option value="">Seleccione un Grado</option>
+                                            <?php foreach ($grados as $grado) { ?>
+                                                <option class="gradoSelect" id="G<?php echo $grado['id_grado']; ?>" value="<?php echo $grado['id_grado']; ?>"><?php echo $grado['alias']; ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -264,19 +264,77 @@
     </div>
 
     <script>
-        navigator.geolocation.getCurrentPosition(
-            (postion) => {
-                const {
-                    latitude,
-                    longitude
-                } = postion.coords;
-
-                console.log('latitud: ', latitude);
-                console.log('Longitud: ', longitude);
-                (error) => {
-                    console.log('Error: ', error.message)
+        $("#formulario").validate({
+            errorPlacement: function(error, element) {
+                if (element[0].id == 'telUsuario') {
+                    return true;
+                } else if (element[0].id == 'email') {
+                    return true;
+                } else if (element[0].id == 'acudientess') {
+                    return true;
                 }
-            })
+                error.insertAfter(element);
+                setTimeout(() => {
+                    error.fadeOut('slow');
+                }, 1500);
+                return true;
+            },
+            highlight: function(element) {
+                $(element).addClass('is-invalid')
+                setTimeout(() => {
+                    $(element).removeClass('is-invalid')
+                }, 1500);
+            },
+            unhighlight: function(element) {
+                $(element).removeClass('is-invalid')
+            },
+            submitHandler: function() {
+                return false;
+            },
+            rules: {
+                id_grado: {
+                    required: true,
+                },
+                jornada: {
+                    required: true,
+                },
+                periodo_año: {
+                    required: true,
+                },
+                duracion: {
+                    required: true,
+                },
+                jornada: {
+                    required: true,
+                },
+                inicio: {
+                    required: true,
+                },
+                fin: {
+                    required: true,
+                },
+            },
+            messages: {
+                id_grado: {
+                    required: "Por favor seleccione una opción",
+                },
+                inicio: {
+                    required: "Por favor seleccione una opción",
+                },
+                fin: {
+                    required: "Por favor seleccione una opción",
+                },
+                duracion: {
+                    required: "Por favor seleccione una opción",
+                },
+                jornada: {
+                    required: "Por favor seleccione una opción",
+                },
+                periodo_año: {
+                    required: "Debe ingresar un año",
+                }
+            }
+        });
 
         let franjasTotales = []
         $.ajax({
@@ -305,8 +363,6 @@
             $(`#Jueves`).html('');
             $(`#Viernes`).html('');
             $(`#Sabado`).html('');
-
-
 
             dataURL = "<?php echo base_url('/horario_det/buscarDetalle'); ?>";
             $.ajax({
@@ -346,30 +402,6 @@
             $(this).find('.btn-ok').attr('onclick', 'EliminarRegistro(' + $(e.relatedTarget).data('href') + ')');
         });
 
-        $("#formulario").validate({
-            rules: {
-                id_grado: {
-                    required: true,
-                },
-                jornada: {
-                    required: true,
-                },
-                periodo_año: {
-                    required: true,
-                },
-                messages: {
-                    id_grado: {
-                        required: "Por favor seleccione una opción",
-                    },
-                    jornada: {
-                        required: "Por favor seleccione una opción",
-                    },
-                    periodo_año: {
-                        required: "Debe ingresar un año",
-                    }
-                }
-            }
-        });
 
         $('#formulario').on('submit', function(e) {
             e.preventDefault();
@@ -458,14 +490,55 @@
                     },
                 }
             ],
-            // "language": {
-            //     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-            // }
+            "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
         })
 
         $('#btnGuardar').on('click', function(e) {
             e.preventDefault();
+
             if ($('#formulario').valid()) {
+
+                
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('/horario_enc/validarActivo'); ?>/"+$('#periodo_año').val()+'/'+$('#id_grado').val(),
+                    dataType: "json",
+                }).done(function(data) {
+                    if (data.length > 0) {
+                        console.log('id');
+                        return Swal.fire({
+                                title: '<h3 class="h3"> Cuidado </h3>',
+                                icon: 'error',
+                                html: `No puedes generar un horario para un grado que ya tiene un horario activo, <span class="text-warning">recomendamos eliminar los horarios en desuso</span>`,
+                                showCloseButton: true,
+                                focusConfirm: false,
+                                confirmButtonText: 'Intentar de nuevo!',
+                            })
+                    }
+                    
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url('/horario_enc_insertar'); ?>",
@@ -503,6 +576,7 @@
                     tablaHorario.ajax.reload(null, false)
                     return
                 })
+            })
             } else {
                 console.log('Formulario Invalido');
             }
@@ -523,7 +597,7 @@
                         $('#jornada').val(rs[0]['jornada']);
                         $('#inicio').val(rs[0]['inicio']);
                         $('#fin').val(rs[0]['fin']);
-                        $('#duracion_hora').val(rs[0]['duracion_hora']);
+                        $('#duracion').val(rs[0]['duracion_hora']);
                         $("#btn_Guardar").text('Actualizar');
                         $("#Horarios_encModal").modal("show");
                     }
@@ -531,6 +605,12 @@
             } else {
                 $("#tp").val(1);
                 $('#nombre_accion').val('');
+                $('#id_grado').val('');
+                $('#periodo_año').val('');
+                $('#jornada').val('');
+                $('#inicio').val('');
+                $('#fin').val('');
+                $('#duracion').val('');
                 $("#btn_Guardar").text('Guardar');
                 $("#Horarios_encModal").modal("show");
             }
@@ -608,6 +688,23 @@
 
             }
         });
+
+        $('#periodo_año').on('change', function(e) {
+            $('.gradoSelect').prop('disabled', false);
+            $('#id_grado').val('')
+            console.log(this.value);
+            $.ajax({
+                url: "<?php echo base_url('horario_enc/validarFecha/'); ?>" + this.value,
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    console.log(res);
+                    res.forEach(element => {
+                        $('#G' + element.id_grado).prop('disabled', true);
+                    });
+                }
+            })
+        })
 
         // ! Filtra y retorna solo las franjas disponibles en el dia recibido
         function filtroPorDia(dia, res, inicio, fin, aula) {
