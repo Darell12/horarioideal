@@ -57,6 +57,24 @@ class Horario_enc extends BaseController
         }
         return json_encode($returnData);
     }
+    public function validarFecha($fecha)
+    {
+        $returnData = array();
+        $franja = $this->horario_enc->obtenerEncabezadosXFecha($fecha);
+        if (!empty($franja)) {
+            return  json_encode($franja);
+        }
+        return json_encode($returnData);
+    }
+    public function validarActivo($fecha,$grado)
+    {
+        $returnData = array();
+        $franja = $this->horario_enc->obtenerEncabezadosXFechaGrado($fecha,$grado);
+        if (!empty($franja)) {
+            return  json_encode($franja);
+        }
+        return json_encode($returnData);
+    }
 
     public function insertar()
     {

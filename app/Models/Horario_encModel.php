@@ -45,6 +45,21 @@ class Horario_encModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function obtenerEncabezadosXFecha($fecha)
+    {
+        $this->select('id_grado');
+        $this->where('horarios_enc.periodo_año', $fecha);
+        $datos = $this->findAll();
+        return $datos;
+    }
+    public function obtenerEncabezadosXFechaGrado($fecha,$grado)
+    {
+        $this->select('id_grado');
+        $this->where('horarios_enc.estado', 'A');
+        $this->where('horarios_enc.id_grado', $grado);
+        $datos = $this->findAll();
+        return $datos;
+    }
     public function obtenerEncabezadosGrado($estado, $id)
     {
         $this->select('horarios_enc.*');
@@ -71,6 +86,7 @@ class Horario_encModel extends Model
         $this->select('horarios_enc.*, param.nombre as hora_inicio, param2.nombre as hora_fin');
         $this->join('parametro_det as param', 'horarios_enc.inicio = param.id_parametro_det');
         $this->join('vw_param_det as param2', 'horarios_enc.fin = param2.id_parametro_det');
+        // $this->join('vw_param_det2 as param3', 'horarios_enc.id_grado = param2.id_parametro_det');
         $this->where('id_horarios_enc', $id);
 
         $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 

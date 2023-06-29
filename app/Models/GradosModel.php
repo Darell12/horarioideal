@@ -47,6 +47,14 @@ class GradosModel extends Model
         $datos = $this->first();
         return $datos;
     }
+    public function NombreGrado($id)
+    {
+        $this->select('alias');
+        $this->where('id_grado', $id);
+        $this->where('estado', 'A');
+        $datos = $this->first();
+        return $datos;
+    }
 
     public function cambiar_Estado($id, $estado)
     {
