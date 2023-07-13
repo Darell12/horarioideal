@@ -37,7 +37,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="col">
-                        <label class="col-form-label">Asignatura:</label>
+                        <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Asignatura:</b></label>
                         <select class="form-select form-select" name="asignatura" id="asignatura" required>
                             <option value="">Seleccione una opción</option>
                             <?php foreach ($asignaturas as $asignatura) { ?>
@@ -46,7 +46,7 @@
                         </select>
                     </div>
                     <div class="col">
-                        <label class="col-form-label">Horas Semanales:</label>
+                        <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Horas Semanales:</b></label>
                         <input type="text" class="form-control " name="horas" id="horas" required>
                         <label id="horasError" class="text-danger"></label>
                     </div>
@@ -106,7 +106,7 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Nombre:</b></label>
                                     <input type="text" class="form-control" name="nombre_grado" id="nombre_grado" required>
                                 </div>
 

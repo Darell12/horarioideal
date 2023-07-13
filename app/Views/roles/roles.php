@@ -37,7 +37,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header" style="background: #427dbb; color:#FFF;">
-                        <h1 style=" margin-left:5px;" class="modal-title fs-5" id="tituloModal">Añadir Rol</h1>
+                        <h1 style=" margin-left:5px;" class="modal-title fs-5" id="tituloModal" >Añadir Rol</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -45,7 +45,7 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"> <b> Nombre:</b></label>
                                     <input type="text" class="form-control" name="nombre_rol" id="nombre_rol" required>
                                 </div>
 

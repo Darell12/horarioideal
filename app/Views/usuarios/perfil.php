@@ -118,18 +118,18 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="tituloModal">Actualizar Contraseña</h1>
+                    <h1 class="modal-title fs-5" id="tituloModal" style="font-size: large; color:#29588a;"><b>Actualizar Contraseña</b></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
-                                <label id="password_label" for="password">Contraseña anterior</label>
+                                <label id="password_label" for="password" style="font-size: large; color:#29588a;"><b>Contraseña anterior</b></label>
                                 <input id="contraseña" name="contraseña" type="password" class="form-control" required />
                             </div>
                             <div class="col">
-                                <label id="password_label" for="password">Nueva Contraseña</label>
+                                <label id="password_label" for="password" style="font-size: large; color:#29588a;"><b>Nueva Contraseña</b></label>
                                 <input id="nueva_contraseña" name="nueva_contraseña" type="password" class="form-control" required />
                             </div>
                         </div>
@@ -159,13 +159,13 @@
             <div class="modal-body">
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="message-text" class="col-form-label">Email:</label>
+                        <label for="message-text" class="col-form-label" style="font-size: large; color:#29588a;"><b>Email:</b></label>
                         <input type="email" name="email_modal" class="form-control" id="email_modal" placeholder="Ej: JhonDoe@gmail.com">
                         <div class="invalid-feedback" id="errorEmail"></div>
                     </div>
 
                     <div class="col">
-                        <label for="message-text" class="col-form-label">Prioridad:</label>
+                        <label for="message-text" class="col-form-label" style="font-size: large; color:#29588a;"><b>Prioridad:</b></label>
                         <div class="input-group">
                             <select name="prioridad" class="form-select form-select" id="prioridad">
                                 <option value="">-Seleccione una opción-</option>
@@ -236,13 +236,13 @@
             <div class="modal-body">
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="message-text" class="col-form-label">Número:</label>
+                        <label for="message-text" class="col-form-label" style="font-size: large; color:#29588a;"><b>Número:</b></label>
                         <input type="text" name="telefono" class="form-control" id="telefono">
                         <div class="invalid-feedback" id="errorTel"></div>
                     </div>
 
                     <div class="col">
-                        <label for="message-text" class="col-form-label">Tipo:</label>
+                        <label for="message-text" class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo:</b></label>
                         <select name="tipo" class="form-select form-select" id="tipo">
                             <option value="">-Seleccione una opción-</option>
                             <?php foreach ($tipo as $valor) { ?>
@@ -252,7 +252,7 @@
                         <div class="invalid-feedback" id="errorTipoTel"></div>
                     </div>
                     <div class="col">
-                        <label for="message-text" class="col-form-label">Prioridad:</label>
+                        <label for="message-text" class="col-form-label" style="font-size: large; color:#29588a;"><b>Prioridad:</b></label>
                         <div class="input-group">
                             <select name="prioridad_tel" class="form-select form-select" id="prioridad_tel">
                                 <option value="">-Seleccione una opción-</option>
@@ -322,7 +322,7 @@
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label class="col-form-label">Tipo de Documento:</label>
+                            <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo de Documento:</b></label>
                             <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
                                 <option value="">Seleccione un Tipo</option>
                                 <option value="2">Cedula de Ciudadania</option>
@@ -331,46 +331,46 @@
                             </select>
                         </div>
                         <div class="col">
-                            <label for="nombre" class="col-form-label">Numéro de Documento:</label>
+                            <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Numéro de Documento:</b></label>
                             <input type="number" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label for="nombre" class="col-form-label">Primer Nombre:</label>
+                            <label for="nombre" class="col-form-label"style="font-size: large; color:#29588a;"><b>Primer Nombre:</b></label>
                             <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
                         </div>
                         <div class="col">
-                            <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
+                            <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Nombre (Opcional):</b></label>
                             <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label for="nombre" class="col-form-label">Primer Apellido:</label>
+                            <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Apellido:</b></label>
                             <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
                         </div>
                         <div class="col">
-                            <label for="nombre" class="col-form-label">Segundo Apellido:</label>
+                            <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Apellido:</b></label>
                             <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu" required>
                         </div>
                     </div>
                     <div class="row mb-1">
                         <div class="col">
-                            <label for="nombre" class="col-form-label">Emails:</label>
+                            <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Emails:</b></label>
                             <div class="input-group d-flex">
                                 <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
                             </div>
                         </div>
                         <div class="col">
-                            <label for="nombre" class="col-form-label">Telefonos:</label>
+                            <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Telefonos:</b></label>
                             <div class="input-group">
                                 <input class="form-control" type="number" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <label id="direccion_usuario" for="direccion">Dirección:</label>
+                        <label id="direccion_usuario" for="direccion" style="font-size: large; color:#29588a;"><b>Dirección:</b></label>
                         <div class="col">
                             <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
                                 <option value="">--Selecciona--</option>
@@ -914,7 +914,7 @@
                             </div>
                              <div class="col-sm-9">
                             <div class="col">
-                                    <label class="col-form-label">Tipo de Documento:</label>
+                                    <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo de Documento:</b></label>
                                     <select class="form-select form-select" name="tipo_documento" id="tipo_documento" >
                                         <option value="0">Seleccione un Tipo</option>
                                         <option value="2">Cedula de Ciudadania</option>
@@ -923,7 +923,7 @@
                                     </select>
 
                                     <div class="col">
-                                    <label for="nombre" class="col-form-label">Numéro de Documento:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Numéro de Documento:</b></label>
                                     <input type="number" class="form-control" name="n_documento" id="n_documento" >
                                 </div>
 
@@ -938,11 +938,11 @@
                             <div class="col-sm-9">
                             <div class="row">
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Primer Nombre:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Nombre:</b></label>
                                     <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" >
                                 </div>  
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Segundo Nombre (Opcional):</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Nombre (Opcional):</b></label>
                                     <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+" >
                                 </div>
                             </div>
@@ -956,11 +956,11 @@
                             <div class="col-sm-9">
                             <div class="row">
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Primer Apellido:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Apellido:</b></label>
                                     <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" >
                                 </div>
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Segundo Apellido:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Apellido:</b></label>
                                     <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" >
                                 </div>
                             </div>
@@ -969,7 +969,7 @@
                         <hr>
                         <div class="row mb-1">
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Emails:</label>
+                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Emails:</b></label>
                                 <div class="input-group">
                                     <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" aria-label="" aria-describedby="button-addon2" disabled>
                                     <button class="btn btn-success" type="button" onclick="validarPrioridadEmail()" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
@@ -978,7 +978,7 @@
                         </div>
                         <hr>
                         <div class="col">
-                                <label for="nombre" class="col-form-label">Telefonos:</label>
+                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Telefonos:</b></label>
                                 <div class="input-group">
                                     <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" disabled>
                                     <button class="btn btn-success" type="button" onclick="validarPrioridadTel()" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
@@ -990,7 +990,7 @@
                                 <p class="mb-0">Direccion</p>
                             </div>
                             <div class="col-sm-9">
-                            <label id="direccion_usuario" for="direccion">Dirección:</label>
+                            <label id="direccion_usuario" for="direccion" style="font-size: large; color:#29588a;"><b>Dirección:</b></label>
                             <div class="row">
                                 <div class="col">
                                     <select onchange="Direccion()" name="dir" id="dir"  placeholder="Ej: 23" class="form-select form-select">

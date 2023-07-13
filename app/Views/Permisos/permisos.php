@@ -38,7 +38,7 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="">
-                                    <label class="col-form-label">Rol:</label>
+                                    <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Rol:</b>  </label>
                                     <select class="form-select form-select" name="rol" id="rol" required>
                                         <option value="">Seleccione un Rol</option>
                                         <?php foreach ($roles as $rol) { ?>
@@ -47,7 +47,7 @@
                                     </select>
                                 </div>
                                 <div class="">
-                                    <label class="col-form-label">Acciones:</label>
+                                    <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Acciones:</b></label>
                                     <select class="form-select form-select" name="accion" id="accion" required>
                                         <option value="">Seleccione una acción</option>
                                         <?php foreach ($acciones as $accion) { ?>
