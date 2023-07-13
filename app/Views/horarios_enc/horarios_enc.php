@@ -1,5 +1,5 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/loader.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
     <div class="container bg-white shadow rounded-4">
         <div class="d-flex justify-content-between flex-wrap">
             <div class="border-0">
@@ -9,11 +9,12 @@
                 <button type="button" onclick="seleccionaHorarios_enc(<?php echo 1 . ',' . 1 ?>);" class="btn btn-outline-success " data-bs-toggle="modal" data-bs-target="#Horarios_encModal"><i class="bi bi-plus-circle-fill"></i> Agregar</button>
                 <a href="<?php echo base_url('/eliminados_horarios_enc'); ?>"><button type="button" class="btn btn-outline-secondary"><i class="bi bi-file-x"></i> Eliminados</button></a>
                 <a href="<?php echo base_url('/principal'); ?>"><button class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</button></a>
+                <button id="pdfTest">Generate PDF</button>
             </div>
         </div>
-
+    <iframe id="frame" src="<?php echo base_url('pdf/V.pdf')?>" frameborder="0"></iframe>
         <br>
-        <div class="table-responsive">
+        <div class="table-responsive" id="content">
             <table style="text-align: center;" id="TablaHorario" class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
@@ -158,7 +159,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-lecture">
-
                         <section class="section-list">
                             <div class="container-xl">
                                 <div class="table-schedule">
@@ -264,6 +264,17 @@
     </div>
 
     <script>
+        $('#pdfTest').on('click', function(e) {
+            $.ajax({
+                url: "<?php echo base_url('horario_enc/pdfTest/'); ?>",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    $('#frame').prop('src', '<?php echo base_url('pdf/V.pdf')?>');
+                }
+            });
+        })
+
         $("#formulario").validate({
             errorPlacement: function(error, element) {
                 if (element[0].id == 'telUsuario') {
@@ -521,62 +532,62 @@
 
             if ($('#formulario').valid()) {
 
-                
+
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url('/horario_enc/validarActivo'); ?>/"+$('#periodo_año').val()+'/'+$('#id_grado').val(),
+                    url: "<?php echo base_url('/horario_enc/validarActivo'); ?>/" + $('#periodo_año').val() + '/' + $('#id_grado').val(),
                     dataType: "json",
                 }).done(function(data) {
                     if (data.length > 0) {
                         console.log('id');
                         return Swal.fire({
-                                title: '<h3 class="h3"> Cuidado </h3>',
-                                icon: 'error',
-                                html: `No puedes generar un horario para un grado que ya tiene un horario activo, <span class="text-warning">recomendamos eliminar los horarios en desuso</span>`,
-                                showCloseButton: true,
-                                focusConfirm: false,
-                                confirmButtonText: 'Intentar de nuevo!',
-                            })
+                            title: '<h3 class="h3"> Cuidado </h3>',
+                            icon: 'error',
+                            html: `No puedes generar un horario para un grado que ya tiene un horario activo, <span class="text-warning">recomendamos eliminar los horarios en desuso</span>`,
+                            showCloseButton: true,
+                            focusConfirm: false,
+                            confirmButtonText: 'Intentar de nuevo!',
+                        })
                     }
-                    
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url('/horario_enc_insertar'); ?>",
-                    data: {
-                        tp: $('#tp').val(),
-                        id: $('#id').val(),
-                        id_grado: $('#id_grado').val(),
-                        periodo_año: $('#periodo_año').val(),
-                        jornada: $('#jornada').val(),
-                        inicio: $('#inicio').val(),
-                        fin: $('#fin').val(),
-                        duracion: $('#duracion').val(),
 
-                    },
-                    dataType: "json",
-                }).done(function(data) {
-                    $('#Horarios_encModal').modal('hide');
-                    let Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url('/horario_enc_insertar'); ?>",
+                        data: {
+                            tp: $('#tp').val(),
+                            id: $('#id').val(),
+                            id_grado: $('#id_grado').val(),
+                            periodo_año: $('#periodo_año').val(),
+                            jornada: $('#jornada').val(),
+                            inicio: $('#inicio').val(),
+                            fin: $('#fin').val(),
+                            duracion: $('#duracion').val(),
 
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Acción realizada con exito!'
+                        },
+                        dataType: "json",
+                    }).done(function(data) {
+                        $('#Horarios_encModal').modal('hide');
+                        let Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Acción realizada con exito!'
+                        })
+                        contador = 0
+                        tablaHorario.ajax.reload(null, false)
+                        return
                     })
-                    contador = 0
-                    tablaHorario.ajax.reload(null, false)
-                    return
                 })
-            })
             } else {
                 console.log('Formulario Invalido');
             }

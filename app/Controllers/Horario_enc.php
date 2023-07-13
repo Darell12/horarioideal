@@ -41,6 +41,17 @@ class Horario_enc extends BaseController
         echo view('/horarios_enc/horarios_enc', $data);
     }
 
+    public function pdfTest()
+    {
+        $pdf = new \FPDF('P', 'mm', 'letter');
+        // $pdf->AddPage();
+        // $pdf->SetFont('Arial', 'B', 16);
+        // $pdf->Cell(40, 10, 'Hello Worldo2!');
+        
+        // $pdf->Output("pdf/" . "V" . ".pdf", "F");
+        
+    }
+
     public function obtenerHorarios_enc()
     {
         $estado = $this->request->getPost('estado');
@@ -66,10 +77,10 @@ class Horario_enc extends BaseController
         }
         return json_encode($returnData);
     }
-    public function validarActivo($fecha,$grado)
+    public function validarActivo($fecha, $grado)
     {
         $returnData = array();
-        $franja = $this->horario_enc->obtenerEncabezadosXFechaGrado($fecha,$grado);
+        $franja = $this->horario_enc->obtenerEncabezadosXFechaGrado($fecha, $grado);
         if (!empty($franja)) {
             return  json_encode($franja);
         }
