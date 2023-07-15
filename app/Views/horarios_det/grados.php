@@ -4,19 +4,19 @@
 <div class="app-content m-3 ">
     <div class="projects-section">
         <div class="projects-section-header">
-            <p>Asignaturas</p>
+            <p>Mis grados Asignados</p>
             <p class="time" id="fecha">December, 12</p>
         </div>
         <div class="projects-section-line">
             <div class="projects-status">
                 <div class="item-status">
                     <span class="status-number" id="totalAsignaturas"></span>
-                    <span class="status-type">Total Asignaturas</span>
+                    <span class="status-type">Total Grados</span>
                 </div>
-                <div class="item-status">
+                <!-- <div class="item-status">
                     <span class="status-number" id="horas_semanales"></span>
                     <span class="status-type">Horas Semanales</span>
-                </div>
+                </div> -->
             </div>
             <div class="view-actions">
                 <button class="view-btn list-view" title="List View">

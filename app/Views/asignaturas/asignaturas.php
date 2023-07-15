@@ -40,14 +40,14 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <label for="nombre_asignatura" class="col-form-label">Nombre:</label>
+                                    <label for="nombre_asignatura" class="col-form-label" style="font-size: large; color:#29588a;"><b>Nombre:</b></label>
                                     <input type="text" class="form-control" name="nombre_asignatura" id="nombre_asignatura" required>
                                 </div>
     
                                 <input type="text" id="tp" name="tp" hidden>
                                 <input type="text" id="id" name="id" hidden>
                                 <div class="col">
-                                    <label for="codigo" class="col-form-label">Codigo:</label>
+                                    <label for="codigo" class="col-form-label" style="font-size: large; color:#29588a;"><b>Codigo:</b></label>
                                     <select name="codigo" class="form-select form-select" id="codigo">
                                         <option value="">-Seleccione una opción-</option>
                                         <?php foreach ($Area as $valor) { ?>
@@ -57,7 +57,7 @@
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="codigo" class="col-form-label">Tipo:</label>
+                                    <label for="codigo" class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo:</b></label>
 
                                     <select name="tipo" class="form-select form-select" id="tipo">
                                         <option value="">-Seleccione una opción-</option>
@@ -278,6 +278,7 @@
                     $('#codigo').val(rs[0]['Codigo']);
                     $('#tipo').val(rs[0]['tipo_requerido']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Asignatura');
                     $("#AsignaturaModal").modal("show");
                 }
             })
@@ -286,6 +287,7 @@
             $('#nombre_asignatura').val('');
             $('#codigo').val('');
             $('#tipo').val('');
+            $("#tituloModal").text('Añadir Asignatura');
             $("#btn_Guardar").text('Guardar');
             $("#AsignaturaModal").modal("show");
         }

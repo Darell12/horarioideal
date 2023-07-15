@@ -38,7 +38,7 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="">
-                                    <label class="col-form-label">Rol:</label>
+                                    <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Rol:</b>  </label>
                                     <select class="form-select form-select" name="rol" id="rol" required>
                                         <option value="">Seleccione un Rol</option>
                                         <?php foreach ($roles as $rol) { ?>
@@ -47,7 +47,7 @@
                                     </select>
                                 </div>
                                 <div class="">
-                                    <label class="col-form-label">Acciones:</label>
+                                    <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Acciones:</b></label>
                                     <select class="form-select form-select" name="accion" id="accion" required>
                                         <option value="">Seleccione una acción</option>
                                         <?php foreach ($acciones as $accion) { ?>
@@ -145,6 +145,7 @@
                     $('#accion').val(rs[0]['id_acciones']);
                     $('#numeroActu').val(rs[0]['id_acciones']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Permiso');
                     $("#PermisosModal").modal("show");
                     $('#formulario').validate().resetForm();
                 }
@@ -153,6 +154,7 @@
             $("#tp").val(1);
             $('#rol').val('');
             $('#accion').val('');
+            $("#tituloModal").text('Añadir Permiso');
             $("#btn_Guardar").text('Guardar');
             $("#PermisosModal").modal("show");
             $('#formulario').validate().resetForm();

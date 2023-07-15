@@ -41,17 +41,17 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Nombre:</b></label>
                                     <input type="text" class="form-control" name="nombre_accion" id="nombre_accion" required>
                                 </div>
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Modulo:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Modulo:</b></label>
                                     <select class="form-control form-select" name="modulo" id="modulo" required>
 
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Carpeta:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Carpeta:</b></label>
                                     <select class="form-control form-select" name="carpeta" id="carpeta" required>
 
                                     </select>
@@ -367,6 +367,7 @@
                     $('#carpeta').val(rs[0]['id_padre']);
                     $('#numeroActu').val(rs[0]['nombre']);
                     $("#btn_Guardar").text('Actualizar');
+                    $("#tituloModal").text('Actualizar Acción');
                     $('#formulario').validate().resetForm();
                     $("#AccionModal").modal("show");
                 }
@@ -375,6 +376,7 @@
             $("#tp").val(1);
             $('#nombre_accion').val('');
             $('#formulario').validate().resetForm();
+            $("#tituloModal").text('Añadir Acción');
             $("#btn_Guardar").text('Guardar');
             $("#AccionModal").modal("show");
         }
