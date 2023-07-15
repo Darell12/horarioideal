@@ -412,11 +412,10 @@
                 icon: 'success',
                 title: 'Registro eliminado con exito!'
             })
-            contador = 0
             tablaGrados.ajax.reload(null, false);
         })
     }
-    
+    0
     $('#modalEliminaAsig').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('onclick', 'retirarCarga(' + $(e.relatedTarget).data('href') + ')');
     });
@@ -511,6 +510,7 @@
 
     $('#btn_Guardar').on('click', function(e) {
         e.preventDefault();
+        setTimeout(() => {
         if ($('#formulario').valid()) {
             $.ajax({
                 type: "POST",
@@ -551,6 +551,8 @@
                 $('.error').fadeOut('slow');
             }, 1500);
         }
+    }, 500)
+        
     })
     $('#formulario').on('submit', function(e) {
         console.log('activo');

@@ -142,7 +142,7 @@
         })
     }
 
-    $('#btn_Guardar').on('click', function(e) {
+    $('#btn_Guardar').on('click', function(e)   {
         e.preventDefault();
         setTimeout(() => {
             if ($('#formulario').valid()) {
@@ -252,7 +252,7 @@
                 render: function(data, type, row) {
                     return `<div class="btn-group">
                     <button class="btn btn-outline-primary" onclick="seleccionaAccion(${data.id_acciones} , 2);" data-bs-toggle="modal" data-bs-target="#AccionModal"><i class="bi bi-pencil"></i></button><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-confirma" data-href="${data.id_acciones}"><i class="bi bi-trash3"></i></button>
-                    </div>`
+                    </div>` 
                 },
             }
         ],
