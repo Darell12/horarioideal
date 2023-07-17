@@ -12,7 +12,7 @@
                 <button id="pdfTest">Generate PDF</button>
             </div>
         </div>
-    <iframe id="frame" src="<?php echo base_url('pdf/V.pdf')?>" frameborder="0"></iframe>
+        <iframe id="frame" src="<?php echo base_url('pdf/V.pdf') ?>" frameborder="0"></iframe>
         <br>
         <div class="table-responsive" id="content">
             <table style="text-align: center;" id="TablaHorario" class="table align-items-center table-flush">
@@ -270,7 +270,7 @@
                 dataType: "json",
                 success: function(data) {
                     console.log(data);
-                    $('#frame').prop('src', '<?php echo base_url('pdf/V.pdf')?>');
+                    $('#frame').prop('src', '<?php echo base_url('pdf/V.pdf') ?>');
                 }
             });
         })
@@ -721,8 +721,8 @@
             })
         })
 
- 
-        
+
+
 
         function ObtenerAsignaturas(id) {
             return new Promise((resolve, reject) => {
@@ -1015,6 +1015,71 @@
         //         return datos;
         //     }
         // }
+        async function filtroPorDia(dia, res, inicio, fin, aula) {
+
+            let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('primerFiltro')
+            // console.table(primerFiltro);
+            let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('segundoFiltro')
+            // console.table(segundoFiltro);
+            // console.log('Franjas Profesores');
+            // console.log(franjasProfesor);
+            let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('tercerFiltro')
+            // console.table(tercerFiltro);
+
+            let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+            // console.log('cuartoFiltro')
+            // console.table(cuartoFiltro);
+
+            let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
+            let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+
+            const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
+
+            return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
+        }
+        // ! Separa el las franjas disponibles en espacios de 1hora, 2horas y un array general
+        async function dividirArray(array, horaInicio, horaFin) {
+            let arrayRango = [];
+            let array1 = [];
+            let array2 = [];
+
+            //DEFINO INICIO Y FIN DE LA JORNDADA
+            const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
+            const fechaFin = new Date(`2000-01-01T${horaFin}`);
+
+
+            for (let i = 0; i < array.length; i++) {
+                const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
+
+                if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
+                    arrayRango.push(array[i]);
+                }
+            }
+
+            arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
+            arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
+
+            for (let i = 0; i < arrayRango.length; i++) {
+                const idActual = parseInt(arrayRango[i].id_parametro_det);
+                const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
+                if (idSiguiente - idActual >= 2) {
+                    array1.push(arrayRango[i]);
+                } else {
+                    array2.push(arrayRango[i]);
+                }
+            }
+
+            const parametros = ['84', '88', '91', '94', '95']
+            array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+            array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+            arrayRango = arrayRango.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+
+            console.log([array1, array2, arrayRango]);
+            return [array1, array2, arrayRango];
+        }
 
         async function ElegirAulas(datos, inicio, fin) {
             console.log(fin);
@@ -1250,6 +1315,7 @@
                         while (i < registro.numeroRepeticiones) {
                             // console.log(i);
                             try {
+                                i++;
                                 console.log('AQUí');
                                 console.log([Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, registro.id_aula));
 
@@ -1259,10 +1325,11 @@
 
                                 let dia = diasSemana[0];
 
+                                console.log('Libres2Horas')
+                                console.log(Libres2Horas);
                                 if (Libres2Horas.length > 0) {
                                     i++;
                                 }
-                                i++;
 
                                 if (diasSemana.length > 0) {
 

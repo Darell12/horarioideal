@@ -69,12 +69,10 @@
                     <p class="txt-1">Gracias por visitarnos</p>
                     <h2>Bienvenido</h2>
                     <swiper-container style="color: #FFF; margin-top: -50px;" class="mySwiper" space-between="30" centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
-                        <swiper-slide>"La vida no es un juego". - Darell Estren</swiper-slide>
-                        <swiper-slide>"Real hasta la muerte". -Santiago Lobelo</swiper-slide>
-                        <swiper-slide>"La misma morrocoya pero caminando pa atras". -Rosmy Pachón</swiper-slide>
-                        <swiper-slide>*No vino a escribir la frase* -Camilo Castillo</swiper-slide>
-                        <swiper-slide>"La vida es un juego y yo soy bronce"-Daniel Sanchez</swiper-slide>
-
+                        
+                        <?php foreach ($Frases as $frase) { ?>
+                                <swiper-slide value="<?php echo $frase['id_frase'] ?>"><?php echo $frase['texto'] ?></swiper-slide>
+                            <?php } ?>
                     </swiper-container>
                 </div>
             </div>
@@ -117,4 +115,6 @@
 
         })
     })
+
+
 </script>
