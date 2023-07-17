@@ -38,7 +38,6 @@ class Horario_det extends BaseController
         $this->metodos = new Principal();
         $this->InfoGrado = new Grados();
         $this->estudiante = new EstudiantesModel();
-
     }
 
     public function index($id)
@@ -51,7 +50,7 @@ class Horario_det extends BaseController
         $nombreGrado = $this->grados->NombreGrado($horario['id_grado']);
         $asignatura = $this->asignatura->buscarAsignaturasxGrado($horario['id_grado']);
 
-        $data = ['titulo' => 'Administrar Horario '.$nombreGrado['alias'] . ' ' . $horario['periodo_año'] ,'datos' => $horario, 'id' => $id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura, 'Modulos' => $cargaSideBar];
+        $data = ['titulo' => 'Administrar Horario ' . $nombreGrado['alias'] . ' ' . $horario['periodo_año'], 'datos' => $horario, 'id' => $id, 'usuarios' => $usuarios, 'grados' => $grados, 'asignaturas' => $asignatura, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_det/detalle', $data);
@@ -118,6 +117,11 @@ class Horario_det extends BaseController
     public function buscarDetalleAula($id)
     {
         $horario_det = $this->horario_det->buscarDetalleAula($id);
+        echo json_encode($horario_det);
+    }
+    public function buscarDetalleAulaRango($id, $inicio, $fin)
+    {
+        $horario_det = $this->horario_det->buscarDetalleAulaRango($id, $inicio, $fin);
         echo json_encode($horario_det);
     }
     public function buscarDetalleAsignatura($id)
