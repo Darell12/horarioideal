@@ -1215,6 +1215,8 @@
     }
 
     function seleccionaUsuario(id, tp) {
+        tablaTemporalTelefonos = [];
+
         if (tp == 2) {
             dataURL = "<?php echo base_url('/usuarios/buscarUsuario'); ?>" + "/" + id;
             $.ajax({
@@ -1233,8 +1235,11 @@
                     $('#primer_apellido').val(rs[0]['apellido_p']);
                     $('#segundo_apellido').val(rs[0]['apellido_s']);
                     $('#direccionX').val(rs[0]['direccion']);
+                    $('#telefono').val('');
+                    $('#tipo').val('');
                     $('#email_modal').val('');
                     $('#prioridad').val('');
+                    $('#prioridad_tel').val('');
 
                     let str = rs[0]['direccion']
                     str = str.replace('#', '');
@@ -1506,6 +1511,11 @@
 
     function generarTablaTel(Telefonos) {
 
+        $('#tabla_telefono').empty();
+
+        console.log(Telefonos)
+
+
         let contadortel = 0;
         let parametros = {
             '6': 'Principal',
@@ -1570,6 +1580,7 @@
             valor: telefono,
             campo: 'numero',
             nombreActu: tp == 2 ? telefono : '',
+            tp: tp
         }
         $.post('<?php echo base_url() ?>telefono/validar', datosValidar, function(response) {
             if (response == true) {
@@ -1613,6 +1624,10 @@
 
                 })
                 generarTablaTel(tablaTemporalTelefonos);
+                
+                $('#tpExistTel').val('');
+                $('#id_telefono').val('');
+                $('#telefonoActu').val('');
 
                 let principal = tablaTemporalTelefonos.find(p => p.prioridad == 6)
                 $('#telUsuario').val(!principal ? '' : principal.telefono);
