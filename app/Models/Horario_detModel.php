@@ -105,6 +105,19 @@ class Horario_detModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
+    public function buscarDetalleAulaRango($id, $inicio, $fin)
+    {
+        $this->select('SUM(horario_det.duracion) as duracion_total');
+        $this->join('horarios_enc as h', 'horario_det.id_horario_enc = h.id_horarios_enc');
+        $this->where('horario_det.estado', 'A');
+        $this->where('h.estado', 'A');
+        $this->where('horario_det.id_aula', $id);
+        $this->where('horario_det.hora_inicio >=', $inicio);
+        $this->where('horario_det.hora_fin <', $fin);
+
+        $query = $this->first();
+        return $query;
+    }
     public function buscarDetalleAsignatura($id)
     {
         $this->select('horario_det.*,horario_det.dia as id_dia, u.nombre_p as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as diaN, param3.nombre as fin');

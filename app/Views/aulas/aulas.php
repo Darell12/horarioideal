@@ -44,12 +44,12 @@
                         <div class="row">
 
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Nombre:</label>
+                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Nombre:</b></label>
                                 <input type="text" class="form-control" name="nombre_aula" id="nombre_aula" required>
                             </div>
                             <div class="col">
                                 <div class="col">
-                                    <label for="nombre" class="col-form-label">Tipo de Aula:</label>
+                                    <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo de Aula:</b></label>
                                     <select name="tipo" class="form-select form-select" id="tipo">
                                         <option value="">-Seleccione una opción-</option>
                                         <?php foreach ($tipos as $valor) { ?>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label for="nombre" class="col-form-label">Descripción:</label>
+                            <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Descripción:</b></label>
                             <textarea type="text-area" class="form-control" name="descripcion" id="descripcion" required></textarea>
                         </div>
 
