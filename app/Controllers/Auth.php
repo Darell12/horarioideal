@@ -18,10 +18,10 @@ class Auth extends BaseController
     }
     public function iniciarSesion()
     {
-        $frases = $this->frases->obtenerFrases('A');
-        $data = ['Frases' => $frases];
+        // $frases = $this->frases->obtenerFrases('A');
+        // $data = ['Frases' => $frases];
 
-        echo view('auth/login', $data);
+        echo view('auth/login');
     }
     public function login()
     {

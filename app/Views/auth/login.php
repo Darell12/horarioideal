@@ -70,9 +70,7 @@
                     <h2>Bienvenido</h2>
                     <swiper-container style="color: #FFF; margin-top: -50px;" class="mySwiper" space-between="30" centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
                         
-                        <?php foreach ($Frases as $frase) { ?>
-                                <swiper-slide value="<?php echo $frase['id_frase'] ?>"><?php echo $frase['texto'] ?></swiper-slide>
-                            <?php } ?>
+                       
                     </swiper-container>
                 </div>
             </div>
