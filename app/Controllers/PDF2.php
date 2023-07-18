@@ -12,17 +12,7 @@ class PDF2 extends \FPDF
     protected $tinySquareSize;
     protected $headerFontSize;
 
-    function __construct($orientation = "L", $size = "Letter")
-    {
-        parent::__construct($orientation, "mm", $size);
-        $this->tinySquareSize = 4;
-        $this->headerFontSize = 70;
-        $this->SetFont("Times", "B", $this->headerFontSize);
-        $width = $this->w - $this->lMargin - $this->rMargin;
-        while ($this->GetStringWidth($this->longestMonth) > $width - $this->tinySquareSize * 22) {
-            --$this->headerFontSize;
-            $this->SetFont("Times", "B", $this->headerFontSize);
-
+    
     function __construct($orientation = "L", $size = "Letter")
     {
         parent::__construct($orientation, "mm", $size);
@@ -35,7 +25,7 @@ class PDF2 extends \FPDF
             $this->SetFont("Times", "B", $this->headerFontSize);
         }
     }
-    }
+    
 
     // function printMonth()
     // {
@@ -222,7 +212,7 @@ class PDF2 extends \FPDF
 
         $this->SetFont("Helvetica", "", 8);
         $this->SetXY(10, 104);   
-        $this->MultiCell(0, 30, 'LUNgit  7:00 - 8:00', 0, 'L', false);
+        $this->MultiCell(0, 30, 'LUN  7:00 - 8:00', 0, 'L', false);
 
         $this->SetFont("Helvetica", "", 8);
         $this->SetXY(10, 108);   
@@ -234,6 +224,7 @@ class PDF2 extends \FPDF
         
     }
 }
+
 
 $pdf = new PDF2("P", "Letter");
 
