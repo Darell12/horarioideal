@@ -12,7 +12,7 @@
                 <button id="pdfTest">Generate PDF</button>
             </div>
         </div>
-        <iframe id="frame" src="<?php echo base_url('pdf/V.pdf') ?>" frameborder="0"></iframe>
+        <!-- <iframe id="frame" src="<?php echo base_url('pdf/V.pdf') ?>" frameborder="0"></iframe> -->
         <br>
         <div class="table-responsive" id="content">
             <table style="text-align: center;" id="TablaHorario" class="table align-items-center table-flush">
@@ -348,22 +348,30 @@
         });
 
         let franjasTotales = []
+        // $.ajax({
+        //     url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
+        //     dataType: "json",
+        //     success: function(data) {
+        //         franjasTotales = data;
+        //         console.log('franjasTotales');
+        //         console.log(franjasTotales);
+        //         $.ajax({
+        //             url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 franjasTotales = [...franjasTotales, ...data];
+        //                 console.log('franjasTotales');
+        //                 console.log(franjasTotales);
+        //             }
+        //         });
+        //     }
+        // });
+
         $.ajax({
-            url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
+            url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
             dataType: "json",
             success: function(data) {
                 franjasTotales = data;
-                console.log('franjasTotales');
-                console.log(franjasTotales);
-                $.ajax({
-                    url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-                    dataType: "json",
-                    success: function(data) {
-                        franjasTotales = [...franjasTotales, ...data];
-                        console.log('franjasTotales');
-                        console.log(franjasTotales);
-                    }
-                });
             }
         });
 
@@ -402,7 +410,7 @@
                                                 </a>
                                             </li>`
                         $(`#${element.diaN}`).append(contenido)
-                        
+
                     });
                 }
             });
@@ -493,7 +501,7 @@
                                         <i class="bi bi-gear-wide"></i>
                                     </button>
                                 </a>
-                                <button class="btn btn-outline-info" onclick="AutoHorario(${data.id_horarios_enc}, ${data.id_grado},${data.inicio} ,${data.fin})" title="Generar Horario Automaticamente" data-bs-toggle="modal" data-bs-target="#modal-confirma-auto" data-href="${data.id_horarios_enc}">
+                                <button class="btn btn-outline-info" onclick="AutoHorario(${data.id_horarios_enc}, ${data.id_grado},${data.inicio} ,${data.fin}, '${data.inicioF}', '${data.finF}')" title="Generar Horario Automaticamente" data-bs-toggle="modal" data-bs-target="#modal-confirma-auto" data-href="${data.id_horarios_enc}">
                                 <i class="bi bi-trash3"></i>
                                 </button>
                                 </a>
@@ -721,9 +729,6 @@
                 }
             })
         })
-
-
-
 
         function ObtenerAsignaturas(id) {
             return new Promise((resolve, reject) => {
@@ -954,95 +959,32 @@
 
         }
 
-        // async function ElegirAulas(datos, inicio, fin) {
-        //     console.log(fin);
-        //     try {
-        //         await Promise.all(
-        //             datos.map(async (registro) => {
-        //                 let {
-        //                     id,
-        //                     asignatura,
-        //                     id_tipo,
-        //                     aula_requerida,
-        //                     horas_semanales,
-        //                     profesor,
-        //                     id_profesor,
-        //                     aulas
-        //                 } = registro;
-
-
-        //                 try {
-        //                     registro.reconstruido = true;
-
-        //                     // Procesar los datos del atributo "aulas"
-        //                     for (let aula of aulas) {
-        //                         try {
-        //                             const response = await $.ajax({
-        //                                 url: "<?php echo base_url('horario_det/buscarDetalleAulaRango/') ?>" + aula.id_aula + '/' + inicio + '/' + fin,
-        //                                 type: 'POST',
-        //                                 dataType: 'json',
-        //                             });
-
-        //                             // Calcular el límite de 30 horas restando las horas tomadas
-        //                             const duracionTotal = parseInt(response?.duracion_total) || 0;
-        //                             const horasTomadas = 30 - duracionTotal;
-
-        //                             // Convertir horas_semanales a número entero
-        //                             const horasSemanales = parseInt(horas_semanales) || 0;
-
-        //                             // Determinar si el aula es elegible
-        //                             aula.elegible = horasSemanales <= horasTomadas;
-        //                             aula.horas_libres = horasTomadas;
-
-        //                             const aulasElegibles = await obtenerAulasElegibles([registro]);
-        //                             // Actualizar los datos de registro con las aulas elegibles
-        //                             console.log(aulasElegibles);
-        //                             aula.elegida = aulasElegibles.aulas;
-
-        //                         } catch (error) {
-        //                             console.log(`Error al obtener los datos del aula:`, error);
-        //                         }
-        //                     }
-
-        //                 } catch (error) {
-        //                     console.log(`Error al obtener los datos:`, error);
-        //                 }
-        //             })
-        //         );
-        //     } catch (error) {
-        //         console.log(`Error en la función AutoHorario:`, error);
-        //     } finally {
-        //         hideLoader();
-        //         return datos;
-        //     }
-        // }
-        async function filtroPorDia(dia, res, inicio, fin, aula) {
+        function filtroPorDia(dia, res, inicio, fin, aula) {
 
             let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('primerFiltro')
-            // console.table(primerFiltro);
+
             let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('segundoFiltro')
-            // console.table(segundoFiltro);
-            // console.log('Franjas Profesores');
-            // console.log(franjasProfesor);
+
             let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('tercerFiltro')
-            // console.table(tercerFiltro);
 
             let cuartoFiltro = tercerFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-            // console.log('cuartoFiltro')
-            // console.table(cuartoFiltro);
 
             let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
             let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
+
+            console.log('Valor de sextoFiltro:');
+            console.log(sextoFiltro);
+            console.log('Valor de inicio:');
+            console.log(inicio);
+            console.log('Valor de fin:');
+            console.log(fin);
 
             const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
 
             return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
         }
-        // ! Separa el las franjas disponibles en espacios de 1hora, 2horas y un array general
-        async function dividirArray(array, horaInicio, horaFin) {
+
+        function dividirArray(array, horaInicio, horaFin) {
             let arrayRango = [];
             let array1 = [];
             let array2 = [];
@@ -1051,9 +993,11 @@
             const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
             const fechaFin = new Date(`2000-01-01T${horaFin}`);
 
-
+            
             for (let i = 0; i < array.length; i++) {
                 const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
+                console.log('Llenando array rango');
+                console.log(fechaInicio);
 
                 if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
                     arrayRango.push(array[i]);
@@ -1063,6 +1007,7 @@
             arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
             arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
 
+            console.log('ciclo');
             for (let i = 0; i < arrayRango.length; i++) {
                 const idActual = parseInt(arrayRango[i].id_parametro_det);
                 const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
@@ -1181,9 +1126,15 @@
             }
         }
 
+        // let franjasTotales = [];
+        let franjasTotalesOcupadas = [];
+        let franjasTotalesOcupadasLunes = [];
+        let franjasTotalesOcupadasAula = [];
+        let franjasProfesor = [];
+        let numeroRepeticiones = 0;
 
 
-        async function AutoHorario(id, idGrado, inicio, fin) {
+        async function AutoHorario(id, idGrado, inicio, fin, inicioF, finF) {
 
             let resultados = await DefinirProfesores(id, idGrado)
             console.log(resultados);
@@ -1269,12 +1220,12 @@
 
                 console.log(registro)
 
-                let franjasTotales = [];
-                let franjasTotalesOcupadas = [];
-                let franjasTotalesOcupadasLunes = [];
-                let franjasTotalesOcupadasAula = [];
-                let franjasProfesor = [];
-                let numeroRepeticiones = 0;
+                // franjasTotales = [];
+                franjasTotalesOcupadas = [];
+                franjasTotalesOcupadasLunes = [];
+                franjasTotalesOcupadasAula = [];
+                franjasProfesor = [];
+                numeroRepeticiones = 0;
 
 
                 data = [];
@@ -1310,24 +1261,21 @@
                         let dia_anterior;
                         let diasNoAsignados = diasSemana.filter(dia => !res.some(element => element.dia === dia));
 
-                        console.log(registro.numeroRepeticiones);
+
                         let i = 0;
 
                         while (i < registro.numeroRepeticiones) {
-                            // console.log(i);
-                            try {
-                                i++;
-                                console.log('AQUí');
-                                console.log([Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, registro.id_aula));
 
-                                let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicio, fin, registro.id_aula);
+                            try {
+                                // i++;
+
+
+                                let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicioF, finF, registro.id_aula);
 
                                 let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
 
                                 let dia = diasSemana[0];
 
-                                console.log('Libres2Horas')
-                                console.log(Libres2Horas);
                                 if (Libres2Horas.length > 0) {
                                     i++;
                                 }
