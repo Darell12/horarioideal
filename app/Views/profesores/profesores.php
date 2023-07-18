@@ -123,7 +123,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background: #0f9dba; color:#FFF;">
-                    <h1 class="modal-title fs-5" id="tituloModal">Añadir Usuario</h1>
+                    <h1 class="modal-title fs-5" id="tituloModal">Añadir Profesor</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -147,8 +147,9 @@
                                 <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
                                     <option value="">Seleccione un Tipo</option>
                                     <option value="2">Cedula de Ciudadania</option>
-                                    <option value="1">Tarjeta de Identidad</option>
                                     <option value="3">Cedula de Extranjeria</option>
+                                    <option value="3">Pasaporte</option>
+                                    <option value="3">Permiso de Permanencia</option>
                                 </select>
                             </div>
                             <div class="col">
@@ -585,7 +586,12 @@
 
     }
 
-
+    $('#n_documento').on('keypress', function(e) {
+        let charcode = e.which ? e.which : e.keyCode;
+        if (charcode > 31 && (charcode < 48 || charcode > 57)) {
+            e.preventDefault();
+        }
+    })
 
     $.validator.addMethod("soloLetras", function(value, element) {
         return this.optional(element) || /^[a-zA-ZñÑ\s]+$/.test(value);

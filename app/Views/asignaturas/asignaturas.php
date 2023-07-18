@@ -27,7 +27,7 @@
         </table>
     </div>
     <!-- Modal -->
-    <form method="POST" action="<?php echo base_url('/asignaturas_insertar'); ?>" autocomplete="off" class="needs-validation" id="formulario" novalidate>
+    <form method="POST" autocomplete="off" class="needs-validation" id="formulario" novalidate>
         <div class="modal fade" id="AsignaturaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -313,7 +313,7 @@
                 },
                 dataType: "json",
             }).done(function(data) {
-                $('#GradoModal').modal('hide');
+                $('#AsignaturaModal').modal('hide');
                 let Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',

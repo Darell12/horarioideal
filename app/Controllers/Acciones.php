@@ -42,7 +42,7 @@ class Acciones extends BaseController
             $this->accion->save([
                 'nombre' => $this->request->getPost('nombre_accion'),
                 'id_modulo' => $this->request->getPost('modulo'),
-                'id_padre' => $this->request->getPost('carpeta'),
+                'id_padre' => $this->request->getPost('carpeta'),               
                 'usuario_crea'=> session('id')
             ]);
         } else {
@@ -54,7 +54,7 @@ class Acciones extends BaseController
             ]);
         }
         return json_encode('todo good');
-    }
+    }   
 
     public function Modulos(){
         $modulos = $this->metodos->Modulos();

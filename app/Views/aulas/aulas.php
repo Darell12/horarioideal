@@ -268,8 +268,6 @@
             tipo: {
                 required: "Este campo es requerido",
             },
-
-
         }
     });
 
@@ -290,6 +288,7 @@
                     $("#btn_Guardar").text('Actualizar');
                     $("#tituloModal").text('Actualizar Aula');
                     $("#AulaModal").modal("show");
+                    $('#formulario').validate().resetForm();
                 }
             })
         } else {
@@ -300,6 +299,7 @@
             $("#tituloModal").text('Añadir Aula');
             $("#btn_Guardar").text('Guardar');
             $("#AulaModal").modal("show");
+            $('#formulario').validate().resetForm();
         }
     }
 

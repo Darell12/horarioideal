@@ -63,6 +63,8 @@ class Autoload extends AutoloadConfig
      */
     public $classmap = [
         'FPDF' => APPPATH . 'ThirdParty/fpdf185/fpdf.php',
+        'EXCEL' => APPPATH . 'ThirdParty/PhpSpreadsheet/src/PhpSpreadsheet/IOFactory.php',
+        'y' => APPPATH . 'ThirdParty/PhpSpreadsheet/src/PhpSpreadsheet/IOFactory.php',
     ];
 
     /**
