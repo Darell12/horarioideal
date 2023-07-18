@@ -230,13 +230,9 @@
     function filtroPorDia(dia, res, inicio, fin, aula) {
 
         let primerFiltro = franjasTotales.filter(franja => !res.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('primerFiltro')
-        // console.table(primerFiltro);
+
         let segundoFiltro = primerFiltro.filter(franja => !res.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
-        // console.log('segundoFiltro')
-        // console.table(segundoFiltro);
-        // console.log('Franjas Profesores');
-        // console.log(franjasProfesor);
+
         let tercerFiltro = segundoFiltro.filter(franja => !franjasProfesor.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
         // console.log('tercerFiltro')
         // console.table(tercerFiltro);
@@ -257,7 +253,8 @@
         let arrayRango = [];
         let array1 = [];
         let array2 = [];
-
+        console.log('HORA INICIO');
+        console.log(horaInicio);
         //DEFINO INICIO Y FIN DE LA JORNDADA
         const fechaInicio = new Date(`2000-01-01T${horaInicio}`);
         const fechaFin = new Date(`2000-01-01T${horaFin}`);
@@ -284,19 +281,19 @@
             }
         }
 
-        const parametros = ['84', '88', '91', '94' ,'95']
+        const parametros = ['84', '88', '91', '94', '95']
         array1 = array1.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
         array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
-        arrayRango = arrayRango.filter(franja =>!parametros.includes(franja.id_parametro_det)); // ! 9:30AM
+        arrayRango = arrayRango.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
 
         console.log([array1, array2, arrayRango]);
         return [array1, array2, arrayRango];
     }
 
-   /**
-    * @param {*} id: string numero entero
-    * @returns numero
-    */
+    /**
+     * @param {*} id: string numero entero
+     * @returns numero
+     */
     function EliminarRegistro(id) {
 
         $.ajax({

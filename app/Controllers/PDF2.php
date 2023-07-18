@@ -22,7 +22,19 @@ class PDF2 extends \FPDF
         while ($this->GetStringWidth($this->longestMonth) > $width - $this->tinySquareSize * 22) {
             --$this->headerFontSize;
             $this->SetFont("Times", "B", $this->headerFontSize);
+
+    function __construct($orientation = "L", $size = "Letter")
+    {
+        parent::__construct($orientation, "mm", $size);
+        $this->tinySquareSize = 4;
+        $this->headerFontSize = 70;
+        $this->SetFont("Times", "B", $this->headerFontSize);
+        $width = $this->w - $this->lMargin - $this->rMargin;
+        while ($this->GetStringWidth($this->longestMonth) > $width - $this->tinySquareSize * 22) {
+            --$this->headerFontSize;
+            $this->SetFont("Times", "B", $this->headerFontSize);
         }
+    }
     }
 
     // function printMonth()
