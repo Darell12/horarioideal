@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\xampp\htdocs\horarioideal\tests" tests="5" assertions="4" errors="2" warnings="0" failures="0" skipped="0" time="0.096043">
+    <testsuite name="ExampleDatabaseTest" file="C:\xampp\htdocs\horarioideal\tests\database\ExampleDatabaseTest.php" tests="2" assertions="0" errors="2" warnings="0" failures="0" skipped="0" time="0.074615">
+      <testcase name="testModelFindAll" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" file="C:\xampp\htdocs\horarioideal\tests\database\ExampleDatabaseTest.php" line="17" assertions="0" time="0.072837">
+        <error type="CodeIgniter\Database\Exceptions\DatabaseException">ExampleDatabaseTest::testModelFindAll
+CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
+Main connection [SQLite3]: Class "SQLite3" not found
+
+C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php:427
+C:\xampp\htdocs\horarioideal\system\Database\SQLite3\Connection.php:59
+C:\xampp\htdocs\horarioideal\system\Test\DatabaseTestTrait.php:74
+C:\xampp\htdocs\horarioideal\system\Test\DatabaseTestTrait.php:54
+C:\xampp\htdocs\horarioideal\system\Test\CIUnitTestCase.php:248</error>
+      </testcase>
+      <testcase name="testSoftDeleteLeavesRow" class="ExampleDatabaseTest" classname="ExampleDatabaseTest" file="C:\xampp\htdocs\horarioideal\tests\database\ExampleDatabaseTest.php" line="28" assertions="0" time="0.001778">
+        <error type="CodeIgniter\Database\Exceptions\DatabaseException">ExampleDatabaseTest::testSoftDeleteLeavesRow
+CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
+Main connection [SQLite3]: Class "SQLite3" not found
+
+C:\xampp\htdocs\horarioideal\system\Database\BaseConnection.php:427
+C:\xampp\htdocs\horarioideal\system\Database\SQLite3\Connection.php:59
+C:\xampp\htdocs\horarioideal\system\Test\DatabaseTestTrait.php:74
+C:\xampp\htdocs\horarioideal\system\Test\DatabaseTestTrait.php:54
+C:\xampp\htdocs\horarioideal\system\Test\CIUnitTestCase.php:248</error>
+      </testcase>
+    </testsuite>
+    <testsuite name="ExampleSessionTest" file="C:\xampp\htdocs\horarioideal\tests\session\ExampleSessionTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.003541">
+      <testcase name="testSessionSimple" class="ExampleSessionTest" classname="ExampleSessionTest" file="C:\xampp\htdocs\horarioideal\tests\session\ExampleSessionTest.php" line="11" assertions="1" time="0.003541"/>
+    </testsuite>
+    <testsuite name="HealthTest" file="C:\xampp\htdocs\horarioideal\tests\unit\HealthTest.php" tests="2" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.017888">
+      <testcase name="testIsDefinedAppPath" class="HealthTest" classname="HealthTest" file="C:\xampp\htdocs\horarioideal\tests\unit\HealthTest.php" line="13" assertions="1" time="0.002982"/>
+      <testcase name="testBaseUrlHasBeenSet" class="HealthTest" classname="HealthTest" file="C:\xampp\htdocs\horarioideal\tests\unit\HealthTest.php" line="18" assertions="2" time="0.014905"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

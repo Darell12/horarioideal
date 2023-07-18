@@ -2,22 +2,26 @@
 
 namespace App\Controllers;
 use App\Models\UsuariosModel;
-
+use App\Models\AuthModel;
 
 class Auth extends BaseController
 {
-    protected $usuario, $eliminados, $controlador;
+    protected $usuario, $eliminados, $controlador, $frases;
 
 
     public function __construct()
     {
         $this->usuario = new UsuariosModel();
         $this->eliminados = new UsuariosModel();
+        $this->frases = new AuthModel();
 
     }
     public function iniciarSesion()
     {
-        echo view('auth/login');
+        $frases = $this->frases->obtenerFrases('A');
+        $data = ['Frases' => $frases];
+
+        echo view('auth/login', $data);
     }
     public function login()
     {
