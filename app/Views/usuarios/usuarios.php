@@ -60,7 +60,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background: #427dbb; color:#FFF;">
-                
+
                     <h1 class="modal-title fs-5" id="tituloModal">Añadir Usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="">
-                                <label id="title" class="col-form-label" ><b>Rol:</b></label>
+                                <label id="title" class="col-form-label"><b>Rol:</b></label>
                                 <select class="form-select form-select" name="id_rol" id="rol" required>
                                     <option value="">Seleccione un Rol</option>
                                     <?php foreach ($roles as $rol) { ?>
@@ -77,42 +77,46 @@
                                 </select>
                             </div>
                             <div>
-                                        <style>
-                                            .circle {
-                                                width: 30px;
-                                                height: 30px;
-                                                background-color: #0f9dba;
-                                                margin: 10px;
-                                                border-radius: 50%;
-                                                display: inline-block;
-                                                text-align: center;
-                                                line-height: 30px;
-                                                color: white;
-                                                font-weight: bold;
-                                                font-size: 18px;
-                                            }
-                                            #title{
-                                                font-size: 15px;
-                                                color:#29588a;
-                                            }
-                                            #direccion_usuario{
-                                                font-size: 15px;
-                                                color:#29588a;  
-                                            }
-                                            #password_label{
-                                                font-size: 15px;
-                                                color:#29588a;
-                                            }
-                                            #password_label_c{
-                                                font-size: 15px;
-                                                color:#29588a;
-                                            }
-                                        </style>
-                                        <div class="circle">1</div>
+                                <style>
+                                    .circle {
+                                        width: 30px;
+                                        height: 30px;
+                                        background-color: #0f9dba;
+                                        margin: 10px;
+                                        border-radius: 50%;
+                                        display: inline-block;
+                                        text-align: center;
+                                        line-height: 30px;
+                                        color: white;
+                                        font-weight: bold;
+                                        font-size: 18px;
+                                    }
+
+                                    #title {
+                                        font-size: 15px;
+                                        color: #29588a;
+                                    }
+
+                                    #direccion_usuario {
+                                        font-size: 15px;
+                                        color: #29588a;
+                                    }
+
+                                    #password_label {
+                                        font-size: 15px;
+                                        color: #29588a;
+                                    }
+
+                                    #password_label_c {
+                                        font-size: 15px;
+                                        color: #29588a;
+                                    }
+                                </style>
+                                <div class="circle">1</div>
                                 <label class="col-form-label" style="font-size:large; color:#29588a;"><b>Informacion Basica </b></label>
                             </div>
                             <div class="col">
-                                <label id="title" class="col-form-label" ><b>Tipo de Documento: </b></label>
+                                <label id="title" class="col-form-label"><b>Tipo de Documento: </b></label>
                                 <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
                                     <option value="">Seleccione un Tipo</option>
                                     <?php foreach ($Tdocumento as $tipo) { ?>
@@ -121,7 +125,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label id="title" for="nombre" class="col-form-label" ><b> Numéro de Documento:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b> Numéro de Documento:</b></label>
                                 <input type="text" class="form-control" name="n_documento" id="n_documento" required>
                             </div>
                         </div>
@@ -131,35 +135,35 @@
                                 <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label id="title" for="nombre" class="col-form-label" ><b> Segundo Nombre (Opcional):</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b> Segundo Nombre (Opcional):</b></label>
                                 <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label id="title" for="nombre" class="col-form-label" ><b>Primer Apellido: </b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Primer Apellido: </b></label>
                                 <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label id="title" for="nombre" class="col-form-label" ><b>Segundo Apellido (Opcional): </b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Segundo Apellido (Opcional): </b></label>
                                 <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido">
                             </div>
                         </div>
                         <div>
-                                        
-                                        <div class="circle">2</div>
-                                <label class="col-form-label" style="font-size:large; color:#29588a;"><b>Contacto </b></label>
-                            </div>
+
+                            <div class="circle">2</div>
+                            <label class="col-form-label" style="font-size:large; color:#29588a;"><b>Contacto </b></label>
+                        </div>
                         <div class="row mb-1">
                             <div class="col">
-                                <label id="title" for="nombre" class="col-form-label" ><b>Emails: </b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Emails: </b></label>
                                 <div class="input-group d-flex">
                                     <button class="btn btn-success btn-sm" type="button" onclick="validarPrioridadEmail()" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
                                     <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" required readonly>
                                 </div>
                             </div>
                             <div class="col">
-                                <label id="title" for="nombre" class="col-form-label" ><b>Telefonos: </b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Telefonos: </b></label>
                                 <div class="input-group">
                                     <button class="btn btn-success btn-sm" onclick="validarPrioridadTel()" id="btnTelefono" type="button" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
                                     <input class="form-control" type="text" id="telUsuario" name="telUsuario" placeholder="Agregar telefonos" readonly required>
@@ -167,7 +171,7 @@
                             </div>
 
                             <div class="col" id="Divacudientes" hidden>
-                                <label id="title" for="nombre" class="col-form-label" ><b> Acudientes:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b> Acudientes:</b></label>
                                 <div class="input-group">
                                     <button class="btn btn-success btn-sm" id="btnAcudientes" type="button" data-bs-toggle="modal" data-bs-target="#ModalAcudientes"><i class="bi bi-plus"></i></button>
                                     <input class="form-control" type="text" id="acudientess" name="acudientess" placeholder="Agregar Acudientes" readonly required>
@@ -176,7 +180,7 @@
 
                         </div>
                         <div class="row">
-                            <label id="direccion_usuario" for="direccion" ><b>Dirección: </b></label>
+                            <label id="direccion_usuario" for="direccion"><b>Dirección: </b></label>
                             <div class="col">
                                 <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select" required onchange="Validardireccion()">
                                     <option value="">--Selecciona--</option>
@@ -209,18 +213,17 @@
                             <label id="direccion_usuario" for="direccion"></label>
                             <input id="direccionX" name="direccionX" type="text" class="form-control" readonly class="form-control-plaintext">
                         </div>
-                        <div>
-                                        
-                                        <div class="circle">3</div>
-                                <label class="col-form-label" style="font-size:large; color:#29588a;"><b>Seguridad</b></label>
-                            </div>
+                        <div id="seguridad-title">
+                            <div class="circle">3</div>
+                            <label class="col-form-label" style="font-size:large; color:#29588a;"><b>Seguridad</b></label>
+                        </div>
                         <div class="row">
                             <div class="col">
-                                <label id="password_label" for="Password" > <b>Contraseña </b></label>
+                                <label id="password_label" for="Password"> <b>Contraseña </b></label>
                                 <input id="contraseña" name="contraseña" type="password" class="form-control" required />
                             </div>
                             <div class="col">
-                                <label id="password_label_c" for="password"  ><b> Confirme Contraseña</b></label>
+                                <label id="password_label_c" for="password"><b> Confirme Contraseña</b></label>
                                 <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
                             </div>
                         </div>
@@ -1280,6 +1283,7 @@
                     $('#primer_apellido').val(rs[0]['apellido_p']);
                     $('#segundo_apellido').val(rs[0]['apellido_s']);
                     $('#direccionX').val(rs[0]['direccion']);
+                    $('#seguridad-title').attr('hidden', '');
                     $('#telefono').val('');
                     $('#tipo').val('');
                     $('#email_modal').val('');
@@ -1303,6 +1307,7 @@
                     }
 
                     $('#tituloModal').text('Editar Usuario');
+                    
                     $('#contraseña').attr('hidden', '');
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
@@ -1597,7 +1602,7 @@
 
         // Expresión regular solo numeros
         const regex = /^0?\d{10}$/;
-       
+
 
 
         let telefono = $('#telefono').val();
@@ -1669,7 +1674,7 @@
 
                 })
                 generarTablaTel(tablaTemporalTelefonos);
-                
+
                 $('#tpExistTel').val('');
                 $('#id_telefono').val('');
                 $('#telefonoActu').val('');
