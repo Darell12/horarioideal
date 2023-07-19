@@ -77,7 +77,7 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col">
-                                <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Rol:</b></label>
+                                <label id="title" class="col-form-label"><b>Rol:</b></label>
                                 <select class="form-select form-select" name="id_rol" id="rol" required>
                                     <option value="">Seleccione un Rol</option>
                                     <?php foreach ($roles as $rol) { ?>
@@ -90,7 +90,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Grado:</b></label>
+                                <label id="title" class="col-form-label"><b>Grado:</b></label>
                                 <select class="form-select form-select" name="grado" id="grado" required>
                                     <option value="">Seleccione un Grado</option>
                                     <?php foreach ($grados as $grado) { ?>
@@ -100,9 +100,48 @@
                                 </select>
                             </div>
                         </div>
+                        <div>
+                            <style>
+                                .circle {
+                                    width: 30px;
+                                    height: 30px;
+                                    background-color: #0f9dba;
+                                    margin: 10px;
+                                    border-radius: 50%;
+                                    display: inline-block;
+                                    text-align: center;
+                                    line-height: 30px;
+                                    color: white;
+                                    font-weight: bold;
+                                    font-size: 18px;
+                                }
+
+                                #title {
+                                    font-size: 15px;
+                                    color: #29588a;
+                                }
+
+                                #direccion_usuario {
+                                    font-size: 15px;
+                                    color: #29588a;
+                                }
+
+                                #password_label {
+                                    font-size: 15px;
+                                    color: #29588a;
+                                }
+
+                                #password_label_c {
+                                    font-size: 15px;
+                                    color: #29588a;
+                                }
+                            </style>
+                            <div class="circle">1</div>
+                            <label id="title" class="col-form-label"><b>Informacion Basica </b></label>
+                        </div>
                         <div class="row">
                             <div class="col">
-                                <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo de Documento:</b></label>
+                                <label id="title" class="col-form-label"><b>Tipo de Documento:</b></label>
                                 <select class="form-select form-select" name="tipo_documento" id="tipo_documento" required>
                                     <option value="">Seleccione un Tipo</option>
                                     <option value="2">Cedula de Ciudadania</option>
@@ -111,41 +150,45 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Numéro de Documento:</label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Numéro de Documento:</b></label>
                                 <input type="text" class="form-control" name="n_documento" id="n_documento" required>
-                                <input type="text" class="form-control" name="n_documento" id="n_documento" required>
+                                <input type="text" hidden class="form-control" name="n_documento" id="n_documento" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Nombre:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Primer Nombre:</b></label>
                                 <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Nombre (Opcional):</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Segundo Nombre (Opcional):</b></label>
                                 <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" maxlength="20" pattern="[A-Za-z]+">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Apellido:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Primer Apellido:</b></label>
                                 <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label">Segundo Apellido  (Opcional):</label>
-                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" >
+                                <label id="title" for="nombre" class="col-form-label"><b>Segundo Apellido (Opcional):</b></label>
+                                <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido">
                             </div>
+                        </div>
+                        <div>
+                            <div class="circle">2</div>
+                            <label id="title" class="col-form-label"><b>Contacto </b></label>
                         </div>
                         <div class="row mb-1">
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Emails:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Emails:</b></label>
                                 <div class="input-group">
                                     <button class="btn btn-success" type="button" onclick="validarPrioridadEmail()" data-bs-toggle="modal" data-bs-target="#ModalEmail"><i class="bi bi-plus"></i></button>
                                     <input type="text" id="email" name="email" class="form-control" placeholder="Agregar un email" aria-label="" aria-describedby="button-addon2" readonly required><br>
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Telefonos:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Telefonos:</b></label>
                                 <div class="input-group">
                                     <button class="btn btn-success" type="button" onclick="validarPrioridadTel()" data-bs-toggle="modal" data-bs-target="#ModalTelefonos"><i class="bi bi-plus"></i></button>
                                     <input type="text" id="telUsuario" name="telUsuario" class="form-control" placeholder="Agregar telefonos" aria-label="" aria-describedby="button-addon2" readonly required><br>
@@ -153,7 +196,7 @@
                             </div>
 
                             <div class="col" id="Divacudientes">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Acudientes:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Acudientes:</b></label>
                                 <div class="input-group">
                                     <button class="btn btn-success btn-sm" id="btnAcudientes" type="button" data-bs-toggle="modal" data-bs-target="#ModalAcudientes"><i class="bi bi-plus"></i></button>
                                     <input class="form-control" type="text" id="acudientess" name="acudientess" placeholder="Agregar Acudientes" readonly required>
@@ -163,7 +206,7 @@
 
                         </div>
                         <div class="row">
-                            <label id="direccion_usuario" for="direccion" style="font-size: large; color:#29588a;"><b>Dirección:</b></label>
+                            <label id="direccion_usuario" for="direccion"><b>Dirección:</b></label>
                             <div class="col">
                                 <select name="dir" id="dir" placeholder="Ej: 23" class="form-select form-select" required onchange="Validardireccion()">
                                     <option value="">--Selecciona--</option>
@@ -196,14 +239,17 @@
                             <label id="direccion_usuario" for="direccion"></label>
                             <input id="direccionX" name="direccionX" type="text" class="form-control" readonly class="form-control-plaintext">
                         </div>
-
+                        <div id="seguridad-title">
+                            <div class="circle">3</div>
+                            <label class="col-form-label" style="font-size:large; color:#29588a;"><b>Seguridad</b></label>
+                        </div>
                         <div class="row">
                             <div class="col">
-                                <label id="password_label" for="Password" style="font-size: large; color:#29588a;"><b>Contraseña</b></label>
+                                <label id="password_label" for="Password"><b>Contraseña</b></label>
                                 <input id="contraseña" name="contraseña" type="password" class="form-control" required />
                             </div>
                             <div class="col">
-                                <label id="password_label_c" for="password" style="font-size: large; color:#29588a;"><b>Confirme Contraseña</b></label>
+                                <label id="password_label_c" for="password"><b>Confirme Contraseña</b></label>
                                 <input id="confirmar_contraseña" name="confirmar_contraseña" type="password" class="form-control" required />
                             </div>
                         </div>
@@ -366,108 +412,117 @@
                 </div>
                 <div class="modal-body" id="body">
                     <div class="mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo de Documento:</b></label>
-                                <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
-                                    <option value="">Seleccione un Tipo</option>
-                                    <option value="2">Cedula de Ciudadania</option>
-                                    <option value="1">Tarjeta de Identidad</option>
-                                    <option value="3">Cedula de Extranjeria</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Numéro de Documento:</b></label>
-                                <input type="text" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Nombre:</b></label>
-                                <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
-                            </div>
-                            <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Nombre (Opcional):</b></label>
-                                <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Apellido:</b></label>
-                                <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
-                            </div>
-                            <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Apellido:</b></label>
-                                <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu">
-                            </div>
-                        </div>
-                        <div class="row mb-1">
-                            <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Emails:</b></label>
-                                <div class="input-group d-flex">
-                                    <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Telefonos:</b></label>
-                                <div class="input-group">
-                                    <input class="form-control" type="text" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label id="direccion_usuario" for="direccion" style="font-size: large; color:#29588a;"><b>Dirección:</b></label>
-                            <div class="col">
-                                <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
-                                    <option value="">--Selecciona--</option>
-                                    <option>Carrera</option>
-                                    <option>Calle</option>
-                                    <option>Avenida Calle</option>
-                                    <option>Avenida Carrera</option>
-                                    <option>Autopista</option>
-                                    <option>Avenida</option>
-                                    <option>Circunvalar</option>
-                                    <option>Diagonal</option>
-                                    <option>Transversal</option>
-                                    <option>Kilometro</option>
-                                    <option>Circular</option>
-                                </select>
-                            </div>
-
-                            <div class="col">
-                                <input onchange="ValidardireccionAcudiente()" id="direccion2" name="direccion2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
-                            </div>
-                            <div class="col">
-                                <input onchange="ValidardireccionAcudiente()" id="direccion3" maxLength="4" name="direccion3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
-                            </div>
-                            <div class="col">
-                                <input onchange="ValidardireccionAcudiente()" id="direccion4" maxLength="4" name="direccion4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label id="direccion_usuario" for="direccion"></label>
-                            <input id="direccionAcu" name="direccionAcu" type="text" class="form-control" readonly class="form-control-plaintext">
-                        </div>
-
-                        <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
-                        <input type="text" id="tp" name="tp" hidden>
-                        <input type="text" id="id_acu" name="id_acu" hidden>
-                        <input type="text" id="id" name="id" hidden>
+                    <div>
+                        <div class="circle">1</div>
+                        <label id="title" class="col-form-label"><b>Informacion Basica </b></label>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-success" id="btnListo">Listo</button>
+                    <div class="row">
+                        <div class="col">
+
+                            <label id="title" class="col-form-label"><b>Tipo de Documento:</b></label>
+                            <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
+                                <option value="">Seleccione un Tipo</option>
+                                <option value="2">Cedula de Ciudadania</option>
+                                <option value="1">Tarjeta de Identidad</option>
+                                <option value="3">Cedula de Extranjeria</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label id="title" for="nombre" class="col-form-label"><b>Numéro de Documento:</b></label>
+                            <input type="text" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label id="title" for="nombre" class="col-form-label"><b>Primer Nombre:</b></label>
+                            <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                        </div>
+                        <div class="col">
+                            <label id="title" for="nombre" class="col-form-label"><b>Segundo Nombre (Opcional):</b></label>
+                            <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label id="title" for="nombre" class="col-form-label"><b>Primer Apellido:</b></label>
+                            <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
+                        </div>
+                        <div class="col">
+                            <label id="title" for="nombre" class="col-form-label"><b>Segundo Apellido:</b></label>
+                            <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="circle">2</div>
+                        <label id="title" class="col-form-label"><b>Contacto </b></label>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col">
+                            <label id="title" for="nombre" class="col-form-label"><b>Emails:</b></label>
+                            <div class="input-group d-flex">
+                                <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label id="title" for="nombre" class="col-form-label"><b>Telefonos:</b></label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label id="direccion_usuario" for="direccion"><b>Dirección:</b></label>
+                        <div class="col">
+                            <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
+                                <option value="">--Selecciona--</option>
+                                <option>Carrera</option>
+                                <option>Calle</option>
+                                <option>Avenida Calle</option>
+                                <option>Avenida Carrera</option>
+                                <option>Autopista</option>
+                                <option>Avenida</option>
+                                <option>Circunvalar</option>
+                                <option>Diagonal</option>
+                                <option>Transversal</option>
+                                <option>Kilometro</option>
+                                <option>Circular</option>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion2" name="direccion2" type="text" maxLength="4" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 17B" required />
+                        </div>
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion3" maxLength="4" name="direccion3" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: #68C" required />
+                        </div>
+                        <div class="col">
+                            <input onchange="ValidardireccionAcudiente()" id="direccion4" maxLength="4" name="direccion4" type="text" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ej: 23" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label id="direccion_usuario" for="direccion"></label>
+                        <input id="direccionAcu" name="direccionAcu" type="text" class="form-control" readonly class="form-control-plaintext">
+                    </div>
+
+                    <input type="text" id="usuario_crea" name="usuario_crea" value="<?php session('id') ?>" hidden>
+                    <input type="text" id="tp" name="tp" hidden>
+                    <input type="text" id="id_acu" name="id_acu" hidden>
+                    <input type="text" id="id" name="id" hidden>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-success" id="btnListo">Listo</button>
+            </div>
         </div>
+    </div>
     </div>
 </form>
 
 
 <script>
-     // Limitacion de inputs
-     $('#n_documento').on('keypress', function(e) {
+    // Limitacion de inputs
+    $('#n_documento').on('keypress', function(e) {
         let charcode = e.which ? e.which : e.keyCode;
         if (charcode > 31 && (charcode < 48 || charcode > 57)) {
             e.preventDefault();
@@ -630,15 +685,15 @@
             e.preventDefault();
         }
     })
-    
+
     $("#formulario").validate({
         errorPlacement: function(error, element) {
             if (element[0].id == 'telUsuario') {
                 return true;
             } else if (element[0].id == 'email') {
                 return true;
-            }else if (element[0].id == 'acudientess') {
-                 return true;
+            } else if (element[0].id == 'acudientess') {
+                return true;
             }
             error.insertAfter(element);
             setTimeout(() => {
@@ -1112,6 +1167,7 @@
                     $('#primer_apellido').val(rs[0]['apellido_p']);
                     $('#segundo_apellido').val(rs[0]['apellido_s']);
                     $('#direccionX').val(rs[0]['direccion']);
+                    $('#seguridad-title').attr('hidden', '');
                     $('#email_modal').val('');
                     $('#prioridad').val('');
                     let str = rs[0]['direccion']
@@ -1119,7 +1175,7 @@
                     let partes = str.split(/[\s-]+/);
                     if (partes.length > 4) {
                         $('#dir').val(partes[0] + ' ' + partes[1]);
-                        $('#dir2').val(partes[2]);  
+                        $('#dir2').val(partes[2]);
                         $('#dir3').val(partes[3]);
                         $('#dir4').val(partes[4]);
                     } else {
@@ -1614,19 +1670,19 @@
 
     $('#cerrarAcu').on('click', function(e) {
         $('#acudientess').val('');
-            $('#tipo_documentoAcu').val('');
-            $('#numero_documentoAcu').val('');
-            $('#primer_nombreAcu').val('');
-            $('#segundo_nombreAcu').val('');
-            $('#primer_apellidoAcu').val('');
-            $('#segundo_apellidoAcu').val('');
-            $('#direccionAcu').val('');
-            $('#emailAcu').val('');
-            $('#telefonoAcu').val('');
-            $('#direccion1').val('');
-            $('#direccion2').val('');
-            $('#direccion3').val('');
-            $('#direccion4').val('');
+        $('#tipo_documentoAcu').val('');
+        $('#numero_documentoAcu').val('');
+        $('#primer_nombreAcu').val('');
+        $('#segundo_nombreAcu').val('');
+        $('#primer_apellidoAcu').val('');
+        $('#segundo_apellidoAcu').val('');
+        $('#direccionAcu').val('');
+        $('#emailAcu').val('');
+        $('#telefonoAcu').val('');
+        $('#direccion1').val('');
+        $('#direccion2').val('');
+        $('#direccion3').val('');
+        $('#direccion4').val('');
     })
 
     $("#formularioAcudiente").validate({

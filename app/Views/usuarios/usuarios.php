@@ -459,11 +459,17 @@
                     <h1 class="modal-title fs-5" id="tituloModalAcu">Agregar Acudiente</h1>
                     <button type="button" id="cerrarAcu" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body" id="body">
                     <div class="mb-3">
+                        <div>
+                            <div class="circle">1</div>
+                            <label id="title" class="col-form-label"><b>Informacion Basica </b></label>
+                        </div>
                         <div class="row">
                             <div class="col">
-                                <label class="col-form-label" style="font-size: large; color:#29588a;"><b>Tipo de Documento:</b></label>
+
+                                <label id="title" class="col-form-label"><b>Tipo de Documento:</b></label>
                                 <select class="form-select form-select" name="tipo_documentoAcu" id="tipo_documentoAcu" required>
                                     <option value="">Seleccione un Tipo</option>
                                     <?php foreach ($Tdocumento as $tipo) { ?>
@@ -476,44 +482,48 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Numéro de Documento:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Numéro de Documento:</b></label>
                                 <input type="text" class="form-control" name="numero_documentoAcu" id="numero_documentoAcu" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Nombre:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Primer Nombre:</b></label>
                                 <input type="text" class="form-control" name="primer_nombreAcu" id="primer_nombreAcu" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Nombre (Opcional):</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Segundo Nombre (Opcional):</b></label>
                                 <input type="text" class="form-control" name="segundo_nombreAcu" id="segundo_nombreAcu" maxlength="20" pattern="[A-Za-z]+">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Primer Apellido:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Primer Apellido:</b></label>
                                 <input type="text" class="form-control" name="primer_apellidoAcu" id="primer_apellidoAcu" maxlength="20" pattern="[A-Za-z]+" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Segundo Apellido (Opcional):</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Segundo Apellido (Opcional):</b></label>
                                 <input type="text" class="form-control" name="segundo_apellidoAcu" id="segundo_apellidoAcu">
                             </div>
                         </div>
+                        <div>
+                            <div class="circle">2</div>
+                            <label id="title" class="col-form-label"><b>Contacto </b></label>
+                        </div>
                         <div class="row mb-1">
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Emails:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Emails:</b></label>
                                 <input type="text" id="emailAcu" name="emailAcu" class="form-control" placeholder="Agregar un email" required>
                             </div>
                             <div class="col">
-                                <label for="nombre" class="col-form-label" style="font-size: large; color:#29588a;"><b>Telefonos:</b></label>
+                                <label id="title" for="nombre" class="col-form-label"><b>Telefonos:</b></label>
                                 <input class="form-control" type="text" id="telefonoAcu" name="telefonoAcu" placeholder="Agregar telefonos" required>
                                 <div class="invalid-feedback" id="errorTelAcu"></div>
 
                             </div>
                         </div>
                         <div class="row">
-                            <label id="direccion_usuario" for="direccion" style="font-size: large; color:#29588a;"><b>Dirección:</b></label>
+                            <label id="direccion_usuario" for="direccion"><b>Dirección:</b></label>
                             <div class="col">
                                 <select name="direccion1" id="direccion1" placeholder="Ej: 23" class="form-select form-select" required onchange="ValidardireccionAcudiente()">
                                     <option value="">--Selecciona--</option>
@@ -1307,7 +1317,7 @@
                     }
 
                     $('#tituloModal').text('Editar Usuario');
-                    
+
                     $('#contraseña').attr('hidden', '');
                     $('#password_label').attr('hidden', '');
                     $('#confirmar_contraseña').attr('hidden', '');
