@@ -32,7 +32,6 @@ class Horario_encModel extends Model
         $datos = $this->findAll();
         return $datos;
     }
-
     
     public function obtenerEncabezados($estado)
     {
@@ -103,6 +102,7 @@ class Horario_encModel extends Model
         $datos = $this->first();
         return $datos;
     }
+    
     public function filtro($campo, $valor)
     {
         $this->select('horarios_enc.*');

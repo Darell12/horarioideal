@@ -27,13 +27,13 @@ class Database extends Config
     public array $default = [
         'DSN'      => '',
         // PARA TRABAJAR EN CASA
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => '',
+        // 'hostname' => 'localhost',
+        // 'username' => 'root',
+        // 'password' => '',
         //PARA TRABAJAR EN EL SENA//
-        // 'hostname' => '10.230.16.135',
-        // 'username' => 'user_db',
-        // 'password' => '123456789',
+        'hostname' => '10.230.16.135',
+        'username' => 'user_db',
+        'password' => '123456789',
         'database' => 'horarios_db',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',

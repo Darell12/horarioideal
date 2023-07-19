@@ -9,10 +9,11 @@ use App\Models\GradosModel;
 use App\Models\Parametros_detModel;
 use App\Controllers\Principal;
 use App\Controllers\Horario_det;
+use App\Models\Horario_detModel;
 
 class Horario_enc extends BaseController
 {
-    protected $horario_enc, $eliminados;
+    protected $horario_enc, $eliminados, $horario_enc_prof;
     protected $usuarios, $grados;
     protected $profesores;
     protected $franja;
@@ -21,6 +22,7 @@ class Horario_enc extends BaseController
     public function __construct()
     {
         $this->horario_enc = new Horario_encModel();
+        $this->horario_enc_prof = new Horario_detModel();
         $this->eliminados = new Horario_encModel();
         $this->usuarios = new UsuariosModel();
         $this->grados = new GradosModel();
@@ -36,8 +38,9 @@ class Horario_enc extends BaseController
         $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
         $grados = $this->grados->obtenerGrados('A');
         $horario_enc = $this->horario_enc->obtenerHorarios_enc('E');
+        $horario_enc_prof = $this->horario_enc_prof->obtenerHorarios_enc();
 
-        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados, 'datos' => $horario_enc, 'Modulos' => $cargaSideBar];
+        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados, 'datos' => $horario_enc,'datosprof'=>$horario_enc_prof, 'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_enc/horarios_enc', $data);
@@ -52,7 +55,7 @@ class Horario_enc extends BaseController
 
     public function test($id)
     {
-        $encabezado = $this->horario_enc->traer_encabezado($id);
+        $encabezado = $this->horario_enc_prof->obtenerHorarios_encProfesor($id);
         return json_encode($encabezado);
     }
     public function pdfTest($id, $tipo, $idProfesor)
@@ -93,6 +96,15 @@ class Horario_enc extends BaseController
 
         $pdf->SetFont("Helvetica", "", 16);
         $pdf->SetXY(10, 47);
+
+        // switch ($tipo) {
+        //     case '2':
+        //         $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($encabezado['profesor'])), 0, 'L', false);
+        //         break;  
+        //     default:
+        //     break;
+        // }
+
         $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($encabezado['grado'] . ' / ' . $encabezado['periodo_año'])), 0, 'L', false);
 
         $pdf->SetFont("Helvetica", "B", 10);
@@ -160,13 +172,16 @@ class Horario_enc extends BaseController
             $hora_minima = PHP_INT_MAX;
             $hora_maxima = 0;
             $profesor = '';
+            $grado = '';
 
             foreach ($array as $horario) {
-                if ($horario['asignatura'] === $asignatura) {
+                if ($horario['id_grado_asignatura'] === $asignatura) {
                     $dia = $horario['diaN'];
                     $hora_inicio = strtotime($horario['inicio']);
                     $profesor = $horario['profesor'];
                     $area = $horario['area'];
+                    $grado = $horario['grado'];
+                    $nombre = $horario['asignatura'];
 
                     $hora_minima = min($hora_minima, $hora_inicio);
 
@@ -180,6 +195,8 @@ class Horario_enc extends BaseController
                             'aula' => $horario['aula'],
                             'profesor' => $profesor,
                             'area' => $area,
+                            'grado' => $grado,
+                            'asignatura' => $nombre,
                         ];
                     } else {
                         $horarioAsignatura[$dia]['hora_inicio'] = min($horarioAsignatura[$dia]['hora_inicio'], $hora_inicio);
@@ -190,14 +207,14 @@ class Horario_enc extends BaseController
 
             $hora_minima = date('H:i:s', $hora_minima);
             $hora_maxima = date('H:i:s', $hora_maxima);
-            return [$horarioAsignatura, $hora_minima, $hora_maxima, $profesor, $area];
+            return [$horarioAsignatura, $hora_minima, $hora_maxima, $profesor, $area, $grado, $nombre];
         }
 
         function obtenerHorariosTodasAsignaturas($array)
         {
             $asignaturas = [];
             foreach ($array as $horario) {
-                $asignatura = $horario['asignatura'];
+                $asignatura = $horario['id_grado_asignatura'];
                 if (!isset($asignaturas[$asignatura])) {
                     $asignaturas[$asignatura] = obtenerHorarioAsignatura($array, $asignatura);
                 }
@@ -207,6 +224,7 @@ class Horario_enc extends BaseController
 
         $horariosTodasAsignaturas = obtenerHorariosTodasAsignaturas($array);
 
+        // print_r($horariosTodasAsignaturas); 
 
         $pdf->SetFont("Helvetica", "", 16);
         $pdf->SetTextColor(74, 74, 74);
@@ -220,7 +238,7 @@ class Horario_enc extends BaseController
         $contadorAsignaturas = 0;
 
         foreach ($horariosTodasAsignaturas as $asignatura => $horario) {
-            list($horarioAsignatura, $hora_minima, $hora_maxima, $profesor, $area) = $horario;
+            list($horarioAsignatura, $hora_minima, $hora_maxima, $profesor, $area, $grado, $nombre) = $horario;
 
             $pdf->SetFont("Helvetica", "", 8);
             $pdf->SetXY($x, $y);
@@ -228,13 +246,24 @@ class Horario_enc extends BaseController
 
             $pdf->SetFont("Helvetica", "B", 12);
             $pdf->SetXY($x, $y + 4);
-            $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($asignatura)), 0, 'L', false);
+            $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($nombre)), 0, 'L', false);
 
-            $pdf->SetFont("Helvetica", "", 8);
-            $pdf->SetXY($x + 4, $y + 8);
-            $pdf->MultiCell(0, 30, strtoupper($profesor), 0, 'L', false);
+            switch ($tipo) {
+                case 2:
+                    $pdf->SetFont("Helvetica", "", 8);
+                    $pdf->SetXY($x + 4, $y + 8);
+                    $pdf->MultiCell(0, 30, strtoupper($grado), 0, 'L', false);
+                    $pdf->Image(FCPATH . '/img/grupo.png', $x, $y + 21, 3.5, 3.5);
+                    break;
+                    
+                    default:
+                    $pdf->SetFont("Helvetica", "", 8);
+                    $pdf->SetXY($x + 4, $y + 8);
+                    $pdf->MultiCell(0, 30, strtoupper($profesor), 0, 'L', false);
+                    $pdf->Image(FCPATH . '/img/usuario.png', $x, $y + 20, 5, 5);
+                    break;
+            }
 
-            $pdf->Image(FCPATH . '/img/usuario.png', $x, $y + 20, 5, 5);
 
             $y_inicial_dias = $y + 24;
 
