@@ -88,6 +88,11 @@ class Horario_det extends BaseController
         $horario_det = $this->horario_det->obtenerDetalle_horario($id);
         return $horario_det;
     }
+    public function buscarDetalleIDProfesor($id)
+    {
+        $horario_det = $this->horario_det->obtenerDetalle_horarioProfesor($id);
+        return $horario_det;
+    }
     public function buscarDetalleGrado()
     {
         $id = $this->request->getPost('id');

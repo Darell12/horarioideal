@@ -55,11 +55,26 @@ class Horario_enc extends BaseController
         $encabezado = $this->horario_enc->traer_encabezado($id);
         return json_encode($encabezado);
     }
-    public function pdfTest($id)
+    public function pdfTest($id, $tipo, $idProfesor)
     {
+
+
         $rol = session('id_rol');
-        $array = $this->metodosDetalle->buscarDetalleID($id);
-        $encabezado = $this->horario_enc->traer_encabezado($id);
+
+        switch ($tipo) {
+            case 1:
+                $array = $this->metodosDetalle->buscarDetalleID($id);
+                $encabezado = $this->horario_enc->traer_encabezado($id);
+                break;
+            case 2:
+                $array = $this->metodosDetalle->buscarDetalleIDProfesor($idProfesor);
+                $encabezado = $this->horario_enc->traer_encabezado($id);
+                break;
+
+            default:
+                break;
+        }
+        
         $horaDescarga = date("d-m-Y h:i");
 
         $pdf = new \FPDF('P', 'mm', 'letter');
@@ -78,7 +93,7 @@ class Horario_enc extends BaseController
 
         $pdf->SetFont("Helvetica", "", 16);
         $pdf->SetXY(10, 47);
-        $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($encabezado['grado'] . ' / ' .$encabezado['periodo_año'])), 0, 'L', false);
+        $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($encabezado['grado'] . ' / ' . $encabezado['periodo_año'])), 0, 'L', false);
 
         $pdf->SetFont("Helvetica", "B", 10);
         $pdf->SetXY(10, 63);
@@ -123,7 +138,7 @@ class Horario_enc extends BaseController
                 $pdf->MultiCell(0, 30, 'Profesor:', 0, 'L', false);
 
                 $pdf->SetFont("Helvetica", "", 10);
-                $pdf->SetXY(25, 58);
+                $pdf->SetXY(26, 58);
                 $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper(session('usuario'))), 0, 'L', false);
                 break;
 

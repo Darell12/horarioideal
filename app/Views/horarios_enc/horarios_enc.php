@@ -1,234 +1,3 @@
-<style>
-
-    .button.white-single {
-        max-width: 60px;
-        --background: none;
-        --rectangle: #f5f9ff;
-        --arrow: #275efe;
-        --success: #275efe;
-        --shadow: rgba(10, 22, 50, .1);
-    }
-    .button {
-        --background: #275efe;
-        --rectangle: #184fee;
-        --success: #4672f1;
-        --text: #fff;
-        --arrow: #fff;
-        --checkmark: #fff;
-        --shadow: rgba(10, 22, 50, .24);
-        display: flex;
-        overflow: hidden;
-        text-decoration: none;
-        -webkit-mask-image: -webkit-radial-gradient(white, black);
-        background: var(--background);
-        border-radius: 8px;
-        box-shadow: 0 2px 8px -1px var(--shadow);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .button:active {
-        transform: scale(0.95);
-        box-shadow: 0 1px 4px -1px var(--shadow);
-    }
-
-    .button ul {
-        margin: 0;
-        padding: 16px 40px;
-        list-style: none;
-        text-align: center;
-        position: relative;
-        backface-visibility: hidden;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 28px;
-        color: var(--text);
-    }
-
-    .button ul li:not(:first-child) {
-        top: 16px;
-        left: 0;
-        right: 0;
-        position: absolute;
-    }
-
-    .button ul li:nth-child(2) {
-        top: 76px;
-    }
-
-    .button ul li:nth-child(3) {
-        top: 136px;
-    }
-
-    .button>div {
-        position: relative;
-        width: 60px;
-        height: 60px;
-        background: var(--rectangle);
-    }
-
-    .button>div:before,
-    .button>div:after {
-        content: '';
-        display: block;
-        position: absolute;
-    }
-
-    .button>div:before {
-        border-radius: 1px;
-        width: 2px;
-        top: 50%;
-        left: 50%;
-        height: 17px;
-        margin: -9px 0 0 -1px;
-        background: var(--arrow);
-    }
-
-    .button>div:after {
-        width: 60px;
-        height: 60px;
-        transform-origin: 50% 0;
-        border-radius: 80%;
-        background: var(--success);
-        top: 0;
-        left: 0;
-        transform: scaleY(0);
-    }
-
-    .button>div svg {
-        display: block;
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        left: 50%;
-        top: 50%;
-        margin: -9px 0 0 -10px;
-        fill: none;
-        z-index: 1;
-        stroke-width: 2px;
-        stroke: var(--arrow);
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-
-    .button.loading ul {
-        animation: text calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
-    }
-
-    .button.loading>div:before {
-        animation: line calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
-    }
-
-    .button.loading>div:after {
-        animation: background calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
-    }
-
-    .button.loading>div svg {
-        animation: svg calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
-    }
-
-    @keyframes text {
-
-        10%,
-        85% {
-            transform: translateY(-100%);
-        }
-
-        95%,
-        100% {
-            transform: translateY(-200%);
-        }
-    }
-
-    @keyframes line {
-
-        5%,
-        10% {
-            transform: translateY(-30px);
-        }
-
-        40% {
-            transform: translateY(-20px);
-        }
-
-        65% {
-            transform: translateY(0);
-        }
-
-        75%,
-        100% {
-            transform: translateY(30px);
-        }
-    }
-
-    @keyframes svg {
-
-        0%,
-        20% {
-            stroke-dasharray: 0;
-            stroke-dashoffset: 0;
-        }
-
-        21%,
-        89% {
-            stroke-dasharray: 26px;
-            stroke-dashoffset: 26px;
-            stroke-width: 3px;
-            margin: -10px 0 0 -10px;
-            stroke: var(--checkmark);
-        }
-
-        100% {
-            stroke-dasharray: 26px;
-            stroke-dashoffset: 0;
-            margin: -10px 0 0 -10px;
-            stroke: var(--checkmark);
-        }
-
-        12% {
-            opacity: 1;
-        }
-
-        20%,
-        89% {
-            opacity: 0;
-        }
-
-        90%,
-        100% {
-            opacity: 1;
-        }
-    }
-
-    @keyframes background {
-        10% {
-            transform: scaleY(0);
-        }
-
-        40% {
-            transform: scaleY(0.15);
-        }
-
-        65% {
-            transform: scaleY(0.5);
-            border-radius: 0 0 50% 50%;
-        }
-
-        75% {
-            border-radius: 0 0 50% 50%;
-        }
-
-        90%,
-        100% {
-            border-radius: 0;
-        }
-
-        75%,
-        100% {
-            transform: scaleY(1);
-        }
-    }
-</style>
-
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/loader.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <div class="container bg-white shadow rounded-4">
@@ -391,11 +160,7 @@
                 <div class="container-lecture">
                     <section class="section-list">
                         <div class="container-xl">
-                            <!-- <a href="" class="button white-single">
-                                <div>
-                                    <svg viewBox="0 0 24 24"></svg>
-                                </div>
-                            </a> -->
+                      
                             <div class="table-schedule">
                                 <div class="timeline">
                                     <ul>
@@ -669,33 +434,34 @@
         }
     });
 
+    let franjasTotalesV = []
     let franjasTotales = []
     $.ajax({
         url: "<?php echo base_url('horario_det/obtenerFranjas45/'); ?>",
         dataType: "json",
         success: function(data) {
-            franjasTotales = data;
-            console.log('franjasTotales');
-            console.log(franjasTotales);
+            franjasTotalesV = data;
+            console.log('franjasTotalesV');
+            console.log(franjasTotalesV);
             $.ajax({
                 url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
                 dataType: "json",
                 success: function(data) {
-                    franjasTotales = [...franjasTotales, ...data];
-                    console.log('franjasTotales');
-                    console.log(franjasTotales);
+                    franjasTotalesV = [...franjasTotalesV, ...data];
+                    console.log('franjasTotalesV');
+                    console.log(franjasTotalesV);
                 }
             });
         }
     });
 
-    // $.ajax({
-    //     url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
-    //     dataType: "json",
-    //     success: function(data) {
-    //         franjasTotales = data;
-    //     }
-    // });
+    $.ajax({
+        url: "<?php echo base_url('horario_det/obtenerFranjas60/'); ?>",
+        dataType: "json",
+        success: function(data) {
+            franjasTotales = data;
+        }
+    });
 
     function visualizarHorario(id) {
 
@@ -716,13 +482,13 @@
             },
             dataType: "json",
             success: function(rs) {
-                console.log(franjasTotales)
+                console.log(franjasTotalesV)
                 contenido = ''
                 $
                 rs.forEach(element => {
                     let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
 
-                    contenido = `<li class="lecture-time ${franjasTotales
+                    contenido = `<li class="lecture-time ${franjasTotalesV
                                                 .find(objeto => objeto.id_parametro_det == element.hora_inicio)
                                                 ?.resumen}  ${element.duracion == 2 ? 'two-hr' : ''}" data-event="lecture-0${numeroAleatorio}">
                                                 <a href="#">
@@ -870,7 +636,7 @@
         }
     })
 
-    function generarPDF(id){
+    function generarPDF(id) {
 
     }
 
@@ -1306,13 +1072,6 @@
         let quintoFiltro = cuartoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_inicio == franja.id_parametro_det && +detalle.id_dia == dia))
         let sextoFiltro = quintoFiltro.filter(franja => !franjasTotalesOcupadasAula.some(detalle => +detalle.hora_fin - 1 == franja.id_parametro_det && +detalle.id_dia == dia))
 
-        console.log('Valor de sextoFiltro:');
-        console.log(sextoFiltro);
-        console.log('Valor de inicio:');
-        console.log(inicio);
-        console.log('Valor de fin:');
-        console.log(fin);
-
         const [Libres1Hora, Libres2Horas, arrayRango] = dividirArray(sextoFiltro, inicio, fin);
 
         return [Libres1Hora, Libres2Horas, arrayRango, sextoFiltro];
@@ -1330,8 +1089,6 @@
 
         for (let i = 0; i < array.length; i++) {
             const franjaActual = new Date(`2000-01-01T${array[i].nombre}`);
-            console.log('Llenando array rango');
-            console.log(fechaInicio);
 
             if (franjaActual >= fechaInicio && franjaActual <= fechaFin) {
                 arrayRango.push(array[i]);
@@ -1341,7 +1098,6 @@
         arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '85'); //! recreo 10:00
         arrayRango = arrayRango.filter(franja => franja.id_parametro_det !== '91'); //! recreo 15:00
 
-        console.log('ciclo');
         for (let i = 0; i < arrayRango.length; i++) {
             const idActual = parseInt(arrayRango[i].id_parametro_det);
             const idSiguiente = parseInt(arrayRango[i + 1]?.id_parametro_det || 0);
@@ -1357,7 +1113,6 @@
         array2 = array2.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
         arrayRango = arrayRango.filter(franja => !parametros.includes(franja.id_parametro_det)); // ! 9:30AM
 
-        console.log([array1, array2, arrayRango]);
         return [array1, array2, arrayRango];
     }
 
@@ -1601,12 +1356,10 @@
                     while (i < registro.numeroRepeticiones) {
 
                         try {
-                            // i++;
-
 
                             let [Libres1Hora, Libres2Horas, FiltroTotal, LibreTotal] = filtroPorDia(id_dias[diasSemana[0]], res, inicioF, finF, registro.id_aula);
 
-                            let franja1Hora = (numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
+                            let franja1Hora = (registro.numeroRepeticiones - i < 0) ? LibreTotal.filter(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1 || objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1) : '';
 
                             let dia = diasSemana[0];
 
@@ -1632,11 +1385,11 @@
                                     "aula": registro.id_aula,
                                     "dia": dia,
                                     "id_dia": id_dias[dia],
-                                    "inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
-                                    "hora_inicio": (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
-                                    "fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
-                                    "hora_fin": (numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.nombre || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
-                                    "duracion": (numeroRepeticiones - i < 0) ? 1 : 2,
+                                    "inicio": (registro.numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det,
+                                    "hora_inicio": (registro.numeroRepeticiones - i < 0) ? Libres1Hora[0]?.nombre || Libres2Horas[0]?.nombre : Libres2Horas[0]?.nombre,
+                                    "fin": (registro.numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.id_parametro_det || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.id_parametro_det : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.id_parametro_det,
+                                    "hora_fin": (registro.numeroRepeticiones - i < 0) ? franjasTotales.find(objeto => objeto.id_parametro_det == +Libres1Hora[0]?.id_parametro_det + 1)?.nombre || franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0]?.id_parametro_det + 1)?.nombre : franjasTotales.find(objeto => objeto.id_parametro_det == +Libres2Horas[0].id_parametro_det + 2)?.nombre,
+                                    "duracion": (registro.numeroRepeticiones - i < 0) ? 1 : 2,
                                     "id_encabezado": id
                                 });
 
@@ -1657,7 +1410,7 @@
 
                                 dia_anterior = dia
 
-                                hora_retirada = (numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det
+                                hora_retirada = (registro.numeroRepeticiones - i < 0) ? Libres1Hora[0]?.id_parametro_det || Libres2Horas[0]?.id_parametro_det : Libres2Horas[0]?.id_parametro_det
 
                                 // * RETIRA HORA EN CASO DE EXCESO
                                 if (data[i - 1].fin == 89) {
