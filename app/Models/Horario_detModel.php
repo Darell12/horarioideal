@@ -25,7 +25,7 @@ class Horario_detModel extends Model
 
     public function obtenerDetalle_horario($id)
     {
-        $this->select('horario_det.*, u.nombre_p as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as diaN, param3.nombre as fin');
+        $this->select('horario_det.*, CONCAT(u.nombre_p, " ", u.apellido_P) as profesor, a.id_asignatura, asig.nombre as asignatura, aulas.nombre as aula, param.nombre as inicio, param2.nombre as diaN, param3.nombre as fin, param4.nombre as area');
         $this->join('usuarios as u', 'horario_det.profesor = u.id_usuario', 'left');
         $this->join('parametro_det as param', 'param.id_parametro_det = horario_det.hora_inicio', 'left');
         $this->join('vw_param_det2 as param3', 'param3.id_parametro_det = horario_det.hora_fin', 'left');
@@ -33,6 +33,7 @@ class Horario_detModel extends Model
         $this->join('aulas', 'horario_det.id_aula = aulas.id_aula', 'left');
         $this->join('grados_asignatura as a', 'a.id_grado_asignatura = horario_det.id_grado_asignatura', 'left');
         $this->join('asignaturas as asig', 'asig.id_asignatura = a.id_asignatura', 'left');
+        $this->join('vw_param_det3 as param4', 'param4.id_parametro_det = asig.Codigo', 'left');
         $this->where('horario_det.estado', 'A');
         $this->where('horario_det.id_horario_enc', $id);
         // $this->groupBy('horario_det.dia');

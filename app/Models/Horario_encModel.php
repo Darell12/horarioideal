@@ -90,7 +90,17 @@ class Horario_encModel extends Model
         // $this->join('vw_param_det2 as param3', 'horarios_enc.id_grado = param2.id_parametro_det');
         $this->where('id_horarios_enc', $id);
 
-        $datos = $this->first();  // nos trae el registro que cumpla con una condicion dada 
+        $datos = $this->first();
+        return $datos;
+    }
+
+    public function traer_encabezado($id)
+    {
+        $this->select('horarios_enc.*, param.alias as grado');
+        $this->join('grados as param', 'horarios_enc.id_grado = param.id_grado');
+        $this->where('id_horarios_enc', $id);
+
+        $datos = $this->first();
         return $datos;
     }
     public function filtro($campo, $valor)

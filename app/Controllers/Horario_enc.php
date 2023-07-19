@@ -8,6 +8,7 @@ use App\Models\UsuariosModel;
 use App\Models\GradosModel;
 use App\Models\Parametros_detModel;
 use App\Controllers\Principal;
+use App\Controllers\Horario_det;
 
 class Horario_enc extends BaseController
 {
@@ -15,7 +16,7 @@ class Horario_enc extends BaseController
     protected $usuarios, $grados;
     protected $profesores;
     protected $franja;
-    protected $metodos;
+    protected $metodos, $metodosDetalle;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class Horario_enc extends BaseController
         $this->profesores = new Horario_encModel();
         $this->franja = new Parametros_detModel();
         $this->metodos = new Principal();
+        $this->metodosDetalle = new Horario_det();
     }
 
     public function index()
@@ -41,16 +43,244 @@ class Horario_enc extends BaseController
         echo view('/horarios_enc/horarios_enc', $data);
     }
 
-    public function pdfTest()
+    protected $date;
+    protected $squareHeight;
+    protected $squareWidth;
+    protected $longestMonth;
+    protected $tinySquareSize;
+    protected $headerFontSize;
+
+    public function test($id)
     {
-        $pdf = new \FPDF('P', 'mm', 'letter');
-        // $pdf->AddPage();
-        // $pdf->SetFont('Arial', 'B', 16);
-        // $pdf->Cell(40, 10, 'Hello Worldo2!');
-        
-        // $pdf->Output("pdf/" . "V" . ".pdf", "F");
-        
+        $encabezado = $this->horario_enc->traer_encabezado($id);
+        return json_encode($encabezado);
     }
+    public function pdfTest($id)
+    {
+        $rol = session('id_rol');
+        $array = $this->metodosDetalle->buscarDetalleID($id);
+        $encabezado = $this->horario_enc->traer_encabezado($id);
+        $horaDescarga = date("d-m-Y h:i");
+
+        $pdf = new \FPDF('P', 'mm', 'letter');
+
+        $pdf->AddPage();
+
+        //* Header
+        $pdf->SetFont('Arial', 'B', 15);
+
+        $pdf->Ln(10);
+        $pdf->Image(FCPATH . '/img/logo.png', 80, 5, 60, 0, 'PNG');
+
+        $pdf->SetFont("Helvetica", "", 18);
+        $pdf->SetXY(10, 40);
+        $pdf->MultiCell(0, 30, 'Mi Horario', 0, 'L', false);
+
+        $pdf->SetFont("Helvetica", "", 16);
+        $pdf->SetXY(10, 47);
+        $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($encabezado['grado'] . ' / ' .$encabezado['periodo_año'])), 0, 'L', false);
+
+        $pdf->SetFont("Helvetica", "B", 10);
+        $pdf->SetXY(10, 63);
+        $pdf->MultiCell(0, 30, 'Hora de descarga:', 0, 'L', false);
+
+        $pdf->SetFont("Helvetica", "", 10);
+        $pdf->SetXY(41, 63);
+        $pdf->MultiCell(0, 30, $horaDescarga, 0, 'L', false);
+
+        switch ($rol) {
+            case 1:
+                $pdf->SetFont("Helvetica", "B", 10);
+                $pdf->SetXY(10, 58);
+                $pdf->MultiCell(0, 30, 'Administrador:', 0, 'L', false);
+
+                $pdf->SetFont("Helvetica", "", 10);
+                $pdf->SetXY(36, 58);
+                $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper(session('usuario'))), 0, 'L', false);
+                break;
+            case 2:
+                $pdf->SetFont("Helvetica", "B", 10);
+                $pdf->SetXY(10, 58);
+                $pdf->MultiCell(0, 30, 'Administrador:', 0, 'L', false);
+
+                $pdf->SetFont("Helvetica", "", 10);
+                $pdf->SetXY(36, 58);
+                $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper(session('usuario'))), 0, 'L', false);
+                break;
+            case 3:
+                $pdf->SetFont("Helvetica", "B", 10);
+                $pdf->SetXY(10, 58);
+                $pdf->MultiCell(0, 30, 'Alumno:', 0, 'L', false);
+
+                $pdf->SetFont("Helvetica", "", 10);
+                $pdf->SetXY(25, 58);
+                $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper(session('usuario'))), 0, 'L', false);
+                break;
+
+            case 4:
+                $pdf->SetFont("Helvetica", "B", 10);
+                $pdf->SetXY(10, 58);
+                $pdf->MultiCell(0, 30, 'Profesor:', 0, 'L', false);
+
+                $pdf->SetFont("Helvetica", "", 10);
+                $pdf->SetXY(25, 58);
+                $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper(session('usuario'))), 0, 'L', false);
+                break;
+
+            default:
+                $pdf->SetFont("Helvetica", "B", 10);
+                $pdf->SetXY(10, 58);
+                $pdf->MultiCell(0, 30, 'Alumno:', 0, 'L', false);
+
+                $pdf->SetFont("Helvetica", "", 10);
+                $pdf->SetXY(25, 58);
+                $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper(session('usuario'))), 0, 'L', false);
+                break;
+        }
+
+
+        function obtenerHorarioAsignatura($array, $asignatura)
+        {
+            $horarioAsignatura = [];
+            $hora_minima = PHP_INT_MAX;
+            $hora_maxima = 0;
+            $profesor = '';
+
+            foreach ($array as $horario) {
+                if ($horario['asignatura'] === $asignatura) {
+                    $dia = $horario['diaN'];
+                    $hora_inicio = strtotime($horario['inicio']);
+                    $profesor = $horario['profesor'];
+                    $area = $horario['area'];
+
+                    $hora_minima = min($hora_minima, $hora_inicio);
+
+                    $hora_fin = strtotime($horario['fin']);
+                    $hora_maxima = max($hora_maxima, $hora_fin);
+
+                    if (!isset($horarioAsignatura[$dia])) {
+                        $horarioAsignatura[$dia] = [
+                            'hora_inicio' => $hora_inicio,
+                            'hora_fin' => $hora_fin,
+                            'aula' => $horario['aula'],
+                            'profesor' => $profesor,
+                            'area' => $area,
+                        ];
+                    } else {
+                        $horarioAsignatura[$dia]['hora_inicio'] = min($horarioAsignatura[$dia]['hora_inicio'], $hora_inicio);
+                        $horarioAsignatura[$dia]['hora_fin'] = max($horarioAsignatura[$dia]['hora_fin'], $hora_fin);
+                    }
+                }
+            }
+
+            $hora_minima = date('H:i:s', $hora_minima);
+            $hora_maxima = date('H:i:s', $hora_maxima);
+            return [$horarioAsignatura, $hora_minima, $hora_maxima, $profesor, $area];
+        }
+
+        function obtenerHorariosTodasAsignaturas($array)
+        {
+            $asignaturas = [];
+            foreach ($array as $horario) {
+                $asignatura = $horario['asignatura'];
+                if (!isset($asignaturas[$asignatura])) {
+                    $asignaturas[$asignatura] = obtenerHorarioAsignatura($array, $asignatura);
+                }
+            }
+            return $asignaturas;
+        }
+
+        $horariosTodasAsignaturas = obtenerHorariosTodasAsignaturas($array);
+
+
+        $pdf->SetFont("Helvetica", "", 16);
+        $pdf->SetTextColor(74, 74, 74);
+        $pdf->SetXY(10, 92);
+        $pdf->MultiCell(0, 6, 'Materias', 'B', 'L', false);
+
+        $x = 10;
+        $y = 90.5;
+
+        $asignaturaPorColumna = 5;
+        $contadorAsignaturas = 0;
+
+        foreach ($horariosTodasAsignaturas as $asignatura => $horario) {
+            list($horarioAsignatura, $hora_minima, $hora_maxima, $profesor, $area) = $horario;
+
+            $pdf->SetFont("Helvetica", "", 8);
+            $pdf->SetXY($x, $y);
+            $pdf->MultiCell(0, 30, 'Area: ' . iconv('UTF-8', 'windows-1252', $area), 0, 'L', false);
+
+            $pdf->SetFont("Helvetica", "B", 12);
+            $pdf->SetXY($x, $y + 4);
+            $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($asignatura)), 0, 'L', false);
+
+            $pdf->SetFont("Helvetica", "", 8);
+            $pdf->SetXY($x + 4, $y + 8);
+            $pdf->MultiCell(0, 30, strtoupper($profesor), 0, 'L', false);
+
+            $pdf->Image(FCPATH . '/img/usuario.png', $x, $y + 20, 5, 5);
+
+            $y_inicial_dias = $y + 24;
+
+            foreach ($horarioAsignatura as $dia => $horas) {
+                $hora_inicio = date('H:i', $horas['hora_inicio']);
+                $hora_fin = date('H:i', $horas['hora_fin']);
+                $aula = $horas['aula'];
+
+                $pdf->SetFont("Helvetica", "", 8);
+                $pdf->SetXY($x + 4, $y + 24);
+                $pdf->MultiCell(0, 6, $dia . ' ' . $hora_inicio . ' - ' . $hora_fin, 0, 'L', false); // Reducir el espacio vertical (6 en lugar de 30)
+                $y += 4; // Incremento adicional en Y para separar los datos de cada día
+            }
+
+            $y_medio_asignaturas = ($y_inicial_dias + $y) / 2;
+
+            $pdf->SetXY($x + 5, $y_medio_asignaturas - 1.75); // Ajustar la posición antes de agregar las imágenes
+            $pdf->Image(FCPATH . '/img/clock.png', $x + 0.7, $y_medio_asignaturas + 10.75, 3.5, 3.5); // Ajustar la posición del reloj
+
+
+            $y_inicial_aulas = $y + 11.8;
+
+            foreach ($horarioAsignatura as $dia => $horas) {
+                $aula = $horas['aula'];
+
+                $pdf->SetFont("Helvetica", "", 8);
+                $pdf->SetXY($x + 4.3, $y + 11.8); // Ajustar la posición antes de agregar el texto del aula
+                $pdf->MultiCell(0, 30,  iconv('UTF-8', 'windows-1252', strtoupper($aula)), 0, 'L', false);
+
+                //! iconv('UTF-8', 'windows-1252', strtoupper($aula))
+
+                $y += 4;
+            }
+
+            $y_medio_aulas = ($y_inicial_aulas + $y) / 2;
+
+            $pdf->Image(FCPATH . '/img/classroom.png', $x + 0.7, $y_medio_aulas + 16.8, 3.5, 3.5); // Ajustar la posición del aula
+
+            $contadorAsignaturas++;
+
+            if ($contadorAsignaturas % $asignaturaPorColumna === 0) {
+                $x = 105;
+                $y = 90.5;
+            } else {
+                $y += 15;
+            }
+        }
+
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetFont("Helvetica", "B", 10);
+        $pdf->SetXY(10, 68);
+        $pdf->MultiCell(0, 30, 'Materias asignadas:', 0, 'L', false);
+
+        $pdf->SetFont("Helvetica", "", 10);
+        $pdf->SetXY(44, 68);
+        $pdf->MultiCell(0, 30, $contadorAsignaturas, 0, 'L', false);
+
+        $pdf->SetMargins(7, 7); // * BORDES
+        $pdf->Output('pdf/Horario.pdf', 'F');
+    }
+
 
     public function obtenerHorarios_enc()
     {
