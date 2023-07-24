@@ -130,6 +130,15 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="pdfFrame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <iframe id="ifr_pdf" width="auto" height="700px"></iframe>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modal-confirma-auto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -160,7 +169,7 @@
                 <div class="container-lecture">
                     <section class="section-list">
                         <div class="container-xl">
-                      
+
                             <div class="table-schedule">
                                 <div class="timeline">
                                     <ul>
@@ -349,18 +358,6 @@
             d = points.reduce((acc, point, i, a) => i === 0 ? `M ${point[0]},${point[1]}` : `${acc} ${getPoint(point, i, a, smoothing)}`, '');
         return `<path d="${d}" />`;
     }
-
-
-    $('#pdfTest').on('click', function(e) {
-        $.ajax({
-            url: "<?php echo base_url('horario_enc/pdfTest/'); ?>",
-            dataType: "json",
-            success: function(data) {
-                console.log(data);
-                $('#frame').prop('src', '<?php echo base_url('pdf/V.pdf') ?>');
-            }
-        });
-    })
 
     $("#formulario").validate({
         errorPlacement: function(error, element) {
@@ -637,7 +634,25 @@
     })
 
     function generarPDF(id) {
+        $('#ifr_pdf').removeAttr('src');
 
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/horario_enc/pdfTest'); ?>/" + id + '/1/0',
+            dataType: "json",
+            success: function(data) {
+                if (data == 2) {
+                    return Swal.fire({
+                        title: 'Error!',
+                        text: 'No se ha obtenido información',
+                        icon: 'error',
+                        confirmButtonText: 'Continuar'
+                    })
+                }
+                $('#pdfFrame').modal('show');
+                $('#ifr_pdf').attr('src', `<?php echo base_url('pdf/Horario') ?>${id}` + '.pdf');
+            }
+        });
     }
 
     $('#btnGuardar').on('click', function(e) {

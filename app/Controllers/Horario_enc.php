@@ -38,9 +38,9 @@ class Horario_enc extends BaseController
         $usuarios = $this->usuarios->obtenerUsuarios($estado = 'A');
         $grados = $this->grados->obtenerGrados('A');
         $horario_enc = $this->horario_enc->obtenerHorarios_enc('E');
-        $horario_enc_prof = $this->horario_enc_prof->obtenerHorarios_enc();
+        // $horario_enc_prof = $this->horario_enc_prof->obtenerHorarios_enc();
 
-        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados, 'datos' => $horario_enc,'datosprof'=>$horario_enc_prof, 'Modulos' => $cargaSideBar];
+        $data = ['titulo' => 'Administrar Horarios', 'usuarios' => $usuarios, 'grados' => $grados, 'datos' => $horario_enc,  'Modulos' => $cargaSideBar];
 
         echo view('/principal/sidebar', $data);
         echo view('/horarios_enc/horarios_enc', $data);
@@ -60,8 +60,6 @@ class Horario_enc extends BaseController
     }
     public function pdfTest($id, $tipo, $idProfesor)
     {
-
-
         $rol = session('id_rol');
 
         switch ($tipo) {
@@ -77,7 +75,11 @@ class Horario_enc extends BaseController
             default:
                 break;
         }
-        
+
+        if (empty($array)) {
+            return json_encode(2);
+        }
+
         $horaDescarga = date("d-m-Y h:i");
 
         $pdf = new \FPDF('P', 'mm', 'letter');
@@ -96,14 +98,6 @@ class Horario_enc extends BaseController
 
         $pdf->SetFont("Helvetica", "", 16);
         $pdf->SetXY(10, 47);
-
-        // switch ($tipo) {
-        //     case '2':
-        //         $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($encabezado['profesor'])), 0, 'L', false);
-        //         break;  
-        //     default:
-        //     break;
-        // }
 
         $pdf->MultiCell(0, 30, iconv('UTF-8', 'windows-1252', strtoupper($encabezado['grado'] . ' / ' . $encabezado['periodo_año'])), 0, 'L', false);
 
@@ -166,7 +160,7 @@ class Horario_enc extends BaseController
         }
 
 
-        function obtenerHorarioAsignatura($array, $asignatura)
+        function obtenerHorarioAsignatura($array, $asignatura, $tipo)
         {
             $horarioAsignatura = [];
             $hora_minima = PHP_INT_MAX;
@@ -180,7 +174,13 @@ class Horario_enc extends BaseController
                     $hora_inicio = strtotime($horario['inicio']);
                     $profesor = $horario['profesor'];
                     $area = $horario['area'];
-                    $grado = $horario['grado'];
+
+                    if ($tipo == 2) {
+                        $grado = $horario['grado'];
+                    }
+
+
+
                     $nombre = $horario['asignatura'];
 
                     $hora_minima = min($hora_minima, $hora_inicio);
@@ -210,19 +210,19 @@ class Horario_enc extends BaseController
             return [$horarioAsignatura, $hora_minima, $hora_maxima, $profesor, $area, $grado, $nombre];
         }
 
-        function obtenerHorariosTodasAsignaturas($array)
+        function obtenerHorariosTodasAsignaturas($array, $tipo)
         {
             $asignaturas = [];
             foreach ($array as $horario) {
                 $asignatura = $horario['id_grado_asignatura'];
                 if (!isset($asignaturas[$asignatura])) {
-                    $asignaturas[$asignatura] = obtenerHorarioAsignatura($array, $asignatura);
+                    $asignaturas[$asignatura] = obtenerHorarioAsignatura($array, $asignatura, $tipo);
                 }
             }
             return $asignaturas;
         }
 
-        $horariosTodasAsignaturas = obtenerHorariosTodasAsignaturas($array);
+        $horariosTodasAsignaturas = obtenerHorariosTodasAsignaturas($array, $tipo);
 
         // print_r($horariosTodasAsignaturas); 
 
@@ -255,8 +255,8 @@ class Horario_enc extends BaseController
                     $pdf->MultiCell(0, 30, strtoupper($grado), 0, 'L', false);
                     $pdf->Image(FCPATH . '/img/grupo.png', $x, $y + 21, 3.5, 3.5);
                     break;
-                    
-                    default:
+
+                default:
                     $pdf->SetFont("Helvetica", "", 8);
                     $pdf->SetXY($x + 4, $y + 8);
                     $pdf->MultiCell(0, 30, strtoupper($profesor), 0, 'L', false);
@@ -322,7 +322,8 @@ class Horario_enc extends BaseController
         $pdf->MultiCell(0, 30, $contadorAsignaturas, 0, 'L', false);
 
         $pdf->SetMargins(7, 7); // * BORDES
-        $pdf->Output('pdf/Horario.pdf', 'F');
+        $pdf->Output('pdf/Horario' . $id . '.pdf', 'F');
+        return json_encode(1);
     }
 
 
